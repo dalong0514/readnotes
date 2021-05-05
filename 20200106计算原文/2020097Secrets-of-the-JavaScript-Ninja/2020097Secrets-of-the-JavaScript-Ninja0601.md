@@ -988,7 +988,7 @@ getJSON("data/ninjas.json", function(err, ninjas) {
 });
 ```
 
-You've probably ended up, at least once or twice, with similarly structured code — a bunch of nested callbacks that represent a series of steps that have to be made. You might notice that this code is difficult to understand, inserting new steps is a pain, and error handling complicates your code significantly. You get this “pyramid of doom” that keeps growing and is difficult to manage. This leads us to the second problem with callbacks: performing sequences of steps is tricky.
+You've probably ended up, at least once or twice, with similarly structured code — a bunch of nested callbacks that represent a series of steps that have to be made. You might notice that this code is difficult to understand, inserting new steps is a pain, and error handling complicates your code significantly. You get this "pyramid of doom" that keeps growing and is difficult to manage. This leads us to the second problem with callbacks: performing sequences of steps is tricky.
 
 Sometimes, the steps that we have to go through to get to the final result don't depend on each other, so we don't have to make them in sequence. Instead, to save precious milliseconds, we can do them in parallel. For example, if we want to set a plan in motion that requires us to know which ninjas we have at our disposal, the plan itself, and the location where our plan will play out, we could take advantage of jQuery's get method and write something like this:
 
@@ -1001,17 +1001,14 @@ $.get("data/ninjas.json", function(err, data) {
   actionItemArrived(); 
 });
 
-$.get("data/mapInfo.json", function(err, data) { if(err) { 
-  processError(err); return; } 
+$.get("data/mapInfo.json", function(err, data) { 
+  if(err) { processError(err); return; } 
   mapInfo = data; 
   actionItemArrived(); 
 });
 
 $.get("plan.json", function(err, data) { 
-  if(err) { 
-    processError(err); 
-    return; 
-  }
+  if(err) {  processError(err); return; }
   plan = data; 
   actionItemArrived (); 
 });
@@ -1067,11 +1064,50 @@ The following listing provides a closer look at what's going on when we use prom
 
 Listing 6.11 A closer look at promise order of execution
 
-The code in listing 6.11 outputs the results shown in figure 6.11. As you can see, the code starts by logging the “At code start” message by using our custom-made report function (appendix C) that outputs the message onscreen. This enables us to easily track the order of execution.
+```js
+report("At code start");
+var ninjaDelayedPromise = new Promise((resolve, reject) => { 
+  // Calling the Promise constructor immediately invokes the passed-in function.
+  report("ninjaDelayedPromise executor"); 
+  setTimeout(() => { 
+    report("Resolving ninjaDelayedPromise"); 
+    // We’ll resolve this promise as successful after a 500ms timeout expires.
+    resolve("Hattori"); 
+  }, 500);  
+});
+
+assert(ninjaDelayedPromise !== null, "After creating ninjaDelayedPromise");
+
+ninjaDelayedPromise.then(ninja => {
+  // The Promise then method is used to set up a callback that will be called 
+  // when the promise resolves, in our case when the timeout expires.
+  assert(ninja === "Hattori", "ninjaDelayedPromise resolve handled with Hattori");
+});
+
+// Creates a new promise that gets immediately resolved
+const ninjaImmediatePromise = new Promise((resolve, reject) => { 
+  report("ninjaImmediatePromise executor. Immediate resolve."); 
+  resolve("Yoshi"); 
+});
+
+ninjaImmediatePromise.then(ninja => {
+  // Sets up a callback to be invoked when the promise resolves. But our promise is already resolved!
+  assert(ninja === "Yoshi", "ninjaImmediatePromise resolve handled with Yoshi");
+});
+
+report("At code end");
+```
+
+The code in listing 6.11 outputs the results shown in figure 6.11. As you can see, the code starts by logging the "At code start" message by using our custom-made report function (appendix C) that outputs the message onscreen. This enables us to easily track the order of execution.
 
 Next we create a new promise by calling the Promise constructor. This immediately invokes the executor function in which we set up a timeout:
 
-setTimeout(() => { report("Resolving ninjaDelayedPromise"); resolve("Hattori"); }, 500);
+```js
+setTimeout(() => { 
+  report("Resolving ninjaDelayedPromise"); 
+  resolve("Hattori"); 
+}, 500);
+```
 
 The timeout will resolve the promise after 500ms. This could have been any other asynchronous task, but we chose the humble timeout because of its simplicity.
 
@@ -1081,13 +1117,11 @@ Figure 6.11 The result of executing listing 6.11
 
 Next we use the then method on the ninjaDelayedPromise to schedule a callback to be executed when the promise successfully resolves:
 
+```js
 ninjaDelayedPromise.then(ninja => {
-
-assert(ninja === "Hattori",
-
-"ninjaDelayedPromise resolve handled with Hattori");
-
+  assert(ninja === "Hattori", "ninjaDelayedPromise resolve handled with Hattori");
 });
+```
 
 This callback will always be called asynchronously, regardless of the current state of the promise.
 
@@ -1095,7 +1129,7 @@ We continue by creating another promise, ninjaImmediatePromise, which is resolve
 
 Afterward, we use the ninjaImmediatePromise's then method to register a callback that will be executed when the promise successfully resolves. But our promise is already settled; does this mean that the success callback will be immediately called or that it will be ignored? The answer is neither.
 
-Promises are designed to deal with asynchronous actions, so the JavaScript engine always resorts to asynchronous handling, to make the promise behavior predictable. The engine does this by executing the then callbacks after all the code in the current step of the event loop is executed (once again, we'll explore exactly what this means in chapter 13). For this reason, if we study the output in figure 6.11, we'll see that we first log “At code end” and then we log that the ninjaImmediatePromise was resolved. In the end, after the 500ms timeout expires, the ninjaDelayedPromise is resolved, which causes the execution of the matching then callback.
+Promises are designed to deal with asynchronous actions, so the JavaScript engine always resorts to asynchronous handling, to make the promise behavior predictable. The engine does this by executing the then callbacks after all the code in the current step of the event loop is executed (once again, we'll explore exactly what this means in chapter 13). For this reason, if we study the output in figure 6.11, we'll see that we first log "At code end" and then we log that the ninjaImmediatePromise was resolved. In the end, after the 500ms timeout expires, the ninjaDelayedPromise is resolved, which causes the execution of the matching then callback.
 
 In this example, for the sake of simplicity, we've worked only with the rosy scenario in which everything goes great. But the real world isn't all sunshine and rainbows, so let's see how to deal with all sorts of crazy problems that can occur.
 
@@ -1123,9 +1157,35 @@ There are two ways of rejecting a promise: explicitly, by calling the passed-in 
 
 Listing 6.12 Explicitly rejecting promises
 
-We can explicitly reject a promise, by calling the passed-in reject method: reject("Explicitly reject a promise!"). If a promise is rejected, when registering callbacks through the then method, the second, error, callback will always be invoked.
+```js
+const promise = new Promise((resolve, reject) => { 
+  // A promise can be explicitly rejected by calling the passed-in reject function.
+  reject("Explicitly reject a promise!"); 
+});
+
+// If a promise is rejected, the second, error, callback is invoked.
+promise.then( 
+  () => fail("Happy path, won't be called!"), 
+  error => pass("A promise was explicitly rejected!") 
+);
+```
+
+We can explicitly reject a promise, by calling the passed-in reject method: `reject("Explicitly reject a promise!")`. If a promise is rejected, when registering callbacks through the then method, the second, error, callback will always be invoked.
 
 In addition, we can use an alternative syntax for handling promise rejections, by using the built-in catch method, as shown in the following listing.
+
+Listing 6.13 Chaining a catch method
+
+```js
+var promise = new Promise((resolve, reject) => { 
+  reject("Explicitly reject a promise!"); 
+});
+
+// Instead of supplying the second, error, callback, 
+// we can chain in the catch method, and pass to it the error callback. The end result is the same.
+promise.then(()=> fail("Happy path, won't be called!")) 
+        .catch(() => pass("Promise was also rejected"));
+```
 
 As listing 6.13 shows, we can chain in the catch method after the then method, to also provide an error callback that will be invoked when a promise gets rejected. In this example, this is a matter of personal style. Both options work equally well, but later, when working with chains of promises, we'll see an example in which chaining the catch method is useful.
 
@@ -1133,11 +1193,22 @@ In addition to explicit rejection (via the reject call), a promise can also be r
 
 Listing 6.14 Exceptions implicitly reject a promise
 
+```js
+// A promise is implicitly rejected if an unhandled exception occurs when processing the promise.
+const promise = new Promise((resolve, reject) => { 
+  undeclaredVariable++; 
+});
+
+// If an exception occurs, the second, error, callback is invoked.
+promise.then(() => fail("Happy path, won't be called!")) 
+        .catch(error => pass("Third promise was also rejected"));
+```
+
 Within the body of the promise executor, we try to increment undeclaredVariable, a variable that isn't defined in our program. As expected, this results in an exception. Because there's no try-catch statement within the body of the executor, this results in an implicit rejection of the current promise, and the catch callback is eventually invoked. In this situation, we could have just as easily supplied the second callback to the then method, and the end effect would be the same.
 
 This way of treating all problems that happen while working with promises in a uniform way is extremely handy. Regardless of how the promise was rejected, whether explicitly by calling the reject method or even implicitly, if an exception occurs, all errors and rejection reasons are directed to our rejection callback. This makes our lives as developers a little easier.
 
-Now that we understand how promises work, and how to schedule success and failure callbacks, let's take a real-world scenario, getting JSON-formatted data from a server, and “promisify” it.
+Now that we understand how promises work, and how to schedule success and failure callbacks, let's take a real-world scenario, getting JSON-formatted data from a server, and "promisify" it.
 
 6.3.3 拒绝 promise 
 
@@ -1159,13 +1230,53 @@ One of the most common asynchronous actions on the client is fetching data from 
 
 Listing 6.15 Creating a getJSON promise
 
-NOTE
+```js
+function getJSON(url) {
+  // Creates and returns a new promise
+  return new Promise((resolve, reject) => { 
+    // Creates an XMLHttpRequest object
+    const request = new XMLHttpRequest();
+    // Initializes the request
+    request.open("GET", url);
+    //  Registers an onload handler that will be called if the server has responded
+    request.onload = function() { 
+      try { 
+        // Even if the server has responded, it doesn’t mean everything went as expected. 
+        // Use the result only if the server responds with status 200 (everything OK).
+        if(this.status === 200 ) { 
+          // Try to parse the JSON string; if it succeeds, resolve the promise as successful with the parsed object.
+          resolve(JSON.parse(this.response)); 
+        } else { reject(this.status + " " + this.statusText); } 
+      } catch(e) { 
+        reject(e.message);  
+      };
+      // If the server responds with a different status code, or if there’s an exception parsing the JSON string, reject the promise.
 
-Our goal is to create a getJSON function that returns a promise that will enable us to register success and failure callbacks for asynchronously getting JSON-formatted data from the server. For the underlying implementation, we use the built-in XMLHttpRequest object that offers two events: onload and onerror. The onload event is triggered when the browser receives a response from the server, and onerror is triggered when an error in communication happens. These event handlers will be called asynchronously by the browser, as they occur.
+      // If there’s an error while communicating with the server, reject the promise.
+      request.onerror = function() { 
+        reject(this.status + " " + this.statusText); 
+      };
+    }
+    // Sends the request
+    request.send(); 
+  });
+}
+
+// Uses the promise created by the getJSON function to register resolve and reject callbacks
+getJSON("data/ninjas.json").then(ninjas => { 
+  assert(ninjas !== null, "Ninjas obtained!");
+}).catch(e => fail("Shouldn't be here:" + e));
+```
+
+NOTE: Our goal is to create a getJSON function that returns a promise that will enable us to register success and failure callbacks for asynchronously getting JSON-formatted data from the server. For the underlying implementation, we use the built-in XMLHttpRequest object that offers two events: onload and onerror. The onload event is triggered when the browser receives a response from the server, and onerror is triggered when an error in communication happens. These event handlers will be called asynchronously by the browser, as they occur.
 
 If an error in the communication happens, we definitely won't be able to get our data from the server, so the honest thing to do is to reject our promise:
 
-request.onerror = function(){ reject(this.status + " " + this.statusText); };
+```js
+request.onerror = function() { 
+  reject(this.status + " " + this.statusText); 
+};
+```
 
 If we receive a response from the server, we have to analyze that response and consider the exact situation. Without going into too much detail, a server can respond with various things, but in this case, we care only that the response is successful (status 200). If it isn't, again we reject the promise.
 
@@ -1173,9 +1284,11 @@ Even if the server has successfully responded with data, this still doesn't mean
 
 If everything goes according to plan, and we successfully obtain our objects, we can safely resolve the promise. Finally, we can use our getJSON function to fetch ninjas from the server:
 
-getJSON("data/ninjas.json").then(ninjas => { assert(ninjas !== null, "Ninjas obtained!");
-
+```js
+getJSON("data/ninjas.json").then(ninjas => { 
+  assert(ninjas !== null, "Ninjas obtained!");
 }).catch(e => fail("Shouldn't be here:" + e));
+```
 
 In this case, we have three potential sources of errors: errors in establishing the communication between the server and the client, the server responding with unanticipated data (invalid response status), and invalid JSON code. But from the perspective of the code that uses the getJSON function, we don't care about the specifics of error sources. We only supply a callback that gets triggered if everything goes okay and the data is properly received, and a callback that gets triggered if any error occurs. This makes our lives as developers so much easier.
 
@@ -1203,6 +1316,14 @@ Earlier in the chapter, you saw how, by using the then method on a promise, we c
 
 Listing 6.16 Chaining promises with then
 
+```js
+getJSON("data/ninjas.json")
+  .then(ninjas => getJSON(ninjas[0].missionsUrl)) 
+  .then(missions => getJSON(missions[0].detailsUrl)) 
+  .then(mission => assert(mission !== null, "Ninja mission obtained!")) 
+  .catch(error => fail("An error has occurred"));
+```
+
 This creates a sequence of promises that will be, if everything goes according to plan, resolved one after another. First, we use the getJSON("data/ninjas.json") method to fetch a list of ninjas from the file on the server. After we receive that list, we take the information about the first ninja, and we request a list of missions the ninja is assigned to: getJSON(ninjas[0].missionsUrl). Later, when these missions come in, we make yet another request for the details of the first mission: getJSON(missions[0].detailsUrl). Finally, we log the details of the mission.
 
 Writing such code using standard callbacks would result in a deeply nested sequence of callbacks. Identifying the exact sequence of steps wouldn't be easy, and God forbid we decide to add in an extra step somewhere in the middle.
@@ -1211,7 +1332,9 @@ CATCHING ERRORS IN CHAINED PROMISES
 
 When dealing with sequences of asynchronous steps, an error can occur in any step. We already know that we either can provide a second, error callback to the then call, or can chain in a catch call that takes an error callback. When we care about only the success/failure of the entire sequence of steps, supplying each step with special error handling might be tedious. So, as shown in listing 6.16, we can take advantage of the catch method that you saw earlier:
 
+```js
 ...catch(error => fail("An error has occurred:" + err));
+```
 
 If a failure occurs in any of the previous promises, the catch method catches it. If no error occurs, the program flow continues through it, unobstructed.
 
@@ -1239,6 +1362,20 @@ In addition to helping us deal with sequences of interdependent, asynchronous st
 
 Listing 6.17 Waiting for a number of promises with Promise.all
 
+```js
+Promise.all([getJSON("data/ninjas.json"),
+            getJSON("data/mapInfo.json"), 
+            getJSON("data/plan.json")]).then(results => { 
+  const ninjas = results[0], mapInfo = results[1], plan = results[2];
+  
+  assert(ninjas !== undefined 
+    && mapInfo !== undefined && plan !== undefined,
+      "The plan is ready to be set in motion!"); 
+  }).catch(error => {
+    fail("A problem in carrying out our plan!"); 
+  });
+```
+
 As you can see, we don't have to care about the order in which tasks are executed, and whether some of them have finished, while others didn't. We state that we want to wait for a number of promises by using the built-in Promise.all method. This method takes in an array of promises and creates a new promise that successfully resolves when all passed-in promises resolve, and rejects if even one of the promises fails. The succeed callback receives an array of succeed values, one for each of the passed-in promises, in order. Take a minute to appreciate the elegance of code that processes multiple parallel asynchronous tasks with promises.
 
 The Promise.all method waits for all promises in a list. But at times we have numerous promises, but we care only about the first one that succeeds (or fails). Meet the Promise.race method.
@@ -1248,6 +1385,15 @@ RACING PROMISES
 Imagine that we have a group of ninjas at our disposal, and that we want to give an assignment to the first ninja who answers our call. When dealing with promises, we can write something like the following listing.
 
 Listing 6.18 Racing promises with Promise.race
+
+```js
+Promise.race([getJSON("data/yoshi.json"),
+              getJSON("data/hattori.json"), 
+              getJSON("data/hanzo.json")]) 
+        .then(ninja => { 
+          assert(ninja !== null, ninja.name + " responded first");
+        }).catch(error => fail("Failure!"));
+```
 
 It's simple as that. There's no need for manually tracking everything. We use the Promise.race method to take an array of promises and return a completely new promise that resolves or rejects as soon as the first of the promises resolves or rejects.
 
@@ -1271,7 +1417,16 @@ In this section, we'll combine generators (and their capability to pause and res
 
 All of these subtasks are long-running and mutually dependent. If we were to implement them in a synchronous fashion, we'd get the following straightforward code:
 
-try { const ninjas = syncGetJSON("data/ninjas.json"); const missions = syncGetJSON(ninjas[0].missionsUrl); const missionDetails = syncGetJSON(missions[0].detailsUrl); //Study the mission description } catch(e){ //Oh no, we weren't able to get the mission details }
+```js
+try { 
+  const ninjas = syncGetJSON("data/ninjas.json"); 
+  const missions = syncGetJSON(ninjas[0].missionsUrl); 
+  const missionDetails = syncGetJSON(missions[0].detailsUrl);  
+  //Study the mission description
+} catch(e){ 
+  //Oh no, we weren't able to get the mission details 
+}
+```
 
 Although this code is great for its simplicity and error handling, it blocks the UI, which results in unhappy users. Ideally, we'd like to change this code so that no blocking occurs during a long-running task. One way of doing this is by combining generators and promises.
 
@@ -1279,13 +1434,42 @@ As we know, yielding from a generator suspends the execution of the generator wi
 
 The idea, then, is to combine generators and promises in the following way: We put the code that uses asynchronous tasks in a generator, and we execute that generator function. When we reach a point in the generator execution that calls an asynchronous task, we create a promise that represents the value of that asynchronous task. Because we have no idea when that promise will be resolved (or even if it will be resolved), at this point of generator execution, we yield from the generator, so that we don't cause blocking. After a while, when the promise gets settled, we continue the execution of our generator by calling the iterator's next method. We do this as many times as necessary. See the following listing for a practical example.
 
-The async function takes a generator, calls it, and creates an iterator that will be used to resume the generator execution. Inside the async function, we declare a handle function that handles one return value from the generator — one “iteration” of our iterator. If the generator result is a promise that gets resolved successfully, we use the iterator's next method to send the promised value back to the generator and resume the generator's execution. If an error occurs and the promise gets rejected, we throw that error to the generator by using the iterator's throw method (told you it would come in handy). We keep doing this until the generator says it's done.
+Listing 6.19 Combining generators and promises
 
-This is a rough sketch, a minimum amount of code needed to combine generators and promises. We don't recommend that you use this code in production.
+```js
+async(function*() {
+  try { 
+    const ninjas = yield getJSON("data/ninjas.json"); 
+    const missions = yield getJSON(ninjas[0].missionsUrl); 
+    const missionDescription = yield getJSON(missions[0].detailsUrl);
+    //Study the mission details
+  } catch(e) { 
+    // Oh no, we weren't able to get the mission details 
+  } 
+}); 
 
-NOTE: Now let's take a closer look at the generator. On the first invocation of the iterator's next method, the generator executes up to the first getJSON("data/ninjas.json")
+function async(generator) { 
+  var iterator = generator();
+  function handle(iteratorResult) { 
+    if(iteratorResult.done) { return; }
+    const iteratorValue = iteratorResult.value;
+    if(iteratorValue instanceof Promise) { 
+      iteratorValue.then(res => handle(iterator.next(res)) 
+                    .catch(err => iterator.throw(err)));
+    }
+  }
+  try { 
+    handle(iterator.next()); 
+  } catch (e) { iterator.throw(e); }
 
-call. This call creates a promise that will eventually contain the list of information about our ninjas. Because this value is fetched asynchronously, we have no idea how much time it will take the browser to get it. But we know one thing: We don't want to block the application execution while we're waiting. For this reason, at this moment of execution, the generator yields control, which pauses the generator, and returns the control flow to the invocation of the handle function. Because the yielded value is a getJSON promise, in the handle function, by using the then and catch methods of the promise, we register a success and an error callback, and continue execution. With this, the control flow leaves the execution of the handle function and the body of the async function, and continues after the call to the async function (in our case, there's no more code after, so it idles). During this time, our generator function patiently waits suspended, without blocking the program execution.
+}
+```
+
+The async function takes a generator, calls it, and creates an iterator that will be used to resume the generator execution. Inside the async function, we declare a handle function that handles one return value from the generator — one "iteration" of our iterator. If the generator result is a promise that gets resolved successfully, we use the iterator's next method to send the promised value back to the generator and resume the generator's execution. If an error occurs and the promise gets rejected, we throw that error to the generator by using the iterator's throw method (told you it would come in handy). We keep doing this until the generator says it's done.
+
+NOTE: This is a rough sketch, a minimum amount of code needed to combine generators and promises. We don't recommend that you use this code in production.
+
+Now let's take a closer look at the generator. On the first invocation of the iterator's next method, the generator executes up to the first `getJSON("data/ninjas.json")` call. This call creates a promise that will eventually contain the list of information about our ninjas. Because this value is fetched asynchronously, we have no idea how much time it will take the browser to get it. But we know one thing: We don't want to block the application execution while we're waiting. For this reason, at this moment of execution, the generator yields control, which pauses the generator, and returns the control flow to the invocation of the handle function. Because the yielded value is a getJSON promise, in the handle function, by using the then and catch methods of the promise, we register a success and an error callback, and continue execution. With this, the control flow leaves the execution of the handle function and the body of the async function, and continues after the call to the async function (in our case, there's no more code after, so it idles). During this time, our generator function patiently waits suspended, without blocking the program execution.
 
 Much, much later, when the browser receives a response (either a positive or a negative one), one of the promise callbacks is invoked. If the promise was resolved successfully, the success callback is invoked, which in turn causes the execution of the iterator's next method, which asks the generator for another value. This brings back the generator from suspension and sends to it the value passed in by the callback. This means that we reenter the body of our generator, after the first yield expression, whose value becomes the ninjas list that was asynchronously fetched from the server. The execution of the generator function continues, and the value is assigned to the plan variable.
 
@@ -1309,15 +1493,30 @@ This was a tad on the complex side, but we like this example because it combines
 
 Now that we've gone through the whole process, let's take a minute to appreciate how much more elegant the code that implements our business logic is. Consider this:
 
+```js
+getJSON("data/ninjas.json", (err, ninjas) => { 
+  if(err) { console.log("Error fetching ninjas", err); return; }
+
+  getJSON(ninjas[0].missionsUrl, (err, missions) => { 
+    if(err) { console.log("Error locating ninja missions", err); return; } 
+    console.log(misssions); 
+  }) 
+});
+```
+
 Instead of mixed control-flow and error handling, and slightly confusing code, we end up with something like this:
 
+```js
 async(function*() {
-
-try { const ninjas = yield getJSON("data/ninjas.json"); const missions = yield getJSON(ninjas[0].missionsUrl);
-
-//All information recieved
-
-} catch(e) { //An error has occurred } });
+  try { 
+    const ninjas = yield getJSON("data/ninjas.json"); 
+    const missions = yield getJSON(ninjas[0].missionsUrl);
+    //All information recieved
+  } catch(e) { 
+    //An error has occurred 
+  } 
+});
+```
 
 This end result combines the advantages of synchronous and asynchronous code. From synchronous code, we have the ease of understanding, and the ability to use all standard control-flow and exception-handling mechanisms such as loops and try-catch statements. From asynchronous code, we get the nonblocking nature; the execution of our application isn't blocked while waiting for long-running asynchronous tasks.
 
