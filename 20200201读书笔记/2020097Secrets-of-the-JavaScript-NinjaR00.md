@@ -50,6 +50,41 @@ Uff, this was something! We went deep into how generators work under the hood to
 
 我们深入挖掘生成器的工作原理后可以发现，生成器所有不可思议的特点实际都来源于一点，即当我们从生成器中取得控制权后，生成器的执行环境上下文一直是保存的，而不是像标准函数一样退出后销毁。现在我建议你平静一下心情，继续书写优雅异步代码的第二个关键点：promise。
 
+### 0102. 主题卡 —— async/await 语法
+
+信息源自「2020097Secrets-of-the-JavaScript-Ninja0601.md」
+
+Notice that we still had to write some boilerplate code; we had to develop an async function that takes care of handling promises and requesting values from the generator. Although we can write this function only once and then reuse it throughout our code, it would be even nicer if we didn't have to think about it. The people in charge of JavaScript are well aware of the usefulness of the combination of generators and promises, and they want to make our lives even easier by building in direct language support for mixing generators and promises.
+
+For these situations, the current plan is to include two new keywords, async and await, that would take care of this boilerplate code. Soon, we'll be able to write something like this:
+
+```js
+(async function () {
+  try { 
+    const ninjas = await getJSON("data/ninjas.json"); 
+    const missions = await getJSON(missions[0].missionsUrl);
+  console.log(missions);
+  }
+  catch(e) { 
+    console.log("Error: ", e); 
+  } 
+})()
+```
+
+1-3『此时此刻才意识到，async/await 语法是对「Promise/Generator」组合实现封装的「语法糖」。同时想起了 winter 在「重学前端」专栏课里提到的信息：generator/iterator 也常常被跟异步一起来讲，我们必须说明 generator/iterator 并非异步代码，只是在缺少 async/await 的时候，一些框架（最著名的要数 co）使用这样的特性来模拟 async/await。但是 generator 并非被设计成实现异步，所以有了 async/await 之后，generator/iterator 来模拟异步的方法应该被废弃。async/await 语法，做一张主题卡片。（2021-05-05）』—— 已完成
+
+We use the async keyword in front of the function keyword to specify that this function relies on asynchronous values, and at every place where we call an asynchronous task, we place the await keyword that says to the JavaScript engine, please wait for this result without blocking. In the background, everything happens as we've discussed previously throughout the chapter, but now we don't need to worry about it.
+
+Async functions will appear in the next installment of JavaScript. Currently no browser supports it, but you can use transpilers such as Babel or Traceur if you wish to use async in your code today.
+
+6.4.1 面向未来的 async 函数
+
+可以看到我们仍然需要书写一些样板代码，所以我们此时需要一个 async 函数能够管理所有 promise 函数的调用，还要管理所有向生成器发出的请求。虽然我们可以在代码中只书写一次这个过程，然后每次需要的时候对其进行复用，但如果我们完全不用关心这个问题就更好了。负责维护 JavaScript 的人们也注意到了将生成器和 promise 相结合的强大效果，因而他们也希望直接借助语言层面来支持这个特性，从而使我们的开发更便捷。在这种形势下，当前的 JavaScript 标准计划新增了两个关键字，用于替代上述样板代码。很快我们就能以类似下面的形式书写代码了：
+
+通过在关键字 function 之前使用关键字 async，可以表明当前的函数依赖一个异步返回的值。在每个调用异步任务的位置上，都要放置一个 await 关键字，用来告诉 JavaScript 引擎，请在不阻塞应用执行的情况下在这个位置上等待执行结果。在这个过程背后，其实发生着本章前面所讨论内容，但现在我们不必关心这个过程的内部细节。
+
+注意：在 JavaScript 的下一个版本中将会新增 async 函数。现阶段还没有浏览器对其进行支持，但通过 Babel 或者 Traceur 转译代码后，你可以在代码中使用 async 语法。
+
 ### 0201. 术语卡 —— 迭代器对象（Iterator）
 
 信息源自「2020097Secrets-of-the-JavaScript-Ninja0601.md」

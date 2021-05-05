@@ -1,3 +1,129 @@
+## author's introduction
+
+It's incredible to think of how much the world of JavaScript has changed since I first started writing Secrets of the JavaScript Ninja back in 2008. The world in which we write JavaScript now, while still being largely centered around the browser, is nearly unrecognizable.
+
+The popularity of JavaScript as a full-featured, cross-platform language has exploded. Node.js is a formidable platform against which countless production applications are developed. Developers are actually writing applications in one languageJavaScript — that are capable of running in a browser, on a server, and even in a native app on a mobile device.
+
+It's more important now, than ever before, that a developer's knowledge of the JavaScript language be at its absolute peak. Having a fundamental understanding of the language and the ways in which it can be best written will allow you to create applications that can work on virtually any platform, which is a claim that few other languages can legitimately boast.
+
+Unlike previous eras in the growth of JavaScript, there hasn't been equal growth in platform incompatibilities. It used to be that you would salivate over the thought of using the most basic new browser features and yet be stymied by outdated browsers that had far too much market share. We've entered a harmonious time in which most users are on rapidly updated browsers that compete to be the most standards-compliant platform around. Browser vendors even go out of their way to develop features specifically targeted at developers, hoping to make their lives easier.
+
+The tools that we have now, provided by browsers and the open source community, are light years ahead of old practices. We have a plethora of testing frameworks to choose from, the ability to do continuous integration testing, generate code-coverage reports, performance-test on real mobile devices around the globe, and even automatically load up virtual browsers on any platform to test from.
+
+The first edition of the book benefited tremendously from the development insight that Bear Bibeault provided. This edition has received substantial help from Josip Maras to explore the concepts behind ECMAScript 6 and 7, dive into testing best practices, and understand the techniques employed by popular JavaScript frameworks.
+
+All of this is a long way of saying: how we write JavaScript has changed substantially. Fortunately, this book is here to help you keep on top of the current best practices. Not only that, but it'll help you improve how you think about your development practices as a whole to ensure that you'll be ready for writing JavaScript well into the future.
+
+JOHN RESIG
+
+## about this book
+
+JavaScript is important. That wasn't always so, but it's true now. JavaScript has become one of the most important and most widely used programming languages today.
+
+Web applications are expected to give users a rich user interface experience, and without JavaScript, you might as well just be showing pictures of kittens. More than ever, web developers need to have a sound grasp of the language that brings life to web applications.
+
+And like orange juice and breakfast, JavaScript isn't just for browsers anymore. The language has long ago knocked down the walls of the browser and is being used on the server thanks to Node.js, on desktop devices and mobiles through platforms such as Apache Cordova, and even on embedded devices with Espruino and Tessel.
+
+Although this book is primarily focused on JavaScript executed in the browser, the fundamentals of the language presented in this book are applicable across the board. Truly understanding the concepts and learning various tips and tricks will make you a better all-around JavaScript developer.
+
+With more and more developers using JavaScript in an increasingly JavaScript world, it's more important than ever to grasp its fundamentals so you can become an expert ninja of the language.
+
+Audience
+
+If you aren't at all familiar with JavaScript, this probably shouldn't be your first book. Even if it is, don't worry too much; we try to present fundamental JavaScript concepts in a way that should be understandable even for relative beginners. But, to be honest, this book will probably best fit people who already know some JavaScript and who wish to deepen their understanding of JavaScript as a language, as well as the browser as the environment in which JavaScript code is executed.
+
+Roadmap
+
+This book is organized to take you from an apprentice to a ninja in four parts.
+
+Part 1 introduces the topic and sets the stage so that you can easily progress through the rest of the book:
+
+■ Chapter 1 introduces JavaScript the language and its most important features, while suggesting current best practices we should follow when developing applications, including testing and performance analysis.
+
+Because our exploration of JavaScript is made in the context of browsers, in chapter 2 we'll set the stage by introducing the lifecycle of client-side web applications. That will help us understand JavaScript's role in the process of developing web applications.
+
+Part 2 focuses on one of the pillars of JavaScript: functions. We'll study why functions are so important in JavaScript, the different kinds of functions, as well as the nitty-gritty details of defining and invoking functions. We'll put a special focus on a new type of function — generator functions — which are especially helpful when dealing with asynchronous code:
+
+■ Chapter 3 begins our foray into the fundamentals of the language, starting, perhaps to your surprise, with a thorough examination of the function as defined by JavaScript. Although you may have expected the object to be the target of our first focus, a solid understanding of the function, and JavaScript as a functional language, begins our transformation from run-of-the-mill JavaScript coders to JavaScript ninjas!
+
+We continue this functional thread in chapter 4, by exploring the exact mechanism of invoking functions, as well as the ins and outs of implicit function parameters.
+
+Not being done with functions quite yet, in chapter 5 we take our discussion to the next level by studying two closely related concepts: scopes and closures. A key concept in functional programming, closures allow us to exert fine-grained control over the scope of objects that we declare and create in our programs. The control of these scopes is the key factor in writing code worthy of a ninja. Even if you stop reading after this chapter (but we hope you don't), you'll be a far better JavaScript developer than when you started.
+
+We conclude our exploration of functions in chapter 6, by taking a look at a completely new type of function (generator functions) and a new type of object (promises) that help us deal with asynchronous values. We'll also show you how to combine generators and promises to achieve elegance when dealing with asynchronous code.
+
+Part 3 deals with the second pillar of JavaScript: objects. We'll thoroughly explore object orientation in JavaScript, and we'll study how to guard access to objects and how to deal with collections and regular expressions:
+
+Objects are finally addressed in chapter 7, where we learn exactly how JavaScript's slightly strange flavor of object orientation works. We'll also introduce a new addition to JavaScript: classes, which, deep under the hood, may not be exactly what you expect.
+
+We'll continue our exploration of objects in chapter 8, where we'll study different techniques for guarding access to our objects.
+
+In chapter 9, we'll put a special focus on different types of collections that exist in JavaScript; on arrays, which have been a part of JavaScript since its beginnings; and on maps and sets, which are recent addition to JavaScript.
+
+Chapter 10 focuses on regular expressions, an often-overlooked feature of the language that can do the work of scores of lines of code when used correctly. We'll learn how to construct and use regular expressions and how to solve some recurring problems elegantly, using regular expressions and the methods that work with them.
+
+In chapter 11, we'll learn different techniques for organizing our code into modules: smaller, relatively loosely coupled segments that improve the structure and organization of our code.
+
+Finally, part 4 wraps up the book by studying how JavaScript interacts with our web pages and how events are processed by the browser. We'll finish the book by looking at an important topic, cross-browser development:
+
+Chapter 12 explores how we can dynamically modify our pages through DOMmanipulation APIs, and how we can handle element attributes, properties, and styles, as well as some important performance considerations.
+
+Chapter 13 discusses the importance of JavaScript's single-threaded execution model and the consequences this model has on the event loop. We'll also learn how timers and intervals work and how we can use them to improve the perceived performance of our web applications.
+
+Chapter 14 concludes the book by examining the five key development concerns with regard to these cross-browser issues: browser differences, bugs and bug fixes, external code and markup, missing features, and regressions. Strategies such as feature simulation and object detection are discussed at length to help us deal with these cross-browser challenges.
+
+Code conventions
+
+All source code in listings or in the text is in a fixed-width font like this to separate it from ordinary text. Method and function names, properties, XML elements, and attributes in the text are also presented in this same font.
+
+In some cases, the original source code has been reformatted to fit on the pages. In general, the original code was written with page-width limitations in mind, but sometimes you may find a slight formatting difference between the code in the book and that provided in the source download. In a few rare cases, where long lines could not be reformatted without changing their meaning, the book listings contain linecontinuation markers.
+
+Code annotations accompany many of the listings; these highlight important concepts.
+
+Code downloads
+
+Source code for all the working examples in this book (along with some extras that never made it into the text) is available for download from the book's web page at https://manning.com/books/secrets-of-the-javascript-ninja-second-edition.
+
+The code examples for this book are organized by chapter, with separate folders for each chapter. The layout is ready to be served by a local web server, such as the Apache HTTP Server. Unzip the downloaded code into a folder of your choice, and make that folder the document root of the application.
+
+With a few exceptions, most of the examples don't require the presence of a web server and can be loaded directly into a browser for execution, if you so desire.
+
+Author Online
+
+The authors and Manning Publications invite you to the book's forum, run by Manning Publications, where you can make comments about the book, ask technical questions, and receive help from the authors and other users. To access and subscribe to the forum, point your browser to https://manning.com/books/secrets-of-thejavascript-ninja-second-edition and click the Author Online link. This page provides information on how to get on the forum once you are registered, what kind of help is available, and the rules of conduct in the forum.
+
+Manning's commitment to our readers is to provide a venue where a meaningful dialogue between individual readers and between readers and the authors can take place. It's not a commitment to any specific amount of participation on the part of the authors, whose contribution to the book's forum remains voluntary (and unpaid). We suggest you try asking the authors some challenging questions, lest their interest stray!
+
+The Author Online forum and the archives of previous discussions will be accessible from the publisher's website as long as the book is in print.
+
+About the authors
+
+John Resig is a staff engineer at Khan Academy and the creator of the jQuery JavaScript library. In addition to the first edition of Secrets of the JavaScript Ninja, he's also the author of the book Pro JavaScript Techniques.
+
+John has developed a comprehensive Japanese woodblock print database and image search engine: Ukiyo-e.org. He's a board member of the Japanese Art Society of America and is a Visiting Researcher at Ritsumeikan University working on the study of Ukiyo-e.
+
+John is located in Brooklyn, NY.
+
+Bear Bibeault has been writing software for well over three decades, starting with a Tic-Tac-Toe program written on a Control Data Cyber supercomputer via a 100-baud teletype. Having two degrees in electrical engineering, Bear should be designing antennas or something like that, but since his first job with Digital Equipment Corporation, he has always been much more fascinated with programming.
+
+Bear has also served stints with companies such as Dragon Systems, Works.com, Spredfast, Logitech, Caringo, and more than a handful of others. Bear even served in the U.S. military, leading and training a platoon of anti-tank infantry soldiers — skills that come in handy during scrum meetings. “That's Sergeant Bear to you, trainee!”
+
+Bear is currently a senior front-end developer for a leading provider of object storage software that provides massive storage scalability and content protection.
+
+In addition to the first edition of this book, Bear is also the author of a number of other Manning books, including jQuery in Action (first, second, and third editions), Ajax in Practice, and Prototype and Scriptaculous in Action; and he has been a technical reviewer for many of the web-focused “Head First” books by O'Reilly Publishing, such as Head First Ajax, Head Rush Ajax, and Head First Servlets and JSP.
+
+In addition to his day job, Bear also writes books (duh!), runs a small business that creates web applications and offers other media services (but not wedding videography — never, ever wedding videography), and helps out at CodeRanch.com as a “marshal” (uber moderator).
+
+When not planted in front of a computer, Bear likes to cook big food (which accounts for his jeans size), dabble in photography and video, ride his Yamaha V-Star, and wear tropical print shirts.
+
+He works and resides in Austin, Texas, a city he loves, except for the completely insane traffic and drivers.
+
+Josip Maras is a post-doctoral researcher in the faculty of electrical engineering, mechanical engineering, and naval architecture, University of Split, Croatia. He has a PhD in software engineering, with the thesis “Automating Reuse in Web Application Development,” which among other things included implementing a JavaScript interpreter in JavaScript. During his research, he has published more than a dozen scientific conference and journal papers, mostly dealing with program analysis of client-side web applications.
+
+When not doing research, Josip spends his time teaching web development, systems analysis and design, and Windows development (a couple hundred students over the last six years). He also owns a small software development business.
+
+In his spare time, Josip enjoys reading, long runs, and, if the weather allows, swimming in the Adriatic.
+
 ## 书评
 
 ### 01. 非常霸道的 js 书

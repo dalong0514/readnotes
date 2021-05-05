@@ -1054,11 +1054,9 @@ Now that you understand most of the reasons behind the introduction of promises,
 
 A promise is an object that serves as a placeholder for a result of an asynchronous task. It represents a value that we don't have but hope to have in the future. For this reason, during its lifetime, a promise can go through a couple of states, as shown in figure 6.10.
 
-A promise starts in the pending state, in which we know nothing about our promised value. That's why a promise in the pending state is also called an unresolved promise. During program execution, if the promise's resolve function is called, the
-
 Figure 6.10 States of a promise
 
-promise moves into the fulfilled state, in which we've successfully obtained the promised value. On the other hand, if the promise's reject function is called, or if an unhandled exception occurs during promise handling, the promise moves into the rejected state, in which we weren't able to obtain the promised value, but in which we at least know why. Once a promise has reached either the fulfilled state or the rejected state, it can't switch (a promise can't go from fulfilled to rejected or vice versa), and it always stays in that state. We say that a promise is resolved (either successfully or not).
+A promise starts in the pending state, in which we know nothing about our promised value. That's why a promise in the pending state is also called an unresolved promise. During program execution, if the promise's resolve function is called, the promise moves into the fulfilled state, in which we've successfully obtained the promised value. On the other hand, if the promise's reject function is called, or if an unhandled exception occurs during promise handling, the promise moves into the rejected state, in which we weren't able to obtain the promised value, but in which we at least know why. Once a promise has reached either the fulfilled state or the rejected state, it can't switch (a promise can't go from fulfilled to rejected or vice versa), and it always stays in that state. We say that a promise is resolved (either successfully or not).
 
 The following listing provides a closer look at what's going on when we use promises.
 
@@ -1250,13 +1248,13 @@ function getJSON(url) {
       } catch(e) { 
         reject(e.message);  
       };
-      // If the server responds with a different status code, or if there’s an exception parsing the JSON string, reject the promise.
-
-      // If there’s an error while communicating with the server, reject the promise.
-      request.onerror = function() { 
-        reject(this.status + " " + this.statusText); 
-      };
     }
+    // If the server responds with a different status code, or if there’s an exception parsing the JSON string, reject the promise.
+
+    // If there’s an error while communicating with the server, reject the promise.
+    request.onerror = function() { 
+      reject(this.status + " " + this.statusText); 
+    };
     // Sends the request
     request.send(); 
   });
@@ -1324,7 +1322,7 @@ getJSON("data/ninjas.json")
   .catch(error => fail("An error has occurred"));
 ```
 
-This creates a sequence of promises that will be, if everything goes according to plan, resolved one after another. First, we use the getJSON("data/ninjas.json") method to fetch a list of ninjas from the file on the server. After we receive that list, we take the information about the first ninja, and we request a list of missions the ninja is assigned to: getJSON(ninjas[0].missionsUrl). Later, when these missions come in, we make yet another request for the details of the first mission: getJSON(missions[0].detailsUrl). Finally, we log the details of the mission.
+This creates a sequence of promises that will be, if everything goes according to plan, resolved one after another. First, we use the `getJSON("data/ninjas.json")` method to fetch a list of ninjas from the file on the server. After we receive that list, we take the information about the first ninja, and we request a list of missions the ninja is assigned to: `getJSON(ninjas[0].missionsUrl)`. Later, when these missions come in, we make yet another request for the details of the first mission: `getJSON(missions[0].detailsUrl)`. Finally, we log the details of the mission.
 
 Writing such code using standard callbacks would result in a deeply nested sequence of callbacks. Identifying the exact sequence of steps wouldn't be easy, and God forbid we decide to add in an extra step somewhere in the middle.
 
@@ -1363,17 +1361,20 @@ In addition to helping us deal with sequences of interdependent, asynchronous st
 Listing 6.17 Waiting for a number of promises with Promise.all
 
 ```js
+// The Promise.all method takes an array of promises, 
+// and creates a new promise that succeeds if all promises succeed, 
+// and fails if even one promise fails.
 Promise.all([getJSON("data/ninjas.json"),
             getJSON("data/mapInfo.json"), 
             getJSON("data/plan.json")]).then(results => { 
+  // The result is an array of succeed values, in the order of passedin promises.
   const ninjas = results[0], mapInfo = results[1], plan = results[2];
   
-  assert(ninjas !== undefined 
-    && mapInfo !== undefined && plan !== undefined,
+  assert(ninjas !== undefined && mapInfo !== undefined && plan !== undefined,
       "The plan is ready to be set in motion!"); 
-  }).catch(error => {
-    fail("A problem in carrying out our plan!"); 
-  });
+}).catch(error => {
+  fail("A problem in carrying out our plan!"); 
+});
 ```
 
 As you can see, we don't have to care about the order in which tasks are executed, and whether some of them have finished, while others didn't. We state that we want to wait for a number of promises by using the built-in Promise.all method. This method takes in an array of promises and creates a new promise that successfully resolves when all passed-in promises resolve, and rejects if even one of the promises fails. The succeed callback receives an array of succeed values, one for each of the passed-in promises, in order. Take a minute to appreciate the elegance of code that processes multiple parallel asynchronous tasks with promises.
@@ -1401,15 +1402,17 @@ So far you've seen how promises work, and how we can use them to greatly simplif
 
 6.3.6 等待多个 promise 
 
-除了处理相互依赖的异步任务序列以外，对于等待多个独立的异步任务，promise 也能够显著地减少代码量。让我们再来看一个并行执行的例子：获取可以被我们支配的「忍者」列表、复杂的计划，以及行动执行地点的地图。如清单 6.17 所示，这个任务可以很方便地用 promise 来处理。
+除了处理相互依赖的异步任务序列以外，对于等待多个独立的异步任务，promise 也能够显著地减少代码量。让我们再来看一个并行执行的例子：
+
+获取可以被我们支配的「忍者」列表、复杂的计划，以及行动执行地点的地图。如清单 6.17 所示，这个任务可以很方便地用 promise 来处理。
 
 如你所见，我们不必关心任务执行的顺序，以及它们是不是都已经进入完成态。通过使用内置方法 Promise.all 可以等待多个 promise。这个方法将一个 promise 数组作为参数，然后创建一个新的 promise 对象，一旦数组中的 promise 全部被解决，这个返回的 promise 就会被解决，而一旦其中有一个 promise 失败了，那么整个新 promise 对象也会被拒绝。后续的回调函数接收成功值组成的数组，数组中的每一项都对应 promise 数组中的对应项。花一分钟欣赏一下处理多个并行的异步任务的代码是多么优雅。Promise.all 方法等待列表中的所有 promise。但如果我们只关心第一个成功（或失败）的 promise，可以认识一下 Promise.race 方法。
 
-6.3.7 promise 竞赛
+promise 竞赛
 
-假设我们可以支配一队「忍者」，我们希望给第一个回答命令的「忍者」分配一个任务。如清单 6.18 所示，为了完成上述任务，我们可以书写类似的代码。
+假设我们可以支配一队「忍者」，我们希望给第一个回答命令的「忍者」分配一个任务。如清单 6.18 所示，为了完成上述任务，我们可以书写类似的代码。例子很简单，不需要手动跟踪所有代码。使用 Promise.race 方法并传入一个 promise 数组会返回一个全新的 promise 对象，一旦数组中某一个 promise 被处理或被拒绝，这个返回的 promise 就同样会被处理或被拒绝。
 
-例子很简单，不需要手动跟踪所有代码。使用 Promise.race 方法并传入一个 promise 数组会返回一个全新的 promise 对象，一旦数组中某一个 promise 被处理或被拒绝，这个返回的 promise 就同样会被处理或被拒绝。到目前为止，你已经学习了 promise 是如何工作的，如何用 promise 并行或者串行的方式简化一连串的异步任务。比起最原始回调函数的错误处理和代码优雅性，尽管有很大改善，但 promise 化的代码和同步代码的简单程度依旧不在同一个级别上。下一节中，我们会介绍本章的两个重要概念，将生成器和 promise 结合，从而以优雅的同步代码方式完成异步任务。
+到目前为止，你已经学习了 promise 是如何工作的，如何用 promise 并行或者串行的方式简化一连串的异步任务。比起最原始回调函数的错误处理和代码优雅性，尽管有很大改善，但 promise 化的代码和同步代码的简单程度依旧不在同一个级别上。下一节中，我们会介绍本章的两个重要概念，将生成器和 promise 结合，从而以优雅的同步代码方式完成异步任务。
 
 ## 6.4 Combining generators and promises
 
@@ -1437,8 +1440,11 @@ The idea, then, is to combine generators and promises in the following way: We p
 Listing 6.19 Combining generators and promises
 
 ```js
+// The function using asynchronous results should be able to pause while waiting for results. 
+// Notice the function*. We’re using generators!
 async(function*() {
   try { 
+    // Yield on each asynchronous task.
     const ninjas = yield getJSON("data/ninjas.json"); 
     const missions = yield getJSON(ninjas[0].missionsUrl); 
     const missionDescription = yield getJSON(missions[0].detailsUrl);
@@ -1448,20 +1454,27 @@ async(function*() {
   } 
 }); 
 
+// Defines a helper function that will control our generator
 function async(generator) { 
+  // Creates an iterator through which we'll control the generator
   var iterator = generator();
+  // Defines the function that will handle each value generated by the generator
   function handle(iteratorResult) { 
+    // Stops when the generator has no more results
     if(iteratorResult.done) { return; }
     const iteratorValue = iteratorResult.value;
+    // If the generated value is a promise, register a success and a failure callback. 
+    // This is the asynchronous part. If the promise succeeds, great, resume the generator and send in the promised value. 
+    // If there’s an error, throw an exception to the generator.
     if(iteratorValue instanceof Promise) { 
       iteratorValue.then(res => handle(iterator.next(res)) 
                     .catch(err => iterator.throw(err)));
     }
   }
+  // Restarts the generator execution.
   try { 
     handle(iterator.next()); 
   } catch (e) { iterator.throw(e); }
-
 }
 ```
 
@@ -1536,17 +1549,17 @@ async 函数获取了一个生成器，调用它并创建了一个迭代器用�
 
 又过了很久，当浏览器接收到了响应（可能是成功响应，也可能是失败响应）, promise 的两个回调函数之一则被调用了。如果 promise 被成功解决，则会执行 success 回调函数，随之而来则是迭代器 next 方法的调用，用于向生成器请求新的值，从而生成器从挂起状态恢复，并把得到的值回传给回调函数。这意味着，程序又重新进入到生成器函数体内，当第一次执行 yield 表达式后，得到的值变成从服务器端获取的「忍者」列表。生成器函数继续执行下去，得到的值也被赋给 plan 变量。下一行代码的生成器函数中，我们使用获取到的数据 ninjas [0].missionUrl 来发起新的 getJSON 请求，从而创建了一个新的 promise 对象，最后会返回最受欢迎的「忍者」列表数据。我们依然无法得知这个异步任务要进行多久，所以我们再一次让渡了这次执行，并重复更个过程。只要生成器中有异步任务，这个过程就会重复一次。这个例子有点儿不同，但它结合了我们前面所学到的很多内容。
 
-函数是第一类对象 —— 我们向 async 函数传入了一个参数，该参数也是函数。
+1、函数是第一类对象 —— 我们向 async 函数传入了一个参数，该参数也是函数。
 
-1、生成器函数 —— 用它的特性来挂起和恢复执行。
+2、生成器函数 —— 用它的特性来挂起和恢复执行。
 
-2、promise—— 帮我们处理异步代码。
+3、promise—— 帮我们处理异步代码。
 
-3、回调函数 —— 在 promise 对象上注册成功和失败的回调函数。
+4、回调函数 —— 在 promise 对象上注册成功和失败的回调函数。
 
-4、箭头函数 —— 箭头函数的简洁适合用在回调函数上。
+5、箭头函数 —— 箭头函数的简洁适合用在回调函数上。
 
-5、闭包 —— 在我们控制生成器的过程中，迭代器在 async 函数内被创建，随之我们在 promise 的回调函数内通过闭包来获取该迭代器。
+6、闭包 —— 在我们控制生成器的过程中，迭代器在 async 函数内被创建，随之我们在 promise 的回调函数内通过闭包来获取该迭代器。
 
 现在我们已经看过了所有过程，花一分钟欣赏一下实现业务逻辑的代码是多么优雅吧。看这段代码：
 
@@ -1559,6 +1572,21 @@ async 函数获取了一个生成器，调用它并创建了一个迭代器用�
 Notice that we still had to write some boilerplate code; we had to develop an async function that takes care of handling promises and requesting values from the generator. Although we can write this function only once and then reuse it throughout our code, it would be even nicer if we didn't have to think about it. The people in charge of JavaScript are well aware of the usefulness of the combination of generators and promises, and they want to make our lives even easier by building in direct language support for mixing generators and promises.
 
 For these situations, the current plan is to include two new keywords, async and await, that would take care of this boilerplate code. Soon, we'll be able to write something like this:
+
+```js
+(async function () {
+  try { 
+    const ninjas = await getJSON("data/ninjas.json"); 
+    const missions = await getJSON(missions[0].missionsUrl);
+  console.log(missions);
+  }
+  catch(e) { 
+    console.log("Error: ", e); 
+  } 
+})()
+```
+
+1-3『此时此刻才意识到，async/await 语法是对「Promise/Generator」组合实现封装的「语法糖」。同时想起了 winter 在「重学前端」专栏课里提到的信息：generator/iterator 也常常被跟异步一起来讲，我们必须说明 generator/iterator 并非异步代码，只是在缺少 async/await 的时候，一些框架（最著名的要数 co）使用这样的特性来模拟 async/await。但是 generator 并非被设计成实现异步，所以有了 async/await 之后，generator/iterator 来模拟异步的方法应该被废弃。async/await 语法，做一张主题卡片。（2021-05-05）』—— 已完成
 
 We use the async keyword in front of the function keyword to specify that this function relies on asynchronous values, and at every place where we call an asynchronous task, we place the await keyword that says to the JavaScript engine, please wait for this result without blocking. In the background, everything happens as we've discussed previously throughout the chapter, but now we don't need to worry about it.
 
