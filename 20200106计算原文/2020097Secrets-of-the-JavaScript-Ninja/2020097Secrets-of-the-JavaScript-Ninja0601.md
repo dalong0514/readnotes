@@ -917,6 +917,19 @@ Creating a new promise is easy, as you can see in the following example.
 
 Listing 6.10 Creating a simple promise
 
+```js
+const ninjaPromise = new Promise((resolve, reject) => { 
+  resolve("Hattori"); 
+  //reject("An error resolving a promise!");
+});
+
+ninjaPromise.then(ninja => {
+  assert(ninja === "Hattori", "We were promised Hattori!");
+}, err => { 
+  fail("There shouldn't be an error") 
+});
+```
+
 To create a promise, we use the new, built-in Promise constructor, to which we pass a function, in this case an arrow function (but we could just as easily use a function expression). This function, called an executor function, has two parameters: resolve and reject. The executor is called immediately when constructing the Promise object with two built-in functions as arguments: resolve, which we manually call if we want the promise to resolve successfully, and reject, which we call if an error occurs.
 
 This code uses the promise by calling the built-in then method on the Promise object, a method to which we pass two callback functions: a success callback and a failure callback. The former is called if the promise is resolved successfully (if the resolve function is called on the promise), and the latter is called if there's a problem (either an unhandled exception occurs or the reject function is called on a promise).
@@ -944,10 +957,20 @@ We use asynchronous code because we don't want to block the execution of our app
 For example, fetching a JSON file from a server is a long-running task, during which we don't want to make the application unresponsive for our users. Therefore, we provide a callback that will be invoked when the task is done:
 
 ```js
-getJSON("data/ninjas.json", function() { /*Handle results*/ });
+getJSON("data/ninjas.json", function() { 
+  /*Handle results*/ 
+});
 ```
 
 Naturally, during this long-running task, errors can happen. And the problem with callbacks is that you can't use built-in language constructs, such as try-catch statements, in the following way:
+
+```js
+try {
+  getJSON("data/ninjas.json", function() { 
+    //Handle results 
+  }); 
+} catch(e) {/*Handle errors*/}
+```
 
 This happens because the code invoking the callback usually isn't executed in the same step of the event loop as the code that starts the long-running task (you'll see exactly what this means when you learn more about the event loop in chapter 13).
 
@@ -956,12 +979,53 @@ As a consequence, errors usually get lost. Many libraries, therefore, define the
 After we've performed a long-running task, we often want to do something with the obtained data. This can lead to starting another long-running task, which can eventually trigger yet another long-running task, and so on — leading to a series of interdependent, asynchronous, callback-processed steps. For example, if we want to execute a sneaky plan to find all ninjas at our disposal, get the location of the first ninja, and send him some orders, we'd end up with something like this:
 
 ```js
-getJSON("data/ninjas.json", function(err, ninjas){ getJSON(ninjas[0].location, function(err, locationInfo){ sendOrder(locationInfo, function(err, status){ /*Process status*/ }) }) });
+getJSON("data/ninjas.json", function(err, ninjas) { 
+  getJSON(ninjas[0].location, function(err, locationInfo) { 
+    sendOrder(locationInfo, function(err, status) { 
+      /*Process status*/ 
+    }) 
+  }) 
+});
 ```
 
 You've probably ended up, at least once or twice, with similarly structured code — a bunch of nested callbacks that represent a series of steps that have to be made. You might notice that this code is difficult to understand, inserting new steps is a pain, and error handling complicates your code significantly. You get this “pyramid of doom” that keeps growing and is difficult to manage. This leads us to the second problem with callbacks: performing sequences of steps is tricky.
 
 Sometimes, the steps that we have to go through to get to the final result don't depend on each other, so we don't have to make them in sequence. Instead, to save precious milliseconds, we can do them in parallel. For example, if we want to set a plan in motion that requires us to know which ninjas we have at our disposal, the plan itself, and the location where our plan will play out, we could take advantage of jQuery's get method and write something like this:
+
+```js
+var ninjas, mapInfo, plan;
+
+$.get("data/ninjas.json", function(err, data) { 
+  if(err) { processError(err); return; } 
+  ninjas = data; 
+  actionItemArrived(); 
+});
+
+$.get("data/mapInfo.json", function(err, data) { if(err) { 
+  processError(err); return; } 
+  mapInfo = data; 
+  actionItemArrived(); 
+});
+
+$.get("plan.json", function(err, data) { 
+  if(err) { 
+    processError(err); 
+    return; 
+  }
+  plan = data; 
+  actionItemArrived (); 
+});
+
+function actionItemArrived(){ 
+  if(ninjas != null && mapInfo != null && plan != null) { 
+    console.log("The plan is ready to be set in motion!"); 
+  } 
+}
+
+function processError(err) { 
+  alert("Error", err) 
+}
+```
 
 In this code, we execute the actions of getting the ninjas, getting the map info, and getting the plan in parallel, because these actions don't depend on each other. We only care that, in the end, we have all the data at our disposal. Because we don't know the order in which the data is received, every time we get some data, we have to check whether it's the last piece of the puzzle that we're missing. Finally, when all pieces are in place, we can set our plan in motion. Notice that we have to write a lot of boilerplate code just to do something as common as executing a number of actions in parallel. This leads us to the third problem with callbacks: performing a number of steps in parallel is also tricky.
 
