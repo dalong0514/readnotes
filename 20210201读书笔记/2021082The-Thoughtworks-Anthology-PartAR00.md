@@ -1,10 +1,42 @@
-# 0601. Object Calisthenics
+## 记忆时间
+
+## 卡片
+
+### 0101. 主题卡 ——
+
+这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+
+### 0201. 术语卡 ——
+
+根据反常识，再补充三个证据——就产生三张术语卡。
+
+### 0202. 术语卡 ——
+
+### 0203. 术语卡 ——
+
+### 0301. 人名卡 ——
+
+根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+
+### 0401. 金句卡 ——
+
+最后根据他写的非常震撼的话语——产生一张金句卡。
+
+### 0501. 行动卡 ——
+
+行动卡是能够指导自己的行动的卡。
+
+### 0601. 数据信息卡 ——
+
+### 0701. 任意卡 ——
+
+最后还有一张任意卡，记录个人阅读感想。
+
+## 0601. Object Calisthenics
 
 by Jeff Bay, Technology Principal
 
-对象健身操
-
-## Conclusion
+### Conclusion
 
 Eight of these nine rules are simply ways to visualize and implement the Holy Grail of object-oriented programming — the encapsulation of data. In addition, another drives the appropriate use of polymorphism (not using else and minimizing all conditional logic), and another is a naming strategy that encourages concise and straightforward naming standards, without inconsistently applied and hard-to-pronounce abbreviations.
 
@@ -24,7 +56,7 @@ On a ﬁnal note, some might see these rules as overkill or impossible to apply 
 
 最后要说的是，有些人可能认为这些规则过于刻板，不可能在真实的系统中实施。他们都错 了 —— 在本书即将出版的时候，我们刚刚完成了一个超过 100 000 行代码的系统，它严格遵守本文中提到的所有规则。参与这个项目的程序员全部都认真地遵守了上述规则。最终每个人都非常高兴地看到：如果努力地拥抱简单性，那么开发过程会快乐得多。
 
-## 6.1 Nine Steps to Better Software Design Today
+### 6.1 Nine Steps to Better Software Design Today
 
 We've all seen poorly written code that's hard to understand, test, and maintain. Object-oriented programming promised to save us from our old procedural code, allowing us to write software incrementally, reusing as we go. But sometimes it seems like we're just chasing down the same old complex, coupled designs in Java that we had in C. This essay will give new programmers an opportunity to learn best practices while writing their own code. For sophisticated and experienced programmers, it will give you a vehicle to refocus on best practices or to use for demonstration purposes in teaching co-workers.
 
@@ -40,7 +72,7 @@ The core concepts behind good design are well understood. As an example, here ar
 
 优秀设计背后的核心概念其实并不高深。比如内聚性、松耦合、零重复、封装、可测试性、 可读性以及单一职责。这七条评判代码质量的原则就已经被广泛接受了。然而真正困难的是如何把这些概念付诸实践。理解了封装就是隐藏「数据、实现细节、类型、设计或者构造」，这只是设计出良好封装的代码的第一步而已。因此，本文接下来是一系列实践规则和练习，它可以帮助你将良好的面向对象设计原则变得更加具体，从而在现实世界中应用那些原则。
 
-## 6.2 The Exercise
+### 6.2 The Exercise
 
 Do a simple project using far stricter coding standards than you've ever used in your life. In this essay, you'll ﬁnd nine "rules of thumb" that will help push you into writing code that is almost required to be object-oriented. This will allow you to make better decisions and give you more and better options when confronted with the problems of your day job.
 
@@ -94,7 +126,7 @@ Here are the rules for the exercise:
 
 9、不使用任何 Getter/Setter/Property。
 
-### Rule 1: Use One Level of Indentation per Method
+#### Rule 1: Use One Level of Indentation per Method
 
 Ever stare at a big old method wondering where to start? A giant method lacks cohesiveness. One guideline is to limit method length to ﬁve lines, but that kind of transition can be daunting if your code is littered with 500-line monsters. Instead, try to ensure that each method does exactly one thing — one control structure or one block of statements per method. If you have nested control structures in a method, you're working at multiple levels of abstraction, and that means you're doing more than one thing.
 
@@ -147,7 +179,7 @@ Here at the end of the ﬁrst rule, I should also point out that the more you pr
 
 第一条规则在此接近尾声了。我还要强调，你越多实践这条规则，就会越多地尝到它带来的甜头。当你第一次尝试解决前面展示的那一类问题时，可能不是非常熟练，也未必能获得很多收获。但是，应用这些规则的技能是一种艺术，它能将程序员提升到一个新的高度。
 
-### Rule 2: Don't Use the else Keyword
+#### Rule 2: Don't Use the else Keyword
 
 Every programmer understands the if/else construct. It is built into nearly every programming language, and simple conditional logic is easy for anyone to understand. Nearly every programmer has seen a nasty nested conditional that's impossible to follow or a case statement that goes on for pages. Even worse, it is all too easy to simply add another branch to an existing conditional rather than factoring to a better solution. Conditionals are also a frequent source of duplication. Status ﬂags, for example, frequently lead to this kind of trouble:
 
@@ -192,7 +224,7 @@ Object-oriented languages give you a powerful tool — polymorphismfor handling 
 
 面向对象编程语言给我们提供了一种更为强大的工具 —— 多态。它能够处理更为复杂的条件判断。对于简单的条件判断，我们可以使用「卫语句」和「提前返回」替换它。而基于多态的设计则更容易阅读与维护，从而可以更清晰地表达代码的内在意图。但是，程序员要做出这样的转变并不是一帆风顺的。尤其是你的代码中可能早已充斥了 else。所以，作为这个练习的一部分，你是不可以使用 else 的。在某些场景下可以使用 Null Object 模式，它会对你有所帮助。另外还有很多工具和技术都可以帮助你甩掉 else。试一试，看你能提出多少种方案来？
 
-### Rule 3: Wrap All Primitives and Strings
+#### Rule 3: Wrap All Primitives and Strings
 
 An int on its own is just a scalar with no meaning. When a method takes an int as a parameter, the method name needs to do all the work of expressing the intent. If the same method takes an hour as a parameter, it's much easier to see what's happening. Small objects like this can make programs more maintainable, since it isn't possible to pass a year to a method that takes an hour parameter. With a primitive variable, the compiler can't help you write semantically correct programs. With an object, even a small one, you are giving both the compiler and the programmer additional information about what the value is and why it is being used.
 
@@ -204,7 +236,7 @@ Small objects such as hour or money also give you an obvious place to put behavi
 
 像 Hour 或 Money 这样的小对象还提供了放置一类行为的场所，这些行为放在其他的类中都不合适。在你了解了关于 getter 和 setter 的规则时，这一点会非常明显，有些值只能被这些小对象来访问。
 
-### Rule 4: Use Only One Dot per Line
+#### Rule 4: Use Only One Dot per Line
 
 Sometimes it's hard to know which object should take responsibility for an activity. If you start looking for lines of code with multiple dots, you'll start to ﬁnd many misplaced responsibilities. If you have more than one dot on any given line of code, the activity is happening in the wrong place. Maybe your object is dealing with two other objects at once. If this is the case, your object is a middleman; it knows too much about too many people. Consider moving the activity into one of the other objects.
 
@@ -263,7 +295,7 @@ Note that in this example the algorithm's implementation details are more diffus
 
 注意在这个例子中，算法的实现细节被过度地扩散开了。程序员很难看一眼就理解它。但是，在为 Piece 转化成 Character 的行为创建一个具有名称的方法后，这个方法的名称和作用就相当一致了，而且被重用的机会也非常高 —— 令人费解的 `representation.substring(0, 1)` 调用可以全部被这个具有名称的方法所代替，程序的可读性又迈进了一大步。在这片新天地里，方法名取代了注释，所以，值得花些时间为方法取一个有意义的名字。理解并写出这种结构的程序并不困难，你只需要使用一些稍微不同的手段而已。
 
-### Rule 5: Don't Abbreviate
+#### Rule 5: Don't Abbreviate
 
 It's often tempting to abbreviate in the names of classes, methods, or variables. Resist the temptation. Abbreviations can be confusing, and they tend to hide larger problems.
 
@@ -283,7 +315,7 @@ For this exercise, all entities should have a name that is one or two words, wit
 
 在这个练习中，所有实体对象的名称都只能包含一到两个单词，不能使用缩写。
 
-### Rule 6: Keep All Entities Small
+#### Rule 6: Keep All Entities Small
 
 This means no class that's more than ﬁfty lines and no package that's more than ten ﬁles.
 
@@ -297,7 +329,7 @@ What's challenging about creating such small classes is that there are often gro
 
 创建这样小的类会遇到哪些挑战呢？通常会有很多成组的行为，它们逻辑上是应该在一起的。这时就需要使用包机制来平衡。随着类变得越来越小，职责越来越少，加之包的大小也受到限制，你会逐渐注意到，包中的类越来越集中，它们能够协作完成一个相同的目标。包和类一样，也应该是内聚的，有一个明确的意图。保证这些包足够小，就能让它们有一个真正的标识。
 
-### Rule 7: Don't Use Any Classes with More Than Two Instance Variables
+#### Rule 7: Don't Use Any Classes with More Than Two Instance Variables
 
 Most classes should simply be responsible for handling a single state variable, but a few will require two. Adding a new instance variable to a class immediately decreases the cohesion of that class. In general, while programming under these rules, you'll ﬁnd that there are two kinds of classes, those that maintain the state of a single instance variable and those that coordinate two separate variables. In general, don't mix the two kinds of responsibilities.
 
@@ -346,7 +378,7 @@ Decomposing objects from a set of attributes into a hierarchy of collaborating o
 
 将一个对象从拥有大量属性的状态，解构成为分层次的、相互关联的多个对象，会直接产生一个更实用的对象模型。在想到这条规则之前，我曾经浪费过很多时间去追踪那些大型对象的数据流。虽然我们可以理清一个复杂的对象模型，但是理解各组相关的行为并看到结果是一个非常痛苦的过程。相比而言，不断应用这条规则，可以快速将一个复杂的大对象分解成为大量简单的小对象。行为也自然而然地随着各个实例变量流入到了适当的地方 —— 否则编译器和封装法则都不会高兴的。当你真正开始做的时候，可以沿着两个方向进行：其一，可以将对象的实例变量按照相关性分离在两个部分中；另外，也可以创建一个新的对象来封装两个已有的实例变量。
 
-### Rule 8: Use First-Class Collections
+#### Rule 8: Use First-Class Collections
 
 The application of this rule is simple: any class that contains a collection should contain no other member variables. Each collection gets wrapped in its own class, so now behaviors related to the collection have a home. You may ﬁnd that ﬁlters become part of this new class. Filters may also become function objects in their own right. Also, your new class can handle activities such as joining two groups together or applying a rule to each element of the group. This is an obvious extension of the rule about instance variables but is important for its own sake as well. A collection is really a type of very useful primitive. It has many behaviors but little semantic intent or clues for either the next programmer or the maintainer.
 
@@ -354,7 +386,7 @@ The application of this rule is simple: any class that contains a collection sho
 
 应用这条规则的方法非常简单：任何包含集合的类都不能再包含其他的成员变量。每个集合都被封装在自己的类中，这样，与集合相关的行为就有了自己的家。你可能会发现作用于这些集合的过滤器将成为这些新类型中的一部分，或是根据它们自身的情况包装为函数对象。另外，这些新的类型还可以处理其他任务，比如将两个集合中的元素拼装到一起，或者对集合中的元素逐一施加某种规则等。很明显，这条规则是对前面关于实例变量规则的扩展，不过它自身也有非常重要的含义。集合其实是一种应用广泛的原生类型。它具有很多行为，但 是对于代码的读者和维护者来说，与集合相关的代码通常都缺少对语义意图的解释。
 
-### Rule 9: Don't Use Any Getters/Setters/Properties
+#### Rule 9: Don't Use Any Getters/Setters/Properties
 
 The last sentence of the previous rule leads almost directly to this rule. If your objects are now encapsulating the appropriate set of instance variables but the design is still awkward, it is time to examine some more direct violations of encapsulation. The behavior will not follow the instance variable if it can simply ask for the value in its current location. The idea behind strong encapsulation boundaries is to force programmers working on the code after you leave it to look for and place behavior into a single place in the object model. This has many beneﬁcial downstream effects, such as a dramatic reduction in duplication errors and a better localization of changes to implement new features.
 

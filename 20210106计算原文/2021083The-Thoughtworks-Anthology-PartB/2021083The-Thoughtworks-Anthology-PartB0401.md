@@ -2,17 +2,13 @@
 
 by Marc Needham
 
-Functional programming languages have grown in popularity over the past few years, which has popularized some useful programming techniques that we can use even if our language of choice is predominantly object-oriented.
+Functional programming languages have grown in popularity over the past few years, which has popularized some useful programming techniques that we can use even if our language of choice is predominantly object-oriented. 
 
-While the ideas behind functional programming have become popular only in the past couple of years, the underlying platform features that allow us to program in a functional way in C# have been built into the CLR since around 2005.
+While the ideas behind functional programming have become popular only in the past couple of years, the underlying platform features that allow us to program in a functional way in C# have been built into the CLR since around 2005. The C# language has evolved since then to the point where we can write code in C# that looks quite similar to that which could be written in F# — Microsoft’s functional programming language that has recently been made a first-class language for Visual Studio.
 
-The C# language has evolved since then to the point where we can write code in C# that looks quite similar to that which could be written in F# — Microsoft’s functional programming language that has recently been made a first-class language for Visual Studio.
+The functional programming ideas [1] themselves have been around for at least half a century. In this essay, we’ll demonstrate these techniques with examples in C# and Ruby, although the ideas presented are also applicable in other similar languages such as Scala and Java.
 
-The functional programming ideas 1 themselves have been around for at least half a century.
-
-In this essay, we’ll demonstrate these techniques with examples in C# and Ruby, although the ideas presented are also applicable in other similar languages such as Scala and Java.
-
-4.1 Collections
+## 4.1 Collections
 
 When it comes to understanding how a functional approach to problem solving can be used, one of the first things to consider is the way that we view collections.
 
