@@ -2,7 +2,7 @@
 
 Data is the lifeblood of our applications. It flows like water, and it nourishes our components with value. The user interface components we've composed are vessels for data. We fill our applications with data from the internet. We collect, create, and send new data to the internet.
 
-The value of our applications is not the components themselves—it's the data that flows through those components.
+The value of our applications is not the components themselves — it's the data that flows through those components.
 
 When we talk about data, it may sound a little like we're talking about water or food. The cloud is the abundantly endless source from which we send and receive data. It's the internet. It's the networks, services, systems, and databases where we manipulate and store zettabytes of data. The cloud hydrates our clients with the latest and freshest data from the source. We work with this data locally and even store it locally. But when our local data becomes out of sync with the source, it loses its freshness and is said to be stale.
 
@@ -10,7 +10,7 @@ These are the challenges we face as developers working with data. We need to kee
 
 In this chapter, we're going to take a look at various techniques for loading and working with data from the source.
 
-Requesting Data
+## 8.1 Requesting Data
 
 In the movie Star Wars, the droid C-3P0 is a protocol droid. His
 
@@ -210,7 +210,7 @@ The saveJSON function will save some data to localStorage using a unique key ide
 
 Loading data from web storage, saving data to web storage, stringifying data, and parsing JSON strings are all synchronous tasks.
 
-Both the loadJSON and saveJSON functions are synchronous. So be careful—calling these functions too often with too much data can lead to performance issues. It's typically a good idea to throttle or debounce these functions for the sake of performance.
+Both the loadJSON and saveJSON functions are synchronous. So be careful — calling these functions too often with too much data can lead to performance issues. It's typically a good idea to throttle or debounce these functions for the sake of performance.
 
 We could save the user's data that we received from our GitHub request. Then the next time that same user is requested, we could use the data saved to localStorage instead of sending another request to GitHub. We'll add the following code to the GitHubUser component: const [data, setData] = useState(loadJSON(ùser:${login}`)); useEffect(() => {
 
@@ -426,11 +426,11 @@ Finally, while the request is pending, we simply display a「loading…」
 
 message using an h1.
 
-Sometimes an HTTP request can succeed with an error. This happens when the request was successful—successfully connected to a server and received a response—but the response body contains an error.
+Sometimes an HTTP request can succeed with an error. This happens when the request was successful — successfully connected to a server and received a response — but the response body contains an error.
 
 Sometimes servers pass additional errors as successful responses.
 
-Handling all three of these states bloats our code a little bit, but it's essential to do so on every request. Requests take time and a lot could go wrong. Because all requests—and promises—have these three states, it makes it possible to handle all HTTP requests with a reusable hook, or a component, or even a React feature called Suspense. We'll cover each of these approaches, but first, we must introduce the concept of render props.
+Handling all three of these states bloats our code a little bit, but it's essential to do so on every request. Requests take time and a lot could go wrong. Because all requests — and promises — have these three states, it makes it possible to handle all HTTP requests with a reusable hook, or a component, or even a React feature called Suspense. We'll cover each of these approaches, but first, we must introduce the concept of render props.
 
 Render Props
 
@@ -480,7 +480,7 @@ In this example, the four tallest peaks in Tahoe are rendered into an unordered 
 
 Mapping over an array of items is also a pretty common task. We may find ourselves frequently repeating this pattern. We could create a List component that we can reuse as a solution whenever we need to render an unordered list.
 
-In JavaScript, arrays either contain values or they're empty. When a list is empty, we need to display a message to our users. However, that message may change upon implementation. No worries—we can pass a component to render when the list is empty:
+In JavaScript, arrays either contain values or they're empty. When a list is empty, we need to display a message to our users. However, that message may change upon implementation. No worries — we can pass a component to render when the list is empty:
 
 function List({ data = [], renderEmpty }) {
 
@@ -504,7 +504,7 @@ So when data.length is 0, the List component renders whatever was passed as the 
 
 In this case, users would see the following message: This list is empty.
 
-renderEmpty is a render prop because it contains a component to render when a particular condition has been met—in this case, when the list is empty or the data property has not been provided.
+renderEmpty is a render prop because it contains a component to render when a particular condition has been met — in this case, when the list is empty or the data property has not been provided.
 
 We can send this component an actual array of data:
 
@@ -600,7 +600,7 @@ Searching for a place to stay in Tahoe on Airbnb results in a list of houses and
 
 There's a limit to what the browser can render. Rendering takes time, processing power, and memory, all three of which have eventual limitations. This should be taken into consideration when developing a reusable list component. When the data array is very large, what should we do?
 
-Even though our search for a place to stay may have yielded one thousand results, we cannot possibly look at all those results at the same time—there's not enough screen space for all the images, names, and prices. We might only be able to see about five results at a time.
+Even though our search for a place to stay may have yielded one thousand results, we cannot possibly look at all those results at the same time — there's not enough screen space for all the images, names, and prices. We might only be able to see about five results at a time.
 
 When scrolling, we can see more results, but we have to scroll down pretty far to see a thousand results. Rendering a thousand results in a scrollable layer is asking a lot of the phone.
 
@@ -614,7 +614,7 @@ There's a lot to consider when building a virtualized list component.
 
 Thankfully, we don't have to start from scratch; the community has already developed many virtualized list components for us to use. The most popular of these for the browser are react-window and react-virtualized. Virtualized lists are so important that React Native even ships with one: the FlatList. Most of us will not have to build virtualized list components, but we do need to know how to use them.
 
-To implement a virtualized list, we're going to need a lot of data—in this case, fake data:
+To implement a virtualized list, we're going to need a lot of data — in this case, fake data:
 
 npm i faker
 
@@ -1260,7 +1260,7 @@ renderSuccess={({ data }) => (
 
 />
 
-We call these requests waterfall requests because they happen one right after the other—they're dependent on each other. If something goes wrong with the user details request, the request for that user's repositories is never made.
+We call these requests waterfall requests because they happen one right after the other — they're dependent on each other. If something goes wrong with the user details request, the request for that user's repositories is never made.
 
 Let's add some more layers (water?) to this waterfall. First, we request the user's info, then their repository list, then, once we have their repository list, we make a request for the first repository's README.md file. As the user cycles through the list of repositories, we'll make additional requests for the associated README to each repository.
 
@@ -1294,7 +1294,7 @@ In order to find a repository README, we need the repository owner's login and t
 
 https://api.github.com/repos/moonhighway/learning-react/readme.
 
-When this request is successful, we destructure the download_url from its response. Now we can use this value to download the contents of the README; all we have to do is fetch the download_url. We'll parse this text as text—res.text()—rather than JSON because the body of the response is Markdown text.
+When this request is successful, we destructure the download_url from its response. Now we can use this value to download the contents of the README; all we have to do is fetch the download_url. We'll parse this text as text — res.text() — rather than JSON because the body of the response is Markdown text.
 
 Once we have the Markdown, let's render it by wrapping the loadReadme function inside of a React component:
 

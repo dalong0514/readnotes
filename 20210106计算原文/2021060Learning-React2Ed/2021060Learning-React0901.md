@@ -230,7 +230,7 @@ This is a good solution for handling errors consistently across an application. 
 
 </ErrorBoundary>
 
-Error boundaries are not only a good idea—they're essential for retaining users in production, and they'll prevent some small bug in a relatively unimportant component from bringing down the entire application.
+Error boundaries are not only a good idea — they're essential for retaining users in production, and they'll prevent some small bug in a relatively unimportant component from bringing down the entire application.
 
 Code Splitting
 
@@ -732,7 +732,7 @@ When the pending promise is resolved, we capture the results with a
 
 The createResource function returns a resource object. This object contains a function called read. If the promise is still pending, then error and response will be undefined. So read throws the promise.
 
-Invoking read when there's a value for error will cause that error to be thrown. Finally, invoking read when there's a response will yield whatever data was resolved by the promise. It doesn't matter how many times we call read—it will always accurately report on the state of our promise.
+Invoking read when there's a value for error will cause that error to be thrown. Finally, invoking read when there's a response will yield whatever data was resolved by the promise. It doesn't matter how many times we call read — it will always accurately report on the state of our promise.
 
 In order to test it out in a component, we'll need a promise, ideally one that sounds like the name of an '80s ski movie:
 
@@ -782,7 +782,7 @@ The look at these Suspense APIs has been kind of high-level, and this was intent
 
 What's important to take away from this chapter is that React is always tinkering with ways to make React apps faster.
 
-Behind the scenes of a lot of this work is the way that React itself works—specifically, its reconciliation algorithm called Fiber.
+Behind the scenes of a lot of this work is the way that React itself works — specifically, its reconciliation algorithm called Fiber.
 
 Fiber
 
@@ -818,7 +818,7 @@ Separating the renderer from the reconciler was a big deal. The reconciliation a
 
 Another huge shift with React Fiber was its changes to the reconciliation algorithm. Remember our expensive DOM updates that blocked the main thread? This lengthy block of updates is called work
 
-—with Fiber, React split the work into smaller units of work called
+ — with Fiber, React split the work into smaller units of work called
 
 fibers. A fiber is a JavaScript object that keeps track of what it's reconciling and where it is in the updating cycle.
 

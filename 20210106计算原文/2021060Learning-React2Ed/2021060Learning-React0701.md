@@ -503,131 +503,102 @@ We understand that the render always comes before useEffect. The render happens 
 
 useLayoutEffect is called at a specific moment in the render cycle. The series of events is as follows:
 
-1 Render
+1 Render.
 
-2 useLayoutEffect is called
+2 useLayoutEffect is called.
 
-3 Browser paint: the time when the component's elements are actually added to the DOM
+3 Browser paint: the time when the component's elements are actually added to the DOM.
 
-4 useEffect is called
+4 useEffect is called.
 
 This can be observed by adding some simple console messages: 
 
-
-
-
-
-
-
+```js
 import React, { useEffect, useLayoutEffect } from "react"; function App() {
-
-useEffect(() => console.log("useEffect")); useLayoutEffect(() => console.log("useLayoutEffect")); return <div>ready</div>;
-
+  useEffect(() => console.log("useEffect")); 
+  useLayoutEffect(() => console.log("useLayoutEffect")); 
+  return <div>ready</div>;
 }
+```
 
 In the App component, useEffect is the first hook, followed by useLayoutEffect. We see that useLayoutEffect is invoked before useEffect:
 
+```
 useLayoutEffect
-
 useEffect
+```
 
-useLayoutEffect is invoked after the render but before the browser paints the change. In most circumstances, useEffect is the right tool for the job, but if your effect is essential to the browser paint (the appearance or placement of the UI elements on the screen), you may want to use useLayoutEffect. For instance, you may want to obtain the width and height of an element when the window is resized: function useWindowSize {
+useLayoutEffect is invoked after the render but before the browser paints the change. In most circumstances, useEffect is the right tool for the job, but if your effect is essential to the browser paint (the appearance or placement of the UI elements on the screen), you may want to use useLayoutEffect. For instance, you may want to obtain the width and height of an element when the window is resized: 
 
-const [width, setWidth] = useState(0);
-
-const [height, setHeight] = useState(0);
-
-const resize = () => {
-
-setWidth(window.innerWidth);
-
-setHeight(window.innerHeight);
-
+```js
+function useWindowSize {
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const resize = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  };
+  
+  useLayoutEffect(() => {
+    window.addEventListener("resize", resize);
+    resize();
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+  return [width, height];
 };
+```
 
-useLayoutEffect(() => {
+The width and height of the window is information that your component may need before the browser paints. useLayoutEffect is used to calculate the window's width and height before the paint. Another example of when to use useLayoutEffect is when tracking the position of the mouse:
 
-window.addEventListener("resize", resize);
-
-resize();
-
-return () => window.removeEventListener("resize", resize);
-
-}, []);
-
-return [width, height];
-
-};
-
-The width and height of the window is information that your component may need before the browser paints. useLayoutEffect is used to calculate the window's width and height before the paint.
-
-Another example of when to use useLayoutEffect is when tracking the position of the mouse:
-
+```js
 function useMousePosition {
-
-const [x, setX] = useState(0);
-
-const [y, setY] = useState(0);
-
-const setPosition = ({ x, y }) => {
-
-setX(x);
-
-setY(y);
-
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const setPosition = ({ x, y }) => {
+    setX(x);
+    setY(y);
+  };
+  
+  useLayoutEffect(() => {
+    window.addEventListener("mousemove", setPosition); 
+    return () => window.removeEventListener("mousemove", setPosition);
+  }, []);
+  return [x, y];
 };
-
-useLayoutEffect(() => {
-
-window.addEventListener("mousemove", setPosition); return () => window.removeEventListener("mousemove", setPosition);
-
-}, []);
-
-return [x, y];
-
-};
+```
 
 It's highly likely that the x and y position of the mouse will be used when painting the screen. useLayoutEffect is available to help calculate those positions accurately before the paint.
 
-Rules to Follow with Hooks
+### 7.1.4 Rules to Follow with Hooks
 
 As you're working with Hooks, there are a few guidelines to keep in mind that can help avoid bugs and unusual behavior:
 
-Hooks only run in the scope of a component
+1 Hooks only run in the scope of a component. Hooks should only be called from React components. They can also be added to custom Hooks, which are eventually added to components. Hooks are not regular JavaScript — they're a React pattern, but they're starting to be modeled and incorporated in other libraries.
 
-Hooks should only be called from React components. They can
+2 It's a good idea to break functionality out into multiple Hooks. In our earlier example with the Jazzy News component, we split everything related to subscriptions into one effect and everything related to sound effects into another effect. This immediately made the code easier to read, but there was another benefit to doing this.
 
-also be added to custom Hooks, which are eventually added to components. Hooks are not regular JavaScript—they're a React pattern, but they're starting to be modeled and incorporated in other libraries.
+Since Hooks are invoked in order, it's a good idea to keep them small. Once invoked, React saves the values of Hooks in an array so the values can be tracked. Consider the following component: 
 
-It's a good idea to break functionality out into multiple Hooks In our earlier example with the Jazzy News component, we split everything related to subscriptions into one effect and everything related to sound effects into another effect. This immediately made the code easier to read, but there was another benefit to doing this.
+```js
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [checked, toggle] = useState(false);
 
-Since Hooks are invoked in order, it's a good idea to keep them small. Once invoked, React saves the values of Hooks in an array so the values can be tracked. Consider the following component: function Counter() {
-
-const [count, setCount] = useState(0);
-
-const [checked, toggle] = useState(false);
-
-useEffect(() => {
-
-...
-
-}, [checked]);
-
-useEffect(() => {
-
-...
-
-}, []);
-
-useEffect(() => {
-
-...
-
-}, [count]);
-
-return ( ... )
-
+  useEffect(() => {
+    ...
+  }, [checked]);
+  
+  useEffect(() => {
+    ...
+  }, []);
+  
+  useEffect(() => {
+    ...
+  }, [count]);
+  
+  return ( ... )
 }
+```
 
 The order of Hook calls is the same for each and every render:
 
@@ -637,205 +608,157 @@ Hooks should only be called at the top level
 
 Hooks should be used at the top level of a React function. They cannot be placed into conditional statements, loops, or nested functions. Let's adjust the counter:
 
+```js
 function Counter() {
+  const [count, setCount] = useState(0);
+  if (count > 5) {
+    const [checked, toggle] = useState(false);
+  }
+  
+  useEffect(() => {
+    ...
+  });
+  
+  if (count > 5) {
+    useEffect(() => {
+    ...
+    });
+  }
 
-const [count, setCount] = useState(0);
-
-if (count > 5) {
-
-const [checked, toggle] = useState(false);
-
+  useEffect(() => {
+  ...
+  });
+  return ( ... )
 }
+```
 
-useEffect(() => {
-
-...
-
-});
-
-if (count > 5) {
-
-useEffect(() => {
-
-...
-
-});
-
-}
-
-useEffect(() => {
-
-...
-
-});
-
-return ( ... )
-
-}
-
-When we use useState within the if statement, we're saying that the hook should only be called when the count value is greater than 5. That will throw off the array values. Sometimes the array will be: [count, checked, DependencyArray, 0,
-
-DependencyArray]. Other times: [count, DependencyArray,
-
-1]. The index of the effect in that array matters to React. It's how values are saved.
+When we use useState within the if statement, we're saying that the hook should only be called when the count value is greater than 5. That will throw off the array values. Sometimes the array will be: [count, checked, DependencyArray, 0, DependencyArray]. Other times: [count, DependencyArray, 1]. The index of the effect in that array matters to React. It's how values are saved.
 
 Wait, so are we saying that we can never use conditional logic in React applications anymore? Of course not! We just have to organize these conditionals differently. We can nest if statements, loops, and other conditionals within the hook:
 
+```js
 function Counter() {
-
-const [count, setCount] = useState(0);
-
-const [checked, toggle] =
-
-useState(
-
-count => (count < 5)
-
-? undefined
-
-: !c,
-
-(count < 5) ? undefined
-
-);
-
-useEffect(() => {
-
-...
-
-});
-
-useEffect(() => {
-
-if (count < 5) return;
-
-...
-
-});
-
-useEffect(() => {
-
-...
-
-});
-
-return ( ... )
-
+  const [count, setCount] = useState(0);
+  const [checked, toggle] =
+  useState(
+    count => (count < 5)
+    ? undefined
+    : !c,
+    (count < 5) ? undefined
+  );
+  
+  useEffect(() => {
+    ...
+  });
+  
+  useEffect(() => {
+    if (count < 5) return;
+    ...
+  });
+  
+  useEffect(() => {
+    ...
+  });
+  return ( ... )
 }
+```
 
 Here, the value for checked is based on the condition that the count is greater than 5. When count is less than 5, the value for checked is undefined. Nesting this conditional inside the hook means that the hook remains on the top level, but the result is similar. The second effect enforces the same rules. If the count is less than 5, the return statement will prevent the effect from continuing to execute. This keeps the hook values array intact:
 
-[countValue, checkedValue, DependencyArray,
+```js
+[countValue, checkedValue, DependencyArray, DependencyArray, DependencyArray].
+```
 
-DependencyArray, DependencyArray].
+Like conditional logic, you need to nest asynchronous behavior inside of a hook. useEffect takes a function as the first argument, not a promise. So you can't use an async function as the first argument: useEffect(async () => {}). You can, however, create an async function inside of the nested function like this: 
 
-Like conditional logic, you need to nest asynchronous behavior inside of a hook. useEffect takes a function as the first argument,
-
-not a promise. So you can't use an async function as the first argument: useEffect(async () => {}). You can, however, create an async function inside of the nested function like this: useEffect(() => {
-
-const fn = async () => {
-
-await SomePromise();
-
-};
-
-fn();
-
+```js
+useEffect(() => {
+  const fn = async () => {
+    await SomePromise();
+  };
+  fn();
 });
+```
 
 We created a variable, fn, to handle the async/await, then we called the function as the return. You can give this function a name, or you can use async effects as an anonymous function:
 
+```js
 useEffect(() => {
-
-(async () => {
-
-await SomePromise();
-
-})();
-
+  (async () => {
+    await SomePromise();
+  })();
 });
+```
 
 If you follow these rules, you can avoid some common gotchas with React Hooks. If you're using Create React App, there's an ESLint plug-in included called eslint-plugin-react-hooks that provides warning hints if you're in violation of these rules.
 
-Improving Code with useReducer
+### 7.1.5 Improving Code with useReducer
 
-Consider the Checkbox component. This component is a perfect example of a component that holds simple state. The box is either
+Consider the Checkbox component. This component is a perfect example of a component that holds simple state. The box is either checked or not checked. checked is the state value, and setChecked is a function that will be used to change the state. When the component first renders, the value of checked will be false:
 
-checked or not checked. checked is the state value, and setChecked is a function that will be used to change the state. When the component first renders, the value of checked will be false:
-
+```js
 function Checkbox() {
-
-const [checked, setChecked] = useState(false); return (
-
-<>
-
-<input
-
-type="checkbox"
-
-value={checked}
-
-onChange={() => setChecked(checked => !checked)}
-
-/>
-
-{checked ? "checked" : "not checked"}
-
-</>
-
-);
-
+  const [checked, setChecked] = useState(false); 
+  return (
+    <>
+      <input
+      type="checkbox"
+      value={checked}
+      onChange={() => setChecked(checked => !checked)}
+    />
+    {checked ? "checked" : "not checked"}
+    </>
+    );
 }
+```
 
-This works well, but one area of this function could be cause for alarm: onChange={() => setChecked(checked => !checked)}
+This works well, but one area of this function could be cause for alarm: 
+
+```js
+onChange={() => setChecked(checked => !checked)}
+```
 
 Look at it closely. It feels OK at first glance, but are we stirring up trouble here? We're sending a function that takes in the current value of checked and returns the opposite, !checked. This is probably more complex than it needs to be. Developers could easily send the wrong information and break the whole thing. Instead of handling it this way, why not provide a function as a toggle?
 
-Let's add a function called toggle that will do the same thing: call setChecked and return the opposite of the current value of checked: function Checkbox() {
+Let's add a function called toggle that will do the same thing: call setChecked and return the opposite of the current value of checked: 
 
-const [checked, setChecked] = useState(false);
-
-function toggle() {
-
-setChecked(checked => !checked);
-
+```js
+function Checkbox() {
+  const [checked, setChecked] = useState(false);
+  function toggle() {
+    setChecked(checked => !checked);
+  }
+  
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle} />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
 }
-
-return (
-
-<>
-
-<input type="checkbox" value={checked} onChange={toggle} />
-
-{checked ? "checked" : "not checked"}
-
-</>
-
-);
-
-}
+```
 
 This is better. onChange is set to a predictable value: the toggle function. We know what that function is going to do every time, everywhere it's used. We can still take this one step farther to yield even more predictable results each time we use the checkbox component. Remember the function we sent to setChecked in the toggle function?
 
+```js
 setChecked(checked => !checked);
+```
 
 We're going to refer to this function, checked => !checked, by a different name now: a reducer. A reducer function's most simple definition is that it takes in the current state and returns a new state. If checked is false, it should return the opposite, true. Instead of hardcoding this behavior into onChange events, we can abstract the logic into a reducer function that will always produce the same results.
 
-Instead of useState in the component, we'll use useReducer: function Checkbox() {
+Instead of useState in the component, we'll use useReducer: 
 
-const [checked, toggle] = useReducer(checked => !checked, false); return (
-
-<>
-
-<input type="checkbox" value={checked} onChange={toggle} />
-
-{checked ? "checked" : "not checked"}
-
-</>
-
-);
-
+```js
+function Checkbox() {
+  const [checked, toggle] = useReducer(checked => !checked, false); 
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle} />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
 }
+```
 
 useReducer takes in the reducer function and the initial state, false.
 
@@ -847,143 +770,109 @@ reduce fundamentally does the same thing as a reducer: it takes in a function (t
 
 Array.reduce takes in a reducer function and an initial value. For each value in the numbers array, the reducer is called until one value is returned:
 
+```js
 const numbers = [28, 34, 67, 68];
-
 numbers.reduce((number, nextNumber) => number + nextNumber, 0); // 197
+```
 
 The reducer sent to Array.reduce takes in two arguments. You can also send multiple arguments to a reducer function:
 
+```js
 function Numbers() {
-
-const [number, setNumber] = useReducer(
-
-(number, newNumber) => number + newNumber,
-
-0
-
-);
-
-return <h1 onClick={() => setNumber(30)}>{number}</h1>;
-
+  const [number, setNumber] = useReducer(
+    (number, newNumber) => number + newNumber,
+    0
+  );
+  return <h1 onClick={() => setNumber(30)}>{number}</h1>;
 }
+```
 
 Every time we click on the h1, we'll add 30 to the total.
 
-useReducer to Handle Complex State
+### 7.1.6 useReducer to Handle Complex State
 
-useReducer can help us handle state updates more predictably as state becomes more complex. Consider an object that contains user data: const firstUser = {
+useReducer can help us handle state updates more predictably as state becomes more complex. Consider an object that contains user data: 
 
-id: "0391-3233-3201",
-
-firstName: "Bill",
-
-lastName: "Wilson",
-
-city: "Missoula",
-
-state: "Montana",
-
-email: "bwilson@mtnwilsons.com",
-
-admin: false
-
+```js
+const firstUser = {
+  id: "0391-3233-3201",
+  firstName: "Bill",
+  lastName: "Wilson",
+  city: "Missoula",
+  state: "Montana",
+  email: "bwilson@mtnwilsons.com",
+  admin: false
 };
+```
 
-Then we have a component called User that sets the firstUser as the initial state, and the component displays the appropriate data: function User() {
+Then we have a component called User that sets the firstUser as the initial state, and the component displays the appropriate data: 
 
-const [user, setUser] = useState(firstUser);
-
-return (
-
-<div>
-
-<h1>
-
-{user.firstName} {user.lastName} - {user.admin ? "Admin" :
-
-"User"}
-
-</h1>
-
-<p>Email: {user.email}</p>
-
-<p>
-
-Location: {user.city}, {user.state}
-
-</p>
-
-<button>Make Admin</button>
-
-</div>
-
-);
-
+```js
+function User() {
+  const [user, setUser] = useState(firstUser);
+  return (
+    <div>
+      <h1>
+        {user.firstName} {user.lastName} - {user.admin ? "Admin" :
+        "User"}
+      </h1>
+      <p>Email: {user.email}</p>
+      <p>
+        Location: {user.city}, {user.state}
+      </p>
+      <button>Make Admin</button>
+    </div>
+  );
 }
+```
 
 A common error when managing state is to overwrite the state:
 
+```js
 <button
-
-onClick={() => {
-
-setUser({ admin: true });
-
-}}
-
+  onClick={() => {
+  setUser({ admin: true });
+  }}
 >
-
-Make Admin
-
+  Make Admin
 </button>
+```
 
 Doing this would overwrite state from firstUser and replace it with just what we sent to the setUser function: {admin: true}. This can be fixed by spreading the current values from user, then overwriting the admin value:
 
+```js
 <button
-
-onClick={() => {
-
-setUser({ ...user, admin: true });
-
-}}
-
->
-
-Make Admin
-
+  onClick={() => {
+    setUser({ ...user, admin: true });
+  }}
+  >
+  Make Admin
 </button>
+```
 
 This will take the initial state and push in the new key/values: {admin: true}. We need to rewrite this logic in every onClick, making it prone to error (we might forget to do this when we come back to the app tomorrow):
 
+```js
 function User() {
-
-const [user, setUser] = useReducer(
-
-(user, newDetails) => ({ ...user, ...newDetails }),
-
-firstUser
-
-);
-
-...
-
+  const [user, setUser] = useReducer(
+    (user, newDetails) => ({ ...user, ...newDetails }),
+    firstUser
+  );
+  ...
 }
+```
 
 Then we'll send the new state value, newDetails, to the reducer, and it will be pushed into the object:
 
+```js
 <button
-
-onClick={() => {
-
-setUser({ admin: true });
-
-}}
-
->
-
-Make Admin
-
+  onClick={() => {
+    setUser({ admin: true });
+  }}
+  >
+    Make Admin
 </button>
+```
 
 This pattern is useful when state has multiple subvalues or when the next state depends on a previous state. Teach everyone to spread, they'll spread for a day. Teach everyone to useReducer and they'll spread for life.
 
@@ -991,233 +880,202 @@ LEGACY SETSTATE AND USEREDUCER
 
 In previous versions of React, we used a function called setState to update state. Initial state would be assigned in the constructor as an object:
 
+```js
 class User extends React.Component {
-
-constructor(props) {
-
-super(props);
-
-this.state = {
-
-id: "0391-3233-3201",
-
-firstName: "Bill",
-
-lastName: "Wilson",
-
-city: "Missoula",
-
-state: "Montana",
-
-email: "bwilson@mtnwilsons.com",
-
-admin: false
-
-};
-
+    constructor(props) {
+      super(props);
+      this.state = {
+      id: "0391-3233-3201",
+      firstName: "Bill",
+      lastName: "Wilson",
+      city: "Missoula",
+      state: "Montana",
+      email: "bwilson@mtnwilsons.com",
+      admin: false
+      };
+    }
 }
-
-}
-
 <button onSubmit={() =>
-
-{this.setState({admin: true });}}
-
-Make Admin
-
+  {this.setState({admin: true });}}
+  Make Admin
 </button>
+```
 
-The older incarnation of setState merged state values. The same is true of useReducer: const [state, setState] = useReducer(
+The older incarnation of setState merged state values. The same is true of useReducer: 
 
-(state, newState) =>
-
-({...state, ...newState}),
-
-initialState);
-
+```js
+const [state, setState] = useReducer(
+  (state, newState) =>
+  ({...state, ...newState}),
+  initialState
+);
 <button onSubmit={() =>
-
-{setState({admin: true });}}
-
-Make Admin
-
+  {setState({admin: true });}}
+  Make Admin
 </button>
-
 </div>);
+```
 
 If you like this pattern, you can use legacy-set-state npm or useReducer.
 
 The past few examples are simple applications for a reducer. In the next chapter, we'll dig deeper into reducer design patterns that can be used to simplify state management in your apps.
 
-Improving Component Performance
+### 7.1.7 Improving Component Performance
 
-In a React application, components are rendered…usually a lot.
+In a React application, components are rendered…usually a lot. Improving performance includes preventing unnecessary renders and reducing the time a render takes to propagate. React comes with tools to help us prevent unnecessary renders: memo, useMemo, and useCallback. We looked at useMemo and useCallback earlier in the chapter, but in this section, we'll go into more detail about how to use these Hooks to make your websites perform better.
 
-Improving performance includes preventing unnecessary renders and reducing the time a render takes to propagate. React comes with tools to help us prevent unnecessary renders: memo, useMemo, and useCallback. We looked at useMemo and useCallback earlier in the chapter, but in this section, we'll go into more detail about how to use these Hooks to make your websites perform better.
+The memo function is used to create pure components. As discussed in Chapter 3, we know that, given the same parameters, a pure function will always return the same result. A pure component works the same way. In React, a pure component is a component that always renders the same output, given the same properties. Let's create a component called Cat:
 
-The memo function is used to create pure components. As discussed in
-
-Chapter 3, we know that, given the same parameters, a pure function will always return the same result. A pure component works the same way. In React, a pure component is a component that always renders the same output, given the same properties.
-
-Let's create a component called Cat:
-
+```js
 const Cat = ({ name }) => {
-
-console.log(`rendering ${name}`);
-
-return <p>{name}</p>;
-
+  console.log(`rendering ${name}`);
+  return <p>{name}</p>;
 };
+```
 
 Cat is a pure component. The output is always a paragraph that displays the name property. If the name provided as a property is the same, the output will be the same:
 
+```js
 function App() {
-
-const [cats, setCats] = useState(["Biscuit", "Jungle", "Outlaw"]); return (
-
-<>
-
-{cats.map((name, i) => (
-
-<Cat key={i} name={name} />
-
-))}
-
-<button onClick={() => setCats([...cats, prompt("Name a cat")])}> Add a Cat
-
-</button>
-
-</>
-
-);
-
+  const [cats, setCats] = useState(["Biscuit", "Jungle", "Outlaw"]); 
+  return (
+    <>
+      {cats.map((name, i) => (
+        <Cat key={i} name={name} />
+      ))}
+      <button onClick={() => setCats([...cats, prompt("Name a cat")])}> 
+        Add a Cat
+      </button>
+    </>
+  );
 }
+```
 
 This app uses the Cat component. After the initial render, the console reads:
 
+```
 rendering Biscuit
-
 rendering Jungle
-
 rendering Outlaw
+```
 
-When the「Add a Cat」button is clicked, the user is prompted to add a cat.
+When the「Add a Cat」button is clicked, the user is prompted to add a cat. If we add a cat named「Ripple,」we see that all Cat components are rerendered:
 
-If we add a cat named「Ripple,」we see that all Cat components are
-
-rerendered:
-
+```
 rendering Biscuit
-
 rendering Jungle
-
 rendering Outlaw
-
 rendering Ripple
+```
 
-WARNING
-
-This code works because prompt is blocking. This is just an example. Don't use prompt in a real app.
+WARNING: This code works because prompt is blocking. This is just an example. Don't use prompt in a real app.
 
 Every time we add a cat, every Cat component is rendered, but the Cat component is a pure component. Nothing changes about the output given the same prop, so there shouldn't be a render for each of these.
 
-We don't want to rerender a pure component if the properties haven't changed. The memo function can be used to create a component that will only render when its properties change. Start by importing it from the React library and use it to wrap the current Cat component: import React, { useState, memo } from "react"; const Cat = ({ name }) => {
+We don't want to rerender a pure component if the properties haven't changed. The memo function can be used to create a component that will only render when its properties change. Start by importing it from the React library and use it to wrap the current Cat component: 
 
-console.log(`rendering ${name}`);
+```js
+import React, { useState, memo } from "react"; 
 
-return <p>{name}</p>;
-
+const Cat = ({ name }) => {
+  console.log(`rendering ${name}`);
+  return <p>{name}</p>;
 };
-
+  
 const PureCat = memo(Cat);
+```
 
 Here, we've created a new component called PureCat. PureCat will only cause the Cat to render when the properties change. Then we can replace the Cat component with PureCat in the App component:
 
-cats.map((name, i) => <PureCat key={i} name={name} />); Now, every time we add a new cat name, like「Pancake,」we see only one render in the console:
+```js
+cats.map((name, i) => <PureCat key={i} name={name} />); 
+```
 
+Now, every time we add a new cat name, like「Pancake,」we see only one render in the console:
+
+```
 rendering Pancake
+```
 
 Because the names of the other cats have not changed, we don't render those Cat components. This is working well for a name property, but what if we introduce a function property to the Cat component?
 
+```js
 const Cat = memo(({ name, meow = f => f }) => {
-
-console.log(`rendering ${name}`);
-
-return <p onClick={() => meow(name)}>{name}</p>;
-
+  console.log(`rendering ${name}`);
+  return <p onClick={() => meow(name)}>{name}</p>;
 });
+```
 
 Every time a cat is clicked on, we can use this property to log a meow to the console:
 
+```js
 <PureCat key={i} name={name} meow={name => console.log(`${name} has meowed`)} />
+```
 
-When we add this change, PureCat no longer works as expected. It's always rendering every Cat component even though the name property remains the same. This is because of the added meow property.
-
-Unfortunately, every time we define the meow property as a function, it's always new function. To React, the meow property has changed, and the component is rerendered.
+When we add this change, PureCat no longer works as expected. It's always rendering every Cat component even though the name property remains the same. This is because of the added meow property. Unfortunately, every time we define the meow property as a function, it's always new function. To React, the meow property has changed, and the component is rerendered.
 
 The memo function will allow us to define more specific rules around when this component should rerender:
 
-const RenderCatOnce = memo(Cat, () => true); const AlwaysRenderCat = memo(Cat, () => false); The second argument sent to the memo function is a predicate. A predicate is a function that only returns true or false. This function decides whether to rerender a cat or not. When it returns false, the Cat is rerendered. When this function returns true, the Cat will not be rerendered. No matter what, the Cat is always rendered at least once.
+```js
+const RenderCatOnce = memo(Cat, () => true); 
+const AlwaysRenderCat = memo(Cat, () => false); 
+```
 
-This is why, with RenderCatOnce, it will render once and then never again. Typically, this function is used to check actual values: const PureCat = memo(
+The second argument sent to the memo function is a predicate. A predicate is a function that only returns true or false. This function decides whether to rerender a cat or not. When it returns false, the Cat is rerendered. When this function returns true, the Cat will not be rerendered. No matter what, the Cat is always rendered at least once. This is why, with RenderCatOnce, it will render once and then never again. Typically, this function is used to check actual values: 
 
-Cat,
-
-(prevProps, nextProps) => prevProps.name === nextProps.name
-
+```js
+const PureCat = memo(
+  Cat,
+  (prevProps, nextProps) => prevProps.name === nextProps.name
 );
+```
 
 We can use the second argument to compare properties and decide if Cat should be rerendered. The predicate receives the previous properties and the next properties. These objects are used to compare the name property. If the name changes, the component will be rerendered. If the name is the same, it will be rerendered regardless of what React thinks about the meow property.
 
-shouldComponentUpdate and PureComponent
+### 7.1.8 shouldComponentUpdate and PureComponent
 
 The concepts we're discussing are not new to React. The memo function is a new solution to a common problem. In previous versions of React, there was a method called shouldComponentUpdate. If present in the component, it was used to let React know under which circumstances the component should update. shouldComponentUpdate described which props or state would need to change for the component to
 
 rerender. Once shouldComponentUpdate was part of the React library, it was embraced as a useful feature by many. So useful that the React team decided to create an alternate way of creating a component as a class. A class component would look like this:
 
+```js
 class Cat extends React.Component {
-
-render() {
-
-return (
-
-{name} is a good cat!
-
-)
-
+  render() {
+    return (
+      {name} is a good cat!
+    )
+  }
 }
-
-}
+```
 
 A PureComponent would look like this:
 
+```js
 class Cat extends React.PureComponent {
-
-render() {
-
-return (
-
-{name} is a good cat!
-
-)
-
+  render() {
+    return (
+      {name} is a good cat!
+    )
+  }
 }
-
-}
+```
 
 PureComponent is the same as React.memo, but PureComponent is only for class components; React.memo is only for function components.
 
-useCallback and useMemo can be used to memoize object and function properties. Let's use useCallback in the Cat component: const PureCat = memo(Cat);
+useCallback and useMemo can be used to memoize object and function properties. Let's use useCallback in the Cat component: 
+
+```js
+const PureCat = memo(Cat);
 
 function App() {
-
-const meow = useCallback(name => console.log(`${name} has meowed`, []); return <PureCat name="Biscuit" meow={meow} />
-
+  const meow = useCallback(name => console.log(`${name} has meowed`, []); 
+  return <PureCat name="Biscuit" meow={meow} />
 }
+```
 
 In this case, we did not provide a property-checking predicate to memo(Cat). Instead, we used useCallback to ensure that the meow function had not changed. Using these functions can be helpful when dealing with too many rerenders in your component tree.
 
-When to Refactor
+### 7.1.9 When to Refactor
 
 The last Hooks we discussed, useMemo and useCallback, along with the memo function, are commonly overused. React is designed to be fast. It's designed to have components render a lot. The process of optimizing for performance began when you decided to use React in the first place. It's fast. Any further refactoring should be a last step.
 
@@ -1225,8 +1083,6 @@ There are trade-offs to refactoring. Using useCallback and useMemo everywhere be
 
 The React Profiler can be used to measure the performance of each of your components. The profiler ships with the React Developer Tools that you've likely installed already (available for Chrome and Firefox).
 
-Always make sure your app works and you're satisfied with the codebase before refactoring. Over-refactoring, or refactoring before your app works, can introduce weird bugs that are hard to spot, and it
-
-might not be worth your time and focus to introduce these optimizations.
+Always make sure your app works and you're satisfied with the codebase before refactoring. Over-refactoring, or refactoring before your app works, can introduce weird bugs that are hard to spot, and it might not be worth your time and focus to introduce these optimizations.
 
 In the last two chapters, we've introduced many of the Hooks that ship with React. You've seen use cases for each hook, and you've created your own custom Hooks by composing other Hooks. Next, we'll build on these foundational skills by incorporating additional libraries and advanced patterns.

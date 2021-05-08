@@ -324,9 +324,7 @@ export default function ColorList({ colors = [] }) {
   if(!colors.length) return <div>No Colors Listed.</div>; 
   return (
     <div>
-    {
-      colors.map(color => <Color key={color.id} {...color} />)
-    }
+      { colors.map(color => <Color key={color.id} {...color} />) }
     </div>
   );
 }
@@ -551,7 +549,7 @@ For a lot of us, being a web developer means collecting large amounts of informa
 <form>
   <input type="text" placeholder="color title..." required />
   <input type="color" required />
-  <button> ADD</button>
+  <button> ADD </button>
 </form>
 ```
 

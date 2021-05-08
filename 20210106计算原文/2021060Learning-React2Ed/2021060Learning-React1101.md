@@ -24,7 +24,7 @@ In this chapter, we'll introduce React Router and leverage its features to handl
 
 Incorporating the Router
 
-To demonstrate the capabilities of the React Router, we'll build a classic starter website complete with About, Events, Products, and Contact Us sections. Although this website will feel as though it has multiple pages, there's only one—it's an SPA, a single-page application (see Figure 11-1).
+To demonstrate the capabilities of the React Router, we'll build a classic starter website complete with About, Events, Products, and Contact Us sections. Although this website will feel as though it has multiple pages, there's only one — it's an SPA, a single-page application (see Figure 11-1).
 
 Figure 11-1. Simple website with link navigation
 

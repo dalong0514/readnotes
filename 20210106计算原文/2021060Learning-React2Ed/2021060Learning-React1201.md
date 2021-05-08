@@ -146,7 +146,7 @@ ReactDOM.render(<Star />);
 
 let html = ReactDOM.renderToString(<Star />); We can build isomorphic applications that render components on different platforms, and we can architect these applications in a way that reuses JavaScript code universally across multiple environments.
 
-Additionally, we can build isomorphic applications using other languages such as Go or Python—we're not restricted to Node.js.
+Additionally, we can build isomorphic applications using other languages such as Go or Python — we're not restricted to Node.js.
 
 Server Rendering React
 
