@@ -1377,6 +1377,18 @@ State and properties have a relationship with each other. When we work with Reac
 
 In this chapter, we're going to bring applications to life by introducing state. We'll learn to create stateful components and how state can be sent down a component tree and user interactions back up the component tree. We'll learn techniques for collecting form data from users. And we'll take a look at the various ways in which we can separate concerns within our applications by introducing stateful context providers.
 
+### 0110. 主题卡 —— 钩子的核心作用在于重新渲染
+
+信息源自「2021060Learning-React0601.md」
+
+The most important thing to remember about Hooks is that they can cause the component they're hooked into to rerender. Every time we invoke the setSelectedStars function to change the value of selectedStars, the StarRating function component will be reinvoked by the hook, and it will render again, this time with a new value for selectedStars. This is why Hooks are such a killer feature.
+
+When data within the hook changes, they have the power to rerender the component they're hooked into with new data.
+
+2『钩子的核心作用在于重新渲染，做一张主题卡片。（2021-05-08）』—— 已完成
+
+The StarRating component will be rerendered every time a user clicks a Star. When the user clicks the Star, the onSelect property of that star is invoked. When the onSelect property is invoked, we'll invoke the setSelectedStars function and send it the number of the star that was just selected. We can use the i variable from the map function to help us calculate that number. When the map function renders the first Star, the value for i is 0. This means that we need to add 1 to this value to get the correct number of stars. When setSelectedStars is invoked, the StarRating component is invoked with a the value for selectedStars, as shown in Figure 6-4.
+
 ### 0201. 术语卡 —— Declarative Programming and Imperative Programming
 
 信息源自「2021060Learning-React0301.md」

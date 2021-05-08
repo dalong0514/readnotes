@@ -4,33 +4,33 @@
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——regular expression
+### 0201. 术语卡 —— regular expression
 
-a regular expression is a string that use special symbols and characters to indicate pattern repetition or to represent multiple characters so that they can “match” a set of strings with similar characteristics described by the pattern. In other words, they enable matching of multiple strings—a regex pattern that matched only one string would be rather boring and ineffective.
+a regular expression is a string that use special symbols and characters to indicate pattern repetition or to represent multiple characters so that they can "match" a set of strings with similar characteristics described by the pattern. In other words, they enable matching of multiple strings — a regex pattern that matched only one string would be rather boring and ineffective.
 
-### 0202. 术语卡——pattern-matching
+### 0202. 术语卡 —— pattern-matching
 
-Throughout this chapter, you will find references to searching and matching. When we are strictly discussing regular expressions with respect to patterns in strings, we will say “matching,” referring to the term pattern-matching. In Python terminology, there are two main ways to accomplish pattern-matching: searching, that is, looking for a pattern match in any part of a string; and matching, that is, attempting to match a pattern to an entire string (starting from the beginning). Searches are accomplished by using the search() function or method, and matching is done with the match() function or method. In summary, we keep the term “matching” universal when referencing patterns, and we differentiate between “searching” and “matching” in terms of how Python accomplishes pattern-matching.
+Throughout this chapter, you will find references to searching and matching. When we are strictly discussing regular expressions with respect to patterns in strings, we will say "matching," referring to the term pattern-matching. In Python terminology, there are two main ways to accomplish pattern-matching: searching, that is, looking for a pattern match in any part of a string; and matching, that is, attempting to match a pattern to an entire string (starting from the beginning). Searches are accomplished by using the search() function or method, and matching is done with the match() function or method. In summary, we keep the term "matching" universal when referencing patterns, and we differentiate between "searching" and "matching" in terms of how Python accomplishes pattern-matching.
 
-### 0203. 术语卡——贪婪匹配
+### 0203. 术语卡 —— 贪婪匹配
 
 In the previous table, we notice the question mark is used more than once (overloaded), meaning either matching 0 or 1 occurrences, or its other meaning: if it follows any matching using the close operators, it will direct the regular expression engine to match as few repetitions as possible.
 
-What does “as few repetitions as possible” mean? When patternmatching is employed using the grouping operators, the regular expression engine will try to “absorb” as many characters as possible that match the pattern. This is known as being greedy. The question mark tells the engine to lay off and, if possible, take as few characters as possible in the current match, leaving the rest to match as many succeeding characters of the next pattern (if applicable). Toward the end of the chapter, we will show you a great example where non-greediness is required. For now, let’s continue to look at the closure operators:
+What does "as few repetitions as possible" mean? When patternmatching is employed using the grouping operators, the regular expression engine will try to "absorb" as many characters as possible that match the pattern. This is known as being greedy. The question mark tells the engine to lay off and, if possible, take as few characters as possible in the current match, leaving the rest to match as many succeeding characters of the next pattern (if applicable). Toward the end of the chapter, we will show you a great example where non-greediness is required. For now, let’s continue to look at the closure operators:
 
-### 0301. 人名卡——
+### 0301. 人名卡 —  — 
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+根据这些证据和案例，找出源头和提出术语的人是谁 —  — 产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡——
+### 0401. 金句卡 —  — 
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
+最后根据他写的非常震撼的话语 —  — 产生一张金句卡。
 
-### 0501. 任意卡——
+### 0501. 任意卡 —  — 
 
 最后还有一张任意卡，记录个人阅读感想。
 
@@ -56,23 +56,23 @@ The changes brought about in version 3.x continue the trend of iterating and imp
 
 Therefore, Prentice Hall and I have decided the best way of moving forward is to take that logical division represented by Parts I and II of the previous editions, representing the core language and advanced applications topics, respectively, and divide the book into two volumes at this juncture. You are holding in your hands (perhaps in eBook form) the second half of the third edition of Core Python Programming. The good news is that the first half is not required in order to make use of the rich amount of content in this volume. We only recommend that you have intermediate Python experience. If you’ve learned Python recently and are fairly comfortable with using it, or have existing Python skills and want to take it to the next level, then you’ve come to the right place!
 
-As existing Core Python Programming readers already know, my primary focus is teaching you the core of the Python language in a comprehensive manner, much more than just its syntax (which you don’t really need a book to learn, right?). Knowing more about how Python works under the hood—including the relationship between data objects and memory management—will make you a much more effective Python programmer right out of the gate. This is what Part I, and now Core Python Language Fundamentals, is all about.
+As existing Core Python Programming readers already know, my primary focus is teaching you the core of the Python language in a comprehensive manner, much more than just its syntax (which you don’t really need a book to learn, right?). Knowing more about how Python works under the hood — including the relationship between data objects and memory management — will make you a much more effective Python programmer right out of the gate. This is what Part I, and now Core Python Language Fundamentals, is all about.
 
-• Web-based e-mail examples (Chapter 3)
+Web-based e-mail examples (Chapter 3)
 
-• Using Tile/Ttk (Chapter 5)
+Using Tile/Ttk (Chapter 5)
 
-• Using MongoDB (Chapter 6)
+Using MongoDB (Chapter 6)
 
-• More significant Outlook and PowerPoint examples (Chapter 7)
+More significant Outlook and PowerPoint examples (Chapter 7)
 
-• Web server gateway interface (WSGI) (Chapter 10)
+Web server gateway interface (WSGI) (Chapter 10)
 
-• Using Twitter (Chapter 13)
+Using Twitter (Chapter 13)
 
-• Using Google+ (Chapter 15)
+Using Google+ (Chapter 15)
 
-In addition, we are proud to introduce three brand new chapters to the book: Chapter 11, “Web Frameworks: Django,” Chapter 12, “Cloud Computing: Google App Engine,” and Chapter 14, “Text Processing.” These represent new or ongoing areas of application development for which Python is used quite often. All existing chapters have been refreshed and updated to the latest versions of Python, possibly including new material. Take a look at the chapter guide that follows for more details on what to expect from every part of this volume.
+In addition, we are proud to introduce three brand new chapters to the book: Chapter 11, "Web Frameworks: Django," Chapter 12, "Cloud Computing: Google App Engine," and Chapter 14, "Text Processing." These represent new or ongoing areas of application development for which Python is used quite often. All existing chapters have been refreshed and updated to the latest versions of Python, possibly including new material. Take a look at the chapter guide that follows for more details on what to expect from every part of this volume.
 
 ### Chapter Guide
 
@@ -116,39 +116,33 @@ Chapter 14 text Processing. Our first supplemental chapter introduces you to tex
 
 Chapter 15 Miscellaneous. This chapter consists of bonus material that we will likely develop into full, individual chapters in the next edition. Topics covered here include Java/Jython and Google+.
 
-## 01. Regular Expressions
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
+## 0101. Regular Expressions
 
 ### 1.1 Introduction / Motivation
 
-Manipulating text or data is a big thing. If you don’t believe me, look very carefully at what computers primarily do today. Word processing, “fillout-form” Web pages, streams of information coming from a database dump, stock quote information, news feeds—the list goes on and on. Because we might not know the exact text or data that we have programmed our machines to process, it becomes advantageous to be able to express it in patterns that a machine can recognize and take action upon.
+Manipulating text or data is a big thing. If you don’t believe me, look very carefully at what computers primarily do today. Word processing, "fillout-form" Web pages, streams of information coming from a database dump, stock quote information, news feeds — the list goes on and on. Because we might not know the exact text or data that we have programmed our machines to process, it becomes advantageous to be able to express it in patterns that a machine can recognize and take action upon.
 
-If I were running an e-mail archiving company, and you, as one of my customers, requested all of the e-mail that you sent and received last February, for example, it would be nice if I could set a computer program to collate and forward that information to you. Another example request might be to look for a subject line like “ILOVEYOU,” indicating a virus-infected message, and remove those e-mail messages from your personal archive. So this begs the question of how we can program machines with the ability to look for patterns in text.
+If I were running an e-mail archiving company, and you, as one of my customers, requested all of the e-mail that you sent and received last February, for example, it would be nice if I could set a computer program to collate and forward that information to you. Another example request might be to look for a subject line like "ILOVEYOU," indicating a virus-infected message, and remove those e-mail messages from your personal archive. So this begs the question of how we can program machines with the ability to look for patterns in text.
 
-Regular expressions provide such an infrastructure for advanced text pattern matching, extraction, and/or search-and-replace functionality. To put it simply, a regular expression (a.k.a. a “regex” for short) is a string that use special symbols and characters to indicate pattern repetition or to represent multiple characters so that they can “match” a set of strings with similar characteristics described by the pattern (Figure 1-1). In other words, they enable matching of multiple strings—a regex pattern that matched only one string would be rather boring and ineffective, wouldn’t you say?
+Regular expressions provide such an infrastructure for advanced text pattern matching, extraction, and/or search-and-replace functionality. To put it simply, a regular expression (a.k.a. a "regex" for short) is a string that use special symbols and characters to indicate pattern repetition or to represent multiple characters so that they can "match" a set of strings with similar characteristics described by the pattern (Figure 1-1). In other words, they enable matching of multiple strings — a regex pattern that matched only one string would be rather boring and ineffective, wouldn’t you say?
 
-2『给出了正则的定义：a regular expression is a string that use special symbols and characters to indicate pattern repetition or to represent multiple characters so that they can “match” a set of strings with similar characteristics described by the pattern. In other words, they enable matching of multiple strings—a regex pattern that matched only one string would be rather boring and ineffective. 做一张术语卡片。』
+2『给出了正则的定义：a regular expression is a string that use special symbols and characters to indicate pattern repetition or to represent multiple characters so that they can "match" a set of strings with similar characteristics described by the pattern. In other words, they enable matching of multiple strings — a regex pattern that matched only one string would be rather boring and ineffective. 做一张术语卡片。』
 
-Figure 1-1 You can use regular expressions, such as the one here, which recognizes valid Python identifiers. [A-Za-z]\w+ means the first character should be alphabetic, that is, either A–Z or a–z, followed by at least one (+) alphanumeric character (\w). In our filter, notice how many strings go into the filter, but the only ones to come out are the ones we asked for via the regex. One example that did not make it was “4xZ” because it starts with a number. 
+Figure 1-1 You can use regular expressions, such as the one here, which recognizes valid Python identifiers. [A-Za-z]\w+ means the first character should be alphabetic, that is, either A–Z or a–z, followed by at least one (+) alphanumeric character (\w). In our filter, notice how many strings go into the filter, but the only ones to come out are the ones we asked for via the regex. One example that did not make it was "4xZ" because it starts with a number. 
 
 Python supports regexes through the standard library re module. In this introductory subsection, we will give you a brief and concise introduction. Due to its brevity, only the most common aspects of regexes used in everyday Python programming will be covered. Your experience will, of course, vary. We highly recommend reading any of the official supporting documentation as well as external texts on this interesting subject. You will never look at strings in the same way again!
 
 CORE NOTE: Searching vs. matching
 
-Throughout this chapter, you will find references to searching and matching. When we are strictly discussing regular expressions with respect to patterns in strings, we will say “matching,” referring to the term pattern-matching. In Python terminology, there are two main ways to accomplish pattern-matching: searching, that is, looking for a pattern match in any part of a string; and matching, that is, attempting to match a pattern to an entire string (starting from the beginning). Searches are accomplished by using the search() function or method, and matching is done with the match() function or method. In summary, we keep the term “matching” universal when referencing patterns, and we differentiate between “searching” and “matching” in terms of how Python accomplishes pattern-matching.
+Throughout this chapter, you will find references to searching and matching. When we are strictly discussing regular expressions with respect to patterns in strings, we will say "matching," referring to the term pattern-matching. In Python terminology, there are two main ways to accomplish pattern-matching: searching, that is, looking for a pattern match in any part of a string; and matching, that is, attempting to match a pattern to an entire string (starting from the beginning). Searches are accomplished by using the search() function or method, and matching is done with the match() function or method. In summary, we keep the term "matching" universal when referencing patterns, and we differentiate between "searching" and "matching" in terms of how Python accomplishes pattern-matching.
 
 1『在 Python 里正则的模式匹配其实包含 2 个内容：搜索和匹配。searching, that is, looking for a pattern match in any part of a string; and matching, that is, attempting to match a pattern to an entire string (starting from the beginning). Searches are accomplished by using the search() function or method, and matching is done with the match() function or method. 做一张术语卡片。』
 
-As we mentioned earlier, regexes are strings containing text and special characters that describe a pattern with which to recognize multiple strings. We also briefly discussed a regular expression alphabet. For general text, the alphabet used for regular expressions is the set of all uppercase and lowercase letters plus numeric digits. Specialized alphabets are also possible; for instance, you can have one consisting of only the characters “0” and “1.” The set of all strings over this alphabet describes all binary strings, that is, “0,” “1,” “00,” “01,” “10,” “11,” “100,” etc.
+As we mentioned earlier, regexes are strings containing text and special characters that describe a pattern with which to recognize multiple strings. We also briefly discussed a regular expression alphabet. For general text, the alphabet used for regular expressions is the set of all uppercase and lowercase letters plus numeric digits. Specialized alphabets are also possible; for instance, you can have one consisting of only the characters "0" and "1." The set of all strings over this alphabet describes all binary strings, that is, "0," "1," "00," "01," "10," "11," "100," etc.
 
-Let’s look at the most basic of regular expressions now to show you that although regexes are sometimes considered an advanced topic, they can also be rather simplistic. Using the standard alphabet for general text, we present some simple regexes and the strings that their patterns describe. The following regular expressions are the most basic, “true vanilla,” as it were. They simply consist of a string pattern that matches only one string: the string defined by the regular expression. We now present the regexes followed by the strings that match them:
+Let’s look at the most basic of regular expressions now to show you that although regexes are sometimes considered an advanced topic, they can also be rather simplistic. Using the standard alphabet for general text, we present some simple regexes and the strings that their patterns describe. The following regular expressions are the most basic, "true vanilla," as it were. They simply consist of a string pattern that matches only one string: the string defined by the regular expression. We now present the regexes followed by the strings that match them:
 
-The first regular expression pattern from the above chart is “foo.” This pattern has no special symbols to match any other symbol other than those described, so the only string that matches this pattern is the string “foo.” The same thing applies to “Python” and “abc123.” The power of regular expressions comes in when special characters are used to define character sets, subgroup matching, and pattern repetition. It is these special symbols that allow a regex to match a set of strings rather than a single one.
+The first regular expression pattern from the above chart is "foo." This pattern has no special symbols to match any other symbol other than those described, so the only string that matches this pattern is the string "foo." The same thing applies to "Python" and "abc123." The power of regular expressions comes in when special characters are used to define character sets, subgroup matching, and pattern repetition. It is these special symbols that allow a regex to match a set of strings rather than a single one.
 
 1『正则的核心是 special charaters。special characters are used to define character sets, subgroup matching, and pattern repetition. It is these special symbols that allow a regex to match a set of strings rather than a single one. 』
 
@@ -170,15 +164,15 @@ With this one symbol, we have just increased the flexibility of our regular expr
 
 #### 1.2.2 Matching Any Single Character (.)
 
-The dot or period (.) symbol matches any single character except for \n. (Python regexes have a compilation flag [S or DOTALL], which can override this to include \ns.) Whether letter, number, whitespace (not including “\n”), printable, non-printable, or a symbol, the dot can match them all. Q: What if I want to match the dot or period character? A: To specify a dot character explicitly, you must escape its functionality with a backslash, as in “\.”.
+The dot or period (.) symbol matches any single character except for \n. (Python regexes have a compilation flag [S or DOTALL], which can override this to include \ns.) Whether letter, number, whitespace (not including "\n"), printable, non-printable, or a symbol, the dot can match them all. Q: What if I want to match the dot or period character? A: To specify a dot character explicitly, you must escape its functionality with a backslash, as in "\.".
 
-『 f.o 匹配在字母“f”和“o”之间的任意一个字符；例如 fao、f9o、f#o 等；.. 是任意两个字符；.end 是匹配在字符串 end 之前的任意一个字符。』
+『 f.o 匹配在字母"f"和"o"之间的任意一个字符；例如 fao、f9o、f#o 等；.. 是任意两个字符；.end 是匹配在字符串 end 之前的任意一个字符。』
 
 #### 1.2.3 Matching from the Beginning or End of Strings or Word Boundaries (^, \$, \b, \B)
 
-There are also symbols and related special characters to specify searching for patterns at the beginning and end of strings. To match a pattern starting from the beginning, you must use the carat symbol (^) or the special character \A (backslash-capital “A”). The latter is primarily for keyboards that do not have the carat symbol (for instance, an international keyboard). Similarly, the dollar sign (\$) or \Z will match a pattern from the end of a string.
+There are also symbols and related special characters to specify searching for patterns at the beginning and end of strings. To match a pattern starting from the beginning, you must use the carat symbol (^) or the special character \A (backslash-capital "A"). The latter is primarily for keyboards that do not have the carat symbol (for instance, an international keyboard). Similarly, the dollar sign (\$) or \Z will match a pattern from the end of a string.
 
-Patterns that use these symbols differ from most of the others we describe in this chapter because they dictate location or position. In the previous Core Note, we noted that a distinction is made between matching (attempting matches of entire strings starting at the beginning) and searching (attempting matches from anywhere within a string). With that said, here are some examples of “edge-bound” regex search patterns:
+Patterns that use these symbols differ from most of the others we describe in this chapter because they dictate location or position. In the previous Core Note, we noted that a distinction is made between matching (attempting matches of entire strings starting at the beginning) and searching (attempting matches from anywhere within a string). With that said, here are some examples of "edge-bound" regex search patterns:
 
 『使用这些符号的模式与本章描述的其他大多数模式是不同的，因为这些模式指定了位置或方位。之前的「核心提示」记录了匹配（试图在字符串的开始位置进行匹配）和搜索（试 图从字符串的任何位置开始匹配）之间的差别。』
 
@@ -194,13 +188,13 @@ The special characters \b and \B pertain to word boundary matches. The differenc
 
 Whereas the dot is good for allowing matches of any symbols, there might be occasions for which there are specific characters that you want to match. For this reason, the bracket symbols ([]) were invented. The regular expression will match any of the enclosed characters. Here are some examples:
 
-『b[aeiu]t 是匹配 bat、bet、bit、but；[cr][23][dp][o2] 是匹配，一个包含四个字符的字符串，第一个字符是“c”或“r”，然后是“2”或“3”，后面 是“d”或“p”，最后要么是“o”要么是“2”。例如，c2do、r3p2、r2d2、c3po 等。』
+『b[aeiu]t 是匹配 bat、bet、bit、but；[cr][23][dp][o2] 是匹配，一个包含四个字符的字符串，第一个字符是"c"或"r"，然后是"2"或"3"，后面 是"d"或"p"，最后要么是"o"要么是"2"。例如，c2do、r3p2、r2d2、c3po 等。』
 
 1『感觉 [] 匹配模式好强大，它能匹配含有 [] 里任意字符的文本，只要把想筛选的所有可能的字符塞进 [] 里即可。但注意 [] 只能匹配单个字符，里面的字符全是「逻辑或」的关系。』
 
-One side note regarding the regex [cr][23][dp][o2]—a more restrictive version of this regex would be required to allow only “r2d2” or “c3po” as valid strings. Because brackets merely imply logical OR functionality, it is not possible to use brackets to enforce such a requirement. The only solution is to use the pipe, as in r2d2|c3po.
+One side note regarding the regex [cr][23][dp][o2] — a more restrictive version of this regex would be required to allow only "r2d2" or "c3po" as valid strings. Because brackets merely imply logical OR functionality, it is not possible to use brackets to enforce such a requirement. The only solution is to use the pipe, as in r2d2|c3po.
 
-For single-character regexes, though, the pipe and brackets are equivalent. For example, let’s start with the regular expression “ab,” which matches only the string with an “a” followed by a “b.” If we wanted either a one-letter string, for instance, either “a” or a “b,” we could use the regex [ab]. Because “a” and “b” are individual strings, we can also choose the regex a|b. However, if we wanted to match the string with the pattern “ab” followed by “cd,” we cannot use the brackets because they work only for single characters. In this case, the only solution is ab|cd, similar to the r2d2/c3po problem just mentioned.
+For single-character regexes, though, the pipe and brackets are equivalent. For example, let’s start with the regular expression "ab," which matches only the string with an "a" followed by a "b." If we wanted either a one-letter string, for instance, either "a" or a "b," we could use the regex [ab]. Because "a" and "b" are individual strings, we can also choose the regex a|b. However, if we wanted to match the string with the pattern "ab" followed by "cd," we cannot use the brackets because they work only for single characters. In this case, the only solution is ab|cd, similar to the r2d2/c3po problem just mentioned.
 
 3『对于单个字符的正则表达式，使用择一匹配和字符集是等效的。例如，我们以正则表达式 "ab" 作为开始，该正则表达式只匹配包含字母 "a" 且后面跟着字母 "b" 的字符串，如果我们想要匹配一个字母的字符串，例如，要么匹配 "a"，要么匹配 "b"，就可以使用正则表达式 [ab]，因为此时字母 "a" 和字母 "b" 是相互独立的字符串。我们也可以选择正则表达式 a|b。然而，如果我们想要匹配满足模式 "ab" 后面且跟着 "cd" 的字符串，我们就不能使用方括号，因为字符集的方法只适用于单字符的情况。这种情况下，唯一的方法就是使用 ab|cd，这与刚オ提到的 r2d2/c3po 问题是相同的。』
 
@@ -208,7 +202,7 @@ For single-character regexes, though, the pipe and brackets are equivalent. For 
 
 In addition to single characters, the brackets also support ranges of characters. A hyphen between a pair of symbols enclosed in brackets is used to indicate a range of characters; for example A–Z, a–z, or 0–9 for uppercase letters, lowercase letters, and numeric digits, respectively. This is a lexicographic range, so you are not restricted to using just alphanumeric characters. Additionally, if a caret (^) is the first character immediately inside the open left bracket, this symbolizes a directive not to match any of the characters in the given character set.
 
-『 z.[0-9] 是字母“z”后面跟着任何一个字符，然后跟着一个数字；[r-u][env-y][us] 是字母“r”、“s”、“t”或者“u”后面跟着“e”、“n”、“v”、“w”、“x”或者“y”，然后跟着“u”或者“s”；[^aeiou] 是一个非元音字符（练习：为什么我们说“非元音”而不是“辅音”？）；[^\t\n] 是不匹配制表符或者 \n；[“-a] 是在一个 ASCII 系统中，所有字符都位于“”和“a”之间，即 34~97 之间。』
+『 z.[0-9] 是字母"z"后面跟着任何一个字符，然后跟着一个数字；[r-u][env-y][us] 是字母"r"、"s"、"t"或者"u"后面跟着"e"、"n"、"v"、"w"、"x"或者"y"，然后跟着"u"或者"s"；[^aeiou] 是一个非元音字符（练习：为什么我们说"非元音"而不是"辅音"？）；[^\t\n] 是不匹配制表符或者 \n；["-a] 是在一个 ASCII 系统中，所有字符都位于""和"a"之间，即 34~97 之间。』
 
 1『原来 [^XX] 是否定掉 [] 里的所有字符，之前的理解又偏误。（2020-03-30）』
 
@@ -230,7 +224,7 @@ In the previous table, we notice the question mark is used more than once (overl
 
 』
 
-What does “as few repetitions as possible” mean? When patternmatching is employed using the grouping operators, the regular expression engine will try to “absorb” as many characters as possible that match the pattern. This is known as being greedy. The question mark tells the engine to lay off and, if possible, take as few characters as possible in the current match, leaving the rest to match as many succeeding characters of the next pattern (if applicable). Toward the end of the chapter, we will show you a great example where non-greediness is required. For now, let’s continue to look at the closure operators:
+What does "as few repetitions as possible" mean? When patternmatching is employed using the grouping operators, the regular expression engine will try to "absorb" as many characters as possible that match the pattern. This is known as being greedy. The question mark tells the engine to lay off and, if possible, take as few characters as possible in the current match, leaving the rest to match as many succeeding characters of the next pattern (if applicable). Toward the end of the chapter, we will show you a great example where non-greediness is required. For now, let’s continue to look at the closure operators:
 
 『当模式匹配使用分组操作符时，正则表达式引擎将试图「吸收」匹配该模式的尽可能多的字符。这通常被叫做贪婪匹配。问号要求正则表达式引擎去「偷懒」，如果可能，就在当前的正则表达式中尽可能少地匹配字符，留下尽可能多的字符给后面的模式（如果存在）。』
 
@@ -240,7 +234,7 @@ What does “as few repetitions as possible” mean? When patternmatching is emp
 
 #### 1.2.7 Special Characters Representing Character Sets
 
-We also mentioned that there are special characters that can represent character sets. Rather than using a range of “0–9,” you can simply use \d to indicate the match of any decimal digit. Another special character, \w, can be used to denote the entire alphanumeric character class, serving as a shortcut for [A-Za-z0-9_], and \s can be used for whitespace characters. Uppercase versions of these strings symbolize non-matches; for example, \D matches any non-decimal digit (same as [^0-9]), etc. Using these shortcuts, we will present a few more complex examples:
+We also mentioned that there are special characters that can represent character sets. Rather than using a range of "0–9," you can simply use \d to indicate the match of any decimal digit. Another special character, \w, can be used to denote the entire alphanumeric character class, serving as a shortcut for [A-Za-z0-9_], and \s can be used for whitespace characters. Uppercase versions of these strings symbolize non-matches; for example, \D matches any non-decimal digit (same as [^0-9]), etc. Using these shortcuts, we will present a few more complex examples:
 
 1『这几个特殊字符大写表示不匹配，之前忽略了这个重要信息点，比如 re.sub('[/S]', '', string) 表示剔除 string 字符串里所有非空格字符的内容，空格字符其实不仅仅包含空格，换行符、制表符也是。』
 
@@ -266,21 +260,21 @@ If we add parentheses to both subpatterns such as (\w+)-(\d+), then we can acces
 
 『为何想要对正则表达式进行分组：一是当有两个不同的正则表达式而且想用它们来比较同一个字符串时。二是对正则表达式进行分组可以在整个正则表达式中使用重复操作符（而不是一个单独的字符或者字符集）。使用圆括号进行分组的一个作用就是，匹配模式的子字符串可以保存起来供后续使用。这些子组能够被同一次的匹配或者搜索重复调用，或者提取出来用于后续处理。为什么匹配子组这么重要呢？主要原因是在很多时候除了进行匹配操作以外，我们还想要提取所匹配的模式。例如，如果决定匹配模式 w+-d+，但是想要分别保存第一部分的字母和第二部分的数字，该如何实现？我们可能想要这样做的原因是，对于任何成功的匹配，我们可能想要看到这些匹配正则表达式模式的字符串究竟是什么？如果为两个子模式都加上圆括号，例如（w+)-(d+），然后就能够分别访问每一个匹配子组。我们更倾向于使用子组，这是因为择一匹配通过编写代码来判断是否匹配，然后执行另一个单独的程序（该程序也需要另行创建）来解析整个匹配仅仅用于提取两个部 分。为什么不让 Python 自己实现呢？这是 re 模块支持的一个特性。』
 
-『 \d+(\.\d*)? 是表示简单浮点数的字符串，也就是说，任何十进制数字，后面可以接一个小数点和零个或 者多个十进制数字，例如“0.004”、“2”、“75.”等。』
+『 \d+(\.\d*)? 是表示简单浮点数的字符串，也就是说，任何十进制数字，后面可以接一个小数点和零个或 者多个十进制数字，例如"0.004"、"2"、"75."等。』
 
-『 (Mr?s?\.)?[A-Z][a-z]*[A-Za-z-]+ 是名字和姓氏，以及对名字的限制（如果有，首字母必须大写，后续字母小写），全名前可以有可选的“Mr.”、“Mrs.”、“Ms.”或者“M.”作为称谓，以及灵活可选的姓氏，可以有多个单词、横线以及大写字母。』
+『 (Mr?s?\.)?[A-Z][a-z]*[A-Za-z-]+ 是名字和姓氏，以及对名字的限制（如果有，首字母必须大写，后续字母小写），全名前可以有可选的"Mr."、"Mrs."、"Ms."或者"M."作为称谓，以及灵活可选的姓氏，可以有多个单词、横线以及大写字母。』
 
 #### 1.2.9 Extension Notations
 
-One final aspect of regular expressions we have not touched upon yet include the extension notations that begin with the question mark symbol (? . . .). We are not going to spend a lot of time on these as they are generally used more to provide flags, perform look-ahead (or look-behind), or check conditionally before determining a match. Also, although parentheses are used with these notations, only (?P\<name>) represents a grouping for matches. All others do not create a group. However, you should still know what they are because they might be “the right tool for the job.”
+One final aspect of regular expressions we have not touched upon yet include the extension notations that begin with the question mark symbol (? . . .). We are not going to spend a lot of time on these as they are generally used more to provide flags, perform look-ahead (or look-behind), or check conditionally before determining a match. Also, although parentheses are used with these notations, only (?P\<name>) represents a grouping for matches. All others do not create a group. However, you should still know what they are because they might be "the right tool for the job."
 
 1『在扩展表示法了 () 表示的分组失效了，除了 (?P\<name>) 这种形式。』
 
-『 (?:\w+\.)* 以句点作为结尾的字符串，例如“google.”、“twitter.”、“facebook.”，但是这些匹配不会保存下来供后续的使用和数据检索；(?#comment) 此处并不做匹配，只是作为注释；(?=.com) 如果一个字符串后面跟着“.com”才做匹配操作，并不使用任何目标字符串；(?!.net) 如果一个字符串后面不是跟着“.net”才做匹配操作；(?<=800-) 如果字符串之前为“800-”才做匹配，假定为电话号码，同样，并不使用任何输入字符串；(?<!192\.168\.) 如果一个字符串之前不是“192.168.” 才做匹配操作，假定用于过滤掉一组 C 类 IP 地址；(?(1)y|x) 如果一个匹配组 1(\1) 存在，就与 y 匹配；否则，就与 x 匹配。』
+『 (?:\w+\.)* 以句点作为结尾的字符串，例如"google."、"twitter."、"facebook."，但是这些匹配不会保存下来供后续的使用和数据检索；(?#comment) 此处并不做匹配，只是作为注释；(?=.com) 如果一个字符串后面跟着".com"才做匹配操作，并不使用任何目标字符串；(?!.net) 如果一个字符串后面不是跟着".net"才做匹配操作；(?<=800-) 如果字符串之前为"800-"才做匹配，假定为电话号码，同样，并不使用任何输入字符串；(?<!192\.168\.) 如果一个字符串之前不是"192.168." 才做匹配操作，假定用于过滤掉一组 C 类 IP 地址；(?(1)y|x) 如果一个匹配组 1(\1) 存在，就与 y 匹配；否则，就与 x 匹配。』
 
 ### 1.3 Regexes and Python
 
-Now that we know all about regular expressions, we can examine how Python currently supports regular expressions through the re module, which was introduced way back in ancient history (Python 1.5), replacing the deprecated regex and regsub modules—both modules were removed from Python in version 2.5, and importing either module from that release on triggers an ImportError exception. The re module supports the more powerful and regular Perl-style (Perl 5) regexes, allows multiple threads to share the same compiled regex objects, and supports named subgroups.
+Now that we know all about regular expressions, we can examine how Python currently supports regular expressions through the re module, which was introduced way back in ancient history (Python 1.5), replacing the deprecated regex and regsub modules — both modules were removed from Python in version 2.5, and importing either module from that release on triggers an ImportError exception. The re module supports the more powerful and regular Perl-style (Perl 5) regexes, allows multiple threads to share the same compiled regex objects, and supports named subgroups.
 
 『 re 模块支持更强大而且更通用的 Perl 风格（Perl 5 风格）的正则表达式，该模块允许多个线程共享同一个已编译的正则表达式对象，也支持命名子组。』
 
@@ -294,7 +288,7 @@ CORE NOTE: Regex compilation (to compile or not to compile?)
 
 In the Execution Environment chapter of Core Python Programming or the forthcoming Core Python Language Fundamentals, we describe how Python code is eventually compiled into bytecode, which is then executed by the interpreter. In particular, we specified that calling eval() or exec (in version 2.x or exec() in version 3.x) with a code object rather than a string provides a performance improvement due to the fact that the compilation process does not have to be performed repeatedly. In other words, using precompiled code objects is faster than using strings because the interpreter will have to compile it into a code object (anyway) each time before execution.
 
-The same concept applies to regexes—regular expression patterns must be compiled into regex objects before any pattern matching can occur. For regexes, which are compared many times during the course of execution, we highly recommend using precompilation because, again, regexes have to be compiled anyway, so doing it ahead of time is prudent for performance reasons. re.compile() provides this functionality.
+The same concept applies to regexes — regular expression patterns must be compiled into regex objects before any pattern matching can occur. For regexes, which are compared many times during the course of execution, we highly recommend using precompilation because, again, regexes have to be compiled anyway, so doing it ahead of time is prudent for performance reasons. re.compile() provides this functionality.
 
 The module functions do cache the compiled objects, though, so it’s not as if every search() and match() with the same regex pattern requires compilation. Still, you save the cache lookups and do not have to make function calls with the same string, over and over. The number of compiled regex objects that are cached might vary between releases, and is undocumented. The purge() function can be used to clear this cache.
 
@@ -335,7 +329,7 @@ Here is an example of a failed match for which None is returned:
     m.group() # (1-line version of if clause) ...
 ```
 
-The preceding match fails, thus None is assigned to m, and no action is taken due to the way we constructed our if statement. For the remaining examples, we will try to leave out the if check for brevity, if possible, but in practice, it is a good idea to have it there to prevent AttributeError exceptions. (None is returned on failures, which does not have a group() attribute [method].) A match will still succeed even if the string is longer than the pattern, as long as the pattern matches from the beginning of the string. For example, the pattern “foo” will find a match in the string “food on the table” because it matches the pattern from the beginning:
+The preceding match fails, thus None is assigned to m, and no action is taken due to the way we constructed our if statement. For the remaining examples, we will try to leave out the if check for brevity, if possible, but in practice, it is a good idea to have it there to prevent AttributeError exceptions. (None is returned on failures, which does not have a group() attribute [method].) A match will still succeed even if the string is longer than the pattern, as long as the pattern matches from the beginning of the string. For example, the pattern "foo" will find a match in the string "food on the table" because it matches the pattern from the beginning:
 
 ```py
 >>> m = re.match('foo', 'food on the table') # match succeeds
@@ -344,7 +338,7 @@ The preceding match fails, thus None is assigned to m, and no action is taken du
 
 1『 match() 的原则必须是从字符串的首部开始匹配，所以匹配模式可以用「'/w*'」。注意一点，可以去匹配比正则模式更长的字符串。』
 
-As you can see, although the string is longer than the pattern, a successful match was made from the beginning of the string. The substring “foo” represents the match, which was extracted from the larger string. We can even sometimes bypass saving the result altogether, taking advantage of Python’s object-oriented nature:
+As you can see, although the string is longer than the pattern, a successful match was made from the beginning of the string. The substring "foo" represents the match, which was extracted from the larger string. We can even sometimes bypass saving the result altogether, taking advantage of Python’s object-oriented nature:
 
 ```py
 >>> re.match('foo', 'food on the table').group() 
@@ -355,7 +349,7 @@ Note from a few paragraphs above that an AttributeError will be generated on a n
 
 #### 1.3.5 Looking for a Pattern within a String with search() (Searching versus Matching)
 
-The chances are greater that the pattern you seek is somewhere in the middle of a string, rather than at the beginning. This is where search() comes in handy. It works exactly in the same way as match, except that it searches for the first occurrence of the given regex pattern anywhere with its string argument. Again, a match object is returned on success; None is returned otherwise. We will now illustrate the difference between match() and search(). Let’s try a longer string match attempt. This time, let’s try to match our string “foo” to “seafood”:
+The chances are greater that the pattern you seek is somewhere in the middle of a string, rather than at the beginning. This is where search() comes in handy. It works exactly in the same way as match, except that it searches for the first occurrence of the given regex pattern anywhere with its string argument. Again, a match object is returned on success; None is returned otherwise. We will now illustrate the difference between match() and search(). Let’s try a longer string match attempt. This time, let’s try to match our string "foo" to "seafood":
 
 ```py
 >>> m = re.match('foo', 'seafood')  # no match
@@ -364,7 +358,7 @@ The chances are greater that the pattern you seek is somewhere in the middle of 
 >>>
 ```
 
-As you can see, there is no match here. match() attempts to match the pattern to the string from the beginning; that is, the “f” in the pattern is matched against the “s” in the string, which fails immediately. However, the string “foo” does appear (elsewhere) in “seafood,” so how do we get Python to say “yes”? The answer is by using the search() function. Rather than attempting a match, search() looks for the first occurrence of the pattern within the string. search() evaluates a string strictly from left to right.
+As you can see, there is no match here. match() attempts to match the pattern to the string from the beginning; that is, the "f" in the pattern is matched against the "s" in the string, which fails immediately. However, the string "foo" does appear (elsewhere) in "seafood," so how do we get Python to say "yes"? The answer is by using the search() function. Rather than attempting a match, search() looks for the first occurrence of the pattern within the string. search() evaluates a string strictly from left to right.
 
 ```py
 >>> m = re.search('foo', 'seafood')     # use search() instead
@@ -427,7 +421,7 @@ The following is an example of searching for a real dot (decimal point) in a reg
 
 #### 1.3.8 Creating Character Classes ([])
 
-Earlier, we had a long discussion about [cr][23][dp][o2] and how it differs from r2d2|c3po” In the following examples, we will show that r2d2|c3po is more restrictive than [cr][23][dp][o2]:
+Earlier, we had a long discussion about [cr][23][dp][o2] and how it differs from r2d2|c3po" In the following examples, we will show that r2d2|c3po is more restrictive than [cr][23][dp][o2]:
 
 #### 1.3.9 Repetition, Special Characters, and Grouping
 
@@ -556,7 +550,7 @@ The following examples highlight the positional regex operators. These apply mor
 
 1『 \b 只能匹配单独的单词（有边界），而 /B 可以匹配嵌入到字符串里面的单词。』
 
-You will notice the appearance of raw strings here. You might want to take a look at the Core Note, “Using Python raw strings,” toward the end of this chapter for clarification on why they are here. In general, it is a good idea to use raw strings with regular expressions.
+You will notice the appearance of raw strings here. You might want to take a look at the Core Note, "Using Python raw strings," toward the end of this chapter for clarification on why they are here. In general, it is a good idea to use raw strings with regular expressions.
 
 1『r'\bthe' 指原始字符串（ raw strings），传参的正则表达式用原始字符串。』
 
@@ -635,7 +629,7 @@ Note all the additional work that we had to do using finditer() to get its outpu
 
 #### 1.3.12 Searching and Replacing with sub() and subn()
 
-There are two functions/methods for search-and-replace functionality: sub() and subn(). They are almost identical and replace all matched occurrences of the regex pattern in a string with some sort of replacement. The replacement is usually a string, but it can also be a function that returns a replacement string. subn() is exactly the same as sub(), but it also returns the total number of substitutions made—both the newly substituted string and the substitution count are returned as a 2-tuple.
+There are two functions/methods for search-and-replace functionality: sub() and subn(). They are almost identical and replace all matched occurrences of the regex pattern in a string with some sort of replacement. The replacement is usually a string, but it can also be a function that returns a replacement string. subn() is exactly the same as sub(), but it also returns the total number of substitutions made — both the newly substituted string and the substitution count are returned as a 2-tuple.
 
 『用来替换的部分通常是一个字符串，但它也可能是一个函数，该函数返回一个用来替换的字符串。subn() 和 sub() 一样，但 subn() 还返回一个表示替换的总数，替换后的字符串和表示替换总数的数字一起作为一个拥有两个元素的元组返回。』
 
@@ -692,12 +686,12 @@ That’s a simple example. What if we have a more complex example, such as a sim
 ['Mountain View', 'CA', '94040'] ['Sunnyvale', 'CA'] ['Los Altos', '94023'] ['Cupertino', '95014'] ['Palo Alto', 'CA'] 
 ```
 
-The preceding regex has a simple component, split on comma-space (“, “). The harder part is the last regex, which previews some of the extension notations that you’ll learn in the next subsection. In plain English, this is what it says: also split on a single space if that space is immediately followed by five digits (ZIP code) or two capital letters (US state abbreviation). This allows us to keep together city names that have spaces in them. 
+The preceding regex has a simple component, split on comma-space (", "). The harder part is the last regex, which previews some of the extension notations that you’ll learn in the next subsection. In plain English, this is what it says: also split on a single space if that space is immediately followed by five digits (ZIP code) or two capital letters (US state abbreviation). This allows us to keep together city names that have spaces in them. 
 
 Naturally, this is just a simplistic regex that could be a starting point for an application that parses location information. It doesn’t process (or fails) lowercase states or their full spellings, street addresses, country codes, ZIP+4 (nine-digit ZIP codes), latitude-longitude, multiple spaces, etc. It’s just meant as a simple demonstration of re.split() doing something str.split() can’t do. 
 As we just demonstrated, you benefit from much more power with a regular expression split; however, remember to always use the best tool for the job. If a string split is good enough, there’s no need to bring in the additional complexity and performance impact of regexes. 
 
-1『扩展表示法里，「?=XX」表示要匹配的字符紧跟在 XX 后面，比如「?=.com」如果一个字符串后面跟着“.com”才做匹配操作，并不使用任何目标字符串；「?:」是表示返回的匹配对象不会保存下来供后续的使用和数据检索，比如「?= (?:\d{5} | [A-Z]{2})」表示，如果空格紧跟在五个数字（ZIP 编码）或者两个大写字母（美国联邦州缩 写）之后，就用 split 语句分割该空格。前面的解释是书里的，但这个空格是哪冒出来的呢？目前不理解。（2020-03-30）』
+1『扩展表示法里，「?=XX」表示要匹配的字符紧跟在 XX 后面，比如「?=.com」如果一个字符串后面跟着".com"才做匹配操作，并不使用任何目标字符串；「?:」是表示返回的匹配对象不会保存下来供后续的使用和数据检索，比如「?= (?:\d{5} | [A-Z]{2})」表示，如果空格紧跟在五个数字（ZIP 编码）或者两个大写字母（美国联邦州缩 写）之后，就用 split 语句分割该空格。前面的解释是书里的，但这个空格是哪冒出来的呢？目前不理解。（2020-03-30）』
 
 『上述正则表达式拥有一个简单的组件：使用 split 语句基于逗号分割字符串。更难的部分是最后的正则表达式，可以通过该正则表达式预览一些将在下一小节中介绍的扩展符号。在普通的英文中，通常这样说：如果空格紧跟在五个数字（ZIP 编码）或者两个大写字母（美国联邦州缩写）之后，就用 pli 语句分割该空格。这就允许我们在城市名中放置空格。通常情况下，这仅仅只是一个简单的正则表达式，可以在用来解析位置信息的应用中作为起点。该正则表达式并不能处理小写的州名或者州名的全拼、街道地址、州编码、ZIP+4  (9 位 ZIP 编码）、经纬度、多个空格等内容（或者在处理时会失败）。这仅仅意味着使用 re.split() 能够实现 str.split() 不能实现的一个简单的演示实例。我们刚刚已经证实，读者将从正则表达式 split 语句的强大能力中获益。然而，记得一定在编码过程中选择更合适的工具。如果对字符串使用 split 方法已经足够好，就不需要引入额外复杂并且影响性能的正则表达式。』
 
@@ -728,7 +722,7 @@ With the (?iLmsux) set of options, users can specify one or more flags directly 
 
 1『「?i」表示不区分大小写。』
 
-For the previous examples, the case-insensitivity should be fairly straightforward. In the last example, by using “multiline” we can perform the search across multiple lines of the target string rather than treating the entire string as a single entity. Notice that the instances of “the” are skipped because they do not appear at the beginning of their respective lines. 
+For the previous examples, the case-insensitivity should be fairly straightforward. In the last example, by using "multiline" we can perform the search across multiple lines of the target string rather than treating the entire string as a single entity. Notice that the instances of "the" are skipped because they do not appear at the beginning of their respective lines. 
 
 The next pair demonstrates the use of re.S/DOTALL. This flag indicates that the dot (.) can be used to represent \n characters (whereas normally it represents all characters except \n): 
 
@@ -821,11 +815,11 @@ True
 True 
 ```
 
-You use the (?=...) and (?!...) notations to perform a lookahead in the target string without actually consuming those characters. The first is the positive lookahead assertion, while the latter is the negative. In the examples that follow, we are only interested in the first names of the persons who have a last name of “van Rossum,” and the next example let’s us ignore e-mail addresses that begin with “noreply” or “postmaster.” 
+You use the (?=...) and (?!...) notations to perform a lookahead in the target string without actually consuming those characters. The first is the positive lookahead assertion, while the latter is the negative. In the examples that follow, we are only interested in the first names of the persons who have a last name of "van Rossum," and the next example let’s us ignore e-mail addresses that begin with "noreply" or "postmaster." 
 
 The third snippet is another demonstration of the difference between findall() and finditer(); we use the latter to build a list of e-mail addresses (in a more memory-friendly way by skipping the creation of the intermediary list that would be thrown away) using the same login names but on a different domain. 
 
-『读者可以使用 (?=...) 和 (?!…)符号在目标字符串中实现一个前视匹配，而不必实际上使用这些字符串。前者是正向前视断言，后者是负向前视断言。在后面的示例中，我们仅仅对姓氏为 “van Rossum” 的人的名字感兴趣，下一个示例中，让我们忽略以 “noreply” 或者 “postmaster” 开头的 e-mail 地址。第三个代码片段用于演示 findall() 和 finditer() 的区别；我们使用后者来构建一个使用相同登录名但不同域名的 e-mail 地址列表（在一个更易于记忆的方法中，通过忽略创建用完即丢弃的中间列表）。』
+『读者可以使用 (?=...) 和 (?!…)符号在目标字符串中实现一个前视匹配，而不必实际上使用这些字符串。前者是正向前视断言，后者是负向前视断言。在后面的示例中，我们仅仅对姓氏为 "van Rossum" 的人的名字感兴趣，下一个示例中，让我们忽略以 "noreply" 或者 "postmaster" 开头的 e-mail 地址。第三个代码片段用于演示 findall() 和 finditer() 的区别；我们使用后者来构建一个使用相同登录名但不同域名的 e-mail 地址列表（在一个更易于记忆的方法中，通过忽略创建用完即丢弃的中间列表）。』
 
 ```py
 >>> re.findall(r'\w+(?= van Rossum)', ... ''' ... Guido van Rossum ... Tim Peters ... Alex Martelli ... Just van Rossum ... Raymond Hettinger ... ''') ['Guido', 'Just']
@@ -845,9 +839,9 @@ True
 False 
 ```
 
-『展示了使用条件正则表达式匹配。假定我们拥有另一个特殊字符，它仅仅包含字母“x”和“y”， 我们此时仅仅想要这样限定字符串：两字母的字符串必须由一 个字母跟着另一个字母。换句话说， 你不能同时拥有两个相同的字母；要么由“x”跟着 “y”， 要么相反。』
+『展示了使用条件正则表达式匹配。假定我们拥有另一个特殊字符，它仅仅包含字母"x"和"y"， 我们此时仅仅想要这样限定字符串：两字母的字符串必须由一 个字母跟着另一个字母。换句话说， 你不能同时拥有两个相同的字母；要么由"x"跟着 "y"， 要么相反。』
 
-### 1.3.15 Miscellaneous 
+#### 1.3.15 Miscellaneous
 
 There can be confusion between regular expression special characters and special ASCII symbols. We can use \n to represent a NEWLINE character, but we can use \d meaning a regular expression match of a single numeric digit. 
 Problems can occur if there is a symbol used by both ASCII and regular expressions, so in the following Core Note, we recommend the use of Python raw strings to prevent any problems. One more caution: the \w and \W alphanumeric character sets are affected by the re.L/LOCALE and Unicode (re.U/UNICODE) flags. 
@@ -856,7 +850,7 @@ Problems can occur if there is a symbol used by both ASCII and regular expressio
 
 CORE NOTE: Using Python raw strings
 
-You might have seen the use of raw strings in some of the previous examples. Regular expressions were a strong motivation for the advent of raw strings. The reason lies in the conflicts between ASCII characters and regular expression special characters. As a special symbol, \b represents the ASCII character for backspace, but \b is also a regular expression special symbol, meaning “match” on a word boundary. For the regex compiler to see the two characters \b as your string and not a (single) backspace, you need to escape the backslash in the string by using another backslash, resulting in \\b. 
+You might have seen the use of raw strings in some of the previous examples. Regular expressions were a strong motivation for the advent of raw strings. The reason lies in the conflicts between ASCII characters and regular expression special characters. As a special symbol, \b represents the ASCII character for backspace, but \b is also a regular expression special symbol, meaning "match" on a word boundary. For the regex compiler to see the two characters \b as your string and not a (single) backspace, you need to escape the backslash in the string by using another backslash, resulting in \\b. 
 
 This can get messy, especially if you have a lot of special characters in your string, adding to the confusion. We were introduced to raw strings in the Sequences chapter of Core Python Programming or Core Python Language Fundamentals, and they can be (and are often) used to help keep regexes looking somewhat manageable. In fact, many Python programmers swear by these and only use raw strings when defining regular expressions. 
 
@@ -881,4 +875,3 @@ Here are some examples of differentiating between the backspace \b and the regul
 ```
 
 You might have recalled that we had no trouble using \d in our regular expressions without using raw strings. That is because there is no ASCII equivalent special character, so the regular expression compiler knew that you meant a decimal digit. 
-

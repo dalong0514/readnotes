@@ -6,7 +6,7 @@
 
 ## 卡片
 
-### 0101. 主题卡——JS 的精华
+### 0101. 主题卡 —— JS 的精华
 
 JavaScript is built on some very good ideas and a few very bad ones. The very good ideas include functions, loose typing, dynamic objects, and an expressive object literal notation.
 
@@ -24,7 +24,7 @@ A controversial feature in JavaScript is prototypal inheritance. JavaScript has 
 
 3 Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format.
 
-### 0102. 主题卡——正则表达式的知识体系
+### 0102. 主题卡 —— 正则表达式的知识体系
 
 正则的功能在于字符串的搜索匹配、替换、提取信息。正则的知识框架：结构与元素。
 
@@ -107,7 +107,7 @@ As in strings, \f is the formfeed character, \n is the newline character, \r is 
 
 4) Negative lookahead. A negative lookahead group has a (?! prefix. It is like a positive lookahead group, except that it matches only if it fails to match. This is not a good part.
 
-非捕获型分组有一个 (?: 前缀。非捕获型分组仅做简单的匹配，并不会捕获所匹配的文本。这会带来微弱的性能优势。非捕获型分组不会干扰捕获型分组的编号。向前正向匹配分组类似于非捕获型分组，但在这个组匹配后，文本会倒回到它开始的地方，实际上并不匹配任何东西。这不是一个好的特性。向前负向匹配分组类似于向前正向匹配分组，但只有当它匹配失败时它才继续向前进行匹配。这不是一个好的特性。
+非捕获型分组有一个 (`?:` 前缀。非捕获型分组仅做简单的匹配，并不会捕获所匹配的文本。这会带来微弱的性能优势。非捕获型分组不会干扰捕获型分组的编号。向前正向匹配分组类似于非捕获型分组，但在这个组匹配后，文本会倒回到它开始的地方，实际上并不匹配任何东西。这不是一个好的特性。向前负向匹配分组类似于向前正向匹配分组，但只有当它匹配失败时它才继续向前进行匹配。这不是一个好的特性。
 
 6、Regexp Class. A regexp class is a convenient way of specifying one of a set of characters. For example, if we wanted to match a vowel, we could write (?:a | e | i | o | u), but it is more conveniently written as the class [aeiou]. Classes provide two other conveniences. The first is that ranges of characters can be specified.
 
@@ -123,23 +123,23 @@ Matching tends to be greedy, matching as many repetitions as possible up to the 
 
 如果只有一个量词，表示趋向于进行贪梦性匹配，即匹配尽可能多的副本直至达到上限。如果这个量词附加一个后缀 ?，则表示趋向于进行非贪梦匹配，即只匹配必要的副本就好。一般情况下最好坚持使用贪婪性匹配。
 
-### 0201. 术语卡——delegation
+### 0201. 术语卡 —— delegation
 
 The prototype link is used only in retrieval. If we try to retrieve a property value from an object, and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object. And if that object is lacking the property, then it goes to its prototype, and so on until the process finally bottoms out with Object.prototype. If the desired property exists nowhere in the prototype chain, then the result is the undefined value. This is called delegation.
 
-### 0202. 术语卡——this 值
+### 0202. 术语卡 —— this 值
 
 Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern. The patterns differ in how the bonus parameter this is initialized.
 
 this 的值取决于调用模式（invocation pattern）：1）the method invocation pattern，方法式调用，this 绑定到该方法所隶属的对象（函数作为一个对象的某个属性值的时候才被称为方法），这个绑定是在调用时发生的；2）the function invocation pattern，函数式调用，this 绑定到全局变量上（JS 公认的设计错误），这导致内部函数无法通过 this 来访问外部函数的数据，即没法帮外部函数处理一些事情了，不过可以通过「var that = this; 」来解决；3）the constructor invocation pattern，构造函数式调用。这其实是对基于类的面向对象的妥协，用「new + 构造器函数」来调用构造器函数，会创建一个连接到构造函数原型链的新对象，this 绑定到这个新对象上。new 还会改变 return 语句的行为；4）the apply invocation pattern，apply 式调用。Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get\_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。
 
-### 0203. 术语卡——闭包
+### 0203. 术语卡 —— 闭包
 
 This quo function is designed to be used without the new prefix, so the name is not capitalized. When we call quo, it returns a new object containing a get\_status method. A reference to that object is stored in myQuo. The get\_status method still has privileged access to quo’s status property even though quo has already returned. get\_status does not have access to a copy of the parameter; it has access to the parameter itself. This is possible because the function has access to the context in which it was created. This is called closure.
 
 当我们调用 quo 时，它返回包含 get\_status 方法的一个新对象（调用函数即创建一个函数对象）。该对象的一个引用保存在 myQuo 中。即使 quo 已经返回了，但 get\_status 方法仍然享有访问 quo 对象的 status 属性的特权。get\_status 方法并不是访问该参数的一个副本，它访问的就是该参数本身。因为该函数可以访问它被创建时所处的上下文环境。这被称为闭包。
 
-### 0204. 术语卡——Function
+### 0204. 术语卡 —— Function
 
 The best thing about JavaScript is its implementation of functions. It got almost everything right. But, as you should expect with JavaScript, it didn’t get everything right. A function encloses a set of statements. Functions are the fundamental modular unit of JavaScript. They are used for code reuse, information hiding, and composition. Functions are used to specify the behavior of objects. Generally, the craft of programming is the factoring of a set of requirements into a set of functions and data structures.
 
@@ -153,13 +153,13 @@ Since functions are objects, they can be used like any other value. Functions ca
 
 Javascript 创建一个函数对象时，会给该对象设置一个「调用」属性。当 Javascript 调用一个函数时，可理解为调用此函数的「调用」属性。
 
-### 0205. 术语卡——函数调用
+### 0205. 术语卡 —— 函数调用
 
 The invocation operator is a pair of parentheses that follow any expression that produces a function value. The parentheses can contain zero or more expressions, separated by commas. Each expression produces one argument value. Each of the argument values will be assigned to the function’s parameter names. There is no runtime error when the number of arguments and the number of parameters do not match. If there are too many argument values, the extra argument values will be ignored. If there are too few argument values, the undefined value will be substituted for the missing values. There is no type checking on the argument values: any type of value can be passed to any parameter.
 
 醍醐灌顶，函数调用和用字面量创建函数是两码事，调用最关键的是那对圆括号 ()，圆括号前面可以是函数名，也可以是函数字面量。而圆括号里面是要传递进函数的实参；parameter 实参，调用函数时传递进来的。argument 形参，定义函数时设定的。
 
-### 0206. 信息卡——代码风格
+### 0206. 信息卡 —— 代码风格
 
 Throughout this book I have used a consistent style. My intention was to make the code examples as easy to read as possible. I used whitespace consistently to give you more cues about the meaning of my programs.
 
@@ -169,11 +169,11 @@ If a statement doesn’t fit on a line, I will break it after a comma or a binar
 
 使用一致的留白来理解程序的逻辑思路。1）代码块内容和对象字面量缩进 4 个空格。2）放了一个空格在 if 和 ( 之间，以致 if 不会看起来像一个函数调用。只有真的是在调用时，才使 ( 和其前面的符号相毗连。3）在除了 . 和 [ 外的所有中置运算符的两边都放了空格，它们俩无须空格是因为它们有更高的优先级。4）在每个逗号和冒号后面都使用一个空格。5）在每行最多放一个语句，在一行里放多条语句可能会被误读。如果一个语句一行放不下，我会在一个冒号或二元运算符后拆开它。给折断后的语句的其余部分多缩进 4 个空格，如果 4 个还不够明显，就缩进 8 个空格（例如在一个 if 语句的条件部分插入一个换行符的时候）。6）在诸如 if 和 while 这样结构化的语句里，始终使用代码块，因为这样会减少出错的概率。
 
-### 0301. 人名卡——Douglas Crockford
+### 0301. 人名卡 —— Douglas Crockford
 
 Douglas Crockford，本书作者。
 
-### 0401. 金句卡——Most programming languages contain good parts and bad parts
+### 0401. 金句卡 —— Most programming languages contain good parts and bad parts
 
 Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts
 

@@ -113,19 +113,20 @@ Now that our Star component is clickable, we'll use it to change the state of th
 
 ```js
 export default function StarRating({ totalStars = 5 }) {
-  const [selectedStars, setSelectedStars] = useState(0); return (
-  <>
-    {createArray(totalStars).map((n, i) => (
-      <Star
-        key={i}
-        selected={selectedStars > i}
-        onSelect={() => setSelectedStars(i + 1)}
-      />
-    ))}
-    <p>
-      {selectedStars} of {totalStars} stars
-    </p>
-  </>
+  const [selectedStars, setSelectedStars] = useState(0); 
+  return (
+    <>
+      {createArray(totalStars).map((n, i) => (
+        <Star
+          key={i}
+          selected={selectedStars > i}
+          onSelect={() => setSelectedStars(i + 1)}
+        />
+      ))}
+      <p>
+        {selectedStars} of {totalStars} stars
+      </p>
+    </>
   );
 }
 ```
@@ -135,6 +136,8 @@ In order to change the state of the StarRating component, we'll need a function 
 The most important thing to remember about Hooks is that they can cause the component they're hooked into to rerender. Every time we invoke the setSelectedStars function to change the value of selectedStars, the StarRating function component will be reinvoked by the hook, and it will render again, this time with a new value for selectedStars. This is why Hooks are such a killer feature.
 
 When data within the hook changes, they have the power to rerender the component they're hooked into with new data.
+
+2『钩子的核心作用在于重新渲染，做一张主题卡片。（2021-05-08）』—— 已完成
 
 The StarRating component will be rerendered every time a user clicks a Star. When the user clicks the Star, the onSelect property of that star is invoked. When the onSelect property is invoked, we'll invoke the setSelectedStars function and send it the number of the star that was just selected. We can use the i variable from the map function to help us calculate that number. When the map function renders the first Star, the value for i is 0. This means that we need to add 1 to this value to get the correct number of stars. When setSelectedStars is invoked, the StarRating component is invoked with a the value for selectedStars, as shown in Figure 6-4.
 
@@ -246,7 +249,8 @@ In this sample, the user is trying to add a double-click method to the entire St
 
 ```js
 export default function StarRating({ style = {}, totalStars = 5, ...props}) {
-  const [selectedStars, setSelectedStars] = useState(0); return (
+  const [selectedStars, setSelectedStars] = useState(0); 
+  return (
     <div style={{ padding: 5, ...style }} {...props}>
     ...
     </div>
@@ -263,6 +267,8 @@ The real point is that it's important to think about how the consumers of your c
 ## 6.4 State in Component Trees
 
 It's not a great idea to use state in every single component. Having state data distributed throughout too many of your components will make it harder to track down bugs and make changes within your application. This occurs because it's hard to keep track of where the state values live within your component tree. It's easier to understand your application's state, or state for a specific feature, if you manage it from one location. There are several approaches to this methodology, and the first one we'll analyze is storing state at the root of the component tree and passing it down to child components via props.
+
+1-3『这里的信息，跟 React 官网那个「井字棋」的教程关联上了，状态数据的管理一层层抽象到父组件里去。（2021-05-08）』
 
 Let's build a small application that can be used to save a list of colors. We'll call the app the「Color Organizer」, and it will allow users to associate a list of colors with a custom title and rating. To get started, a sample dataset may look like the following:
 
