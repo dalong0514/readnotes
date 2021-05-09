@@ -1,6 +1,16 @@
 ## 记忆时间
 
-## 0200. Starting with the Bricks: Programming Paradigms
+## 目录
+
+0301 Paradigm Overview
+
+0401 Structured Programming
+
+0501 Object-Oriented Programming
+
+0601 Functional Programming
+
+## Part II. Starting with the Bricks: Programming Paradigms
 
 Software architecture begins with the code — and so we will begin our discussion of architecture by looking at what we’ve learned about code since code was first written.
 

@@ -2,23 +2,23 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡 —— 
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——TDD
+### 0201. 术语卡 —— TDD
 
 Readers of Extreme Programming Explained will notice a difference in tone between XP and TDD. TDD isn’t an absolute like Extreme Programming. XP says, “Here are things you must be able to do to be prepared to evolve further.” TDD is a little fuzzier. TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap. “What if I do a paper design for a week, then test-drive the code? Is that TDD?” Sure, it’s TDD. You were aware of the gap between decision and feedback and you controlled the gap deliberately.
 
-### 0202. 术语卡——
+### 0202. 术语卡 —— 
 
-### 0203. 术语卡——
+### 0203. 术语卡 —— 
 
-### 0301. 人名卡——
+### 0301. 人名卡 —— 
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+根据这些证据和案例，找出源头和提出术语的人是谁 —— 产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡——TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap
+### 0401. 金句卡 —— TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap
 
 ## 书评
 
@@ -70,7 +70,7 @@ Kent Beck 关于 TDD 的名言：测试驱动开发非常适合那些对代码�
 
 ### 10
 
-TDD 的内容组织：1）讲述经典的 Money 例子，基本就是代码重构的内容。——有空还是去看原书比较好。2）如何实现一个 xUnit 的框架。——直接找一个跟自己语言对应的 xUnit 来学习就可以了，没有必要唧唧歪歪的看作者说半天。3）TDD 里常用的一些模式。——也就是惯常的技巧，喜欢叫做模式也行。这里没有太多的废话代码，还比较抽象和概括，值得一看。不过后面的设计模式和重构，就是鸡肋了。
+TDD 的内容组织：1）讲述经典的 Money 例子，基本就是代码重构的内容。 —— 有空还是去看原书比较好。2）如何实现一个 xUnit 的框架。 —— 直接找一个跟自己语言对应的 xUnit 来学习就可以了，没有必要唧唧歪歪的看作者说半天。3）TDD 里常用的一些模式。 —— 也就是惯常的技巧，喜欢叫做模式也行。这里没有太多的废话代码，还比较抽象和概括，值得一看。不过后面的设计模式和重构，就是鸡肋了。
 
 好吧，TDD 的原理其实很简单：1）写代码之前，先写测试用例。2）想办法让测试用例通过，哪怕写假的代码。3）用真的代码替换掉假的代码，并使得测试用例通过。4）重构让代码优化，同时让测试用例。
 
@@ -112,7 +112,7 @@ TDD 的内容组织：1）讲述经典的 Money 例子，基本就是代码重�
 
 5、显式数据（常量）：帮忙理解测试本身的期望结果和实际结果，并尽量让它们的关系明朗。
 
-测试的流程：红色指示条 —— 绿色指示条 —— 重构（去掉开发余测试中的重复代码），以此循环。在没有测试失败情况下，不要去修改开发代码。（因为新变更，总是先写测试）
+测试的流程：红色指示条  ——  绿色指示条  ——  重构（去掉开发余测试中的重复代码），以此循环。在没有测试失败情况下，不要去修改开发代码。（因为新变更，总是先写测试）
 
 ### 15
 
@@ -158,7 +158,7 @@ If we recognize that redundancy in code is a maintenance issue then we should al
 
 ### 18
 
-留下印象的是在前言里写的 TDD 两个原则：不要重写代码，除非 test fail 了；去除重复设计，优化代码结构。以及「不要过多的设计，只要满足 test pass 即可」—— 当现有设计不满足新功能时（即新的 test failure），才修改设计。
+留下印象的是在前言里写的 TDD 两个原则：不要重写代码，除非 test fail 了；去除重复设计，优化代码结构。以及「不要过多的设计，只要满足 test pass 即可」 ——  当现有设计不满足新功能时（即新的 test failure），才修改设计。
 
 正本书先从一个币种汇率转换为例子，说明 TDD 如何实施，然后说明了如何写 Test 以及如何重构。笔者觉得，TDD 除了 validation 作用外，更多的是帮助你思考如何设计以及作为永不过时的 specification，还有就是能让你更有信心的 refactor。所以，本书在介绍完 TDD 基本知识以及流程后，花了大量笔墨教读者如何写出 clean code 以及 refactor，这部分笔者直接跳过了，笔者认为写出 clean code 和如何 refactor 是 TDD 之外的领域，所以自认为这方面的知识更适合去阅读 clean code 以及 refactor 这两本书。
 
@@ -194,7 +194,7 @@ So, the concept is simple, but what’s my motivation? Why would a programmer ta
 
 这是两条很简单的规则，但是由此产生了复杂的个人和小组行为规范，技术上的含意是：1）我们必须通过运行代码所提供的反馈来做决定，并以此达到有机设计的目的。2）我们必须自己写测试程序，这是因为测试很多，很频繁，我们不能每天把大量的时间浪费在等待他人写测试程序上。3）我们的开发环境必须能迅速响应哪怕是很小的变化。4）为使测试简单，我们的整个规划必须是由许多高内聚、低耦合的部分组成。
 
-这两条规则实际上蕴含了开发过程中所经历的阶段：1）不可运行一一写一个不能工作的测试程序，一开始这个测试程序甚至不能编译。2）可运行一一尽快让这个测试程序工作，为此可以在程序中使用一些不合情理的方法。3）重构——消除在让测试程序工作的过程中产生的重复设计，优化设计结构。不可运行 -> 运行 -> 重构，这就是测试驱动开发的口号。
+这两条规则实际上蕴含了开发过程中所经历的阶段：1）不可运行 一一 写一个不能工作的测试程序，一开始这个测试程序甚至不能编译。2）可运行 一一 尽快让这个测试程序工作，为此可以在程序中使用一些不合情理的方法。3）重构 —— 消除在让测试程序工作的过程中产生的重复设计，优化设计结构。不可运行 -> 运行 -> 重构，这就是测试驱动开发的口号。
 
 现在假设这样的开发方式是可能的，那么，再进一步，显著地减少代码的错误密度（defect density），让所有参与某一工作的开发人员对工作主题足够明了的假定也将成为可能。如果是这样的话，那么只有测试失败时才需要重写代码，其社会意义是：1）如果代码的错误密度能够充分地减少，那么软件的质量保证（QA）工作可以由被动保证软件质量转变为主动保证软件质量。2）如果开发过程中令人不快的意外能够充分地减少，那么项目经理能对软件开发进度有个精确的把握，以便让实际用户参与日常开发。3）如果每次技术讨论的主题都足够明确，那么软件工程师之间的合作是以分钟计算的，而不是按每天或每周计算。4）再者，如果代码错误密度能够充分地减少，那么我们每天都可以得到有新功能的软件成品，并以此招揽新的用户群。
 
@@ -262,7 +262,7 @@ A note about the examples. Both examples, multi-currency calculation and a testi
 
 关于这些例子要注意一点。这两个例子，多币种计算和测试框架，看上去很简单。而解决同一个问题却也存在（我曾经见到过）一些复杂、风格很差、近乎弱智的解决方案。我本可以从这些复杂、风格很差、近乎弱智的解决方案中采用一个以使本书有一种「真实」感。然而，我的目标是写出整洁可用的代码，希望你的目标也是这样。在以那些被认为很简单的例子开始之前，花 15 秒的时间设想一下，如果所有的代码都能如此清晰和直接，没有复杂的解决方案，只有显然需要认真思考的很复杂的问题，那么这个世界会是什么样子。测试驱动开发可以引导你这样去认真思考。
 
-## 写在后面的话——Martin Fowler
+## 写在后面的话 —— Martin Fowler
 
 有关测试驱动开发最难讲清楚的一种东西就是它把你所带到的那种思维状态。我记得在和 Ralph Beattie 开发原先的 C3 项目时，有一回，我们必须要实现一套复杂的支付判定。Ralph 把它们分解成一组测试用例，我们逐条地使其运行通过。工作有条不紊地进行，由于工作起来不是慌里慌张的，所以进度似乎显得有些慢，但当我们回过头看看做了多少工作时，发现尽管没有慌里慌张的感觉，但进展着实迅速。
 
@@ -272,11 +272,11 @@ A note about the examples. Both examples, multi-currency calculation and a testi
 
 通过测试优先和重构增加功能是编程的两项独立的逻辑。最近在键盘旁工作时，我又发现了另外一个方法：模式拷贝（pattem copying）。那时我在用 Ruby 语言写一个抽取数据库数据的脚本程序。在做这件事情的同时，我开始着手编写一个包装数据库表的类，心想既然我刚刚看完了一本关于数据库模式的书，那我也应该用一用模式。尽管范例代码是 Java，但要把它改成 Ruby 并不难。我编程时并没有真正想过那个问题，我只是考虑如何改编这一模式让其适合这种语言以及我正在操纵的特定数据。
 
-模式拷贝就其本身并不是好的编程方法一一这是在我谈模式时总是强调的事实。模式一般都是半成品，用到你的项目中还要再回一次炉。然而处理这一问题的一个好的办法是：一开始先不用管那么多，把模式拷贝过来，接下来采用重构和测试优先相结合的办法对其进行改编。这样一来，当你在做模式拷贝的时候，你可以把注意力集中到模式上ー一同一时刻只干一件事。
+模式拷贝就其本身并不是好的编程方法 一一 这是在我谈模式时总是强调的事实。模式一般都是半成品，用到你的项目中还要再回一次炉。然而处理这一问题的一个好的办法是：一开始先不用管那么多，把模式拷贝过来，接下来采用重构和测试优先相结合的办法对其进行改编。这样一来，当你在做模式拷贝的时候，你可以把注意力集中到模式上ー一同一时刻只干一件事。
 
 XP（极限编程）社团一直致力于研究在什么地方引入模式。显然 XP 成员喜欢使用模式，毕竟 XP 倡导者与模式倡导者之间有很多共同之处。Ward 和 Kent 同时是这两个领域的带头人。也许模式拷贝是继测试优先和重构之后的第三种单一逻辑模式，和前两者一样，单独使用种时是危险的，但协调使用时功能强大。
 
-要想系统地组织活动，很大程度上取决于核心任务的辨识，这使得我们每次能够集中注意力在一件事情上。装配线就是这样一个使人头脑麻木的例子一一头脑麻木是因为你一直在做同件事。也许测试驱动开发所提议的是一种将编程切分成各种模式要素的方法，但是为了避免单调乏味而在这些模式要素间快速切换。单一逻辑模式与各模式间的快速切换相结合有利于你集中注意力并降低对大脑的压力，却没有装配线般的单调感觉。
+要想系统地组织活动，很大程度上取决于核心任务的辨识，这使得我们每次能够集中注意力在一件事情上。装配线就是这样一个使人头脑麻木的例子 一一 头脑麻木是因为你一直在做同件事。也许测试驱动开发所提议的是一种将编程切分成各种模式要素的方法，但是为了避免单调乏味而在这些模式要素间快速切换。单一逻辑模式与各模式间的快速切换相结合有利于你集中注意力并降低对大脑的压力，却没有装配线般的单调感觉。
 
 我得承认这些想法有些不成熟。在我写这段文字的时候，我还无法确信我是否相信自己所说的这些内容，而且我知道自己还得仔细推敲个把月。但是我想也许你会喜欢这些评述的，而且或许能够激励你思考测试优先开发所适合的大环境。究竟是怎样的环境我们目前还说不清楚，但是我想它会慢慢自己展现出来的。
 
@@ -306,11 +306,11 @@ After adding a few un-implemented operations to Currency, the bulk of the tests 
 
 Let’s think a bit about this story. In two days, the potential market was multiplied several fold, multiplying the value of WyCash several fold. The ability to create so much business value so quickly was no accident though. Several factors came into play:
 
-• Method—Ward and the WyCash team needed to have constant experience growing the design of the system little-by-little, so the mechanics of the transformation were well practiced.
+1 Method—Ward and the WyCash team needed to have constant experience growing the design of the system little-by-little, so the mechanics of the transformation were well practiced.
 
-• Motive—Ward and team had to understand clearly from the business the importance of making WyCash multi-currency, and to have the courage to start such a seemingly impossible task.
+2 Motive—Ward and team had to understand clearly from the business the importance of making WyCash multi-currency, and to have the courage to start such a seemingly impossible task.
 
-• Opportunity— The combination of comprehensive, confidence-generating tests; a well-factored program; and a programming language that made it possible to isolate design decisions meant that there were few sources of error, and those errors were easy to identify.
+3 Opportunity— The combination of comprehensive, confidence-generating tests; a well-factored program; and a programming language that made it possible to isolate design decisions meant that there were few sources of error, and those errors were easy to identify.
 
 You can’t control whether you ever get the motive to multiply the value of your project by spinning technical magic. Method and opportunity, however, are entirely under your control. Ward and his team created method and opportunity by a combination of superior talent, experience, and discipline. Does this mean that if you are not one of the ten best software engineers on the planet and you don’t have a wad of cash in the bank so you can tell your boss to take a hike, you’re going to take the time to do this right, that such moments are forever beyond your reach?
 
@@ -348,6 +348,6 @@ Dollar 就如同加权平均里的一个计数器：因此，为使其支持多�
 
 当然不。即使你只是一个技能一般的软件工程师，即使面对压力曾使你乱成一团，偷工减料，你也绝对可以为你的项目找一个位置，在这个位置上你可以以魔术般不可思议的效果工作。测试驱动开发是任何软件工程师都可以学习的一个技术的集合，它鼓励采用简单的设计和增强自信的测试套件。如果你是个天才，你根本不需要学习这些浅显的规则。如果你是个傻子，学了也没有用。对于像我们这样介于二者之间的大多数人来说，遵从这两条简单的规则可以使我们以更加接近我们全部潜能的效率去工作。
 
-1、在你写任何代码之前，先写一个会失败的自动测试程序。2、消除重复设计，优化设计结构。
+步骤：1）在你写任何代码之前，先写一个会失败的自动测试程序。2）消除重复设计，优化设计结构。
 
-到底要如何这样做？如何巧妙地分阶段应用这些规则？这两条简单的规则可以运用多深？这正是本书要讲的主题。我们将从 Ward 在灵感爆发瞬间所创造的对象一一多币种资金（muli-currency money）开始谈起。
+到底要如何这样做？如何巧妙地分阶段应用这些规则？这两条简单的规则可以运用多深？这正是本书要讲的主题。我们将从 Ward 在灵感爆发瞬间所创造的对象 一一 多币种资金（muli-currency money）开始谈起。
