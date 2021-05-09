@@ -1389,6 +1389,49 @@ When data within the hook changes, they have the power to rerender the component
 
 The StarRating component will be rerendered every time a user clicks a Star. When the user clicks the Star, the onSelect property of that star is invoked. When the onSelect property is invoked, we'll invoke the setSelectedStars function and send it the number of the star that was just selected. We can use the i variable from the map function to help us calculate that number. When the map function renders the first Star, the value for i is 0. This means that we need to add 1 to this value to get the correct number of stars. When setSelectedStars is invoked, the StarRating component is invoked with a the value for selectedStars, as shown in Figure 6-4.
 
+### 0111. 主题卡 —— 钩子的常规法则
+
+信息源自「2021060Learning-React0601.md」
+
+As you're working with Hooks, there are a few guidelines to keep in mind that can help avoid bugs and unusual behavior:
+
+2『钩子的常规法则，做一张主题卡片。（2021-05-09）』—— 已完成
+
+1 Hooks only run in the scope of a component. Hooks should only be called from React components. They can also be added to custom Hooks, which are eventually added to components. Hooks are not regular JavaScript — they're a React pattern, but they're starting to be modeled and incorporated in other libraries.
+
+2 It's a good idea to break functionality out into multiple Hooks. In our earlier example with the Jazzy News component, we split everything related to subscriptions into one effect and everything related to sound effects into another effect. This immediately made the code easier to read, but there was another benefit to doing this.
+
+Since Hooks are invoked in order, it's a good idea to keep them small. Once invoked, React saves the values of Hooks in an array so the values can be tracked. Consider the following component: 
+
+```js
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [checked, toggle] = useState(false);
+
+  useEffect(() => {
+    ...
+  }, [checked]);
+  
+  useEffect(() => {
+    ...
+  }, []);
+  
+  useEffect(() => {
+    ...
+  }, [count]);
+  
+  return ( ... )
+}
+```
+
+The order of Hook calls is the same for each and every render:
+
+```js
+[count, checked, DependencyArray, DependencyArray, DependencyArray]
+```
+
+3 Hooks should only be called at the top level. Hooks should be used at the top level of a React function. They cannot be placed into conditional statements, loops, or nested functions. Let's adjust the counter:
+
 ### 0201. 术语卡 —— Declarative Programming and Imperative Programming
 
 信息源自「2021060Learning-React0301.md」

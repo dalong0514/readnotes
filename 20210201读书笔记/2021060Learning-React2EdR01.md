@@ -2,11 +2,11 @@
 
 ## 目录
 
-0101Welcome to React
+0101 Welcome to React
 
-0201JavaScript for React
+0201 JavaScript for React
 
-0301Functional Programming with JavaScript
+0301 Functional Programming with JavaScript
 
 ## 0101. Welcome to React
 

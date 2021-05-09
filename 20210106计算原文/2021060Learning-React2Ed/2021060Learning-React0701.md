@@ -356,7 +356,8 @@ useEffect(() => {
 The variable words is an array. Because a new array is declared with each render, JavaScript assumes that words has changed, thus invoking the「fresh render」effect every time. The array is a new instance each time, and this registers as an update that should trigger a rerender. Declaring words outside of the scope of the App would solve the problem:
 
 ```js
-const words = ["sick", "powder", "day"]; function App() {
+const words = ["sick", "powder", "day"]; 
+function App() {
   useAnyKeyToRender();
   useEffect(() => {
     console.log("fresh render");
@@ -364,6 +365,43 @@ const words = ["sick", "powder", "day"]; function App() {
   return <h1>component</h1>;
 }
 ```
+
+1-3『
+
+这里的信息让自己理解了，之前写数据流文档页面时，先初始化数据再渲染钩子的实现。
+
+```js
+  const store = useLocalStore(() => new Store())
+
+  useEffect(() => {
+    store.initDocumentData()
+  }, [store])
+
+  return (
+    <div className={styles.homeContainer}>
+      <Tabs defaultActiveKey="0" type="card" onChange={store.getExplainContent}>
+        <TabPane tab="流程相关说明" key="0">
+          <div dangerouslySetInnerHTML={{__html: store.tab_content }}/>
+        </TabPane>
+        <TabPane tab="布置相关说明" key="1">
+          <div dangerouslySetInnerHTML={{__html: store.tab_content }}/>
+        </TabPane>
+        <TabPane tab="技巧汇总" key="2">
+          <div dangerouslySetInnerHTML={{__html: store.tab_content }}/>
+        </TabPane>
+        <TabPane tab="版本更新" key="3">
+          <div dangerouslySetInnerHTML={{__html: store.tab_content }}/>
+        </TabPane>
+        <TabPane tab="bug 修复" key="4">
+          <div dangerouslySetInnerHTML={{__html: store.tab_content }}/>
+        </TabPane>
+      </Tabs>
+    </div>
+  )
+})
+```
+
+』
 
 The dependency array in this case refers to one instance of words that's declared outside of the function. The「fresh render」effect does not get called again after the first render because words is the same instance as the last render. This is a good solution for this example, but it's not always possible (or advisable) to have a variable defined outside of the scope of the function. Sometimes the value passed to the dependency array requires variables in scope. For example, we might need to create the words array from a React property like children: 
 
@@ -389,7 +427,7 @@ function App() {
 }
 ```
 
-The App component contains some words that are children of the WordCount component. The WordCount component takes in children as a property. Then we set words in the component equal to an array of those words that we've called .split on. We would hope that the component will rerender only if words changes, but as soon as we press a key, we see the dreaded「fresh render」words appearing in the console.
+The App component contains some words that are children of the WordCount component. The WordCount component takes in children as a property. Then we set words in the component equal to an array of those words that we've called `.split` on. We would hope that the component will rerender only if words changes, but as soon as we press a key, we see the dreaded「fresh render」words appearing in the console.
 
 Let's replace that feeling of dread with one of calm, because the React team has provided us a way to avoid these extra renders. They wouldn't hang us out to dry like that. The solution to this problem is, as you might expect, another hook: useMemo.
 
@@ -489,9 +527,7 @@ const useJazzyNews = () => {
 
 Now, the useJazzyNews hook plays a chime every time there's a new post. We made this happen with a few changes to the hook. First, const [posts, setPosts] was renamed to const `[_posts, setPosts]`. We'll calculate a new value for posts every time `_posts` change.
 
-Next, we added the effect that plays the chime every time the post array changes. We're listening to the news feed for new posts. When a new post is added, this hook is reinvoked with _posts reflecting that
-
-new post. Then, a new value for post is memoized because `_posts` have changed. Then the chime plays because this effect is dependent on posts. It only plays when the posts change, and the list of posts only changes when a new one is added.
+Next, we added the effect that plays the chime every time the post array changes. We're listening to the news feed for new posts. When a new post is added, this hook is reinvoked with `_posts` reflecting that new post. Then, a new value for post is memoized because `_posts` have changed. Then the chime plays because this effect is dependent on posts. It only plays when the posts change, and the list of posts only changes when a new one is added.
 
 Later in the chapter, we'll discuss the React Profiler, a browser extension for testing performance and rendering of React components.
 
@@ -514,7 +550,8 @@ useLayoutEffect is called at a specific moment in the render cycle. The series o
 This can be observed by adding some simple console messages: 
 
 ```js
-import React, { useEffect, useLayoutEffect } from "react"; function App() {
+import React, { useEffect, useLayoutEffect } from "react"; 
+function App() {
   useEffect(() => console.log("useEffect")); 
   useLayoutEffect(() => console.log("useLayoutEffect")); 
   return <div>ready</div>;
@@ -527,6 +564,8 @@ In the App component, useEffect is the first hook, followed by useLayoutEffect. 
 useLayoutEffect
 useEffect
 ```
+
+1-2『全完可以用 useLayoutEffect 来改进之前的设计流说明文档的代码，把从服务器获取数据的异步函数放在渲染前。试了下，没有按自己预期的实现，待研究。（2021-05-09）』—— 未完成
 
 useLayoutEffect is invoked after the render but before the browser paints the change. In most circumstances, useEffect is the right tool for the job, but if your effect is essential to the browser paint (the appearance or placement of the UI elements on the screen), you may want to use useLayoutEffect. For instance, you may want to obtain the width and height of an element when the window is resized: 
 
@@ -573,6 +612,8 @@ It's highly likely that the x and y position of the mouse will be used when pain
 
 As you're working with Hooks, there are a few guidelines to keep in mind that can help avoid bugs and unusual behavior:
 
+2『钩子的常规法则，做一张主题卡片。（2021-05-09）』—— 已完成
+
 1 Hooks only run in the scope of a component. Hooks should only be called from React components. They can also be added to custom Hooks, which are eventually added to components. Hooks are not regular JavaScript — they're a React pattern, but they're starting to be modeled and incorporated in other libraries.
 
 2 It's a good idea to break functionality out into multiple Hooks. In our earlier example with the Jazzy News component, we split everything related to subscriptions into one effect and everything related to sound effects into another effect. This immediately made the code easier to read, but there was another benefit to doing this.
@@ -602,11 +643,11 @@ function Counter() {
 
 The order of Hook calls is the same for each and every render:
 
+```js
 [count, checked, DependencyArray, DependencyArray, DependencyArray]
+```
 
-Hooks should only be called at the top level
-
-Hooks should be used at the top level of a React function. They cannot be placed into conditional statements, loops, or nested functions. Let's adjust the counter:
+3 Hooks should only be called at the top level. Hooks should be used at the top level of a React function. They cannot be placed into conditional statements, loops, or nested functions. Let's adjust the counter:
 
 ```js
 function Counter() {
@@ -632,7 +673,7 @@ function Counter() {
 }
 ```
 
-When we use useState within the if statement, we're saying that the hook should only be called when the count value is greater than 5. That will throw off the array values. Sometimes the array will be: [count, checked, DependencyArray, 0, DependencyArray]. Other times: [count, DependencyArray, 1]. The index of the effect in that array matters to React. It's how values are saved.
+When we use useState within the if statement, we're saying that the hook should only be called when the count value is greater than 5. That will throw off the array values. Sometimes the array will be: `[count, checked, DependencyArray, 0, DependencyArray]`. Other times: `[count, DependencyArray, 1]`. The index of the effect in that array matters to React. It's how values are saved.
 
 Wait, so are we saying that we can never use conditional logic in React applications anymore? Of course not! We just have to organize these conditionals differently. We can nest if statements, loops, and other conditionals within the hook:
 
@@ -669,7 +710,7 @@ Here, the value for checked is based on the condition that the count is greater 
 [countValue, checkedValue, DependencyArray, DependencyArray, DependencyArray].
 ```
 
-Like conditional logic, you need to nest asynchronous behavior inside of a hook. useEffect takes a function as the first argument, not a promise. So you can't use an async function as the first argument: useEffect(async () => {}). You can, however, create an async function inside of the nested function like this: 
+Like conditional logic, you need to nest asynchronous behavior inside of a hook. useEffect takes a function as the first argument, not a promise. So you can't use an async function as the first argument: `useEffect(async () => {})`. You can, however, create an async function inside of the nested function like this: 
 
 ```js
 useEffect(() => {
