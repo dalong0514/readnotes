@@ -12,19 +12,19 @@
 
 ## Part II. Starting with the Bricks: Programming Paradigms
 
-Software architecture begins with the code — and so we will begin our discussion of architecture by looking at what we’ve learned about code since code was first written.
+Software architecture begins with the code — and so we will begin our discussion of architecture by looking at what we've learned about code since code was first written.
 
-In 1938, Alan Turing laid the foundations of what was to become computer programming. He was not the first to conceive of a programmable machine, but he was the first to understand that programs were simply data. By 1945, Turing was writing real programs on real computers in code that we would recognize (if we squinted enough). Those programs used loops, branches, assignment, subroutines, stacks, and other familiar structures. Turing’s language was binary.
+In 1938, Alan Turing laid the foundations of what was to become computer programming. He was not the first to conceive of a programmable machine, but he was the first to understand that programs were simply data. By 1945, Turing was writing real programs on real computers in code that we would recognize (if we squinted enough). Those programs used loops, branches, assignment, subroutines, stacks, and other familiar structures. Turing's language was binary.
 
 Since those days, a number of revolutions in programming have occurred. One revolution with which we are all very familiar is the revolution of languages. First, in the late 1940s, came assemblers. These「languages」relieved the programmers of the drudgery of translating their programs into binary. In 1951, Grace Hopper invented A0, the first compiler. In fact, she coined the term compiler. Fortran was invented in 1953 (the year after I was born). What followed was an unceasing flood of new programming languages — COBOL, PL/1, SNOBOL, C, Pascal, C++, Java, ad infinitum.
 
 Another, probably more significant, revolution was in programming paradigms. Paradigms are ways of programming, relatively unrelated to languages. A paradigm tells you which programming structures to use, and when to use them. To date, there have been three such paradigms. For reasons we shall discuss later, there are unlikely to be any others.
 
-1-2『编程范式，ways of programming，其与使用什么编程语言没啥关系的，编程范式做一张术语卡片。』 —  — 已完成
+1-2『编程范式，ways of programming，其与使用什么编程语言没啥关系的，编程范式做一张术语卡片。』 —— 已完成
 
-任何软件架构的实现都离不开具体的代码，所以我们对软件架构的讨论应该从第一行被写下的代码开始。1938 年，阿兰·图灵为现代计算机编程打下了地基。尽管他并不是第一个发明可编程机器的人，但却是第一个提出「程序即数据」的人。到 1945 年时，图灵已经在真实计算机上编写真实的、我们现在也能看懂的计算机程序了。这些程序中用到了循环、分支、賦值、子调用、等如今我们都很熟悉的结构。而图灵用的编程语言就是简单的二进制数序列。
+任何软件架构的实现都离不开具体的代码，所以我们对软件架构的讨论应该从第一行被写下的代码开始。1938 年，阿兰·图灵为现代计算机编程打下了地基。尽管他并不是第一个发明可编程机器的人，但却是第一个提出「程序即数据」的人。到 1945 年时，图灵已经在真实计算机上编写真实的、我们现在也能看懂的计算机程序了。这些程序中用到了循环、分支、賦值、子调用等如今我们都很熟悉的结构。而图灵用的编程语言就是简单的二进制数序列。
 
-从那时到现在，编程领域历经了数次变革，其中我们都很熱悉的就是编程语言的变革。首先是在 20 世纪 40 年代末期出现了汇编器（assembler），它能自动将一段程序转化为相应的二进制数序列，大幅解放了程序员。然后是 1951 年，Grace Hopper 发明了 A0, 这是世界上第一个编译器（compiler）。事实上，编译器这个名字就是他定义和推广使用的。再接着就到了 1953 年，那一年 FORTRANI 面世了（就在我出生的第二年）。接下来就是层出不穷的新编程语言了ー COBOL、PL/1、SNOBOL、C、Pascal、C++、Java 等等，不胜枚举。
+从那时到现在，编程领域历经了数次变革，其中我们都很熱悉的就是编程语言的变革。首先是在 20 世纪 40 年代末期出现了汇编器（assembler），它能自动将一段程序转化为相应的二进制数序列，大幅解放了程序员。然后是 1951 年，Grace Hopper 发明了 A0，这是世界上第一个编译器（compiler）。事实上，编译器这个名字就是他定义和推广使用的。再接着就到了 1953 年，那一年 FORTRANI 面世了（就在我出生的第二年）。接下来就是层出不穷的新编程语言了 一一 COBOL、PL/1、SNOBOL、C、Pascal、C++、Java 等等，不胜枚举。
 
 除此之外，计算机编程领域还经历了另外一个更巨大、更重要的变革，那就是编程范式（paradigm）的变迁。编程范式指的是程序的编写模式，与具体的编程语言关系相对较小。这些范式会告诉你应该在什么时候采用什么样的代码结构。直到今天，我们也一共只有三个编程范式，而且未来几乎不可能再出现新的，接下来我们就看一下为什么。
 
@@ -46,11 +46,11 @@ The three paradigms included in this overview chapter are structured programming
 
 ### 3.1 Structured Programming
 
-The first paradigm to be adopted (but not the first to be invented) was structured programming, which was discovered by Edsger Wybe Dijkstra in 1968. Dijkstra showed that the use of unrestrained jumps (goto statements) is harmful to program structure. As we’ll see in the chapters that follow, he replaced those jumps with the more familiar if/then/else and do/while/until constructs.
+The first paradigm to be adopted (but not the first to be invented) was structured programming, which was discovered by Edsger Wybe Dijkstra in 1968. Dijkstra showed that the use of unrestrained jumps (goto statements) is harmful to program structure. As we'll see in the chapters that follow, he replaced those jumps with the more familiar if/then/else and do/while/until constructs.
 
 We can summarize the structured programming paradigm as follows: Structured programming imposes discipline on direct transfer of  control.
 
-结构化编程是第一个普遍被采用的编程范式（但是却不是第一个被提出的），由 Edsger Wybe Dijkstra 于 1968 年最先提出。与此同时，Dijkstra 还论证了使用 goto 这样的无限制跳转语句将会损害程序的体结构。接下来的章节我们还会说到，也是这位 Dijkstra 最先主张用我们现在熟知的 f/then/else 语句和 do/while/unt 语句来代替跳转语句的。
+结构化编程是第一个普遍被采用的编程范式（但是却不是第一个被提出的），由 Edsger Wybe Dijkstra 于 1968 年最先提出。与此同时，Dijkstra 还论证了使用 goto 这样的无限制跳转语句将会损害程序的体结构。接下来的章节我们还会说到，也是这位 Dijkstra 最先主张用我们现在熟知的 if/then/else 语句和 do/while/until 语句来代替跳转语句的。
 
 我们可以将结构化编程范式归结为一句话：结构化程对程序控制权的直接转移进行了限制和规范。
 
@@ -78,15 +78,15 @@ We can summarize the functional programming paradigm as follows: Functional prog
 
 ### 3.4 Food for Thought
 
-Notice the pattern that I’ve quite deliberately set up in introducing these three programming paradigms: Each of the paradigms removes capabilities from the programmer. None of them adds new capabilities. Each imposes some kind of extra discipline that is negative in its intent. The paradigms tell us what not to do, more than they tell us what to do.
+Notice the pattern that I've quite deliberately set up in introducing these three programming paradigms: Each of the paradigms removes capabilities from the programmer. None of them adds new capabilities. Each imposes some kind of extra discipline that is negative in its intent. The paradigms tell us what not to do, more than they tell us what to do.
 
 Another way to look at this issue is to recognize that each paradigm takes something away from us. The three paradigms together remove goto statements, function pointers, and assignment. Is there anything left to take away?
 
 Probably not. Thus these three paradigms are likely to be the only three we will see — at least the only three that are negative. Further evidence that there are no more such paradigms is that they were all discovered within the ten years between 1958 and 1968. In the many decades that have followed, no new paradigms have been added.
 
-如你所见，我在介绍三个编程范式的时候，有意采用了上面这种格式，目的是凸显每个编程范式的实际含义ー一它们都从某一方面限制和规范了程序员的能力。没有一个范式是增加新能力的。也就是说，每个编程范式的目的都是设置限制。这些范式主要是为了告诉我们不能做什么，而不是可以做什么。
+如你所见，我在介绍三个编程范式的时候，有意采用了上面这种格式，目的是凸显每个编程范式的实际含义 ー一 它们都从某一方面限制和规范了程序员的能力。没有一个范式是增加新能力的。也就是说，每个编程范式的目的都是设置限制。这些范式主要是为了告诉我们不能做什么，而不是可以做什么。
 
-另外，我们应该认识到，这三个编程范式分别限制了 goto 语句、函数指针和值语句的使用。那么除此之外，还有什么可以去除的吗？有了。因此这三个编程范式可能是仅有的三个了一如果单论去除能力的编程范式的话。支撑这一结论的另外一个证据是，三个编程范式都是在 1958 年到 1968 年这 10 年间被提出来的，后续再也没有新的编程范式出现过。
+另外，我们应该认识到，这三个编程范式分别限制了 goto 语句、函数指针和值语句的使用。那么除此之外，还有什么可以去除的吗？没有了。因此这三个编程范式可能是仅有的三个了一如果单论去除能力的编程范式的话。支撑这一结论的另外一个证据是，三个编程范式都是在 1958 年到 1968 年这 10 年间被提出来的，后续再也没有新的编程范式出现过。
 
 2-3『
 
@@ -132,15 +132,15 @@ It is those restrictive disciplines that we will study in some detail in the cha
 
 ### 00
 
-Edsger Wybe Dijkstra was born in Rotterdam in 1930. He survived the bombing of Rotterdam during World War II, along with the German occupation of the Netherlands, and in 1948 graduated from high school with the highest possible marks in math, physics, chemistry, and biology. In March 1952, at the age of 21 (and just 9 months before I was born), Dijkstra took a job with the Mathematical Center of Amsterdam as the Netherlands’ very first programmer.
+Edsger Wybe Dijkstra was born in Rotterdam in 1930. He survived the bombing of Rotterdam during World War II, along with the German occupation of the Netherlands, and in 1948 graduated from high school with the highest possible marks in math, physics, chemistry, and biology. In March 1952, at the age of 21 (and just 9 months before I was born), Dijkstra took a job with the Mathematical Center of Amsterdam as the Netherlands' very first programmer.
 
 In 1955, having been a programmer for three years, and while still a student, Dijkstra concluded that the intellectual challenge of programming was greater than the intellectual challenge of theoretical physics. As a result, he chose programming as his long-term career.
 
-In 1957, Dijkstra married Maria Debets. At the time, you had to state your profession as part of the marriage rites in the Netherlands. The Dutch authorities were unwilling to accept「programmer」as Dijkstra’s profession; they had never heard of such a profession. To satisfy them, Dijkstra settled for「theoretical physicist」as his job title.
+In 1957, Dijkstra married Maria Debets. At the time, you had to state your profession as part of the marriage rites in the Netherlands. The Dutch authorities were unwilling to accept「programmer」as Dijkstra's profession; they had never heard of such a profession. To satisfy them, Dijkstra settled for「theoretical physicist」as his job title.
 
 As part of deciding to make programming his career, Dijkstra conferred with his boss, Adriaan van Wijngaarden. Dijkstra was concerned that no one had identified a discipline, or science, of programming, and that he would therefore not be taken seriously. His boss replied that Dijkstra might very well be one of the people who would discover such disciplines, thereby evolving software into a science.
 
-Dijkstra started his career in the era of vacuum tubes, when computers were huge, fragile, slow, unreliable, and (by today’s standards) extremely limited. In those early years, programs were written in binary, or in very crude assembly language. Input took the physical form of paper tape or punched cards. The edit/compile/test loop was hours — if not days — long.
+Dijkstra started his career in the era of vacuum tubes, when computers were huge, fragile, slow, unreliable, and (by today's standards) extremely limited. In those early years, programs were written in binary, or in very crude assembly language. Input took the physical form of paper tape or punched cards. The edit/compile/test loop was hours — if not days — long.
 
 It was in this primitive environment that Dijkstra made his great discoveries.
 
@@ -158,9 +158,9 @@ Dijkstras 就是在这样原始的条件下做出其非凡的成就的。
 
 ### 4.1 Proof
 
-The problem that Dijkstra recognized, early on, was that programming is hard, and that programmers don’t do it very well. A program of any complexity contains too many details for a human brain to manage without help. Overlooking just one small detail results in programs that may seem to work, but fail in surprising ways.
+The problem that Dijkstra recognized, early on, was that programming is hard, and that programmers don't do it very well. A program of any complexity contains too many details for a human brain to manage without help. Overlooking just one small detail results in programs that may seem to work, but fail in surprising ways.
 
-Dijkstra’s solution was to apply the mathematical discipline of proof. His vision was the construction of a Euclidian hierarchy of postulates, theorems, corollaries, and lemmas. Dijkstra thought that programmers could use that hierarchy the way mathematicians do. In other words, programmers would use proven structures, and tie them together with code that they would then prove correct themselves.
+Dijkstra's solution was to apply the mathematical discipline of proof. His vision was the construction of a Euclidian hierarchy of postulates, theorems, corollaries, and lemmas. Dijkstra thought that programmers could use that hierarchy the way mathematicians do. In other words, programmers would use proven structures, and tie them together with code that they would then prove correct themselves.
 
 Of course, to get this going, Dijkstra realized that he would have to demonstrate the technique for writing basic proofs of simple algorithms. This he found to be quite challenging.
 
@@ -204,13 +204,13 @@ In 1968, Dijkstra wrote a letter to the editor of CACM, which was published in t
 
 1-2『这篇 Paper 之前在郑烨的专栏里就知道了，已下载论文并存入 Zotero，「2020017Go To Statement Considered Harmful」。(2020-12-24)』
 
-And the programming world caught fire. Back then we didn’t have an Internet, so people couldn’t post nasty memes of Dijkstra, and they couldn’t flame him online. But they could, and they did, write letters to the editors of many published journals.
+And the programming world caught fire. Back then we didn't have an Internet, so people couldn't post nasty memes of Dijkstra, and they couldn't flame him online. But they could, and they did, write letters to the editors of many published journals.
 
-Those letters weren’t necessarily all polite. Some were intensely negative; others voiced strong support for his position. And so the battle was joined, ultimately to last about a decade.
+Those letters weren't necessarily all polite. Some were intensely negative; others voiced strong support for his position. And so the battle was joined, ultimately to last about a decade.
 
 Eventually the argument petered out. The reason was simple: Dijkstra had won. As computer languages evolved, the goto statement moved ever rearward, until it all but disappeared. Most modern languages do not have a goto statement — and, of course, LISP never did.
 
-Nowadays we are all structured programmers, though not necessarily by choice. It’s just that our languages don’t give us the option to use undisciplined direct transfer of control.
+Nowadays we are all structured programmers, though not necessarily by choice. It's just that our languages don't give us the option to use undisciplined direct transfer of control.
 
 Some may point to named breaks in Java or exceptions as goto analogs. In fact, these structures are not the utterly unrestricted transfers of control that older languages like Fortran or COBOL once had. Indeed, even languages that still support the goto keyword often restrict the target to within the scope of the current function.
 
@@ -236,7 +236,7 @@ Building on this foundation, disciplines such as structured analysis and structu
 
 ### 4.4 No Formal Proofs
 
-But the proofs never came. The Euclidean hierarchy of theorems was never built. And programmers at large never saw the benefits of working through the laborious process of formally proving each and every little function correct. In the end, Dijkstra’s dream faded and died. Few of today’s programmers believe that formal proofs are an appropriate way to produce high-quality software.
+But the proofs never came. The Euclidean hierarchy of theorems was never built. And programmers at large never saw the benefits of working through the laborious process of formally proving each and every little function correct. In the end, Dijkstra's dream faded and died. Few of today's programmers believe that formal proofs are an appropriate way to produce high-quality software.
 
 Of course, formal, Euclidian style, mathematical proofs are not the only strategy for proving something correct. Another highly successful strategy is the scientific method.
 
@@ -246,7 +246,7 @@ Of course, formal, Euclidian style, mathematical proofs are not the only strateg
 
 ### 4.5 Science to the Rescue
 
-Science is fundamentally different from mathematics, in that scientific theories and laws cannot be proven correct. I cannot prove to you that Newton’s second law of motion, F = ma, or law of gravity, F = Gm1m2/r2, are correct. I can demonstrate these laws to you, and I can make measurements that show them correct to many decimal places, but I cannot prove them in the sense of a mathematical proof. No matter how many experiments I conduct or how much empirical evidence I gather, there is always the chance that some experiment will show that those laws of motion and gravity are incorrect.
+Science is fundamentally different from mathematics, in that scientific theories and laws cannot be proven correct. I cannot prove to you that Newton's second law of motion, F = ma, or law of gravity, F = Gm1m2/r2, are correct. I can demonstrate these laws to you, and I can make measurements that show them correct to many decimal places, but I cannot prove them in the sense of a mathematical proof. No matter how many experiments I conduct or how much empirical evidence I gather, there is always the chance that some experiment will show that those laws of motion and gravity are incorrect.
 
 That is the nature of scientific theories and laws: They are falsifiable but not provable. And yet we bet our lives on these laws every day. Every time you get into a car, you bet your life that F = ma is a reliable description of the way the world works. Every time you take a step, you bet your health and safety that F = Gm1m2/r 2 is correct.
 
@@ -254,7 +254,7 @@ Science does not work by proving statements true, but rather by proving statemen
 
 Ultimately, we can say that mathematics is the discipline of proving provable statements true. Science, in contrast, is the discipline of proving provable statements false.
 
-1-2『有关科学与数学的区别，之前在很多地方看到过，比如吴军的数学通识课，但还是觉得这里作者将的相对通透，而且下面提到软件开发是科学范畴而非数学范畴，给自己醍醐灌顶的感觉。科学与数学的区别以及软件开发是科学范畴，做一张主题卡片。（2020-12-24）』——已完成
+1-2『有关科学与数学的区别，之前在很多地方看到过，比如吴军的数学通识课，但还是觉得这里作者将的相对通透，而且下面提到软件开发是科学范畴而非数学范畴，给自己醍醐灌顶的感觉。科学与数学的区别以及软件开发是科学范畴，做一张主题卡片。（2020-12-24）』 一一 已完成
 
 科学来救场
 
@@ -296,13 +296,13 @@ One answer to this question is「The combination of data and function.」Althoug
 
 Another common answer to this question is「A way to model the real world.」This is an evasive answer at best. What does「modeling the real world」actually mean, and why is it something we would want to do? Perhaps this statement is intended to imply that OO makes software easier to understand because it has a closer relationship to the real world — but even that statement is evasive and too loosely defined. It does not tell us what OO is.
 
-Some folks fall back on three magic words to explain the nature of OO: encapsulation, inheritance, and polymorphism. The implication is that OO is the proper admixture of these three things, or at least that an OO language must support these three things. Let’s examine each of these concepts in turn.
+Some folks fall back on three magic words to explain the nature of OO: encapsulation, inheritance, and polymorphism. The implication is that OO is the proper admixture of these three things, or at least that an OO language must support these three things. Let's examine each of these concepts in turn.
 
 稍后我们会讲到，设计一个优秀的软件架构要基于对面向对象设计（Object-Oriented Design）的深入理解及应用。但我们首先得弄明白一个问题：究竟什么是面向对象？
 
 对于这个问题，一种常见的回答是「数据与函数的组合」。这种说法虽然被广为引用，但总显得并不是那么贴切，因为它似乎暗示了。o.f() 与 f(o) 之间是有区别的，这显然不是事实。面向对象理论是在 1966 年提出的，当时 Dah 和 Nygaard 主要是将函数调用栈迁移到了堆区域中。数据结构被用作函数的调用参数这件事情远比这发生的时间更早。
 
-另一种常见的回答是「面向对象编程是一种对真实世界进行建模的方式」，这种回答只能算作避重就轻。「对真实世界的建模」到底要如何进行？我们为什么要这么做，有什么好处？也许这句话意味着是「由于采用面向对象方式构建的软件与真实世界的关系更紧密，所以面向对象编程可以使得软件开发更容易」—— 即使这样说，也仍然逃避了关键问题 一一 面向对象编程究竟是什么？
+另一种常见的回答是「面向对象编程是一种对真实世界进行建模的方式」，这种回答只能算作避重就轻。「对真实世界的建模」到底要如何进行？我们为什么要这么做，有什么好处？也许这句话意味着是「由于采用面向对象方式构建的软件与真实世界的关系更紧密，所以面向对象编程可以使得软件开发更容易」 一一  即使这样说，也仍然逃避了关键问题 一一 面向对象编程究竟是什么？
 
 还有些人在回答这个问题的时候，往往会搬出一些神秘的词语，譬如封装（encapsulation）、继承（(inheritance）、多态（polymorphism）。其隐含意思就是说面向对象编程是这三项的有机组合，或者任何一种支持面向对象的编程语言必须支持这三个特性。那么，我们接下来可以逐个来分析一下这三个概念。
 
@@ -402,7 +402,7 @@ OO certainly does depend on the idea that programmers are well-behaved enough to
 
 好了，point.h 文件的使用者现在知道了成员变量 x 和 y 的存在！虽然编译器会禁止对这两个变量的直接访问，但是使用者仍然知道了它们的存在。而且，如果 x 和 y 变量名称被改变了，point.c 也必须重新编译才行！这样的封装性显然是不完美的。
 
-当然，C++ 通过在编程语言层面引入 public、private、protected 这些关键词，部分维护了封装性。但所有这些都是为了解决编译器自身的技术实现问题而引入的 hack —— 编译器由于技术实现原因必须在头文件中看到成员变量的定义。
+当然，C++ 通过在编程语言层面引入 public、private、protected 这些关键词，部分维护了封装性。但所有这些都是为了解决编译器自身的技术实现问题而引入的 hack 一一 编译器由于技术实现原因必须在头文件中看到成员变量的定义。
 
 而 Java 和 C# 则彻底抛弃了头文件与实现文件分离的编程方式，这其实进一步削弱了封装性。因为在这些语言中，我们是无法区分一个类的声明和定义的。由于上述原因，我们很难说强封装是面向对象编程的必要条件。而事实上，有很多面向对象编程语言对封装性并没有强制性的要求。
 
@@ -468,15 +468,15 @@ int main(int ac, char** av) {
 }
 ```
 
-If you look carefully at the main program, you’ll see that the NamedPoint data structure acts as though it is a derivative of the Point data structure. This is because the order of the first two fields in NamedPoint is the same as Point. In short, NamedPoint can masquerade as Point because NamedPoint is a pure superset of Point and maintains the ordering of the members that correspond to Point.
+If you look carefully at the main program, you'll see that the NamedPoint data structure acts as though it is a derivative of the Point data structure. This is because the order of the first two fields in NamedPoint is the same as Point. In short, NamedPoint can masquerade as Point because NamedPoint is a pure superset of Point and maintains the ordering of the members that correspond to Point.
 
-This kind of trickery was a common practice 4 of programmers prior to the advent of OO. In fact, such trickery is how C++ implements single inheritance. Thus we might say that we had a kind of inheritance long before OO languages were invented. That statement wouldn’t quite be true, though. We had a trick, but it’s not nearly as convenient as true inheritance. Moreover, multiple inheritance is a considerably more difficult to achieve by such trickery.
+This kind of trickery was a common practice 4 of programmers prior to the advent of OO. In fact, such trickery is how C++ implements single inheritance. Thus we might say that we had a kind of inheritance long before OO languages were invented. That statement wouldn't quite be true, though. We had a trick, but it's not nearly as convenient as true inheritance. Moreover, multiple inheritance is a considerably more difficult to achieve by such trickery.
 
 Note also that in main.c, I was forced to cast the NamedPoint arguments to Point. In a real OO language, such upcasting would be implicit.
 
-It’s fair to say that while OO languages did not give us something completely brand new, it did make the masquerading of data structures significantly more convenient.
+It's fair to say that while OO languages did not give us something completely brand new, it did make the masquerading of data structures significantly more convenient.
 
-To recap: We can award no point to OO for encapsulation, and perhaps a half-point for inheritance. So far, that’s not such a great score. But there’s one more attribute to consider.
+To recap: We can award no point to OO for encapsulation, and perhaps a half-point for inheritance. So far, that's not such a great score. But there's one more attribute to consider.
 
 3 Not just C programmers: Most languages of that era had the capability to masquerade one data structure as another.
 
@@ -508,7 +508,7 @@ void copy() {
 
 The function getchar() reads from STDIN. But which device is STDIN? The putchar() function writes to STDOUT. But which device is that? These functions are polymorphic — their behavior depends on the type of STDIN and STDOUT.
 
-It’s as though STDIN and STDOUT are Java-style interfaces that have implementations for each device. Of course, there are no interfaces in the example C program — so how does the call to getchar() actually get delivered to the device driver that reads the character?
+It's as though STDIN and STDOUT are Java-style interfaces that have implementations for each device. Of course, there are no interfaces in the example C program — so how does the call to getchar() actually get delivered to the device driver that reads the character?
 
 The answer to that question is pretty straightforward. The UNIX operating system requires that every IO device driver provide five standard functions: 5 open, close, read, write, and seek. The signatures of those functions must be identical for every IO driver.
 
@@ -552,7 +552,7 @@ This simple trick is the basis for all polymorphism in OO. In C++, for example, 
 
 The bottom line is that polymorphism is an application of pointers to functions. Programmers have been using pointers to functions to achieve polymorphic behavior since Von Neumann architectures were first implemented in the late 1940s. In other words, OO has provided nothing new.
 
-Ah, but that’s not quite correct. OO languages may not have given us polymorphism, but they have made it much safer and much more convenient.
+Ah, but that's not quite correct. OO languages may not have given us polymorphism, but they have made it much safer and much more convenient.
 
 The problem with explicitly using pointers to functions to create polymorphic behavior is that pointers to functions are dangerous. Such use is driven by a set of manual conventions. You have to remember to follow the convention to initialize those pointers. You have to remember to follow the convention to call all your functions through those pointers. If any programmer fails to remember these conventions, the resulting bug can be devilishly hard to track down and eliminate.
 
@@ -576,9 +576,9 @@ On this basis, we can conclude that OO imposes discipline on indirect transfer o
 
 #### 5.3.1 The Power of Polymorphism
 
-What’s so great about polymorphism? To better appreciate its charms, let’s reconsider the example copy program. What happens to that program if a new IO device is created? Suppose we want to use the copy program to copy data from a handwriting recognition device to a speech synthesizer device: How do we need to change the copy program to get it to work with those new devices?
+What's so great about polymorphism? To better appreciate its charms, let's reconsider the example copy program. What happens to that program if a new IO device is created? Suppose we want to use the copy program to copy data from a handwriting recognition device to a speech synthesizer device: How do we need to change the copy program to get it to work with those new devices?
 
-We don’t need any changes at all! Indeed, we don’t even need to recompile the copy program. Why? Because the source code of the copy program does not depend on the source code of the IO drivers. As long as those IO drivers implement the five standard functions defined by FILE, the copy program will be happy to use them.
+We don't need any changes at all! Indeed, we don't even need to recompile the copy program. Why? Because the source code of the copy program does not depend on the source code of the IO drivers. As long as those IO drivers implement the five standard functions defined by FILE, the copy program will be happy to use them.
 
 In short, the IO devices have become plugins to the copy program.
 
@@ -614,7 +614,7 @@ When polymorphism is brought into play, however, something very different can ha
 
 Figure 5.2  Dependency inversion
 
-In Figure 5.2, module HL1 calls the F() function in module ML1. The fact that it calls this function through an interface is a source code contrivance. At runtime, the interface doesn’t exist. HL1 simply calls F() within ML1. [7]
+In Figure 5.2, module HL1 calls the F() function in module ML1. The fact that it calls this function through an interface is a source code contrivance. At runtime, the interface doesn't exist. HL1 simply calls F() within ML1. [7]
 
 Note, however, that the source code dependency (the inheritance relationship) between ML1 and the interface I points in the opposite direction compared to the flow of control. This is called dependency inversion, and its implications for the software architect are profound.
 
@@ -624,7 +624,7 @@ Now look back at that calling tree in Figure 5.1, and its many source code depen
 
 With this approach, software architects working in systems written in OO languages have absolute control over the direction of all source code dependencies in the system. They are not constrained to align those dependencies with the flow of control. No matter which module does the calling and which module is called, the software architect can point the source code dependency in either direction.
 
-That is power! That is the power that OO provides. That’s what OO is really all about — at least from the architect’s point of view.
+That is power! That is the power that OO provides. That's what OO is really all about — at least from the architect's point of view.
 
 What can you do with that power? As an example, you can rearrange the source code dependencies of your system so that the database and the user interface (UI) depend on the business rules (Figure 5.3), rather than the other way around.
 
@@ -638,11 +638,11 @@ In turn, the business rules can be deployed independently of the UI and the data
 
 In short, when the source code in a component changes, only that component needs to be redeployed. This is independent deployability.
 
-If the modules in your system can be deployed independently, then they can be developed independently by different teams. That’s independent developability.
+If the modules in your system can be deployed independently, then they can be developed independently by different teams. That's independent developability.
 
 7 Albeit indirectly.
 
-1-2『依赖倒置的核心是通过增加一个「接口」实现依赖的反转，这样的话任何「控制流」的流向都可以通过实际情况来调整。目前不明白的是，加「接口」跟「面向对象」编程范式有啥必要的联系，加接口就一定属于面向对象？这节的信息，让自己对依赖导致有了一个更深的印象。回复：前面的疑虑，关键点应该在「多态」上，继承是从子类的角度往上看父类，多态是从父类的角度往下看子类。依赖倒置做一张术语卡片。（2020-12-25）』——已完成
+1-2『依赖倒置的核心是通过增加一个「接口」实现依赖的反转，这样的话任何「控制流」的流向都可以通过实际情况来调整。目前不明白的是，加「接口」跟「面向对象」编程范式有啥必要的联系，加接口就一定属于面向对象？这节的信息，让自己对依赖导致有了一个更深的印象。回复：前面的疑虑，关键点应该在「多态」上，继承是从子类的角度往上看父类，多态是从父类的角度往下看子类。依赖倒置做一张术语卡片。（2020-12-25）』 一一 已完成
 
 我们可以想象一下在安全和便利的多态支持出现之前，软件是什么样子的。下面有一个典型的调用树的例子，main 函数调用了一些高层函数，这些高层函数又调用了一些中层函数，这些中层函数又继续调用了一些底层函数。在这里，源代码层面的依赖不可避免地要跟随程序的控制流（详见图 5.2）。
 
@@ -650,7 +650,7 @@ If the modules in your system can be deployed independently, then they can be de
 
 在图 5.2 中，模块 HL1 调用了 ML1 模块中的 F() 函数，这里的调用是通过源代码级别的接口来实现的。当然在程序实际运行时，接口这个概念是不存在的，HL1 会调用 ML1 中的 F() 函数。请注意模块 ML1 和接口在源代码上的依赖关系（或者叫继承关系），该关系的方向和控制流正好是相反的，我们称之为依赖反转。这种反转对软件架构设计的影响是非常大的。事实上，通过利用面向编程语言所提供的这种安全便利的多态实现，无论我们面对怎样的源代码级别的依赖关系，都可以将其反转。现在，我们可以再回头来看图 5.1 中的调用树，就会发现其中的众多源代码依赖关系都可以通过引入接口的方式来进行反转。
 
-通过这种方法，软件架构师可以完全控制采用了面向对象这种编程方式的系统中所有的源代码依赖关系，而不再受到系统控制流的限制。不管哪个模块调用或者被调用，软件架构师都可以随意更改源代码依赖关系。这就是面向对象编程的好处，同时也是面向对象编程这种范式的核心本质 —— 至少对一个软件架构师来说是这样的。
+通过这种方法，软件架构师可以完全控制采用了面向对象这种编程方式的系统中所有的源代码依赖关系，而不再受到系统控制流的限制。不管哪个模块调用或者被调用，软件架构师都可以随意更改源代码依赖关系。这就是面向对象编程的好处，同时也是面向对象编程这种范式的核心本质 一一 至少对一个软件架构师来说是这样的。
 
 这种能力有什么用呢？在下面的例子中，我们可以用它来让数据库模块和用户界面模块都依赖于业务逻辑模块（见图 5.3），而非相反。这意味着我们让用户界面和数据库都成为业务逻辑的插件。也就是说，业务逻辑模块的源代码不要引入用户界面和数据库这两个模块。
 
@@ -680,7 +680,7 @@ In many ways, the concepts of functional programming predate programming itself.
 
 ### 6.1 Squares of Integers
 
-To explain what functional programming is, it's best to examine some examples. Let’s investigate a simple problem: printing the squares of the first 25 integers. In a language like Java, we might write the following:
+To explain what functional programming is, it's best to examine some examples. Let's investigate a simple problem: printing the squares of the first 25 integers. In a language like Java, we might write the following:
 
 ```c
 public class Squint {
@@ -697,7 +697,7 @@ In a language like Clojure, which is a derivative of Lisp, and is functional, we
 (println (take 25 (map (fn [x] (* x x)) (range))))
 ```
 
-If you don’t know Lisp, then this might look a little strange. So let me reformat it a bit and add some comments.
+If you don't know Lisp, then this might look a little strange. So let me reformat it a bit and add some comments.
 
 ```c
 (println ;___________________ Print
@@ -708,11 +708,11 @@ If you don’t know Lisp, then this might look a little strange. So let me refor
 
 It should be clear that println, take, map, and range are all functions. In Lisp, you call a function by putting it in parentheses. For example, `(range)` calls the range function. The expression `(fn [x] (* x x))` is an anonymous function that calls the multiply function, passing its input argument in twice. In other words, it computes the square of its input.
 
-Looking at the whole thing again, it’s best to start with the innermost function call. The range function returns a never-ending list of integers starting with 0. This list is passed into the map function, which calls the anonymous squaring function on each element, producing a new never-ending list of all the squares.
+Looking at the whole thing again, it's best to start with the innermost function call. The range function returns a never-ending list of integers starting with 0. This list is passed into the map function, which calls the anonymous squaring function on each element, producing a new never-ending list of all the squares.
 
 The list of squares is passed into the take function, which returns a new list with only the first 25 elements. The println function prints its input, which is a list of the first 25 squares of integers.
 
-If you find yourself terrified by the concept of never-ending lists, don’t worry. Only the first 25 elements of those never-ending lists are actually created. That’s because no element of a never-ending list is evaluated until it is accessed.
+If you find yourself terrified by the concept of never-ending lists, don't worry. Only the first 25 elements of those never-ending lists are actually created. That's because no element of a never-ending list is evaluated until it is accessed.
 
 If you found all of that confusing, then you can look forward to a glorious time learning all about Clojure and functional programming. It is not my goal to teach you about these topics here.
 
@@ -736,7 +736,7 @@ In other words, all the problems that we face in concurrent applications — all
 
 As an architect, you should be very interested in issues of concurrency. You want to make sure that the systems you design will be robust in the presence of multiple threads and processors. The question you must be asking yourself, then, is whether immutability is practicable.
 
-The answer to that question is affirmative, if you have infinite storage and infinite processor speed. Lacking those infinite resources, the answer is a bit more nuanced. Yes, immutability can be practicable, if certain compromises are made. Let’s look at some of those compromises.
+The answer to that question is affirmative, if you have infinite storage and infinite processor speed. Lacking those infinite resources, the answer is a bit more nuanced. Yes, immutability can be practicable, if certain compromises are made. Let's look at some of those compromises.
 
 为什么不可变性是软件架构设计需要考虑的重点呢？为什么软件架构师要操心变量的可变性呢？答案显而易见：所有的竞争问题、死锁问题、并发更新问题都是由可变变量导致的。如果变量永远不会被更改，那就不可能产生竞争或者并发更新问题。如果锁状态是不可变的，那就永远不会产生死锁问题。换句话说，一切并发应用遇到的问题，一切由于使用多线程、多处理器而引起的问题，如果没有可变变量的话都不可能发生。
 
@@ -752,7 +752,7 @@ Figure 6.1 Mutating state and transactional memory
 
 Since mutating state exposes those components to all the problems of concurrency, it is common practice to use some kind of transactional memory to protect the mutable variables from concurrent updates and race conditions. Transactional memory simply treats variables in memory the same way a database treats records on disk. 1 It protects those variables with a transaction- or retry-based scheme.
 
-A simple example of this approach is Clojure’s atom facility:
+A simple example of this approach is Clojure's atom facility:
 
 ```c
 (def counter (atom 0)) ; initialize counter to 0
@@ -769,7 +769,7 @@ The atom facility is adequate for simple applications. Unfortunately, it cannot 
 
 The point is that well-structured applications will be segregated into those components that do not mutate variables and those that do. This kind of segregation is supported by the use of appropriate disciplines to protect those mutated variables. Architects would be wise to push as much processing as possible into the immutable components, and to drive as much code as possible out of those components that must allow mutation.
 
-1 I know… What’s a disk?
+1 I know… What's a disk?
 
 可变性的隔离
 
@@ -793,11 +793,11 @@ Now imagine that instead of storing the account balances, we store only the tran
 
 Obviously, this approach sounds absurd. Over time, the number of transactions would grow without bound, and the processing power required to compute the totals would become intolerable. To make this scheme work forever, we would need infinite storage and infinite processing power.
 
-But perhaps we don’t have to make the scheme work forever. And perhaps we have enough storage and enough processing power to make the scheme work for the reasonable lifetime of the application.
+But perhaps we don't have to make the scheme work forever. And perhaps we have enough storage and enough processing power to make the scheme work for the reasonable lifetime of the application.
 
 This is the idea behind event sourcing. 2 Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time. Of course, we can take shortcuts. For example, we can compute and save the state every midnight. Then, when the state information is required, we need compute only the transactions since midnight.
 
-2『时间溯源，做一张术语卡片。』——已完成
+2『时间溯源，做一张术语卡片。』 一一 已完成
 
 Now consider the data storage required for this scheme: We would need a lot of it. Realistically, offline data storage has been growing so fast that we now consider trillions of bytes to be small — so we have a lot of it.
 
