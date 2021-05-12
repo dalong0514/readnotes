@@ -40,6 +40,8 @@ How? By properly separating the things that change for different reasons (the Si
 
 By applying the SRP, we might come up with the data-flow view shown in Figure 8.1. Some analysis procedure inspects the financial data and produces reportable data, which is then formatted appropriately by the two reporter processes.
 
+![](./res/2020025.png)
+
 Figure 8.1  Applying the SRP
 
 The essential insight here is that generating the report involves two separate responsibilities: the calculation of the reported data, and the presentation of that data into a web- and printer-friendly form.
@@ -48,6 +50,8 @@ Having made this separation, we need to organize the source code dependencies to
 
 We accomplish this by partitioning the processes into classes, and separating those classes into components, as shown by the double lines in the diagram in Figure 8.2. In this figure, the component at the upper left is the Controller. At the upper right, we have the Interactor. At the lower right, there is the Database. Finally, at the lower left, there are four components that represent the Presenters and the Views.
 
+![](./res/2020026.png)
+
 Figure 8.2  Partitioning the processes into classes and separating the classes into components
 
 Classes marked with `<I> `are interfaces; those marked with `<DS>` are data structures. Open arrowheads are using relationships. Closed arrowheads are implements or inheritance relationships.
@@ -55,6 +59,10 @@ Classes marked with `<I> `are interfaces; those marked with `<DS>` are data stru
 The first thing to notice is that all the dependencies are source code dependencies. An arrow pointing from class A to class B means that the source code of class A mentions the name of class B, but class B mentions nothing about class A. Thus, in Figure 8.2, FinancialDataMapper knows about FinancialDataGateway through an implements relationship, but FinancialGateway knows nothing at all about FinancialDataMapper.
 
 The next thing to notice is that each double line is crossed in one direction only. This means that all component relationships are unidirectional, as shown in the component graph in Figure 8.3. These arrows point toward the components that we want to protect from change.
+
+1『想要高层不受底层变动的影响，底层必须依赖于高层。高层是接口类，底层是实现类。举例：B 是高层，A 是底层。谁调用 A 谁依赖于 A。B 直接调用 A 的话，B 依赖于 A，A 的变动会影响到 B。但如果把 A 的实现抽象出一个接口 I，B 调用 I 接口，A 调用 I 接口实现 I，那么 A 依赖于 I 就相当于 A 依赖于 B，A 的变动不会影响到 B，这就实现了依赖倒置。（2021-05-12）』
+
+![](./res/2020027.png)
 
 Figure 8.3  The component relationships are unidirectional
 
