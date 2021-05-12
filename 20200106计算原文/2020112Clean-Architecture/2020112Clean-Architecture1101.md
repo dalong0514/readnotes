@@ -4,9 +4,7 @@
 
 As we move forward in this book and cover higher-level architectural principles, the DIP will show up again and again. It will be the most visible organizing principle in our architecture diagrams. The curved line in Figure 11.1 will become the architectural boundaries in later chapters. The way the dependencies cross that curved line in one direction, and toward more abstract entities, will become a new rule that we will call the Dependency Rule.
 
-1 In other words, the function that is invoked by the operating system when the application is first started up.
-
-随着本书内容的进一步深入，以及我们对高级系統架构理论的进一步讨论，DIP 出现的频率将会越来越高。在系统架构图中，DIP 通常是最显而易见的组织原则。我们在后续章节中会把图 11.1 中的那条曲线称为架构边界，而跨越边界的、朝向抽象层的单向依赖关系则会成为一个设计守则一依赖守。
+随着本书内容的进一步深入，以及我们对高级系统架构理论的进一步讨论，DIP 出现的频率将会越来越高。在系统架构图中，DIP 通常是最显而易见的组织原则。我们在后续章节中会把图 11.1 中的那条曲线称为架构边界，而跨越边界的、朝向抽象层的单向依赖关系则会成为一个设计守则 —— 依赖守则。
 
 ## 11.0
 
@@ -28,7 +26,7 @@ It is the volatile concrete elements of our system that we want to avoid dependi
 
 也就是说，在 Java 这类静态类型的编程语言中，在使用 use、import、include 这些语句时应该只引用那些包含接口、抽象类或者其他抽象类型声明的源文件，不应该引用任何具体实现。同样的，在 Ruby、Python 这类动态类型的编程语言中，我们也不应该在源代码层次上引用包含具体实现的模块。当然，在这类语言中，事实上很难清晰界定某个模块是否属于「具体实现」。
 
-显而易见，把这条设计原则当成金科玉律来加以严格执行是不现实的，因为软件系统在实际构造中不可避免地需要依赖到一些具体实现。例如，Java 中的 String 类就是这样一个具体实现，我们将其强迫转化为抽象类是不现实的，而在源代码层次上也无法避免对 ava.lng. String 的依赖，并且也不应该尝试去避免。
+显而易见，把这条设计原则当成金科玉律来加以严格执行是不现实的，因为软件系统在实际构造中不可避免地需要依赖到一些具体实现。例如，Java 中的 String 类就是这样一个具体实现，我们将其强迫转化为抽象类是不现实的，而在源代码层次上也无法避免对 java.lang.string 的依赖，并且也不应该尝试去避免。
 
 但 String 类本身是非常稳定的，因为这个类被修改的情况是非常罕见的，而且可修改的内容也受到严格的控制，所以程序员和软件架构师完全不必担心 String 类上会发生经常性的或意料之外的修改。同理，在应用 DIP 时，我们也不必考稳定的操作系统或者平台设施，因为这些系统接口很少会有变动。我们主要应该关注的是软件系统内部那些会经常变动的（volatile）具体实现模块，这些模块是不停开发的，也就会经常出现变更。
 
@@ -36,33 +34,35 @@ It is the volatile concrete elements of our system that we want to avoid dependi
 
 Every change to an abstract interface corresponds to a change to its concrete implementations. Conversely, changes to concrete implementations do not always, or even usually, require changes to the interfaces that they implement. Therefore interfaces are less volatile than implementations.
 
+1-2『第一次通透的明白，接口比实现更稳定，自例证做一张金句卡片。（2021-05-12）』—— 已完成
+
 Indeed, good software designers and architects work hard to reduce the volatility of interfaces. They try to find ways to add functionality to implementations without making changes to the interfaces. This is Software Design 101.
 
 The implication, then, is that stable software architectures are those that avoid depending on volatile concretions, and that favor the use of stable abstract interfaces. This implication boils down to a set of very specific coding practices:
 
-(cid:129) Don't refer to volatile concrete classes. Refer to abstract interfaces instead. This rule applies in all languages, whether statically or dynamically typed. It also puts severe constraints on the creation of objects and generally enforces the use of Abstract Factories.
+2『面向接口编程的 4 大编码规则，做一张主题卡片。（2021-05-12）』—— 已完成
 
-(cid:129) Don't derive from volatile concrete classes. This is a corollary to the
+1 Don't refer to volatile concrete classes. Refer to abstract interfaces instead. This rule applies in all languages, whether statically or dynamically typed. It also puts severe constraints on the creation of objects and generally enforces the use of Abstract Factories.
 
-previous rule, but it bears special mention. In statically typed languages, inheritance is the strongest, and most rigid, of all the source code relationships; consequently, it should be used with great care. In dynamically typed languages, inheritance is less of a problem, but it is still a dependency — and caution is always the wisest choice.
+2 Don't derive from volatile concrete classes. This is a corollary to the previous rule, but it bears special mention. In statically typed languages, inheritance is the strongest, and most rigid, of all the source code relationships; consequently, it should be used with great care. In dynamically typed languages, inheritance is less of a problem, but it is still a dependency — and caution is always the wisest choice.
 
-(cid:129) Don't override concrete functions. Concrete functions often require source
+3 Don't override concrete functions. Concrete functions often require source code dependencies. When you override those functions, you do not eliminate those dependencies — indeed, you inherit them. To manage those dependencies, you should make the function abstract and create multiple implementations.
 
-code dependencies. When you override those functions, you do not eliminate those dependencies — indeed, you inherit them. To manage those dependencies, you should make the function abstract and create multiple implementations.
-
-(cid:129) Never mention the name of anything concrete and volatile. This is really
-
-just a restatement of the principle itself.
+4 Never mention the name of anything concrete and volatile. This is really just a restatement of the principle itself.
 
 稳定的抽象层
 
 我们每次修改抽象接口的时候，一定也会去修改对应的具体实现。但反过来，当我们修改具体实现时，却很少需要去修改相应的抽象接口。所以我们可以认为接口比实现更稳定。
 
-的确，优秀的软件设计师和架构师会花费很大精力来设计接，以减少未来对其进行改动。毕竟争取在不修改接口的情况下为软件增加新的功能是软件设计的基础常识。也就是说，如果想要在软件架设计上追求稳定，就必须多使用稳定的抽象接口，少依赖多变的具体实现。下面，我们将该设计原则归结为以下几条具体的编码守则应在代码中多使用抽象接口，尽量避免使用那些多变的具体实现类。这条守则适用于所有编程语言，无论静态类型语言还是动态类型语言。同时，对象的创建过程也应该受到严格限制，对此，我们通常会选择用抽象工厂（abstract factory）这个设计模式。
+的确，优秀的软件设计师和架构师会花费很大精力来设计接，以减少未来对其进行改动。毕竟争取在不修改接口的情况下为软件增加新的功能是软件设计的基础常识。也就是说，如果想要在软件架设计上追求稳定，就必须多使用稳定的抽象接口，少依赖多变的具体实现。下面，我们将该设计原则归结为以下几条具体的编码守则：
 
-不要在具体实现类上创建衍生类。上一条守则虽然也隐含了这层意思，但它还是值得被单独拿出来做一次详细声明。在静态类型的编程语言中，继承关系是所有一切源代码依赖关系中最强的、最难被修改的，所以我们对继承的使用应该格外小心。即使是在稍微便于修改的动态类型语言中，这条守则也应该被认真考虑。
+1、应在代码中多使用抽象接口，尽量避免使用那些多变的具体实现类。这条守则适用于所有编程语言，无论静态类型语言还是动态类型语言。同时，对象的创建过程也应该受到严格限制，对此，我们通常会选择用抽象工厂（abstract factory）这个设计模式。
 
-不要覆盖（override）包含具体实现的函数。调用包含具体实现的函数通常就意味着引入了源代码级别的依赖。即使覆盖了这些函数，我们也无法消除这其中的依赖 一一 这些函数继承了那些依赖关系。在这里，控制依赖关系的唯一办法，就是创建一个抽象函数，然后再为该函数提供多种具体实现应避免在代码中写入与任何具体实现相关的名字，或者是其他容易变动的事物的名字。这基本上是 DIP 原则的另外一个表达方式。
+2、不要在具体实现类上创建衍生类。上一条守则虽然也隐含了这层意思，但它还是值得被单独拿出来做一次详细声明。在静态类型的编程语言中，继承关系是所有一切源代码依赖关系中最强的、最难被修改的，所以我们对继承的使用应该格外小心。即使是在稍微便于修改的动态类型语言中，这条守则也应该被认真考虑。
+
+3、不要覆盖（override）包含具体实现的函数。调用包含具体实现的函数通常就意味着引入了源代码级别的依赖。即使覆盖了这些函数，我们也无法消除这其中的依赖 一一 这些函数继承了那些依赖关系。在这里，控制依赖关系的唯一办法，就是创建一个抽象函数，然后再为该函数提供多种具体实现。
+
+4、应避免在代码中写入与任何具体实现相关的名字，或者是其他容易变动的事物的名字。这基本上是 DIP 原则的另外一个表达方式。
 
 ## 11.2 Factories
 
@@ -96,7 +96,9 @@ Note that the flow of control crosses the curved line in the opposite direction 
 
 The concrete component in Figure 11.1 contains a single dependency, so it violates the DIP. This is typical. DIP violations cannot be entirely removed, but they can be gathered into a small number of concrete components and kept separate from the rest of the system.
 
-Most systems will contain at least one such concrete component — often called main because it contains the main1 function. In the case illustrated in Figure 11.1, the main function would instantiate the ServiceFactoryImpl and place that instance in a global variable of type ServiceFactory. The Application would then access the factory through that global variable.
+Most systems will contain at least one such concrete component — often called main because it contains the main [1] function. In the case illustrated in Figure 11.1, the main function would instantiate the ServiceFactoryImpl and place that instance in a global variable of type ServiceFactory. The Application would then access the factory through that global variable.
+
+1 In other words, the function that is invoked by the operating system when the application is first started up.
 
 具体实现组件
 

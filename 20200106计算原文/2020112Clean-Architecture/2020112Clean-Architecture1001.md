@@ -10,6 +10,8 @@ The lesson here is that depending on something that carries baggage that you don
 
 The Interface Segregation Principle (ISP) derives its name from the diagram shown in Figure 10.1.
 
+![](./res/2020021.png)
+
 Figure 10.1  The Interface Segregation Principle
 
 In the situation illustrated in Figure 10.1, there are several users who use the operations of the OPS class. Let's assume that User1 uses only op1, User2 uses only op2, and User3 uses only op3.
@@ -19,6 +21,8 @@ Now imagine that OPS is a class written in a language like Java. Clearly, in tha
 This problem can be resolved by segregating the operations into interfaces as shown in Figure 10.2.
 
 Again, if we imagine that this is implemented in a statically typed language like Java, then the source code of User1 will depend on U1Ops, and op1, but will not depend on OPS. Thus a change to OPS that User1 does not care about will not cause User1 to be recompiled and redeployed.
+
+![](./res/2020022.png)
 
 Figure 10.2  Segregated operations
 
@@ -34,15 +38,19 @@ In dynamically typed languages like Ruby and Python, such declarations don't exi
 
 This fact could lead you to conclude that the ISP is a language issue, rather than an architecture issue.
 
-与编程语言
+ISP 与编程语言
 
-很明显，上述例子很大程度上也依赖于我们所采用的编程语言。对于 Java 这样的静态类型语言来说，它们需要程序员显式地 import、use 或者 include 其实现功能所需要的源代码。而正是这些语句带来了源代码之间的依赖关系，这也就导致了某些模块需要被重新编译和重新部。而对于 Ruby 和 Python 这样的动态类型语言来说，源代码中就不存在这样的声明，它们所用对象的类型会在运行时被推演出来，所以也就不存在强制重新编译和重新部署的必要性。这就是动态类型语言要比静态类型语言更灵活、耦合度更松的原因当然，如果仅仅就这样说的话，读者可能会误以为 ISP 只是一个与编程语言的选择紧密相关的设计原则，而非软件架构问题，这就错了。
+很明显，上述例子很大程度上也依赖于我们所采用的编程语言。对于 Java 这样的静态类型语言来说，它们需要程序员显式地 import、use 或者 include 其实现功能所需要的源代码。而正是这些语句带来了源代码之间的依赖关系，这也就导致了某些模块需要被重新编译和重新部。
+
+而对于 Ruby 和 Python 这样的动态类型语言来说，源代码中就不存在这样的声明，它们所用对象的类型会在运行时被推演出来，所以也就不存在强制重新编译和重新部署的必要性。这就是动态类型语言要比静态类型语言更灵活、耦合度更松的原因当然，如果仅仅就这样说的话，读者可能会误以为 ISP 只是一个与编程语言的选择紧密相关的设计原则，而非软件架构问题，这就错了。
 
 ## 10.2 ISP and Architecture
 
 If you take a step back and look at the root motivations of the ISP, you can see a deeper concern lurking there. In general, it is harmful to depend on modules that contain more than you need. This is obviously true for source code dependencies that can force unnecessary recompilation and redeployment — but it is also true at a much higher, architectural level.
 
 Consider, for example, an architect working on a system, S. He wants to include a certain framework, F, into the system. Now suppose that the authors of F have bound it to a particular database, D. So S depends on F. which depends on D (Figure 10.3).
+
+![](./res/2020023.png)
 
 Figure 10.3  A problematic architecture
 

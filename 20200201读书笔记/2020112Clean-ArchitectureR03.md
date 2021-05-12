@@ -8,6 +8,10 @@
 
 0901 LSP: The Liskov Substitution Principle
 
+1001 ISP: The Interface Segregation Principle
+
+1101 DIP: The Dependency Inversion Principle
+
 ## Part III. Design Principles
 
 Good software systems begin with clean code. On the one hand, if the bricks aren't well made, the architecture of the building doesn't matter much. On the other hand, you can make a substantial mess with well-made bricks. This is where the SOLID principles come in.
@@ -319,3 +323,210 @@ So, even though our first priority is to protect the Interactor from changes to 
 信息隐藏
 
 当然，FinancialReportRequester 接口的作用则完全不同，它的作用是保护 FinancialReportController。不过度依赖于 Interactor 的内部细节。如果没有这个接口，则 Controller 将会传递性地依赖于 FinancialEntities。这种传递性依赖违反了「软件系统不应该依赖其不直接使用的组件」这一基本原则。之后，我们会在讨论接口隔离原则和共同复用原则的时候再次提到这一点。所以，虽然我们的首要目的是为了让 interactor。屏蔽掉发生在 Controller 上的修改，但也需要通过隐藏 Interactor 内部细节的方法来让其屏掉来自 Controller 的依赖。
+
+## 0901. LSP: The Liskov Substitution Principle
+
+### Conclusion
+
+The LSP can, and should, be extended to the level of architecture. A simple violation of substitutability, can cause a system's architecture to be polluted with a significant amount of extra mechanisms.
+
+LSP 可以且应该被应用于软件架构层面，因为一旦违背了可替换性，该系统架构就不得不为此增添大量复杂的应对机制。
+
+### 9.0
+
+In 1988, Barbara Liskov wrote the following as a way of defining subtypes.
+
+What is wanted here is something like the following substitution property: If  for each object o1 of  type S there is an object o2 of  type T such that for all  programs P defined in terms of  T, the behavior of  P is unchanged when o1 is  substituted for o2 then S is a subtype of  T. [1]
+
+To understand this idea, which is known as the Liskov Substitution Principle (LSP), let's look at some examples.
+
+1 Barbara Liskov, Data Abstraction and Hierarchy, SIGPLAN Notices 23, 5 (May 1988).
+
+2『已下载论文「2021039Data Abstraction and Hierarchy」存入 Zotero。（2021-05-12）』
+
+1988 年，Barbara Liskov 在描述如何定义子类型时写下了这样一段话：
+
+这里需要的是一种可替换性：如果对于每个类型是 S 的对象 o1 都存在一个类型为 T 的对象 o2，能使操作类型的程序 P 在用 o2 替换 o1 时行为保持不变，我们就可以将 S 称为 T 的子类型。
+
+为了让读者理解这段话中所体现的设计理念，也就是里氏替换原则（LSP），我们可以来看几个例子。
+
+### 9.1 Guiding the Use of Inheritance
+
+Imagine that we have a class named License, as shown in Figure 9.1. This class has a method named calcFee(), which is called by the Billing application. There are two「subtypes」of License: PersonalLicense and BusinessLicense. They use different algorithms to calculate the license fee.
+
+Figure 9.1  License, and its derivatives, conform to LSP
+
+This design conforms to the LSP because the behavior of the Billing application does not depend, in any way, on which of the two subtypes it uses. Both of the subtypes are substitutable for the License type.
+
+继承的使用指导
+
+假设我们有一个 License 类，其结构如图 9.1 所示。该类中有一个名为 calcFee() 的方法，该方法将由 Billing 应用程序来调用。而 License 类有两个子类型：PersonalLicense 与 BusinessLicense，这两个类会用不同的算法来计算授权费用。上述设计是符合 LSP 原则的，因为 Billing 应用程序的行为并不依赖于其使用的任何一个衍生类。也就是说，这两个衍生类的对象都是可以用来替换 License 类对象的。
+
+### 9.2 The Square/Rectangle Problem
+
+The canonical example of a violation of the LSP is the famed (or infamous, depending on your perspective) square/rectangle problem (Figure 9.2).
+
+Figure 9.2  The infamous square/rectangle problem
+
+In this example, Square is not a proper subtype of Rectangle because the height and width of the Rectangle are independently mutable; in contrast, the height and width of the Square must change together. Since the User believes it is communicating with a Rectangle, it could easily get confused. The following code shows why:
+
+```java
+Rectangle r = …
+r.setW(5);
+r.setH(2);
+assert(r.area() == 10);
+```
+
+If the … code produced a Square, then the assertion would fail.
+
+The only way to defend against this kind of LSP violation is to add mechanisms to the User (such as an if statement) that detects whether the Rectangle is, in fact, a Square. Since the behavior of the User depends on the types it uses, those types are not substitutable.
+
+1『第一次纯看译文没弄清楚，看了原文才算明白。如果 new 了一个长方体对象，因为传进去的长和宽不一样，断言是错的。（2021-05-12）』
+
+正方形 / 长方形问题
+
+正方形 / 长方形问题是一个著名（或者说臭名远扬）的违反 LSP 的设计案例（该问题的结构如图 9.2 所示）。在这个案例中，Square 类并不是 Rectangle 类的子类型，因为 Rectangle 类的高和宽可以分别修改，而 Square 类的高和宽则必须一同修改。由于 User 类始终认为自己在操作 Rectangle 类，因此会带来一些混淆。例如在下面的代码中：
+
+很显然，如果上述代码在 ...... 处返回的是 Square 类，则最后的这个 assertion 是不会成立的。如果想要防范这种违反 LSP 的行为，唯一的办法就是在 User 类中增加用于区分 Rectangle 和 Square 的检测逻辑（例如增加 if 语句）。但这样一来，User 类的行为又将依赖于它所使用的类，这两个类就不能互相替换了。
+
+### 9.3 LSP and Architecture
+
+In the early years of the object-oriented revolution, we thought of the LSP as a way to guide the use of inheritance, as shown in the previous sections. However, over the years the LSP has morphed into a broader principle of software design that pertains to interfaces and implementations.
+
+The interfaces in question can be of many forms. We might have a Java-style interface, implemented by several classes. Or we might have several Ruby classes that share the same method signatures. Or we might have a set of services that all respond to the same REST interface.
+
+In all of these situations, and more, the LSP is applicable because there are users who depend on well-defined interfaces, and on the substitutability of the implementations of those interfaces.
+
+The best way to understand the LSP from an architectural viewpoint is to look at what happens to the architecture of a system when the principle is violated.
+
+LSP 与软件架构
+
+在面向对象这场编程革命兴起的早期，我们的普遍认知正如上文所说，认为 LSP 只不过是指导如何使用继承关系的一种方法，然而随着时间的推移，LSP 逐渐演变成了一种更广泛的、指导接口与其实现方式的设计原则。
+
+这里提到的接口可以有多种形式  ——  可以是 Java 风格的接口，具有多个实现类；也可以像 Ruby 样，几个类共用一样的方法签名，甚至可以是几个服务响应同一个 REST 接口。
+
+LSP 适用于上述所有的应用场景，因为这些场景中的用户都依赖于一种接口，并且都期待实现该接口的类之间能具有可替换性。想要从软件架构的角度来理解 LSP 的意义，最好的办法还是来看几个反面案例。
+
+### 9.4 Example LSP Violation
+
+Assume that we are building an aggregator for many taxi dispatch services. Customers use our website to find the most appropriate taxi to use, regardless of taxi company. Once the customer makes a decision, our system dispatches the chosen taxi by using a restful service.
+
+Now assume that the URI for the restful dispatch service is part of the information contained in the driver database. Once our system has chosen a driver appropriate for the customer, it gets that URI from the driver record and then uses it to dispatch the driver.
+
+Suppose Driver Bob has a dispatch URI that looks like this:
+
+```java
+purplecab.com/driver/Bob
+```
+
+Our system will append the dispatch information onto this URI and send it with a PUT, as follows:
+
+```java
+purplecab.com/driver/Bob
+    /pickupAddress/24 Maple St.
+    /pickupTime/153
+    /destination/ORD
+```
+
+Clearly, this means that all the dispatch services, for all the different companies, must conform to the same REST interface. They must treat the pickupAddress, pickupTime, and destination fields identically.
+
+Now suppose the Acme taxi company hired some programmers who didn't read the spec very carefully. They abbreviated the destination field to just dest. Acme is the largest taxi company in our area, and Acme's CEO's ex-wife is our CEO's new wife, and … Well, you get the picture. What would happen to the architecture of our system?
+
+Obviously, we would need to add a special case. The dispatch request for any Acme driver would have to be constructed using a different set of rules from all the other drivers.
+
+The simplest way to accomplish this goal would be to add an if statement to the module that constructed the dispatch command:
+
+```java
+if (driver.getDispatchUri().startsWith("acme.com"))…
+```
+
+But, of course, no architect worth his or her salt would allow such a construction to exist in the system. Putting the word「acme」into the code itself creates an opportunity for all kinds of horrible and mysterious errors, not to mention security breaches.
+
+For example, what if Acme became even more successful and bought the Purple Taxi company. What if the merged company maintained the separate brands and the separate websites, but unified all of the original companies' systems? Would we have to add another if statement for「purple」?
+
+Our architect would have to insulate the system from bugs like this by creating some kind of dispatch command creation module that was driven by a configuration database keyed by the dispatch URI. The configuration data might look something like this:
+
+| URI | Dispatch Format |
+| --- | --- | --- |
+| Acme.com | /pickupAddress/%s/pickupTime/%s/dest/%s |
+| `*.*` | /pickupAddress/%s/pickupTime/%s/destination/%s |
+
+And so our architect has had to add a significant and complex mechanism to deal with the fact that the interfaces of the restful services are not all substitutable.
+
+违反 LSP 的案例
+
+设我们现在正在构建一个提供出租车调度服务的系统。在该系统中，用户可以通过访问我们的网站，从多个出租车公司内寻找最适合自己的出租车。当用户选定车子时，该系统会通过调用 restful 服务接口来调度这辆车。接下来，我们再假设该 restful 调度服务接口的 URI 被存储在司机数据库中。一旦该系统选中了最合适的出租车司机，它就会从司机数据库的记录中读取相应的 URI 信息，并通过调用这个 URI 来调度汽车。也就是说，如果司机 Bob 的记录中包含如下调度 URI：
+
+那么，我们的系统就会将调度信息附加在这个 URI 上，并发送这样一个 PUT 请求：
+
+很显然，这意着所有参与该调度服务的公司都必须遵守同样的 REST 接口，它们必须用同样的方式处理 pickupAddress、pickupTime 和 destination 字段。
+
+接下来，我们再假设 Acme 出租车公司现在招聘的程序员由于没有仔细阅读上述接口定义，结果将 destination 字段缩写成了 dest。而 Acme 又是本地最大的出租车公司，另外，Acme CEO 的前妻不巧还是我们 CEO 的新欢。懂的！这会对系统的架构造成什么影响呢？
+
+显然，我们需要为系统增加一类特殊用例，以应对 Acme 司机的调度请求。而这必须要用另外一套规则来构建。
+
+最简单的做法当然是增加一条 if 语句：
+
+然而很明显，任何一个称职的软件架构师都不会允许这样一条语句出现在自己的系统中。因为直接将「acme」这样的字串写入代码会留下各种各样神奇又可怕的错误隐患，甚至会导致安全问题。比如，Acme 也许会变得更加成功，最终收购了 Purple 出租车公司。然后，它们在保留了各自名字的同时却统一了彼此的计算机系統。在这种情况下，系统中难道还要再增加一条「purple」的特例吗？
+
+软件架构师应该创建一个调度请求创建组件，并让该组件使用一个配置数据库来保存 URI 组装格式，这样的方式可以保护系统不受外界因素变化的影响。例如其配置信息可以如下：
+
+但这样一来，软件架构师就需要通过增加一个复杂的组件来应对并不完全能实现互相替换的 restful 服务接口。
+
+## 1001. ISP: The Interface Segregation Principle
+
+### Conclusion
+
+The lesson here is that depending on something that carries baggage that you don't need can cause you troubles that you didn't expect. We'll explore this idea in more detail when we discuss the Common Reuse Principle in Chapter 13,「Component Cohesion.」
+
+本章所讨论的设计原则告诉我们：任何层次的软件设计如果依赖了它并不需要的东西，就会带来意料之外的麻烦。我们将会在第 13 章「组件聚合」中讨论共同复用原则的时候再来深入探讨更多相关的细节。
+
+### 10.0
+
+The Interface Segregation Principle (ISP) derives its name from the diagram shown in Figure 10.1.
+
+Figure 10.1  The Interface Segregation Principle
+
+In the situation illustrated in Figure 10.1, there are several users who use the operations of the OPS class. Let's assume that User1 uses only op1, User2 uses only op2, and User3 uses only op3.
+
+Now imagine that OPS is a class written in a language like Java. Clearly, in that case, the source code of User1 will inadvertently depend on op2 and op3, even though it doesn't call them. This dependence means that a change to the source code of op2 in OPS will force User1 to be recompiled and redeployed, even though nothing that it cared about has actually changed.
+
+This problem can be resolved by segregating the operations into interfaces as shown in Figure 10.2.
+
+Again, if we imagine that this is implemented in a statically typed language like Java, then the source code of User1 will depend on U1Ops, and op1, but will not depend on OPS. Thus a change to OPS that User1 does not care about will not cause User1 to be recompiled and redeployed.
+
+Figure 10.2  Segregated operations
+
+在图 10.1 所描绘的应用中，有多个用户需要操作 OPS 类。现在，我们假设这里的 User1 只需要使用 op1，User2 只需要使用 op2，User3 只需要使用 op3。在这种情况下，如果 OPS 类是用 Java 编程语言编写的，那么很明显，User1 虽然不需要调用 op2、op3，但在源代码层次上也与它们形成依赖关系。这种依赖意味着我们对 OPS 代码中 op2 所做的任何修改，即使不会影响到 User1 的功能，也会导致它需要被重新编译和部署。这个问题可以通过将不同的操作隔离成接口来解决，具体如图 10.2 所示。
+
+同样，我们也假设这个例子是用 Java 这种静态类型语言来实现的，那么现在 User1 的源代码会依赖于 U1Ops 和 op1，但不会依赖于 OPS。这样一来，我们之后对 OPS 做的修改只要不影响到 User1 的功能，就不需要重新编译和部 User1 了。
+
+### 10.1 ISP and Language
+
+Clearly, the previously given description depends critically on language type. Statically typed languages like Java force programmers to create declarations that users must import, or use, or otherwise include. It is these included declarations in source code that create the source code dependencies that force recompilation and redeployment.
+
+In dynamically typed languages like Ruby and Python, such declarations don't exist in source code. Instead, they are inferred at runtime. Thus there are no source code dependencies to force recompilation and redeployment. This is the primary reason that dynamically typed languages create systems that are more flexible and less tightly coupled than statically typed languages.
+
+This fact could lead you to conclude that the ISP is a language issue, rather than an architecture issue.
+
+ISP 与编程语言
+
+很明显，上述例子很大程度上也依赖于我们所采用的编程语言。对于 Java 这样的静态类型语言来说，它们需要程序员显式地 import、use 或者 include 其实现功能所需要的源代码。而正是这些语句带来了源代码之间的依赖关系，这也就导致了某些模块需要被重新编译和重新部。
+
+而对于 Ruby 和 Python 这样的动态类型语言来说，源代码中就不存在这样的声明，它们所用对象的类型会在运行时被推演出来，所以也就不存在强制重新编译和重新部署的必要性。这就是动态类型语言要比静态类型语言更灵活、耦合度更松的原因当然，如果仅仅就这样说的话，读者可能会误以为 ISP 只是一个与编程语言的选择紧密相关的设计原则，而非软件架构问题，这就错了。
+
+### 10.2 ISP and Architecture
+
+If you take a step back and look at the root motivations of the ISP, you can see a deeper concern lurking there. In general, it is harmful to depend on modules that contain more than you need. This is obviously true for source code dependencies that can force unnecessary recompilation and redeployment — but it is also true at a much higher, architectural level.
+
+Consider, for example, an architect working on a system, S. He wants to include a certain framework, F, into the system. Now suppose that the authors of F have bound it to a particular database, D. So S depends on F. which depends on D (Figure 10.3).
+
+Figure 10.3  A problematic architecture
+
+Now suppose that D contains features that F does not use and, therefore, that S does not care about. Changes to those features within D may well force the redeployment of F and, therefore, the redeployment of S. Even worse, a failure of one of the features within D may cause failures in F and S.
+
+ISP 与软件架构
+
+回顾一下 ISP 最初的成因：在一般情況下，任何层次的软件设计如果依赖于不需要的东西，都会是有害的。从源代码层次来说，这样的依赖关系会导致不必要的重新编译和重新部署，对更高层次的软件架构设计来说，问题也是类似的。
+
+例如，我们假设某位软件架构师在设计系统 S 时，想要在该系統中引入某个框架 F。这时候，假设框架 F 的作者又将其捆绑在一个特定的数据库 D 上，那么就形成了 S 依赖于 F，F 又依赖于 D 的关系（参见图 10.3）。在这种情下，如果 D 中包含了 F 不需要的功能，那么这些功能同样也会是 S 不需要的。而我们对 D 中这些功能的修改将会导致 F 需要被重新部署，后者又会导致 S 的重新部署。更糟糕的是，D 中一个无关功能的错误也可能会导致 F 和 S 运行出错。

@@ -1,5 +1,7 @@
 ## 记忆时间
 
+2021-05-10
+
 ## 卡片
 
 ### 0001. 反常识卡 —— 架构和设计是一回事
@@ -287,6 +289,16 @@ Martin has authored and edited many books, including The Clean Coder, Clean Code
 2『 Bob 大叔做一张人名卡片。』—— 已完成
 
 ### 0401. 金句卡 —— 测试只能展示 Bug 的存在，并不能证明不存在 Bug
+
+### 0402. 金句卡 —— interfaces are less volatile than implementations
+
+信息源自「2020112Clean-Architecture1101.md」
+
+Every change to an abstract interface corresponds to a change to its concrete implementations. Conversely, changes to concrete implementations do not always, or even usually, require changes to the interfaces that they implement. Therefore interfaces are less volatile than implementations.
+
+1-2『第一次通透的明白，接口比实现更稳定，自例证做一张金句卡片。（2021-05-12）』—— 已完成
+
+我们每次修改抽象接口的时候，一定也会去修改对应的具体实现。但反过来，当我们修改具体实现时，却很少需要去修改相应的抽象接口。所以我们可以认为接口比实现更稳定。
 
 ### 0501. 任意卡 —— 单一职责原则 SRP 定义的演化
 
