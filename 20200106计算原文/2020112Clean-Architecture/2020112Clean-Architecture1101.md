@@ -62,6 +62,18 @@ The implication, then, is that stable software architectures are those that avoi
 
 3、不要覆盖（override）包含具体实现的函数。调用包含具体实现的函数通常就意味着引入了源代码级别的依赖。即使覆盖了这些函数，我们也无法消除这其中的依赖 一一 这些函数继承了那些依赖关系。在这里，控制依赖关系的唯一办法，就是创建一个抽象函数，然后再为该函数提供多种具体实现。
 
+1-2『
+
+只要使用引入「具体」函数，即调用「具体」函数，相当于依赖具体函数了。但是：不可能不引入具体函数啊，是不是应该只在具体函数里引入具体函数，此操作仅仅在「实现类」这个圈圈里操作。待确认。（2021-05-12）
+
+补充：下面有一些信息部分回答了这个疑问。
+
+The concrete component in Figure 11.1 contains a single dependency, so it violates the DIP. This is typical. DIP violations cannot be entirely removed, but they can be gathered into a small number of concrete components and kept separate from the rest of the system.
+
+在图 11.1 中，具体实现组件的内部仅有一条依赖关系，这条关系其实是违反 DIP 的。这种情況很常见，我们在软件系统中并不可能完全消除违反 DIP 的情況。通常只需要把它们集中于少部分的具体实现组件中，将其与系统的其他部分隔离即可。（2021-05-12）
+
+』—— 未完成
+
 4、应避免在代码中写入与任何具体实现相关的名字，或者是其他容易变动的事物的名字。这基本上是 DIP 原则的另外一个表达方式。
 
 ## 11.2 Factories
@@ -72,7 +84,11 @@ In most object-oriented languages, such as Java, we would use an Abstract Factor
 
 The diagram in Figure 11.1 shows the structure. The Application uses the ConcreteImpl through the Service interface. However, the Application must somehow create instances of the ConcreteImpl. To achieve this without creating a source code dependency on the ConcreteImpl, the Application calls the makeSvc method of the ServiceFactory interface. This method is implemented by the ServiceFactoryImpl class, which derives from ServiceFactory. That implementation instantiates the ConcreteImpl and returns it as a Service.
 
+![](./res/2020024.png)
+
 Figure 11.1  Use of the Abstract Factory pattern to manage the dependency
+
+1-2『上面的信息太宝贵了，图 11.1 也太 NB 了，感觉又挖到金子了。架构中抽象层和具体实现层之间是有一条曲线的，所有跨越这条曲线的依赖关系都应该是单向的，空心箭头从具体实现层指向抽象层，即具体实现层依赖抽象层。软件架构的黄金曲线，做一张主题卡片。（2021-05-12）』—— 已完成
 
 The curved line in Figure 11.1 is an architectural boundary. It separates the abstract from the concrete. All source code dependencies cross that curved line pointing in the same direction, toward the abstract side.
 
@@ -90,7 +106,9 @@ Note that the flow of control crosses the curved line in the opposite direction 
 
 图 11.1 中间的那条曲线代表了软件架构中的抽象层与具体实现层的边界。在这里，所有跨越这条边界源代码级别的依赖关系都应该是单向的，即具体实现层依赖抽象层。
 
-这条曲线将整个系統划分为两部分组件：抽象接口与其具体实现。抽象接口组件中包含了应用的所有高阶业务规则，而具体实现组件中则包括了所有这些业务规则所需要做的具体操作及其相关的细节信息。请注意，这里的控制流跨越架边界的方向与源代码依赖关系跨越该边界的方向正好相反，源代码依赖方向永远是控制流方向的反转 一一 这就是 DP 被称为依赖反转原则的原因。
+这条曲线将整个系统划分为两部分组件：抽象接口与其具体实现。抽象接口组件中包含了应用的所有高阶业务规则，而具体实现组件中则包括了所有这些业务规则所需要做的具体操作及其相关的细节信息。请注意，这里的控制流跨越架边界的方向与源代码依赖关系跨越该边界的方向正好相反，源代码依赖方向永远是控制流方向的反转 一一 这就是 DIP 被称为依赖反转原则的原因。
+
+2『源代码依赖方向永远是控制流方向的反转，做一张金句卡片。（2021-05-12）』
 
 ## 11.3 Concrete Components
 
@@ -104,4 +122,6 @@ Most systems will contain at least one such concrete component — often called 
 
 在图 11.1 中，具体实现组件的内部仅有一条依赖关系，这条关系其实是违反 DIP 的。这种情況很常见，我们在软件系统中并不可能完全消除违反 DIP 的情況。通常只需要把它们集中于少部分的具体实现组件中，将其与系统的其他部分隔离即可。
 
-绝大部分系统中都至少存在一个具体实现组件 一一 我们一般称之为 main 组件，因为它们通常是 main 函数所在之处。在图 11.1 中，main 函数应该负责创建 ServiceFactoryImpl 实例，并将其賦值给类型为 Servicefactory 的全局变量，以便让 Application 类通过这个全局变量来进行相关调用。
+1『这里的信息部分解答之前的疑问：』
+
+绝大部分系统中都至少存在一个具体实现组件 一一 我们一般称之为 main 组件，因为它们通常是 main 函数所在之处。在图 11.1 中，main 函数应该负责创建 ServiceFactoryImpl 实例，并将其赋值给类型为 Servicefactory 的全局变量，以便让 Application 类通过这个全局变量来进行相关调用。

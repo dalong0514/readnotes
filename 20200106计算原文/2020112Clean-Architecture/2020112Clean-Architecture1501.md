@@ -1,4 +1,4 @@
-Chapter 15  What Is Architecture?
+# 1501. What Is Architecture?
 
 The word「architecture」conjures visions of power and mystery. It makes us think of weighty decisions and deep technical prowess. Software architecture is at the pinnacle of technical achievement. When we think of a software architect, we think of someone who has power, and who commands respect. What young aspiring software developer has not dreamed of one day becoming a software architect?
 
