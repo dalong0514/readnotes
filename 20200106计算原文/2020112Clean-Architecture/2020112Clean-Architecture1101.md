@@ -1,5 +1,15 @@
 # 1101. DIP: The Dependency Inversion Principle
 
+## Conclusion
+
+As we move forward in this book and cover higher-level architectural principles, the DIP will show up again and again. It will be the most visible organizing principle in our architecture diagrams. The curved line in Figure 11.1 will become the architectural boundaries in later chapters. The way the dependencies cross that curved line in one direction, and toward more abstract entities, will become a new rule that we will call the Dependency Rule.
+
+1 In other words, the function that is invoked by the operating system when the application is first started up.
+
+随着本书内容的进一步深入，以及我们对高级系統架构理论的进一步讨论，DIP 出现的频率将会越来越高。在系统架构图中，DIP 通常是最显而易见的组织原则。我们在后续章节中会把图 11.1 中的那条曲线称为架构边界，而跨越边界的、朝向抽象层的单向依赖关系则会成为一个设计守则一依赖守。
+
+## 11.0
+
 The Dependency Inversion Principle (DIP) tells us that the most flexible systems are those in which source code dependencies refer only to abstractions, not to concretions.
 
 In a statically typed language, like Java, this means that the use, import, and include statements should refer only to source modules containing interfaces, abstract classes, or some other kind of abstract declaration. Nothing concrete should be depended on.
@@ -93,11 +103,3 @@ Most systems will contain at least one such concrete component — often called 
 在图 11.1 中，具体实现组件的内部仅有一条依赖关系，这条关系其实是违反 DIP 的。这种情況很常见，我们在软件系统中并不可能完全消除违反 DIP 的情況。通常只需要把它们集中于少部分的具体实现组件中，将其与系统的其他部分隔离即可。
 
 绝大部分系统中都至少存在一个具体实现组件 一一 我们一般称之为 main 组件，因为它们通常是 main 函数所在之处。在图 11.1 中，main 函数应该负责创建 ServiceFactoryImpl 实例，并将其賦值给类型为 Servicefactory 的全局变量，以便让 Application 类通过这个全局变量来进行相关调用。
-
-## Conclusion
-
-As we move forward in this book and cover higher-level architectural principles, the DIP will show up again and again. It will be the most visible organizing principle in our architecture diagrams. The curved line in Figure 11.1 will become the architectural boundaries in later chapters. The way the dependencies cross that curved line in one direction, and toward more abstract entities, will become a new rule that we will call the Dependency Rule.
-
-1 In other words, the function that is invoked by the operating system when the application is first started up.
-
-随着本书内容的进一步深入，以及我们对高级系統架构理论的进一步讨论，DIP 出现的频率将会越来越高。在系统架构图中，DIP 通常是最显而易见的组织原则。我们在后续章节中会把图 11.1 中的那条曲线称为架构边界，而跨越边界的、朝向抽象层的单向依赖关系则会成为一个设计守则一依赖守。

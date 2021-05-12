@@ -1,5 +1,13 @@
 # 0801. OCP: The Open-Closed Principle
 
+## Conclusion
+
+The OCP is one of the driving forces behind the architecture of systems. The goal is to make the system easy to extend without incurring a high impact of change. This goal is accomplished by partitioning the system into components, and arranging those components into a dependency hierarchy that protects higher-level components from changes in lower-level components.
+
+OCP 是我们进行系统架构设计的主导原则，其主要目标是让系易于扩展，同时限制其每次被修改所影响的范围。实现方式是通过将系統划分为一系列组件，并且将这些组件间的依赖关系按层次结构进行组织，使得高阶组件不会因低阶组件被修改而受到影响。
+
+## 8.0
+
 The Open-Closed Principle (OCP) was coined in 1988 by Bertrand Meyer.1 It says:
 
 A software artifact should be open for extension but closed for modification.
@@ -115,9 +123,3 @@ So, even though our first priority is to protect the Interactor from changes to 
 信息隐藏
 
 当然，FinancialReportRequester 接口的作用则完全不同，它的作用是保护 FinancialReportController。不过度依赖于 Interactor 的内部细节。如果没有这个接口，则 Controller 将会传递性地依赖于 FinancialEntities。这种传递性依赖违反了「软件系统不应该依赖其不直接使用的组件」这一基本原则。之后，我们会在讨论接口隔离原则和共同复用原则的时候再次提到这一点。所以，虽然我们的首要目的是为了让 interactor。屏蔽掉发生在 Controller 上的修改，但也需要通过隐藏 Interactor 内部细节的方法来让其屏掉来自 Controller 的依赖。
-
-## Conclusion
-
-The OCP is one of the driving forces behind the architecture of systems. The goal is to make the system easy to extend without incurring a high impact of change. This goal is accomplished by partitioning the system into components, and arranging those components into a dependency hierarchy that protects higher-level components from changes in lower-level components.
-
-OCP 是我们进行系统架构设计的主导原则，其主要目标是让系易于扩展，同时限制其每次被修改所影响的范围。实现方式是通过将系統划分为一系列组件，并且将这些组件间的依赖关系按层次结构进行组织，使得高阶组件不会因低阶组件被修改而受到影响。

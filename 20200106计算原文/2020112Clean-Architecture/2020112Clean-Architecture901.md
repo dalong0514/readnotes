@@ -1,5 +1,13 @@
 # 0901. LSP: The Liskov Substitution Principle
 
+## Conclusion
+
+The LSP can, and should, be extended to the level of architecture. A simple violation of substitutability, can cause a system’s architecture to be polluted with a significant amount of extra mechanisms.
+
+LSP 可以且应该被应用于软件架构层面，因为一旦违背了可替換性，该系统架构就不得不为此增添大量复杂的应对机制。
+
+## 9.0
+
 In 1988, Barbara Liskov wrote the following as a way of defining subtypes.
 
 What is wanted here is something like the following substitution property: If  for each object o1 of  type S there is an object o2 of  type T such that for all  programs P defined in terms of  T, the behavior of  P is unchanged when o1 is  substituted for o2 then S is a subtype of  T.1
@@ -130,9 +138,3 @@ And so our architect has had to add a significant and complex mechanism to deal
 软件架构师应该创建一个调度请求创建组件，并让该组件使用一个配置数据库来保存 UR 组装格式，这样的方式可以保护系统不受外界因素变化的影响。例如其配置信息可以如下：
 
 但这样一来，软件架构师就需要通过增加一个复杂的组件来应对并不完全能实现互相替换的 restful 服务接。
-
-## Conclusion
-
-The LSP can, and should, be extended to the level of architecture. A simple violation of substitutability, can cause a system’s architecture to be polluted with a significant amount of extra mechanisms.
-
-LSP 可以且应该被应用于软件架构层面，因为一旦违背了可替換性，该系统架构就不得不为此增添大量复杂的应对机制。

@@ -1,5 +1,13 @@
 # 1001. ISP: The Interface Segregation Principle
 
+## Conclusion
+
+The lesson here is that depending on something that carries baggage that you don’t need can cause you troubles that you didn’t expect. We’ll explore this idea in more detail when we discuss the Common Reuse Principle in Chapter 13,「Component Cohesion.」
+
+本章所讨论的设计原则告诉我们：任何层次的软件设计如果依赖了它并不需要的东西，就会带来意料之外的麻烦。我们将会在第 13 章「组件聚合」中讨论共同复用原则的时候再来深入探讨更多相关的细节。
+
+## 10.0
+
 The Interface Segregation Principle (ISP) derives its name from the diagram shown in Figure 10.1.
 
 Figure 10.1  The Interface Segregation Principle
@@ -45,9 +53,3 @@ ISP 与软件架构
 回顾一下 ISP 最初的成因：在一般情況下，任何层次的软件设计如果依赖于不需要的东西，都会是有害的。从源代码层次来说，这样的依赖关系会导致不必要的重新编译和重新部署，对更高层次的软件架构设计来说，问题也是类似的。
 
 例如，我们假设某位软件架构师在设计系统 S 时，想要在该系統中引入某个框架 F。这时候，假设框架 F 的作者又将其捆绑在一个特定的数据库 D 上，那么就形成了 S 依赖于 F，F 又依赖于 D 的关系（参见图 10.3）。在这种情下，如果 D 中包含了 F 不需要的功能，那么这些功能同样也会是 S 不需要的。而我们对 D 中这些功能的修改将会导致 F 需要被重新部署，后者又会导致 S 的重新部署。更糟糕的是，D 中一个无关功能的错误也可能会导致 F 和 S 运行出错。
-
-## Conclusion
-
-The lesson here is that depending on something that carries baggage that you don’t need can cause you troubles that you didn’t expect. We’ll explore this idea in more detail when we discuss the Common Reuse Principle in Chapter 13,「Component Cohesion.」
-
-本章所讨论的设计原则告诉我们：任何层次的软件设计如果依赖了它并不需要的东西，就会带来意料之外的麻烦。我们将会在第 13 章「组件聚合」中讨论共同复用原则的时候再来深入探讨更多相关的细节。

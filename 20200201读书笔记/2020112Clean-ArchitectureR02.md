@@ -72,7 +72,7 @@ The third paradigm, which has only recently begun to be adopted, was the first t
 
 We can summarize the functional programming paradigm as follows: Functional programming imposes discipline upon assignment.
 
-尽管第三个编程范式是近些年オ刚刚开始被采用的，但它其实是三个范式中最先被发明的。事实上，函数式编程概念是基于与阿兰·图灵同时代的数学家 Alonzo Church 在 1936 年发明的 λ 演算的直接衍生物。1958 年 John Mccarthy 利用其作为基础发明了 LISP 语言。众所周知，λ 演算法的一个核心思想是不可变性 一一 某个符号所对应的值是永远不变的，所以从理论上来说，函数式编程语言中应该是没有赋值语句的。大部分函数式编程语言只允许在非常严格的限制条件下，可以更改某个变量的值。
+尽管第三个编程范式是近些年才刚刚开始被采用的，但它其实是三个范式中最先被发明的。事实上，函数式编程概念是基于与阿兰·图灵同时代的数学家 Alonzo Church 在 1936 年发明的 λ 演算的直接衍生物。1958 年 John Mccarthy 利用其作为基础发明了 LISP 语言。众所周知，λ 演算法的一个核心思想是不可变性 一一 某个符号所对应的值是永远不变的，所以从理论上来说，函数式编程语言中应该是没有赋值语句的。大部分函数式编程语言只允许在非常严格的限制条件下，可以更改某个变量的值。
 
 因此，我们在这里可以将函数式编程范式总结为下面这句话：函数式程对程序中的值进行了限制和规范。
 
@@ -304,7 +304,7 @@ Some folks fall back on three magic words to explain the nature of OO: encapsula
 
 另一种常见的回答是「面向对象编程是一种对真实世界进行建模的方式」，这种回答只能算作避重就轻。「对真实世界的建模」到底要如何进行？我们为什么要这么做，有什么好处？也许这句话意味着是「由于采用面向对象方式构建的软件与真实世界的关系更紧密，所以面向对象编程可以使得软件开发更容易」 一一  即使这样说，也仍然逃避了关键问题 一一 面向对象编程究竟是什么？
 
-还有些人在回答这个问题的时候，往往会搬出一些神秘的词语，譬如封装（encapsulation）、继承（(inheritance）、多态（polymorphism）。其隐含意思就是说面向对象编程是这三项的有机组合，或者任何一种支持面向对象的编程语言必须支持这三个特性。那么，我们接下来可以逐个来分析一下这三个概念。
+还有些人在回答这个问题的时候，往往会搬出一些神秘的词语，譬如封装（encapsulation）、继承（inheritance）、多态（polymorphism）。其隐含意思就是说面向对象编程是这三项的有机组合，或者任何一种支持面向对象的编程语言必须支持这三个特性。那么，我们接下来可以逐个来分析一下这三个概念。
 
 ### 5.1 Encapsulation?
 
@@ -517,7 +517,8 @@ The FILE data structure contains five pointers to functions. In our example, it 
 ```c
 struct FILE {  
     void (*open)(char* name, int mode);  
-    void (*close)();  int (*read)();  
+    void (*close)();  
+    int (*read)();  
     void (*write)(char);  
     void (*seek)(long index, int mode);
 };
@@ -720,7 +721,7 @@ Instead, my goal here is to point out something very dramatic about the differen
 
 This leads us to a surprising statement: Variables in functional languages do not vary.
 
-很明显，这里的 println、take、map 和 lrange 都是函数。在 LISP 中，函数是通过括号来调用的，例如 `(range)` 表达式就是在调用 range 函数。而表达式 `(fn [x] (*xx))` 则是一个匿名函数，该函数用同样的值作为参数调用了乘法函数。换句话说，该函数计算的是平方值。
+很明显，这里的 println、take、map 和 lrange 都是函数。在 LISP 中，函数是通过括号来调用的，例如 `(range)` 表达式就是在调用 range 函数。而表达式 `(fn [x] (* x x))` 则是一个匿名函数，该函数用同样的值作为参数调用了乘法函数。换句话说，该函数计算的是平方值。
 
 现在让我们回过头来再看一下这整句代码，从最内侧的函数调用开始  ranger 函数会返回一个从 0 开始的整数无穷列表。然后该列表会被传入 map 函数，并针对列表中的每个元素，调用求平方值的匿名函数，产生了一个无穷多的、包含平方值的列表接着再将这个列表传入 take 函数，后者会返回一个仅包含前 25 个元素的新列表。println 函数将它的参数输出，该参数就是上面这个包含了 25 个平方值的列表。
 
@@ -750,6 +751,8 @@ One of the most common compromises in regard to immutability is to segregate the
 
 Figure 6.1 Mutating state and transactional memory
 
+1『原文中的这张图以及上面提到的思路直觉上很重要，以后肯定会遇到相关的应用场景。不可变的组件用纯函数去执行任务，期间不更改任何状态。不可变的组件通过与一个或多个非函数式组件通信来修改变量状态。（2021-05-12）』
+
 Since mutating state exposes those components to all the problems of concurrency, it is common practice to use some kind of transactional memory to protect the mutable variables from concurrent updates and race conditions. Transactional memory simply treats variables in memory the same way a database treats records on disk. 1 It protects those variables with a transaction- or retry-based scheme.
 
 A simple example of this approach is Clojure's atom facility:
@@ -759,11 +762,11 @@ A simple example of this approach is Clojure's atom facility:
 (swap! counter inc)    ; safely increment counter.
 ```
 
-In this code, the counter variable is defined as an atom. In Clojure, an atom is a special kind of variable whose value is allowed to mutate under very disciplined conditions that are enforced by the swap! function.
+In this code, the counter variable is defined as an atom. In Clojure, an atom is a special kind of variable whose value is allowed to mutate under very disciplined conditions that are enforced by the `swap!` function.
 
-The swap! function, shown in the preceding code, takes two arguments: the atom to be mutated, and a function that computes the new value to be stored in the atom. In our example code, the counter atom will be changed to the value computed by the inc function, which simply increments its argument.
+The `swap!` function, shown in the preceding code, takes two arguments: the atom to be mutated, and a function that computes the new value to be stored in the atom. In our example code, the counter atom will be changed to the value computed by the inc function, which simply increments its argument.
 
-The strategy used by swap! is a traditional compare and swap algorithm. The value of counter is read and passed to inc. When inc returns, the value of counter is locked and compared to the value that was passed to inc. If the value is the same, then the value returned by inc is stored in counter and the lock is released. Otherwise, the lock is released, and the strategy is retried from the beginning.
+The strategy used by `swap!` is a traditional compare and swap algorithm. The value of counter is read and passed to inc. When inc returns, the value of counter is locked and compared to the value that was passed to inc. If the value is the same, then the value returned by inc is stored in counter and the lock is released. Otherwise, the lock is released, and the strategy is retried from the beginning.
 
 The atom facility is adequate for simple applications. Unfortunately, it cannot completely safeguard against concurrent updates and deadlocks when multiple dependent variables come into play. In those instances, more elaborate facilities can be used.
 

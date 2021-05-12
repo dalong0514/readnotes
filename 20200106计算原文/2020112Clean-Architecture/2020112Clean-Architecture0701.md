@@ -54,6 +54,14 @@ DIP：依赖反转原则。该设计原则指出高层策略性的代码不应�
 
 # 0701. SRP: The Single Responsibility Principle
 
+## Conclusion
+
+The Single Responsibility Principle is about functions and classes — but it reappears in a different form at two more levels. At the level of components, it becomes the Common Closure Principle. At the architectural level, it becomes the Axis of Change responsible for the creation of Architectural Boundaries. We’ll be studying all of these ideas in the chapters to come.
+
+单一职责原则主要讨论的是函数和类之间的关系 —— 但是它在两个讨论层面上会以不同的形式出现。在组件层面，我们可以将其称为共同闭包原则（Common Closure Principle），在软件架构层面，它则是用于奠定架构边界的变更轴心（Axis of Change）。我们在接下来的章节中会深入学习这些。
+
+## 7.0
+
 Of all the SOLID principles, the Single Responsibility Principle (SRP) might be the least well understood. That’s likely because it has a particularly inappropriate name. It is too easy for programmers to hear the name and then assume that it means that every module should do just one thing.
 
 Make no mistake, there is a principle like that. A function should do one, and only one, thing. We use that principle when we are refactoring large functions into smaller functions; we use it at the lowest levels. But it is not one of the SOLID principles — it is not the SRP.
@@ -183,9 +191,3 @@ Each of the classes that contain such a family of methods is a scope. Outside of
 图 7.5：将最重要的函数保留在 Employee 类中，同时调用其他两个没那么重要的类
 
 读者也许会反对上面这些解决方案，因为看上去这里的每个类中都只有ー个函数。事实上并非如此，因为无论是计算工资、生成报表还是保存数据都是一个很复杂的过程，每个类都可能包含了许多私有函数总而言之，上面的每一个类都分別容纳了一组作用于相同作用域的函数，而在该作用域之外，它们各自的私有函数是互相不可见的。
-
-## Conclusion
-
-The Single Responsibility Principle is about functions and classes — but it reappears in a different form at two more levels. At the level of components, it becomes the Common Closure Principle. At the architectural level, it becomes the Axis of Change responsible for the creation of Architectural Boundaries. We’ll be studying all of these ideas in the chapters to come.
-
-单一职责原则主要讨论的是函数和类之间的关系 —— 但是它在两个讨论层面上会以不同的形式出现。在组件层面，我们可以将其称为共同闭包原则（Common Closure Principle），在软件架构层面，它则是用于奠定架构边界的变更轴心（Axis of Change）。我们在接下来的章节中会深入学习这些。

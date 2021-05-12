@@ -176,12 +176,3 @@ Today we routinely ship .jar files or DLLs or shared libraries as plugins to exi
 Conclusion
 
 These dynamically linked files, which can be plugged together at runtime, are the software components of our architectures. It has taken 50 years, but we have arrived at a place where component plugin architecture can be the casual default as opposed to the herculean effort it once was.
-
-102
-
-13Component
-
-Cohesion
-
-103
-
