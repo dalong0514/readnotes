@@ -28,7 +28,7 @@ From a software design and architecture point of view, this principle means that
 
 Of course, this should be obvious. However, there is another way to look at this issue that is perhaps not quite so obvious. Classes and modules that are grouped together into a component should be releasable together. The fact that they share the same version number and the same release tracking, and are included under the same release documentation, should make sense both to the author and to the users.
 
-This is weak advice: Saying that something should「make sense」is just a way of waving your hands in the air and trying to sound authoritative. The advice is weak because it is hard to precisely explain the glue that holds the classes and modules together into a single component. Weak though the advice may be, the principle itself is important, because violations are easy to detect—they don’t「make sense.」If you violate the REP, your users will know, and they won’t be impressed with your architectural skills.
+This is weak advice: Saying that something should「make sense」is just a way of waving your hands in the air and trying to sound authoritative. The advice is weak because it is hard to precisely explain the glue that holds the classes and modules together into a single component. Weak though the advice may be, the principle itself is important, because violations are easy to detect—they don't「make sense.」If you violate the REP, your users will know, and they won't be impressed with your architectural skills.
 
 The weakness of this principle is more than compensated for by the strength of the next two principles. Indeed, the CCP and the CRP strongly define the this principle, but in a negative sense.
 
@@ -42,7 +42,7 @@ Chapter 13  Component Cohesion
 
 This is the Single Responsibility Principle restated for components. Just as the SRP says that a class should not contain multiples reasons to change, so the Common Closure Principle (CCP) says that a component should not have multiple reasons to change.
 
-For most applications, maintainability is more important than reusability. If the code in an application must change, you would rather that all of the changes occur in one component, rather than being distributed across many components.1 If changes are confined to a single component, then we need to redeploy only the one changed component. Other components that don’t depend on the changed component do not need to be revalidated or redeployed.
+For most applications, maintainability is more important than reusability. If the code in an application must change, you would rather that all of the changes occur in one component, rather than being distributed across many components.1 If changes are confined to a single component, then we need to redeploy only the one changed component. Other components that don't depend on the changed component do not need to be revalidated or redeployed.
 
 The CCP prompts us to gather together in one place all the classes that are likely to change for the same reasons. If two classes are so tightly bound, either physically or conceptually, that they always change together, then they belong in the same component. This minimizes the workload related to releasing, revalidating, and redeploying the software.
 
@@ -64,7 +64,7 @@ Gather together those things that change at the same times and for the same rea-
 
 The  Common  Reuse  Principle
 
-Don’t force users of  a component to depend on things they don’t need.
+Don't force users of  a component to depend on things they don't need.
 
 The Common Reuse Principle (CRP) is yet another principle that helps us to decide which classes and modules should be placed into a component. It states that classes and modules that tend to be reused together belong in the same component.
 
@@ -78,21 +78,21 @@ But the CRP tells us more than just which classes to put together into a compone
 
 Chapter 13  Component Cohesion
 
-component—but that still doesn’t weaken the dependency. The using component still depends on the used component.
+component—but that still doesn't weaken the dependency. The using component still depends on the used component.
 
-Because of that dependency, every time the used component is changed, the using component will likely need corresponding changes. Even if no changes are necessary to the using component, it will likely still need to be recompiled, revalidated, and redeployed. This is true even if the using component doesn’t care about the change made in the used component.
+Because of that dependency, every time the used component is changed, the using component will likely need corresponding changes. Even if no changes are necessary to the using component, it will likely still need to be recompiled, revalidated, and redeployed. This is true even if the using component doesn't care about the change made in the used component.
 
 Thus when we depend on a component, we want to make sure we depend on every class in that component. Put another way, we want to make sure that the classes that we put into a component are inseparable—that it is impossible to depend on some and not on the others. Otherwise, we will be redeploying more components than is necessary, and wasting significant effort.
 
-Therefore the CRP tells us more about which classes shouldn’t be together than about which classes should be together. The CRP says that classes that are not tightly bound to each other should not be in the same component.
+Therefore the CRP tells us more about which classes shouldn't be together than about which classes should be together. The CRP says that classes that are not tightly bound to each other should not be in the same component.
 
 Relation  to  ISP
 
-The CRP is the generic version of the ISP. The ISP advises us not to depend on classes that have methods we don’t use. The CRP advises us not to depend on components that have classes we don’t use.
+The CRP is the generic version of the ISP. The ISP advises us not to depend on classes that have methods we don't use. The CRP advises us not to depend on components that have classes we don't use.
 
 All of this advice can be reduced to a single sound bite:
 
-Don’t depend on things you don’t need.
+Don't depend on things you don't need.
 
 The  Tension  Diagr am  for  Component  Cohesion
 

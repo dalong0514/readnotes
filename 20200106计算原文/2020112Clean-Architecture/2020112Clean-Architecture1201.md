@@ -151,9 +151,9 @@ Then came the 1980s. Programmers were working in C or some other high-level lang
 
 Source modules were compiled from .c files into .o files, and then fed into the linker to create executable files that could be quickly loaded. Compiling each individual module was relatively fast, but compiling all the modules took a bit of time. The linker would then take even more time. Turnaround had again grown to an hour or more in many cases.
 
-It seemed as if programmers were doomed to endlessly chase their tails. Throughout the 1960s, 1970s, and 1980s, all the changes made to speed up workflow were thwarted by programmers’ ambitions, and the size of the programs they wrote. They could not seem to escape from the hour-long turnaround times. Loading time remained fast, but compile-link times were the bottleneck.
+It seemed as if programmers were doomed to endlessly chase their tails. Throughout the 1960s, 1970s, and 1980s, all the changes made to speed up workflow were thwarted by programmers' ambitions, and the size of the programs they wrote. They could not seem to escape from the hour-long turnaround times. Loading time remained fast, but compile-link times were the bottleneck.
 
-We were, of course, experiencing Murphy’s law of program size:
+We were, of course, experiencing Murphy's law of program size:
 
 Programs will grow to fill all available compile and link time.
 
@@ -161,7 +161,7 @@ But Murphy was not the only contender in town. Along came Moore,3 and in the lat
 
 By the mid-1990s, the time spent linking had begun to shrink faster than our ambitions could make programs grow. In many cases, link time decreased to a matter of seconds. For small jobs, the idea of a linking loader became feasible again.
 
-3.  Moore’s law: Computer speed, memory, and density double every 18 months. This law held from the
+3.  Moore's law: Computer speed, memory, and density double every 18 months. This law held from the
 
 1950s to 2000, but then, at least for clock rates, stopped cold.
 

@@ -1,10 +1,10 @@
-Chapter 20  Business Rules
+# 2001. Business Rules
 
-If we are going to divide our application into business rules and plugins, we’d better get a good grasp on just what business rules actually are. It turns out there are several different kinds.
+If we are going to divide our application into business rules and plugins, we'd better get a good grasp on just what business rules actually are. It turns out there are several different kinds.
 
 Strictly speaking, business rules are rules or procedures that make or save the business money. Very strictly speaking, these rules would make or save the business money, irrespective of whether they were implemented on a computer. They would make or save money even if they were executed manually.
 
-The fact that a bank charges N% interest for a loan is a business rule that makes the bank money. It doesn’t matter if a computer program calculates the interest, or if a clerk with an abacus calculates the interest.
+The fact that a bank charges N% interest for a loan is a business rule that makes the bank money. It doesn't matter if a computer program calculates the interest, or if a clerk with an abacus calculates the interest.
 
 We shall call these rules Critical Business Rules, because they are critical to the business itself, and would exist even if there were no system to automate them.
 
@@ -12,13 +12,13 @@ Critical Business Rules usually require some data to work with. For example, our
 
 We shall call this data Critical Business Data. This is the data that would exist even if the system were not automated.
 
-The critical rules and critical data are inextricably bound, so they are a good candidate for an object. We’ll call this kind of object an Entity.1
+The critical rules and critical data are inextricably bound, so they are a good candidate for an object. We'll call this kind of object an Entity.1
 
 Entities
 
 An Entity is an object within our computer system that embodies a small set of critical business rules operating on Critical Business Data. The Entity object either contains the Critical Business Data or has very easy access to that data. The interface of the Entity consists of the functions that implement the Critical Business Rules that operate on that data.
 
-1.  This is Ivar Jacobson’s name for this concept (I. Jacobson et al., Object Oriented Software Engineering,
+1.  This is Ivar Jacobson's name for this concept (I. Jacobson et al., Object Oriented Software Engineering,
 
 Addison-Wesley, 1992).
 
@@ -32,7 +32,7 @@ Figure 20.1  Loan entity as a class in UML
 
 When we create this kind of class, we are gathering together the software that implements a concept that is critical to the business, and separating it from every other concern in the automated system we are building. This class stands alone as a representative of the business. It is unsullied with concerns about databases, user interfaces, or third-party frameworks. It could serve the business in any system, irrespective of how that system was presented, or how the data was stored, or how the computers in that system were arranged. The Entity is pure business and nothing else.
 
-Some of you may be concerned that I called it a class. Don’t be. You don’t need to use an object-oriented language to create an Entity. All that is required is that you bind the Critical Business Data and the Critical Business Rules together in a single and separate software module.
+Some of you may be concerned that I called it a class. Don't be. You don't need to use an object-oriented language to create an Entity. All that is required is that you bind the Critical Business Data and the Critical Business Rules together in a single and separate software module.
 
 Use  Cases
 
@@ -42,7 +42,7 @@ Not all business rules are as pure as Entities. Some business rules make or save
 
 Chapter 20  Business Rules
 
-For example, imagine an application that is used by bank officers to create a new loan. The bank may decide that it does not want the loan officers to offer loan payment estimates until they have first gathered, and validated, contact information and ensured that the candidate’s credit score is 500 or higher. For this reason, the bank may specify that the system will not proceed to the payment estimation screen until the contact information screen has been filled out and verified, and the credit score has been confirmed to be greater than the cutoff.
+For example, imagine an application that is used by bank officers to create a new loan. The bank may decide that it does not want the loan officers to offer loan payment estimates until they have first gathered, and validated, contact information and ensured that the candidate's credit score is 500 or higher. For this reason, the bank may specify that the system will not proceed to the payment estimation screen until the contact information screen has been filled out and verified, and the credit score has been confirmed to be greater than the cutoff.
 
 This is a use case.2 A use case is a description of the way that an automated system is used. It specifies the input to be provided by the user, the output to be returned to the user, and the processing steps involved in producing that output. A use case describes application-specific business rules as opposed to the Critical Business Rules within the Entities.
 
@@ -76,7 +76,7 @@ Use cases expect input data, and they produce output data. However, a well-forme
 
 Chapter 20  Business Rules
 
-communicated to the user, or to any other component. We certainly don’t want the code within the use case class to know about HTML or SQL!
+communicated to the user, or to any other component. We certainly don't want the code within the use case class to know about HTML or SQL!
 
 The use case class accepts simple request data structures for its input, and returns simple response data structures as its output. These data structures are not dependent on anything. They do not derive from standard framework interfaces such as HttpRequest and HttpResponse. They know nothing of the web, nor do they share any of the trappings of whatever user interface might be in place.
 

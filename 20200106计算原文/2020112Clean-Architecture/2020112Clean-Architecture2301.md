@@ -46,7 +46,7 @@ Data  Mappers
 
 Going back to the topic of databases, in which layer do you think ORMs like Hibernate belong?
 
-First, let’s get something straight: There is no such thing as an object relational mapper (ORM). The reason is simple: Objects are not data structures. At least, they are not data structures from their users’ point of view. The users of an object cannot see the data, since it is all private. Those users see only the public methods of that object. So, from the user’s point of view, an object is simply a set of operations.
+First, let's get something straight: There is no such thing as an object relational mapper (ORM). The reason is simple: Objects are not data structures. At least, they are not data structures from their users' point of view. The users of an object cannot see the data, since it is all private. Those users see only the public methods of that object. So, from the user's point of view, an object is simply a set of operations.
 
 2.  Patterns of  Enterprise Application Architecture, Martin Fowler, et. al., Addison-Wesley, 2003, p. 466.
 

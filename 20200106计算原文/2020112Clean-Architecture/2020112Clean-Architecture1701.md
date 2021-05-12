@@ -1,6 +1,6 @@
 Chapter 17  Boundaries: Drawing Lines
 
-Software architecture is the art of drawing lines that I call boundaries. Those boundaries separate software elements from one another, and restrict those on one side from knowing about those on the other. Some of those lines are drawn very early in a project’s life—even before any code is written. Others are drawn much later. Those that are drawn early are drawn for the purposes of deferring decisions for as long as possible, and of keeping those decisions from polluting the core business logic.
+Software architecture is the art of drawing lines that I call boundaries. Those boundaries separate software elements from one another, and restrict those on one side from knowing about those on the other. Some of those lines are drawn very early in a project's life—even before any code is written. Others are drawn much later. Those that are drawn early are drawn for the purposes of deferring decisions for as long as possible, and of keeping those decisions from polluting the core business logic.
 
 Recall that the goal of an architect is to minimize the human resources required to build and maintain the required system. What it is that saps this kind of people-power? Coupling—and especially coupling to premature decisions.
 
@@ -8,9 +8,9 @@ Which kinds of decisions are premature? Decisions that have nothing to do with t
 
 A  Couple  of  Sad  Stories
 
-Here’s the sad story of company P, which serves as a warning about making premature decisions. In the 1980s the founders of P wrote a simple monolithic desktop application. They enjoyed a great deal of success and grew the product through the 1990s into a popular and successful desktop GUI application.
+Here's the sad story of company P, which serves as a warning about making premature decisions. In the 1980s the founders of P wrote a simple monolithic desktop application. They enjoyed a great deal of success and grew the product through the 1990s into a popular and successful desktop GUI application.
 
-But then, in the late 1990s, the web emerged as a force. Suddenly everybody had to have a web solution, and P was no exception. P’s customers clamored for a version of the product on the web. To meet this demand, the company hired a bunch of hotshot twenty-something Java programmers and embarked upon a project to webify their product.
+But then, in the late 1990s, the web emerged as a force. Suddenly everybody had to have a web solution, and P was no exception. P's customers clamored for a version of the product on the web. To meet this demand, the company hired a bunch of hotshot twenty-something Java programmers and embarked upon a project to webify their product.
 
 160
 
@@ -26,9 +26,9 @@ And think of what those executables had to do to implement the simplest of featu
 
 Of course, during development the programmers did not have a server farm. Indeed, they simply ran all three executables in three different processes on a single machine. They developed this way for several years. But they were convinced that their architecture was right. And so, even though they were executing in a single machine, they continued all the object instantiations, all the serializations, all the marshaling and de-marshaling, all the building and parsing of messages, all the socket communications, and all the extra stuff in a single machine.
 
-1.  The word「architecture」appears in quotes here because three-tier is not an architecture; it’s a topology.
+1.  The word「architecture」appears in quotes here because three-tier is not an architecture; it's a topology.
 
-It’s exactly the kind of decision that a good architecture strives to defer.
+It's exactly the kind of decision that a good architecture strives to defer.
 
 161
 
@@ -38,11 +38,11 @@ The irony is that company P never sold a system that required a server farm. Eve
 
 The tragedy is that the architects, by making a premature decision, multiplied the development effort enormously.
 
-The story of P is not isolated. I’ve seen it many times and in many places. Indeed, P is a superposition of all those places.
+The story of P is not isolated. I've seen it many times and in many places. Indeed, P is a superposition of all those places.
 
 But there are worse fates than P.
 
-Consider W, a local business that manages fleets of company cars. They recently hired an「Architect」to get their rag-tag software effort under control. And, let me tell you, control was this guy’s middle name. He quickly realized that what this little operation needed was a full-blown, enterprise-scale, service-oriented「ARCHITECTURE.」He created a huge domain model of all the different「objects」in the business, designed a suite of services to manage these domain objects, and put all the developers on a path to Hell. As a simple example, suppose you wanted to add the name, address, and phone number of a contact person to a sales record. You had to go to the ServiceRegistry and ask for the service ID of the ContactService. Then you had to send a CreateContact message to the ContactService. Of course, this message had dozens of fields that all had to have valid data in them—data to which the programmer had no access, since all the programmer had was a name, address, and phone number. After faking the data, the programmer had to jam the ID of the newly created contact into the sales record and send the UpdateContact message to the SaleRecordService.
+Consider W, a local business that manages fleets of company cars. They recently hired an「Architect」to get their rag-tag software effort under control. And, let me tell you, control was this guy's middle name. He quickly realized that what this little operation needed was a full-blown, enterprise-scale, service-oriented「ARCHITECTURE.」He created a huge domain model of all the different「objects」in the business, designed a suite of services to manage these domain objects, and put all the developers on a path to Hell. As a simple example, suppose you wanted to add the name, address, and phone number of a contact person to a sales record. You had to go to the ServiceRegistry and ask for the service ID of the ContactService. Then you had to send a CreateContact message to the ContactService. Of course, this message had dozens of fields that all had to have valid data in them—data to which the programmer had no access, since all the programmer had was a name, address, and phone number. After faking the data, the programmer had to jam the ID of the newly created contact into the sales record and send the UpdateContact message to the SaleRecordService.
 
 Of course, to test anything you had to fire up all the necessary services, one by one, and fire up the message bus, and the BPel server, and … And then, there were the propagation delays as these messages bounced from service to service, and waited in queue after queue.
 
@@ -54,13 +54,13 @@ And then if you wanted to add a new feature—well, you can imagine the coupling
 
 Hell starts to seem like a nice place by comparison.
 
-There’s nothing intrinsically wrong with a software system that is structured around services. The error at W was the premature adoption and enforcement of a suite of tools that promised SoA—that is, the premature adoption of a massive suite of domain object services. The cost of those errors was sheer person-hours—person-hours in droves—flushed down the SoA vortex.
+There's nothing intrinsically wrong with a software system that is structured around services. The error at W was the premature adoption and enforcement of a suite of tools that promised SoA—that is, the premature adoption of a massive suite of domain object services. The cost of those errors was sheer person-hours—person-hours in droves—flushed down the SoA vortex.
 
-I could go on describing one architectural failure after another. But let’s talk about an architectural success instead.
+I could go on describing one architectural failure after another. But let's talk about an architectural success instead.
 
 FitNesse
 
-My Son, Micah, and I started work on FitNesse in 2001. The idea was to create a simple wiki that wrapped Ward Cunningham’s FIT tool for writing acceptance tests.
+My Son, Micah, and I started work on FitNesse in 2001. The idea was to create a simple wiki that wrapped Ward Cunningham's FIT tool for writing acceptance tests.
 
 This was back in the days before Maven「solved」the jar file problem. I was adamant that anything we produced should not require people to download more than one jar file. I called this rule,「Download and Go.」This rule drove many of our decisions.
 
@@ -74,19 +74,19 @@ Chapter 17  Boundaries: Drawing Lines
 
 Another early decision was to avoid thinking about a database. We had MySQL in the back of our minds, but we purposely delayed that decision by employing a design that made the decision irrelevant. That design was simply to put an interface between all data accesses and the data repository itself.
 
-We put the data access methods into an interface named WikiPage. Those methods provided all the functionality we needed to find, fetch, and save pages. Of course, we didn’t implement those methods at first; we simply stubbed them out while we worked on features that didn’t involve fetching and saving the data.
+We put the data access methods into an interface named WikiPage. Those methods provided all the functionality we needed to find, fetch, and save pages. Of course, we didn't implement those methods at first; we simply stubbed them out while we worked on features that didn't involve fetching and saving the data.
 
-Indeed, for three months we simply worked on translating wiki text into HTML. This didn’t require any kind of data storage, so we created a class named MockWikiPage that simply left the data access methods stubbed.
+Indeed, for three months we simply worked on translating wiki text into HTML. This didn't require any kind of data storage, so we created a class named MockWikiPage that simply left the data access methods stubbed.
 
 Eventually, those stubs became insufficient for the features we wanted to write. We needed real data access, not stubs. So we created a new derivative of WikiPage named InMemoryPage. This derivative implemented the data access method to manage a hash table of wiki pages, which we kept in RAM.
 
-This allowed us to write feature after feature for a full year. In fact, we got the whole first version of the FitNesse program working this way. We could create pages, link to other pages, do all the fancy wiki formatting, and even run tests with FIT. What we couldn’t do was save any of our work.
+This allowed us to write feature after feature for a full year. In fact, we got the whole first version of the FitNesse program working this way. We could create pages, link to other pages, do all the fancy wiki formatting, and even run tests with FIT. What we couldn't do was save any of our work.
 
-When it came time to implement persistence, we thought again about MySQL, but decided that wasn’t necessary in the short term, because it would be really easy to write the hash tables out to flat files. So we implemented FileSystemWikiPage, which just moved the functionality out to flat files, and then we continued developing more features.
+When it came time to implement persistence, we thought again about MySQL, but decided that wasn't necessary in the short term, because it would be really easy to write the hash tables out to flat files. So we implemented FileSystemWikiPage, which just moved the functionality out to flat files, and then we continued developing more features.
 
 Three months later, we reached the conclusion that the flat file solution was good enough; we decided to abandon the idea of MySQL altogether. We deferred that decision into nonexistence and never looked back.
 
-That would be the end of the story if it weren’t for one of our customers who decided that he needed to put the wiki into MySQL for his own purposes. We
+That would be the end of the story if it weren't for one of our customers who decided that he needed to put the wiki into MySQL for his own purposes. We
 
 164
 
@@ -100,21 +100,21 @@ Early in the development of FitNesse, we drew a boundary line between business r
 
 The fact that we did not have a database running for 18 months of development meant that, for 18 months, we did not have schema issues, query issues, database server issues, password issues, connection time issues, and all the other nasty issues that raise their ugly heads when you fire up a database. It also meant that all our tests ran fast, because there was no database to slow them down.
 
-In short, drawing the boundary lines helped us delay and defer decisions, and it ultimately saved us an enormous amount of time and headaches. And that’s what a good architecture should do.
+In short, drawing the boundary lines helped us delay and defer decisions, and it ultimately saved us an enormous amount of time and headaches. And that's what a good architecture should do.
 
 Which  Lines  Do  You  Dr aw,  and  When  Do  You Dr aw  Them?
 
-You draw lines between things that matter and things that don’t. The GUI doesn’t matter to the business rules, so there should be a line between them. The database doesn’t matter to the GUI, so there should be a line between
+You draw lines between things that matter and things that don't. The GUI doesn't matter to the business rules, so there should be a line between them. The database doesn't matter to the GUI, so there should be a line between
 
 165
 
 Chapter 17  Boundaries: Drawing Lines
 
-them. The database doesn’t matter to the business rules, so there should be a line between them.
+them. The database doesn't matter to the business rules, so there should be a line between them.
 
 Some of you may have rejected one or more of those statements, especially the part about the business rules not caring about the database. Many of us have been taught to believe that the database is inextricably connected to the business rules. Some of us have even been convinced that the database is the embodiment of the business rules.
 
-But, as we shall see in another chapter, this idea is misguided. The database is a tool that the business rules can use indirectly. The business rules don’t need to know about the schema, or the query language, or any of the other details about the database. All the business rules need to know is that there is a set of functions that can be used to fetch or save data. This allows us to put the database behind an interface.
+But, as we shall see in another chapter, this idea is misguided. The database is a tool that the business rules can use indirectly. The business rules don't need to know about the schema, or the query language, or any of the other details about the database. All the business rules need to know is that there is a set of functions that can be used to fetch or save data. This allows us to put the database behind an interface.
 
 You can see this clearly in Figure 17.1. The BusinessRules use the DatabaseInterface to load and save data. The DatabaseAccess implements the interface and directs the operation of the actual Database.
 
@@ -132,7 +132,7 @@ Figure 17.2  The boundary line
 
 Note the two arrows leaving the DatabaseAccess class. Those two arrows point away from the DatabaseAccess class. That means that none of these classes knows that the DatabaseAccess class exists.
 
-Now let’s pull back a bit. We’ll look at the component that contains many business rules, and the component that contains the database and all its access classes (Figure 17.3).
+Now let's pull back a bit. We'll look at the component that contains many business rules, and the component that contains the database and all its access classes (Figure 17.3).
 
 167
 
@@ -146,13 +146,13 @@ The direction of this line is important. It shows that the Database does not mat
 
 If that seems strange to you, just remember this point: The Database component contains the code that translates the calls made by the BusinessRules into the query language of the database. It is that translation code that knows about the BusinessRules.
 
-Having drawn this boundary line between the two components, and having set the direction of the arrow toward the BusinessRules, we can now see that the BusinessRules could use any kind of database. The Database component could be replaced with many different implementations—the BusinessRules don’t care.
+Having drawn this boundary line between the two components, and having set the direction of the arrow toward the BusinessRules, we can now see that the BusinessRules could use any kind of database. The Database component could be replaced with many different implementations—the BusinessRules don't care.
 
 168
 
 What About Input and Output?
 
-The database could be implemented with Oracle, or MySQL, or Couch, or Datomic, or even flat files. The business rules don’t care at all. And that means that the database decision can be deferred and you can focus on getting the business rules written and tested before you have to make the database decision.
+The database could be implemented with Oracle, or MySQL, or Couch, or Datomic, or even flat files. The business rules don't care at all. And that means that the database decision can be deferred and you can focus on getting the business rules written and tested before you have to make the database decision.
 
 What  About  Input  and  Output?
 
@@ -194,19 +194,19 @@ Chapter 17  Boundaries: Drawing Lines
 
 The  Plugin  Argument
 
-Consider the relationship between ReSharper and Visual Studio. These components are produced by completely different development teams in completely different companies. Indeed, JetBrains, the maker of ReSharper, lives in Russia. Microsoft, of course, resides in Redmond, Washington. It’s hard to imagine two development teams that are more separate.
+Consider the relationship between ReSharper and Visual Studio. These components are produced by completely different development teams in completely different companies. Indeed, JetBrains, the maker of ReSharper, lives in Russia. Microsoft, of course, resides in Redmond, Washington. It's hard to imagine two development teams that are more separate.
 
 Which team can damage the other? Which team is immune to the other? The dependency structure tells the story (Figure 17.6). The source code of ReSharper depends on the source code of Visual Studio. Thus there is nothing that the ReSharper team can do to disturb the Visual Studio team. But the Visual Studio team could completely disable the ReSharper team if they so desired.
 
 Figure 17.6  ReSharper depends on Visual Studio
 
-That’s a deeply asymmetric relationship, and it is one that we desire to have in our own systems. We want certain modules to be immune to others. For example, we don’t want the business rules to break when someone changes the format of a web page, or changes the schema of the database. We don’t
+That's a deeply asymmetric relationship, and it is one that we desire to have in our own systems. We want certain modules to be immune to others. For example, we don't want the business rules to break when someone changes the format of a web page, or changes the schema of the database. We don't
 
 172
 
 Conclusion
 
-want changes in one part of the system to cause other unrelated parts of the system to break. We don’t want our systems to exhibit that kind of fragility.
+want changes in one part of the system to cause other unrelated parts of the system to break. We don't want our systems to exhibit that kind of fragility.
 
 Arranging our systems into a plugin architecture creates firewalls across which changes cannot propagate. If the GUI plugs in to the business rules, then changes in the GUI cannot affect those business rules.
 

@@ -1,16 +1,16 @@
 Chapter 24  Partial Boundaries
 
-Full-fledged architectural boundaries are expensive. They require reciprocal polymorphic Boundary interfaces, Input and Output data structures, and all of the dependency management necessary to isolate the two sides into independently compilable and deployable components. That takes a lot of work. It’s also a lot of work to maintain.
+Full-fledged architectural boundaries are expensive. They require reciprocal polymorphic Boundary interfaces, Input and Output data structures, and all of the dependency management necessary to isolate the two sides into independently compilable and deployable components. That takes a lot of work. It's also a lot of work to maintain.
 
 In many situations, a good architect might judge that the expense of such a boundary is too high—but might still want to hold a place for such a boundary in case it is needed later.
 
-This kind of anticipatory design is often frowned upon by many in the Agile community as a violation of YAGNI:「You Aren’t Going to Need It.」Architects, however, sometimes look at the problem and think,「Yeah, but I might.」In that case, they may implement a partial boundary.
+This kind of anticipatory design is often frowned upon by many in the Agile community as a violation of YAGNI:「You Aren't Going to Need It.」Architects, however, sometimes look at the problem and think,「Yeah, but I might.」In that case, they may implement a partial boundary.
 
 Skip  the  L ast  Step
 
 One way to construct a partial boundary is to do all the work necessary to create independently compilable and deployable components, and then simply keep them together in the same component. The reciprocal interfaces are there, the input/output data structures are there, and everything is all set up—but we compile and deploy all of them as a single component.
 
-Obviously, this kind of partial boundary requires the same amount of code and preparatory design work as a full boundary. However, it does not require the administration of multiple components. There’s no version number tracking or release management burden. That difference should not be taken lightly.
+Obviously, this kind of partial boundary requires the same amount of code and preparatory design work as a full boundary. However, it does not require the administration of multiple components. There's no version number tracking or release management burden. That difference should not be taken lightly.
 
 This was the early strategy behind FitNesse. The web server component of FitNesse was designed to be separable from the wiki and testing part of FitNesse. The idea was that we might want to create other web-based applications by using that web component. At the same, we did not want users to have to download two components. Recall that one of our design goals was「download and go.」It was our intent that users would download
 
@@ -46,7 +46,7 @@ Note, however, that the Client has a transitive dependency on all those service 
 
 Conclusion
 
-We’ve seen three simple ways to partially implement an architectural boundary. There are, of course, many others. These three strategies are simply offered as examples.
+We've seen three simple ways to partially implement an architectural boundary. There are, of course, many others. These three strategies are simply offered as examples.
 
 Each of these approaches has its own set of costs and benefits. Each is appropriate, in certain contexts, as a placeholder for an eventual full-fledged boundary. Each can also be degraded if that boundary never materializes.
 

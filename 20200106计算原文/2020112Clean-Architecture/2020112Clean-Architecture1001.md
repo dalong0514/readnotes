@@ -2,7 +2,7 @@
 
 ## Conclusion
 
-The lesson here is that depending on something that carries baggage that you don’t need can cause you troubles that you didn’t expect. We’ll explore this idea in more detail when we discuss the Common Reuse Principle in Chapter 13,「Component Cohesion.」
+The lesson here is that depending on something that carries baggage that you don't need can cause you troubles that you didn't expect. We'll explore this idea in more detail when we discuss the Common Reuse Principle in Chapter 13,「Component Cohesion.」
 
 本章所讨论的设计原则告诉我们：任何层次的软件设计如果依赖了它并不需要的东西，就会带来意料之外的麻烦。我们将会在第 13 章「组件聚合」中讨论共同复用原则的时候再来深入探讨更多相关的细节。
 
@@ -12,9 +12,9 @@ The Interface Segregation Principle (ISP) derives its name from the diagram show
 
 Figure 10.1  The Interface Segregation Principle
 
-In the situation illustrated in Figure 10.1, there are several users who use the operations of the OPS class. Let’s assume that User1 uses only op1, User2 uses only op2, and User3 uses only op3.
+In the situation illustrated in Figure 10.1, there are several users who use the operations of the OPS class. Let's assume that User1 uses only op1, User2 uses only op2, and User3 uses only op3.
 
-Now imagine that OPS is a class written in a language like Java. Clearly, in that case, the source code of User1 will inadvertently depend on op2 and op3, even though it doesn’t call them. This dependence means that a change to the source code of op2 in OPS will force User1 to be recompiled and redeployed, even though nothing that it cared about has actually changed.
+Now imagine that OPS is a class written in a language like Java. Clearly, in that case, the source code of User1 will inadvertently depend on op2 and op3, even though it doesn't call them. This dependence means that a change to the source code of op2 in OPS will force User1 to be recompiled and redeployed, even though nothing that it cared about has actually changed.
 
 This problem can be resolved by segregating the operations into interfaces as shown in Figure 10.2.
 
@@ -30,7 +30,7 @@ Figure 10.2  Segregated operations
 
 Clearly, the previously given description depends critically on language type. Statically typed languages like Java force programmers to create declarations that users must import, or use, or otherwise include. It is these included declarations in source code that create the source code dependencies that force recompilation and redeployment.
 
-In dynamically typed languages like Ruby and Python, such declarations don’t exist in source code. Instead, they are inferred at runtime. Thus there are no source code dependencies to force recompilation and redeployment. This is the primary reason that dynamically typed languages create systems that are more flexible and less tightly coupled than statically typed languages.
+In dynamically typed languages like Ruby and Python, such declarations don't exist in source code. Instead, they are inferred at runtime. Thus there are no source code dependencies to force recompilation and redeployment. This is the primary reason that dynamically typed languages create systems that are more flexible and less tightly coupled than statically typed languages.
 
 This fact could lead you to conclude that the ISP is a language issue, rather than an architecture issue.
 

@@ -1,8 +1,8 @@
-Chapter 21  Screaming Architecture
+# 2101. Screaming Architecture
 
 Imagine that you are looking at the blueprints of a building. This document, prepared by an architect, provides the plans for the building. What do these plans tell you?
 
-If the plans you are viewing are for a single-family residence, then you’ll likely see a front entrance, a foyer leading to a living room, and perhaps a dining room. There will likely be a kitchen a short distance away, close to the dining room. Perhaps there is a dinette area next to the kitchen, and probably a family room close to that. When you looked at those plans, there would be no question that you were looking at a single family home. The architecture would scream:「HOME.」
+If the plans you are viewing are for a single-family residence, then you'll likely see a front entrance, a foyer leading to a living room, and perhaps a dining room. There will likely be a kitchen a short distance away, close to the dining room. Perhaps there is a dinette area next to the kitchen, and probably a family room close to that. When you looked at those plans, there would be no question that you were looking at a single family home. The architecture would scream:「HOME.」
 
 Now suppose you were looking at the architecture of a library. You would likely see a grand entrance, an area for check-in/out clerks, reading areas, small conference rooms, and gallery after gallery capable of holding bookshelves for all the books in the library. That architecture would scream:「LIBRARY.」
 
@@ -10,7 +10,7 @@ So what does the architecture of your application scream? When you look at the t
 
 The  Theme  of  an  Architecture
 
-Go back and read Ivar Jacobson’s seminal work on software architecture: Object Oriented Software Engineering. Notice the subtitle of the book: A Use Case Driven Approach. In this book Jacobson makes the point that software architectures are structures that support the use cases of the system. Just as the plans for a house or a library scream about the use cases of those buildings, so should the architecture of a software application scream about the use cases of the application.
+Go back and read Ivar Jacobson's seminal work on software architecture: Object Oriented Software Engineering. Notice the subtitle of the book: A Use Case Driven Approach. In this book Jacobson makes the point that software architectures are structures that support the use cases of the system. Just as the plans for a house or a library scream about the use cases of those buildings, so should the architecture of a software application scream about the use cases of the application.
 
 196
 
@@ -44,7 +44,7 @@ Look at each framework with a jaded eye. View it skeptically. Yes, it might help
 
 Testable  Architectures
 
-If your system architecture is all about the use cases, and if you have kept your frameworks at arm’s length, then you should be able to unit-test all those use cases without any of the frameworks in place. You shouldn’t need the web server running to run your tests. You shouldn’t need the database connected to run your tests. Your Entity objects should be plain old objects that have no dependencies on frameworks or databases or other complications. Your use case objects should coordinate your Entity objects. Finally, all of them together should be testable in situ, without any of the complications of frameworks.
+If your system architecture is all about the use cases, and if you have kept your frameworks at arm's length, then you should be able to unit-test all those use cases without any of the frameworks in place. You shouldn't need the web server running to run your tests. You shouldn't need the database connected to run your tests. Your Entity objects should be plain old objects that have no dependencies on frameworks or databases or other complications. Your use case objects should coordinate your Entity objects. Finally, all of them together should be testable in situ, without any of the complications of frameworks.
 
 198
 
@@ -58,7 +58,7 @@ Your architecture should tell readers about the system, not about the frameworks
 
 And you should respond:
 
-「Oh, those are details that needn’t concern us at the moment. We’ll decide about them later.」
+「Oh, those are details that needn't concern us at the moment. We'll decide about them later.」
 
 199
 

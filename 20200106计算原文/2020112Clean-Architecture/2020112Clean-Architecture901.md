@@ -2,7 +2,7 @@
 
 ## Conclusion
 
-The LSP can, and should, be extended to the level of architecture. A simple violation of substitutability, can cause a system’s architecture to be polluted with a significant amount of extra mechanisms.
+The LSP can, and should, be extended to the level of architecture. A simple violation of substitutability, can cause a system's architecture to be polluted with a significant amount of extra mechanisms.
 
 LSP 可以且应该被应用于软件架构层面，因为一旦违背了可替換性，该系统架构就不得不为此增添大量复杂的应对机制。
 
@@ -12,7 +12,7 @@ In 1988, Barbara Liskov wrote the following as a way of defining subtypes.
 
 What is wanted here is something like the following substitution property: If  for each object o1 of  type S there is an object o2 of  type T such that for all  programs P defined in terms of  T, the behavior of  P is unchanged when o1 is  substituted for o2 then S is a subtype of  T.1
 
-To understand this idea, which is known as the Liskov Substitution Principle (LSP), let’s look at some examples.
+To understand this idea, which is known as the Liskov Substitution Principle (LSP), let's look at some examples.
 
 1 Barbara Liskov,「Data Abstraction and Hierarchy,」SIGPLAN Notices 23, 5 (May 1988).
 
@@ -98,7 +98,7 @@ purplecab.com/driver/Bob
 
 Clearly, this means that all the dispatch services, for all the different companies, must conform to the same REST interface. They must treat the pickupAddress, pickupTime, and destination fields identically.
 
-Now suppose the Acme taxi company hired some programmers who didn’t read the spec very carefully. They abbreviated the destination field to just dest. Acme is the largest taxi company in our area, and Acme’s CEO’s ex-wife is our CEO’s new wife, and … Well, you get the picture. What would happen to the architecture of our system?
+Now suppose the Acme taxi company hired some programmers who didn't read the spec very carefully. They abbreviated the destination field to just dest. Acme is the largest taxi company in our area, and Acme's CEO's ex-wife is our CEO's new wife, and … Well, you get the picture. What would happen to the architecture of our system?
 
 Obviously, we would need to add a special case. The dispatch request for any Acme driver would have to be constructed using a different set of rules from all the other drivers.
 
@@ -108,7 +108,7 @@ if (driver.getDispatchUri().startsWith("acme.com"))…
 
 But, of course, no architect worth his or her salt would allow such a construction to exist in the system. Putting the word「acme」into the code itself creates an opportunity for all kinds of horrible and mysterious errors, not to mention security breaches.
 
-For example, what if Acme became even more successful and bought the Purple Taxi company. What if the merged company maintained the separate brands and the separate websites, but unified all of the original companies’ systems? Would we have to add another if statement for「purple」?
+For example, what if Acme became even more successful and bought the Purple Taxi company. What if the merged company maintained the separate brands and the separate websites, but unified all of the original companies' systems? Would we have to add another if statement for「purple」?
 
 Our architect would have to insulate the system from bugs like this by creating some kind of dispatch command creation module that was driven by a configuration database keyed by the dispatch URI. The configuration data might look something like this:
 

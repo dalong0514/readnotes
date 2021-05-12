@@ -1,10 +1,10 @@
 Chapter 33  Case Study: Video Sales
 
-Now it’s time to put these rules and thoughts about architecture together into a case study. This case study will be short and simple, yet will depict both the process a good architect uses and the decisions that such an architect makes.
+Now it's time to put these rules and thoughts about architecture together into a case study. This case study will be short and simple, yet will depict both the process a good architect uses and the decisions that such an architect makes.
 
 The  Product
 
-For this case study, I’ve chosen a product with which I am rather intimately familiar: the software for a website that sells videos. Of course, it is reminiscent of cleancoders.com, the site where I sell my software tutorial videos.
+For this case study, I've chosen a product with which I am rather intimately familiar: the software for a website that sells videos. Of course, it is reminiscent of cleancoders.com, the site where I sell my software tutorial videos.
 
 The basic idea is trivial. We have a batch of videos we want to sell. We sell them, on the web, to both individuals and businesses. Individuals can pay one price to stream the videos, and another, higher price to download those videos and own them permanently. Business licenses are streaming only, and are purchased in batches that allow quantity discounts.
 
@@ -28,7 +28,7 @@ Figure 33.1  A typical use-case analysis
 
 The four main actors are evident. According to the Single Responsibility Principle, these four actors will be the four primary sources of change for the system. Every time some new feature is added, or some existing feature is changed, that step will be taken to serve one of these actors. Therefore we want to partition the system such that a change to one actor does not affect any of the other actors.
 
-The use cases shown in Figure 33.1 are not a complete list. For example, you won’t find log-in or log-out use cases. The reason for this omission is simply to manage the size of the problem in this book. If I were to include all the different use cases, then this chapter would have to turn into a book in its own right.
+The use cases shown in Figure 33.1 are not a complete list. For example, you won't find log-in or log-out use cases. The reason for this omission is simply to manage the size of the problem in this book. If I were to include all the different use cases, then this chapter would have to turn into a book in its own right.
 
 299
 
@@ -42,13 +42,13 @@ Component  Architecture
 
 Now that we know the actors and use cases, we can create a preliminary component architecture (Figure 33.2).
 
-The double lines in the drawing represent architectural boundaries as usual. You can see the typical partitioning of views, presenters, interactors, and controllers. You can also see that I’ve broken each of those categories up by their corresponding actors.
+The double lines in the drawing represent architectural boundaries as usual. You can see the typical partitioning of views, presenters, interactors, and controllers. You can also see that I've broken each of those categories up by their corresponding actors.
 
 Each of the components in Figure 33.2 represents a potential .jar file or .dll file. Each of those components will contain the views, presenters, interactors, and controllers that have been allocated to it.
 
 Note the special components for the Catalog View and the Catalog Presenter. This is how I dealt with the abstract View Catalog use case. I assume that those views and presenters will be coded into abstract classes within those components, and that the inheriting components will contain view and presenter classes that will inherit from those abstract classes.
 
-1.  This is my own notation for「abstract」use cases. It would have been more standard to use a UML  stereotype such as <<abstract>>, but I don’t find adhering to such standards very useful nowadays.
+1.  This is my own notation for「abstract」use cases. It would have been more standard to use a UML  stereotype such as <<abstract>>, but I don't find adhering to such standards very useful nowadays.
 
 300
 

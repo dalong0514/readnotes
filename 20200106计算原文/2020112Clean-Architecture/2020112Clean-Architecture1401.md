@@ -10,15 +10,15 @@ The  Acyclic  Dependencies  Principle
 
 Allow no cycles in the component dependency graph.
 
-Have you ever worked all day, gotten some stuff working, and then gone home, only to arrive the next morning to find that your stuff no longer works? Why doesn’t it work? Because somebody stayed later than you and changed something you depend on! I call this「the morning after syndrome.」
+Have you ever worked all day, gotten some stuff working, and then gone home, only to arrive the next morning to find that your stuff no longer works? Why doesn't it work? Because somebody stayed later than you and changed something you depend on! I call this「the morning after syndrome.」
 
-The「morning after syndrome」occurs in development environments where many developers are modifying the same source files. In relatively small projects with just a few developers, it isn’t too big a problem. But as the size of the project and the development team grow, the mornings after can get pretty nightmarish. It is not uncommon for weeks to go by without the team being able to build a stable version of the project. Instead, everyone keeps on changing and changing their code trying to make it work with the last changes that someone else made.
+The「morning after syndrome」occurs in development environments where many developers are modifying the same source files. In relatively small projects with just a few developers, it isn't too big a problem. But as the size of the project and the development team grow, the mornings after can get pretty nightmarish. It is not uncommon for weeks to go by without the team being able to build a stable version of the project. Instead, everyone keeps on changing and changing their code trying to make it work with the last changes that someone else made.
 
 Over the last several decades, two solutions to this problem have evolved, both of which came from the telecommunications industry. The first is「the weekly build,」and the second is the Acyclic Dependencies Principle (ADP).
 
 The  Weekly  Build
 
-The weekly build used to be common in medium-sized projects. It works like this: All the developers ignore each other for the first four days of the week. They all work on private copies of the code, and don’t worry about integrating their work on a collective basis. Then, on Friday, they integrate all their changes and build the system.
+The weekly build used to be common in medium-sized projects. It works like this: All the developers ignore each other for the first four days of the week. They all work on private copies of the code, and don't worry about integrating their work on a collective basis. Then, on Friday, they integrate all their changes and build the system.
 
 This approach has the wonderful advantage of allowing the developers to live in an isolated world for four days out of five. The disadvantage, of course, is the large integration penalty that is paid on Friday.
 
@@ -62,7 +62,7 @@ The Acyclic Dependencies Principle
 
 by this release; you just follow the dependency arrows backward. Thus View and Main will both be affected. The developers currently working on those components will have to decide when they should integrate their work with the new release of Presenters.
 
-Notice also that when Main is released, it has utterly no effect on any of the other components in the system. They don’t know about Main, and they don’t care when it changes. This is nice. It means that the impact of releasing Main is relatively small.
+Notice also that when Main is released, it has utterly no effect on any of the other components in the system. They don't know about Main, and they don't care when it changes. This is nice. It means that the impact of releasing Main is relatively small.
 
 When the developers working on the Presenters component would like to run a test of that component, they just need to build their version of Presenters with the versions of the Interactors and Entities components that they are currently using. None of the other components in the system need be involved. This is nice. It means that the developers working on Presenters have relatively little work to do to set up a test, and that they have relatively few variables to consider.
 
@@ -70,7 +70,7 @@ When it is time to release the whole system, the process proceeds from the botto
 
 The  Effect  of  a  Cycle  in  the  Component Dependency  Gr aph
 
-Suppose that a new requirement forces us to change one of the classes in Entities such that it makes use of a class in Authorizer. For example, let’s say that the User class in Entities uses the Permissions class in Authorizer. This creates a dependency cycle, as shown in Figure 14.2.
+Suppose that a new requirement forces us to change one of the classes in Entities such that it makes use of a class in Authorizer. For example, let's say that the User class in Entities uses the Permissions class in Authorizer. This creates a dependency cycle, as shown in Figure 14.2.
 
 This cycle creates some immediate problems. For example, the developers working on the Database component know that to release it, the component
 
@@ -78,13 +78,13 @@ This cycle creates some immediate problems. For example, the developers working 
 
 Chapter 14  Component Coupling
 
-must be compatible with Entities. However, with the cycle in place, the Database component must now also be compatible with Authorizer. But Authorizer depends on Interactors. This makes Database much more difficult to release. Entities, Authorizer, and Interactors have, in effect, become one large component—which means that all of the developers working on any of those components will experience the dreaded「morning after syndrome.」They will be stepping all over one another because they must all use exactly the same release of one another’s components.
+must be compatible with Entities. However, with the cycle in place, the Database component must now also be compatible with Authorizer. But Authorizer depends on Interactors. This makes Database much more difficult to release. Entities, Authorizer, and Interactors have, in effect, become one large component—which means that all of the developers working on any of those components will experience the dreaded「morning after syndrome.」They will be stepping all over one another because they must all use exactly the same release of one another's components.
 
 Figure 14.2  A dependency cycle
 
 But this is just part of the trouble. Consider what happens when we want to test the Entities component. To our chagrin, we find that we must build and integrate with Authorizer and Interactors. This level of coupling between components is troubling, if not intolerable.
 
-You may have wondered why you have to include so many different libraries, and so much of everybody else’s stuff, just to run a simple unit test of one of your classes. If you investigate the matter a bit, you will probably discover that there are cycles in the dependency graph. Such cycles make it very difficult to isolate components. Unit testing and releasing become very difficult and error prone. In addition, build issues grow geometrically with the number of modules.
+You may have wondered why you have to include so many different libraries, and so much of everybody else's stuff, just to run a simple unit test of one of your classes. If you investigate the matter a bit, you will probably discover that there are cycles in the dependency graph. Such cycles make it very difficult to isolate components. Unit testing and releasing become very difficult and error prone. In addition, build issues grow geometrically with the number of modules.
 
 116
 
@@ -128,9 +128,9 @@ Top-Down Design
 
 When we see a large-grained grouping such as a component dependency structure, we believe that the components ought to somehow represent the functions of the system. Yet this does not seem to be an attribute of component dependency diagrams.
 
-In fact, component dependency diagrams have very little do to with describing the function of the application. Instead, they are a map to the buildability and maintainability of the application. This is why they aren’t designed at the beginning of the project. There is no software to build or maintain, so there is no need for a build and maintenance map. But as more and more modules accumulate in the early stages of implementation and design, there is a growing need to manage the dependencies so that the project can be developed without the「morning after syndrome.」Moreover, we want to keep changes as localized as possible, so we start paying attention to the SRP and CCP and collocate classes that are likely to change together.
+In fact, component dependency diagrams have very little do to with describing the function of the application. Instead, they are a map to the buildability and maintainability of the application. This is why they aren't designed at the beginning of the project. There is no software to build or maintain, so there is no need for a build and maintenance map. But as more and more modules accumulate in the early stages of implementation and design, there is a growing need to manage the dependencies so that the project can be developed without the「morning after syndrome.」Moreover, we want to keep changes as localized as possible, so we start paying attention to the SRP and CCP and collocate classes that are likely to change together.
 
-One of the overriding concerns with this dependency structure is the isolation of volatility. We don’t want components that change frequently and for capricious reasons to affect components that otherwise ought to be stable. For example, we don’t want cosmetic changes to the GUI to have an impact on our business rules. We don’t want the addition or modification of reports to have an impact on our highest-level policies. Consequently, the component dependency graph is created and molded by architects to protect stable high-value components from volatile components.
+One of the overriding concerns with this dependency structure is the isolation of volatility. We don't want components that change frequently and for capricious reasons to affect components that otherwise ought to be stable. For example, we don't want cosmetic changes to the GUI to have an impact on our business rules. We don't want the addition or modification of reports to have an impact on our highest-level policies. Consequently, the component dependency graph is created and molded by architects to protect stable high-value components from volatile components.
 
 As the application continues to grow, we start to become concerned about creating reusable elements. At this point, the CRP begins to influence the composition of the components. Finally, as cycles appear, the ADP is applied and the component dependency graph jitters and grows.
 
@@ -154,7 +154,7 @@ Stabilit y
 
 What is meant by「stability」? Stand a penny on its side. Is it stable in that position? You would likely say「no.」However, unless disturbed, it will remain in that position for a very long time. Thus stability has nothing directly to do with frequency of change. The penny is not changing, but it is difficult to think of it as stable.
 
-Webster’s Dictionary says that something is stable if it is「not easily moved.」Stability is related to the amount of work required to make a change. On the one hand, the standing penny is not stable because it requires very little work to topple it. On the other hand, a table is very stable because it takes a considerable amount of effort to turn it over.
+Webster's Dictionary says that something is stable if it is「not easily moved.」Stability is related to the amount of work required to make a change. On the one hand, the standing penny is not stable because it requires very little work to topple it. On the other hand, a table is very stable because it takes a considerable amount of effort to turn it over.
 
 How does this relate to software? Many factors may make a software component hard to change—for example, its size, complexity, and clarity, among
 
@@ -196,7 +196,7 @@ The Fan-in and Fan-out metrics1 are calculated by counting the number of classes
 
 Figure 14.7  Our example
 
-Let’s say we want to calculate the stability of the component Cc. We find that there are three classes outside Cc that depend on classes in Cc. Thus, Fan-in = 3. Moreover, there is one class outside Cc that classes in Cc depend on. Thus, Fan-out = 1 and I = 1/4.
+Let's say we want to calculate the stability of the component Cc. We find that there are three classes outside Cc that depend on classes in Cc. Thus, Fan-in = 3. Moreover, there is one class outside Cc that classes in Cc depend on. Thus, Fan-out = 1 and I = 1/4.
 
 1.  In previous publications, I used the names Efferent and Afferent couplings (Ce and Ca) for Fan-out and Fan-in, respectively. That was just hubris on my part: I liked the metaphor of the central nervous system.
 
@@ -230,7 +230,7 @@ Figure 14.9  SDP violation
 
 Flexible is a component that we have designed to be easy to change. We want Flexible to be unstable. However, some developer, working in the component named Stable, has hung a dependency on Flexible. This violates the SDP because the I metric for Stable is much smaller than the I metric for Flexible. As a result, Flexible will no longer be easy to change. A change to Flexible will force us to deal with Stable and all its dependents.
 
-To fix this problem, we somehow have to break the dependence of Stable on Flexible. Why does this dependency exist? Let’s assume that there is a
+To fix this problem, we somehow have to break the dependence of Stable on Flexible. Why does this dependency exist? Let's assume that there is a
 
 124
 
@@ -246,7 +246,7 @@ Figure 14.11  C implements the interface class US
 
 Abstract ComponentsYou may find it strange that we would create a component—in this example, UService—that contains nothing but an interface. Such a component contains no executable code! It turns out, however, that this is a very common, and necessary, tactic when using statically typed languages like Java and C#. These abstract components are very stable and, therefore, are ideal targets for less stable components to depend on.
 
-When using dynamically typed languages like Ruby and Python, these abstract components don’t exist at all, nor do the dependencies that would
+When using dynamically typed languages like Ruby and Python, these abstract components don't exist at all, nor do the dependencies that would
 
 125
 
@@ -260,7 +260,7 @@ A component should be as abstract as it is stable.
 
 Where  Do  We  Put  the  High- Level  Policy?
 
-Some software in the system should not change very often. This software represents high-level architecture and policy decisions. We don’t want these business and architectural decisions to be volatile. Thus the software that encapsulates the high-level policies of the system should be placed into stable components (I = 0). Unstable components (I = 1) should contain only the software that is volatile—software that we want to be able to quickly and easily change.
+Some software in the system should not change very often. This software represents high-level architecture and policy decisions. We don't want these business and architectural decisions to be volatile. Thus the software that encapsulates the high-level policies of the system should be placed into stable components (I = 0). Unstable components (I = 1) should contain only the software that is volatile—software that we want to be able to quickly and easily change.
 
 However, if the high-level policies are placed into stable components, then the source code that represents those policies will be difficult to change. This could make the overall architecture inflexible. How can a component that is maximally stable (I = 0) be flexible enough to withstand change? The answer is found in the OCP. This principle tells us that it is possible and desirable to create classes that are flexible enough to be extended without requiring modification. Which kind of classes conform to this principle? Abstract classes.
 
@@ -338,7 +338,7 @@ This leads us to our last metric. If it is desirable for components to be on, or
 
 (cid:129) D3: Distance. D = |A+I-1| . The range of this metric is [0, 1]. A value of 0 indicates that the component is directly on the Main Sequence. A value of 1 indicates that the component is as far away as possible from the Main Sequence.
 
-2.  The author begs the reader’s indulgence for the arrogance of borrowing such an important term from
+2.  The author begs the reader's indulgence for the arrogance of borrowing such an important term from
 
 astronomy.
 

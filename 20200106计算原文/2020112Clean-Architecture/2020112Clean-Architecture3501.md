@@ -1,7 +1,5 @@
 # Appendix
 
-323
-
 This page intentionally left blank
 
 AArchitecture
@@ -12,9 +10,9 @@ Archaeology
 
 Appendix A  Architecture Archaeology
 
-To unearth the principles of good architecture, let’s take a 45-year journey through some of the projects I have worked on since 1970. Some of these projects are interesting from an architectural point of view. Others are interesting because of the lessons learned and because of how they fed into subsequent projects.
+To unearth the principles of good architecture, let's take a 45-year journey through some of the projects I have worked on since 1970. Some of these projects are interesting from an architectural point of view. Others are interesting because of the lessons learned and because of how they fed into subsequent projects.
 
-This appendix is somewhat autobiographical. I’ve tried to keep the discussion relevant to the topic of architecture; but, as in anything autobiographical, other factors sometimes intrude. ;-)
+This appendix is somewhat autobiographical. I've tried to keep the discussion relevant to the topic of architecture; but, as in anything autobiographical, other factors sometimes intrude. ;-)
 
 Union  Accounting  System
 
@@ -30,9 +28,9 @@ As you can see from the picture, this was a huge1 machine. It filled a room, and
 
 This computer was built in the days before integrated circuits. It was built out of discrete transistors. There were even some vacuum tubes in it (albeit only in the sense amplifiers of the tape drives).
 
-By today’s standards the machine was huge, slow, small, and primitive. It had 16K * 18 bits of core, with a cycle time of about 7 microseconds.2 It filled a big, environmentally controlled room. It had 7 track magnetic tape drives and a disk drive with a capacity of 20 megabytes or so.
+By today's standards the machine was huge, slow, small, and primitive. It had 16K * 18 bits of core, with a cycle time of about 7 microseconds.2 It filled a big, environmentally controlled room. It had 7 track magnetic tape drives and a disk drive with a capacity of 20 megabytes or so.
 
-That disk was a monster. You can see it in the picture in Figure A.2—but that doesn’t quite give you the scale of the beast. The top of that cabinet was over my head. The platters were 36 inches in diameter, and 3/8 of an inch thick. One of the platters is pictured in Figure A.3.
+That disk was a monster. You can see it in the picture in Figure A.2—but that doesn't quite give you the scale of the beast. The top of that cabinet was over my head. The platters were 36 inches in diameter, and 3/8 of an inch thick. One of the platters is pictured in Figure A.3.
 
 Now count the platters in that first picture. There are more than a dozen. Each one had its own individual seek arm that was driven by pneumatic actuators. You could watch those seek heads move across the platters. The seek time was probably about half a second to a second.
 
@@ -52,7 +50,7 @@ Appendix A  Architecture Archaeology
 
 Figure A.2  The data storage unit with its plattersCourtesy Ed Thelen, ed-thelen.org
 
-The great claim to fame of the Datanet 30 was its capability to drive a large number of asynchronous terminals at relatively high speed. That’s exactly what ASC needed.
+The great claim to fame of the Datanet 30 was its capability to drive a large number of asynchronous terminals at relatively high speed. That's exactly what ASC needed.
 
 ASC was based in Lake Bluff, Illinois, 30 miles north of Chicago. The Local 705 office was in downtown Chicago. The union wanted a dozen or so of their data entry clerks to use CRT4 terminals (Figure A.4) to enter data into the system. They would print reports on ASR35 teletypes (Figure A.5).
 
@@ -68,7 +66,7 @@ The CRT terminals ran at 30 characters per second. This was a pretty good rate f
 
 ASC leased a dozen or so dedicated phone lines and twice that number of 300 baud modems from the phone company to connect the Datanet 30 to these terminals.
 
-These computers did not come with operating systems. They didn’t even come with file systems. What you got was an assembler.
+These computers did not come with operating systems. They didn't even come with file systems. What you got was an assembler.
 
 If you needed to store data on the disk, you stored data on the disk. Not in a file. Not in a directory. You figured out which track, platter, and sector to put the data into, and then you operated the disk to put the data there. Yes, that means we wrote our own disk driver.
 
@@ -88,13 +86,13 @@ As you might imagine, that big Datanet 30 was an expensive machine to operate an
 
 Union Accounting System
 
-running was expensive, too. What’s more, minicomputers were becoming popular, and were much cheaper.
+running was expensive, too. What's more, minicomputers were becoming popular, and were much cheaper.
 
 Figure A.5  ASR35 teletypeJoe Mabel, with permission
 
 In 1971, when I was 18 years old, ASC hired me and two of my geeky friends to replace the whole union accounting system with one that was based on a Varian 620/f minicomputer (Figure A.6). The computer was cheap. We were cheap. So it seemed like a good deal for ASC.
 
-The Varian machine had a 16-bit bus and 32K * 16 core memory. It had a cycle time of about 1 microsecond. It was much more powerful than the Datanet 30. It used IBM’s wildly successful 2314 disk technology, allowing us to store 30 megabytes on platters that were only 14 inches in diameter and could not explode through concrete block walls!
+The Varian machine had a 16-bit bus and 32K * 16 core memory. It had a cycle time of about 1 microsecond. It was much more powerful than the Datanet 30. It used IBM's wildly successful 2314 disk technology, allowing us to store 30 megabytes on platters that were only 14 inches in diameter and could not explode through concrete block walls!
 
 Of course, we still had no operating system. No file system. No high-level language. All we had was an assembler. But we made do.
 
@@ -122,7 +120,7 @@ The architecture of the system was simple (Figure A.7). When an application was 
 
 Figure A.7  The system architecture
 
-There are two boundaries in this system. The first is the character output boundary. The applications had no idea that their output was going to a 30-cps terminal. Indeed, the character output was entirely abstract from the applications’ point of view. The applications simply passed strings to the supervisor, and the supervisor took care of loading the buffers, sending the characters to the terminals, and swapping the applications in and out of memory.
+There are two boundaries in this system. The first is the character output boundary. The applications had no idea that their output was going to a 30-cps terminal. Indeed, the character output was entirely abstract from the applications' point of view. The applications simply passed strings to the supervisor, and the supervisor took care of loading the buffers, sending the characters to the terminals, and swapping the applications in and out of memory.
 
 333
 
@@ -176,7 +174,7 @@ There was no scrolling back to previous blocks. You edited your program in a str
 
 Once the program was edited, we returned to the OS and invoked the assembler. The assembler read the source code tape, and wrote a binary tape, while also producing a listing on our data products line printer.
 
-The tapes weren’t 100% reliable, so we always wrote two tapes at the same time. That way, at least one of them had a high probability of being free of errors.
+The tapes weren't 100% reliable, so we always wrote two tapes at the same time. That way, at least one of them had a high probability of being free of errors.
 
 Our program was approximately 20,000 lines of code, and took nearly 30 minutes to compile. The odds that we would get a tape read error during that time were roughly 1 in 10. If the assembler got a tape error, it would ring the
 
@@ -192,7 +190,7 @@ bell on the console and then start printing a stream of errors on the printer. Y
 
 The architecture of the program was typical for those days. There was a Master Operating Program, appropriately called「the MOP.」Its job was to manage basic IO functions and provide the rudiments of a console「shell.」Many of the divisions of Teradyne shared the MOP source code, but each had forked it for its own uses. Consequently, we would send source code updates around to each other in the form of marked-up listings that we would then integrate manually (and very carefully).
 
-A special-purpose utility layer controlled the measurement hardware, the positioning tables, and the laser. The boundary between this layer and the MOP was muddled at best. While the utility layer called the MOP, the MOP had been specifically modified for that layer, and often called back into it. Indeed, we didn’t really think of these two as separate layers. To us, it was just some code that we added to the MOP in a highly coupled way.
+A special-purpose utility layer controlled the measurement hardware, the positioning tables, and the laser. The boundary between this layer and the MOP was muddled at best. While the utility layer called the MOP, the MOP had been specifically modified for that layer, and often called back into it. Indeed, we didn't really think of these two as separate layers. To us, it was just some code that we added to the MOP in a highly coupled way.
 
 Next came the isolation layer. This layer provided a virtual machine interface for the application programs, which were written in a completely different domain-specific data-driven language (DSL). The language had operations for moving the laser, moving the table, making cuts, making measurements, and so on. Our customers would write their laser trimming application programs in this language, and the isolation layer would execute them.
 
@@ -214,9 +212,9 @@ Aluminum  Die- Cast  Monitoring
 
 In the middle of the 1970s, while OPEC was placing an embargo on oil, and gasoline shortages were causing angry drivers to get into fights at gas stations, I began working at Outboard Marine Corporation (OMC). This is the parent company of Johnson Motors and Lawnboy lawnmowers.
 
-OMC maintained a huge facility in Waukegan, Illinois, for creating die-cast aluminum parts for all of the company’s motors and products. Aluminum was melted down in huge furnaces, and then carried in large buckets to dozens upon dozens of individually operated aluminum die-cast machines. Each machine had a human operator responsible for setting the molds, cycling the machine, and extracting the newly cast parts. These operators were paid based on how many parts they produced.
+OMC maintained a huge facility in Waukegan, Illinois, for creating die-cast aluminum parts for all of the company's motors and products. Aluminum was melted down in huge furnaces, and then carried in large buckets to dozens upon dozens of individually operated aluminum die-cast machines. Each machine had a human operator responsible for setting the molds, cycling the machine, and extracting the newly cast parts. These operators were paid based on how many parts they produced.
 
-I was hired to work on a shop-floor automation project. OMC had purchased an IBM System/7—which was IBM’s answer to the minicomputer. They tied this computer to all the die-cast machines on the floor, so that we could count, and time, the cycles of each machine. Our role was to gather all that information and present it on 3270 green-screen displays.
+I was hired to work on a shop-floor automation project. OMC had purchased an IBM System/7—which was IBM's answer to the minicomputer. They tied this computer to all the die-cast machines on the floor, so that we could count, and time, the cycles of each machine. Our role was to gather all that information and present it on 3270 green-screen displays.
 
 The language was assembler. And, again, every bit of code that executed in this computer was code that we wrote. There was no operating system, no subroutine libraries, and no framework. It was just raw code.
 
@@ -228,9 +226,9 @@ It was also interrupt-driven real-time code. Every time a die-cast machine cycle
 
 I hated this job. Oh, boy, did I. Oh, the work was fun! But the culture … Suffice it to say that I was required to wear a tie.
 
-Oh, I tried. I really did. But I was clearly unhappy working there, and my colleagues knew it. They knew it because I couldn’t remember critical dates or manage to get up early enough to attend important meetings. This was the only programming job I was ever fired from—and I deserved it.
+Oh, I tried. I really did. But I was clearly unhappy working there, and my colleagues knew it. They knew it because I couldn't remember critical dates or manage to get up early enough to attend important meetings. This was the only programming job I was ever fired from—and I deserved it.
 
-From an architectural point of view, there’s not a lot to learn here except for one thing. The System/7 had a very interesting instruction called set program interrupt (SPI). This allowed you to trigger an interrupt of the processor, allowing it to handle any other queued lower-priority interrupts. Nowadays, in Java we call this Thread.yield().
+From an architectural point of view, there's not a lot to learn here except for one thing. The System/7 had a very interesting instruction called set program interrupt (SPI). This allowed you to trigger an interrupt of the processor, allowing it to handle any other queued lower-priority interrupts. Nowadays, in Java we call this Thread.yield().
 
 4-TEL
 
@@ -244,11 +242,11 @@ The system was used by testers located in a service center (SC). A service cente
 
 Appendix A  Architecture Archaeology
 
-many as 10,000 phone lines. The dialing and measurement hardware had to be located inside the CO. So that’s where the M365 computers were put. We called those computers the central office line testers (COLTs). Another M365 was placed at the SC; it was called the service area computer (SAC). The SAC had several modems that it could use to dial up the COLTs and communicate at 300 baud (30 cps).
+many as 10,000 phone lines. The dialing and measurement hardware had to be located inside the CO. So that's where the M365 computers were put. We called those computers the central office line testers (COLTs). Another M365 was placed at the SC; it was called the service area computer (SAC). The SAC had several modems that it could use to dial up the COLTs and communicate at 300 baud (30 cps).
 
 At first, the COLT computers did everything, including all the console communication, menus, and reports. The SAC was just a simple multiplexor that took the output from the COLTs and put it on a screen.
 
-The problem with this setup was that 30 cps is really slow. The testers didn’t like watching the characters trickle across the screen, especially since they were only interested in a few key bits of data. Also, in those days, the core memory in the M365 was expensive, and the program was big.
+The problem with this setup was that 30 cps is really slow. The testers didn't like watching the characters trickle across the screen, especially since they were only interested in a few key bits of data. Also, in those days, the core memory in the M365 was expensive, and the program was big.
 
 The solution was to separate the part of the software that dialed and measured lines from the part that analyzed the results and printed the reports. The latter would be moved into the SAC, and the former would remain behind in the COLTs. This would allow the COLT to be a smaller machine, with much less memory, and would greatly speed up the response at the terminal, since the reports would be generated in the SAC.
 
@@ -256,7 +254,7 @@ The result was remarkably successful. Screen updates were very fast (once the ap
 
 The boundary was very clean and highly decoupled. Very short packets of data were exchanged between the SAC and COLT. These packets were a very simple form of DSL, representing primitive commands like「DIAL XXXX」or「MEASURE.」
 
-The M365 was loaded from tape. Those tape drives were expensive and weren’t very reliable—especially in the industrial environment of a telephone central office. Also, the M365 was an expensive machine relative to the rest of
+The M365 was loaded from tape. Those tape drives were expensive and weren't very reliable—especially in the industrial environment of a telephone central office. Also, the M365 was an expensive machine relative to the rest of
 
 340
 
@@ -276,7 +274,7 @@ Once we got the program working, we switched to using the EPROMs. We burned 30 
 
 The 30K program was a single binary, 30K long. To burn the chips, we simply divided that binary image into 30 different 1K segments, and burned each segment onto the appropriately labeled chip.
 
-6.  Yes, I understand that’s an oxymoron.7.  They had a little clear plastic window that allowed you to see the silicon chip inside, and allowed the UV
+6.  Yes, I understand that's an oxymoron.7.  They had a little clear plastic window that allowed you to see the silicon chip inside, and allowed the UV
 
 to erase the data.
 
@@ -292,7 +290,7 @@ But software is soft.8 Features needed to be added. Bugs needed to be fixed. And
 
 There were all kinds of problems. Sometimes chips would be mislabeled, or the labels would fall off. Sometimes the field service engineer would mistakenly replace the wrong chip. Sometimes the field service engineer would
 
-8.  Yes, I know that when software is burned into ROM, it’s called firmware—but even firmware is
+8.  Yes, I know that when software is burned into ROM, it's called firmware—but even firmware is
 
 really still soft.
 
@@ -326,11 +324,11 @@ We had made the chips independently deployable. We had invented polymorphic disp
 
 This was a plugin architecture, quite literally. We plugged those chips in. We eventually engineered it so that a feature could be installed into our products by plugging the chip with that feature into one of the open chip sockets. The menu control would automatically appear, and the binding into the main application would happen automatically.
 
-Of course, we didn’t know about object-oriented principles at the time, and we knew nothing about separating user interface from business rules. But the rudiments were there, and they were very powerful.
+Of course, we didn't know about object-oriented principles at the time, and we knew nothing about separating user interface from business rules. But the rudiments were there, and they were very powerful.
 
-One unexpected side benefit of the approach was that we could patch the firmware over a dial-up connection. If we found a bug in the firmware, we could dial up our devices and use the on-board monitor program to alter the RAM vector for the faulty subroutine to point to a bit of empty RAM. Then we’d enter the repaired subroutine into that RAM area, by typing it in machine code, in hexadecimal.
+One unexpected side benefit of the approach was that we could patch the firmware over a dial-up connection. If we found a bug in the firmware, we could dial up our devices and use the on-board monitor program to alter the RAM vector for the faulty subroutine to point to a bit of empty RAM. Then we'd enter the repaired subroutine into that RAM area, by typing it in machine code, in hexadecimal.
 
-This was a great boon to our field service operation, and to our customers. If they had a problem, they didn’t need us to ship new chips and schedule an urgent field service call. The system could be patched, and a new chip could be installed at the next regularly scheduled maintenance visit.
+This was a great boon to our field service operation, and to our customers. If they had a problem, they didn't need us to ship new chips and schedule an urgent field service call. The system could be patched, and a new chip could be installed at the next regularly scheduled maintenance visit.
 
 The  Service  Area  Computer
 
@@ -342,7 +340,7 @@ The Service Area Computer
 
 Dispatch  Determination
 
-One of the economic foundations for this system was based on the correct allocation of repair craftsmen. Repair craft were separated, by union rules, into three categories: central office, cable, and drop. CO craftsmen fixed problems inside the central office. Cable craftsmen fixed problems in the cable plant that connected the CO to the customer. Drop craftsmen fixed problems inside the customer’s premises, and in the lines connecting the external cable to that premises (the「drop」).
+One of the economic foundations for this system was based on the correct allocation of repair craftsmen. Repair craft were separated, by union rules, into three categories: central office, cable, and drop. CO craftsmen fixed problems inside the central office. Cable craftsmen fixed problems in the cable plant that connected the CO to the customer. Drop craftsmen fixed problems inside the customer's premises, and in the lines connecting the external cable to that premises (the「drop」).
 
 When a customer complained about a problem, our system could diagnose that problem and determine which kind of craftsman to dispatch. This saved the phone companies lots of money because incorrect dispatches meant delays for the customer and wasted trips for the craftsmen.
 
@@ -394,7 +392,7 @@ By the time the 1980s rolled around, the idea of producing your own minicomputer
 
 The new system was to be written in C using a UNIX O/S on disk, running on an Intel 8086 microcomputer. Our hardware guys started working on the new computer hardware, and a select group of software developers,「The Tiger Team,」was commissioned with the rewrite.
 
-I won’t bore you with the details of the initial fiasco. Suffice it to say that the first Tiger Team failed entirely after burning two or three man-years on a software project that never delivered anything.
+I won't bore you with the details of the initial fiasco. Suffice it to say that the first Tiger Team failed entirely after burning two or three man-years on a software project that never delivered anything.
 
 A year or two later, probably 1982, the process was started again. The goal was the total and complete redesign of the SAC in C and UNIX on our own,
 
@@ -404,9 +402,9 @@ Appendix A  Architecture Archaeology
 
 newly designed, impressively powerful 80286 hardware. We called that computer「Deep Thought.」
 
-It took years, then more years, and then even more years. I don’t know when the first UNIX-based SAC was finally deployed; I believe I had left the company by then (1988). Indeed, I’m not at all sure it ever was deployed.
+It took years, then more years, and then even more years. I don't know when the first UNIX-based SAC was finally deployed; I believe I had left the company by then (1988). Indeed, I'm not at all sure it ever was deployed.
 
-Why the delay? In short, it is very difficult for a redesign team to catch up with a large staff of programmers who are actively maintaining the old system. Here’s just one example of the difficulties they encountered.
+Why the delay? In short, it is very difficult for a redesign team to catch up with a large staff of programmers who are actively maintaining the old system. Here's just one example of the difficulties they encountered.
 
 Europe
 
@@ -430,7 +428,7 @@ Meanwhile, the「Tiger Team,」trying to rewrite everything in C and UNIX, reali
 
 SAC  Conclusion
 
-There are many other stories I could tell you about this system, but it’s just too depressing for me to continue. Suffice it to say that many of the hard lessons of my software life were learned while immersed in the horrible assembler code of the SAC.
+There are many other stories I could tell you about this system, but it's just too depressing for me to continue. Suffice it to say that many of the hard lessons of my software life were learned while immersed in the horrible assembler code of the SAC.
 
 C  L anguage
 
@@ -438,7 +436,7 @@ The 8085 computer hardware that we used in the 4-Tel Micro project gave us a rel
 
 On top of that, the assembler we were using was written by our own programmers. It ran on our M365 computers, using the cartridge tape operating system described in the「Laser Trim」section.
 
-As fate would have it, our lead hardware engineer convinced our CEO that we needed a real computer. He didn’t actually know what he would do with it, but he had a lot of political clout. So we purchased a PDP-11/60.
+As fate would have it, our lead hardware engineer convinced our CEO that we needed a real computer. He didn't actually know what he would do with it, but he had a lot of political clout. So we purchased a PDP-11/60.
 
 349
 
@@ -456,7 +454,7 @@ I had the facilities manager build a little room that would house six VT100 term
 
 When the machine arrived, I spent several days setting it up, wiring all the terminals, and getting everything to work. It was a joy—a labor of love.
 
-We purchased standard assemblers for the 8085 from Boston Systems Office, and we translated the 4-Tel Micro code into that syntax. We built a cross-compilation system that allowed us to download compiled binaries from the PDP-11 to our 8085 development environments, and ROM burners. And—Bob’s your Uncle—it all worked like a champ.
+We purchased standard assemblers for the 8085 from Boston Systems Office, and we translated the 4-Tel Micro code into that syntax. We built a cross-compilation system that allowed us to download compiled binaries from the PDP-11 to our 8085 development environments, and ROM burners. And—Bob's your Uncle—it all worked like a champ.
 
 C
 
@@ -474,7 +472,7 @@ I was astounded by the simple elegance of this language. It sacrificed none of t
 
 I purchased a C compiler from Whitesmiths, and got it running on the PDP-11. The output of the compiler was assembler syntax that was compatible with the Boston Systems Office 8085 compiler. So we had a pathway to go from C to the 8085 hardware! We were in business.
 
-Now the only problem was convincing a group of embedded assembly language programmers that they should be using C. But that’s a nightmare tale for another time …
+Now the only problem was convincing a group of embedded assembly language programmers that they should be using C. But that's a nightmare tale for another time …
 
 BOSS
 
@@ -486,7 +484,7 @@ The BOSS call to block a task looked like this:
 
 block(eventCheckFunction);
 
-10.  This was later renamed as Bob’s Only Successful Software.
+10.  This was later renamed as Bob's Only Successful Software.
 
 351
 
@@ -502,13 +500,13 @@ pCCU
 
 The late 1970s and early 1980s were a tumultuous time for telephone companies. One of the sources of that tumult was the digital revolution.
 
-For the preceding century, the connection between the central switching office and the customer’s telephone had been a pair of copper wires. These wires were bundled into cables that spread in a huge network across the countryside. They were sometimes carried on poles, and sometimes buried underground.
+For the preceding century, the connection between the central switching office and the customer's telephone had been a pair of copper wires. These wires were bundled into cables that spread in a huge network across the countryside. They were sometimes carried on poles, and sometimes buried underground.
 
 Copper is a precious metal, and the phone company had tons (literally tons) of it covering the country. The capital investment was enormous. Much of that capital could be reclaimed by transporting the telephone conversation over digital connections. A single pair of copper wires could carry hundreds of conversations in digital form.
 
 In response, the phone companies embarked upon the process of replacing their old analog central switching equipment with modern digital switches.
 
-Our 4-Tel product tested copper wires, not digital connections. There were still plenty of copper wires in a digital environment, but they were much shorter than before, and they were localized near the customer’s telephones. The signal would be carried digitally from the central office to a local
+Our 4-Tel product tested copper wires, not digital connections. There were still plenty of copper wires in a digital environment, but they were much shorter than before, and they were localized near the customer's telephones. The signal would be carried digitally from the central office to a local
 
 352
 
@@ -516,7 +514,7 @@ pCCU
 
 distribution point, where it would be converted back to an analog signal and distributed to the customer over standard copper wires. This meant that our measurement device needed to be located out where the copper wires began, but our dialing device needed to remain at the central office. The problem was that all our COLTs embodied both dialing and measurement in the same device. (We could have saved ourselves a fortune had we recognized that obvious architectural boundary a few years earlier!)
 
-Thus we conceived of a new product architecture: the CCU/CMU (the COLT control unit and the COLT measurement unit). The CCU would be located at the central switching office, and would handle the dialing of the phone lines to be tested. The CMU would be located at the local distribution points, and would measure the copper wires that led to the customer’s phone.
+Thus we conceived of a new product architecture: the CCU/CMU (the COLT control unit and the COLT measurement unit). The CCU would be located at the central switching office, and would handle the dialing of the phone lines to be tested. The CMU would be located at the local distribution points, and would measure the copper wires that led to the customer's phone.
 
 The problem was that for each CCU, there were many CMUs. The information about which CMU should be used for each phone number was held by the digital switch itself. Thus the CCU had to interrogate the digital switch to determine which CMU to communicate with and control.
 
@@ -534,7 +532,7 @@ Appendix A  Architecture Archaeology
 
 I was aghast! How could we possibly do man-years of development in a month? But my boss had a plan …
 
-We did not, in fact, need a full CCU/CMU architecture. The phone company that was deploying the digital switch was tiny. They had only one central office, and only two local distribution points. More importantly, the「local」distribution points were not particularly local. They actually had regular-old analog switches in them that switched to several hundred customers. Better yet, those switches were of a kind that could be dialed by a normal COLT. Better even still, the customer’s phone number contained all the information necessary to decide which local distribution point to use. If the phone number had a 5, 6, or 7 in a certain position, it went to distribution point 1; otherwise, it went to distribution point 2.
+We did not, in fact, need a full CCU/CMU architecture. The phone company that was deploying the digital switch was tiny. They had only one central office, and only two local distribution points. More importantly, the「local」distribution points were not particularly local. They actually had regular-old analog switches in them that switched to several hundred customers. Better yet, those switches were of a kind that could be dialed by a normal COLT. Better even still, the customer's phone number contained all the information necessary to decide which local distribution point to use. If the phone number had a 5, 6, or 7 in a certain position, it went to distribution point 1; otherwise, it went to distribution point 2.
 
 So, as my boss explained to me, we did not actually need a CCU/CMU. What we needed was a simple computer at the central office connected by modem lines to two standard COLTs at the distribution points. The SAC would communicate with our computer at the central office, and that computer would decode the phone number and then relay the dialing and measurement commands to the COLT at the appropriate distribution point.
 
@@ -560,9 +558,9 @@ Our customers demanded a solution. Our response was DLU/DRU.
 
 DLU/DRU stood for「Display Local Unit」and「Display Remote Unit.」The DLU was a computer board that plugged into the SAC computer chassis and pretended to be a terminal manager board. Instead of controlling the serial bus for local terminals, however, it took the character stream and multiplexed it over a single 9600-bps conditioned modem link.
 
-The DRU was a box placed at the customer’s remote location. It connected to the other end of the 9600-bps link, and had the hardware to control the terminals on our proprietary serial bus. It demultiplexed the characters received from the 9600-bps link and sent them to the appropriate local terminals.
+The DRU was a box placed at the customer's remote location. It connected to the other end of the 9600-bps link, and had the hardware to control the terminals on our proprietary serial bus. It demultiplexed the characters received from the 9600-bps link and sent them to the appropriate local terminals.
 
-Strange, isn’t it? We had to engineer a solution that nowadays is so ubiquitous we never even think about it. But back then …
+Strange, isn't it? We had to engineer a solution that nowadays is so ubiquitous we never even think about it. But back then …
 
 We even had to invent our own communications protocol because, in those days, standard communications protocols were not open source shareware. Indeed, this was long before we had any kind of Internet connection.
 
@@ -572,7 +570,7 @@ Appendix A  Architecture Archaeology
 
 Architecture
 
-The architecture of this system was very simple, but there are some interesting quirks I want to highlight. First, both units used our 8085 technology, and both were written in C and used BOSS. But that’s where the similarity ended.
+The architecture of this system was very simple, but there are some interesting quirks I want to highlight. First, both units used our 8085 technology, and both were written in C and used BOSS. But that's where the similarity ended.
 
 There were two of us on the project. I was the project lead, and Mike Carew was my close associate. I took on the design and coding of the DLU; Mike did the DRU.
 
@@ -580,7 +578,7 @@ The architecture of the DLU was based on a dataflow model. Each task did a small
 
 Think of an assembly line. Each position on the assembly line has a single, simple, highly focused job to perform. Then the product moves to the next position in line. Sometimes the assembly line splits into many lines. Sometimes those lines merge back into a single line. That was the DLU.
 
-Mike’s DRU used a remarkably different scheme. He created one task per terminal, and simply did the entire job for that terminal in that task. No queues. No data flow. Just many identical large tasks, each managing its own terminal.
+Mike's DRU used a remarkably different scheme. He created one task per terminal, and simply did the entire job for that terminal in that task. No queues. No data flow. Just many identical large tasks, each managing its own terminal.
 
 This is the opposite of an assembly line. In this case the analogy is many expert builders, each of whom builds an entire product.
 
@@ -620,7 +618,7 @@ The company held a little contest to select a name for the new system. One of th
 
 Appendix A  Architecture Archaeology
 
-「Still Another Manifestation of Capitalist Avarice Repressing the Proletariat.」Needless to say, that wasn’t selected.
+「Still Another Manifestation of Capitalist Avarice Repressing the Proletariat.」Needless to say, that wasn't selected.
 
 Another was the Teradyne Interactive Test System. That one was also not selected.
 
@@ -652,21 +650,21 @@ Then the UNIFY product we were using was cancelled.
 
 Oh. Oh.
 
-So we decided to switch to SyBase. Or was it Ingress? I don’t remember. Suffice it to say, we had to search through all that C code, find all the embedded SQL and special API calls, and replace them with corresponding gestures for the new vendor.
+So we decided to switch to SyBase. Or was it Ingress? I don't remember. Suffice it to say, we had to search through all that C code, find all the embedded SQL and special API calls, and replace them with corresponding gestures for the new vendor.
 
-After three months of effort or so, we gave up. We couldn’t make it work. We were so coupled to UNIFY that there was no serious hope of restructuring the code at any practical expense.
+After three months of effort or so, we gave up. We couldn't make it work. We were so coupled to UNIFY that there was no serious hope of restructuring the code at any practical expense.
 
 So, we hired a third party to maintain UNIFY for us, based on a maintenance contract. And, of course, the maintenance rates went up year after year after year.
 
 VRS  Conclusion
 
-This is one of the ways that I learned that databases are details that should be isolated from the overall business purpose of the system. This is also one of the reasons that I don’t like strongly coupling to third-party software systems.
+This is one of the ways that I learned that databases are details that should be isolated from the overall business purpose of the system. This is also one of the reasons that I don't like strongly coupling to third-party software systems.
 
 The  Electronic  Receptionist
 
 In 1983, our company sat at the confluence of computer systems, telecommunications systems, and voice systems. Our CEO thought this might be a fertile position from which to develop new products. To address this goal, he commissioned a team of three (which included me) to conceive, design, and implement a new product for the company.
 
-It didn’t take us long to come up with The Electronic Receptionist (ER).
+It didn't take us long to come up with The Electronic Receptionist (ER).
 
 The idea was simple. When you called a company, ER would answer and ask you who you wanted to speak with. You would use touch tones to spell the name of that person, and ER would then connect you. The users of ER could
 
@@ -676,7 +674,7 @@ Appendix A  Architecture Archaeology
 
 dial in and, by using simple touch-tone commands, tell it which phone number the desired person could be reached at, anywhere in the world. In fact, the system could list several alternate numbers.
 
-When you called ER and dialed RMART (my code), ER would call the first number on my list. If I failed to answer and identify myself, it would call the next number, and the next. If I still wasn’t reached, ER would record a message from the caller.
+When you called ER and dialed RMART (my code), ER would call the first number on my list. If I failed to answer and identify myself, it would call the next number, and the next. If I still wasn't reached, ER would record a message from the caller.
 
 ER would then, periodically, try to find me to deliver that message, and any other message left for me by anyone else.
 
@@ -686,7 +684,7 @@ We built all the hardware for this system—the computer board, the memory board
 
 The voice boards each supported one telephone line. They consisted of a telephone interface, a voice encoder/decoder, some memory, and an Intel 80186 microcomputer.
 
-The software for the main computer board was written in C. The operating system was MP/M-86, an early command-line–driven, multiprocessing, disk operating system. MP/M was the poor man’s UNIX.
+The software for the main computer board was written in C. The operating system was MP/M-86, an early command-line–driven, multiprocessing, disk operating system. MP/M was the poor man's UNIX.
 
 The software for the voice boards was written in assembler, and had no operating system. Communication between Deep Thought and the voice boards occurred through shared memory.
 
@@ -694,7 +692,7 @@ The architecture of this system would today be called service oriented. Each tel
 
 11.  Our company held the patent. Our employment contract made it clear that anything we invented
 
-belonged to our company. My boss told me:「You sold it to us for one dollar, and we didn’t pay you that dollar.」
+belonged to our company. My boss told me:「You sold it to us for one dollar, and we didn't pay you that dollar.」
 
 360
 
@@ -716,7 +714,7 @@ After repeated attempts over two years, our CEO gave up and—unfortunately—dr
 
 Ouch!
 
-On the other hand, you can’t blame me for those annoying machines that now plague our existence.
+On the other hand, you can't blame me for those annoying machines that now plague our existence.
 
 361
 
@@ -748,7 +746,7 @@ This externalized state machine allowed us to change the flow of the application
 
 The old ER approach of using disk files to communicate between services was too slow for this much more rapid flip-flopping of services, so we invented a shared memory mechanism that we called the 3DBB.12 The 3DBB allowed data to be accessed by name; the names we used were names assigned to each state machine instance.
 
-The 3DBB was great for storing strings and constants, but couldn’t be used for holding complex data structures. The reason for this is technical but easy to understand. Each process in MP/M lived in its own memory partition. Pointers to data in one memory partition had no meaning in another memory partition. As a consequence, the data in the 3DBB could not contain pointers. Strings were fine, but trees, linked lists, or any data structure with pointers would not work.
+The 3DBB was great for storing strings and constants, but couldn't be used for holding complex data structures. The reason for this is technical but easy to understand. Each process in MP/M lived in its own memory partition. Pointers to data in one memory partition had no meaning in another memory partition. As a consequence, the data in the 3DBB could not contain pointers. Strings were fine, but trees, linked lists, or any data structure with pointers would not work.
 
 The trouble tickets in the trouble ticket system came from many different sources. Some were automated, and some were manual. The manual entries were created by operators who were talking to customers about their troubles. As the customers described their problems, the operators would type in their complaints and observations in a structured text stream. It looked something like this:
 
@@ -790,7 +788,7 @@ We wrote GUI code. GOOEY CODE! OMG! We wrote GOOOOOEY code.
 
 I personally wrote a 3000-line C function named gi(); its name stood for Graphic Interpreter. It was a masterpiece of goo. It was not the only goo I wrote at Clear, but it was my most infamous.
 
-Architecture? Are you joking? This was a startup. We didn’t have time for architecture. Just code, dammit! Code for your very lives!
+Architecture? Are you joking? This was a startup. We didn't have time for architecture. Just code, dammit! Code for your very lives!
 
 So we coded. And we coded. And we coded. But, after three years, what we failed to do was sell. Oh, we had an installation or two. But the market was not particularly interested in our grand vision, and our venture capital financiers were getting pretty fed up.
 
@@ -810,9 +808,9 @@ First, I managed to set up a uucp connection to a nearby company that had a uucp
 
 Second, Sun released a C++ compiler. I had been interested in C++ and OO since 1983, but compilers were difficult to come by. So when the opportunity presented itself, I changed languages right away. I left the 3000-line C functions behind, and started to write C++ code at Clear. And I learned …
 
-I read books. Of course, I read The C++ Programming Language and The Annotated C++ Reference Manual (The ARM) by Bjarne Stroustrup. I read Rebecca Wirfs-Brock’s lovely book on responsibility-driven design: Designing Object Oriented Software. I read OOA and OOD and OOP by Peter Coad. I read Smalltalk-80 by Adele Goldberg. I read Advanced C++ Programming Styles and Idioms by James O. Coplien. But perhaps most significantly of all, I read Object Oriented Design with Applications by Grady Booch.
+I read books. Of course, I read The C++ Programming Language and The Annotated C++ Reference Manual (The ARM) by Bjarne Stroustrup. I read Rebecca Wirfs-Brock's lovely book on responsibility-driven design: Designing Object Oriented Software. I read OOA and OOD and OOP by Peter Coad. I read Smalltalk-80 by Adele Goldberg. I read Advanced C++ Programming Styles and Idioms by James O. Coplien. But perhaps most significantly of all, I read Object Oriented Design with Applications by Grady Booch.
 
-What a name! Grady Booch. How could anyone forget a name like that. What’s more, he was the Chief  Scientist at a company called Rational! How I wanted to be a Chief  Scientist! And so I read his book. And I learned, and I learned, and I learned …
+What a name! Grady Booch. How could anyone forget a name like that. What's more, he was the Chief  Scientist at a company called Rational! How I wanted to be a Chief  Scientist! And so I read his book. And I learned, and I learned, and I learned …
 
 As I learned, I also began debating on Netnews, the way people now debate on Facebook. My debates were about C++ and OO. For two years, I relieved the frustrations that were building at work by debating with hundreds of folks on Usenet about the best language features and the best principles of design. After a while, I even started making a certain amount of sense.
 
@@ -834,11 +832,11 @@ And then, one day, the phone rang.
 
 The  Phone  Call
 
-It was a recruiter. He had gotten my name as someone who knew C++ and object-oriented design. I’m not sure how, but I suspect it had something to do with my Netnews presence.
+It was a recruiter. He had gotten my name as someone who knew C++ and object-oriented design. I'm not sure how, but I suspect it had something to do with my Netnews presence.
 
 He said he had an opportunity in Silicon Valley, at a company named Rational. They were looking for help building a CASE13 tool.
 
-The blood drained from my face. I knew what this was. I don’t know how I knew, but I knew. This was Grady Booch’s company. I saw before me the opportunity to join forces with Grady Booch!
+The blood drained from my face. I knew what this was. I don't know how I knew, but I knew. This was Grady Booch's company. I saw before me the opportunity to join forces with Grady Booch!
 
 13.  Computer Aided Software Engineering
 
@@ -856,7 +854,7 @@ The Booch notation was very powerful. It presaged notations like UML.
 
 ROSE had an architecture—a real architecture. It was constructed in true layers, and the dependencies between layers were properly controlled. The architecture made it releasable, developable, and independently deployable.
 
-Oh, it wasn’t perfect. There were a lot of things we still didn’t understand about architectural principles. We did not, for example, create a true plugin structure.
+Oh, it wasn't perfect. There were a lot of things we still didn't understand about architectural principles. We did not, for example, create a true plugin structure.
 
 We also fell for one of the most unfortunate fads of the day—we used a so-called object-oriented database.
 
@@ -868,7 +866,7 @@ But, overall, the experience was a great one. I spent a lovely year and a half w
 
 The  Debates  Continued
 
-Of course, I did not stop debating on Netnews. In fact, I drastically increased my network presence. I started writing articles for C++ Report. And, with Grady’s help, I started working on my first book: Designing Object-Oriented C++ Applications Using the Booch Method.
+Of course, I did not stop debating on Netnews. In fact, I drastically increased my network presence. I started writing articles for C++ Report. And, with Grady's help, I started working on my first book: Designing Object-Oriented C++ Applications Using the Booch Method.
 
 One thing bothered me. It was perverse, but it was true. No one was calling me「Uncle Bob.」I found that I missed it. So I made the mistake of putting「Uncle Bob」in my email and Netnews signatures. And the name stuck. Eventually I realized that it was a pretty good brand.
 
@@ -914,7 +912,7 @@ NCARB wanted to automate the process by having the candidates take the exams usi
 
 ETS had broken the problem down into 18 individual test vignettes. Each would require a CAD-like GUI application that the candidate would use to express his or her solution. A separate scoring application would take in the solutions and produce scores.
 
-My partner, Jim Newkirk, and I realized that these 36 applications had vast amounts of similarity. The 18 GUI apps all used similar gestures and mechanisms. The 18 scoring applications all used the same mathematical techniques. Given these shared elements, Jim and I were determined to develop a reusable framework for all 36 applications. Indeed, we sold this idea to ETS by saying that we’d spend a long time working on the first application, but then the rest would just pop out every few weeks.
+My partner, Jim Newkirk, and I realized that these 36 applications had vast amounts of similarity. The 18 GUI apps all used similar gestures and mechanisms. The 18 scoring applications all used the same mathematical techniques. Given these shared elements, Jim and I were determined to develop a reusable framework for all 36 applications. Indeed, we sold this idea to ETS by saying that we'd spend a long time working on the first application, but then the rest would just pop out every few weeks.
 
 At this point you should be face-palming or banging your head on this book. Those of you who are old enough may remember the「reuse」promise of OO. We were all convinced, back then, that if you just wrote good clean object-oriented C++ code, you would just naturally produce lots and lots of reusable code.
 
@@ -928,11 +926,11 @@ The two of us worked full time on Vignette Grande with an eye toward creating a 
 
 So Jim and I recruited a team of three other developers and we began to work on the next few vignettes.
 
-But something went wrong. We found that the reusable framework we had created was not particularly reusable. It did not fit well into the new applications being written. There were subtle frictions that just didn’t work.
+But something went wrong. We found that the reusable framework we had created was not particularly reusable. It did not fit well into the new applications being written. There were subtle frictions that just didn't work.
 
 This was deeply discouraging, but we believed we knew what to do about it. We went to ETS and told them that there would be a delay—that the 45,000-line framework needed to be rewritten, or at least readjusted. We told them that it would take a while longer to get that done.
 
-I don’t need to tell you that ETS was not particularly happy with this news.
+I don't need to tell you that ETS was not particularly happy with this news.
 
 So we began again. We set the old framework aside and began writing four new vignettes simultaneously. We would borrow ideas and code from the old framework but rework them so that they fit into all four without modification. This effort took another year. It produced another 45,000-line framework, plus four vignettes that were on the order of 3000 to 6000 lines each.
 
@@ -950,11 +948,11 @@ Having delivered those four applications, we began on the next four. And this ti
 
 We met our dates and our commitments. Our customer was happy. We were happy. Life was good.
 
-But we learned a good lesson: You can’t make a reusable framework until you first make a usable framework. Reusable frameworks require that you build them in concert with several reusing applications.
+But we learned a good lesson: You can't make a reusable framework until you first make a usable framework. Reusable frameworks require that you build them in concert with several reusing applications.
 
 Conclusion
 
-As I said at the start, this appendix is somewhat autobiographical. I’ve hit the high points of the projects that I felt had an architectural impact. And, of course, I mentioned a few episodes that were not exactly relevant to the technical content of this book, but were significant nonetheless.
+As I said at the start, this appendix is somewhat autobiographical. I've hit the high points of the projects that I felt had an architectural impact. And, of course, I mentioned a few episodes that were not exactly relevant to the technical content of this book, but were significant nonetheless.
 
 Of course, this was a partial history. There were many other projects that I worked on over the decades. I also purposely stopped this history in the early 1990s—because I have another book to write about the events of the late 1990s.
 
@@ -1052,7 +1050,7 @@ design vs., 4in DLU/DRU archaeology
 
 project, 356
 
-Eisenhower’s matrix of
+Eisenhower's matrix of
 
 importance vs. urgency, 16–17
 
@@ -1130,7 +1128,7 @@ architecture supports system,
 
 137, 148
 
-Eisenhower’s matrix of
+Eisenhower's matrix of
 
 importance vs. urgency, 16–17
 
@@ -1208,7 +1206,7 @@ Principle, 117–118
 
 Business managers
 
-Eisenhower’s matrix of
+Eisenhower's matrix of
 
 importance vs. urgency, 17
 
@@ -1334,7 +1332,7 @@ conclusion, 209Dependency Rule, 203–207frameworks tend to violate, 293typical 
 
 Clean embedded architecture
 
-app-titude test, 258–261conclusion, 273don’t reveal hardware details to
+app-titude test, 258–261conclusion, 273don't reveal hardware details to
 
 user of HAL, 265–269
 
@@ -1426,7 +1424,7 @@ across local process boundaries,
 
 across service boundaries, 180–181across source-level decoupled
 
-boundaries, 178Conway’s law, 149as function calls between
+boundaries, 178Conway's law, 149as function calls between
 
 components in monoliths, 178
 
@@ -1528,7 +1526,7 @@ in clean architecture, 203, 205clean architecture scenario,
 
 crossing circle boundaries, 206
 
-Conway’s law, 149Copper wires, pCCU archaeology
+Conway's law, 149Copper wires, pCCU archaeology
 
 project, 352–354
 
@@ -1794,7 +1792,7 @@ database is. See Database
 
 is detail
 
-don’t reveal hardware, to user of
+don't reveal hardware, to user of
 
 HAL, 265–269
 
@@ -1820,7 +1818,7 @@ decreasing productivity/increasing
 
 cost of code, 5–7
 
-Eisenhower’s matrix of
+Eisenhower's matrix of
 
 importance vs. urgency, 17
 
@@ -1922,9 +1920,9 @@ DLU/DRU (display local unit/display
 
 remote unit), archaeology project, 354–356
 
-Do/while/until statements, 22, 27Don’t Repeat Yourself (DRY)
+Do/while/until statements, 22, 27Don't Repeat Yourself (DRY)
 
-principle, conditional compilation directives, 272Drawing lines. See BoundariesDrivers, Dependency Rule, 205DRY (Don’t Repeat Yourself)
+principle, conditional compilation directives, 272Drawing lines. See BoundariesDrivers, Dependency Rule, 205DRY (Don't Repeat Yourself)
 
 principle, conditional compilation directives, 272
 
@@ -1972,7 +1970,7 @@ Index
 
 risks of frameworks, 293use cases vs., 191–193
 
-Enumeration, Dijkstra’s proof for
+Enumeration, Dijkstra's proof for
 
 sequence/selection, 28
 
@@ -2114,7 +2112,7 @@ Dijkstra replaces with iteration
 
 control structures, 27
 
-Dijkstra’s proclamation on
+Dijkstra's proclamation on
 
 harmfulness of, 28–29
 
@@ -2218,7 +2216,7 @@ organization
 
 Importance, urgency vs.
 
-Eisenhower’s matrix of, 16–17Incoming dependencies, stability
+Eisenhower's matrix of, 16–17Incoming dependencies, stability
 
 metrics, 122–123
 
@@ -2258,7 +2256,7 @@ Independent developabilityas fallacy of services, 241kitty problem example, 242�
 
 concerns, 244–245overview of, 153–154of UI and database, 47
 
-Induction, Dijkstra’s proof related
+Induction, Dijkstra's proof related
 
 to iteration, 28
 
@@ -2542,7 +2540,7 @@ deployment of, 176–178function calls, 240local processes as statically linked,
 
 threads, 179
 
-Moore’s Law, 101MOP (Master Operating Program), Laser Trim archaeology project, 336
+Moore's Law, 101MOP (Master Operating Program), Laser Trim archaeology project, 336
 
 Morning after syndrome
 
@@ -3292,7 +3290,7 @@ API, 252
 
 Structure. See ArchitectureStructured programming
 
-Dijkstra’s proclamation on goto
+Dijkstra's proclamation on goto
 
 statements, 28–29
 
@@ -3416,7 +3414,7 @@ via Humble Object pattern, 212UNIX, IO device driver functions,
 
 41–44
 
-Upgrades, risks of frameworks, 293Urgency, Eisenhower’s matrix of
+Upgrades, risks of frameworks, 293Urgency, Eisenhower's matrix of
 
 importance vs., 16–17
 
@@ -3474,7 +3472,7 @@ Utility library, Zone of Pain, 129Uucp connection, 366
 
 VValues, software system
 
-architecture (structure), 14–15behavior, 14Eisenhower’s matrix of
+architecture (structure), 14–15behavior, 14Eisenhower's matrix of
 
 importance vs. urgency, 16–17
 
@@ -3560,7 +3558,7 @@ Automatically receive a coupon for 35% off your next purchase, valid for 30 days
 
 Check the box to hear from us and receive exclusive offers on new  editions and related products.
 
-InformIT.com—The Trusted Technology Learning SourceInformIT is the online home of information technology brands at Pearson, the world’s         foremost education company. At InformIT.com, you can:
+InformIT.com—The Trusted Technology Learning SourceInformIT is the online home of information technology brands at Pearson, the world's         foremost education company. At InformIT.com, you can:
 
 • • • •
 

@@ -2,7 +2,7 @@ Use  Cases
 
 The first bullet—use cases—means that the architecture of the system must support the intent of the system. If the system is a shopping cart application, then the architecture must support shopping cart use cases. Indeed, this is the first concern of the architect, and the first priority of the architecture. The architecture must support the use cases.
 
-However, as we discussed previously, architecture does not wield much influence over the behavior of the system. There are very few behavioral options that the architecture can leave open. But influence isn’t everything. The most important thing a good architecture can do to support behavior is to clarify and expose that behavior so that the intent of the system is visible at the architectural level.
+However, as we discussed previously, architecture does not wield much influence over the behavior of the system. There are very few behavioral options that the architecture can leave open. But influence isn't everything. The most important thing a good architecture can do to support behavior is to clarify and expose that behavior so that the intent of the system is visible at the architectural level.
 
 A shopping cart application with a good architecture will look like a shopping cart application. The use cases of that system will be plainly visible within the structure of that system. Developers will not have to hunt for behaviors, because those behaviors will be first-class elements visible at the top level of the system. Those elements will be classes or functions or modules that have prominent positions within the architecture, and they will have names that clearly describe their function.
 
@@ -22,9 +22,9 @@ As strange as it may seem, this decision is one of the options that a good archi
 
 Development
 
-Architecture plays a significant role in supporting the development environment. This is where Conway’s law comes into play. Conway’s law says:
+Architecture plays a significant role in supporting the development environment. This is where Conway's law comes into play. Conway's law says:
 
-Any organization that designs a system will produce a design whose structure is a copy of  the organization’s communication structure.
+Any organization that designs a system will produce a design whose structure is a copy of  the organization's communication structure.
 
 149
 
@@ -42,21 +42,21 @@ Again, this is achieved through the proper partitioning and isolation of the com
 
 Leaving  Options  Open
 
-A good architecture balances all of these concerns with a component structure that mutually satisfies them all. Sounds easy, right? Well, it’s easy for me to write that.
+A good architecture balances all of these concerns with a component structure that mutually satisfies them all. Sounds easy, right? Well, it's easy for me to write that.
 
-The reality is that achieving this balance is pretty hard. The problem is that most of the time we don’t know what all the use cases are, nor do we know the operational constraints, the team structure, or the deployment requirements. Worse, even if we did know them, they will inevitably change as the system moves through its life cycle. In short, the goals we must meet are indistinct and inconstant. Welcome to the real world.
+The reality is that achieving this balance is pretty hard. The problem is that most of the time we don't know what all the use cases are, nor do we know the operational constraints, the team structure, or the deployment requirements. Worse, even if we did know them, they will inevitably change as the system moves through its life cycle. In short, the goals we must meet are indistinct and inconstant. Welcome to the real world.
 
 150
 
 Decoupling Layers
 
-But all is not lost: Some principles of architecture are relatively inexpensive to implement and can help balance those concerns, even when you don’t have a clear picture of the targets you have to hit. Those principles help us partition our systems into well-isolated components that allow us to leave as many options open as possible, for as long as possible.
+But all is not lost: Some principles of architecture are relatively inexpensive to implement and can help balance those concerns, even when you don't have a clear picture of the targets you have to hit. Those principles help us partition our systems into well-isolated components that allow us to leave as many options open as possible, for as long as possible.
 
 A good architecture makes the system easy to change, in all the ways that it must change, by leaving options open.
 
 Decoupling  L ayers
 
-Consider the use cases. The architect wants the structure of the system to support all the necessary use cases, but does not know what all those use cases are. However, the architect does know the basic intent of the system. It’s a shopping cart system, or it’s a bill of materials system, or it’s an order processing system. So the architect can employ the Single Responsibility Principle and the Common Closure Principle to separate those things that change for different reasons, and to collect those things that change for the same reasons—given the context of the intent of the system.
+Consider the use cases. The architect wants the structure of the system to support all the necessary use cases, but does not know what all those use cases are. However, the architect does know the basic intent of the system. It's a shopping cart system, or it's a bill of materials system, or it's an order processing system. So the architect can employ the Single Responsibility Principle and the Common Closure Principle to separate those things that change for different reasons, and to collect those things that change for the same reasons—given the context of the intent of the system.
 
 What changes for different reasons? There are some obvious things. User interfaces change for reasons that have nothing to do with business rules. Use cases have elements of both. Clearly, then, a good architect will want to separate the UI portions of a use case from the business rule portions in such a way that they can be changed independently of each other, while keeping those use cases visible and clear.
 
@@ -94,11 +94,11 @@ In short, the decoupling that we did for the sake of the use cases also helps wi
 
 Many architects call such components「services」or「micro-services,」depending upon some vague notion of line count. Indeed, an architecture based on services is often called a service-oriented architecture.
 
-If that nomenclature set off some alarm bells in your mind, don’t worry. I’m not going to tell you that SoA is the best possible architecture, or that micro-services are the wave of the future. The point being made here is that sometimes we have to separate our components all the way to the service level.
+If that nomenclature set off some alarm bells in your mind, don't worry. I'm not going to tell you that SoA is the best possible architecture, or that micro-services are the wave of the future. The point being made here is that sometimes we have to separate our components all the way to the service level.
 
 Remember, a good architecture leaves options open. The decoupling mode is one of  those options.
 
-Before we explore that topic further, let’s look to the other two bullets.
+Before we explore that topic further, let's look to the other two bullets.
 
 Independent  Develop-abilit y
 
@@ -110,7 +110,7 @@ Chapter 16
 
 Independence
 
-don’t know about the UI, then a team that focuses on the UI cannot much affect a team that focuses on the business rules. If the use cases themselves are decoupled from one another, then a team that focuses on the addOrder use case is not likely to interfere with a team that focuses on the deleteOrder use case.
+don't know about the UI, then a team that focuses on the UI cannot much affect a team that focuses on the business rules. If the use cases themselves are decoupled from one another, then a team that focuses on the addOrder use case is not likely to interfere with a team that focuses on the deleteOrder use case.
 
 So long as the layers and use cases are decoupled, the architecture of the system will support the organization of the teams, irrespective of whether they are organized as feature teams, component teams, layer teams, or some other variation.
 
@@ -122,7 +122,7 @@ Duplication
 
 Architects often fall into a trap—a trap that hinges on their fear of duplication.
 
-Duplication is generally a bad thing in software. We don’t like duplicated code. When code is truly duplicated, we are honor-bound as professionals to reduce and eliminate it.
+Duplication is generally a bad thing in software. We don't like duplicated code. When code is truly duplicated, we are honor-bound as professionals to reduce and eliminate it.
 
 But there are different kinds of duplication. There is true duplication, in which every change to one instance necessitates the same change to every duplicate of that instance. Then there is false or accidental duplication. If two apparently duplicated sections of code evolve along different paths—if they change at different rates, and for different reasons—then they are not
 
@@ -130,7 +130,7 @@ But there are different kinds of duplication. There is true duplication, in whic
 
 Decoupling Modes (Again)
 
-true duplicates. Return to them in a few years, and you’ll find that they are very different from each other.
+true duplicates. Return to them in a few years, and you'll find that they are very different from each other.
 
 Now imagine two use cases that have very similar screen structures. The architects will likely be strongly tempted to share the code for that structure. But should they? Is that true duplication? Or it is accidental?
 
@@ -162,9 +162,9 @@ In this decoupling mode the components all execute in the same address space, an
 
 What is the best mode to use?
 
-The answer is that it’s hard to know which mode is best during the early phases of a project. Indeed, as the project matures, the optimal mode may change.
+The answer is that it's hard to know which mode is best during the early phases of a project. Indeed, as the project matures, the optimal mode may change.
 
-For example, it’s not difficult to imagine that a system that runs comfortably on one server right now might grow to the point where some of its components ought to run on separate servers. While the system runs on a single server, the source-level decoupling might be sufficient. Later, however, it might require decoupling into deployable units, or even services.
+For example, it's not difficult to imagine that a system that runs comfortably on one server right now might grow to the point where some of its components ought to run on separate servers. While the system runs on a single server, the source-level decoupling might be sufficient. Later, however, it might require decoupling into deployable units, or even services.
 
 One solution (which seems to be popular at the moment) is to simply decouple at the service level by default. A problem with this approach is that it is expensive and encourages coarse-grained decoupling. No matter how「micro」the micro-services get, the decoupling is not likely to be fine-grained enough.
 
@@ -176,7 +176,7 @@ Another problem with service-level decoupling is that it is expensive, both in d
 
 My preference is to push the decoupling to the point where a service could be formed. should it become necessary; but then to leave the components in the same address space as long as possible. This leaves the option for a service open.
 
-With this approach, initially the components are separated at the source code level. That may be good enough for the duration of the project’s lifetime. If, however, deployment or development issues arise, driving some of the decoupling to a deployment level may be sufficient—at least for a while.
+With this approach, initially the components are separated at the source code level. That may be good enough for the duration of the project's lifetime. If, however, deployment or development issues arise, driving some of the decoupling to a deployment level may be sufficient—at least for a while.
 
 As the development, deployment, and operational issues increase, I carefully choose which deployable units to turn into services, and gradually shift the system in that direction.
 
@@ -194,7 +194,7 @@ Independence
 
 Conclusion
 
-Yes, this is tricky. And I’m not saying that the change of decoupling modes should be a trivial configuration option (though sometimes that is appropriate). What I’m saying is that the decoupling mode of a system is one of those things that is likely to change with time, and a good architect foresees and appropriately facilitates those changes.
+Yes, this is tricky. And I'm not saying that the change of decoupling modes should be a trivial configuration option (though sometimes that is appropriate). What I'm saying is that the decoupling mode of a system is one of those things that is likely to change with time, and a good architect foresees and appropriately facilitates those changes.
 
 158
 

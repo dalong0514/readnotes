@@ -6,9 +6,9 @@ Consider, for example, a simple computer game. It is easy to imagine the three c
 
 Hunt  the  Wumpus
 
-Let’s put some flesh on these bones. Let’s assume that the game is the venerable Hunt the Wumpus adventure game from 1972. This text-based game uses very simple commands like GO EAST and SHOOT WEST. The player enters a command, and the computer responds with what the player sees, smells, hears, and experiences. The player is hunting for a Wumpus in a system of caverns, and must avoid traps, pits, and other dangers lying in wait. If you are interested, the rules of the game are easy to find on the web.
+Let's put some flesh on these bones. Let's assume that the game is the venerable Hunt the Wumpus adventure game from 1972. This text-based game uses very simple commands like GO EAST and SHOOT WEST. The player enters a command, and the computer responds with what the player sees, smells, hears, and experiences. The player is hunting for a Wumpus in a system of caverns, and must avoid traps, pits, and other dangers lying in wait. If you are interested, the rules of the game are easy to find on the web.
 
-Let’s assume that we’ll keep the text-based UI, but decouple it from the game rules so that our version can use different languages in different markets. The game rules will communicate with the UI component using a language-independent API, and the UI will translate the API into the appropriate human language.
+Let's assume that we'll keep the text-based UI, but decouple it from the game rules so that our version can use different languages in different markets. The game rules will communicate with the UI component using a language-independent API, and the UI will translate the API into the appropriate human language.
 
 If the source code dependencies are properly managed, as shown in Figure 25.1, then any number of UI components can reuse the same game rules. The game rules do not know, nor do they care, which human language is being used.
 
@@ -18,9 +18,9 @@ Figure 25.1  Any number of UI components can reuse the game rules
 
 Clean Architecture?
 
-Let’s also assume that the state of the game is maintained on some persistent store—perhaps in flash, or perhaps in the cloud, or maybe just in RAM. In any of those cases, we don’t want the game rules to know the details. So, again, we’ll create an API that the game rules can use to communicate with the data storage component.
+Let's also assume that the state of the game is maintained on some persistent store—perhaps in flash, or perhaps in the cloud, or maybe just in RAM. In any of those cases, we don't want the game rules to know the details. So, again, we'll create an API that the game rules can use to communicate with the data storage component.
 
-We don’t want the game rules to know anything about the different kinds of data storage, so the dependencies have to be properly directed following the Dependency Rule, as shown in Figure 25.2.
+We don't want the game rules to know anything about the different kinds of data storage, so the dependencies have to be properly directed following the Dependency Rule, as shown in Figure 25.2.
 
 Figure 25.2  Following the Dependency Rule
 
@@ -34,7 +34,7 @@ That means that there is a potential architectural boundary defined by this axis
 
 1.  It should be just as clear that we would not apply the clean architecture approach to something as trivial as
 
-this game. After all, the entire program can probably be written in 200 lines of code or less. In this case, we’re using a simple program as a proxy for a much larger system with significant architectural boundaries.
+this game. After all, the entire program can probably be written in 200 lines of code or less. In this case, we're using a simple program as a proxy for a much larger system with significant architectural boundaries.
 
 223
 
@@ -108,9 +108,9 @@ Figure 25.6  The higher-level policy manages the player
 
 Chapter 25  Layers and Boundaries
 
-Is this an architectural boundary? Do we need an API that separates MoveManagement from PlayerManagement? Well, let’s make this a bit more interesting and add micro-services.
+Is this an architectural boundary? Do we need an API that separates MoveManagement from PlayerManagement? Well, let's make this a bit more interesting and add micro-services.
 
-Let’s assume that we’ve got a massive multiplayer version of Hunt the Wumpus. MoveManagement is handled locally within the player’s computer, but PlayerManagement is handled by a server. PlayerManagement offers a micro-service API to all the connected MoveManagement components.
+Let's assume that we've got a massive multiplayer version of Hunt the Wumpus. MoveManagement is handled locally within the player's computer, but PlayerManagement is handled by a server. PlayerManagement offers a micro-service API to all the connected MoveManagement components.
 
 The diagram in Figure 25.7 depicts this scenario in a somewhat abbreviated fashion. The Network elements are a bit more complex than depicted—but you can probably still get the idea. A full-fledged architectural boundary exists between MoveManagement and PlayerManagement in this case.
 
@@ -128,11 +128,11 @@ Conclusion
 
 At the same time, we have to recognize that when such boundaries are ignored, they are very expensive to add in later—even in the presence of comprehensive test-suites and refactoring discipline.
 
-So what do we do, we architects? The answer is dissatisfying. On the one hand, some very smart people have told us, over the years, that we should not anticipate the need for abstraction. This is the philosophy of YAGNI:「You aren’t going to need it.」There is wisdom in this message, since over-engineering is often much worse than under-engineering. On the other hand, when you discover that you truly do need an architectural boundary where none exists, the costs and risks can be very high to add such a boundary.
+So what do we do, we architects? The answer is dissatisfying. On the one hand, some very smart people have told us, over the years, that we should not anticipate the need for abstraction. This is the philosophy of YAGNI:「You aren't going to need it.」There is wisdom in this message, since over-engineering is often much worse than under-engineering. On the other hand, when you discover that you truly do need an architectural boundary where none exists, the costs and risks can be very high to add such a boundary.
 
 So there you have it. O Software Architect, you must see the future. You must guess—intelligently. You must weigh the costs and determine where the architectural boundaries lie, and which should be fully implemented, and which should be partially implemented, and which should be ignored.
 
-But this is not a one-time decision. You don’t simply decide at the start of a project which boundaries to implement and which to ignore. Rather, you watch. You pay attention as the system evolves. You note where boundaries may be required, and then carefully watch for the first inkling of friction because those boundaries don’t exist.
+But this is not a one-time decision. You don't simply decide at the start of a project which boundaries to implement and which to ignore. Rather, you watch. You pay attention as the system evolves. You note where boundaries may be required, and then carefully watch for the first inkling of friction because those boundaries don't exist.
 
 At that point, you weigh the costs of implementing those boundaries versus the cost of ignoring them—and you review that decision frequently. Your goal is to implement the boundaries right at the inflection point where the cost of implementing becomes less than the cost of ignoring.
 

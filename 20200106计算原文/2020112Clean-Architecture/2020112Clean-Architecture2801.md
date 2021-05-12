@@ -1,12 +1,12 @@
 Chapter 28  The Test Boundary
 
-Yes, that’s right: The tests are part of  the system, and they participate in the architecture just like every other part of the system does. In some ways, that participation is pretty normal. In other ways, it can be pretty unique.
+Yes, that's right: The tests are part of  the system, and they participate in the architecture just like every other part of the system does. In some ways, that participation is pretty normal. In other ways, it can be pretty unique.
 
 Tests  as  System  Components
 
 There is a great deal of confusion about tests. Are they part of the system? Are they separate from the system? Which kinds of tests are there? Are unit tests and integration tests different things? What about acceptance tests, functional tests, Cucumber tests, TDD tests, BDD tests, component tests, and so on?
 
-It is not the role of this book to get embroiled in that particular debate, and fortunately it isn’t necessary. From an architectural point of view, all tests are the same. Whether they are the tiny little tests created by TDD, or large FitNesse, Cucumber, SpecFlow, or JBehave tests, they are architecturally equivalent.
+It is not the role of this book to get embroiled in that particular debate, and fortunately it isn't necessary. From an architectural point of view, all tests are the same. Whether they are the tiny little tests created by TDD, or large FitNesse, Cucumber, SpecFlow, or JBehave tests, they are architecturally equivalent.
 
 Tests, by their very nature, follow the Dependency Rule; they are very detailed and concrete; and they always depend inward toward the code being tested. In fact, you can think of the tests as the outermost circle in the architecture. Nothing within the system depends on the tests, and the tests always depend inward on the components of the system.
 
@@ -30,7 +30,7 @@ It is not hard to see how this can happen. Imagine, for example, a suite of test
 
 Fragile tests often have the perverse effect of making the system rigid. When developers realize that simple changes to the system can cause massive test failures, they may resist making those changes. For example, imagine the conversation between the development team and a marketing team that requests a simple change to the page navigation structure that will cause 1000 tests to break.
 
-The solution is to design for testability. The first rule of software design—whether for testability or for any other reason—is always the same: Don’t depend on volatile things. GUIs are volatile. Test suites that operate the system through the GUI must be fragile. Therefore design the system, and the tests, so that business rules can be tested without using the GUI.
+The solution is to design for testability. The first rule of software design—whether for testability or for any other reason—is always the same: Don't depend on volatile things. GUIs are volatile. Test suites that operate the system through the GUI must be fragile. Therefore design the system, and the tests, so that business rules can be tested without using the GUI.
 
 251
 
@@ -48,7 +48,7 @@ Structural coupling is one of the strongest, and most insidious, forms of test c
 
 When one of those production methods or classes changes, a large number of tests must change as well. Consequently, the tests are fragile, and they make the production code rigid.
 
-The role of the testing API is to hide the structure of the application from the tests. This allows the production code to be refactored and evolved in ways that don’t affect the tests. It also allows the tests to be refactored and evolved in ways that don’t affect the production code.
+The role of the testing API is to hide the structure of the application from the tests. This allows the production code to be refactored and evolved in ways that don't affect the tests. It also allows the tests to be refactored and evolved in ways that don't affect the production code.
 
 This separation of evolution is necessary because as time passes, the tests tend to become increasingly more concrete and specific. In contrast, the production code tends to become increasingly more abstract and general. Strong structural coupling prevents—or at least impedes—this necessary evolution, and prevents the production code from being as general, and flexible, as it could be.
 
@@ -78,5 +78,5 @@ By James Grenning
 
 Chapter 29  Clean Embedded Architecture
 
-A while ago I read an article entitled「The Growing Importance of Sustaining Software for the DoD」1 on Doug Schmidt’s blog. Doug made the following claim:
+A while ago I read an article entitled「The Growing Importance of Sustaining Software for the DoD」1 on Doug Schmidt's blog. Doug made the following claim:
 

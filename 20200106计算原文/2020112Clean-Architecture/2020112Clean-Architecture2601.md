@@ -6,7 +6,7 @@ It is in this Main component that dependencies should be injected by a Dependenc
 
 Think of Main as the dirtiest of all the dirty components.
 
-Consider the following Main component from a recent version of Hunt the Wumpus. Notice how it loads up all the strings that we don’t want the main body of the code to know about.
+Consider the following Main component from a recent version of Hunt the Wumpus. Notice how it loads up all the strings that we don't want the main body of the code to know about.
 
 public class Main implements HtwMessageReceiver {
 
@@ -122,7 +122,7 @@ Chapter 26  The Main Component
 
 };
 
-Now here’s the main function. Notice how it uses the HtwFactory to create the game. It passes in the name of the class, htw.game.HuntTheWumpusFacade, because that class is even dirtier than Main. This prevents changes in that class from causing Main to recompile/redeploy.
+Now here's the main function. Notice how it uses the HtwFactory to create the game. It passes in the name of the class, htw.game.HuntTheWumpusFacade, because that class is even dirtier than Main. This prevents changes in that class from causing Main to recompile/redeploy.
 
 public static void main(String[] args) throws IOException {
 

@@ -58,7 +58,7 @@ Maintenance
 
 Indeed, we have seen this happen over and over again. Software systems that have inefficient architectures can often be made to work effectively simply by adding more storage and more servers. The fact that hardware is cheap and people are expensive means that architectures that impede operation are not as costly as architectures that impede development, deployment, and maintenance.
 
-This is not to say that an architecture that is well tuned to the operation of the system is not desirable. It is! It’s just that the cost equation leans more toward development, deployment, and maintenance.
+This is not to say that an architecture that is well tuned to the operation of the system is not desirable. It is! It's just that the cost equation leans more toward development, deployment, and maintenance.
 
 Having said that, there is another role that architecture plays in the operation of the system: A good software architecture communicates the operational needs of the system.
 
@@ -82,7 +82,7 @@ As we described in an earlier chapter, software has two types of value: the valu
 
 Software was invented because we needed a way to quickly and easily change the behavior of machines. But that flexibility depends critically on the shape of the system, the arrangement of its components, and the way those components are interconnected.
 
-The way you keep software soft is to leave as many options open as possible, for as long as possible. What are the options that we need to leave open? They are the details that don’t matter.
+The way you keep software soft is to leave as many options open as possible, for as long as possible. What are the options that we need to leave open? They are the details that don't matter.
 
 All software systems can be decomposed into two major elements: policy and details. The policy element embodies all the business rules and procedures. The policy is where the true value of the system lives.
 
@@ -100,7 +100,7 @@ For example:
 
 development, because the high-level policy should not care which kind of database will be used. Indeed, if the architect is careful, the high-level policy will not care if the database is relational, distributed, hierarchical, or just plain flat files.
 
-(cid:129) It is not necessary to choose a web server early in development, because the high-level policy should not know that it is being delivered over the web. If the high-level policy is unaware of HTML, AJAX, JSP, JSF, or any of the rest of the alphabet soup of web development, then you don’t need to decide which web system to use until much later in the project. Indeed, you don’t even have to decide if  the system will be delivered over the web.
+(cid:129) It is not necessary to choose a web server early in development, because the high-level policy should not know that it is being delivered over the web. If the high-level policy is unaware of HTML, AJAX, JSP, JSF, or any of the rest of the alphabet soup of web development, then you don't need to decide which web system to use until much later in the project. Indeed, you don't even have to decide if  the system will be delivered over the web.
 
 (cid:129) It is not necessary to adopt REST early in development, because the high-
 
@@ -126,9 +126,9 @@ A good architect maximizes the number of  decisions not made.
 
 Device  Independence
 
-As an example of this kind of thinking, let’s take a trip back to the 1960s, when computers were teenagers and most programmers were mathematicians or engineers from other disciplines (and-one third or more were women).
+As an example of this kind of thinking, let's take a trip back to the 1960s, when computers were teenagers and most programmers were mathematicians or engineers from other disciplines (and-one third or more were women).
 
-In those days we made a lot of mistakes. We didn’t know they were mistakes at the time, of course. How could we?
+In those days we made a lot of mistakes. We didn't know they were mistakes at the time, of course. How could we?
 
 One of those mistakes was to bind our code directly to the IO devices. If we needed to print something on a printer, we wrote code that used the IO instructions that would control the printer. Our code was device dependent.
 
@@ -144,7 +144,7 @@ TLS
 
 JMP I PRTCHR
 
-PRTCHR is a subroutine that prints one character on the teleprinter. The beginning zero was used as the storage for the return address. (Don’t ask.) The TSF instruction skipped the next instruction if the teleprinter was ready to print a character. If the teleprinter was busy, then TSF just fell through to
+PRTCHR is a subroutine that prints one character on the teleprinter. The beginning zero was used as the storage for the return address. (Don't ask.) The TSF instruction skipped the next instruction if the teleprinter was ready to print a character. If the teleprinter was busy, then TSF just fell through to
 
 142
 
@@ -156,7 +156,7 @@ At first this strategy worked fine. If we needed to read cards from the card rea
 
 But big batches of punched cards are difficult to manage. They can be lost, mutilated, spindled, shuffled, or dropped. Individual cards can be lost and extra cards can be inserted. So data integrity became a significant problem.
 
-Magnetic tape was the solution. We could move the card images to tape. If you drop a magnetic tape, the records don’t get shuffled. You can’t accidentally lose a record, or insert a blank record simply by handing the tape. The tape is much more secure. It’s also faster to read and write, and it is very easy to make backup copies.
+Magnetic tape was the solution. We could move the card images to tape. If you drop a magnetic tape, the records don't get shuffled. You can't accidentally lose a record, or insert a blank record simply by handing the tape. The tape is much more secure. It's also faster to read and write, and it is very easy to make backup copies.
 
 Unfortunately, all our software was written to manipulate card readers and card punches. Those programs had to be rewritten to use magnetic tape. That was a big job.
 
@@ -182,7 +182,7 @@ These rolls of form letters weighed 500 pounds and contained thousands of letter
 
 At first, we had an IBM 360 doing the printing on its sole line printer. We could print a few thousand letters per shift. Unfortunately, this tied up a very expensive machine for a very long time. In those days, IBM 360s rented for tens of thousands of dollars per month.
 
-So we told the operating system to use magnetic tape instead of the line printer. Our programs didn’t care, because they had been written to use the IO abstractions of the operating system.
+So we told the operating system to use magnetic tape instead of the line printer. Our programs didn't care, because they had been written to use the IO abstractions of the operating system.
 
 The 360 could pump out a full tape in 10 minutes or so—enough to print several rolls of form letters. The tapes were taken outside of the computer
 

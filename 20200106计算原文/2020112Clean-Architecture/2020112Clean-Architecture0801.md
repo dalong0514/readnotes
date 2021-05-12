@@ -8,9 +8,9 @@ OCP 是我们进行系统架构设计的主导原则，其主要目标是让系�
 
 ## 8.0
 
-The Open-Closed Principle (OCP) was coined in 1988 by Bertrand Meyer.1 It says:
+The Open-Closed Principle (OCP) was coined in 1988 by Bertrand Meyer. [1] 
 
-A software artifact should be open for extension but closed for modification.
+It says: A software artifact should be open for extension but closed for modification.
 
 In other words, the behavior of a software artifact ought to be extendible, without having to modify that artifact.
 
@@ -116,7 +116,7 @@ For example, the FinancialDataGateway interface between the FinancialReportGener
 
 The FinancialReportRequester interface serves a different purpose. It is there to protect the FinancialReportController from knowing too much about the internals of the Interactor. If that interface were not there, then the Controller would have transitive dependencies on the FinancialEntities.
 
-Transitive dependencies are a violation of the general principle that software entities should not depend on things they don’t directly use. We’ll encounter that principle again when we talk about the Interface Segregation Principle and the Common Reuse Principle.
+Transitive dependencies are a violation of the general principle that software entities should not depend on things they don't directly use. We'll encounter that principle again when we talk about the Interface Segregation Principle and the Common Reuse Principle.
 
 So, even though our first priority is to protect the Interactor from changes to the Controller, we also want to protect the Controller from changes to the Interactor by hiding the internals of the Interactor.
 
