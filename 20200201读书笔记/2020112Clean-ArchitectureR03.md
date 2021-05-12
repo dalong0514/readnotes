@@ -6,6 +6,8 @@
 
 0801 OCP: The Open-Closed Principle
 
+0901 LSP: The Liskov Substitution Principle
+
 ## Part III. Design Principles
 
 Good software systems begin with clean code. On the one hand, if the bricks aren't well made, the architecture of the building doesn't matter much. On the other hand, you can make a substantial mess with well-made bricks. This is where the SOLID principles come in.
@@ -248,7 +250,7 @@ The first thing to notice is that all the dependencies are source code dependenc
 
 The next thing to notice is that each double line is crossed in one direction only. This means that all component relationships are unidirectional, as shown in the component graph in Figure 8.3. These arrows point toward the components that we want to protect from change.
 
-1『想要高层不受底层变动的影响，底层必须依赖于高层。高层是接口类，底层是实现类。举例：B 是高层，A 是底层。谁调用 A 谁依赖于 A。B 直接调用 A 的话，B 依赖于 A，A 的变动会影响到 B。但如果把 A 的实现抽象出一个接口 I，B 调用 I 接口，A 调用 I 接口实现 I，那么 A 依赖于 I 就相当于 A 依赖于 B，A 的变动不会影响到 B，这就实现了依赖倒置。（2021-05-12）』
+1『想要高层不受底层变动的影响，底层必须依赖于高层。高层是接口类，底层是实现类。举例：B 是高层，A 是底层。谁调用 A 谁依赖于 A。B 直接调用 A 的话，B 依赖于 A，A 的变动会影响到 B。但如果把 A 的实现抽象出一个接口 I，B 调用 I 接口，A 调用 I 接口实现 I，那么 A 依赖于 I 就相当于 A 依赖于 B，A 的变动不会影响到 B，这就实现了依赖倒置。记住：空心箭头指向谁，谁是高层；实心箭头指向谁，调用谁。（2021-05-12）』
 
 Figure 8.3  The component relationships are unidirectional
 

@@ -40,7 +40,7 @@ How? By properly separating the things that change for different reasons (the Si
 
 By applying the SRP, we might come up with the data-flow view shown in Figure 8.1. Some analysis procedure inspects the financial data and produces reportable data, which is then formatted appropriately by the two reporter processes.
 
-![](./res/2020025.png)
+![](./res/2020016.png)
 
 Figure 8.1  Applying the SRP
 
@@ -50,7 +50,7 @@ Having made this separation, we need to organize the source code dependencies to
 
 We accomplish this by partitioning the processes into classes, and separating those classes into components, as shown by the double lines in the diagram in Figure 8.2. In this figure, the component at the upper left is the Controller. At the upper right, we have the Interactor. At the lower right, there is the Database. Finally, at the lower left, there are four components that represent the Presenters and the Views.
 
-![](./res/2020026.png)
+![](./res/2020017.png)
 
 Figure 8.2  Partitioning the processes into classes and separating the classes into components
 
@@ -62,7 +62,7 @@ The next thing to notice is that each double line is crossed in one direction on
 
 1『想要高层不受底层变动的影响，底层必须依赖于高层。高层是接口类，底层是实现类。举例：B 是高层，A 是底层。谁调用 A 谁依赖于 A。B 直接调用 A 的话，B 依赖于 A，A 的变动会影响到 B。但如果把 A 的实现抽象出一个接口 I，B 调用 I 接口，A 调用 I 接口实现 I，那么 A 依赖于 I 就相当于 A 依赖于 B，A 的变动不会影响到 B，这就实现了依赖倒置。（2021-05-12）』
 
-![](./res/2020027.png)
+![](./res/2020018.png)
 
 Figure 8.3  The component relationships are unidirectional
 
