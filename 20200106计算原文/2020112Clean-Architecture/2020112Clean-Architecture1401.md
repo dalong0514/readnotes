@@ -294,7 +294,7 @@ The SDP says that the I metric of a component should be larger than the I metri
 
 稳定依赖原则（SDP）的要求是让每个组件的 I 指标都必须大于其所依赖组件的 I 指标。也就是说，组件结构依赖图中各组件的 I 指标必须要按其依赖关系方向递减。
 
-## 14.4 Not All Components Should Be Stable
+Not All Components Should Be Stable
 
 If all the components in a system were maximally stable, the system would be unchangeable. This is not a desirable situation. Indeed, we want to design our component structure so that some components are unstable and some are stable. The diagram in Figure 14.8 shows an ideal configuration for a system with three components.
 
@@ -340,7 +340,7 @@ Figure 14.11  C implements the interface class US
 
 图 14.11：让 C 实现接口类 US
 
-### 14.4.1 Abstract Components
+### 14.3.3 Abstract Components
 
 You may find it strange that we would create a component — in this example, UService — that contains nothing but an interface. Such a component contains no executable code! It turns out, however, that this is a very common, and necessary, tactic when using statically typed languages like Java and C#. These abstract components are very stable and, therefore, are ideal targets for less stable components to depend on.
 
@@ -352,7 +352,7 @@ When using dynamically typed languages like Ruby and Python, these abstract comp
 
 而当我们使用 Ruby 和 Python 这种动态类型语言时，这些抽象接口事实上并不存在，因此也就没有对它们的依赖。动态类型语言中的依赖关系是非常简单的，因为其依赖反转的过程并不需要声明和继承接口。
 
-## 14.5 The Stable Abstractions Principle
+## 14.4 The Stable Abstractions Principle
 
 A component should be as abstract as it is stable.
 
@@ -360,7 +360,7 @@ A component should be as abstract as it is stable.
 
 一个组件的抽象化程度应该与其稳定性保持一致。
 
-### 14.5.1 Where Do We Put the High-Level Policy?
+### 14.4.1 Where Do We Put the High-Level Policy?
 
 Some software in the system should not change very often. This software represents high-level architecture and policy decisions. We don't want these business and architectural decisions to be volatile. Thus the software that encapsulates the high-level policies of the system should be placed into stable components (I = 0). Unstable components (I = 1) should contain only the software that is volatile — software that we want to be able to quickly and easily change.
 
@@ -372,7 +372,7 @@ However, if the high-level policies are placed into stable components, then the 
 
 然而，如果我们将高阶策略放入稳定组件中，那么用于描述那些策略的源代码就很难被修改了。这可能会导致整个系统的架构设计难于被修改。如何才能让一个无限稳定的组件（I=0）接受变更呢？开闭原则（OCP）为我们提供了答案。这个原则告诉我们：创造一个足够灵活、能够被扩展，而且不需要修改的类是可能的，而这正是我们所需要的。哪一种类符合这个原则呢？答案是抽象类。
 
-### 14.5.2 Introducing the Stable Abstractions Principle
+### 14.4.2 Introducing the Stable Abstractions Principle
 
 The Stable Abstractions Principle (SAP) sets up a relationship between stability and abstractness. On the one hand, it says that a stable component should also be abstract so that its stability does not prevent it from being extended. On the other hand, it says that an unstable component should be concrete since it its instability allows the concrete code within it to be easily changed.
 
@@ -392,7 +392,7 @@ The DIP, however, is a principle that deals with classes — and with classes th
 
 然而，DIP 毕竟是与类这个层次有关的原则 —— 对类来说，设计是没有灰色地带的。一个类要么是抽象类，要么就不是。SDP 与 SAP 这对原则是应用在组件层面上的，我们要允许一个组件部分抽象，部分稳定。
 
-### 14.5.3 Measuring Abstraction
+### 14.4.3 Measuring Abstraction
 
 The A metric is a measure of the abstractness of a component. Its value is simply the ratio of interfaces and abstract classes in a component to the total number of classes in the component.
 
@@ -412,7 +412,7 @@ The A metric ranges from 0 to 1. A value of 0 implies that the component has no 
 
 A 指标的取值范围是从 0 到 1，值为 0 代表组件中没有任何抽象类，值为 1 就意味着组件中只有抽象类。
 
-### 14.5.4 The Main Sequence
+### 14.4.4 The Main Sequence
 
 We are now in a position to define the relationship between stability (I) and abstractness (A). To do so, we create a graph with A on the vertical axis and I on the horizontal axis (Figure 14.12). If we plot the two「good」kinds of components on this graph, we will find the components that are maximally stable and abstract at the upper left at (0, 1). The components that are maximally unstable and concrete are at the lower right at (1, 0).
 
@@ -434,7 +434,7 @@ Figure 14.13  Zones of exclusion
 
 图 14.13：排除区
 
-#### The Zone of Pain
+The Zone of Pain
 
 Consider a component in the area of (0, 0). This is a highly stable and concrete component. Such a component is not desirable because it is rigid. It cannot be extended because it is not abstract, and it is very difficult to change because of its stability. Thus we do not normally expect to see well-designed components sitting near (0, 0). The area around (0, 0) is a zone of exclusion called the Zone of  Pain.
 
@@ -454,7 +454,7 @@ Nonvolatile components are harmless in the (0, 0) zone since they are not likely
 
 不可变组件落在（0,0）这一区域中是无害的，因为它们不太可能会发生变更。正因为如此，只有多变的软件组件落在痛苦区中才会造成麻烦，而且组件的多变性越强，造成的麻烦就会越大。其实，我们应该将多变性作为图 14.13 的第三个轴，这时图 14.13 所展示的便是多变性 = 1 时的情况，也就是最痛苦的切面。
 
-#### The Zone of Uselessness
+The Zone of Uselessness
 
 Consider a component near (1, 1). This location is undesirable because it is maximally abstract, yet has no dependents. Such components are useless. Thus this area is called the Zone of  Uselessness.
 
@@ -470,7 +470,7 @@ A component that has a position deep within the Zone of Uselessness must contain
 
 同样的，落在无用区中的组件也一定会包含大量的无用代码。很明显，这类组件也不是我们想要的。
 
-### 14.5.5 Avoiding the Zones of Exclusion
+### 14.4.5 Avoiding the Zones of Exclusion
 
 It seems clear that our most volatile components should be kept as far from both zones of exclusion as possible. The locus of points that are maximally distant from each zone is the line that connects (1, 0) and (0, 1). I call this line the Main Sequence.2
 
@@ -484,7 +484,7 @@ The most desirable position for a component is at one of the two endpoints of th
 
 在整条主序列线上，组件所能处于最优的位置是线的两端。一个优秀的软件架构师应该争取将自己设计的大部分组件尽可能地推向这两个位置。然而，以我的个人经验来说，大型系统中的组件不可能做到完全抽象，也不可能做到完全稳定。所以我们只要追求让这些组件位于主序列线上，或者贴近这条线即可。
 
-### 14.5.6 Distance from the Main Sequence
+### 14.4.6 Distance from the Main Sequence
 
 This leads us to our last metric. If it is desirable for components to be on, or close, to the Main Sequence, then we can create a metric that measures how far away a component is from this ideal.
 

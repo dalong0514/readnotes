@@ -154,15 +154,15 @@ Don't depend on things you don't need.
 
 CRP 原则实际上是 ISP 原则的一个普适版。ISP 原则是建议我们不要依赖带有不需要的函数的类，而 CRP 原则则是建议我们不要依赖带有不需要的类的组件。
 
-上述两条建议实际上都可以用下面一句话来概括：
-
-不要依赖不需要用到的东西。
+上述两条建议实际上都可以用下面一句话来概括：不要依赖不需要用到的东西。
 
 ## 13.4 The Tension Diagram for Component Cohesion
 
 You may have already realized that the three cohesion principles tend to fight each other. The REP and CCP are inclusive principles: Both tend to make components larger. The CRP is an exclusive principle, driving components to be smaller. It is the tension between these principles that good architects seek to resolve.
 
-Figure 13.1 is a tension diagram2 that shows how the three principles of cohesion interact with each other. The edges of the diagram describe the cost of abandoning the principle on the opposite vertex.
+Figure 13.1 is a tension diagram [2] that shows how the three principles of cohesion interact with each other. The edges of the diagram describe the cost of abandoning the principle on the opposite vertex.
+
+![](./res/2021027.png)
 
 Figure 13.1  Cohesion principles tension diagram
 
