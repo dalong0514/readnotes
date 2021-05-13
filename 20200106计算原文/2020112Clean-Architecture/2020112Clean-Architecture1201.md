@@ -18,17 +18,17 @@ These dynamically linked files, which can be plugged together at runtime, are th
 
 我们常常会在程序运行时插入某些动态链接文件，这些动态链接文件所使用的就是软件架构中的组件概念。在经历了 50 年的演进之后，组件化的插件式架构已经成为我们习以为常的软件构建形式了。
 
-## 13.0
+## 12.0
 
 Components are the units of deployment. They are the smallest entities that can be deployed as part of a system. In Java, they are jar files. In Ruby, they are gem files. In .Net, they are DLLs. In compiled languages, they are aggregations of binary files. In interpreted languages, they are aggregations of source files. In all languages, they are the granule of deployment.
 
 Components can be linked together into a single executable. Or they can be aggregated together into a single archive, such as a .war file. Or they can be independently deployed as separate dynamically loaded plugins, such as.jar or .dll or .exe files. Regardless of how they are eventually deployed, well-designed components always retain the ability to be independently deployable and, therefore, independently developable.
 
-组件是软件的部署单元，是整个软件系统在部署过程中可以独立完成部署的最小实体。例如，对于 Java 来说，它的组件是 jar 文件。而在 Ruby 中，它们是 gem 文件。在.Net 中，它们则是 DLL 文件。总而言之，在编译运行语言中，组件是一组二进制文件的集合。而在解释运行语言中，组件则是一组源代码文件的集合。无论采用什么编程语言来开发软件，组件都是该软件在部署过程中的最小单元。
+组件是软件的部署单元，是整个软件系统在部署过程中可以独立完成部署的最小实体。例如，对于 Java 来说，它的组件是 jar 文件。而在 Ruby 中，它们是 gem 文件。在 .Net 中，它们则是 DLL 文件。总而言之，在编译运行语言中，组件是一组二进制文件的集合。而在解释运行语言中，组件则是一组源代码文件的集合。无论采用什么编程语言来开发软件，组件都是该软件在部署过程中的最小单元。
 
-我们可以将多个组件链接成一个独立可执行文件，也可以将它们汇总成类似.war 文件这样的部署单元，又或者，组件也可以被打包成.jar、.dll 或者.exe 文件，并以可动态加载的插件形式来独立部署。但无论采用哪种部署形式，设计良好的组件都应该永远保持可被独立部署的特性，这同时也意味着这些组件应该可以被单独开发。
+我们可以将多个组件链接成一个独立可执行文件，也可以将它们汇总成类似 .war 文件这样的部署单元，又或者，组件也可以被打包成 .jar、.dll 或者 .exe 文件，并以可动态加载的插件形式来独立部署。但无论采用哪种部署形式，设计良好的组件都应该永远保持可被独立部署的特性，这同时也意味着这些组件应该可以被单独开发。
 
-## 12.1 A  Brief  History  of  Components
+## 12.1 A Brief History of Components
 
 In the early years of software development, programmers controlled the memory location and layout of their programs. One of the first lines of code in a program would be the origin statement, which declared the address at which the program was to be loaded.
 
@@ -38,17 +38,21 @@ Note the *200 command at the start of this program. It tells the compiler to gen
 
 This kind of programming is a foreign concept for most programmers today. They rarely have to think about where a program is loaded in the memory of the computer. But in the early days, this was one of the first decisions a programmer needed to make. In those days, programs were not relocatable.
 
-How did you access a library function in those olden days? The preceding code illustrates the approach used. Programmers included the source code of the library functions with their application code, and compiled them all as a single program.1 Libraries were kept in source, not in binary.
+How did you access a library function in those olden days? The preceding code illustrates the approach used. Programmers included the source code of the library functions with their application code, and compiled them all as a single program. [1] Libraries were kept in source, not in binary.
 
 The problem with this approach was that, during this era, devices were slow and memory was expensive and, therefore, limited. Compilers needed to make several passes over the source code, but memory was too limited to keep all the source code resident. Consequently, the compiler had to read in the source code several times using the slow devices.
 
 This took a long time — and the larger your function library, the longer the compiler took. Compiling a large program could take hours.
 
-To shorten the compile times, programmers separated the source code of the function library from the applications. They compiled the function library separately and loaded the binary at a known address — say, 20008. They created a symbol table for the function library and compiled that with their application code. When they wanted to run an application, they would load the binary function library,2 and then load the application. Memory looked like the layout shown in Figure 12.1.
+To shorten the compile times, programmers separated the source code of the function library from the applications. They compiled the function library separately and loaded the binary at a known address — say, 20008. They created a symbol table for the function library and compiled that with their application code. When they wanted to run an application, they would load the binary function library, [2] and then load the application. Memory looked like the layout shown in Figure 12.1.
+
+![](./res/2021025.png)
 
 Figure 12.1  Early memory layout
 
 This worked fine so long as the application could fit between addresses 00008 and 17778. But soon applications grew to be larger than the space allotted for them. At that point, programmers had to split their applications into two address segments, jumping around the function library (Figure 12.2).
+
+![](./res/2021026.png)
 
 Figure 12.2  Splitting the application into two address segments
 
@@ -124,7 +128,7 @@ We were, of course, experiencing Murphy's law of program size:
 
 Programs will grow to fill all available compile and link time.
 
-But Murphy was not the only contender in town. Along came Moore,3 and in the late 1980s, the two battled it out. Moore won that battle. Disks started to shrink and got significantly faster. Computer memory started to get so ridiculously cheap that much of the data on disk could be cached in RAM. Computer clock rates increased from 1 MHz to 100 MHz.
+But Murphy was not the only contender in town. Along came Moore, [3] and in the late 1980s, the two battled it out. Moore won that battle. Disks started to shrink and got significantly faster. Computer memory started to get so ridiculously cheap that much of the data on disk could be cached in RAM. Computer clock rates increased from 1 MHz to 100 MHz.
 
 By the mid-1990s, the time spent linking had begun to shrink faster than our ambitions could make programs grow. In many cases, link time decreased to a matter of seconds. For small jobs, the idea of a linking loader became feasible again.
 
@@ -144,7 +148,7 @@ Today we routinely ship .jar files or DLLs or shared libraries as plugins to exi
 
 时间继续推移到了 20 世纪 80 年代，程序员们在那时已经用上了 C 这样的高级编程语言，程序的规模也得到了进一步的扩大，源代码行数超过几十万行在当时已经是很普遍的事了。
 
-于是，源代码模块会从.c 文件被编译成.o 文件，然后再由链接器创建出可被快速加载的可执行文件。那时，虽然编译每个单独模块的速度相对较快，但所有模块的累计编译时间较长，链接过程则耗时更久，整个修改编译周期经常会超过数个小时。
+于是，源代码模块会从 .c 文件被编译成 .o 文件，然后再由链接器创建出可被快速加载的可执行文件。那时，虽然编译每个单独模块的速度相对较快，但所有模块的累计编译时间较长，链接过程则耗时更久，整个修改编译周期经常会超过数个小时。
 
 有时候，程序员们看上去似乎就是一直不停地在原地打转。从 20 世纪 60 年代一直到 80 年代，他们所有为提供编译速度所做的努力都被不断增长的程序规模抵消了。程序员好像永远也脱离不了长达几个小时的修改编译周期。程序加载的速度一直都很快，但是其编译和链接的过程也一直是整个开发过程的瓶颈。
 
@@ -156,6 +160,6 @@ Today we routinely ship .jar files or DLLs or shared libraries as plugins to exi
 
 到了 20 世纪 90 年代中期，链接速度的提升速度已经远远超过了程序规模的增长速度。在大部分情况下，程序链接的时间已经降低到秒级。这对一些小程序来说，即使使用链接加载器也是可以接受的了。
 
-与此同时，编程领域中还诞生了 Active-X、共享库、.jar 文件等组件形式。由于计算与存储速度的大幅提高，我们又可以在加载过程中进行实时链接了，链接几个.jar 文件或是共享库文件通常只需要几秒钟时间，由此，插件化架构也就随之诞生了。
+与此同时，编程领域中还诞生了 Active-X、共享库、.jar 文件等组件形式。由于计算与存储速度的大幅提高，我们又可以在加载过程中进行实时链接了，链接几个 .jar 文件或是共享库文件通常只需要几秒钟时间，由此，插件化架构也就随之诞生了。
 
-如今，我们用.jar 文件、DLL 文件和共享库方式来部署应用的插件已经非常司空见惯了。如果现在我们想要给 Minecraft 增加一个模块，只需要将.jar 文件放到一个指定的目录中即可。同样的，如果你想给 Visual Studio 增加 Resharper 插件，也只需要安装对应的 DLL 文件即可。
+如今，我们用 .jar 文件、DLL 文件和共享库方式来部署应用的插件已经非常司空见惯了。如果现在我们想要给 Minecraft 增加一个模块，只需要将 .jar 文件放到一个指定的目录中即可。同样的，如果你想给 Visual Studio 增加 Resharper 插件，也只需要安装对应的 DLL 文件即可。
