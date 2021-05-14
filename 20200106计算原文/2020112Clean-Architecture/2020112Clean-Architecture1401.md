@@ -24,6 +24,8 @@ The「morning after syndrome」occurs in development environments where many dev
 
 Over the last several decades, two solutions to this problem have evolved, both of which came from the telecommunications industry. The first is「the weekly build,」and the second is the Acyclic Dependencies Principle (ADP).
 
+2『一觉醒来综合征的两个解决方案，做一张主题卡片。（2021-5-13）』—— 已完成
+
 无依赖环原则
 
 组件依赖关系图中不应该出现环。
@@ -68,13 +70,13 @@ This is a very simple and rational process, and it is widely used. To make it w
 
 Consider the component diagram in Figure 14.1. It shows a rather typical structure of components assembled into an application. The function of this application is unimportant for the purpose of this example. What is important is the dependency structure of the components. Notice that this structure is a directed graph. The components are the nodes, and the dependency relationships are the directed edges.
 
+![](./res/2021028.png)
+
 Figure 14.1 Typical component diagram
 
 Notice one more thing: Regardless of which component you begin at, it is impossible to follow the dependency relationships and wind up back at that component. This structure has no cycles. It is a directed acyclic graph (DAG).
 
-Now consider what happens when the team responsible for Presenters makes a new release of their component. It is easy to find out who is affected
-
-by this release; you just follow the dependency arrows backward. Thus View and Main will both be affected. The developers currently working on those components will have to decide when they should integrate their work with the new release of Presenters.
+Now consider what happens when the team responsible for Presenters makes a new release of their component. It is easy to find out who is affected by this release; you just follow the dependency arrows backward. Thus View and Main will both be affected. The developers currently working on those components will have to decide when they should integrate their work with the new release of Presenters.
 
 Notice also that when Main is released, it has utterly no effect on any of the other components in the system. They don't know about Main, and they don't care when it changes. This is nice. It means that the impact of releasing Main is relatively small.
 
@@ -110,11 +112,15 @@ Suppose that a new requirement forces us to change one of the classes in Entitie
 
 This cycle creates some immediate problems. For example, the developers working on the Database component know that to release it, the component must be compatible with Entities. However, with the cycle in place, the Database component must now also be compatible with Authorizer. But Authorizer depends on Interactors. This makes Database much more difficult to release. Entities, Authorizer, and Interactors have, in effect, become one large component — which means that all of the developers working on any of those components will experience the dreaded「morning after syndrome.」They will be stepping all over one another because they must all use exactly the same release of one another's components.
 
+![](./res/2021029.png)
+
 Figure 14.2  A dependency cycle
 
 But this is just part of the trouble. Consider what happens when we want to test the Entities component. To our chagrin, we find that we must build and integrate with Authorizer and Interactors. This level of coupling between components is troubling, if not intolerable.
 
 You may have wondered why you have to include so many different libraries, and so much of everybody else's stuff, just to run a simple unit test of one of your classes. If you investigate the matter a bit, you will probably discover that there are cycles in the dependency graph. Such cycles make it very difficult to isolate components. Unit testing and releasing become very difficult and error prone. In addition, build issues grow geometrically with the number of modules.
+
+1-2『这里的信息太受启发了，为啥形成依赖闭合的多个组件难改？形成闭合意味着这几个组件可以作为一个「整体」，作为一个整体的话，每次就得同步、同版本。多个组件依赖闭环形成大组件难改的原因，做一张主题主题卡片。（2021-05-14）』—— 已完成
 
 Moreover, when there are cycles in the dependency graph, it can be very difficult to work out the order in which you must build the components. Indeed, there probably is no correct order. This can lead to some very nasty problems in languages like Java that read their declarations from compiled binary files.
 
@@ -138,9 +144,13 @@ It is always possible to break a cycle of components and reinstate the dependenc
 
 1 Apply the Dependency Inversion Principle (DIP). In the case in Figure 14.3, we could create an interface that has the methods that User needs. We could then put that interface into Entities and inherit it into Authorizer. This inverts the dependency between Entities and Authorizer, thereby breaking the cycle.
 
+![](./res/2021030.png)
+
 Figure 14.3  Inverting the dependency between Entities and Authorizer
 
 2 Create a new component that both Entities and Authorizer depend on. Move the class(es) that they both depend on into that new component (Figure 14.4).
+
+![](./res/2021031.png)
 
 Figure 14.4 The new component that both Entities and Authorizer depend on
 
@@ -226,9 +236,13 @@ How does this relate to software? Many factors may make a software component har
 
 The diagram in Figure 14.5 shows X, which is a stable component. Three components depend on X, so it has three good reasons not to change. We say that X is responsible to those three components. Conversely, X depends on nothing, so it has no external influence to make it change. We say it is independent.
 
+![](./res/2021032.png)
+
 Figure 14.5  X: a stable component
 
 Figure 14.6 shows Y, which is a very unstable component. No other components depend on Y, so we say that it is irresponsible. Y also has three components that it depends on, so changes may come from three external sources. We say that Y is dependent.
+
+![](./res/2021033.png)
 
 Figure 14.6  Y: a very unstable component
 
@@ -254,9 +268,11 @@ How can we measure the stability of a component? One way is to count the number 
 
 2 Fan-out: Outgoing depenencies. This metric identifies the number of classes inside this component that depend on classes outside the component.
 
-3 I: Instability: I = Fan-out , (Fan-in + Fan-out). This metric has the range [0, 1]. I = 0 indicates a maximally stable component. I = 1 indicates a maximally unstable component.
+3 I: Instability: I = Fan-out/(Fan-in + Fan-out). This metric has the range [0, 1]. I = 0 indicates a maximally stable component. I = 1 indicates a maximally unstable component.
 
-The Fan-in and Fan-out metrics1 are calculated by counting the number of classes outside the component in question that have dependencies with the classes inside the component in question. Consider the example in Figure 14.7.
+The Fan-in and Fan-out metrics [1] are calculated by counting the number of classes outside the component in question that have dependencies with the classes inside the component in question. Consider the example in Figure 14.7.
+
+![](./res/2021034.png)
 
 Figure 14.7  Our example
 
@@ -276,21 +292,19 @@ The SDP says that the I metric of a component should be larger than the I metri
 
 那么，究竟该如何来量化一个组件的稳定性呢？其中一种方法是计算所有入和出的依赖关系。通过这种方法，我们就可以计算出一个组件的位置稳定性（positional stability）。
 
-·Fan-in：入向依赖，这个指标指代了组件外部类依赖于组件内部类的数量。
+Fan-in：入向依赖，这个指标指代了组件外部类依赖于组件内部类的数量。
 
-·Fan-out：出向依赖，这个指标指代了组件内部类依赖于组件外部类的数量。
+Fan-out：出向依赖，这个指标指代了组件内部类依赖于组件外部类的数量。
 
-·I：不稳定性，I=Fan-out/（Fan-in+Fan-out）。该指标的范围是 [0,1],I=0 意味着组件是最稳定的，I=1 意味着组件是最不稳定的。
+I：不稳定性，I=Fan-out/(Fan-in+Fan-out)。该指标的范围是 [0,1]，I=0 意味着组件是最稳定的，I=1 意味着组件是最不稳定的。
 
-在这里，Fan-in 和 Fan-out 这两个指标是通过统计和组件内部类有依赖的组件外部类的数量来计算的，具体如图 14.7 所示。
-
-在这里，我们想要计算组件 Cc 的稳定性指标，可以观察到有 3 个类在 Cc 外部，它们都依赖于 Cc 内部的类，因此 Fan-in=3。此外，Cc 中的一个类也依赖于组件外部的类，因此 Fan-out=1,I=1/4。
+在这里，Fan-in 和 Fan-out 这两个指标是通过统计和组件内部类有依赖的组件外部类的数量来计算的，具体如图 14.7 所示。在这里，我们想要计算组件 Cc 的稳定性指标，可以观察到有 3 个类在 Cc 外部，它们都依赖于 Cc 内部的类，因此 Fan-in=3。此外，Cc 中的一个类也依赖于组件外部的类，因此 Fan-out=1，I=1/4。
 
 在 C++ 中，这些依赖关系一般是通过 #include 语句来表达的。事实上，当每个源文件只包含一个类的时候，I 指标是最容易计算的。同样在 Java 中，I 指标也可以通过 Import 语句和全引用名字的数量来计算。
 
-当 I 指标等于 1 时，说明没有组件依赖当前组件（Fan-in=0），同时该组件却依赖于其他组件（Fan-out>0）。这是组件最不稳定的一种情况，我们认为这种组件是「不负责的（irresponsible）、对外依赖的（dependent）」。由于这个组件没有被其他组件依赖，所以自然也就没有力量会干预它的变更，同时也因为该组件依赖于其他组件，所以就必然会经常需要变更。
+当 I 指标等于 1 时，说明没有组件依赖当前组件（Fan-in=0），同时该组件却依赖于其他组件（Fan-out>0）。这是组件最不稳定的一种情况，我们认为这种组件是「不负责的」（irresponsible）、「对外依赖的」（dependent）。由于这个组件没有被其他组件依赖，所以自然也就没有力量会干预它的变更，同时也因为该组件依赖于其他组件，所以就必然会经常需要变更。
 
-相反，当 I=0 的时候，说明当前组件是其他组件所依赖的目标（Fan-in>0），同时其自身并不依赖任何其他组件（Fan-out=0）。我们通常认为这样的组件是「负责的（responsibile）、不对外依赖的（independent）」。这是组件最具稳定性的一种情况，其他组件对它的依赖关系会导致这个组件很难被变更，同时由于它没有对外依赖关系，所以不会有来自外部的变更理由。
+相反，当 I=0 的时候，说明当前组件是其他组件所依赖的目标（Fan-in>0），同时其自身并不依赖任何其他组件（Fan-out=0）。我们通常认为这样的组件是「负责的」（responsibile）、「不对外依赖的」（independent）。这是组件最具稳定性的一种情况，其他组件对它的依赖关系会导致这个组件很难被变更，同时由于它没有对外依赖关系，所以不会有来自外部的变更理由。
 
 稳定依赖原则（SDP）的要求是让每个组件的 I 指标都必须大于其所依赖组件的 I 指标。也就是说，组件结构依赖图中各组件的 I 指标必须要按其依赖关系方向递减。
 
@@ -300,21 +314,27 @@ If all the components in a system were maximally stable, the system would be unc
 
 The changeable components are on top and depend on the stable component at the bottom. Putting the unstable components at the top of the diagram is a useful convention because any arrow that points up is violating the SDP (and, as we shall see later, the ADP).
 
+![](./res/2021035.png)
+
 Figure 14.8  An ideal configuration for a system with three components
 
 The diagram in Figure 14.9 shows how the SDP can be violated.
+
+![](./res/2021036.png)
 
 Figure 14.9  SDP violation
 
 Flexible is a component that we have designed to be easy to change. We want Flexible to be unstable. However, some developer, working in the component named Stable, has hung a dependency on Flexible. This violates the SDP because the I metric for Stable is much smaller than the I metric for Flexible. As a result, Flexible will no longer be easy to change. A change to Flexible will force us to deal with Stable and all its dependents.
 
-To fix this problem, we somehow have to break the dependence of Stable on Flexible. Why does this dependency exist? Let's assume that there is a
+To fix this problem, we somehow have to break the dependence of Stable on Flexible. Why does this dependency exist? Let's assume that there is a class C within Flexible that another class U within Stable needs to use (Figure 14.10).
 
-class C within Flexible that another class U within Stable needs to use (Figure 14.10).
+![](./res/2021037.png)
 
 Figure 14.10  U within Stable uses C within Flexible
 
 We can fix this by employing the DIP. We create an interface class called US and put it in a component named UServer. We make sure that this interface declares all the methods that U needs to use. We then make C implement this interface as shown in Figure 14.11. This breaks the dependency of Stable on Flexible, and forces both components to depend on UServer. UServer is very stable (I = 0), and Flexible retains its necessary instability (I = 1). All the dependencies now flow in the direction of decreasing I.
+
+![](./res/2021038.png)
 
 Figure 14.11  C implements the interface class US
 
@@ -396,7 +416,11 @@ The DIP, however, is a principle that deals with classes — and with classes th
 
 The A metric is a measure of the abstractness of a component. Its value is simply the ratio of interfaces and abstract classes in a component to the total number of classes in the component.
 
-(cid:129) Nc: The number of classes in the component. (cid:129) Na: The number of abstract classes and interfaces in the component. (cid:129) A: Abstractness. A = Na , Nc.
+1 Nc: The number of classes in the component. 
+
+2 Na: The number of abstract classes and interfaces in the component. 
+
+3 A: Abstractness. A = Na , Nc.
 
 The A metric ranges from 0 to 1. A value of 0 implies that the component has no abstract classes at all. A value of 1 implies that the component contains nothing but abstract classes.
 
@@ -416,11 +440,15 @@ A 指标的取值范围是从 0 到 1，值为 0 代表组件中没有任何抽�
 
 We are now in a position to define the relationship between stability (I) and abstractness (A). To do so, we create a graph with A on the vertical axis and I on the horizontal axis (Figure 14.12). If we plot the two「good」kinds of components on this graph, we will find the components that are maximally stable and abstract at the upper left at (0, 1). The components that are maximally unstable and concrete are at the lower right at (1, 0).
 
+![](./res/2021039.png)
+
 Figure 14.12  The I/A graph
 
 Not all components fall into one of these two positions, because components often have degrees of abstraction and stability. For example, it is very common for one abstract class to derive from another abstract class. The derivative is an abstraction that has a dependency. Thus, though it is maximally abstract, it will not be maximally stable. Its dependency will decrease its stability.
 
 Since we cannot enforce a rule that all components sit at either (0, 1) or (1, 0), we must assume that there is a locus of points on the A/I graph that defines reasonable positions for components. We can infer what that locus is by finding the areas where components should not be — in other words, by determining the zones of exclusion (Figure 11.13).
+
+![](./res/2021040.png)
 
 Figure 14.13  Zones of exclusion
 
@@ -496,11 +524,15 @@ Statistical analysis of a design is also possible. We can calculate the mean and
 
 In the scatterplot in Figure 14.14, we see that the bulk of the components lie along the Main Sequence, but some of them are more than one standard deviation (Z = 1) away from the mean. These aberrant components are worth examining more closely. For some reason, they are either very abstract with few dependents or very concrete with many dependents.
 
+![](./res/2021041.png)
+
 Figure 14.14  Scatterplot of the components
 
 Another way to use the metrics is to plot the D metric of each component over time. The graph in Figure 14.15 is a mock-up of such a plot. You can see
 
 that some strange dependencies have been creeping into the Payroll component over the last few releases. The plot shows a control threshold at D = 0.1. The R2.1 point has exceeded this control limit, so it would be worth our while to find out why this component is so far from the main sequence.
+
+![](./res/2021042.png)
 
 Figure 14.15  Plot of D for a single component over time
 

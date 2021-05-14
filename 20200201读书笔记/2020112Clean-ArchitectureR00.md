@@ -250,6 +250,56 @@ Note that the flow of control crosses the curved line in the opposite direction 
 
 2『源代码依赖方向永远是控制流方向的反转，做一张金句卡片。（2021-05-12）』
 
+### 0107. 主题卡 —— 一觉醒来综合征的两个解决方案
+
+信息源自「2020112Clean-Architecture1401.md」
+
+Allow no cycles in the component dependency graph.
+
+Have you ever worked all day, gotten some stuff working, and then gone home, only to arrive the next morning to find that your stuff no longer works? Why doesn't it work? Because somebody stayed later than you and changed something you depend on! I call this「the morning after syndrome.」
+
+The「morning after syndrome」occurs in development environments where many developers are modifying the same source files. In relatively small projects with just a few developers, it isn't too big a problem. But as the size of the project and the development team grow, the mornings after can get pretty nightmarish. It is not uncommon for weeks to go by without the team being able to build a stable version of the project. Instead, everyone keeps on changing and changing their code trying to make it work with the last changes that someone else made.
+
+Over the last several decades, two solutions to this problem have evolved, both of which came from the telecommunications industry. The first is「the weekly build,」and the second is the Acyclic Dependencies Principle (ADP).
+
+2『一觉醒来综合征的两个解决方案，做一张主题卡片。（2021-5-13）』—— 已完成
+
+无依赖环原则
+
+组件依赖关系图中不应该出现环。
+
+我们一定都有过这样的经历：当你花了一整天的时间，好不容易搞定了一段代码，第二天上班时却发现这段代码莫名其妙地又不能工作了。这通常是因为有人在你走后修改了你所依赖的某个组件。我给这种情况起了个名字 ——「一觉醒来综合征」。
+
+这种综合征的主要病因是多个程序员同时修改了同一个源代码文件。虽然在规模相对较小、人员较少的项目中，这种问题或许并不严重，但是随着项目的增长，研发人员的增加，这种每天早上刚上班时都要经历一遍的痛苦就会越来越多。甚至会严重到让有的团队在长达数周的时间内都不能发布一个稳定的项目版本，因为每个人都在不停地修改自己的代码，以适应其他人所提交的变更。
+
+在过去几十年中，针对这个问题逐渐演化出了两种解决方案，它们都来自电信行业。第一种是「每周构建」，第二种是「无依赖环原则」（ADP）。
+
+### 0108. 主题卡 —— 多个组件依赖闭环形成大组件难改的原因
+
+信息源自「2020112Clean-Architecture1401.md」
+
+But this is just part of the trouble. Consider what happens when we want to test the Entities component. To our chagrin, we find that we must build and integrate with Authorizer and Interactors. This level of coupling between components is troubling, if not intolerable.
+
+You may have wondered why you have to include so many different libraries, and so much of everybody else's stuff, just to run a simple unit test of one of your classes. If you investigate the matter a bit, you will probably discover that there are cycles in the dependency graph. Such cycles make it very difficult to isolate components. Unit testing and releasing become very difficult and error prone. In addition, build issues grow geometrically with the number of modules.
+
+1-2『这里的信息太受启发了，为啥形成依赖闭合的多个组件难改？形成闭合意味着这几个组件可以作为一个「整体」，作为一个整体的话，每次就得同步、同版本。多个组件依赖闭环形成大组件难改的原因，做一张主题主题卡片。（2021-05-14）』—— 已完成
+
+Moreover, when there are cycles in the dependency graph, it can be very difficult to work out the order in which you must build the components. Indeed, there probably is no correct order. This can lead to some very nasty problems in languages like Java that read their declarations from compiled binary files.
+
+循环依赖在组件依赖图中的影响
+
+假设某个新需求使我们修改了 Entities 组件中的某个类，而这个类又依赖于 Authorizer 组件中的某个类。例如，Entities 组件中的 User 类使用了 Authorizer 组件中的 Permissions 类。这就形成了一个循环依赖关系，如图 14.2 所示。
+
+图 14.2：循环依赖
+
+这种循环依赖立刻就会给我们的项目带来麻烦。例如，当 Database 组件的程序员需要发布新版本时，他们需要与 Entities 组件进行集成。但现在由于出现了循环依赖，Database 组件就必须也要与 Authorizer 组件兼容，而 Authorizer 组件又依赖于 Interactors 组件。这样一来，Database 组件的发布就会变得非常困难。在这里，Entities、Authorizer 及 Interactors 这三个组件事实上被合并成了一个更大的组件。这些组件的程序员现在会互相形成干扰，因为他们在开发中都必须使用完全相同的组件版本。
+
+这还只是问题的冰山一角，请想象一下我们在测试 Entities 组件时会发生什么？情况会让人触目惊心，我们会发现自己必须将 Authorizer 和 Interactors 集成到一起测试。即使这不是不能容忍的事，但至少这些组件之间的耦合度也是非常令人不安的。
+
+很显然，这样一个小小的测试必须要依赖大量的库就是因为其组件结构依赖图中存在的这个循环依赖。这种循环依赖会使得组件的独立维护工作变得十分困难。不仅如此，单元测试和发布流程也都会变得非常困难，并且很容易出错。此外，项目在构建中出现的问题会随着组件数量的增多而呈现出几何级数的增长。
+
+所以，当组件结构依赖图中存在循环依赖时，想要按正确的顺序构建组件几乎是不可能的。这种依赖关系将会在 Java 这种需要在编译好的二级制文件中读取声明信息的语言中导致一些非常棘手的问题。
+
 ### 0201. 术语卡 —— 编程范式
 
 Another, probably more significant, revolution was in programming paradigms. Paradigms are ways of programming, relatively unrelated to languages. A paradigm tells you which programming structures to use, and when to use them. To date, there have been three such paradigms. For reasons we shall discuss later, there are unlikely to be any others.
