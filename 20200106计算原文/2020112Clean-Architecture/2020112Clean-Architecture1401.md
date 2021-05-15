@@ -428,11 +428,11 @@ The A metric ranges from 0 to 1. A value of 0 implies that the component has no 
 
 下面，假设 A 指标是对组件抽象化程度的一个衡量，它的值是组件中抽象类与接口所占的比例。那么：
 
-·Nc：组件中类的数量。
+Nc：组件中类的数量。
 
-·Na：组件中抽象类和接口的数量。
+Na：组件中抽象类和接口的数量。
 
-·A：抽象程度，A=Na÷Nc。
+A：抽象程度，A=Na/Nc。
 
 A 指标的取值范围是从 0 到 1，值为 0 代表组件中没有任何抽象类，值为 1 就意味着组件中只有抽象类。
 
@@ -538,13 +538,13 @@ Figure 14.15  Plot of D for a single component over time
 
 2 The author begs the reader's indulgence for the arrogance of borrowing such an important term from astronomy.
 
-3 In previous publications, I called this metric D¿. I see no reason to continue that practice.
+3 In previous publications, I called this metric D'. I see no reason to continue that practice.
 
 离主序列线的距离
 
 接下来介绍最后一个指标：如果让组件位于或者靠近主序列是可取的目标，那么我们就可以创建一个指标来衡量一个组件距离最佳位置的距离。
 
-·D 指标：距离 D=|A+I-1|，该指标的取值范围是 [0,1]。值为 0 意味着组件是直接位于主序列线上的，值为 1 则意味着组件在距离主序列最远的位置。
+D 指标：距离 D=|A+I-1|，该指标的取值范围是 [0,1]。值为 0 意味着组件是直接位于主序列线上的，值为 1 则意味着组件在距离主序列最远的位置。
 
 通过计算每个组件的 D 指标，就可以量化一个系统设计与主序列的契合程度了。另外，我们也可以用 D 指标大于 0 多少来指导组件的重构与重新设计。
 
