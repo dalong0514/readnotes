@@ -104,7 +104,7 @@ If you prefer to learn by doing, check out our practical tutorial. In this tutor
 
 If you prefer to learn concepts step by step, our guide to main concepts is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won’t miss anything as you go along.
 
-如果你喜欢一步步学习概念，我们的 核心概念简介 是最好的开始。指南里的每一章节都基于前一章节已学的内容，这样一步步过来你不会错过任何知识。
+如果你喜欢一步步学习概念，我们的「核心概念简介」是最好的开始。指南里的每一章节都基于前一章节已学的内容，这样一步步过来你不会错过任何知识。
 
 [Hello World – React](https://zh-hans.reactjs.org/docs/hello-world.html)
 
@@ -200,7 +200,7 @@ The tutorial is divided into several sections:
 
 You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can — even if it's one or two sections.
 
-我们将会在这个教程中开发一个小游戏。你可能并不打算做游戏开发，然后就直接跳过了这个教程——但是不妨尝试一下！你将在该教程中学到关于构建 React 应用的基础知识，掌握这些知识后，你将会对 React 有更加深刻的理解。
+我们将会在这个教程中开发一个小游戏。你可能并不打算做游戏开发，然后就直接跳过了这个教程 —— 但是不妨尝试一下！你将在该教程中学到关于构建 React 应用的基础知识，掌握这些知识后，你将会对 React 有更加深刻的理解。
 
 提示：这篇教程适用于更喜欢边学边做的开发者，如果你更喜欢从头开始学习一些概念，请参考逐步学习指南。你会发现这篇教程和逐步学习指南是互补的。
 
