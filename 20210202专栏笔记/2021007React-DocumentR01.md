@@ -8,6 +8,8 @@
 
 ## 0100. Getting Started
 
+[Getting Started – React](https://reactjs.org/docs/getting-started.html)
+
 React is a JavaScript library for building user interfaces. Learn what React is all about on our homepage or in the tutorial.
 
 ### 01. Try React
@@ -175,8 +177,6 @@ This documentation always reflects the latest stable version of React. Since Rea
 If something is missing in the documentation or if you found some part confusing, please file an issue for the documentation repository with your suggestions for improvement, or tweet at the @reactjs account. We love hearing from you!
 
 ## 0101Tutorial-Intro-to-React.md
-
-[Getting Started – React](https://reactjs.org/docs/getting-started.html)
 
 [Tutorial: Intro to React – React](https://reactjs.org/tutorial/tutorial.html)
 
@@ -1472,7 +1472,7 @@ key 是 React 中一个特殊的保留属性（还有一个是 ref，拥有更�
 
 In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
 
-In the Game component's render method, we can add the key as <li key={move}> and React's warning about keys should disappear:
+In the Game component's render method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
 
 ```js
     const moves = history.map((step, move) => {
