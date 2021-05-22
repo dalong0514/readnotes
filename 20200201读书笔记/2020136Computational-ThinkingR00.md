@@ -14,7 +14,7 @@ Computational thinking illuminates a fundamental difference in the ways that hum
 
 In our enthusiasm for computational thinking, we need to be careful to avoid wishful thinking. Perhaps the first and most common wish is that we can get computers to do any job we can conceive of. This wish cannot be realized because there are many jobs that are impossible for computers. For example, there is no algorithm that will inspect another algorithm and tell us whether it terminates or loops forever. Every programming student longs for such an algorithm to help with debugging. It was logically impossible in 1936 when Alan Turing proved it so, and it is still impossible today.
 
-1-2『这里的信息阐述了「计算机」不能做的事，列举了 4 中不能「计算」的场景，等同于吴军之前一直强调的「计算机边界」问题。做一张主题卡片。（2021-05-04）』—— 已完成
+1-2『这里的信息阐述了「计算机」不能做的事，列举了 4 中不能「计算」的场景，等同于吴军之前一直强调的「计算机边界」问题。做一张主题卡片。（2021-05-04）补充：首先，现实中的很多问题是「不可计算」的。其次，很多「可计算」的问题需要耗费很多「资源」，比如 NP 问题，典型如配送距离最短路线。（2021-05-22）』—— 已完成
 
 Even if we stick to logically possible jobs, there are many that cannot be done in a reasonable time — they are intractable. One famous example is the traveling salesman problem, which is to find the shortest tour on a map of a country that visits each city just once. An algorithm to compute this would be of great value in the package delivery industry. The simplest way to find the shortest tour is to enumerate all possible tours and select the shortest. For a small set of 100 cities, this would take 10^130 years on the world's fastest supercomputer. For comparison the age of the universe is on the order of 10^10 years. Even the「simplest way」can be impossible! Algorithms analysts have identified thousands of common problems that are intractable in this way.
 
