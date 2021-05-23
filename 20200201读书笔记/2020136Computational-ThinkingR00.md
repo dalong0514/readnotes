@@ -10,6 +10,16 @@ Computational thinking illuminates a fundamental difference in the ways that hum
 
 ### 0102. 主题卡 —— 计算机不能做的事
 
+总结一下（2021-05-22）：
+
+场景一：只有很少一分部问题是能有计算机解决的。现实中只有一分部问题是「可计算」的，「可计算」的问题中也只有一分部问题是消耗比较少的「计算资源」的问题。
+
+场景二：缺少业务知识。计算知识必须结合业务知识才能解决实际问题。
+
+场景三：缺少计算机知识。认为「计算机」本身的基础知识不重要。
+
+场景四：认为计算机是「智能」的。是使用计算机的「人」才是智能的，计算机只是工具。
+
 信息源自「2020136Computational-Thinking0101.md」
 
 In our enthusiasm for computational thinking, we need to be careful to avoid wishful thinking. Perhaps the first and most common wish is that we can get computers to do any job we can conceive of. This wish cannot be realized because there are many jobs that are impossible for computers. For example, there is no algorithm that will inspect another algorithm and tell us whether it terminates or loops forever. Every programming student longs for such an algorithm to help with debugging. It was logically impossible in 1936 when Alan Turing proved it so, and it is still impossible today.
@@ -192,7 +202,7 @@ Some of the first「CT for K–12」curriculum designers attempted to build a「
 
 ### Lesson 3: The speed of computers is the main enabler of the computing revolution
 
-Most of what software does for us is made possible by the incomprehensible speed gap between computers and humans—billions to trillions times faster. Even though humans can execute computational steps, they could not carry out most of these computations in their lifetimes. The machines can literally do the humanly impossible. While it is true that humans can personally perform algorithms for some information processing tasks, the revolutions of the computer age are not about where people can perform algorithms in their own lives, but about what computers are able to do for them.
+Most of what software does for us is made possible by the incomprehensible speed gap between computers and humans — billions to trillions times faster. Even though humans can execute computational steps, they could not carry out most of these computations in their lifetimes. The machines can literally do the humanly impossible. While it is true that humans can personally perform algorithms for some information processing tasks, the revolutions of the computer age are not about where people can perform algorithms in their own lives, but about what computers are able to do for them.
 
 ### Lesson 4: Advanced CT is domain dependent
 
@@ -204,11 +214,11 @@ Computational thinking has fostered a revolution in science. Scientists in all f
 
 ### Lesson 6: The public face of CT is that of elementary CT
 
-CT is billed for K–12 curriculum purposes as a set of concepts and rules for programming. But many professionals see CT as a design skill, and many natural scientists see it as an advanced method of scientific interpretation. Like all skills, you can be a beginner, advanced beginner, competent, proficient, expert, or master. Many debates about what CT「really」is seem to collapse different skill levels of CT within the same debate. For example, K–12 teachers argue for curricula that are almost solely aimed at beginners and that contain a small, teachable set of CT insights, practices, and skills. Other advocates argue for CT as advanced, professional skills that require many years of practice and experience. Failing to make the distinction leads to conflicts—for example, the hype about how learning programming opens career paths is silent about what professional computational designers do. Education efforts are important on all levels from K–12 through university and beyond.
+CT is billed for K–12 curriculum purposes as a set of concepts and rules for programming. But many professionals see CT as a design skill, and many natural scientists see it as an advanced method of scientific interpretation. Like all skills, you can be a beginner, advanced beginner, competent, proficient, expert, or master. Many debates about what CT「really」is seem to collapse different skill levels of CT within the same debate. For example, K–12 teachers argue for curricula that are almost solely aimed at beginners and that contain a small, teachable set of CT insights, practices, and skills. Other advocates argue for CT as advanced, professional skills that require many years of practice and experience. Failing to make the distinction leads to conflicts — for example, the hype about how learning programming opens career paths is silent about what professional computational designers do. Education efforts are important on all levels from K–12 through university and beyond.
 
 ### Lesson 7: Beginner and professional CT together comprise a rich tapestry of computational thought
 
-Educators in K–12 schools have developed an impressive「CT for beginners」—insights and methods for teaching computing to newcomers. Professional software systems designers and scientists have developed an impressive「CT for professionals」—advanced methods for designing and building complex software that works reliably and safely, and for conducting scientific investigations. The synergy between these two aspects of computational thinking has propelled the computer revolution.
+Educators in K–12 schools have developed an impressive「CT for beginners」 — insights and methods for teaching computing to newcomers. Professional software systems designers and scientists have developed an impressive「CT for professionals」 — advanced methods for designing and building complex software that works reliably and safely, and for conducting scientific investigations. The synergy between these two aspects of computational thinking has propelled the computer revolution.
 
 ### Lesson 8: Change is an inseparable part of CT
 
