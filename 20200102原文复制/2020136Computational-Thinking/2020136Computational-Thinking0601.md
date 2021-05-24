@@ -20,21 +20,21 @@ Design is familiar in many fields including fashion, products, and architecture.
 
 Table 6.1 Capabilities of Software Developers
 
-• Design human-computer interfaces
+1 Design human-computer interfaces.
 
-• Design and maintain multi-version, reusable software
+2 Design and maintain multi-version, reusable software.
 
-• Ensure that software products meet quality and security standards
+3 Ensure that software products meet quality and security standards.
 
-• Create and use models in system development
+4 Create and use models in system development.
 
-• Specify, predict, analyze, and evaluate performance
+5 Specify, predict, analyze, and evaluate performance.
 
-• Be disciplined in development and maintenance
+6 Be disciplined in development and maintenance.
 
-• Use metrics in system development
+7 Use metrics in system development.
 
-• Manage complex projects
+8 Manage complex projects.
 
 ## 6.1 What Is Design?
 
@@ -42,15 +42,15 @@ Many software developers have turned to design for new thinking that would lead 
 
 The software engineering approach to design is a semiformal methodology to craft a set of modules and interfaces to achieve a stated functional purpose. The purpose is captured in a set of requirements, each a specific, testable statement. A traditional engineering process moves from requirements to a working, delivered system:
 
-Requirements
+1 Requirements.
 
-Formal specifications
+2 Formal specifications.
 
-System construction
+3 System construction.
 
-Acceptance testing
+4 Acceptance testing.
 
-Delivery to the customer
+5 Delivery to the customer.
 
 Software engineers can carry out this process in private, bypassing any interaction with the users in between the requirement and delivery stages. The process is attuned to the early notions in computing that software is machine-executable code for algorithms that meet given functional specifications, and that programmers need quiet time to get things right.
 
@@ -128,43 +128,14 @@ Customers do not trust the software. It may be buggy, crash their systems, hold 
 
 Table 6.2 Levels of Software Quality and Satisfaction Assessments
 
-Quality Level Skill level of CT
-
-4
-
-Software delights
-
-Design software to anticipate evolution of customer practices and concerns after using the software
-
-3
-
-Software produces no negative consequences
-
-Design software to avoid potential customer breakdowns
-
-2
-
-Software fits environment
-
-Design software to align seamlessly with customer practices and social norms
-
-1
-
-Software fulfills all basic promises
-
-Design software to meet all customer requirements via disciplined use of programming and software engineering CT
-
-0
-
-Some trust, begrudging use, cynical satisfaction
-
-Design software with indifference toward the customer, modest CT discipline
-
-–1
-
-No trusts
-
-Exploit the customer, little CT discipline
+| - | Quality Level | Skill level of CT |
+| --- | --- | --- |
+| 4 | Software delights | Design software to anticipate evolution of customer practices and concerns after using the software |
+| 3 | Software produces no negative consequences | Design software to avoid potential customer breakdowns |
+| 2 | Software fits environment | Design software to align seamlessly with customer practices and social norms |
+| 1 | Software fulfills all basic promises | Design software to meet all customer requirements via disciplined use of programming and software engineering CT |
+| 0 | Some trust, begrudging use, cynical satisfaction | Design software with indifference toward the customer, modest CT discipline |
+| -1 | No trusts | Exploit the customer, little CT discipline |
 
 ### Level 0: Cynical Satisfaction
 

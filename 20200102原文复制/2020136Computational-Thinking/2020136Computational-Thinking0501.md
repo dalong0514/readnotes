@@ -16,11 +16,6 @@ Software developers realized that the era's computational thinking was not capab
 
 The early years of the stored-program computer were a triumph of computer engineering. Hardware development, from the「computing super-brain」to the「awesome thinking machine,」made the headlines. The press featured room-sized reckoning behemoths weighing tens of tons that operated a thousand times faster than the previous computing machinery and, most importantly, could calculate thousands of times faster than the world's best mathematicians. Mathematics and logic were celebrated as the feature that distinguished humans from beasts — and now machines could do both.
 
-
-
-
-
-
 The early enthusiasm for computers soon moved beyond「makin' numbers」 — as one computing pioneer called scientific computing — to processing data in symbols that can stand for any information at all. Magazines and newspapers gave examples of computers doing tasks that were previously seen as the sole province of humans: one group programmed the computer to play checkers, another chess, another to automatically prove theorems in the monumental Principia Mathematica, and another built a mechanical mouse that searched its way through a maze. The uses of computers in business, science, and engineering applications multiplied each year. All these advances came from software. The computer revolution began with hardware, but soon became a revolution of software.
 
 The size and complexity of computer programs grew rapidly. Dark clouds began to hover over software development. Developers were becoming painfully aware of great difficulties in their ability to make production-quality software — software that was dependable, reliable, usable, safe, and secure. The intellectual and management tools developed up to that time were not powerful enough to build such software. Developers began to speak of a「software crisis.」
@@ -111,39 +106,16 @@ The classic paper by Jerome Saltzer and Michael Schroeder about information prot
 
 Table 5.1 Information Protection Principles of Saltzer and Schroeder
 
-Principle Directive
-
-Economy of mechanism
-
-Keep the design simple and small.
-
-Fail-safe defaults
-
-Deny access by default; grant access only by explicit permission.
-
-Complete mediation
-
-Check every access to every object.
-
-Open design
-
-Do not depend on attackers being ignorant of the design.
-
-Separation of privilege
-
-Grant access based on more than one piece of information.
-
-Least privilege
-
-Force every process to operate with the minimum privileges needed for its task.
-
-Least common mechanism
-
-Make shared state information inaccessible to individual processes, lest one corrupt it.
-
-Psychological acceptability
-
-Protection should be easy to use, at least as easy as not using it.
+| Principle | Directive |
+| --- | --- |
+| Economy of mechanism | Keep the design simple and small. |
+| Fail-safe defaults | Deny access by default; grant access only by explicit permission. |
+| Complete mediation | Check every access to every object. |
+| Open design | Do not depend on attackers being ignorant of the design. |
+| Separation of privilege | Grant access based on more than one piece of information. |
+| Least privilege | Force every process to operate with the minimum privileges needed for its task. |
+| Least common mechanism | Make shared state information inaccessible to individual processes, lest one corrupt it. |
+| Psychological acceptability | Protection should be easy to use, at least as easy as not using it. |
 
 ### 5.6.2 Patterns
 
@@ -155,87 +127,21 @@ Butler Lampson, a superb and accomplished designer, summarized a number of guide
 
 Table 5.2 Lampson's Design Hints
 
-Correctness & Fit Speed Fault Tolerance
-
-Use cases
-
-Separate normal and worst cases
-
-Safety first
-
-Shed load
-
-End-to-end
-
-End-to-end
-
-Interface
-
-Keep it simple
-
-Do one thing well
-
-Don't generalize
-
-Get it right
-
-Don't hide power
-
-Use procedure arguments
-
-Leave it to the client
-
-Keep interface stable
-
-Keep a place to stand
-
-Make it fast
-
-Split resources
-
-Static analysis
-
-Dynamic translation
-
-End-to-end
-
-Log updates
-
-Make actions atomic
-
-Implementation
-
-Plan to throw one away
-
-Keep secrets
-
-Reuse a good idea
-
-Divide and conquer
-
-Cache answers
-
-Use hints
-
-Use brute force
-
-Compute in background
-
-Batch processing
-
-Make actions atomic
-
-Use hints
+| - | Correctness & Fit | Speed | Fault Tolerance |
+| --- | ---- | ---- | --- |
+| Use cases | Separate normal and worst cases | Safety first, Shed load, End-to-end | End-to-end |
+| Interface | Keep it simple, Do one thing well, Don't generalize, Get it right, Don't hide power, Use procedure arguments, Leave it to the client, Keep interface stable, Keep a place to stand | Make it fast, Split resources, Static analysis, Dynamic translation | End-to-end, Log updates, Make actions atomic |
+| Implementation | Plan to throw one away, Keep secrets, Reuse a good idea, Divide and conquer | Cache answers, Use hints, Use brute force, Compute in background, Batch processing | Make actions atomic, Use hints |
 
 ## 5.7 Design Principles for Software
 
 The software engineering literature records a large number of design principles that have been widely studied and found to be strongly supportive of good design. The very best of these principles have been encoded as structures that appear in languages, application programs, and operating systems. They are mentioned frequently in discussions of CT and their roots lie in many different intellectual traditions described in earlier chapters of this book. They are in three main categories:
 
-Hierarchical aggregation
+1 Hierarchical aggregation.
 
-Virtual machines
+2 Virtual machines.
 
-Clients-servers
+3 Clients-servers.
 
 These structures are intended as tools to help with recurrent patterns that designers encounter.
 
