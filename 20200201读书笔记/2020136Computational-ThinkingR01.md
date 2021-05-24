@@ -230,6 +230,8 @@ Gottlob Frege (1848–1925) presented a new system of logical inference,「langu
 
 In the early 1900s it looked like the vision for a formal language of thought was about to be fulfilled. The merger of mathematics and logic gave rise to Russell and Whitehead's magnum opus Principia Mathematica (1910) and to logical empiricism in the sciences. But one element was still missing to achieve the dream: a method for definitively deciding whether a statement in predicate logic was true or false. The question for whether such a method exists became known as the「decision problem.」By the 1920s, it was taken as one of the major challenges in mathematics. Most mathematical logicians believed that a method existed, but no one could find it.
 
+1 Davis (2012).
+
 ### 2.5 Mechanizing Computation
 
 In 1935, a young Cambridge mathematics student was introduced to the decision problem. He became fascinated by the words a lecturer used to pose it: Was there a mechanical process for deciding, in a finite number of steps, whether a proposition in predicate logic is true or false? That student, Alan Turing (1912–1954), decided to develop a thoroughly mechanistic model of computing so that he could investigate the decision problem.
@@ -253,3 +255,17 @@ Other basic insights of computational thinking arose from science and engineerin
 The computer of today is the machine many sought throughout the ages to automate calculation and free it from the frailties of humans and the need for their intervention and judgment. Modern computing researchers and professionals embody this long history and excel at automating computations using the best methods available. However, as we will see in the next chapter, the wish of building real systems for very large, error-free computations has been exceedingly difficult to achieve.
 
 The computer of today is the machine many sought throughout the ages to automate calculation and free it from the frailties of humans and the need for their intervention and judgment.
+
+### References and Further Reading
+
+Davis, Martin. (2012). The Universal Computer: The Road from Leibniz to Turing. CRC Press.
+
+Grier, David A. (2005). When Computers Were Human. Princeton University Press.
+
+Hodges, Andrew. (1983). Alan Turing: The Enigma. Vintage Books.
+
+Priestley, Mark. (2011). A Science of Operations: Machines, Logic and the Invention of Programming. Springer-Verlag.
+
+Rapaport, William J. (2018). Philosophy of Computer Science. An online book draft, https://cse.buffalo.edu/~rapaport/Papers/phics.pdf.
+
+Williams, Michael R. (1997). A History of Computing Technology. 2nd edition. IEEE Computer Society Press.

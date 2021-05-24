@@ -86,6 +86,38 @@ Chapter 9: The future of CT
 
 We offer our stories of these dimensions to show you the power of CT and the ways in which it might help you in your work with computers and computation. Computational thinking evolved from ancient origins over 4,500 years ago to its present, highly developed, professional state. The long quest for computing machines was driven not only by the need for speed, but also to eliminate human errors.
 
+### 0104. 主题卡 —— 驾驭复杂软件系统的唯一办法是抽象
+
+信息源自「2020136Computational-Thinking0501.md」
+
+An early focus in software engineering was the design of「abstractions,」which are simplified models of something complicated with a simple interface. Good abstractions hide the details of the machinery implementing them, allowing programmers to debug them without having to dig into the details of underlying machines. For example, a file is presented as a container of a string of bits with two operations, read and write; its complicated implementation as records scattered across a hard disk is completely hidden. Designing hierarchies of abstractions is seen as the only way to master the enormous complexity of software. Finding good abstractions is an essential design skill for programmers and software engineers. Programming languages that allow programmers to express their abstractions are essential. [1]
+
+1-2『这里的信息有一次刷新了对「抽象」的认知。驾驭复杂软件系统的唯一办法是抽象，做一张主题卡片。（2021-05-24）』—— 已完成
+
+In his classic book The Mythical Man-Month (1975), the software pioneer Fred Brooks noted two dimensions for transforming programs into production systems. One was the generalization of a single software program to a system of interacting programs. The other was the addition of structures and components that provided guarantees to make the software reliable. His rule of thumb was that movement in either dimension tripled the effort. Movement in both dimensions was needed to achieve reliable production systems — a total of nine times the effort of creating a single program.
+
+Software developers, having become aware of such a wide gap between basic programming and production systems, had to find new practices of CT to close it. They developed a trove of new forms of CT: new practices for decomposition, complexity, information structures, causality, closing semantic gaps, data abstraction, data structures, encapsulation, information hiding, recursion, project management, and software life cycles. Aspects of theoretical computer science, notably complexity theory and automatic theorem proving, became helpful in this arena.
+
+The movement described by Brooks can be characterized as moving from computational thinking in the small (designing and writing single programs) to computational thinking in the large (designing software systems and managing the software projects that build them from design and into production and maintenance).
+
+1 Niklaus Wirth, software pioneer and the designer of the popular language Pascal, gives an excellent account of the development of programming practices and their supporting languages (Wirth 2008).
+
+### 0105. 主题卡 —— 工程和科学的三大区别
+
+信息源自「2020136Computational-Thinking0501.md」
+
+We have found three distinctions between engineering and science particularly helpful to understand the contributions each can make to software production. The first concerns the nature of their work. Engineers design and build technologies that serve useful purposes, whereas scientists search for laws explaining and predicting phenomena. Design is among the most commonly used words of engineering, whereas it is uncommon in science. Design in engineering is a process of finding practical, safe, cost-effective implementations. Scientists concentrate on finding and validating recurrences, engineers on listening to clients and proposing technologies of value to them.
+
+2『工程和科学的三大区别，做一张主题卡片。（2021-05-24）』—— 已完成
+
+The second main distinction is how scientists and engineers regard knowledge. Scientists treat knowledge as data and information that have been organized into a「body of knowledge,」which is then available for anyone to use. The scientific method for creating knowledge is a process of standard, disinterested observers gathering and weighing evidence in support of claims that might be added to the body. Engineers treat knowledge as skillful practices that enable design and building of tools and technologies. Engineers are not outside observers; they are immersed in the communities of use. They embody practices for building, maintaining, and repairing technologies; attending to reliability, dependability, and safety in the context of use; and following engineering standards and codes of ethics.
+
+The third main distinction concerns the role of abstractions and models. Science emphasizes models, and engineering emphasizes machines and artifacts. There is a fundamental distinction between modeling machines and building them. Abstractions are useful for what they leave out. Machines are useful for what they leave in. Hardware and software are interchangeable to the theorist, but not to the engineer.
+
+The familiar phrase「the devil is in the details」is an engineer's motto. Engineers must get the details right for systems to work. Scientists want to eliminate the details so that the recurrences stand out.
+
+These differences explain why it has been hard to design software engineering education that actually produces capable software developers. Many software engineering groups are in computer science departments that emphasize the science over engineering. The same balancing problem haunts computational thinking, too: when one or the other worldview dominates, the synergies are lost.
+
 ### 0201. 术语卡 —— Computational thinking 
 
 信息源自「2020136Computational-Thinking0101.md」
@@ -104,7 +136,15 @@ Computations are complex series of numerical calculations and symbol manipulatio
 
 There is clearly a special thinking skill required to successfully design programs and machines capable of enormous computations and to understand natural information processes through computation. This skill — computational thinking, or CT — is not a set of concepts for programming. Instead, CT comprises ways of thinking and practicing that are sharpened and honed through practice. CT is a very rich skill set: at the end of this chapter we outline the six dimensions of computational thinking that you will encounter in this book: machines, methods, computing education, software engineering, design, and computational science.
 
-### 0202. 术语卡 ——
+### 0202. 术语卡 —— Engineering
+
+application of science and mathematics to solve problems of use to people.
+
+信息源自「2020136Computational-Thinking0501.md」
+
+A scientific revolution began in the mid-1500s. For much of the time since, there was little practical difference between science and engineering; scientists look for principles of phenomena and engineers built technologies that exploited the phenomena. Many scientists were engineers and many engineers were scientists. The sharp distinction we see today between science and engineering is recent. [2] The distinction was introduced in the late 1940s when Vannevar Bush advocated the establishment of the US National Science Foundation for government support of basic research. Since that time, academic programs have come to define engineering as the「application of science and mathematics to solve problems of use to people」 — in effect defining engineering as a subset of science. This definition hides the unique contributions engineering can make to software. It obscures the need for interaction between the science and engineering sides of computing to make software reliable.
+
+2『这里的 Engineering 的定义，做一张术语卡片。（2021-05-24）』—— 已完成
 
 ### 0203. 术语卡 ——
 

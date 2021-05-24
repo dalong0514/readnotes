@@ -22,7 +22,9 @@ The size and complexity of computer programs grew rapidly. Dark clouds began to 
 
 In two famous meetings sponsored by NATO in 1968 and 1969, software developers turned to engineering for a solution to the frequent and sometimes catastrophic failures of software. The movement was labeled「software engineering.」Engineering had long traditions for consistently producing reliable systems. It was rare for bridges to fall, planes to crash, or infrastructure to fail massively. Software engineers rapidly began to import and develop engineering ways into software development and software product management.
 
-An early focus in software engineering was the design of「abstractions,」which are simplified models of something complicated with a simple interface. Good abstractions hide the details of the machinery implementing them, allowing programmers to debug them without having to dig into the details of underlying machines. For example, a file is presented as a container of a string of bits with two operations, read and write; its complicated implementation as records scattered across a hard disk is completely hidden. Designing hierarchies of abstractions is seen as the only way to master the enormous complexity of software. Finding good abstractions is an essential design skill for programmers and software engineers. Programming languages that allow programmers to express their abstractions are essential.1
+An early focus in software engineering was the design of「abstractions,」which are simplified models of something complicated with a simple interface. Good abstractions hide the details of the machinery implementing them, allowing programmers to debug them without having to dig into the details of underlying machines. For example, a file is presented as a container of a string of bits with two operations, read and write; its complicated implementation as records scattered across a hard disk is completely hidden. Designing hierarchies of abstractions is seen as the only way to master the enormous complexity of software. Finding good abstractions is an essential design skill for programmers and software engineers. Programming languages that allow programmers to express their abstractions are essential. [1]
+
+1-2『这里的信息有一次刷新了对「抽象」的认知。驾驭复杂软件系统的唯一办法是抽象，做一张主题卡片。（2021-05-24）』—— 已完成
 
 In his classic book The Mythical Man-Month (1975), the software pioneer Fred Brooks noted two dimensions for transforming programs into production systems. One was the generalization of a single software program to a system of interacting programs. The other was the addition of structures and components that provided guarantees to make the software reliable. His rule of thumb was that movement in either dimension tripled the effort. Movement in both dimensions was needed to achieve reliable production systems — a total of nine times the effort of creating a single program.
 
@@ -30,11 +32,17 @@ Software developers, having become aware of such a wide gap between basic progra
 
 The movement described by Brooks can be characterized as moving from computational thinking in the small (designing and writing single programs) to computational thinking in the large (designing software systems and managing the software projects that build them from design and into production and maintenance).
 
+1 Niklaus Wirth, software pioneer and the designer of the popular language Pascal, gives an excellent account of the development of programming practices and their supporting languages (Wirth 2008).
+
 ## 5.2 Science and Engineering in Computing
 
-A scientific revolution began in the mid-1500s. For much of the time since, there was little practical difference between science and engineering; scientists look for principles of phenomena and engineers built technologies that exploited the phenomena. Many scientists were engineers and many engineers were scientists. The sharp distinction we see today between science and engineering is recent.2 The distinction was introduced in the late 1940s when Vannevar Bush advocated the establishment of the US National Science Foundation for government support of basic research. Since that time, academic programs have come to define engineering as the「application of science and mathematics to solve problems of use to people」 — in effect defining engineering as a subset of science. This definition hides the unique contributions engineering can make to software. It obscures the need for interaction between the science and engineering sides of computing to make software reliable.
+A scientific revolution began in the mid-1500s. For much of the time since, there was little practical difference between science and engineering; scientists look for principles of phenomena and engineers built technologies that exploited the phenomena. Many scientists were engineers and many engineers were scientists. The sharp distinction we see today between science and engineering is recent. [2] The distinction was introduced in the late 1940s when Vannevar Bush advocated the establishment of the US National Science Foundation for government support of basic research. Since that time, academic programs have come to define engineering as the「application of science and mathematics to solve problems of use to people」 — in effect defining engineering as a subset of science. This definition hides the unique contributions engineering can make to software. It obscures the need for interaction between the science and engineering sides of computing to make software reliable.
+
+2『这里的 Engineering 的定义，做一张术语卡片。（2021-05-24）』—— 已完成
 
 We have found three distinctions between engineering and science particularly helpful to understand the contributions each can make to software production. The first concerns the nature of their work. Engineers design and build technologies that serve useful purposes, whereas scientists search for laws explaining and predicting phenomena. Design is among the most commonly used words of engineering, whereas it is uncommon in science. Design in engineering is a process of finding practical, safe, cost-effective implementations. Scientists concentrate on finding and validating recurrences, engineers on listening to clients and proposing technologies of value to them.
+
+2『工程和科学的三大区别，做一张主题卡片。（2021-05-24）』—— 已完成
 
 The second main distinction is how scientists and engineers regard knowledge. Scientists treat knowledge as data and information that have been organized into a「body of knowledge,」which is then available for anyone to use. The scientific method for creating knowledge is a process of standard, disinterested observers gathering and weighing evidence in support of claims that might be added to the body. Engineers treat knowledge as skillful practices that enable design and building of tools and technologies. Engineers are not outside observers; they are immersed in the communities of use. They embody practices for building, maintaining, and repairing technologies; attending to reliability, dependability, and safety in the context of use; and following engineering standards and codes of ethics.
 
@@ -43,6 +51,8 @@ The third main distinction concerns the role of abstractions and models. Science
 The familiar phrase「the devil is in the details」is an engineer's motto. Engineers must get the details right for systems to work. Scientists want to eliminate the details so that the recurrences stand out.
 
 These differences explain why it has been hard to design software engineering education that actually produces capable software developers. Many software engineering groups are in computer science departments that emphasize the science over engineering. The same balancing problem haunts computational thinking, too: when one or the other worldview dominates, the synergies are lost.
+
+2 Stokes (1997).
 
 ## 5.3 Computational Thinking in the Small
 
@@ -102,7 +112,7 @@ Design hints are rules of thumb or morsels of advice, most useful to those with 
 
 ### 5.6.1 Principles
 
-The classic paper by Jerome Saltzer and Michael Schroeder about information protection is an excellent example of design principles (see table 5.1).6 Design principles are ways of thinking about the total system of software components, in order to achieve the DRUSS objectives and reduce compromise of sensitive information. The principles are embodied in the skills and ways of thinking that system developers acquire over time from building complex computing systems. They apply to any large system that accommodates many users and service processes.
+The classic paper by Jerome Saltzer and Michael Schroeder about information protection is an excellent example of design principles (see table 5.1). [6] Design principles are ways of thinking about the total system of software components, in order to achieve the DRUSS objectives and reduce compromise of sensitive information. The principles are embodied in the skills and ways of thinking that system developers acquire over time from building complex computing systems. They apply to any large system that accommodates many users and service processes.
 
 Table 5.1 Information Protection Principles of Saltzer and Schroeder
 
@@ -198,3 +208,54 @@ Safety: Many software systems are used in safety critical applications, where an
 Mass production of diverse software applications: Today's mobile apps, games, desktop widgets, and network-based systems have little in common with the software of the 1960s and 1970s. There was little outsourcing of software development to trusted third parties. There were no large networks of application developers selling through app stores before the early 2000s; the Apple and Android stores now offer millions of apps.
 
 Computational thinking is being constantly challenged to grow and deal with these contemporary problems.
+
+
+
+
+
+
+3 Wilkes, in Metropolis, Howlett, and Rota (1980).
+
+4 Wirth (2008).
+
+5 Dijkstra (1980).
+
+6 Saltzer and Schroeder (1975).
+
+7 Alexander (1979).
+
+8 Gamma et al. (1994).
+
+9 Lampson (1983).
+
+10 The levels principle was first used by Edsger Dijkstra in 1968 to organize the software of an operating system. It facilitated a correctness proof of the system because each level depended only on its components and the correctness of the lower levels, but not the higher levels. The discipline of designing a system as levels leads to much smaller and more easily verified systems.
+
+## References and Further Reading
+
+Alexander, Christopher. (1979). The Timeless Way of Building. Oxford University Press.
+
+Brooks, Frederick P. Jr. (1975). The Mythical Man-Month. (20th anniversary edition, 1995). Addison-Wesley.
+
+Brooks, Frederick P. Jr. (1987). No silver bullet: Essence and accidents of software engineering. IEEE Computer 20 (4): 10–19.
+
+Campbell-Kelly, Martin. (2003). From Airline Reservations to Sonic the Hedgehog. MIT Press.
+
+Denning, Peter. (2018). Interview with David Parnas. Communications of ACM 61 (6) (June).
+
+Ensmenger, Nathan L. (2010). The Computer Boys Take Over: Computers, Programmers, and the Politics of Technical Expertise. MIT Press.
+
+Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. (1994). Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley.
+
+Koen, Billy V. (2003). Discussion of the Method: Conducting the Engineer's Approach to Problem Solving. Oxford University Press.
+
+Lampson, Butler. (1983). Hints for computer system design. Proc. ACM Symposium on Operating Systems Principles, 33–48.
+
+Metropolis, N., J. Howlett, and Gian-Carlo Rota, eds. (1980). A History of Computing in the Twentieth Century: A Collection of Essays with Introductory Essay and Indexes. Academic Press.
+
+Mitcham, Carl. (1994). Thinking Through Technology: The Path Between Engineering and Philosophy. University of Chicago Press.
+
+Saltzer, Jerome H., and Michael D. Schroeder. (1975). Protection of information computer systems. Proceedings of the IEEE 63 (9) (September): 1278–1308.
+
+Stokes, Donald E. (1997). Pasteur's Quadrant—Basic Science and Technological Innovation. Brookings Institution Press.
+
+Wirth, Niklaus. (2008). A brief history of software engineering. IEEE Annals of the History of Computing, 30 (3): 32–39.
