@@ -129,3 +129,35 @@ Our battle-hardened notions of computational thinking do not help with many of t
 14 What economic avalanches are possible because multiple, interdependent technologies are dropping in cost exponentially?
 
 We do not believe any of us has answers to any of these questions. But we need to be having the conversations about them. In so doing we need to embrace the mathematicians, scientists, sociologists, philosophers, anthropologists, lawyers, engineers, and everyone else in our field. It is time for us to think together about the design and impacts of our technology and so shape our future with wisdom and understanding. It is time to give up the old tensions that we inherited from times long past, and work together as brothers and sisters, mothers and fathers, old and young on these big questions.
+
+## References and Further Reading
+
+Adleman, Leonard M. (1994). Molecular computation of solutions to combinatorial problems. Science 266 (5187): 1021–1024.
+
+Brynjolfsson, E., and McAfee, A. (2014). The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies. W. W. Norton & Company.
+
+Denning, Peter. J., and Ted G. Lewis. (2017). Exponential laws of computing growth. Communications of ACM 60 (1) (January): 54–65.
+
+Friedman, Thomas. (2016). Thank You for Being Late. Farrar, Straus and Giroux.
+
+Kelly, Kevin. (2017). The Inevitable: Understanding the 12 Technological Forces That Will Shape Our Future. Penguin Books.
+
+Kurzweil, Ray. (2006). The Singularity Is Near. Penguin Books.
+
+McGeoch, Catherine. (2014). Adiabatic Quantum Computation and Quantum Annealing. Synthesis Series on Quantum Computing. Morgan & Claypool.
+
+Wolfram, Stephen. (2002). A New Kind of Science. Wolfram Media.
+
+1 Denning and Lewis (2017).
+
+2 McGeoch (2014).
+
+3 See Walter Tichy's interview with Catherine McGeoch, Ubiquity July 2017, for a worked example of an Ising equation and its encoding into a form for the D-wave machine to solve, https://ubiquity.acm.org/article.cfm?id=3084688.
+
+4 Adleman (1994).
+
+5 Kurzweil (2006).
+
+6 Wolfram (2002).
+
+7 In April 2016, Scientific American magazine reported on a symposium of physicists and philosophers discussing the whole-world-is-computer hypothesis, giving the impression that they take more delight in entertaining themselves with the hypothesis than in the hypothesis itself. See https://www.scientificamerican.com/article/are-we-living-in-a-computer-simulation/.

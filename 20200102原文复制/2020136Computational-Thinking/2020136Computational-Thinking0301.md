@@ -127,3 +127,15 @@ These two examples illustrate how each kind of machine has an associated style o
 Until the 1940s, computing was seen largely as an intellectual task of humans and a branch of mathematics and logic. The invention of the fully electronic stored program computer changed the very concept of computing, and it created a fresh world of computational concepts that had few counterparts or precursors. The concepts, practices, and skills for designing programs and computers quickly diverged from mathematics and logic. It was a profound change.
 
 And until the 1940s, computational thinking was embedded in the tacit knowledge and state-of-the-art practices of many different fields, including mathematics, logic, engineering, and natural sciences. After the 1940s, computational thinking started to become the centerpiece of the new profession that designed information machines to do jobs humans never thought were possible.
+
+## References and Further Reading
+
+Aspray, William, ed. (1990). Computing Before Computers. Iowa State University Press.
+
+Campbell-Kelly, Martin, and William Aspray. (2004). Computer: A History of the Information Machine. 2nd edition. Westview Press.
+
+Ceruzzi, Paul E. (2003). A History of Modern Computing. 2nd edition. MIT Press.
+
+Cortada, J. W. (1993). Before the Computer: IBM, NCR, Burroughs, and Remington Rand and the Industry They Created, 1865–1956. Princeton University Press.
+
+Williams, Michael R. (1997). A History of Computing Technology. 2nd edition. IEEE Computer Society Press.

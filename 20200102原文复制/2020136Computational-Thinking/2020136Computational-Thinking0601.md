@@ -8,13 +8,13 @@ We are searching for some kind of harmony between two intangibles: a form which 
 
 —— Christopher Alexander (1964)
 
-Among computing's early pioneers, George Forsythe was one of the first to advocate that computing deals primarily with issues related to design: design of computers and systems, design of languages for processors and algorithms, and design of methods for representing and processing information.1 Software engineers were among the first within computing to explicitly treat design as an essential part of the discipline's practice. For software engineers, design meant planning and construction of software products and systems that met their specifications and were safe and reliable. Design also meant creating tools to support software construction including related languages, editors, voice command and graphical interfaces, project management practices, version control systems, and development environments.2 The recent proliferation of useful applications through commercial「app stores」has brought a lot of people who are not formally trained in software engineering into software design.
+Among computing's early pioneers, George Forsythe was one of the first to advocate that computing deals primarily with issues related to design: design of computers and systems, design of languages for processors and algorithms, and design of methods for representing and processing information. [1] Software engineers were among the first within computing to explicitly treat design as an essential part of the discipline's practice. For software engineers, design meant planning and construction of software products and systems that met their specifications and were safe and reliable. Design also meant creating tools to support software construction including related languages, editors, voice command and graphical interfaces, project management practices, version control systems, and development environments. [2] The recent proliferation of useful applications through commercial「app stores」has brought a lot of people who are not formally trained in software engineering into software design.
 
-But there is more to design than building systems. Design is familiar in many fields including fashion, products, and architecture. It is a process of creating and shaping artifacts that address human concerns. In software, for example, design means crafting software that does jobs users want done. Software designers do far more than build to meet functional specifications. They intentionally support practices, worlds, contexts, and identities of the software's users. The famous success of the iPhone is attributed not only to its considerable technical prowess, but also to the identities and fashion statements iPhone users project. There have also been notorious failures attributed to poor design that promoted unsafe use of systems, such as aircraft panel displays that did not show the most needed information in emergencies.3
+But there is more to design than building systems. Design is familiar in many fields including fashion, products, and architecture. It is a process of creating and shaping artifacts that address human concerns. In software, for example, design means crafting software that does jobs users want done. Software designers do far more than build to meet functional specifications. They intentionally support practices, worlds, contexts, and identities of the software's users. The famous success of the iPhone is attributed not only to its considerable technical prowess, but also to the identities and fashion statements iPhone users project. There have also been notorious failures attributed to poor design that promoted unsafe use of systems, such as aircraft panel displays that did not show the most needed information in emergencies. [3]
 
 We discussed in chapter 5 how software engineers have accumulated much practical wisdom that is expressed with design principles, patterns, and hints, all in pursuit of the DRUSS (dependable, reliable, usable, safe, and secure) objectives. But design concerns go much further than just improving the software construction process.
 
-Despite the successes of software engineering, software project failures and accidents continue to accumulate. Academics continue to struggle with software engineering curricula that can graduate professional software developers who can lead projects to completion without failure. David Parnas, a famous software pioneer, says that this academic quest is doomed in many departments because most curriculum attempts have tried to identify and teach a「software engineering body of knowledge」rather than the capabilities of proficient professional software designers.4 Computing students are taught structural rules for software but not the design skills required to achieve good software. Table 6.1 summarizes the capabilities Parnas believes are the most important. All these capabilities are oriented toward the user communities and are not restricted to formal aspects of software development process. Design CT guides us to ways of building computing systems whose behaviors are useful and meaningful in their user communities.
+Despite the successes of software engineering, software project failures and accidents continue to accumulate. Academics continue to struggle with software engineering curricula that can graduate professional software developers who can lead projects to completion without failure. David Parnas, a famous software pioneer, says that this academic quest is doomed in many departments because most curriculum attempts have tried to identify and teach a「software engineering body of knowledge」rather than the capabilities of proficient professional software designers. [4] Computing students are taught structural rules for software but not the design skills required to achieve good software. Table 6.1 summarizes the capabilities Parnas believes are the most important. All these capabilities are oriented toward the user communities and are not restricted to formal aspects of software development process. Design CT guides us to ways of building computing systems whose behaviors are useful and meaningful in their user communities.
 
 Design is familiar in many fields including fashion, products, and architecture. It is a process of creating and shaping artifacts that address human concerns. In software, design means crafting software that does jobs users want done.
 
@@ -35,6 +35,14 @@ Table 6.1 Capabilities of Software Developers
 7 Use metrics in system development.
 
 8 Manage complex projects.
+
+1 Forsythe (1966).
+
+2 Grudin (1990).
+
+3 Leveson (1995).
+
+4 Parnas and Denning (2018).
 
 ## 6.1 What Is Design?
 
@@ -60,7 +68,7 @@ The software engineering approach to design is a semi-formal methodology to craf
 
 Engineers responded to these breakdowns by trying to improve the construction process. They developed sophisticated interview methods to elicit requirements from customers and thus minimize the risk that an important requirement was left out. They codified「design patterns」followed by successful designers, so that less experienced designers could avoid mistakes. They introduced「agile methods」for project management that explicitly involved customers through all stages of the engineering project. Agile product management often features many, rapidly iterated prototypes under constant review by teams that include customer representatives.
 
-These process improvements slowed but did not stem the tide of system failures. Some designers advocated a radical shift of thinking. Terry Winograd, a pioneer in artificial intelligence and design, characterized the shift in this way:5
+These process improvements slowed but did not stem the tide of system failures. Some designers advocated a radical shift of thinking. Terry Winograd, a pioneer in artificial intelligence and design, characterized the shift in this way: [5]
 
 The education of computer professionals has often concentrated on the understanding of computational mechanisms, and on engineering methods that are intended to ensure that the mechanisms behave as the programmer intends. The focus is on the objects being designed: the hardware and software. The primary concern is to implement a specified functionality efficiently. When software engineers or programmers say that a piece of software works, they typically mean that it is robust, is reliable, and meets its functional specification. These concerns are indeed important. Any designer who ignores them does so at the risk of disaster.
 
@@ -72,6 +80,8 @@ Online games are examples of virtual worlds. In them the players defeat monsters
 
 Since 2005, when Apple introduced the App Store and made iPhones infinitely customizable as users downloaded apps (applications) that suited them, there has been an explosion of software development of apps. The Apple and Android online app stores combined offer more than 6 million apps. Software has become a market commodity. Only the apps judged by their many customers as「high quality」make it in this market.
 
+5 Winograd (1983).
+
 ## 6.2 Software Quality and Satisfaction
 
 In the 1970s, software engineers sought to make software quality measurable, on the time-honored premise that we get more of what we measure. They devised models for measuring software quality. Their models eventually became a standard of the ISO (International Standards Organization), and a central building block of computational thinking in software engineering. The ISO standards list 20 measurable factors to assess overall quality of a software system:
@@ -80,9 +90,11 @@ correctness | reliability | integrity | usability | efficiency | maintainability
 
 These measures were all intended to be objectively measurable properties of the software. It is very hard to design a software system that scores high on all 20 factors. Two of the five traditional DRUSS objectives — security and safety — are not on this list because no one knew how to measure software for these aspects. No one said that quality is simple and straightforward.
 
-The new and burgeoning market for apps has brought attention to quality as an assessment of users rather than as a property of the software. Quality is in the eye of the beholder. Much more attention is paid to design in the sense that Winograd has defined it. How do users assess quality — and, by implication, good design? Table 6.2 presents six distinct levels of satisfaction in the user's experience.6
+The new and burgeoning market for apps has brought attention to quality as an assessment of users rather than as a property of the software. Quality is in the eye of the beholder. Much more attention is paid to design in the sense that Winograd has defined it. How do users assess quality — and, by implication, good design? Table 6.2 presents six distinct levels of satisfaction in the user's experience. [6]
 
 Each level on the software quality ladder involves a skill level of computational thinking. The lowest levels are undisciplined use of CT; the highest levels are disciplined CT to design for customer practices, breakdowns, and evolving concerns. The higher the level, the more professional and advanced aspects of CT are involved. Ascending the ladder, CT skill extends its sensibilities from formal requirements to customer concerns and futures; the level of customer satisfaction rises.
+
+6 Denning (2016).
 
 ### Level −1: No Trust
 
@@ -142,3 +154,25 @@ The design way of computational thinking also emphasizes the construction of vir
 Software engineering CT is especially useful for large systems that must perform reliably in safety critical environments. People want carefully engineered air traffic control systems, nuclear plant control systems, and Mars rovers. Design CT is especially useful for software that must fit customer communities, facilitate adoption, and deliver great value. Design CT does not abandon software engineering CT; it listens for opportunities to include delightful functions customers have not yet asked for.
 
 As we described earlier in this chapter, to characterize design CT we have proposed six levels at which customers assess software quality and satisfaction. Program correctness is essential but produces satisfaction only at the first level. The highest level, delight, arises in the context of the relationship between the customer and software developer. The delighted customer will say that the developer has taken the trouble to understand the customer's work and business, is available to help with problems and to seize opportunities, may share some risks on new ventures, and generally cares for the customer. Software developers today look to designs and services that produce genuine delight. When they succeed we witness new waves of killer apps.
+
+## References and Further Reading
+
+Brooks, Frederick P. Jr. (1975). The Mythical Man-Month. (20th anniversary edition, 1995). Addison-Wesley.
+
+Denning, Peter. (2016). Software quality. Communications of ACM 59 (9) (September): 23–25.
+
+Forsythe, George E. (1966). A University's Educational Program in Computer Science. Technical Report No. CS39, May 18, 1966. Stanford University: Computer Science Department, School of Humanities and Sciences.
+
+Grudin, Jonathan. (1990). The computer reaches out: The historical continuity of interface design. In CHI '90: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, 261–268. ACM.
+
+Landwehr, Carl, et al. 2017. Software Systems Engineering Programmes: A Capability Approach. Journal of Systems and Software 125: 354–364.
+
+Leveson, Nancy. (1995). SafeWare: System Safety and Computers. Addison-Wesley.
+
+Norman, Donald A. (1993). Things That Make Us Smart. Basic Books.
+
+Norman, Donald A. (2013). The Design of Everyday Things. First edition 1983. Basic Books.
+
+Parnas, Dave, and Peter Denning. (2018). An interview with Dave Parnas. Communications of ACM 61 (6).
+
+Winograd, Terry, and Flores, F. (1987). Understanding Computers and Cognition. Addison-Wesley.

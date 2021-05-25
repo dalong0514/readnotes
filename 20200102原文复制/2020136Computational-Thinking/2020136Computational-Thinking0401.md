@@ -117,3 +117,45 @@ The pursuit for strong AI dominated the AI agenda from the founding of the AI fi
 Similar to the weak-strong distinction in AI, the「strong」computational view of the universe holds that the universe itself, along with every living being, is a digital computer. Every dimension of space and time is discrete and every movement of matter or energy is a computation. In contrast, the「weak」computational view of the universe does not claim that the world computes, but only that computational interpretations of the world are very useful for studying phenomena: we can model, simulate, and study the world using computation.
 
 The strong computational view is highly speculative, and while it has some passionate proponents, it faces numerous problems both empirical and philosophical. Its rise is understandable as a continuation of the ongoing quest to understand the world through the latest available technology. For instance, in the Age of Enlightenment, the world was compared to the clockwork. The brain has successively been compared to the mill, the telegraph system, hydraulic systems, electromagnetic systems, and the computer. The newest stage in this progression is to interpret the world is not a classical computer but a quantum computer.
+
+## References and Further Reading
+
+Arden, Bruce W., ed. (1980). What Can Be Automated? Computer Science and Engineering Research Study. MIT Press.
+
+Daylight, Edgar G. (2012). The Dawn of Software Engineering: From Turing to Dijkstra. Lonely Scholar.
+
+Dijkstra, Edsger. W. (1974). Programming as a discipline of mathematical nature. American Mathematical Monthly 81 (6): 608–612.
+
+Knuth, Donald E. (1974). Computer science and its relation to mathematics. American Mathematical Monthly 81 (April): 323–343.
+
+Knuth, Donald E. (1985). Algorithmic thinking and mathematical thinking. American Mathematical Monthly 92 (March): 170–181.
+
+Mahoney, Michael Sean. (2011). Histories of Computing. Harvard University Press.
+
+Metropolis, N., J. Howlett, and Gian-Carlo Rota, eds. (1980). A History of Computing in the Twentieth Century: A Collection of Essays with Introductory Essay and Indexes. Academic Press.
+
+Newell, Alan, Alan J. Perlis, and Herbert A. Simon. (1967). Computer science. Science 157 (3795): 1373–1374.
+
+Simon, Herbert A. (1969). Sciences of the Artificial. MIT Press.
+
+Smith, Brian C. (1998). On the Origin of Objects. MIT Press.
+
+1 Mahoney (2011);
+
+2 Newell, Perlis, and Simon (1967).
+
+3 Simon (1969).
+
+4 Knuth (1974, 1985).
+
+5 Dijkstra (1974).
+
+6 Forsythe (1968).
+
+7 Knuth (1985).
+
+8 Guzdial (2014)
+
+9 Arden (1980).
+
+10 In his talk A Logical Revolution, Moshe Vardi describes the changing role and perceptions of logic in the field of computing, including the 1980s gloominess over what computers cannot do.

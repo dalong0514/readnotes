@@ -97,3 +97,44 @@ We have expressed our stance on these questions at various points throughout thi
 We would like to point out one other movement to bring computing into K–12 schools. Known as CS Unplugged,9 it seeks to teach computing concepts and practices through games, magic tricks, and activities. It was founded in the late 1990s by Tim Bell, Michael Fellows, and Ian Whitten. It has gained a worldwide following and influenced the design of the ACM K–12 and code.org curriculum recommendations.
 
 In summary, we see plenty of room for a broad, pluralistic approach to teaching computational thinking while remaining faithful to computing's well-honed disciplinary ways of thinking and practicing. Most of all, we hope that all teachers of computing bring their students a good sense of the richness and beauty of the many dimensions of computation.
+
+## References and Further Reading
+
+Abelson, Harold, and Gerald J. Sussman. (1996). Structure and Interpretation of Computer Programs. 2nd edition. MIT Press.
+
+Bolter, J. David. (1984). Turing's Man: Western Culture in the Computer Age. University of North Carolina Press.
+
+Denning, Peter. (2017). Remaining trouble spots with computational thinking. Communications of the ACM 60 (6) (June): 33–39.
+
+Guzdial, Mark. (2015). Learner-Centered Design of Computing Education: Research on Computing for Everyone. Synthesis Lectures on Human-Centered Informatics. Morgan & Claypool.
+
+Kestenbaum, David. (2005). The challenges of IDC: What have we learned from our past? Communications of the ACM 48 (1): 35–38. [A conversation with Seymour Papert, Marvin Minsky, Alan Kay]
+
+Knuth, Donald E. (1974). Computer science and its relation to mathematics. American Mathematical Monthly 81 (April): 323–343.
+
+Lockwood, James, and Aidan Mooney. (2017). Computational Thinking in Education: Where Does It Fit? A Systematic Literary Review. Technical report, National University of Ireland Maynooth.
+
+Minsky, Marvin. (1970). Form and content in computer science. Journal of the ACM 17 (2): 197–215.
+
+Tedre, Matti, Simon, and Lauri Malmi. (2018). Changing aims of computing education: a historical survey. Computer Science Education, June.
+
+Wing, Jeanette M. (2006). Computational thinking. Communications of the ACM 49 (3): 33–35.
+
+1 Wing (2006)
+
+2 Tedre, Simon, and Malmi (2018).
+
+3 Minsky (1970)
+
+4 Knuth (1974).
+
+5 Bolter (1984)
+
+6 Abelson and Sussman (1996)
+
+7 Guzdial (2015)
+
+8 Denning (2017).
+
+9 See [Computer Science Field Guide](https://csfieldguide.org.nz/en/) and [CS Unplugged](https://csunplugged.org/zh-hans/).
+

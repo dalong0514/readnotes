@@ -242,13 +242,25 @@ The goals of programming in the large were summarized as the five DRUSS objectiv
 
 1-2『补充进 DRUSS 术语卡片，并且新增一张「Design Principles, Patterns, and Hints」主题卡片。（2021-05-25）』—— 已完成
 
-### 0301. 人名卡 ——
+### 0301. 人名卡 —— Frederick Brooks
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+Frederick Brooks
 
-### 0401. 金句卡 ——
+### 0401. 金句卡 —— Good judgment comes from experience, and experience comes from bad judgment
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
+信息源自「2020136Computational-Thinking0601.md」
+
+Descriptions of software entities that abstract away their complexity often abstract away their essence. Good judgment comes from experience, and experience comes from bad judgment.
+
+—— Frederick Brooks (1986)
+
+### 0401. 金句卡 —— The sciences do not try to explain, they hardly even try to interpret, they mainly make models
+
+信息源自「2020136Computational-Thinking0701.md」
+
+The sciences do not try to explain, they hardly even try to interpret, they mainly make models.
+
+—— John von Neumann (1955)
 
 ### 0501. 行动卡 ——
 
@@ -263,6 +275,20 @@ The goals of programming in the large were summarized as the five DRUSS objectiv
 Fred Brooks was the manager of a team of 300 programmers who built the IBM 360 operating system in the 1960s. Their system eventually grew to a massive 10 million lines of code. In his book, The Mythical Man-Month (1975), Brooks documented his experience in detail and gave rules of thumb of CT for organizing and designing large systems. One of his famous observations is that time and people do not trade off equally: a team of 12 programmers cannot complete in a month a job that took a single programmer 12 months. Another is that the structure of the software winds up resembling the organization that built it. Brooks concluded that managing the team was a greater challenge than the technology problems the team had to solve.
 
 2『人月神话那本书里，Brooks 对大型软件开发的 2 个洞见，做一张任意卡片。（2021-05-25）』—— 已完成
+
+### 0702. 任意卡 —— 科学家里的三类角色
+
+信息源自「2020136Computational-Thinking0701.md」
+
+Science and computation have been old friends for centuries. Through most of the history of science and technology, two sorts of scientist roles have been common. One is the experimenter, who gathers data to explore and isolate phenomena, describe recurrences, and reveal when a hypothesis works and when it does not. The other is the theoretician, who designs mathematical models to explain what is already known and uses the models to make predictions about what is not known. The two roles were active in the sciences well before computers came on the scene.
+
+2『科学家里的三类角色，做一张任意卡片。（2021-05-25）』—— 已完成
+
+Both roles used computation. The experimenters produced data that had to be analyzed, classified, and fit to known mathematically formulated laws. The theoreticians used calculus to formulate mathematical models of physical processes. In either case, they could not deal with very large problems because the computations were too extensive and complex.
+
+A third role emerged: scientists who saw new opportunities using computers as simulators that neither the experimenters nor the theoreticians used. The computing pioneers at the Moore School, home of the ENIAC, argued early on that computer simulation could make any computer into a laboratory. They saw the evaluation of models and the production of data for analysis as a new frontier of science. Crossing that frontier required new ways of incorporating modeling and simulation into research, as well as new kinds of computational thinking directly relevant to science.
+
+Large-scale modeling and simulation required significant upgrades to mathematical software. Numerical analysts, a branch of early computer scientists, were heavily involved in the quest to improve mathematical software to efficiently calculate mathematical models on computers. They were especially concerned with representing numbers and performing long calculations in machines that could only offer finite precision; controlling round-off errors and increasing computational speed were major concerns.
 
 ## Series Foreword
 
@@ -361,3 +387,79 @@ Educators in K–12 schools have developed an impressive「CT for beginners」 �
 ### Lesson 8: Change is an inseparable part of CT
 
 There has never been a consensus about what computational thinking「really」is. There may never be a full consensus. During every decade in the modern history of computing there would be different answers to questions about the essence of computational thinking. Advances in computing keep computational thinking in constant change. We should embrace the lack of a fixed definition as a sign of the vitality of the field rather than our own failure to understand an eternal truth.
+
+## Glossary
+
+Abstraction: Simplifying complex phenomena by representing only their salient features, while omitting or hiding details.
+
+Algorithm: Description of a method to compute a function, or more broadly, to solve a category of computational problems. All the steps are so precisely specified that a machine can perform them.
+
+Artificial intelligence (AI): The subfield of computer science that investigates whether computers powered by appropriate software can be intelligent (strong AI), or whether computers can simulate human cognitive tasks with information processes (weak AI).
+
+Automation: Using machines to replace human controllers of physical processes (such as chemical plants or manufacturing lines), to perform knowledge-work processes (such as reviewing documents or processing invoices), or to build a computer to perform a task, replacing humans who formerly performed the task.
+
+Bit and Byte: A bit is the smallest unit of information that distinguishes between something being present (1) or not present (0). A byte is a set of 8 bits, allowing 128 possible combinations of 8 bits. Large enough combinations of bits can stand for anything that can be represented by discrete values, such as numbers, characters, patterns on a display, or colors.
+
+Boolean algebra: The set of expressions that can be formed from logic variables (each representing a single true-false bit) combined with operators such as OR, AND, and NOT. Boolean expressions are used in programming languages to specify conditions under which a statement will be executed. They are also used to describe the functions of logic circuits inside computers.
+
+Central processing unit (CPU): The hardware component of a computer that fetches and executes elementary instructions such as ADD, SUBTRACT, GO-TO, and COMPARE, and decides on what instructions are executed next. Other hardware components of a computer include the memory (which stores all data and instructions) and the input-output interface (which connects with the outside world).
+
+Cloud: A worldwide network of storage systems and processing systems that can be accessed from anywhere just when and as needed. Users who rent data storage and processing time do not know where their data are physically stored and processed.
+
+Compiler: A software program that translates programs written in a high-level programming language meant for humans into binary machine code meant for the processor.
+
+Computational complexity: A subfield of computer science that investigates the intrinsic difficulty of solving problems. Difficulty is measured by the computational steps and memory space needed. Some problems like searching a list for a name are「easy」because they can be computed in time directly proportional to the length of the list. Some problems like finding the shortest tour of a set of cities are「hard」because in the worst case they require enumerating and measuring all the possible tours, the time for which grows exponentially fast as the number of cities and roads grows.
+
+Computational model: The description of an abstract machine that performs algorithms—for example, a conventional computer chip that executes machine instructions one at a time, a neural network that recognizes faces in images, or a quantum computer that cracks cryptographic codes. In science and engineering, it also refers to a mathematical model of a physical process, which can be simulated or evaluated by a computer.
+
+Computer: An entity, human or machine, that can perform calculations and symbol manipulations according to a set of precisely specified rules. From the 1600s to the 1930s,「computer」meant「a person who computes.」The first electronic computers in the 1940s were called「automatic computers.」The adjective「automatic」was dropped by the 1950s.
+
+Data abstraction: A practice that originated with programmers in the 1960s to encapsulate a complicated data structure behind a simple interface. Users could access the data only through the interface; they could not directly access the memory holding the data. The view of the data seen through the interface is much simplified—hence the word abstraction. An example is a file, which looks to a user as a container of a linear string of bits; the interface allows only reading and writing. The actual file may be implemented as a set of blocks scattered around the storage medium, all hidden from the user.
+
+Decision problem: A famous problem from mathematical logic in the early 1900s. Given a logical system consisting of axioms and rules for constructing proofs of propositions, is there an algorithm that will decide whether a given proposition is true? For a long time mathematicians believed there was such a procedure, but could not find it. In the 1930s a number of mathematicians, working independently from each other, formally defined the concept of algorithm and showed that there is no general solution to the decision problem.
+
+Decomposition: Breaking a complex thing down to simpler, smaller parts that are easier to manage. In software, the parts become modules that are plugged together via interfaces.
+
+Digitization: The work of constructing a binary coded representation of an entity. The representation could be processed by a computer. For example, the wave form of speech can be sampled 20,000 times a second, each sample producing a reading of the wave's amplitude and encoding it as a 16-bit value. The digitized speech can then be stored and processed on a computer.
+
+DRUSS objectives: In software engineering, software systems that are dependable, reliable, usable, safe, and secure.
+
+Encapsulation: Using interfaces to hide inner mechanisms and internal information from outside users in order to improve reusability, access restriction, protection of information from user errors, and maintainability.
+
+Fractal: A term coined by mathematician Benoit Mandelbrot for sets that are self-similar at different scales. For example, the coast line of a country looks ragged in a satellite photo; it still looks ragged from a hang glider; and it still looks ragged under an up-close view of a wave rippling over the sand. Fractals have been used in graphics to draw complex objects from simple forms that can be repeated at all scales.
+
+Generalization: Extending a solution to a broader class of similar problems.
+
+Graphics processing unit (GPU): A chip included in a computer to run the graphical display. Modern GPUs can hold 3D representations of objects and can rotate them to any angle or slide them to any distance computationally, then project the resulting image on to the 2D screen, all in real time.
+
+Heuristics: Procedures for finding approximate solutions to computationally intractable problems. For example, in chess we evaluate proposed moves by a point-counting system for pieces lost; that is much less computing-intensive than enumerating all possible future chessboards. Good heuristics give solutions that are very good most of the time.
+
+if-then-else construct: A form of statement in a programming language that selects between two or more alternative paths in program code. For example,「if sum≥0 then color sum-value black else color sum-value red」is used by accountants to highlight negative numbers in red on their spreadsheets.
+
+Intuition: An aspect of embodied expertise where the expert is able to know immediately how to deal with a situation, based on extensive past experience. The expert may know what to do but cannot explain why.
+
+Logarithm: In mathematics, the logarithm of a given number is the exponent to which a fixed base must be raised to produce that number. Thus, the log-base-2 of 8 is 3 because 23=8. Logarithms are useful for multiplying numbers since the product of two numbers adds their exponents. Take, for example, multiplying 8 by 16. Because 23×24 = 27, we can take the base-2 logs of the two terms (here 3 and 4, respectively), add the logs (yielding 7), and raise the base 2 to the power of the resulting log (here 27). Slide rules multiply by adding the logs of the two multiplicands.
+
+Logic circuits: The basic electronic circuits in a computer. They combine binary signals with operations AND, OR, and NOT and store the results in registers, which are processed by more logic circuits in the next clock cycle.
+
+Machine code: The instructions of an algorithm encoded into binary codes that a computer can recognize and execute.
+
+Neural network: A form of circuit that takes a very large bit pattern as input (such as the 12 megapixels in a photograph) and produces an output (such as faces recognized in the photo). The components of the network are designed to be loosely similar to the neurons in the brain. The network learns by being trained rather than being programmed.
+
+Operating system: The control program that runs a computer system. It allows users to log in and access their data, protects user data from being accessed by others without permission, schedules the resources (CPU, disks, memory) among competing users, and provides an environment in which users can run their programs.
+
+Qubits: The basic elements of a quantum computer. They are the quantum-world analog of bits in a conventional computer, but they have a peculiar property called superposition, which means they can be in the 0 and 1 states simultaneously. Superposition significantly increases their representational and computing power. They are represented by electron spins or magnetic fields.
+
+Race conditions: Many electronic circuits have multiple paths connecting an input to a particular output. If a change of the input travels at different speeds over the different paths, the value of the output can fluctuate randomly depending on the order the signals arrive. That random fluctuation can cause malfunctions in downstream circuits that use the output. Race conditions can also appear in operating systems where two users attempt simultaneous access to a file and the final value of the file depends on which one went last.
+
+Registers: Processor registers are the basic building blocks of storage within a CPU. A register consists of a set of flip-flops, which are small circuits that can store a 0 or 1. Thus, an 8-bit register is made of 8 flip-flops. The CPU instructions combine values in registers and store their results in other registers.
+
+Representation: Computing relies heavily on one thing standing for (representing) something else. Computations require information to be represented in a digital form, such as two values of voltage in circuits or the presence or absence of perturbations on materials. We use 0 and 1 to represent those physical phenomena.
+
+Simulation: Computer simulations rely on computational models of phenomena to track the behavior of those phenomena over time. The elements of a model are theories, variables, equations, parameters, and other known features of the phenomenon in order to faithfully characterize the modeled system. Simulation uses these model elements to see how the system changes from one time unit to the next.
+
+Transfer hypothesis: The hypothesis that learning computational thinking in computer science transfers to problem-solving ability in other fields. The hypothesis would predict that a person who came to be a good problem solver in computer science would be able to solve problems in physics with the same expertise. There is little empirical evidence to support this hypothesis.
+
+Truth values: The two allowed values「true」and「false」of a logic variable. When presented in numbers,「0」is typically interpreted as false and either「1」or any nonzero value as true.
+
+Turing test: A test proposed in 1950 by Alan Turing to settle the question of whether a machine can think. A human observer carries on two text-based conversations, one via a connection to a computer, the other a connection to another human being. The observer does not know which is which. If the observer is unable to definitely identify the human (or machine) over a long period, the machine would be deemed intelligent.
