@@ -46,7 +46,7 @@ The term「computational science」and its associated term「computational think
 
 It is noteworthy that computational science and computational thinking in science emerged from within the scientific fields — they were not imported from computer science. In fact, computer scientists were slow to join the movement. Whereas numerical analysts often felt like outcasts from mathematics in the 1950s, and outcasts from computing in the 1970s, they were natural participants in computational science. Fortunately, this mood did not last; numerical analysts are important members of the computing field.
 
-Computation has proved so productive for advancement of science and for engineering that virtually every field of science and engineering has developed a「computational」branch. In many fields the computational branch has grown to be critical for the field. For example, biology is seen as an information science.3 Chemists design molecules and simulate them to find out how they would fare under real conditions. Pharmaceutical companies test molecules by simulation to learn if they would be effective against certain diseases. Computational methods are spreading into traditionally non-experimental fields, such as humanities and social sciences. This trend will continue. Computation will invade deeper into every field.
+Computation has proved so productive for advancement of science and for engineering that virtually every field of science and engineering has developed a「computational」branch. In many fields the computational branch has grown to be critical for the field. For example, biology is seen as an information science. [3] Chemists design molecules and simulate them to find out how they would fare under real conditions. Pharmaceutical companies test molecules by simulation to learn if they would be effective against certain diseases. Computational methods are spreading into traditionally non-experimental fields, such as humanities and social sciences. This trend will continue. Computation will invade deeper into every field.
 
 Because CT has advanced science — by providing better methods of numerical analysis, advanced simulations, and the information interpretation of physical processes — many people will decide to learn the skills required of computational designers and thinkers.
 
@@ -55,6 +55,8 @@ Because CT has advanced science — by providing better methods of numerical ana
 2 Wilson (1989).
 
 3 Baltimore (2001).
+
+2『 Baltimore 的那篇论文没下载到，意外发现份资料，作为本书的附件。已下载「附件01Interview-with David-Baltimore」。（2021-05-25）』
 
 ## 7.2 Computational Thinking in Science
 
