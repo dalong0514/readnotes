@@ -217,6 +217,8 @@ In 1987, Frederick Brooks wrote「No Silver Bullet,」a famous assessment of pro
 
 The second factor is our own mental ability to comprehend the essence of complex problems. Coping with complexity is intrinsic to software design and construction and will never go away. The design problem, Brooks said, is mostly conceptual — getting an intellectual grasp on the functions of the system to provide and organize a simple and elegant design.
 
+2『布鲁克斯在人月神话里提出的「No Silver Bullet」做一张主题卡片。（2021-05-25）』—— 人月神话
+
 To address it, we need to grow large systems in relatively easy increments, reuse existing software as much as possible, and make more use of rapid prototyping to gain early feedback before technical decisions are locked. Most of all, Brooks said, we need to「cultivate great designers.」He saw coping with complexity as an essential skill requiring great mastery. Brooks famously wrote that there is「no silver bullet」that will kill the werewolf of complexity in software development.
 
 The「software problem」articulated in the NATO conferences was mostly concerned with programmer productivity and the chronic problem of errors causing unreliable programs. Since those days new developments have added to the complexities of software design. These include:

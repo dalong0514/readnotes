@@ -76,45 +76,7 @@ Since 2005, when Apple introduced the App Store and made iPhones infinitely cust
 
 In the 1970s, software engineers sought to make software quality measurable, on the time-honored premise that we get more of what we measure. They devised models for measuring software quality. Their models eventually became a standard of the ISO (International Standards Organization), and a central building block of computational thinking in software engineering. The ISO standards list 20 measurable factors to assess overall quality of a software system:
 
-correctness
-
-reliability
-
-integrity
-
-usability
-
-efficiency
-
-maintainability
-
-testability
-
-interoperability
-
-flexibility
-
-reusability
-
-portability
-
-clarity
-
-modifiability
-
-documentation
-
-resilience
-
-understandability
-
-validity
-
-functionality
-
-generality
-
-economy
+correctness | reliability | integrity | usability | efficiency | maintainability | testability | interoperability | flexibility | reusability | portability | clarity | modifiability | documentation | resilience | understandability | validity | functionality | generality | economy
 
 These measures were all intended to be objectively measurable properties of the software. It is very hard to design a software system that scores high on all 20 factors. Two of the five traditional DRUSS objectives — security and safety — are not on this list because no one knew how to measure software for these aspects. No one said that quality is simple and straightforward.
 

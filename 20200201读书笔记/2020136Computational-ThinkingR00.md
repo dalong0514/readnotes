@@ -190,6 +190,18 @@ Table 5.2 Lampson's Design Hints
 | Interface | Keep it simple, Do one thing well, Don't generalize, Get it right, Don't hide power, Use procedure arguments, Leave it to the client, Keep interface stable, Keep a place to stand | Make it fast, Split resources, Static analysis, Dynamic translation | End-to-end, Log updates, Make actions atomic |
 | Implementation | Plan to throw one away, Keep secrets, Reuse a good idea, Divide and conquer | Cache answers, Use hints, Use brute force, Compute in background, Batch processing | Make actions atomic, Use hints |
 
+### 0107. 主题卡 —— No Silver Bullet
+
+信息源自「2020136Computational-Thinking0501.md」
+
+In 1987, Frederick Brooks wrote「No Silver Bullet,」a famous assessment of progress in software engineering since 1968. His conclusions held important lessons for CT. He said that two main complexity factors affect our ability to produce reliable software. The limitations of the technology are the first factor, but they can be overcome by improved technologies, such as high-level programming languages, interactive program development environments, visualization of control and data flow, faster hardware, and better operating systems.
+
+The second factor is our own mental ability to comprehend the essence of complex problems. Coping with complexity is intrinsic to software design and construction and will never go away. The design problem, Brooks said, is mostly conceptual — getting an intellectual grasp on the functions of the system to provide and organize a simple and elegant design.
+
+2『布鲁克斯在人月神话里提出的「No Silver Bullet」做一张主题卡片。（2021-05-25）』—— 人月神话
+
+To address it, we need to grow large systems in relatively easy increments, reuse existing software as much as possible, and make more use of rapid prototyping to gain early feedback before technical decisions are locked. Most of all, Brooks said, we need to「cultivate great designers.」He saw coping with complexity as an essential skill requiring great mastery. Brooks famously wrote that there is「no silver bullet」that will kill the werewolf of complexity in software development.
+
 ### 0201. 术语卡 —— Computational thinking 
 
 信息源自「2020136Computational-Thinking0101.md」
