@@ -102,6 +102,12 @@ The movement described by Brooks can be characterized as moving from computation
 
 1 Niklaus Wirth, software pioneer and the designer of the popular language Pascal, gives an excellent account of the development of programming practices and their supporting languages (Wirth 2008).
 
+As they gained familiarity with the practices of programming, language designers developed higher-level languages, such as FORTRAN and COBOL around 1958. These languages enabled programmers to express algorithmic statements that were automatically translated by compiler into machine code; they relieved programmers of the burden of direct machine code programming. When they saw that programmers often started by designing the data structures and then a small set of subroutines that performed operations on the structures, language designers enunciated the practice of data abstraction. Data abstraction matured into object-oriented programming languages. Data abstraction has become another key feature of CT: it hides internal mechanisms of program components, while allowing the use of those components through well-defined interfaces. With data abstraction, programmers can focus more easily on what the components do rather than how they do it.
+
+2『补充进「抽象」主题卡片里。（2021-05-25）』—— 已完成
+
+Today's CT inherits many precepts for programming methodology including modularity, abstraction, information hiding, hierarchical composition, recursion, design patterns, managing digital objects, visualization, verification, and debugging. These conceptual tools require great skill and experience at design. Design has emerged as one of the major areas of development in computing; we will discuss it in depth in chapter 6. CT precepts on languages, methodology, and operating systems all aid productivity and confine or eliminate errors.
+
 ### 0105. 主题卡 —— 工程和科学的三大区别
 
 信息源自「2020136Computational-Thinking0501.md」
@@ -117,6 +123,72 @@ The third main distinction concerns the role of abstractions and models. Science
 The familiar phrase「the devil is in the details」is an engineer's motto. Engineers must get the details right for systems to work. Scientists want to eliminate the details so that the recurrences stand out.
 
 These differences explain why it has been hard to design software engineering education that actually produces capable software developers. Many software engineering groups are in computer science departments that emphasize the science over engineering. The same balancing problem haunts computational thinking, too: when one or the other worldview dominates, the synergies are lost.
+
+### 0106. 主题卡 —— Design Principles, Patterns, and Hints
+
+信息源自「2020136Computational-Thinking0501.md」
+
+The goals of programming in the large were summarized as the five DRUSS objectives – dependable, reliable, usable, safe, and secure. To achieve these goals software developers work with three kinds of computational thinking practices: design principles, patterns, and hints.
+
+1-2『补充进 DRUSS 术语卡片，并且新增一张「Design Principles, Patterns, and Hints」主题卡片。（2021-05-25）』—— 已完成
+
+Design principles are descriptions of skills and strategies that developers follow when making design decisions. The principles guide them toward designs that meet the five DRUSS objectives.
+
+Design patterns are descriptions of common situations a programmer is likely to encounter. They offer guidance on how to structure the program, or on the process of writing it, for best results.
+
+Design hints are rules of thumb or morsels of advice, most useful to those with advanced skills at systems development.
+
+
+The goals of programming in the large were summarized as the five DRUSS objectives – dependable, reliable, usable, safe, and secure. To achieve these goals software developers work with three kinds of computational thinking practices: design principles, patterns, and hints.
+
+1-2『补充进 DRUSS 术语卡片，并且新增一张「Design Principles, Patterns, and Hints」主题卡片。（2021-05-25）』—— 已完成
+
+Design principles are descriptions of skills and strategies that developers follow when making design decisions. The principles guide them toward designs that meet the five DRUSS objectives.
+
+Design patterns are descriptions of common situations a programmer is likely to encounter. They offer guidance on how to structure the program, or on the process of writing it, for best results.
+
+Design hints are rules of thumb or morsels of advice, most useful to those with advanced skills at systems development.
+
+Principles
+
+The classic paper by Jerome Saltzer and Michael Schroeder about information protection is an excellent example of design principles (see table 5.1). [6] Design principles are ways of thinking about the total system of software components, in order to achieve the DRUSS objectives and reduce compromise of sensitive information. The principles are embodied in the skills and ways of thinking that system developers acquire over time from building complex computing systems. They apply to any large system that accommodates many users and service processes.
+
+2『已下载论文「2021041The protection of information in computer systems」并存入 Zotero，这篇 Paper 有 66 页。（2021-05-25）』—— 已完成
+
+Table 5.1 Information Protection Principles of Saltzer and Schroeder
+
+| Principle | Directive |
+| --- | --- |
+| Economy of mechanism | Keep the design simple and small. |
+| Fail-safe defaults | Deny access by default; grant access only by explicit permission. |
+| Complete mediation | Check every access to every object. |
+| Open design | Do not depend on attackers being ignorant of the design. |
+| Separation of privilege | Grant access based on more than one piece of information. |
+| Least privilege | Force every process to operate with the minimum privileges needed for its task. |
+| Least common mechanism | Make shared state information inaccessible to individual processes, lest one corrupt it. |
+| Psychological acceptability | Protection should be easy to use, at least as easy as not using it. |
+
+Patterns
+
+In the early 1990s a group of programmers founded the「software pattern community」movement, inspired by the design-pattern idea of building architect Christopher Alexander. [7] Their idea was that if they could describe a common pattern of software use that has been solved by skilled programmers, they could distill the pattern's essence so that other programmers can imitate it. A software pattern characterizes a large number of situations a programmer is likely to encounter and offers guidance on how to structure the program to best fit the pattern. [8] The number of recognized patterns runs in dozens. Examples are the singleton pattern, which limits the number of instances of an object to one, and the iterator pattern, which implements sequential access to data elements. The pattern community appeals to a sense of empiricism because its members are relentless about testing ideas with potential users and learning from the feedback.
+
+1-2『有一次看到了「设计模式」起源的信息，起源于建筑行业，墙里开花墙外香。已下载书籍「」。而且又见到了四人帮的设计模式经典书籍，已下载书籍「2019087Design-Patterns」。（2021-05-25）』
+
+Hints
+
+Butler Lampson, a superb and accomplished designer, summarized a number of guidelines for advanced designers of operating systems. [9] He said:「Designing a computer system is very different from designing an algorithm. The external interface is less precisely defined, more complex, and more subject to change. The system has much more internal structure and hence many internal interfaces. And the measure of success is unclear.」He said the less skilled designers often flounder in seas of possibilities, not knowing how a current choice will affect future choices of the performance of the system. He called his statements「design hints」because they are judgments skilled designers learn to make over time; they emphasize the considerable art in designing. 
+
+2『已下载论文「2021042Hints for computer system design」并存入 Zotero。（2021-05-25）』
+
+In table 5.2 we list Lampson's hints for three dimensions of system development (rows) and major aspects of the DRUSS objectives (columns). Though they may appear as generalities, they are quite meaningful in shaping the CT skills of advanced designers.
+
+Table 5.2 Lampson's Design Hints
+
+| - | Correctness & Fit | Speed | Fault Tolerance |
+| --- | ---- | ---- | --- |
+| Use cases | Separate normal and worst cases | Safety first, Shed load, End-to-end | End-to-end |
+| Interface | Keep it simple, Do one thing well, Don't generalize, Get it right, Don't hide power, Use procedure arguments, Leave it to the client, Keep interface stable, Keep a place to stand | Make it fast, Split resources, Static analysis, Dynamic translation | End-to-end, Log updates, Make actions atomic |
+| Implementation | Plan to throw one away, Keep secrets, Reuse a good idea, Divide and conquer | Cache answers, Use hints, Use brute force, Compute in background, Batch processing | Make actions atomic, Use hints |
 
 ### 0201. 术语卡 —— Computational thinking 
 
@@ -146,7 +218,17 @@ A scientific revolution began in the mid-1500s. For much of the time since, ther
 
 2『这里的 Engineering 的定义，做一张术语卡片。（2021-05-24）』—— 已完成
 
-### 0203. 术语卡 ——
+### 0203. 术语卡 —— DRUSS 目标
+
+信息源自「2020136Computational-Thinking0501.md」
+
+Software developers who had little familiarity with the target domain often caused large gaps between customer needs and the functions of computational systems. Software developers found that the known principles of design were not up to the task of providing dependable, reliable, usable, safe, and secure software — known as the DRUSS objectives. Professional programmers realized that their computational-thinking skills did not scale up well: something was qualitatively different about a program written by a single programmer and a system that required a team of 300 programmers.
+
+2『软件开发的 DRUSS 目标，做一张术语卡片。（2021-05-25）』—— 已完成
+
+The goals of programming in the large were summarized as the five DRUSS objectives – dependable, reliable, usable, safe, and secure. To achieve these goals software developers work with three kinds of computational thinking practices: design principles, patterns, and hints.
+
+1-2『补充进 DRUSS 术语卡片，并且新增一张「Design Principles, Patterns, and Hints」主题卡片。（2021-05-25）』—— 已完成
 
 ### 0301. 人名卡 ——
 
@@ -162,9 +244,13 @@ A scientific revolution began in the mid-1500s. For much of the time since, ther
 
 ### 0601. 数据信息卡 ——
 
-### 0701. 任意卡 ——
+### 0701. 任意卡 —— 大型软件开发的 2 个洞见
 
-最后还有一张任意卡，记录个人阅读感想。
+信息源自「2020136Computational-Thinking0501.md」
+
+Fred Brooks was the manager of a team of 300 programmers who built the IBM 360 operating system in the 1960s. Their system eventually grew to a massive 10 million lines of code. In his book, The Mythical Man-Month (1975), Brooks documented his experience in detail and gave rules of thumb of CT for organizing and designing large systems. One of his famous observations is that time and people do not trade off equally: a team of 12 programmers cannot complete in a month a job that took a single programmer 12 months. Another is that the structure of the software winds up resembling the organization that built it. Brooks concluded that managing the team was a greater challenge than the technology problems the team had to solve.
+
+2『人月神话那本书里，Brooks 对大型软件开发的 2 个洞见，做一张任意卡片。（2021-05-25）』—— 已完成
 
 ## Series Foreword
 

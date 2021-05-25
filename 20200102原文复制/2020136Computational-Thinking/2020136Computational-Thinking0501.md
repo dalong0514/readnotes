@@ -56,19 +56,27 @@ These differences explain why it has been hard to design software engineering ed
 
 ## 5.3 Computational Thinking in the Small
 
-A computing pioneer who worked with one of the first computers wrote in his memoir that he still remembered the day when he suddenly realized he would be spending most of the rest of his life looking for mistakes in his own programs.3 In the 1950s, everyone came to believe this — it was very hard to write programs that worked correctly. Programming was unexplored territory to everyone. Initially, all the first programmers could do was borrow ideas and techniques from other fields and use their ingenuity to get programs to work. Nothing seemed to help avoid making errors while programming. What was earlier envisaged to be a straightforward translation of high-level algorithmic plans to machine instructions was found to be a complex of challenges from incomplete problem specifications, machine idiosyncrasies, poor performance, memory limitations, and debugging. Getting computers work turned out to be an endless cycle of accommodations to surprises and obstacles.
+A computing pioneer who worked with one of the first computers wrote in his memoir that he still remembered the day when he suddenly realized he would be spending most of the rest of his life looking for mistakes in his own programs. [3] In the 1950s, everyone came to believe this — it was very hard to write programs that worked correctly. Programming was unexplored territory to everyone. Initially, all the first programmers could do was borrow ideas and techniques from other fields and use their ingenuity to get programs to work. Nothing seemed to help avoid making errors while programming. What was earlier envisaged to be a straightforward translation of high-level algorithmic plans to machine instructions was found to be a complex of challenges from incomplete problem specifications, machine idiosyncrasies, poor performance, memory limitations, and debugging. Getting computers work turned out to be an endless cycle of accommodations to surprises and obstacles.
 
-As a result, programming in the 1950s developed an aura of mystique. Programming language pioneers remembered that aura vividly in their memoirs. One wrote that programming in the 1950s was「a black art, a private arcane matter involving only a programmer, a problem, a computer, and perhaps a small library of subroutines. ... Programmers started to regard themselves as members of a priesthood guarding skills and mysteries far too complex for ordinary mortals.」Another described later how the programmers of the 1950s loved their obscure codes and tricks.4 Yet another wrote that it took until the 1960s before programming started to evolve from a craft to a science. He marveled at how, despite their「primitive」way of thinking about programming, programmers of the 1950s were able to create so many useful programs.5 Computational thinking of the early computer era was rich but fragmented, and focused on making single programs work on specific machinery.
+As a result, programming in the 1950s developed an aura of mystique. Programming language pioneers remembered that aura vividly in their memoirs. One wrote that programming in the 1950s was「a black art, a private arcane matter involving only a programmer, a problem, a computer, and perhaps a small library of subroutines. ... Programmers started to regard themselves as members of a priesthood guarding skills and mysteries far too complex for ordinary mortals.」Another described later how the programmers of the 1950s loved their obscure codes and tricks. [4] Yet another wrote that it took until the 1960s before programming started to evolve from a craft to a science. He marveled at how, despite their「primitive」way of thinking about programming, programmers of the 1950s were able to create so many useful programs. [5] Computational thinking of the early computer era was rich but fragmented, and focused on making single programs work on specific machinery.
 
 Many pioneers of computing worked to make the programmer's job easier and less error-prone. They did this by developing and refining programming methodology and programming languages, and by designing sophisticated operating systems. Their innovations began with structural principles for modularity in the machines of the 1950s, which led to computational thinkers starting to increasingly think in terms of subroutines, macros that abbreviated often-used pieces of code, separately compiled modules, linkers that combine compiled modules into full programs, libraries of ready-to-run executable modules, and version control systems that tracked all the software modules built and modified by a team. All these tools helped manage program complexity and reduce errors.
 
 As they gained familiarity with the practices of programming, language designers developed higher-level languages, such as FORTRAN and COBOL around 1958. These languages enabled programmers to express algorithmic statements that were automatically translated by compiler into machine code; they relieved programmers of the burden of direct machine code programming. When they saw that programmers often started by designing the data structures and then a small set of subroutines that performed operations on the structures, language designers enunciated the practice of data abstraction. Data abstraction matured into object-oriented programming languages. Data abstraction has become another key feature of CT: it hides internal mechanisms of program components, while allowing the use of those components through well-defined interfaces. With data abstraction, programmers can focus more easily on what the components do rather than how they do it.
+
+2『补充进「抽象」主题卡片里。（2021-05-25）』—— 已完成
 
 Operating systems designers contributed a raft of important precepts to CT during that same era. Operating systems allow many users to share a single machine by scheduling resources, resolving conflicts, allocating memory among user programs, and multiplexing computing jobs on the processors. Operating systems designers introduced the idea of a system being a「society of cooperating processes,」where a process is an independently executing program in private memory that cannot be accessed by other processes, and where each process stands by to perform a specific service when requested. Operating systems designers invented virtual memory to automate data transfers between memory levels, file systems to store and protect user data, and interprocess messaging systems to exchange data and requests. They invented kernels to provide a professionally built and highly trusted set of programs for all basic operating system functions. Kernels isolated processes and prevented errors in any one from affecting any other.
 
 Today's CT inherits many precepts for programming methodology including modularity, abstraction, information hiding, hierarchical composition, recursion, design patterns, managing digital objects, visualization, verification, and debugging. These conceptual tools require great skill and experience at design. Design has emerged as one of the major areas of development in computing; we will discuss it in depth in chapter 6. CT precepts on languages, methodology, and operating systems all aid productivity and confine or eliminate errors.
 
 Many of those practices became so ingrained in CT that for decades computational problem-solvers have considered them to be basic building blocks of CT. These engineering developments complemented the mathematical side of programming, which in those days focused on structuring programs to facilitate formal proof of their correctness and practices such as the use of recursion.
+
+3 Wilkes, in Metropolis, Howlett, and Rota (1980).
+
+4 Wirth (2008).
+
+5 Dijkstra (1980).
 
 ## 5.4 Software Development Drifts into a Crisis
 
@@ -79,6 +87,8 @@ A software industry began to evolve from a few software contractors in the 1950s
 In the 1960s software developers found that selling software was no gravy train. More and more software projects ended up late, over budget, bug-ridden to a point of being useless, or never delivered at all. Post-delivery software maintenance, improvement, and bug fixing were costly, difficult, and sometimes infeasible. Software systems frequently contained lurking bugs that made their applications unsafe for humans or caused expensive failures such as the loss of the Mariner spacecraft.
 
 Software developers who had little familiarity with the target domain often caused large gaps between customer needs and the functions of computational systems. Software developers found that the known principles of design were not up to the task of providing dependable, reliable, usable, safe, and secure software — known as the DRUSS objectives. Professional programmers realized that their computational-thinking skills did not scale up well: something was qualitatively different about a program written by a single programmer and a system that required a team of 300 programmers.
+
+2『软件开发的 DRUSS 目标，做一张术语卡片。（2021-05-25）』—— 已完成
 
 Software companies tried to minimize these problems in two ways. One was to hire highly skilled programmers who could produce many times more code per day with significantly fewer errors than entry-level programmers. Salaries for good programmers shot up: software developers became one of the highest-paid professions in the US.
 
@@ -92,6 +102,8 @@ What happens when we go from single programs with single users to systems of man
 
 Fred Brooks was the manager of a team of 300 programmers who built the IBM 360 operating system in the 1960s. Their system eventually grew to a massive 10 million lines of code. In his book, The Mythical Man-Month (1975), Brooks documented his experience in detail and gave rules of thumb of CT for organizing and designing large systems. One of his famous observations is that time and people do not trade off equally: a team of 12 programmers cannot complete in a month a job that took a single programmer 12 months. Another is that the structure of the software winds up resembling the organization that built it. Brooks concluded that managing the team was a greater challenge than the technology problems the team had to solve.
 
+2『人月神话那本书里，Brooks 对大型软件开发的 2 个洞见，做一张任意卡片。（2021-05-25）』—— 已完成
+
 Although the attendees at the NATO conferences agreed that there was a major「software problem」and that engineering principles might help, they had little agreement on what kind of engineering would do the job. The traditional engineers looked to fault tolerant design, systems thinking, and project management. Theoretically oriented computer scientists looked to mathematical proof (formal verification) to establish that software met its specifications without error and introduced methods such as structured programming and algorithms analysis to facilitate understanding and proofs of programs.
 
 Neither approach made much of a dent in the software problem. Traditional systems engineering did not work well because of a crucial difference between software and large physical systems, such as bridges, buildings, planes, and ships: an error in a single bit of code can cause catastrophic failure such as the crash of a rocket whereas the loss of a minute sliver of material might degrade a large system but would not crash it. Mathematical proof did not work well because it was too difficult for large systems, it said nothing about human aspects such as usability, and it did not address problems in the hardware such as component failures or noise corrupting signals. The software pioneers Brian Randell and Fred Brooks were among the most prescient in saying why software systems are so much harder. Randell said the problem was not programming per se but「multi-person development of multi-version programs.」Brooks, in his 1975 book, said that productizing a program by turning it into a system that could be used safely and reliably by non-programmers was far more challenging than writing the program in the first place.
@@ -104,6 +116,8 @@ This waste has become ever-present and represents a grave lack of sense for qual
 
 The goals of programming in the large were summarized as the five DRUSS objectives – dependable, reliable, usable, safe, and secure. To achieve these goals software developers work with three kinds of computational thinking practices: design principles, patterns, and hints.
 
+1-2『补充进 DRUSS 术语卡片，并且新增一张「Design Principles, Patterns, and Hints」主题卡片。（2021-05-25）』—— 已完成
+
 Design principles are descriptions of skills and strategies that developers follow when making design decisions. The principles guide them toward designs that meet the five DRUSS objectives.
 
 Design patterns are descriptions of common situations a programmer is likely to encounter. They offer guidance on how to structure the program, or on the process of writing it, for best results.
@@ -113,6 +127,8 @@ Design hints are rules of thumb or morsels of advice, most useful to those with 
 ### 5.6.1 Principles
 
 The classic paper by Jerome Saltzer and Michael Schroeder about information protection is an excellent example of design principles (see table 5.1). [6] Design principles are ways of thinking about the total system of software components, in order to achieve the DRUSS objectives and reduce compromise of sensitive information. The principles are embodied in the skills and ways of thinking that system developers acquire over time from building complex computing systems. They apply to any large system that accommodates many users and service processes.
+
+2『已下载论文「2021041The protection of information in computer systems」并存入 Zotero，这篇 Paper 有 66 页。（2021-05-25）』—— 已完成
 
 Table 5.1 Information Protection Principles of Saltzer and Schroeder
 
@@ -129,11 +145,17 @@ Table 5.1 Information Protection Principles of Saltzer and Schroeder
 
 ### 5.6.2 Patterns
 
-In the early 1990s a group of programmers founded the「software pattern community」movement, inspired by the design-pattern idea of building architect Christopher Alexander.7 Their idea was that if they could describe a common pattern of software use that has been solved by skilled programmers, they could distill the pattern's essence so that other programmers can imitate it. A software pattern characterizes a large number of situations a programmer is likely to encounter and offers guidance on how to structure the program to best fit the pattern.8 The number of recognized patterns runs in dozens. Examples are the singleton pattern, which limits the number of instances of an object to one, and the iterator pattern, which implements sequential access to data elements. The pattern community appeals to a sense of empiricism because its members are relentless about testing ideas with potential users and learning from the feedback.
+In the early 1990s a group of programmers founded the「software pattern community」movement, inspired by the design-pattern idea of building architect Christopher Alexander. [7] Their idea was that if they could describe a common pattern of software use that has been solved by skilled programmers, they could distill the pattern's essence so that other programmers can imitate it. A software pattern characterizes a large number of situations a programmer is likely to encounter and offers guidance on how to structure the program to best fit the pattern. [8] The number of recognized patterns runs in dozens. Examples are the singleton pattern, which limits the number of instances of an object to one, and the iterator pattern, which implements sequential access to data elements. The pattern community appeals to a sense of empiricism because its members are relentless about testing ideas with potential users and learning from the feedback.
+
+1-2『有一次看到了「设计模式」起源的信息，起源于建筑行业，墙里开花墙外香。已下载书籍「」。而且又见到了四人帮的设计模式经典书籍，已下载书籍「2019087Design-Patterns」。（2021-05-25）』
 
 ### 5.6.3 Hints
 
-Butler Lampson, a superb and accomplished designer, summarized a number of guidelines for advanced designers of operating systems.9 He said:「Designing a computer system is very different from designing an algorithm. The external interface is less precisely defined, more complex, and more subject to change. The system has much more internal structure and hence many internal interfaces. And the measure of success is unclear.」He said the less skilled designers often flounder in seas of possibilities, not knowing how a current choice will affect future choices of the performance of the system. He called his statements「design hints」because they are judgments skilled designers learn to make over time; they emphasize the considerable art in designing. In table 5.2 we list Lampson's hints for three dimensions of system development (rows) and major aspects of the DRUSS objectives (columns). Though they may appear as generalities, they are quite meaningful in shaping the CT skills of advanced designers.
+Butler Lampson, a superb and accomplished designer, summarized a number of guidelines for advanced designers of operating systems. [9] He said:「Designing a computer system is very different from designing an algorithm. The external interface is less precisely defined, more complex, and more subject to change. The system has much more internal structure and hence many internal interfaces. And the measure of success is unclear.」He said the less skilled designers often flounder in seas of possibilities, not knowing how a current choice will affect future choices of the performance of the system. He called his statements「design hints」because they are judgments skilled designers learn to make over time; they emphasize the considerable art in designing. 
+
+2『已下载论文「2021042Hints for computer system design」并存入 Zotero。（2021-05-25）』
+
+In table 5.2 we list Lampson's hints for three dimensions of system development (rows) and major aspects of the DRUSS objectives (columns). Though they may appear as generalities, they are quite meaningful in shaping the CT skills of advanced designers.
 
 Table 5.2 Lampson's Design Hints
 
@@ -142,6 +164,14 @@ Table 5.2 Lampson's Design Hints
 | Use cases | Separate normal and worst cases | Safety first, Shed load, End-to-end | End-to-end |
 | Interface | Keep it simple, Do one thing well, Don't generalize, Get it right, Don't hide power, Use procedure arguments, Leave it to the client, Keep interface stable, Keep a place to stand | Make it fast, Split resources, Static analysis, Dynamic translation | End-to-end, Log updates, Make actions atomic |
 | Implementation | Plan to throw one away, Keep secrets, Reuse a good idea, Divide and conquer | Cache answers, Use hints, Use brute force, Compute in background, Batch processing | Make actions atomic, Use hints |
+
+6 Saltzer and Schroeder (1975).
+
+7 Alexander (1979).
+
+8 Gamma et al. (1994).
+
+9 Lampson (1983).
 
 ## 5.7 Design Principles for Software
 
@@ -159,9 +189,11 @@ These structures are intended as tools to help with recurrent patterns that desi
 
 Hierarchical aggregation means that objects (identifiable software and hardware components) consist of groups of smaller objects connected by well-defined interfaces. You can interact with an object as a unity through its interface and not be concerned with its individual parts. When you do look inside, you need not be concerned with what is going on in the external environment. Thus, there is a hierarchy with smaller aggregates making up larger aggregates. Aggregates at every level of the hierarchy are insulated from lower- and higher-level details.
 
-There is a long list of aspects of hierarchical modularity. Decomposition means to subdivide a large system into smaller, manageable components. Modularity is a process of implementing the components as modules that can be designed separately, compiled separately, stored separately, and then assembled into the full system. The modules interact across precisely defined interfaces. Modules can be stored in libraries and reused for other purposes. Abstraction means to define a simplified version of something and to state the operations (functions) that apply to it. Levels are a structural form in which peer components share a common interface.10 Information hiding conceals the details of an implementation from users, protecting users against errors caused by changes in the details and protecting the module from errors caused by external changes. Encapsulation goes further, by shielding anything outside an untrusted module from errors within the module.
+There is a long list of aspects of hierarchical modularity. Decomposition means to subdivide a large system into smaller, manageable components. Modularity is a process of implementing the components as modules that can be designed separately, compiled separately, stored separately, and then assembled into the full system. The modules interact across precisely defined interfaces. Modules can be stored in libraries and reused for other purposes. Abstraction means to define a simplified version of something and to state the operations (functions) that apply to it. Levels are a structural form in which peer components share a common interface. [10] Information hiding conceals the details of an implementation from users, protecting users against errors caused by changes in the details and protecting the module from errors caused by external changes. Encapsulation goes further, by shielding anything outside an untrusted module from errors within the module.
 
 The object concept is an advanced form of encapsulation; it originated with a programming practice called「data abstraction」in the 1960s and evolved into over a hundred sophisticated object-oriented languages today. An object is an abstract entity that can be viewed and altered only through a defined set of operations. Its internal structure and state are hidden. For example, a file appears to users as a container of a sequence of bits and can be acted on only with the open, close, read, or write operations; its hidden internal structure is a set of records scattered across a disk. The disk structure of a file is irrelevant to users and hence hidden from them. A class of objects is a set of objects with the same interface; the classes are organized into a hierarchy of their own. Novice programmers often find objects confusing because they do not yet understand abstract machines, information hiding, and synchronization.
+
+10 The levels principle was first used by Edsger Dijkstra in 1968 to organize the software of an operating system. It facilitated a correctness proof of the system because each level depended only on its components and the correctness of the lower levels, but not the higher levels. The discipline of designing a system as levels leads to much smaller and more easily verified systems.
 
 ### 5.7.2 Virtual Machines
 
@@ -209,27 +241,6 @@ Mass production of diverse software applications: Today's mobile apps, games, de
 
 Computational thinking is being constantly challenged to grow and deal with these contemporary problems.
 
-
-
-
-
-
-3 Wilkes, in Metropolis, Howlett, and Rota (1980).
-
-4 Wirth (2008).
-
-5 Dijkstra (1980).
-
-6 Saltzer and Schroeder (1975).
-
-7 Alexander (1979).
-
-8 Gamma et al. (1994).
-
-9 Lampson (1983).
-
-10 The levels principle was first used by Edsger Dijkstra in 1968 to organize the software of an operating system. It facilitated a correctness proof of the system because each level depended only on its components and the correctness of the lower levels, but not the higher levels. The discipline of designing a system as levels leads to much smaller and more easily verified systems.
-
 ## References and Further Reading
 
 Alexander, Christopher. (1979). The Timeless Way of Building. Oxford University Press.
@@ -256,6 +267,6 @@ Mitcham, Carl. (1994). Thinking Through Technology: The Path Between Engineering
 
 Saltzer, Jerome H., and Michael D. Schroeder. (1975). Protection of information computer systems. Proceedings of the IEEE 63 (9) (September): 1278–1308.
 
-Stokes, Donald E. (1997). Pasteur's Quadrant—Basic Science and Technological Innovation. Brookings Institution Press.
+Stokes, Donald E. (1997). Pasteur's Quadrant — Basic Science and Technological Innovation. Brookings Institution Press.
 
 Wirth, Niklaus. (2008). A brief history of software engineering. IEEE Annals of the History of Computing, 30 (3): 32–39.
