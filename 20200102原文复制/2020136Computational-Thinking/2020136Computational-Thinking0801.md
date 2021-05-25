@@ -16,17 +16,29 @@ Getting computing education to K-12 schools was a struggle of a whole different 
 
 In the late 1990s, at the same time when the internet started to become a household commodity, a new education movement favoring「fluency with information technology」over literacy gained momentum and was supported by a popular textbook of the same name. It was an attractive notion that fluency with language and practices of computing would be a powerful asset in the emerging digitalized world. Bringing computing education to schools would enable children to become smart users of computing technology and would introduce them to the limitations and risks of algorithmic processes behind emerging functions such as online purchasing, Internet searching, news services, communication, and later social media. Despite its attraction, the fluency movement did not produce a widespread change in computing education in K–12 schools.
 
-Then, in 2006, Jeannette Wing proposed that computational thinking is what everyone wants; not literacy or fluency.1 She struck a resonant chord. In the next several years at the US National Science Foundation (NSF), she mobilized $48 million in resources and convinced many people to bring computer courses into all K–12 schools. Their major successes included getting education organizations to issue definitions of CT and associated curricula at different grade levels; training teachers in CS principles; starting a new family of CS-principles introductory courses at universities; and developing a new Advanced Placement curriculum and exam to interface high schools to these new introductory courses. CT went mainstream.
+Then, in 2006, Jeannette Wing proposed that computational thinking is what everyone wants; not literacy or fluency. [1] She struck a resonant chord. In the next several years at the US National Science Foundation (NSF), she mobilized $48 million in resources and convinced many people to bring computer courses into all K–12 schools. Their major successes included getting education organizations to issue definitions of CT and associated curricula at different grade levels; training teachers in CS principles; starting a new family of CS-principles introductory courses at universities; and developing a new Advanced Placement curriculum and exam to interface high schools to these new introductory courses. CT went mainstream.
 
 But as suggested above, this success was not easy. School boards in K–12 institutions had a long history of reluctance to add a computing curriculum in their schools. The CT movement brought a turn of mind to many school boards. Without that movement, we would not be talking about computational thinking in K–12 education at the scale we do it today. In this chapter, we will interpret the progression of computing education as a series of waves that started with the form of CT available in the 1950s (algorithmizing and mathematical problem solving), moved to Papert's Mindstorms, then to literacy and fluency, and culminated most recently in a modern version of CT designed for children in schools.
 
+1 Wing (2006)
+
 ## 8.2 General-Purpose Thinking Tools?
 
-Academic education for automatic computing machinery began in the late 1940s, when computing pioneers started educational programs on numerical methods for computing on large-scale machines. These early efforts went mainstream in the 1950s when the mass production of stored-program computers created a demand for a large number of people who could program them. After the early entry by private companies, university educators started organizing conferences to discuss computing education in the mid-1950s. By 1960, some 150 US universities offered some training in computing. There was, however, no standard view on what people needed to know about computing; individual programs depended on local idiosyncrasies such as specific jobs, needs of businesses, personal agendas of the faculty, research contracts, and other stakeholder interests.2
+Academic education for automatic computing machinery began in the late 1940s, when computing pioneers started educational programs on numerical methods for computing on large-scale machines. These early efforts went mainstream in the 1950s when the mass production of stored-program computers created a demand for a large number of people who could program them. After the early entry by private companies, university educators started organizing conferences to discuss computing education in the mid-1950s. By 1960, some 150 US universities offered some training in computing. There was, however, no standard view on what people needed to know about computing; individual programs depended on local idiosyncrasies such as specific jobs, needs of businesses, personal agendas of the faculty, research contracts, and other stakeholder interests. [2]
 
 Already in those early days some computing educators described their visions of computing as a thinking tool for learning — a tool to deal with problems and questions in many fields besides computer science. Alan Perlis, who founded the computer science department at Carnegie Mellon University, was an outspoken advocate for this vision. He said that computing would be automating processes in many fields, and people in those fields would be「algorithmizing.」With this term, he referred to mental skills for reasoning about problems and developing computational solutions. George Forsythe cited Perlis in his 1958 address for the Mathematical Association of America:「Whereas we think we know something when we learn it, and are convinced we know it when we can teach it, the fact is that we don't really know it until we can code it for an automatic computer!」A decade later, Forsythe echoed the claim that computing provides general-purpose mental tools that would serve a person for a lifetime. Both Perlis and Forsythe firmly believed that everyone in every field will benefit from learning computing's procedural ways of doing things. They believed that computational models would be useful in all fields.
 
-The visions of computing education grew ever more ambitious about what CT will be able to achieve. Marvin Minsky, a famous pioneer in artificial intelligence, argued, in his 1969 Turing Award speech, that computing would surpass mathematics in importance for early education.3 Donald Knuth, a pioneer in understanding algorithms, argued that teaching a computer to do something forces precision and leads to deeper understanding than traditional means of thinking.4 Another pioneer argued that the modern successor to「the classical person」would be「Turing's person.」5 Two famous computing educators wrote that computing's procedural epistemology is creating a revolution in how people think and express themselves.6 All this optimism about computing skills transferring to general problem solving turned out to be premature, as we discuss next.
+The visions of computing education grew ever more ambitious about what CT will be able to achieve. Marvin Minsky, a famous pioneer in artificial intelligence, argued, in his 1969 Turing Award speech, that computing would surpass mathematics in importance for early education. [3] Donald Knuth, a pioneer in understanding algorithms, argued that teaching a computer to do something forces precision and leads to deeper understanding than traditional means of thinking. [4] Another pioneer argued that the modern successor to「the classical person」would be「Turing's person.」[5] Two famous computing educators wrote that computing's procedural epistemology is creating a revolution in how people think and express themselves. [6] All this optimism about computing skills transferring to general problem solving turned out to be premature, as we discuss next.
+
+2 Tedre, Simon, and Malmi (2018).
+
+3 Minsky (1970)
+
+4 Knuth (1974).
+
+5 Bolter (1984)
+
+6 Abelson and Sussman (1996)
 
 ## 8.3 CT Is Not Easily Transferable
 
@@ -46,11 +58,13 @@ Given that the transfer hypothesis does not work, schools needed more teachers w
 
 The early advocates of algorithmic thinking would be appalled at many of the「computer literacy」courses in the 1980s and 1990s, which focused on how to use desktop applications, such as word processors, spreadsheets, and sketchpads. Motivated students and teachers found these courses boring. Literacy with desktop software was a far cry from their aspirations to participate in and shape the computer revolution. The professional societies, including ACM, IEEE-CS, and the British Computer Society, offered to help K–12 educators develop computer courses with more depth, but got little buy-in. In 1999, a US National Research Council commission upped the ante, reframing the question from literacy to fluency. Fluency offered capabilities, concepts, and skills essential for some levels of computational thinking. The NRC initiative was paired with a textbook Fluency with Information Technology that became quite popular among high school teachers.
 
-Many schools brought computing into their curricula for pragmatic reasons as they responded to demands from parents and school boards. They sought access to simulations and other teaching software, access to basic programming, participation in the Internet revolution, learning 21st-century skills, preparation for employment in STEM fields, broadened social participation, and a new means for children to express individual creativity.7 Educators and parents were disposed toward these goals because they believed that learning programming teaches important skills no other subject does, and because they did not want their children to be at a disadvantage in a world increasingly dependent on skills with information and communication technology.
+Many schools brought computing into their curricula for pragmatic reasons as they responded to demands from parents and school boards. They sought access to simulations and other teaching software, access to basic programming, participation in the Internet revolution, learning 21st-century skills, preparation for employment in STEM fields, broadened social participation, and a new means for children to express individual creativity. [7] Educators and parents were disposed toward these goals because they believed that learning programming teaches important skills no other subject does, and because they did not want their children to be at a disadvantage in a world increasingly dependent on skills with information and communication technology.
 
 In the 2000s, the entry of programming and computational design into schools was also easier because of advances in programming methodology and technology and changes in what entry-level programmers needed to know. New languages such as Python were much easier to use and hid well the underlying details of the operating system and hardware. Graphical, drag-and-drop user interfaces were very successful. Powerful tools automated significant parts of the programming process.
 
 With all these advancements in programming languages, tools, and methods, programming was accessible to more students and teachers than ever before. There were more opportunities for becoming fluent in computing. But even so, in 2010 many schools had no computer courses or Advanced Placement curriculum in computing. Gaining fluency was not powerful enough to be a driving force.
+
+7 Guzdial (2015)
 
 ## 8.5 Computational Thinking Revived
 
@@ -58,7 +72,7 @@ Jeannette Wing's 2006 essay on computational thinking launched a new wave in the
 
 Major organizations including CSTA (Computer Science Teachers Association), the British CAS (Computing at School), Code.org, and the Australian ACARA2 (Australian Curriculum, Assessment, and Reporting Authority) developed and recommended curriculum frameworks for K–12 CT. These organizations promoted coding clubs, coding boot camps, and the international movement called「Hour of Code.」CT became a key word gathering hundreds of thousands of hits in news stories, blog postings, book chapters, articles, research projects, and essays on computing education.
 
-The rapid infusion of so many enthusiastic newcomers who were unfamiliar with the long prior history of CT led to considerable confusion about definitions and learning objectives of CT. Some invented new CT frameworks for K–12 schools from scratch, imperfectly reinventing ideas that had been discussed for decades, omitting important ideas, confusing CT with the use of applications, and incorporating into their dogma some serious misconceptions about computing and algorithms. This resulted in a variety of tensions between different groups that used CT.8 Here are the some of the most common points of contention, many of which can be explained by differences between CT for beginners and CT for professionals — basic CT in K–12 is surely different from advanced CT in higher education — as well as different contexts of application:
+The rapid infusion of so many enthusiastic newcomers who were unfamiliar with the long prior history of CT led to considerable confusion about definitions and learning objectives of CT. Some invented new CT frameworks for K–12 schools from scratch, imperfectly reinventing ideas that had been discussed for decades, omitting important ideas, confusing CT with the use of applications, and incorporating into their dogma some serious misconceptions about computing and algorithms. This resulted in a variety of tensions between different groups that used CT. [8] Here are the some of the most common points of contention, many of which can be explained by differences between CT for beginners and CT for professionals — basic CT in K–12 is surely different from advanced CT in higher education — as well as different contexts of application:
 
 1 Whether CT is limited to thinking about the mechanics of constructing algorithms — or includes thinking about machines, computational science, software engineering, and design.
 
@@ -94,9 +108,13 @@ The rapid infusion of so many enthusiastic newcomers who were unfamiliar with th
 
 We have expressed our stance on these questions at various points throughout this book. We see CT as an old, rich human practice that has been perfected in the modern age of the electronic computer. We see CT as a mental discipline for thinking about designing computations of all kinds, a skill at the advanced levels honed and improved through extensive practice and experience. We see many different levels and styles of CT from basic computing skills and insights to highly advanced, specialized ones. We see that there are many good ways for teaching entry level CT. We see that ultimately nearly all CT will boil down to machine-realizability. We see CT as mostly domain dependent — for example, how you think about computation in biology is different from physics, chemistry, or humanities. We see as wishful the notion that CT is an innate human ability exercised daily by using computational tools and performing routine everyday procedures. We see the attempt to define algorithms as a set of possibly ambiguous steps resolved by human computers as a misunderstanding of computing.
 
-We would like to point out one other movement to bring computing into K–12 schools. Known as CS Unplugged,9 it seeks to teach computing concepts and practices through games, magic tricks, and activities. It was founded in the late 1990s by Tim Bell, Michael Fellows, and Ian Whitten. It has gained a worldwide following and influenced the design of the ACM K–12 and code.org curriculum recommendations.
+We would like to point out one other movement to bring computing into K–12 schools. Known as CS Unplugged, [9] it seeks to teach computing concepts and practices through games, magic tricks, and activities. It was founded in the late 1990s by Tim Bell, Michael Fellows, and Ian Whitten. It has gained a worldwide following and influenced the design of the ACM K–12 and code.org curriculum recommendations.
 
 In summary, we see plenty of room for a broad, pluralistic approach to teaching computational thinking while remaining faithful to computing's well-honed disciplinary ways of thinking and practicing. Most of all, we hope that all teachers of computing bring their students a good sense of the richness and beauty of the many dimensions of computation.
+
+8 Denning (2017).
+
+9 See [Computer Science Field Guide](https://csfieldguide.org.nz/en/) and [CS Unplugged](https://csunplugged.org/zh-hans/).
 
 ## References and Further Reading
 
@@ -119,22 +137,3 @@ Minsky, Marvin. (1970). Form and content in computer science. Journal of the ACM
 Tedre, Matti, Simon, and Lauri Malmi. (2018). Changing aims of computing education: a historical survey. Computer Science Education, June.
 
 Wing, Jeanette M. (2006). Computational thinking. Communications of the ACM 49 (3): 33–35.
-
-1 Wing (2006)
-
-2 Tedre, Simon, and Malmi (2018).
-
-3 Minsky (1970)
-
-4 Knuth (1974).
-
-5 Bolter (1984)
-
-6 Abelson and Sussman (1996)
-
-7 Guzdial (2015)
-
-8 Denning (2017).
-
-9 See [Computer Science Field Guide](https://csfieldguide.org.nz/en/) and [CS Unplugged](https://csunplugged.org/zh-hans/).
-

@@ -12,13 +12,21 @@ We will discuss some of the forces that are shaping our world and their likely e
 
 One of the most obvious reasons why CT is changing is that computing technologies are changing. Throughout the long reign of Moore's law for silicon chips, the basic architecture of chips in computers and mobile devices has remained true to the von Neumann design from 1945 — separate memory and processing units, with a processor stepping through instructions stored in memory. The notion of「computational steps」in the modern definitions of CT comes from this design as well as from Alan Turing's definitions of computing.
 
-But Moore's law cannot be sustained because of the physics of silicon and the nature of the chip-making process.1 For this reason, researchers have been searching for new technologies that might supersede silicon-based von Neumann architectures and continue the exponential growth rate of information processing speed. Quantum computers, neural networks, reversible computers, DNA computers, memristor computers, and a few others are prime candidates. Each technology defines a new computational model that is the target for designers.
+But Moore's law cannot be sustained because of the physics of silicon and the nature of the chip-making process. [1] For this reason, researchers have been searching for new technologies that might supersede silicon-based von Neumann architectures and continue the exponential growth rate of information processing speed. Quantum computers, neural networks, reversible computers, DNA computers, memristor computers, and a few others are prime candidates. Each technology defines a new computational model that is the target for designers.
 
-Consider, for instance, the D-wave, a commercial quantum computer.2 It is designed to solve a set of equations, well known in physics as the Ising Model, which describe how certain systems settle into minimum energy states. Programming a D-wave computer means to encode the problem as a set of Ising equations and to input the coefficients into the machine; execution means to let the machine settle into a minimum energy state corresponding to the solution of the equations (a few microseconds); readout consists of reading the qubits (quantum bits) of the machine and interpreting them as the answer. There is no concept here of an「instruction set」or of programming as「designing a sequence of steps.」Most computer scientists, on being shown how to set up the D-wave machine for the first time, experience a mind tilt — the process is nothing like the programming process they have known all their professional lives.3 Trained physicists have much less trouble understanding the machine. The current working definition of CT — formulating a problem so that it can be solved as a series of computational steps — fails to describe the computational thinking this machine involves.
+Consider, for instance, the D-wave, a commercial quantum computer. [2] It is designed to solve a set of equations, well known in physics as the Ising Model, which describe how certain systems settle into minimum energy states. Programming a D-wave computer means to encode the problem as a set of Ising equations and to input the coefficients into the machine; execution means to let the machine settle into a minimum energy state corresponding to the solution of the equations (a few microseconds); readout consists of reading the qubits (quantum bits) of the machine and interpreting them as the answer. There is no concept here of an「instruction set」or of programming as「designing a sequence of steps.」Most computer scientists, on being shown how to set up the D-wave machine for the first time, experience a mind tilt — the process is nothing like the programming process they have known all their professional lives. [3] Trained physicists have much less trouble understanding the machine. The current working definition of CT — formulating a problem so that it can be solved as a series of computational steps — fails to describe the computational thinking this machine involves.
 
-DNA computing is another technology being investigated. In 1994 researchers performed an experiment in which they encoded possible paths in a map into strands of DNA, and then used the chemical methods of the day to evolve the initial mixture into one where the majority of strands represented the shortest tour of the map.4 Considerable progress has been made with this technology. In 2016, another research team used the modern CRISPR gene editing technique to insert an image into the DNA of a bacterium. Computer scientists trained to think in terms of computational steps have more trouble than molecular biologists understanding how DNA computing works.
+DNA computing is another technology being investigated. In 1994 researchers performed an experiment in which they encoded possible paths in a map into strands of DNA, and then used the chemical methods of the day to evolve the initial mixture into one where the majority of strands represented the shortest tour of the map. [4] Considerable progress has been made with this technology. In 2016, another research team used the modern CRISPR gene editing technique to insert an image into the DNA of a bacterium. Computer scientists trained to think in terms of computational steps have more trouble than molecular biologists understanding how DNA computing works.
 
 These examples illustrate CT has expanded beyond the idea of problem solving with computational steps. Our broader definition — designing computations that get computers to do jobs for us, as well as explaining and interpreting the world as a complex of information processes — is closer to the mark.
+
+1 Denning and Lewis (2017).
+
+2 McGeoch (2014).
+
+3 See Walter Tichy's interview with Catherine McGeoch, Ubiquity July 2017, for a worked example of an Ising equation and its encoding into a form for the D-wave machine to solve, https://ubiquity.acm.org/article.cfm?id=3084688.
+
+4 Adleman (1994).
 
 ## 9.2 Design
 
@@ -54,7 +62,7 @@ Human-computer teaming requires a different kind of computational thinking than 
 
 ## 9.5 Technology Jumping
 
-In 2006 Ray Kurzweil, a futurist and inventor of computing technologies, prophesied that by 2030 we will be able to build a computer the size of the brain, with the same number of neurons and connections as the brain.5 Such a computer would, he envisioned, develop its own consciousness and superintelligence. How such computers would treat humanity is an unanswerable question. The best that can be said is that the new machines would have such different concerns from ours that we cannot fathom how they would treat us. That moment of their creation is called the singularity because of the utter unpredictability of what lies after an artificial intelligence develops consciousness.
+In 2006 Ray Kurzweil, a futurist and inventor of computing technologies, prophesied that by 2030 we will be able to build a computer the size of the brain, with the same number of neurons and connections as the brain. [5] Such a computer would, he envisioned, develop its own consciousness and superintelligence. How such computers would treat humanity is an unanswerable question. The best that can be said is that the new machines would have such different concerns from ours that we cannot fathom how they would treat us. That moment of their creation is called the singularity because of the utter unpredictability of what lies after an artificial intelligence develops consciousness.
 
 Kurzweil arrived at his conclusion by extrapolating Moore's law, the prediction of Gordon Moore in 1965 that silicon chips would double in capacity about every two years for the same price. The computer chip industry has followed the law by doubling power every two years for over half a century. In many ways Moore's law is a triumph of computational thinking because chip engineers needed to think hard to find ever better ways to build computing circuits.
 
@@ -64,11 +72,17 @@ Technology jumping is a standard practice of the computing industry. The adoptio
 
 Although the singularity is a product of computing and computational thinking, it cannot be addressed with computational thinking, and we cannot improve our understanding of it through computational thinking.
 
+5 Kurzweil (2006).
+
 ## 9.6 The Whole World Is a Computer Hypothesis
 
-Some scientists have argued that information is the basis of all physics. Every particle and every interaction is the product of information flows and exchanges at a more fundamental level than the smallest particles known. In 2002, Stephen Wolfram, a physicist and inventor of the Mathematica program — a triumph of computational thinking in itself — published a big book in support of this claim.6 In 2003, Nick Bostrom, a philosopher, argued for a possibility that we are characters in a simulation run by a much more intelligent species studying their ancestors. While other physicists see some merit in the claim that all particles and interactions can be explained with quantum mechanical probability waves, which are forms of information, they regard the idea that our world is a digital simulation as far-fetched.7
+Some scientists have argued that information is the basis of all physics. Every particle and every interaction is the product of information flows and exchanges at a more fundamental level than the smallest particles known. In 2002, Stephen Wolfram, a physicist and inventor of the Mathematica program — a triumph of computational thinking in itself — published a big book in support of this claim. [6] In 2003, Nick Bostrom, a philosopher, argued for a possibility that we are characters in a simulation run by a much more intelligent species studying their ancestors. While other physicists see some merit in the claim that all particles and interactions can be explained with quantum mechanical probability waves, which are forms of information, they regard the idea that our world is a digital simulation as far-fetched. [7]
 
 The whole-world-is-computer hypothesis appeals to those who believe that computational thinking and computing are pervasive without limits.
+
+6 Wolfram (2002).
+
+7 In April 2016, Scientific American magazine reported on a symposium of physicists and philosophers discussing the whole-world-is-computer hypothesis, giving the impression that they take more delight in entertaining themselves with the hypothesis than in the hypothesis itself. See https://www.scientificamerican.com/article/are-we-living-in-a-computer-simulation/.
 
 ## 9.7 Ideological Fights over What Should Be Taught
 
@@ -147,17 +161,3 @@ Kurzweil, Ray. (2006). The Singularity Is Near. Penguin Books.
 McGeoch, Catherine. (2014). Adiabatic Quantum Computation and Quantum Annealing. Synthesis Series on Quantum Computing. Morgan & Claypool.
 
 Wolfram, Stephen. (2002). A New Kind of Science. Wolfram Media.
-
-1 Denning and Lewis (2017).
-
-2 McGeoch (2014).
-
-3 See Walter Tichy's interview with Catherine McGeoch, Ubiquity July 2017, for a worked example of an Ising equation and its encoding into a form for the D-wave machine to solve, https://ubiquity.acm.org/article.cfm?id=3084688.
-
-4 Adleman (1994).
-
-5 Kurzweil (2006).
-
-6 Wolfram (2002).
-
-7 In April 2016, Scientific American magazine reported on a symposium of physicists and philosophers discussing the whole-world-is-computer hypothesis, giving the impression that they take more delight in entertaining themselves with the hypothesis than in the hypothesis itself. See https://www.scientificamerican.com/article/are-we-living-in-a-computer-simulation/.
