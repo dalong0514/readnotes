@@ -1,4 +1,257 @@
 ## 记忆时间
 
+0101 Explosive
+
 ## 目录
 
+## 0101. Explosive
+
+易燃易爆的 —— 航空煤油、橄榄油、柴油、硝化甘油
+
+AS SOON AS THE aircraft doors closed and we pushed back from the gate at Heathrow Airport, a voice announced the beginning of the preflight safety briefing.
+
+「Good afternoon, ladies and gentlemen, and welcome to this British Airways flight to San Francisco. Before our departure, may we have your attention while the cabin crew point out the safety features aboard this airplane.」
+
+I always find this a disconcerting way to start a flight. I am convinced that it's a fake: that the safety briefing isn't really about safety at all. For a start, it fails to mention the tens of thousands of gallons of aviation fuel onboard. It is the enormous amount of energy contained in this liquid that allows us to fly at all; its fiery nature is what powers the jet engines so that they're capable of taking, in our case, four hundred passengers in a 275-ton aircraft from a standing start on the runway to a cruising speed of five hundred miles an hour, and to a height of forty thousand feet, in a matter of minutes. The sheer awesome power of this liquid fuels our wildest dreams. It allows us to soar above the clouds and travel anywhere in the world in a matter of hours. It's the same stuff that took the first astronaut, Yuri Gagarin, into space in his rocket, and that fuels the latest generation of SpaceX rockets, which fire satellites into the atmosphere. It is called kerosene.
+
+随着机舱门关闭，我们的飞机从希思罗机场的停机口推离，有一个声音宣布：「现在开始广播起飞前安全须知。女士们，先生们，下午好，欢迎搭乘本次大英航空飞往旧金山的航班。起飞之前，请注意一下，现在由机组人员向您指出飞机上的安全设施。」
+
+我一直认为这是一种令人不安的起飞方式，因为我很确信这是个谎言，安全手册根本不是真的与安全有关。首先，他们压根儿忘了提飞机上的数万升液体。这些液体中蕴含的巨大能量足以让我们飞完全程，正是它的易燃性使喷气式引擎充满动力。对我们来说，引擎将跑道上这架载有 400 名乘客、重达 250 吨的飞行器从静态推至每小时 500 英里 [2] 的巡航速度以及 4 万英尺 [3] 的飞行高度，只需要花费几分钟。这种液体蕴含着令人敬畏的力量，点燃我们最狂野的梦想。它让我们在云端遨游，可以抵达世界上的任何一个地方。将第一位宇航员尤里·加加林送往太空的火箭中，装的也是这种液体，它还是最新一代 Space X [4] 火箭所用的燃料，可以将卫星发射到太空中。它就是航空煤油。
+
+### 1.1 What's Kerosene
+
+Kerosene is a transparent, colorless fluid that, confusingly, looks exactly like water. So where is all that hidden energy stored, all that secret power? Why doesn't the storage of all that raw energy inside the liquid make it appear, well, more syrupy and dangerous? And why is it not mentioned in the preflight safety briefing?
+
+A sketch of the structure of a hydrocarbon molecule in kerosene.
+
+If you were to zoom in and have a look at kerosene on the atomic scale, you would see that its structure is like spaghetti. The backbone of each strand is made of carbon atoms, with each one bonded to the next. Every carbon is attached to two hydrogen atoms, except at the ends of the molecule, which have three hydrogen atoms. At this scale you can easily tell the difference between kerosene and water. In water there isn't a spaghetti structure but rather a chaotic jumble of small V-shaped molecules (one oxygen atom attached to two hydrogen atoms, H2O). No, at this scale kerosene more closely resembles olive oil, which is also comprised of carbon-based molecules all jumbled up together. But where the strands in kerosene are more like spaghetti, in olive oil they're branched and twirled.
+
+Because the molecules in olive oil have a more complex shape than the ones in kerosene, it's harder for them to wiggle past each other, and so the liquid flows less easily — in other words, olive oil is more viscous than kerosene. They're both oils, and on the atomic level they look relatively similar, but because of their structural differences, olive oil is gloopy while kerosene pours more like water. This difference doesn't just determine how viscous these oils are but also how flammable.
+
+The Persian physician and alchemist Rhazes wrote about his discovery of kerosene in his ninth-century Book of Secrets. Rhazes became interested in the naturally occurring springs of the region, which oozed not water but a thick black sulfurous liquid. At the time, this tarlike material was extracted and used on roads, essentially as an ancient form of asphalt. Rhazes developed special chemical procedures, which we now call distillation, to analyze the black oil. He heated it up and collected the gases that were expelled from it. He then cooled these gases down again, whereupon they were transformed back into liquid. The first liquids he extracted were yellow and oily, but through repeated distillation they became a clear, transparent, and free-flowing substance — Rhazes had discovered kerosene.
+
+At the time Rhazes couldn't know the full extent of what this liquid would ultimately contribute to the world, but he did know it was flammable and that it produced a smokeless flame. While this may seem like a trivial discovery now, creating indoor light was a major problem for every ancient civilization. Oil lamps were the most sophisticated light-producing technology of the day, but up until then, burning oil often produced as much soot as it did light. Smokeless oil lamps would be a revolutionary innovation, so much so that their importance is immortalized in the story of Aladdin, from The Book of One Thousand and One Nights. In the story, Aladdin finds an oil lamp, a magic lantern. When he rubs it, he releases a powerful genie. Genies occur frequently in myths of the time and are said to be supernatural creatures made from a smokeless fire; this particular genie is bound to do the bidding of the person who owns the lamp — an immense power. The significance of the new liquid and its ability to create a smokeless flame could not have been lost on the alchemist Rhazes. So why didn't the Persians start using this new spirit? The answer comes, in part, from the importance that olive trees had in their economy and culture.
+
+航空煤油是什么？
+
+航空煤油是一种无色、透明的液体，令人困惑的是，它看上去几乎与水一模一样。那么，它那巨大的能量贮藏在何处？能量又是从何而来的？为什么液体内部储存着这么多原始能量却没有使它变得更像糖浆或者更危险呢？还有，为什么它没有在起飞前的安全须知中被提及？
+
+如果你能将「镜头」放大到原子层面，就会看到航空煤油的结构很像意大利面。每一根「面条」的骨架都由很多碳原子构成，它们依次键合在一起。每个碳原子都与两个氢原子相连，除了分子末端的那两个碳原子，它们是和三个氢原子相连的。在这个观察层面下，你就可以很轻松地说出航空煤油与水的差别了。水没有面条状的结构，只有一堆杂乱无章的「V」形小分子（一个氧原子与两个氢原子相连，H2O）。你肯定不会混淆，航空煤油看起来更像是橄榄油，而橄榄油也是由碳原子骨架的分子胡乱堆砌而成的。不过，航空煤油中的原子串更像意大利面，橄榄油中的原子串却生出很多枝节并缠绕在一起。
+
+煤油中一种烃类分子的结构 [5]
+
+因为橄榄油的分子形态比航空煤油的分子更复杂，对它们来说，摇摆着越过其他分子的难度也就更大，因此不那么容易流动。换句话说，橄榄油比航空煤油更黏稠。它们都是油类物质，在原子层面来看也比较相似，但是因为结构上的差异，橄榄油就是黏糊糊的，航空煤油却能像水一样倾倒而出。这一差异不仅决定了这些油的黏度，也决定了易燃程度。
+
+波斯的医生、炼金术士拉齐（Rhazes）将一些关于煤油的发现记录在了他于 9 世纪完成的著作《秘典》中。拉齐对他所在地自然产生的喷泉非常感兴趣，这些喷泉喷出的不是水，而是一种黏稠且含硫的黑色液体。当时，这种像焦油一样的材料被提取出来，人们用它铺路，它本质上就是古代版的沥青。拉齐发明了特殊的化学工艺来研究这种黑色的油，如今我们将这种工艺称为蒸馏。他将液体加热，并收集了其中排出的各种气体。然后，他将这些气体再次冷却成液体。他最初提取的液体是黄色的油状物，但经过再次蒸馏之后，它们就变成了清澈透明、可以自由流动的物质。拉齐发现了煤油。
+
+这种液体将为世界做出的贡献，当时的拉齐不可能都想得到，但他知道它是易燃的，还会形成没有烟雾的火焰。如今看来，这一发现似乎是微不足道的，但对于任何一个古代文明而言，室内照明都是个大问题。当时，油灯采用的是最先进的制灯技术，在很长一段时间里，油灯在点燃的时候总是会产生很多油烟。无烟油的灯可以说是革命性的发明，以至于其重要性在阿拉丁的故事中广为流传。这个故事出自《一千零一夜》，阿拉丁发现了一盏油灯，那是一盏有魔力的灯。当他擦拭灯的时候，一只强大的妖怪被他释放出来。这个妖怪注定要服从这盏灯的主人，这可了不得。当时的神话故事中经常会出现妖怪，据说它们是由无烟火焰炼出的超自然物种。这种新液体的重要性以及它制造出无烟火焰的能力，炼金术士拉齐肯定会记录下来。那么，为什么当时的波斯人没有开始使用这种新「魔法」呢？一部分原因在于橄榄树在他们的经济与文化中所占据的重要地位。
+
+### 1.2 Olive oil brings light to the Persians
+
+In the ninth century, olive oil was the fuel of choice for oil lamps in Persia. Olive trees thrived in the region; drought-tolerant, they yielded olives, which could be pressed into oil. It took about twenty olives to create a teaspoon of olive oil, which provided one hour of light with a typical oil lantern. So, if an average household needed five hours of light per evening, it would go through a hundred olives a day, or approximately thirty-six thousand olives a year, just to light one lamp. To produce enough oil to illuminate their empire, the Persians needed an abundance of both land and time, because olive trees mature slowly; generally, they don't produce fruit for their first twenty years. The Persians also needed to protect their land from anyone who might want to take this valuable resource, which meant they needed organized towns, and this required still more olives, so everyone could have both cooking oil and light. To support an army the people needed to pay taxes, and in Persia paying taxes often meant giving the government a percentage of the olive oil you produced. So, you can see, olive oil was central to Persian society and culture, as it was to all Middle Eastern civilizations, until they found an alternative source of energy and tax revenue. Rhazes's experiments proved that it was right under their feet, but there it would stay for another thousand years.
+
+A replica of an ancient oil lamp used at the time of Rhazes.
+
+In the meantime, oil lamps evolved. The design of a ninth- century oil lamp looks simple, but it is remarkably sophisticated. Think about a bowl of olive oil. If you simply try to light it, you'll find it's quite difficult. It's hard because olive oil has a very high flashpoint — the temperature at which a flammable liquid will spontaneously react with the oxygen in the air and burst into flames. For olive oil this is 600ºF. That's why cooking with olive oil is so safe. If you spill it in your kitchen, it's not going to ignite. Also, to fry most foods you need to get to a temperature of only around 400ºF, which is still about two hundred degrees below olive oil's flashpoint, so it's easy to cook without the oil burning.
+
+But at 600ºF, your pot of olive oil will burst into flames and, in doing so, will create a lot of light. Not only is this incredibly dangerous, but the flames will be short-lived; they'll consume all the fuel very quickly. Surely, you must be thinking, there's a better way to burn olive oil for light. And as it turns out, there is. You don't have to heat up the full pot of oil. If you take a piece of string, submerge it in the oil, leaving the top poking above the surface, and then light it, a bright flame is created at the tip of the string. It is not the string that creates the flame; it is the oil emerging from it. This is ingenious, but it gets better. If you continue to let it burn, the flame doesn't travel down into the oil — instead, the oil climbs up the string, igniting only when it gets to the top. This system can maintain the flame for hours; indeed, for as long as there is oil in the bowl. It's a process called wicking and seems miraculous — the oil is able to defy gravity and move autonomously — but it's a basic principle of liquids and it's possible because they possess something called surface tension.
+
+What gives liquids their ability to flow is their structure — they are an intermediate state between the chaos of gas and the static prison (for molecules) of solids. In gases, molecules have enough heat energy to break away from one another and move autonomously. This makes gases dynamic — they expand to fill the available space — but they have almost no structure. In solids the force of attraction between the atoms and molecules is much greater than the heat energy they possess, causing them to bond together. Thus, solids have a lot of structure but their atoms have little autonomy — when you pick up a bowl, all the atoms of that bowl come together as one object. Liquids are an intermediate state between the two. The atoms have enough heat energy to break some of the bonds with their neighbors but not enough to break all of them and become a gas. So they are stuck in the liquid but able to move around within it. This is what a liquid is — a form of matter in which molecules swim around, making and breaking connections with one another.
+
+Molecules at the surface of a liquid and those inside it experience different environments. Molecules at the surface are not completely surrounded by other molecules, so they undergo less bonding on average than those in the middle of the liquid. This imbalance of forces between the surface and the interior of the liquid creates a force of tension — called surface tension. The force is tiny, but it's still big enough to oppose the force of gravity on small things: this is why some insects are able to walk on the surface of ponds.
+
+A pond skater insect walking on water.
+
+Look carefully at the pond skater insect as it「walks」on water, and you'll see that its legs are repelled by the water — this happens because the surface tension between the water and the insect's legs generates a repulsive force that acts against gravity. Some liquid-solid interactions do the opposite and create a molecular force of attraction. This is true of water and glass. Take a glass of water and you will see that the edges of the water are pulled up where they meet the glass. We call this the meniscus, and it too is a surface-tension effect.
+
+橄榄油为波斯人送去光明
+
+9 世纪时，橄榄油是作为波斯油灯燃料的不二选择。在这一地区，橄榄树生长得十分茂盛，不仅耐干旱，还出产大量橄榄果，橄榄果被压榨后便可得到橄榄油。大约 20 颗橄榄果就可以榨出一汤勺的橄榄油，这足以供一盏油灯照明 1 个小时。如果一个家庭每晚需要照明 5 个小时，那么一天就要用掉 100 颗橄榄果，一年就要用掉 3.6 万颗橄榄果，这还只是供一盏灯。波斯人为了让他们的帝国出产足够多的油用于照明，就需要大量的土地和时间，因为橄榄树通常在种下的前 20 年里不会产果。波斯人还要保护他们的土地，以防被那些觊觎这一宝贵资源的人夺走，所以他们要管理城镇，而这就意味着需要更多的橄榄树，以便所有人都能烹饪和照明。为了供给一支军队，他们需要为之缴税，而在波斯，缴税就是向政府上缴一部分橄榄果。因此你会发现，橄榄油是波斯的社会与文化核心，所有中东文明都是如此，直到他们发现新能源和税收替代物。拉齐的实验证明，这种新能源就在他们的脚下，但它还要继续待上 1000 年。
+
+1-2『之前在其他地方听说过，橄榄油作为地中海文明的「特产」之一，这里算是知道缘由了。做一张信息数据卡片。（2021-05-26）』—— 已完成
+
+与此同时，油灯也在进化。9 世纪的油灯设计看起来很简单，却出人意料地精巧。如果这是一碗橄榄油呢？如果你想将它点燃，就会发现这十分困难。之所以不易，是因为橄榄油具有非常高的闪点。闪点，是指可燃液体与空气中的氧气自发反应并形成火焰的最低温度。橄榄油的闪点是 315℃，所以使用橄榄油烹饪非常安全。如果你将它溅到了厨房里，它不会立即被点燃。而且，煎炸大多数食物时，你只需要将温度加热到 200℃左右，这仍然比橄榄油的闪点低了 100 多摄氏度。因此，用橄榄油烹饪菜肴很轻松，不会出现油滴爆燃的情况。
+
+1-2『天天跟闪点交道，这里米奥多尼克对闪点的解释通俗易懂。做一张术语卡片。（2021-05-26）』—— 已完成
+
+拉齐时期，人们使用的古代油灯（复制品）
+
+不过，被加热到 315℃时，你的橄榄油锅会突然变成火焰，并发出大量的光。这个过程不仅异常危险，火焰也昙花一现，飞快地消耗掉所有燃料。你一定在想，是否还有比点燃橄榄油更好的照明方法，当然有。如果你将一根棉线浸入油中，只露出一截线头儿，然后将其点燃，棉线的顶端就会产生一抹明亮的火焰，这样就不需要点燃整个锅里的油了。生成火焰的不是棉线，而是从棉线中渗出的油。这个办法十分巧妙，但还能进一步改进。如果你想让它继续燃烧，火焰不会向下烧到油中，油反而会顺着棉线向上爬，只有在它到达顶部时才会被点燃。这可以让火焰燃烧数小时之久，实际上，只要碗里有油，火就不会灭。油能无视重力的存在而自由移动，这一过程叫作芯吸效应。看起来似乎有些不可思议，但这是液体的基本性质，因为它拥有一种叫作表面张力的特性。
+
+1-2『哇塞，长见识了，「油能无视重力的存在而自由移动」，这里的芯吸效应做一张术语卡片。（2021-05-26）』—— 已完成
+
+液体具有流动特性，因为它的结构处于混沌的气态与「监狱般」的固态（对分子而言）之间，是一种过渡状态。在气体中，分子具有足够多的热能，可以互相挣脱并自主运动。这就使气体具有动态性，它们可以膨胀，直到填满所有可用的空间，但它们几乎没有结构。在固体中，原子和分子间的吸引力比它们拥有的热能更强，这使它们紧密地结合在一起。因此，固体具有很多结构，却几乎没有自主性。当你拿起一只碗的时候，碗上的所有原子都一起运动，形成一个整体。液体是两者的中间状态，原子具有的热能足以打破它们与相邻原子的一部分结合力，却又不足以打破与所有原子的联系而变为气体。因此，它们只能被困于液体中，却又能在其中四处移动。这便是液体的本质 —— 一种物质形态，分子可以自由徜徉，与其他分子不断地建立或切断联系。
+
+液体表面的分子所处的环境与液体内部的那些分子不同。它们并没有完全被其他分子包围，所受到的平均作用力要低于液体内部的分子。表面分子与内部分子受力不平衡，形成了一股张力，我把它称为「表面张力」。这股力非常小，却又大到足以抵抗施加在小型物体上的重力，这也是一些昆虫能在池塘水面上行走的原因。
+
+水黾在水面上行走
+
+仔细看一下水黾在水面上行走的过程，你会发现它的腿是被水抵开的。之所以会这样，是因为水和虫腿之间的表面张力产生了排斥力，并抵消了重力。而一些固液界面的作用力正好相反，形成的是分子间的引力，水和玻璃就是如此。观察玻璃杯中的水，你会发现水接触玻璃杯的边缘部分像是被拽了上去，我们称之为「弯月面」，这也是一种表面张力效应。
+
+### 1.3 Magical Wicking effect
+
+Plants have mastered this same trick. They pull water up against the force of gravity, from the ground into their bodies, using a system of tiny tubes that run through their roots, stems, and leaves. As the tubes become microscopic, so the ratio of the tube's inner surface area to the volume of liquid increases, and so the effect gets bigger. Hence, manufacturers sell「microfiber」cloths for window cleaning, which have microchannels similar to a plant's. They suck up water, allowing the cloth to clean more efficiently. Paper towels mop up liquid spills using the same mechanism. These are all examples of「wicking」 — the same surface-tension effect that allows oil to climb up a string — or, more precisely, a wick.
+
+Without wicking, candles wouldn't work. When you light the wick on a candle, the heat melts the wax and creates a pool of molten wax. This liquid wax travels up the wick, through microchannels, to the flame, thus feeding it with a new supply of liquid wax to burn. If you choose the right material for the wick, the flame will burn hot enough to maintain a pool of liquid wax and ensure a constant flow of fuel. This familiar self-regulating system requires so little input from us, we fail to regard a candle as a complex piece of technology, but that is exactly what it is.
+
+For thousands of years, all around the globe, wicking provided the primary mechanism for indoor lighting, whether in candles or oil lamps. For those who lacked these technologies, at night the world descended into a dark gloom. As you might expect, oil lamps were popular in places where oils were plentiful, while candles were used where wax or animal fat was more readily available.
+
+Nevertheless, as ingenious as they were, candles and oil lamps had their drawbacks: obviously, the fire risk, but also the production of soot, the low brightness of the flame, the smell, and the cost. These shortcomings meant that there were always those searching for better and cheaper and safer ways of providing indoor light. Rhazes's discovery of kerosene in the ninth century would have been the solution, had anyone realized it.
+
+Onboard the aircraft the preflight safety briefing was in full swing, and now the flight attendants too were ignoring the importance of kerosene. There had not been the least mention of it so far, even though this revolutionary stuff was, at that very moment, being sprayed into the jet engines under the plane's wings to power our aircraft as it taxied to the runway. Instead, the attendants were talking about what to do in the event of「loss of cabin pressure.」As an Englishman I appreciate the understated nature of this phrase. It sounds like no big deal, but what it means is that while cruising at high altitude, if the cabin suddenly developed a hole or a crack, all the air would be sucked out of the aircraft, along with anyone not strapped into their seat. There wouldn't be enough oxygen for people to breathe normally; hence the oxygen masks that are designed to drop down from the ceiling. The aircraft would immediately begin a steep descent to reach lower altitudes, where there is more oxygen. Anyone left alive at that point would indeed be safe.
+
+Lack of oxygen was a problem for ancient oil lamps too. The design didn't allow enough oxygen to get to the fuel to burn it fully, which is why the flame gave off relatively low light. This was a problem right up until the eighteenth century, when a Swiss scientist named Ami Argand invented a new type of oil lamp, with a sleeve-shaped wick protected by a transparent glass shield. It was designed so that air could pass through the middle of the flame, radically improving the amount of oxygen delivered and thus the efficiency and brightness of oil lamps, making one equivalent to six or seven candles. This innovation led to many more, and eventually it became clear that olive oil and other vegetable oils were not ideal fuels. To get brighter light, you need higher temperatures, and for that you need faster wicking, and the speed of the wicking is determined by the surface tension and the viscosity of the liquid. Trying to find oils that were cheap but also had a low viscosity led to more experimentation, and, sadly, the deaths of a lot of whales.
+
+Capturing a Sperm Whale, by John William Hill (1835).
+
+Whale oil is produced by boiling strips of whale blubber. The oil the blubber releases is a clear honey color. It's not great for cooking or eating because of its strong fishy taste, but with a flashpoint of 446ºF and low viscosity, it is very good for oil lamps.
+
+The use of whale oil in Argand lamps skyrocketed in the late eighteenth century, especially in Europe and North America. From 1770 through 1775 the whalers of Massachusetts produced forty-five thousand barrels of whale oil per year to meet the demand. Whaling became a big industry, fueled by the need for indoor lighting, and some species of whales were almost driven to extinction by that demand. It's estimated that by the nineteenth century more than a quarter of a million whales had been killed for their oil.
+
+神奇的「芯吸效应」
+
+植物精通于同样的戏法。它们可以无视重力，利用一种贯穿于根、茎、叶的微型导管系统，将水从地面吸到植物内部。由于这些导管极其细微，因此导管的内表面积与液体体积的比值也急剧上升，所以表面张力效应也变得显著。因此，商家会售卖「微纤维」布料用于擦洗玻璃，这种布料含有类似于植物的毛细管道，能够快速吸收水分，帮人们更高效地完成清洁工作。厨房用纸能擦掉溅出的液体，运用的也是这一原理。这些都是芯吸效应的例子，表面张力同样会让油沿着棉线往上爬，更准确地说，是沿着灯芯往上爬。
+
+如果没有芯吸效应，蜡烛就无法被点亮。当你点燃烛芯时，热量会将蜡熔化，并形成一个充满蜡液的小池子。液态的蜡顺着微管向烛芯上方移动，直抵火焰，向火焰输送一些新的蜡液供其燃烧。如果你选择了合适的烛芯材料，火焰燃烧时的热量足以形成一个蜡液小池，从而确保燃料稳定地流动。这种看似复杂的系统具有自主调节能力，不需要我们投入太多。虽然如今已不再将蜡烛当作一种神秘物质，但它们确实如此精妙。
+
+数千年来，芯吸效应都是全球各地室内照明应用的基本原理，不管是蜡烛还是油灯。如果没有这两种照明工具，这世上的夜晚便会永远堕入黑暗。正如你猜到的，油灯在油料作物充足的地区比较受欢迎，蜡烛则主要是在石蜡或动物脂肪更容易获取的地区被使用。然而，尽管设计巧妙，蜡烛和油灯还是有一些缺点。除了显而易见的火灾风险，它们还会产生油烟，火焰的亮度不高，异味和经济成本高也是大问题。这便意味着，总有人会去寻找更优质、更便宜且更安全的照明方式。拉齐在 9 世纪时发现的煤油，如果有人注意到的话，或许就能成为解决方案。
+
+飞机上的「起飞前安全须知」正在卖力地播报着，乘务员们忽视了航空煤油的重要性，直到现在都没有提及一句，尽管这种革命性的液体此时此刻正在被喷射到机翼下方的喷气式引擎中，为飞机在跑道上的滑行提供动力。而他们正在播报着当「机舱失压」时应该怎么做。作为一名英国人，我很感激这个词的保守性，因为听上去这好像不是什么大事。然而，「机舱失压」意味着当飞机在很高的海拔巡航时，如果机舱突然出现了一个洞或一条裂痕，所有的空气，连同那些没有系上安全带的人，都会被吸出舱外。这时，通常不会有足够的氧气来供人们呼吸，所以氧气面罩就被设计成从座位顶部落下。飞机会立即开始陡降，回落到氧气较多的低海拔区域。直到这时，存活下来的人才算是真正安全了。
+
+缺少氧气，对于古代的油灯来说同样是个问题。这种油灯设计没有让燃料接触足够多的氧气并完全燃烧，这也是火焰的光会比较暗淡的原因。在 18 世纪，这仍然是个问题，直到一位名叫艾梅·阿尔冈（Ami Argand）的瑞士科学家发明出一种新型油灯，使用套筒状的灯芯，并用透明的玻璃灯罩予以保护。这样设计，空气就可以从火焰中间穿过，从根本上增加了氧气的输送量，油灯的燃烧效率和亮度也相当于六七根蜡烛。这一革新还最终证实了，橄榄油和其他植物油并不是理想的燃料。要想获得更高的亮度，就需要更高的温度、更快的芯吸效应，而芯吸的速度则取决于液体的表面张力与黏度。为了寻找更便宜、黏度更低的燃油，人们开展了更多的实验。悲催的是，很多鲸因此而死亡。
+
+《猎捕抹香鲸》，约翰·威廉·希尔（John William Hill）于 1835 年创作
+
+通过熬煮鲸脂条可以获得鲸油。鲸脂释放出来的油，呈清澈的蜂蜜色。它并不是很好的烹饪或食用油，但 230℃ 的闪点与较低的黏度让它非常适用于油灯。
+
+阿尔冈油灯的鲸油用量，在 18 世纪末期出现突飞猛进的增长，特别是在欧洲和北美地区。在 1770 到 1775 年间，马萨诸塞州的捕鲸人每年生产 4.5 万桶鲸油以满足市场需求，捕鲸业因室内照明而蓬勃发展，成为一个大产业，部分种类的鲸因此而濒临灭绝。据估计，到 19 世纪时，人们为了获取鲸油，已经屠杀了超过 25 万只鲸。
+
+### 1.4 The Perfect lamp oil
+
+This could not go on, and yet the demand for indoor lighting was still on the rise. As populations grew bigger and wealthier, education became more important, the culture of reading and entertaining after dark became more prevalent, and so the demand for oils increased, as did the pressure on inventors and scientists to come up with ways to meet this need. Among them was James Young, a Scottish chemist who, in 1848, found a way to extract a liquid out of coal that had excellent properties for burning in an oil lamp. Young called his liquid paraffin oil. A Canadian inventor, Abraham Gesner, did the same thing and called his product kerosene. These discoveries might not have come to much, but as it turned out, they just preceded the beginning of the American Civil War. Whaling ships became military targets, and taxes on other lamp oils created an opportunity for this new kerosene industry to find a foothold. But it didn't really take off until inventors started playing around not with coal but with the black oil that could be found near coal mines. This crude oil, which had to be pumped out of the ground, is a black, smelly, sticky substance. But before people could use it, they had to harness distillation, an old trick first used by Rhazes — which proved to be extremely lucrative. Now the genie really was out of the lamp.
+
+Meanwhile, onboard my plane, there was still no word of kerosene. The safety briefing had gotten to the bit about emergency exits, and the flight attendant in front of me was shooting out his arms, fingers extended to identify their locations. There were two exits behind me, and two at the front of the aircraft, and two over the wings, I was told. I wanted to add this:「And there are about 13,000 gallons of kerosene in the fuel tank below our feet, and another 13,000 gallons stored in each of the two wings of the aircraft.」I must have muttered something to this effect because I attracted the attention of my neighbor, whose name I would later find out was Susan. For the first time since she had gotten on the plane, Susan looked up from her book. She caught my eye for the briefest of moments over the top of her red-rimmed glasses and then returned to her reading. Her glance must have lasted less than a second, but it spoke volumes. It said,「Relax. Flying is the safest form of long-distance travel — do you know that every day there are more than a million humans flying in the stratosphere? — the chance of anything bad happening is minuscule. No, it's smaller than minuscule. Sit back. Relax. Read a book.」I know this is a lot of information for a look to convey, but believe me, hers said all of that.
+
+An oil refinery; the tall columns are distillation vessels.
+
+For better or worse, though, all I could think about was kerosene, and the remarkable trick those mid-nineteenth-century inventors used to transform crude oil: distillation. In order to distill oil, Rhazes had used an apparatus called an alembic, which is what, in modern times, we call distillation vessels — the towers you see sticking up out of oil refineries.
+
+Crude oil is a mixture of differently shaped hydrocarbon molecules, some long like spaghetti, some smaller and more compact, others linked together in rings. The backbone of each molecule is made of carbon atoms, each one bonded to the next. Each carbon atom also has two hydrogen atoms attached to it, but there's a lot of variety in their shape and size: the molecules vary in size from just five carbon atoms to hundreds. There are very few hydrocarbon molecules with fewer than five carbon atoms, though, because molecules that small tend to exist as gases: they're called methane, ethane, and butane. The longer the molecule, the higher its boiling point, so the more likely it is to be a liquid at room temperature. This is true of hydrocarbon molecules made up of up to forty carbon atoms. If they get any bigger than that, they can hardly flow at all and so become a tar.
+
+A mixture of hydrocarbon molecules contained in crude oil (only the carbon atoms are shown).
+
+In distilling crude oil, the smaller molecules are extracted first. Hydrocarbon molecules with five to eight carbon atoms form a clear transparent liquid that is extremely flammable; it has a flashpoint of –49ºF, which means that even at subzero temperatures it will ignite easily. So easily, in fact, that putting this liquid into an oil lamp is quite dangerous. Thus, in the early days of the oil industry, it was discarded as a waste product. Later, when we began to better understand the virtues of this liquid, it became more appreciated, especially for the way it mixed with air and ignited, producing enough hot gas to drive a piston. It was subsequently named gasoline, and we began using it to fuel gas engines.
+
+Larger carbon molecules, with nine to twenty-one carbon atoms, form a transparent clear liquid with a boiling point higher than gasoline's. It evaporates at a slow rate and so is less easy to ignite. But because each molecule is quite big, when it does react with oxygen, it gives off a lot of energy, in the form of hot gas. It won't ignite, however, unless it's sprayed into the air, and it can be compressed to a high density before it bursts into flames. This is the principle Rudolf Diesel discovered in 1897, eventually giving his name to the liquid forming the basis of his tremendous invention: the most successful engine of the twentieth century.
+
+But in the early days of the oil industry, the mid-nineteenth century, diesel engines hadn't been invented yet, and there was a pressing need for a flammable substance for oil lamps. While searching for this oil, producers created a liquid that had carbon molecules with six to sixteen carbon atoms. This liquid is somewhere between gasoline and diesel. It has the virtues of diesel — it doesn't evaporate so quickly as to form explosive mixtures — but it is a fluid with a very low viscosity, similar to that of water. As a result it wicks extremely well, allowing a flame to be very bright. It was cheap and effective, and didn't rely on olive trees or whales. It was kerosene, the perfect lamp oil.
+
+最完美的灯油
+
+这种情况不能再继续下去，况且室内照明的需求还在不断增长。随着人口数量越来越多、人们越来越富裕，教育问题也越来越受到重视，在夜晚读书与娱乐的文化开始流行起来，对燃油的需求随之增长，发明家和科学家的压力也越来越大。其中，有位名叫詹姆斯·扬（James Young）的苏格兰化学家在 1848 年发现了一种从煤炭中提取液体的方法，并将这种液体放在油灯中燃烧，效果非常好。加拿大发明家亚伯拉罕·格斯纳（Abraham Gesner）也发现了这一产品，并称之为煤油。这本来也不算什么大事，令人始料未及的是，它恰好发生在美国南北战争爆发之前，捕鲸船成为军事目标，向其他灯油征税为新发现的煤油创造了立足之地。不过，煤油产业一直未能真正地发展起来。没过多久，发明家们就不再围着煤炭打转，转而研究一种在煤矿附近经常可以发现的黑色油体。这种必须用泵从地下抽取的原油，是散发刺鼻气味的黑色黏稠物质。不过，在使用这种原料前，他们还得先学会蒸馏，也就是最初由拉齐使用的古老工艺。这门生意非常赚钱，这一次，妖怪真的从灯里冒了出来。
+
+与此同时，在我乘坐的飞机上，仍然没有人提及航空煤油。安全须知里有很多关于紧急出口的内容，在我前方的乘务员挥舞着双臂，伸出手指，指明了出口的位置。我被告知，在我身后有两个出口，机舱前方也有两个，还有两个位于机翼的上方。我很想再加上一句：「在我们脚下的油箱中，有 5 万升煤油，而在飞机的两片机翼下，还各存有 5 万升。」我可能是嘟囔了几句，因为我引起了邻座乘客的注意，暂且叫她苏珊吧。自打上了飞机之后，这是她第一次抬起头并将视线从书上挪开。她戴着红框眼镜，视线越过镜框上缘打量了我一下，便又继续读书。她那一瞥肯定还不足一秒钟，却像是有一个声音在说：「放松点儿。飞机是最安全的长途交通工具，难道你不知道每天都有 100 多万人在平流层上飞行吗？发生空难的概率微乎其微。不，比微乎其微的概率还要低。坐下吧，别担心，看看书……」我知道这对于一个眼神来说，传达的信息有些太多了，但是请相信我，她真的用眼神说了这些。
+
+精炼油厂（高柱是蒸馏釜）
+
+话说回来，不管情况是好是坏，我思考的无非就是煤油，以及 19 世纪中叶那些发明家用来提炼原油的卓越技艺 —— 蒸馏。为了蒸馏出油，拉齐使用过一种叫作「蒸馏器」的装置，现在我们称之为蒸馏釜，就是你在原油精炼厂看到的那些高耸的塔。
+
+原油是由很多形态各异的烃类分子构成的混合物，有一些分子很长，就像意大利面，有的则更小一些，形态也更为紧凑，还有一些分子是以环的形式结合的。每个分子的骨架都是由碳原子构成的，顺次靠化学键 [6] 结合在一起。每个碳原子上还有两个氢原子与之相连，但是它们的外形和尺寸都相差很大：分子的大小从仅有 5 个碳原子到几百个不等。不过，碳原子数目不足 5 个的烃类分子极少，因为太小的分子一般会以气态的形式存在，它们被称为甲烷、乙烷、丙烷和丁烷。分子越长，沸点就会越高，越有可能在常温时以液态形式存在。大到含有 40 个碳原子的分子，肯定也是存在的，但是如果变得再大一些，便会很难流动，就像沥青。
+
+蒸馏原油的时候，小分子会先被提取出来。含有 5 至 8 个碳原子的烃类分子会成为极易燃烧的清澈透明液体。它的闪点为 -45℃，也就是说，即便气温低至零下，它也很容易被点燃。实际上，因为太容易被点燃，将这种液体加入油灯也会变得格外危险。所以，在石油工业发展早期，它都被当成废料丢弃。后来，当我们更了解它的优点时，它就成了香饽饽，特别是将它和空气混合后再点燃，能产生足以推动活塞的热气体。再后来，它被命名为汽油，而我们现在将它作为汽油发动机的燃料。
+
+1-2『这里第一次如此清晰的认识到原油中各个组分。1）5 个碳原子以下的是常见的那些液化烃，甲烷、乙烷、丙烷、丁烷。2）5-8 个碳原子的是汽油。3）9-21 个碳原子的是柴油。4）认为制作出来的 6-16 个碳原子的煤油。原油中的各个组分做一张主题卡片。（2021-05-26）』—— 已完成
+
+含有 9 至 21 个碳原子的分子大一点，可以形成比汽油沸点更高的清澈透明液体。它蒸发的速度比较慢，也没那么容易被点燃。不过，因为每个分子都很大，所以当它和氧气发生反应的时候，可以释放出更多的能量，还是以热气体的形式。它不容易被点燃，除非将它喷入空气中。它在突然变成火焰之前，还可以被压缩至较高的密度。这是由鲁道夫·狄塞尔（Rudolf Diesel）在 1897 年发现的，最终这一液体以他的名字命名，并成就了他的伟大发明 —— 柴油机，那是 20 世纪最成功的发动机。
+
+原油中包含的烃类分子混合物（图中只显示了碳原子）
+
+不过，在石油工业早期，也就是 19 世纪中叶，柴油发动机还没有被发明出来，人们反倒迫切需要用作灯油的可燃物。在寻找这种油的时候，生产商制造出了一种液体，其分子中的碳原子数量在 6 至 16 之间。这种液体介于汽油和柴油之间，具有柴油的优点，不会快速挥发，也不会形成易爆的混合物。但它仍然是黏度很低的流体，就像水一样，因此芯吸效应十分显著，这使得被点燃后的火焰异常明亮。这种液体可以说是物美价廉，也不用依赖橄榄树或鲸。它就是煤油，最完美的灯油。
+
+### 1.5 Fly with dynamite
+
+But is it safe? My mind had wandered — I had been trying to relax as per Susan's implicit instruction — but now my attention snapped back to the flight attendants again. They had gotten to the bit in the safety briefing about the life jackets. Each was now wearing one while pretending to blow a whistle. I wondered what it would feel like to survive a crash landing on the sea and be floating in water, perhaps at night, trying to blow the whistle. I also wondered what would happen to the kerosene in our fuel tanks in the event of such a crash. Could it explode?
+
+The molecular structure of nitroglycerin.
+
+I know one liquid that certainly could: nitroglycerin. Like kerosene, nitroglycerin is a colorless, transparent, oily liquid. It was first synthesized by the Italian chemist Ascanio Sobrero in 1847. It didn't kill him, which is a miracle, because it is a ridiculously dangerous and unstable chemical that can explode unexpectedly. Ascanio was so frightened by the potential uses of what he had discovered, he kept it quiet for a year and even then tried to deter others from making it. His student Alfred Nobel saw its potential, though; he thought it could replace gunpowder. He eventually succeeded in creating it in a form that was relatively safe to handle. Alfred transformed the liquid into a solid that wouldn't explode accidentally (although it did kill his brother Emil) and so created dynamite. This transformed the mining industry, making Alfred a fortune. Prior to dynamite, mining companies had relied on manual labor to dig their tunnels, pits, and caverns. He used his fortune — or at least a part of it — to create the most famous international awards in the world, the Nobel Prizes.
+
+Like gasoline, diesel, and kerosene, nitroglycerin is made from carbon and hydrogen. But it comes with extras too: oxygen and nitrogen atoms. The presence of these atoms, and their positions within the molecule, make nitroglycerin unstable. If the molecule comes under pressure from contact or vibration, it can easily fall apart. When this happens, the nitrogen atoms get together to form a gas, and the oxygen atoms in the molecule react with the carbon to form carbon dioxide, another gas. They also react with the hydrogen to form steam, and whatever is left over forms still more oxygen gas. As the molecule decomposes, it creates a shock wave in the nitroglycerin, which causes the neighboring molecules to fall apart too, creating more gas and sustaining the shock wave. Ultimately, all of the nitroglycerin molecules decompose in a chain reaction that occurs at thirty times the speed of sound, transforming the liquid into a hot gas almost instantaneously. This gas has a volume a thousand times the volume of the liquid and so it expands rapidly, causing an enormous hot explosion. Much of the devastation of World War II was caused by the widespread use of nitroglycerin-based explosives.
+
+The 3.4-ounce limit on liquids carried onto airplanes is designed to prevent someone from bringing onboard a large enough quantity of a liquid explosive, such as nitroglycerin, to destroy a plane. This amount of nitroglycerin will still explode, of course, but not with enough energy to bring the plane down. But still, it is sobering to think that kerosene contains ten times more energy per gallon than nitroglycerin, and there are tens of thousands of gallons of it in the fuel tanks of an airplane.
+
+Kerosene is not an explosive, though — it will not spontaneously blow up. Unlike nitroglycerin, it doesn't have any oxygen and nitrogen atoms in its molecular structure. It is a stable molecule that doesn't readily decompose. You can bash it, smash it, or have a bath in it, and it won't explode. In this, it differs from its less powerful cousin, nitroglycerin. If you want to harness the power of kerosene, you have to work for it — you need to make it react with oxygen. As the kerosene and the oxygen react, they will create carbon dioxide and steam, but because the reaction is limited by its access to oxygen, the combustion can be controlled.
+
+It is the huge power of kerosene, and our ability to burn it in a controlled manner, that makes it such an important liquid technologically. Global civilization currently burns approximately 250 million gallons of kerosene per day, mostly in jet engines and space rockets, but it is also still used for lighting and heating in many countries. In India, for instance, more than 300 million people use kerosene oil lamps to provide lighting in their homes.
+
+Still, as much as we like to think we've got kerosene under control, there's nonetheless a sinister side to it. The horrors of September 11, 2001, are a case in point. On that day I was at home, staring in disbelief at the television. In truth I can't remember if I saw live footage of the second plane flying into one of the Twin Towers or whether what I saw was a news recap, but it stunned me. I stood looking dumbfounded at the TV, trying to comprehend the scene. The two buildings were on fire, and there were reports of other planes being flown into targets elsewhere. It seemed like things couldn't get any worse, and then they did: the first tower came down, collapsing in the type of slow motion that only giant objects can sustain. And then the second tower came down. We were ready for it this time, but it was no less numbing.
+
+It was the fuel from the aircraft that caused the towers to collapse. It wasn't an explosion, because kerosene is stable. According to the FBI report, the kerosene reacted with oxygen from the winds blowing through the buildings' damaged floors, raising the temperature on those floors to over 1,500ºF. This did not melt the steel frame of the building — steel melts at temperatures exceeding 2,500ºF — but at 1,500ºF, the strength of steel decreases approximately by half, and so it started to buckle. Once one floor buckled, the weight of the entire building above it collapsed onto the floor below, causing it to buckle, and so on, like a house of cards. In total, more than 2,700 people were killed in the collapse of the Twin Towers, including 343 New York firefighters. These terror attacks were a significant moment in the history of world, not just because they initiated wars and all the horrors that go with them, but because the fall of those towers was a powerful symbol of the fragility of democratic civilization. And the active ingredient of that moment of destruction was the planes' kerosene.
+
+So you can see why I would think the flight attendants might mention it in our safety briefing. But it had just ended, and they had not said a thing about the thirty-nine thousand gallons of kerosene onboard, nor commented on its dual nature: how, on the one hand, it's a perfectly ordinary transparent oil, one so stable that you could throw a lighted match into the fuel tank and it wouldn't ignite; and yet how, on the other, when mixed with the right amount of oxygen, it becomes an oil ten times as powerful as the explosive nitroglycerin. My neighbor, Susan, seemed unfazed by this; she was still deeply engrossed in her book.
+
+Although kerosene is not mentioned explicitly in the preflight safety briefing, it occurs to me that it is nevertheless hidden in there somehow. If you think about it, the safety briefing is the one global ritual that we all share, whatever our ethnicity, nationality, sex, or religion; we all take part in it before the kerosene is ignited and the plane takes off. The dangers that the briefing warns us of, such as landing on water, are so rare that even if you flew every day for a whole lifetime, you would be unlikely to ever experience them. So that's not really the point of it. As in all rituals, coded language, a series of actions, and special props play their part. In religious rituals these props are often candles, incense burners, and chalices; in the preflight safety ritual they are oxygen masks, life jackets, and seat belts. The message of the preflight ritual is this: you are about to do something that is extremely dangerous, but engineers have made it almost completely safe. The「almost」 is emphasized by all the elaborate actions involving the previously mentioned props. The ritual draws a line between your normal life, where you are in charge of your own safety, and your current one, in which you are ceding control to a set of people and their engineering systems as they harness one of the most awesomely powerful liquids on the planet to shoot you through the atmosphere to a destination of your choosing. In other words, you need to trust them absolutely; your life is in their hands. And so this ritual, performed before every flight, is really a trust ceremony.
+
+和炸药一起飞行
+
+但它安全吗？我的意识有一些神游。我试着按照苏珊暗示的那样放松一些，但注意力又被转移到乘务员身上。他们开始讲解安全须知中有关救生衣的部分。现在，他们都穿上了救生衣，并做出吹气的样子。此时我很想知道，紧急迫降在海上，生还后漂浮在水面上是什么感觉，或许还是在晚上。我也很想知道，当这样的事故发生时，飞机油箱中的航空煤油会怎么样。会爆炸吗？
+
+我知道，有一种液体肯定会爆炸，那就是硝化甘油。和煤油一样，硝化甘油也是无色透明的油状液体，它最早是由意大利化学家阿斯卡尼奥·索布雷洛（Ascanio Sobrero）在 1847 年合成的。硝化甘油没有杀死他，简直就是个奇迹，因为这是一种异常危险的不稳定化学品，很容易发生意外爆炸。阿斯卡尼奥被硝化甘油的潜在用途吓坏了，对此守口如瓶整整一年，甚至还试图阻止其他人制造它。然而，他的学生阿尔弗雷德·诺贝尔（Alfred Nobel）也发现了这种液体的潜力，并认为它可以替代黑火药。最终，他成功地将硝化甘油由液体变为固体，使它更易于掌控，不会突然爆炸（尽管如此，他的弟弟埃米尔还是因此丧生），炸药诞生了。炸药重塑了采矿业，也让他成了富豪。在炸药出现以前，采矿企业只能派工人去挖掘隧道、矿井和矿洞。阿尔弗雷德·诺贝尔用自己的财富（或者说是一部分财富）创立了世界上最著名的奖项 —— 诺贝尔奖。
+
+2『消化甘油，做一张术语卡片。（2021-05-26）』—— 已完成
+
+与汽油、柴油和煤油一样，硝化甘油也是由碳和氢构成的，不同的是，它还含有氧原子和氮原子。由于这些原子的存在以及它们在分子中所处的位置，硝化甘油变得极不稳定。如果分子因为冲击或振动而受到压力，就很容易裂开。出现这种情况时，氮原子会结合在一起形成气体（氮气），分子中的氧原子会和碳原子发生反应后形成二氧化碳，氧原子还会和氢原子反应形成水蒸气，最后剩下一点氧气。当分子分解时，会在硝化甘油内部产生冲击波，这就让邻近的分子也开始散架，并产生更多气体，进而持续产生冲击波。最终，所有的硝化甘油分子都在这个链式反应中分解了，这一过程的发生速度是声速的 30 倍，液体几乎是在一瞬间变成了很热的气体。气体的体积是液体的上千倍，因此膨胀得非常迅速，从而形成惊人而又剧烈的热爆炸。第二次世界大战期间的大多数破坏，都是由硝化甘油型炸药被广泛使用造成的。
+
+硝化甘油的分子结构式
+
+只允许乘客携带低于 100 毫升的液体登机，是为了防止有人将大量类似硝化甘油的液体爆炸物带上飞机，这足以炸毁整架飞机。当然在这一限量以下，硝化甘油还是会爆炸，但是不足以让飞机坠毁。不过，一想到每升航空煤油中蕴含的能量是硝化甘油的 10 倍，而飞机油箱中有几万升的煤油，还是会让人不寒而栗。
+
+不过，航空煤油并不是爆炸物，它不会自发爆炸。与硝化甘油不同，它的分子结构中不含有任何氧原子或氮原子，因此相当稳定，不会无缘无故爆炸。你可以猛砸它、挤压它，甚至用它冲凉，都不会发生爆炸。航空煤油与它那个威力小一些的「兄弟」硝化甘油不同，如果你想驾驭它，还得让它和氧气发生反应。煤油与氧气进行反应时，会产生二氧化碳和水蒸气，但是因为该反应会受到接触氧气的限制，所以燃烧是可控的。
+
+2『航空煤油，也做一张术语卡片。（2021-05-26）』—— 已完成
+
+煤油蕴含着超强的能量，而我们能用可控的技术手段燃烧它，这让它成为一种重要的液体。目前，全球每天大约会消耗 10 亿升煤油，主要是用在喷气式飞机的发动机和火箭上，但在很多国家，它仍被用于照明或取暖。在印度，还有 3 亿多人在他们家里使用煤油灯照明。
+
+不过，尽管我们总以为自己已经控制了煤油，但它还有危险的一面。2001 年 9 月 11 日的恐怖袭击，就是一个典型的例子。那一天我在家里，难以置信地盯着电视。说实话，我记不清我看到的是第二架飞机撞入双子大厦其中一座的现场直播，还是一段新闻的回放剪辑，但它实在令我震惊。我目瞪口呆地站在电视机前，试图去消化这段画面。两座大厦起火了，有报道称，还有别的飞机撞向了其他地方。情况似乎已经不能再糟了，不过很快传来了更坏的消息：第一座大厦轰然倒塌，像是巨兽的慢动作，紧接着，第二座大厦也倒塌了。我们本应为此做好准备，至今却依然麻木。
+
+是飞机上的燃料引起了大厦的倒塌。那不是一场爆炸，因为煤油是稳定的。FBI（美国联邦调查局）通报称，大厦的楼板被破坏，风便由此处吹进来，煤油与随风潜入的氧气发生反应，将楼板加热到 800℃ 以上。这个温度足以将大厦的钢结构熔化，虽然钢材的熔点在 1500℃ 以上，但是在 800℃ 时，钢的强度会下降到正常强度的一半，于是钢结构开始变形。一旦有一层楼板变形，整座大厦就会坍塌到下一层并造成新的变形，如此一层接一层地坍塌，就像纸牌屋一样。共有 2700 多人在双子大厦的坍塌中死亡，其中包括 343 名纽约的消防员。这一系列的恐怖袭击在世界史上极具象征意义，不仅因为它们引发了战争，恐惧也随之而来，还因为这些大厦的倒塌有力地象征着民主文明的脆弱。而参与这场大毁灭的破坏分子，就是飞机上的航空煤油。
+
+2『这里才知道，在 800℃ 时，钢的强度会下降到正常强度的一半，做一张信息数据卡片。（2021-05-26）』
+
+所以你可以看出，为什么我认为航空煤油应该在安全须知中被提及。但我们的安全须知刚刚播报完毕，他们还是没有提一句飞机上有 15 万升航空煤油的事，更没有评价这种液体的两面性。怎么说呢？一方面，它是一种十分普通、透明的油，非常稳定，你甚至可以朝油箱里扔一根点着的火柴，它也不会被点燃；另一方面，当它与适量的氧气混合后，威力就会变得比易爆品硝化甘油还要大 10 倍。我的邻座苏珊看起来并没有因此感到困扰，她依旧深深地沉浸在书中。
+
+尽管并没有在安全须知中被提及，可不管怎么说，我还是知道航空煤油就藏在飞机里。如果你仔细想想便会发现，安全须知播报不过是一种我们所有人都会举行的全球化仪式罢了，无论我们是何种种族、国籍、性别或是信仰何种宗教。在煤油被点燃并推动飞机起飞之前，我们都会参与其中。乘务员通过安全须知告诉我们飞行中的风险，如水面迫降，但那其实是非常罕见的，哪怕你每天都在坐飞机，一辈子可能都不会遇上一次。所以，这些并不是真正的安全须知。就像所有的仪式一样，语言经过重新编码，并包含了一系列特殊的动作和使用道具。在宗教仪式中，这些道具通常是蜡烛、香炉和圣餐杯；而在起飞前的安全仪式中，它们是氧气面罩、救生衣和安全带。这项仪式传达的信息是：你即将做的事情是极度危险的，但是工程师们为你提供了几乎安全的保障。「几乎」一词，通过殷勤的动作和前面提到的道具得以强调。这项仪式在你的日常生活与当下的命运之间画出一条界线。平时，你可以保护自己的人身安全；现在，你却将控制权出让给一群人以及他们的工程系统，因为他们掌控着这个星球上威力最大的液体之一，它可以将你射入高空，飞抵你要去的地方。换句话说，你必须绝对信任他们，你的小命就捏在他们手中。所以，每趟航班起飞前的安全须知播报，本质上是一场获取信任的典礼。
+
+### 1.6 The plane is the modern version of Aladdin’s magic lamp
+
+As the cabin crew began moving down the aisles, ostensibly checking that passengers' seat belts were correctly fitted and bags were stowed, I knew that the safety ritual was coming to a close — this was the final blessing. I nodded to the attendant solemnly. The aircraft had arrived at the runway and begun its takeoff procedure, and so the accumulated knowledge of more than a thousand years was being brought to bear to turn liquid kerosene into flight.
+
+If you have ever blown up a balloon and then let it go, allowing it to zoom and fart its way around a room, you have a good grasp of how a jet engine works. As compressed air shoots out in one direction, the balloon is propelled in the opposite: this is Newton's third law of motion, which states that every action has an equal and opposite reaction. But storing enough compressed gas to power an aircraft would be pretty inefficient; luckily, the British engineer Frank Whittle worked out how to solve this problem. He reckoned that since the sky is already full of gas, a plane shouldn't need to carry it around; you just have to compress the gas that's already in the sky as you fly along, and shoot it out the back. All you need is a machine to compress the air. This compressor is what you see under the wing as you board a plane — it looks like a giant fan, and it is, but what you can't see is that inside it are ten or more fans, each one smaller than the next. Their job is to suck in the air and compress it. From there, the compressed air goes to the combustion chamber, in the middle of the engine, where it's mixed with kerosene and ignited, producing a jet of hot gas that shoots out the back of the engine. The genius in the design is that, on its way out of the engine, some of the air's energy is used to rotate a set of turbines — and it's these turbines that rotate the compressors at the front of the engine. In other words, the engine harvests energy from the hot gas that it then uses to collect and compress more air as it flies through the sky.
+
+The air shooting out the back of the engine allowed our plane, which weighed approximately 275 tons, to gain speed. It's always hard to get a feel for just how fast you're going when you're looking out the window of a speeding aircraft. The wings bob and wobble awkwardly at every bump of the runway, giving no hint of the engineering elegance that they'll display once airborne. At eighty miles per hour, the intensity of the rattling and groaning of the cabin interior begins a worrying crescendo. If I had never flown in a plane, at this point I'd be very doubtful that we would ever get off the ground.
+
+And yet the sheer embodied energy in the kerosene propelled us forward faster and faster; a fuel with more power than nitroglycerin was being harnessed at a rate of one gallon per second. By now our aircraft was nearing the end of the 1.8-mile-long runway, traveling at 170 miles per hour. This is arguably the most dangerous moment of the flight. There wasn't much runway left, and if we didn't get airborne quickly, we would run off the end, plowing into the buildings there, with thousands of gallons of liquid kerosene in our fuel tanks. And yet majestically, like a goose taking off from a lake, the plane climbed into the sky, leaving behind all the buildings, cars, and people on the ground in a matter of seconds. This is the moment I love most about flying — especially when it involves flying through the low clouds of London into the bright sunshine above, as we did that day. It feels like entering another realm of existence, and I never tire of it.
+
+A plane is, in a way, the modern magic lantern. Its genie is kerosene, which will grant your wish to go anywhere in the world, flying you there not on a magic carpet but in something even better, a cabin that protects you from the extreme cold and wind and is comfortable enough to allow you to relax, even sleep, during your journey.
+
+Of course, like all genies, it has a dark side. We have fallen in love with the power of kerosene, but flying, and indeed the use of other products dependent on crude oil, are wreaking havoc with our global climate: it is warming rapidly as a result of carbon dioxide emissions from burning oils like kerosene. Globally we currently consume four billion gallons per day. Whether we will be clever enough to find a way of putting the genie back into the bottle is surely one of the most important questions of the twenty-first century.
+
+But above the clouds I wasn't, if I'm honest, thinking about this. Instead I was marveling at the cloudscapes and looking forward to having a drink from the trolley, which, happily, was now trundling down the aisle.
+
+飞机就是现代版的阿拉丁神灯
+
+乘务员开始沿着过道走过来，检查乘客的安全带是否已经正确系好，行李是否已经装好。我知道这场安全仪式已经接近尾声了，正在进行最后的祈祷。我庄严地向乘务员点头示意，而飞机已经来到了跑道上，准备起飞。而这一千多年来积累的知识，被用于将液态的煤油转化为飞行动力。
+
+如果你也曾吹起一只气球又将它放开，任由它「嗡嗡」作响，一边排出气体一边在房间里乱飞，你也会获得喷气式发动机的创造灵感。将压缩气体朝着某个方向排出，气球就会被推向反方向，这当中蕴含着牛顿第三运动定律，即任何作用力都会产生大小相同、方向相反的反作用力。不过，在飞机中储存足够的压缩气体，是很不经济的做法。幸运的是，英国工程师弗兰克·惠特尔（Frank Whittle）找出了解决这一问题的方法。他认为，既然天空中已经充满了气体，飞机就没有必要自己携带气体，只需要在飞行的时候将天空中已有的气体压缩，再将其向后喷射。唯一需要的，是一台可以压缩空气的机器。你在登机时会看到这种压缩机挂在机翼下方，它就像一台巨大的风扇。它的确是风扇，但在你看不到的机械内部，还有 10 台甚至更多的风扇，每一台都比前一台小一些。它们的功能是吸入空气并将其压缩。在那里，压缩气体会进入位于发动机中心的燃烧室，与航空煤油混合并被点燃，形成一股热气流，从发动机的后部喷出。这种设计的精巧之处在于，热气体从发动机中喷射出去时，其中一部分气体的能量被用于旋转涡轮组，正是这组涡轮推动着发动机前部的压缩机旋转。换句话说，在空中飞行的时候，发动机从热气体中获取动力，进而收集并压缩更多的空气。
+
+1-2『这里的飞机原理解释，目前是自己看到过的最通俗的。做一张信息数据卡片。（2021-05-26）』—— 已完成
+
+从发动机后部喷射出的气体，为我们这架重达 250 吨的飞机加速。当你坐在一架飞驰的飞机上望着窗外时，总是很难感受到它究竟有多快。经过跑道上的每一处隆起时，机翼都会笨拙地振动或摆动，完全看不出它即将在空中展现出工程学的优雅美感。速度达到每小时 80 英里时，机舱中「嗒嗒嗒」和「呜噜噜」的声音会让人有些惊慌。如果我没坐过飞机，这个时候我很可能会怀疑自己是不是永远也不会着陆了。
+
+煤油中蕴含的全部能量推着我们向前，越来越快，一种比硝化甘油威力更大的燃料正以每秒 4 升的速度被消耗着。直到此时，我们的飞机才靠近 2 英里长的跑道的尽头，速度达到了每小时 160 英里。按理来说，这是本次航班最危险的时刻，前方已经没有多余的跑道了，如果我们不能尽快升入空中，就将冲出跑道尽头，带着油箱中成千上万升液态煤油，一头扎进附近的大楼之中。还好，我们就像湖面上起飞的天鹅一般，矜持地爬升到了空中，仅仅用了几秒钟，就把地面上所有的建筑、汽车和人群抛在了身后。这是飞行中我最喜欢的时刻，特别是穿过伦敦的低云层，拥抱明媚阳光的那一刹那。那一天也是如此，这种感觉，就像是来到了另一个王国，我乐此不疲。
+
+从某种程度上来说，飞机就是现代版的阿拉丁神灯，煤油便是藏在里面的「妖怪」，满足你飞往世界任何地方的愿望。带着你飞翔的不是魔毯，而是一种更棒的「法宝」—— 机舱。它保护你不受严寒和劲风的侵扰，让你在旅途中更舒服地休息，甚至是好好睡上一觉。
+
+当然，和所有妖怪一样，它也有黑暗的一面。我们迷恋于煤油蕴含的强劲动力，但是飞行以及各种依赖原油的产品为全球气候带来了一场浩劫，地球正在快速升温，因为人类燃烧的煤油等燃料排放出了大量二氧化碳。目前，全球每天会消耗 160 亿升油品。能否找到一种将妖怪重新送回瓶中的办法，无疑是 21 世纪最重要的课题之一。
+
+不过，坦白讲，当我飞上云端时，并没有在思考这个问题，只是不住地对云景啧啧称奇，等待着小推车到来并喝上一杯饮料，而它此时还在过道中缓缓前行。

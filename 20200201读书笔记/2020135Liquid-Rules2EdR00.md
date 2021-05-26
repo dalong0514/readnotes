@@ -2,9 +2,35 @@
 
 ## 卡片
 
-### 0101. 主题卡 ——
+### 0101. 主题卡 —— 原油中的各个组分
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+信息源自「2020135Liquid-Rules0101.md」
+
+For better or worse, though, all I could think about was kerosene, and the remarkable trick those mid-nineteenth-century inventors used to transform crude oil: distillation. In order to distill oil, Rhazes had used an apparatus called an alembic, which is what, in modern times, we call distillation vessels — the towers you see sticking up out of oil refineries.
+
+Crude oil is a mixture of differently shaped hydrocarbon molecules, some long like spaghetti, some smaller and more compact, others linked together in rings. The backbone of each molecule is made of carbon atoms, each one bonded to the next. Each carbon atom also has two hydrogen atoms attached to it, but there's a lot of variety in their shape and size: the molecules vary in size from just five carbon atoms to hundreds. There are very few hydrocarbon molecules with fewer than five carbon atoms, though, because molecules that small tend to exist as gases: they're called methane, ethane, and butane. The longer the molecule, the higher its boiling point, so the more likely it is to be a liquid at room temperature. This is true of hydrocarbon molecules made up of up to forty carbon atoms. If they get any bigger than that, they can hardly flow at all and so become a tar.
+
+A mixture of hydrocarbon molecules contained in crude oil (only the carbon atoms are shown).
+
+In distilling crude oil, the smaller molecules are extracted first. Hydrocarbon molecules with five to eight carbon atoms form a clear transparent liquid that is extremely flammable; it has a flashpoint of –49ºF, which means that even at subzero temperatures it will ignite easily. So easily, in fact, that putting this liquid into an oil lamp is quite dangerous. Thus, in the early days of the oil industry, it was discarded as a waste product. Later, when we began to better understand the virtues of this liquid, it became more appreciated, especially for the way it mixed with air and ignited, producing enough hot gas to drive a piston. It was subsequently named gasoline, and we began using it to fuel gas engines.
+
+Larger carbon molecules, with nine to twenty-one carbon atoms, form a transparent clear liquid with a boiling point higher than gasoline's. It evaporates at a slow rate and so is less easy to ignite. But because each molecule is quite big, when it does react with oxygen, it gives off a lot of energy, in the form of hot gas. It won't ignite, however, unless it's sprayed into the air, and it can be compressed to a high density before it bursts into flames. This is the principle Rudolf Diesel discovered in 1897, eventually giving his name to the liquid forming the basis of his tremendous invention: the most successful engine of the twentieth century.
+
+But in the early days of the oil industry, the mid-nineteenth century, diesel engines hadn't been invented yet, and there was a pressing need for a flammable substance for oil lamps. While searching for this oil, producers created a liquid that had carbon molecules with six to sixteen carbon atoms. This liquid is somewhere between gasoline and diesel. It has the virtues of diesel — it doesn't evaporate so quickly as to form explosive mixtures — but it is a fluid with a very low viscosity, similar to that of water. As a result it wicks extremely well, allowing a flame to be very bright. It was cheap and effective, and didn't rely on olive trees or whales. It was kerosene, the perfect lamp oil.
+
+话说回来，不管情况是好是坏，我思考的无非就是煤油，以及 19 世纪中叶那些发明家用来提炼原油的卓越技艺 —— 蒸馏。为了蒸馏出油，拉齐使用过一种叫作「蒸馏器」的装置，现在我们称之为蒸馏釜，就是你在原油精炼厂看到的那些高耸的塔。
+
+原油是由很多形态各异的烃类分子构成的混合物，有一些分子很长，就像意大利面，有的则更小一些，形态也更为紧凑，还有一些分子是以环的形式结合的。每个分子的骨架都是由碳原子构成的，顺次靠化学键 [6] 结合在一起。每个碳原子上还有两个氢原子与之相连，但是它们的外形和尺寸都相差很大：分子的大小从仅有 5 个碳原子到几百个不等。不过，碳原子数目不足 5 个的烃类分子极少，因为太小的分子一般会以气态的形式存在，它们被称为甲烷、乙烷、丙烷和丁烷。分子越长，沸点就会越高，越有可能在常温时以液态形式存在。大到含有 40 个碳原子的分子，肯定也是存在的，但是如果变得再大一些，便会很难流动，就像沥青。
+
+蒸馏原油的时候，小分子会先被提取出来。含有 5 至 8 个碳原子的烃类分子会成为极易燃烧的清澈透明液体。它的闪点为 -45℃，也就是说，即便气温低至零下，它也很容易被点燃。实际上，因为太容易被点燃，将这种液体加入油灯也会变得格外危险。所以，在石油工业发展早期，它都被当成废料丢弃。后来，当我们更了解它的优点时，它就成了香饽饽，特别是将它和空气混合后再点燃，能产生足以推动活塞的热气体。再后来，它被命名为汽油，而我们现在将它作为汽油发动机的燃料。
+
+1-2『这里第一次如此清晰的认识到原油中各个组分。1）5 个碳原子以下的是常见的那些液化烃，甲烷、乙烷、丙烷、丁烷。2）5-8 个碳原子的是汽油。3）9-21 个碳原子的是柴油。4）认为制作出来的 6-16 个碳原子的煤油。原油中的各个组分做一张主题卡片。（2021-05-26）』—— 已完成
+
+含有 9 至 21 个碳原子的分子大一点，可以形成比汽油沸点更高的清澈透明液体。它蒸发的速度比较慢，也没那么容易被点燃。不过，因为每个分子都很大，所以当它和氧气发生反应的时候，可以释放出更多的能量，还是以热气体的形式。它不容易被点燃，除非将它喷入空气中。它在突然变成火焰之前，还可以被压缩至较高的密度。这是由鲁道夫·狄塞尔（Rudolf Diesel）在 1897 年发现的，最终这一液体以他的名字命名，并成就了他的伟大发明 —— 柴油机，那是 20 世纪最成功的发动机。
+
+原油中包含的烃类分子混合物（图中只显示了碳原子）
+
+不过，在石油工业早期，也就是 19 世纪中叶，柴油发动机还没有被发明出来，人们反倒迫切需要用作灯油的可燃物。在寻找这种油的时候，生产商制造出了一种液体，其分子中的碳原子数量在 6 至 16 之间。这种液体介于汽油和柴油之间，具有柴油的优点，不会快速挥发，也不会形成易爆的混合物。但它仍然是黏度很低的流体，就像水一样，因此芯吸效应十分显著，这使得被点燃后的火焰异常明亮。这种液体可以说是物美价廉，也不用依赖橄榄树或鲸。它就是煤油，最完美的灯油。
 
 ### 0201. 术语卡 —— 闪点
 
@@ -40,11 +66,45 @@ Look carefully at the pond skater insect as it「walks」on water, and you'll se
 
 仔细看一下水黾在水面上行走的过程，你会发现它的腿是被水抵开的。之所以会这样，是因为水和虫腿之间的表面张力产生了排斥力，并抵消了重力。而一些固液界面的作用力正好相反，形成的是分子间的引力，水和玻璃就是如此。观察玻璃杯中的水，你会发现水接触玻璃杯的边缘部分像是被拽了上去，我们称之为「弯月面」，这也是一种表面张力效应。
 
-### 0203. 术语卡 ——
+### 0203. 术语卡 —— 消化甘油
 
-### 0301. 人名卡 ——
+信息源自「2020135Liquid-Rules0101.md」
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+I know one liquid that certainly could: nitroglycerin. Like kerosene, nitroglycerin is a colorless, transparent, oily liquid. It was first synthesized by the Italian chemist Ascanio Sobrero in 1847. It didn't kill him, which is a miracle, because it is a ridiculously dangerous and unstable chemical that can explode unexpectedly. Ascanio was so frightened by the potential uses of what he had discovered, he kept it quiet for a year and even then tried to deter others from making it. His student Alfred Nobel saw its potential, though; he thought it could replace gunpowder. He eventually succeeded in creating it in a form that was relatively safe to handle. Alfred transformed the liquid into a solid that wouldn't explode accidentally (although it did kill his brother Emil) and so created dynamite. This transformed the mining industry, making Alfred a fortune. Prior to dynamite, mining companies had relied on manual labor to dig their tunnels, pits, and caverns. He used his fortune — or at least a part of it — to create the most famous international awards in the world, the Nobel Prizes.
+
+Like gasoline, diesel, and kerosene, nitroglycerin is made from carbon and hydrogen. But it comes with extras too: oxygen and nitrogen atoms. The presence of these atoms, and their positions within the molecule, make nitroglycerin unstable. If the molecule comes under pressure from contact or vibration, it can easily fall apart. When this happens, the nitrogen atoms get together to form a gas, and the oxygen atoms in the molecule react with the carbon to form carbon dioxide, another gas. They also react with the hydrogen to form steam, and whatever is left over forms still more oxygen gas. As the molecule decomposes, it creates a shock wave in the nitroglycerin, which causes the neighboring molecules to fall apart too, creating more gas and sustaining the shock wave. Ultimately, all of the nitroglycerin molecules decompose in a chain reaction that occurs at thirty times the speed of sound, transforming the liquid into a hot gas almost instantaneously. This gas has a volume a thousand times the volume of the liquid and so it expands rapidly, causing an enormous hot explosion. Much of the devastation of World War II was caused by the widespread use of nitroglycerin-based explosives.
+
+我知道，有一种液体肯定会爆炸，那就是硝化甘油。和煤油一样，硝化甘油也是无色透明的油状液体，它最早是由意大利化学家阿斯卡尼奥·索布雷洛（Ascanio Sobrero）在 1847 年合成的。硝化甘油没有杀死他，简直就是个奇迹，因为这是一种异常危险的不稳定化学品，很容易发生意外爆炸。阿斯卡尼奥被硝化甘油的潜在用途吓坏了，对此守口如瓶整整一年，甚至还试图阻止其他人制造它。然而，他的学生阿尔弗雷德·诺贝尔（Alfred Nobel）也发现了这种液体的潜力，并认为它可以替代黑火药。最终，他成功地将硝化甘油由液体变为固体，使它更易于掌控，不会突然爆炸（尽管如此，他的弟弟埃米尔还是因此丧生），炸药诞生了。炸药重塑了采矿业，也让他成了富豪。在炸药出现以前，采矿企业只能派工人去挖掘隧道、矿井和矿洞。阿尔弗雷德·诺贝尔用自己的财富（或者说是一部分财富）创立了世界上最著名的奖项 —— 诺贝尔奖。
+
+2『消化甘油，做一张术语卡片。（2021-05-26）』—— 已完成
+
+与汽油、柴油和煤油一样，硝化甘油也是由碳和氢构成的，不同的是，它还含有氧原子和氮原子。由于这些原子的存在以及它们在分子中所处的位置，硝化甘油变得极不稳定。如果分子因为冲击或振动而受到压力，就很容易裂开。出现这种情况时，氮原子会结合在一起形成气体（氮气），分子中的氧原子会和碳原子发生反应后形成二氧化碳，氧原子还会和氢原子反应形成水蒸气，最后剩下一点氧气。当分子分解时，会在硝化甘油内部产生冲击波，这就让邻近的分子也开始散架，并产生更多气体，进而持续产生冲击波。最终，所有的硝化甘油分子都在这个链式反应中分解了，这一过程的发生速度是声速的 30 倍，液体几乎是在一瞬间变成了很热的气体。气体的体积是液体的上千倍，因此膨胀得非常迅速，从而形成惊人而又剧烈的热爆炸。第二次世界大战期间的大多数破坏，都是由硝化甘油型炸药被广泛使用造成的。
+
+### 0204. 术语卡 —— 航空煤油
+
+信息源自「2020135Liquid-Rules0101.md」
+
+The 3.4-ounce limit on liquids carried onto airplanes is designed to prevent someone from bringing onboard a large enough quantity of a liquid explosive, such as nitroglycerin, to destroy a plane. This amount of nitroglycerin will still explode, of course, but not with enough energy to bring the plane down. But still, it is sobering to think that kerosene contains ten times more energy per gallon than nitroglycerin, and there are tens of thousands of gallons of it in the fuel tanks of an airplane.
+
+Kerosene is not an explosive, though — it will not spontaneously blow up. Unlike nitroglycerin, it doesn't have any oxygen and nitrogen atoms in its molecular structure. It is a stable molecule that doesn't readily decompose. You can bash it, smash it, or have a bath in it, and it won't explode. In this, it differs from its less powerful cousin, nitroglycerin. If you want to harness the power of kerosene, you have to work for it — you need to make it react with oxygen. As the kerosene and the oxygen react, they will create carbon dioxide and steam, but because the reaction is limited by its access to oxygen, the combustion can be controlled.
+
+It is the huge power of kerosene, and our ability to burn it in a controlled manner, that makes it such an important liquid technologically. Global civilization currently burns approximately 250 million gallons of kerosene per day, mostly in jet engines and space rockets, but it is also still used for lighting and heating in many countries. In India, for instance, more than 300 million people use kerosene oil lamps to provide lighting in their homes.
+
+So you can see why I would think the flight attendants might mention it in our safety briefing. But it had just ended, and they had not said a thing about the thirty-nine thousand gallons of kerosene onboard, nor commented on its dual nature: how, on the one hand, it's a perfectly ordinary transparent oil, one so stable that you could throw a lighted match into the fuel tank and it wouldn't ignite; and yet how, on the other, when mixed with the right amount of oxygen, it becomes an oil ten times as powerful as the explosive nitroglycerin. My neighbor, Susan, seemed unfazed by this; she was still deeply engrossed in her book.
+
+只允许乘客携带低于 100 毫升的液体登机，是为了防止有人将大量类似硝化甘油的液体爆炸物带上飞机，这足以炸毁整架飞机。当然在这一限量以下，硝化甘油还是会爆炸，但是不足以让飞机坠毁。不过，一想到每升航空煤油中蕴含的能量是硝化甘油的 10 倍，而飞机油箱中有几万升的煤油，还是会让人不寒而栗。
+
+不过，航空煤油并不是爆炸物，它不会自发爆炸。与硝化甘油不同，它的分子结构中不含有任何氧原子或氮原子，因此相当稳定，不会无缘无故爆炸。你可以猛砸它、挤压它，甚至用它冲凉，都不会发生爆炸。航空煤油与它那个威力小一些的「兄弟」硝化甘油不同，如果你想驾驭它，还得让它和氧气发生反应。煤油与氧气进行反应时，会产生二氧化碳和水蒸气，但是因为该反应会受到接触氧气的限制，所以燃烧是可控的。
+
+2『航空煤油，也做一张术语卡片。（2021-05-26）』—— 已完成
+
+煤油蕴含着超强的能量，而我们能用可控的技术手段燃烧它，这让它成为一种重要的液体。目前，全球每天大约会消耗 10 亿升煤油，主要是用在喷气式飞机的发动机和火箭上，但在很多国家，它仍被用于照明或取暖。在印度，还有 3 亿多人在他们家里使用煤油灯照明。
+
+### 0301. 人名卡 —— Mark Miodownik
+
+马克·米奥多尼克（Mark Miodownik），本书作者，材料科学大牛，科普牛人，著作有《迷人的材料》、《迷人的液体》。
+
+Mark Miodownik is professor of materials and society at University College London, where he is also director of the Institute of Making. He is the author of the book Stuff Matters , a New York Times bestseller that won the National Academy of Sciences Communication Award for Books and the Royal Society Winton Prize. Miodownik writes for the Guardian , hosts regular shows on the BBC, and was chosen as by the London Times as among the one hundred most influential scientists in the UK.
 
 ### 0401. 金句卡 ——
 
@@ -57,6 +117,32 @@ Look carefully at the pond skater insect as it「walks」on water, and you'll se
 9 世纪时，橄榄油是作为波斯油灯燃料的不二选择。在这一地区，橄榄树生长得十分茂盛，不仅耐干旱，还出产大量橄榄果，橄榄果被压榨后便可得到橄榄油。大约 20 颗橄榄果就可以榨出一汤勺的橄榄油，这足以供一盏油灯照明 1 个小时。如果一个家庭每晚需要照明 5 个小时，那么一天就要用掉 100 颗橄榄果，一年就要用掉 3.6 万颗橄榄果，这还只是供一盏灯。波斯人为了让他们的帝国出产足够多的油用于照明，就需要大量的土地和时间，因为橄榄树通常在种下的前 20 年里不会产果。波斯人还要保护他们的土地，以防被那些觊觎这一宝贵资源的人夺走，所以他们要管理城镇，而这就意味着需要更多的橄榄树，以便所有人都能烹饪和照明。为了供给一支军队，他们需要为之缴税，而在波斯，缴税就是向政府上缴一部分橄榄果。因此你会发现，橄榄油是波斯的社会与文化核心，所有中东文明都是如此，直到他们发现新能源和税收替代物。拉齐的实验证明，这种新能源就在他们的脚下，但它还要继续待上 1000 年。
 
 1-2『之前在其他地方听说过，橄榄油作为地中海文明的「特产」之一，这里算是知道缘由了。做一张信息数据卡片。（2021-05-26）』—— 已完成
+
+### 0502. 数据信息卡 —— 在 800℃ 时，钢的强度会下降到正常强度的一半
+
+信息源自「2020135Liquid-Rules0101.md」
+
+It was the fuel from the aircraft that caused the towers to collapse. It wasn't an explosion, because kerosene is stable. According to the FBI report, the kerosene reacted with oxygen from the winds blowing through the buildings' damaged floors, raising the temperature on those floors to over 1,500ºF. This did not melt the steel frame of the building — steel melts at temperatures exceeding 2,500ºF — but at 1,500ºF, the strength of steel decreases approximately by half, and so it started to buckle. Once one floor buckled, the weight of the entire building above it collapsed onto the floor below, causing it to buckle, and so on, like a house of cards. In total, more than 2,700 people were killed in the collapse of the Twin Towers, including 343 New York firefighters. These terror attacks were a significant moment in the history of world, not just because they initiated wars and all the horrors that go with them, but because the fall of those towers was a powerful symbol of the fragility of democratic civilization. And the active ingredient of that moment of destruction was the planes' kerosene.
+
+是飞机上的燃料引起了大厦的倒塌。那不是一场爆炸，因为煤油是稳定的。FBI（美国联邦调查局）通报称，大厦的楼板被破坏，风便由此处吹进来，煤油与随风潜入的氧气发生反应，将楼板加热到 800℃ 以上。这个温度足以将大厦的钢结构熔化，虽然钢材的熔点在 1500℃ 以上，但是在 800℃ 时，钢的强度会下降到正常强度的一半，于是钢结构开始变形。一旦有一层楼板变形，整座大厦就会坍塌到下一层并造成新的变形，如此一层接一层地坍塌，就像纸牌屋一样。共有 2700 多人在双子大厦的坍塌中死亡，其中包括 343 名纽约的消防员。这一系列的恐怖袭击在世界史上极具象征意义，不仅因为它们引发了战争，恐惧也随之而来，还因为这些大厦的倒塌有力地象征着民主文明的脆弱。而参与这场大毁灭的破坏分子，就是飞机上的航空煤油。
+
+2『这里才知道，在 800℃ 时，钢的强度会下降到正常强度的一半，做一张信息数据卡片。（2021-05-26）』
+
+### 0503. 数据信息卡 —— 飞机的原理
+
+信息源自「2020135Liquid-Rules0101.md」
+
+If you have ever blown up a balloon and then let it go, allowing it to zoom and fart its way around a room, you have a good grasp of how a jet engine works. As compressed air shoots out in one direction, the balloon is propelled in the opposite: this is Newton's third law of motion, which states that every action has an equal and opposite reaction. But storing enough compressed gas to power an aircraft would be pretty inefficient; luckily, the British engineer Frank Whittle worked out how to solve this problem. He reckoned that since the sky is already full of gas, a plane shouldn't need to carry it around; you just have to compress the gas that's already in the sky as you fly along, and shoot it out the back. All you need is a machine to compress the air. This compressor is what you see under the wing as you board a plane — it looks like a giant fan, and it is, but what you can't see is that inside it are ten or more fans, each one smaller than the next. Their job is to suck in the air and compress it. From there, the compressed air goes to the combustion chamber, in the middle of the engine, where it's mixed with kerosene and ignited, producing a jet of hot gas that shoots out the back of the engine. The genius in the design is that, on its way out of the engine, some of the air's energy is used to rotate a set of turbines — and it's these turbines that rotate the compressors at the front of the engine. In other words, the engine harvests energy from the hot gas that it then uses to collect and compress more air as it flies through the sky.
+
+The air shooting out the back of the engine allowed our plane, which weighed approximately 275 tons, to gain speed. It's always hard to get a feel for just how fast you're going when you're looking out the window of a speeding aircraft. The wings bob and wobble awkwardly at every bump of the runway, giving no hint of the engineering elegance that they'll display once airborne. At eighty miles per hour, the intensity of the rattling and groaning of the cabin interior begins a worrying crescendo. If I had never flown in a plane, at this point I'd be very doubtful that we would ever get off the ground.
+
+如果你也曾吹起一只气球又将它放开，任由它「嗡嗡」作响，一边排出气体一边在房间里乱飞，你也会获得喷气式发动机的创造灵感。将压缩气体朝着某个方向排出，气球就会被推向反方向，这当中蕴含着牛顿第三运动定律，即任何作用力都会产生大小相同、方向相反的反作用力。不过，在飞机中储存足够的压缩气体，是很不经济的做法。幸运的是，英国工程师弗兰克·惠特尔（Frank Whittle）找出了解决这一问题的方法。他认为，既然天空中已经充满了气体，飞机就没有必要自己携带气体，只需要在飞行的时候将天空中已有的气体压缩，再将其向后喷射。唯一需要的，是一台可以压缩空气的机器。你在登机时会看到这种压缩机挂在机翼下方，它就像一台巨大的风扇。它的确是风扇，但在你看不到的机械内部，还有 10 台甚至更多的风扇，每一台都比前一台小一些。它们的功能是吸入空气并将其压缩。在那里，压缩气体会进入位于发动机中心的燃烧室，与航空煤油混合并被点燃，形成一股热气流，从发动机的后部喷出。这种设计的精巧之处在于，热气体从发动机中喷射出去时，其中一部分气体的能量被用于旋转涡轮组，正是这组涡轮推动着发动机前部的压缩机旋转。换句话说，在空中飞行的时候，发动机从热气体中获取动力，进而收集并压缩更多的空气。
+
+1-2『这里的飞机原理解释，目前是自己看到过的最通俗的。做一张信息数据卡片。（2021-05-26）』—— 已完成
+
+从发动机后部喷射出的气体，为我们这架重达 250 吨的飞机加速。当你坐在一架飞驰的飞机上望着窗外时，总是很难感受到它究竟有多快。经过跑道上的每一处隆起时，机翼都会笨拙地振动或摆动，完全看不出它即将在空中展现出工程学的优雅美感。速度达到每小时 80 英里时，机舱中「嗒嗒嗒」和「呜噜噜」的声音会让人有些惊慌。如果我没坐过飞机，这个时候我很可能会怀疑自己是不是永远也不会着陆了。
+
+煤油中蕴含的全部能量推着我们向前，越来越快，一种比硝化甘油威力更大的燃料正以每秒 4 升的速度被消耗着。直到此时，我们的飞机才靠近 2 英里长的跑道的尽头，速度达到了每小时 160 英里。按理来说，这是本次航班最危险的时刻，前方已经没有多余的跑道了，如果我们不能尽快升入空中，就将冲出跑道尽头，带着油箱中成千上万升液态煤油，一头扎进附近的大楼之中。还好，我们就像湖面上起飞的天鹅一般，矜持地爬升到了空中，仅仅用了几秒钟，就把地面上所有的建筑、汽车和人群抛在了身后。这是飞行中我最喜欢的时刻，特别是穿过伦敦的低云层，拥抱明媚阳光的那一刹那。那一天也是如此，这种感觉，就像是来到了另一个王国，我乐此不疲。
 
 ### 0601. 任意卡 ——
 
@@ -264,7 +350,39 @@ In each chapter I consider a different part of the flight and the qualities of l
 
 在这本书的每一章里，我都介绍了一种液体的特性，也多亏了液体本身具有这么多特性，如可燃性、溶解性以及可酿造性。我也将告诉你，液体的芯吸效应 [1] 、液滴形成过程、黏度、溶解度、压力、表面张力以及其他不常见的特性是如何让我们绕着地球飞行的。与此同时，我还将揭示，水为什么会向树梢流动，却又顺着山坡下泄，油为什么是黏糊糊的，波浪如何涌向远方，物品为什么会干燥，液体怎么变成晶体，自己酿酒的时候如何避免酒精中毒，当然，还有如何泡出一杯好茶。所以，请跟着我一起飞，我向你保证，这将是一段奇异而又非凡的旅程！
 
-## 后记
+## Epilogue
+
+As I hope the account of my journey from London to San Francisco has shown, an airplane flight is made possible, and delightful, by our understanding and control of myriad liquids, from kerosene to coffee, from epoxies to liquid crystals. There are many liquids I haven't mentioned, but I wasn't trying to be comprehensive. Instead, I've tried to paint a picture of our relationship with liquids. For thousands of years we have been trying to come to grips with this alluring yet sinister, refreshing yet slimy, life-giving yet explosive, delicious yet poisonous state of matter. So far we have largely managed to harness the power of liquids while protecting ourselves from their dangers (tsunamis and rising sea levels notwithstanding). Looking ahead, I'm guessing that our future will be just as liquid-filled as our past, but our relationship with liquids will deepen.
+
+Take medicine, for instance. Most medical tests require a sample of blood or saliva, which doctors use to diagnose illness or monitor health. These tests almost always have to be done in a lab, and they're both time-consuming and costly. They also require a visit to a doctor or a hospital, which is not always possible, especially in countries where medical resources are scarce. But a new technology called lab-on-a-chip is likely to change all this, ushering in a future in which diagnostics are carried out at home, almost instantly, and cheaply.
+
+Lab-on-a-chip technology allows you to take small samples of your own bodily fluids and feed them into a small machine that examines their biochemical composition. These chips process liquids in much the same way that silicon microchips process digital information. Your blood, or whichever other fluid, is directed into a series of microscopic internal tubes, which can divert droplets in different directions, to undergo different kinds of analysis. It's still early days for these chips, but be prepared to hear more and more about them in the coming years. With the potential to diagnose everything from heart disease to bacterial infection to early-stage cancer, they're likely to be at the foreground of a revolution in medical technology akin to what we've seen in the IT industry — but this time, the revolution will be liquid.
+
+In order for lab-on-a-chip technology to work, it has to have a mechanism that allows it to move and manipulate small droplets of liquid. Biological organisms, of course, are expert at this. Go into a garden during a rain shower and you'll see leaves that repel water so effectively that the raindrops bounce off. Lotus leaves, for instance, have long been known to have this super-hydrophobic property, but no one knew why until quite recently, when electron microscopes revealed something odd about their surface. As suspected, they're coated in a waxy material that repels water, but surprisingly, that material is arranged on the surface in the form of billions of tiny microscopic bumps. When a drop of water sits on this waxy surface, it tries to minimize its area of contact, because of the high surface tension between drop and surface. The bumps on the lotus leaf drastically increase this area of waxiness, forcing the droplet to sit up precariously on the tips of the bumps. In this state, the droplet becomes mobile and quickly slides off the leaf, along the way collecting small particles of dust, hoovering them up like a mini–vacuum cleaner: a lotus leaf's secret to staying shiny and clean.
+
+Manipulating material surfaces to make them super-hydrophobic is likely to become big business in the coming years. This will allow us not only to guide droplets through the internal workings of lab-on-a-chip technology, but also to do a great many other things too. We will, for instance, be able to keep water from sticking to windows, thus keeping them as clean as a lotus leaf. We might also be able to develop waterproof clothing that harvests the water that falls on it, transporting it through tiny tubes into a collecting pouch, so it can be drunk later. This design is inspired by the thorny devil lizard, which hydrates itself by collecting any rainwater that falls on its skin, manipulating it through tiny channels by means of capillary flow.
+
+The thorny devil lizard collects water through its skin by using hydrophobic materials and capillary flow.
+
+The potential of such water-collection technology for the billions of people without access to regular supplies of clean water is huge, especially if a cheap way to filter the water can also be mastered. A new material that may be capable of this is called graphene oxide. It is a two-dimensional layer of carbon and oxygen atoms. In the form of a membrane it acts as a barrier layer for most types of chemical molecules but easily allows water molecules through. So it is like a molecular sieve. Potentially it could make an extremely effective and cheap water filter, which could even make seawater drinkable.
+
+As we know, water is a life-giving substance, and it's generally accepted that the presence of liquid water is what allowed life on Earth to evolve from very basic chemical structures to the complex cells we are made of. But this is still a hypothesis; we don't really know with any certainty how it happened. Scientists all over the world are doing experiments in an attempt to work it out by re-creating the chemical conditions that were present when life evolved here four billion years ago. It seems most likely, at this point, that life originated at the bottom of our deep oceans. There, thermal vents create a complex chemical soup with many of the ingredients that we find in our cells. As the twenty-first century progresses, exploring these regions, and the deep sea in general, will be an important frontier for us. It's odd, really, that we know less about the bottom of our own oceans than we do about the surface of the moon.
+
+If the depths of the ocean are our next physical frontier, I'd say that we have two computational ones on the horizon, both dependent on liquid. Cells and computers both compute information, but in completely different ways. Cells function and reproduce by computing the information stored in DNA via chemical reactions. Silicon-based computers, by contrast, read chips that contain billions of solid transistors, which react to incoming electrical signals transcribed from a computer program. The signals are communicated through a series of 1s and 0s, the binary language of digital computers. The transistors apply logic to the flow of 1s and 0s, computing answers again in the form of 1s and 0s and moving them to another part of the computer chip. It all may seem very basic, but by doing billions of simple calculations a second, sophisticated computation can be performed — the sort that beats chess grandmasters and computes the trajectory of a rocket to the moon.
+
+When cells compute things, they use chemical reactions instead of transistors. Instead of 1s and 0s, they compute with molecules, and they communicate with molecules. There are no transistors or wires, just chemical reactions in the liquid state, swimming around inside the cells. These chemical reactions happen incredibly fast, and simultaneously, all over the cell, making this so-called parallel computing system extremely efficient. The molecules involved are also all very small — you can easily have a sextillion (1,000,000,000,000,000,000,000) molecules in a single drop of liquid, a potentially colossal source of computational power and memory.
+
+Scientists are trying to emulate this process by using DNA to create a liquid computer. The work is developing rapidly, especially as ways to manipulate DNA and do calculations in test tubes are becoming more and more sophisticated and readily available. In 2013 researchers hit a big milestone: they were able to store a digital photograph's data in liquid and then retrieve it. This opens the door to a whole new paradigm of computation — in the future, you might be able to store all your data in a single drop of liquid.
+
+Liquid computing is the first of the incredible computational systems that are in development. The second is quantum computing, which relies on the quantum versions of binary's 1s and 0s — meaning a piece of information is stored in the computer as both a 1 and a 0 until a computation has been completed. Quantum computing takes advantage of the rules of quantum mechanics, which allow all possible outcomes of an event to exist simultaneously. As such, all possible answers to a problem can be computed at once, vastly speeding up calculations. There are machines already that can do this, but they're still quite rudimentary. One thing is certain, though: to run, they rely on very cold temperatures that can be obtained only with the help of a very special liquid: liquid helium.
+
+Helium is a gas until cooled to –452.2ºF; at this temperature, which is just seven degrees above absolute zero, it turns into a liquid. Luckily, we already have a sense of how to work with liquid helium, thanks to hospital equipment. If you've ever had a brain, hip, knee, or ankle injury, or been diagnosed with cancer, you've most likely had an MRI scan. But without super-cold liquid helium, these diagnostic tools, vital to all modern hospitals, would simply cease to operate. The cold temperatures of liquid helium are what make it possible for MRI machines to reliably detect tiny changes in the magnetic fields inside the human body and so map our internal organs. Unfortunately, though, although helium is one of the most abundant elements in the universe, it is quite rare on Earth. Hospital shortages of liquid helium now occur quite regularly and supplies often run out. In response, geologists are constantly prospecting for new sources of helium in Earth's crust (usually found in natural gas), but because of its growing importance, prices for this crucial substance have risen 500 percent in the past fifteen years.
+
+As useful as liquid helium is, it's also quite unruly. It will operate successfully to cool MRI machines to -452ºF, but cool it down a few more degrees to –457ºF, and it enters what we call a superfluid state. In this state, all the atoms in the liquid occupy a single quantum state, which is to say that all of the billions and billions of helium molecules act as if they are a single molecule, giving the liquid odd powers — it has no viscosity, for instance, and will spontaneously flow up out of a container. It will even be able to flow through solid materials, finding its way through the object's atomic-sized defects without any resistance.
+
+By this point in the book, I hope, this sort of behavior won't be so surprising to you. Liquids have a duality: they are neither a gas nor a solid, but something in between. They are exciting and powerful, on the one hand, while anarchic and slightly terrifying on the other. That is their nature. Nevertheless, our ability to control liquids has mostly yielded a positive impact for humanity, and my bet is that at the end of the twenty-first century we'll look back at lab-on-a-chip medical diagnostics and cheap water desalination and hail them as major breakthroughs that made longer life expectancies possible and prevented mass migrations and conflict. By then I also hope we'll have said goodbye to burning fossil fuels — in particular, kerosene. This liquid has given us the gift of cheap global travel, of sunny holidays and exciting adventures, but its role in global warming is too great to ignore. What liquid will we invent to replace it? Whatever it is, I suspect we will never dispense with the preflight safety ritual. Perhaps it will no longer involve the props of life jackets, oxygen masks, and seat belts — but we will always need ceremonies to celebrate the dangerous and delightful power of liquids.
+
+后记
 
 正如我希望的那样，这一次从伦敦到旧金山的旅程告诉我们，通过认识与利用各种液体，如煤油、咖啡、环氧树脂和液晶，我们可以身心愉悦地乘坐一趟航班。有许多液体我没有提到，但我本来也没有打算面面俱到。相反，我试着展示我们与液体之间的关系。几千年来，我们一直都想要控制这种物质状态，它迷人又邪恶，清新又黏滑，创造生命又具有爆炸性，美味又有毒。到目前为止，我们在很大程度上利用了液体的力量，同时保护自身免遭它的伤害（尽管还有海啸和海平面上升）。不过，日子还长，我想我们的未来将会像过去一样充满着液体，但我们与液体的联系还会继续加深。
 
