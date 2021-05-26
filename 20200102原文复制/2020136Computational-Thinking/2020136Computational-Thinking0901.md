@@ -82,7 +82,7 @@ The whole-world-is-computer hypothesis appeals to those who believe that computa
 
 6 Wolfram (2002).
 
-7 In April 2016, Scientific American magazine reported on a symposium of physicists and philosophers discussing the whole-world-is-computer hypothesis, giving the impression that they take more delight in entertaining themselves with the hypothesis than in the hypothesis itself. See https://www.scientificamerican.com/article/are-we-living-in-a-computer-simulation/.
+7 In April 2016, Scientific American magazine reported on a symposium of physicists and philosophers discussing the whole-world-is-computer hypothesis, giving the impression that they take more delight in entertaining themselves with the hypothesis than in the hypothesis itself. See [Are We Living in a Computer Simulation? - Scientific American](https://www.scientificamerican.com/article/are-we-living-in-a-computer-simulation/).
 
 ## 9.7 Ideological Fights over What Should Be Taught
 

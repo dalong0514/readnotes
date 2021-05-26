@@ -22,6 +22,14 @@ But as suggested above, this success was not easy. School boards in K–12 insti
 
 1 Wing (2006)
 
+1-2『
+
+这篇计算机思维的论文之前在多个场合看到过，自己 2019 年下载了的「2019016Computational thinking」并存入了 Zotero。YouTube 也有 Wing 的一个视频，结合起来一起看。（2021-05-25）
+
+[Jeannette Wing: Computational Thinking - YouTube](https://www.youtube.com/watch?v=YVEUOHw3Qb8)
+
+』
+
 ## 8.2 General-Purpose Thinking Tools?
 
 Academic education for automatic computing machinery began in the late 1940s, when computing pioneers started educational programs on numerical methods for computing on large-scale machines. These early efforts went mainstream in the 1950s when the mass production of stored-program computers created a demand for a large number of people who could program them. After the early entry by private companies, university educators started organizing conferences to discuss computing education in the mid-1950s. By 1960, some 150 US universities offered some training in computing. There was, however, no standard view on what people needed to know about computing; individual programs depended on local idiosyncrasies such as specific jobs, needs of businesses, personal agendas of the faculty, research contracts, and other stakeholder interests. [2]

@@ -8,6 +8,12 @@
 
 0601 Designing for Humans
 
+0701 Computational Science
+
+0801 Teaching Computational Thinking for All
+
+0901 Future Computation
+
 ## 0501. Software Engineering
 
 Software engineering is the part of computer science that is too difficult for the computer scientist.
@@ -461,3 +467,457 @@ Norman, Donald A. (2013). The Design of Everyday Things. First edition 1983. Bas
 Parnas, Dave, and Peter Denning. (2018). An interview with Dave Parnas. Communications of ACM 61 (6).
 
 Winograd, Terry, and Flores, F. (1987). Understanding Computers and Cognition. Addison-Wesley.
+
+## 0701. Computational Science
+
+The sciences do not try to explain, they hardly even try to interpret, they mainly make models.
+
+—— John von Neumann (1955)
+
+Computational science refers to the branches of every scientific field that specializes in using computation, such as computational physics, bioinformatics, and digital humanities. Although numerical methods have been a feature of science for centuries, simulation of complex systems was rarely viable before computers. Scientists developed mathematical models, usually expressed as sets of differential equations, but unless they could find closed-form solutions to the equations, the complexity of the models usually blocked them from any effective method to calculate the results. Although computers slowly began to invade all fields of science in the 1950s, the supercomputers in the 1980s were a tipping point in mustering the computing power to solve a rapidly increasing number of these equations by simulation. This led to an explosion of simulation models in science, some of which made discoveries that earned Nobel Prizes. By the mid-1980s, many scientists were counting computer simulation as a new way to do science, alongside the traditional ways of theory and experiment.
+
+In the 1980s, scientists from many fields came together to formulate「grand challenge problems」 — problems for which their models gave solutions that required massive computations. By extrapolating Moore's law on the doubling chip speed every two years, they were able to predict with considerable accuracy when computation was going to yield solutions of these challenges. For example, aeronautics engineers projected that by 1995 they could design a safe commercial airliner using simulation as a substitute for wind tunnel testing — and the Boeing company achieved this with its 777 aircraft, which flew its first test flights in 1994.
+
+Computer simulations got so good they could be used as experimental platforms. With simulations, scientists were able to explore the behavior of complex systems for which there were no analytical models. Simulations also opened the door for a new way of exploring the inner workings of the nature: by interpreting natural processes as information processes and simulating them in order to understand how they work.
+
+The computational turn of science and its new methods and tools were widely adopted and the change was radical. Computational methods were described as the most significant scientific paradigm shift since quantum mechanics. The computational-science revolution ushered in a new wave of computational thinking. But unlike the previous waves of CT — which were initiated by computer scientists — scientists in other fields initiated the new CT wave. Computational science became a major driving force in the development of CT outside computing.
+
+During the 1980s and the 1990s, computational thinking provided the mental toolbox for the new computational sciences — co-developed across many fields. In fields where natural phenomena could be interpreted as information processes, CT became a must-have skill for researchers. In an ironic twist, where previous scientists had argued that computing is not a science because there are no natural information processes, the new generation of computational scientists found information processes all over nature. And like computer scientists of the 1950s and 1960s, computational scientists learned CT from the practice of designing computations to explore phenomena and solve problems in their fields.
+
+In this chapter, we describe how computational thinking became central to sciences, explain a number of CT practices in computational science, and discuss the new ways in which computational scientists interpret their subject matter. The electronic computing age brought some remarkable advances to science in three aspects: simulation, information interpretation of nature, and numerical methods.
+
+### 7.1 Science and Computation: Old Friends
+
+Science and computation have been old friends for centuries. Through most of the history of science and technology, two sorts of scientist roles have been common. One is the experimenter, who gathers data to explore and isolate phenomena, describe recurrences, and reveal when a hypothesis works and when it does not. The other is the theoretician, who designs mathematical models to explain what is already known and uses the models to make predictions about what is not known. The two roles were active in the sciences well before computers came on the scene.
+
+2『科学家里的三类角色，做一张任意卡片。（2021-05-25）』—— 已完成
+
+Both roles used computation. The experimenters produced data that had to be analyzed, classified, and fit to known mathematically formulated laws. The theoreticians used calculus to formulate mathematical models of physical processes. In either case, they could not deal with very large problems because the computations were too extensive and complex.
+
+A third role emerged: scientists who saw new opportunities using computers as simulators that neither the experimenters nor the theoreticians used. The computing pioneers at the Moore School, home of the ENIAC, argued early on that computer simulation could make any computer into a laboratory. They saw the evaluation of models and the production of data for analysis as a new frontier of science. Crossing that frontier required new ways of incorporating modeling and simulation into research, as well as new kinds of computational thinking directly relevant to science.
+
+Large-scale modeling and simulation required significant upgrades to mathematical software. Numerical analysts, a branch of early computer scientists, were heavily involved in the quest to improve mathematical software to efficiently calculate mathematical models on computers. They were especially concerned with representing numbers and performing long calculations in machines that could only offer finite precision; controlling round-off errors and increasing computational speed were major concerns.
+
+In the late 1980s, John Rice, a pioneer of mathematical software, estimated that mathematical software had improved in performance by a factor of 10^12 since the 1950s. Of that improvement, 10^6 was due to faster hardware and another 10^6 due to better algorithms. Moore's law was only part of the reason numerical methods got better. The ingenuity of the numerical analysts did the rest.
+
+The idea of using calculus to evaluate mathematical models must have seemed obvious to the modelers because their equations were typically differential equations. Many physical processes could be described by relating the value of a function at a point to the values of the function at neighboring points. For example, a modeler who knew that the rate of change of function f(t) was another function g(t) could calculate the values of f(t) in a series of small time steps of size Δt with the difference equation f(t+Δt) = f(t) + g(t)Δt. The sequence of Δt-separated time points is a time-series sample of the function. This idea is easily extended to functions over space coordinates (x,y) by relating f(x,y) to f(x+Δx,y) and f(x,y+Δy) on a two-dimensional grid. John von Neumann, the polymath who helped design the first stored program computers, described algorithms for solving systems of differential equations on discrete grids.
+
+Because of the complexity of computations involved in these simulations, high-performance supercomputers became very important in the sciences. Only those computers had sufficient power to numerically solve differential equations over complex grids. With supercomputers, computational scientists cracked the grand challenge problems articulated in the late 1980s.
+
+For centuries, theory and experiment were the two modes of doing science. Supercomputers changed this, opening a new approach to doing science based on computational exploration and modeling. It was the most significant scientific paradigm shift since quantum mechanics. The computational science revolution ushered in a new wave of computational thinking.
+
+As computing invaded science, something unexpected happened. Instead of computing becoming more like other sciences, other sciences became more like computing. Scientists who used computers found themselves thinking differently — computationally — and routinely designing new ways to advance science. By simulating air flows around a wing with the Navier-Stokes equation discretized to a grid surrounding an aircraft, aeronautical engineers eliminated the need for wind tunnels and many test flights. Astronomers simulated the collisions of galaxies. Macroeconomists simulated scenarios in national and global economies. Chemists simulated the deterioration of space probe heat shields on entering an atmosphere. Simulation allowed scientists to reach where theory and experiment could not. It became a new way of doing science. Scientists became computational explorers as well as experimenters and theoreticians.
+
+Just as numerical analysis enabled better simulation, better simulation enabled another new scientific paradigm: information process interpretation of phenomena in the world. Much can be learned about a physical process by interpreting it as an information process and simulating the information process on a computer. For example, it has become a mainstay of modern biology, notably with sequencing and editing genes. [1] For the quantities modeled, the real process behaves as if it were an information process. The simulation and interpretive approaches are often combined, as when the information process provides a simulation for the physical process it models.
+
+For centuries, theory and experiment were the two modes of doing science. Supercomputers changed this, opening a new approach to doing science based on computational exploration and modeling. It was the most significant scientific paradigm shift since quantum mechanics. The computational science revolution ushered in a new wave of computational thinking.
+
+The term「computational science」and its associated term「computational thinking」came into use during the 1980s. In 1982, Kenneth Wilson received a Nobel Prize in physics for developing computational models that produced startling new discoveries about phase changes in materials. He designed computational methods to evaluate the equations of renormalization groups, which he used to observe how a material changes phase, such as the direction of the magnetic force in a ferrimagnet. He launched a campaign to win recognition and respect for computational science. He argued that all scientific disciplines had「grand challenge」problems that would yield to massive computation. [2] He and other visionaries used the term「computational science」for the emerging branches of science that made computation their primary method. Many of them saw computation as a new paradigm of science, complementing the traditional paradigms of theory and experiment. Convinced by the benefits computational thinking would bring to science, they launched a political movement to secure funding for computational science research, culminating in the High Performance Computing Act (HPCA) passed in 1991 by the US Congress, and bringing computational thinking in science into public view.
+
+It is noteworthy that computational science and computational thinking in science emerged from within the scientific fields — they were not imported from computer science. In fact, computer scientists were slow to join the movement. Whereas numerical analysts often felt like outcasts from mathematics in the 1950s, and outcasts from computing in the 1970s, they were natural participants in computational science. Fortunately, this mood did not last; numerical analysts are important members of the computing field.
+
+Computation has proved so productive for advancement of science and for engineering that virtually every field of science and engineering has developed a「computational」branch. In many fields the computational branch has grown to be critical for the field. For example, biology is seen as an information science. [3] Chemists design molecules and simulate them to find out how they would fare under real conditions. Pharmaceutical companies test molecules by simulation to learn if they would be effective against certain diseases. Computational methods are spreading into traditionally non-experimental fields, such as humanities and social sciences. This trend will continue. Computation will invade deeper into every field.
+
+Because CT has advanced science — by providing better methods of numerical analysis, advanced simulations, and the information interpretation of physical processes — many people will decide to learn the skills required of computational designers and thinkers.
+
+1 Baltimore (2001).
+
+2 Wilson (1989).
+
+3 Baltimore (2001).
+
+2『 Baltimore 的那篇论文没下载到，意外发现份资料，作为本书的附件。已下载「附件01Interview-with David-Baltimore」。（2021-05-25）』
+
+### 7.2 Computational Thinking in Science
+
+Computational thinking in science has two aspects. First, mental skills facilitate the design of computational models for natural processes and for methods of evaluating models. The phrase「modeling and simulation」comes up frequently for this aspect of CT in science. Computing terminology gained favor among computational scientists because it distinguished the new computational methods of conducting science from the traditional methods of theory and experiment.
+
+The second aspect of CT in science is a skill of interpreting the world in terms of information processes. Instead of asking computing's question — Can an information process be efficiently automated? — computational scientists ask: Can a simulated information process replicate a real process? What kind of information process creates an observed phenomenon? What computational mechanism is behind an observed process? For instance, many biologists study DNA and protein interactions in terms of information processes with the hope of designing future DNA that heals diseases and lengthens life. Physicists hope that by interpreting physics as information processes, they can learn about hard-to-detect particles from simulations of particles.
+
+We see then that CT in computational science has a different orientation from CT in computer science. Much of computational science is concerned with using modeling and simulation to explore phenomena, test hypotheses, and make predictions in its respective fields. Much of computer science is concerned with designing algorithms to solve problems. Scientists and engineers who design simulations are often not formulating problem statements; they are investigating the behaviors of phenomena. Computing people are often not using simulations to understand how nature works; they are designing software to do jobs for users.
+
+Computing people and scientists looking to collaborate ought to keep this distinction in mind. The collaboration will work better if the computer people develop an understanding of the science domain, and the scientists an understanding of the computing domain. For example, one of us (Peter) personally witnessed a disconnect between computational and computer scientists in the 1980s. A team of PhD computational fluid dynamics scientists invited PhD computer scientists to join them, only to discover that the computer scientists did not understand enough fluid dynamics to be useful. They were not able to think computational fluid dynamics with the same facility as the fluid dynamicists. The fluid dynamics scientists wound up treating the computer scientists like programmers rather than peers, much to the chagrin of the computer scientists.
+
+### 7.3 Computational Models
+
+The term「computational model」can also be a source of misunderstanding. To a scientist, computational models are sets of equations, often differential equations, that describe a physical process; the equations can be used computationally to generate numerical data about the process. Simulations are often the algorithms that do this. In contrast, a computational model in computing means an abstract machine that runs programs written in a programming language. The Turing machine is frequently cited in computing as the fundamental theoretical model of all computation, even though it is too primitive to be useful for most purposes.
+
+Scientists routinely use abstract machines in the computing sense because every one of the familiar programming languages is associated with an abstract machine. For example, the FORTRAN language presents an abstract machine that is particularly good at evaluating mathematical expressions. The Java language presents an abstract machine that hosts a large number of autonomous「objects」that concurrently send and receive messages from each other. The C++ language also has objects but is closer to the actual machine and thus gives more efficient executable code.
+
+The computational models in computational science are realized as abstract machines that bring a replica of a natural information process to life. The simulations are the executions of programs that implement those abstract machines.
+
+### 7.4 Modeling and Simulation
+
+Computational science has a rich trove of methods for modeling, simulating, and interpreting natural processes. We will consider five examples that illustrate the range and we will point out some key CT features of the models and the simulations.
+
+#### 7.4.1 Mandelbrot Set
+
+Many simulations walk through all the points on a grid, computing a function at each point, and then visualizing the result by assigning colors to the numbers on the grid points. The Mandelbrot set is a good example of a computation that reveals behaviors no one suspected by inspecting the equations. In the Mandelbrot visualization, for each point on a grid, the computer calculates a series of values based on a simple equation over complex numbers, and assigns colors to those points: if the calculated series converges (stays within some limits), color the point black, and if the series diverges, color it blue or yellow. Now repeat this for all points on the grid. [4]
+
+When each point's color is assigned to a pixel, the Mandelbrot set appears on a graphics screen. No one suspected that such a simple computation would yield such a beautiful, mysterious object (see the figure below). One can select a small square anywhere on the graphic, zoom in on it, cover it with a grid and calculate all its grid-point colors — and see more copies of the Mandelbrot set appear at smaller scales. Each new zoom reveals more sets. It never ends. Mandelbrot called this self-replicating behavior at all scales「fractals.」
+
+The fractal idea (self-similarity at different scales of measurement) was the key to Ken Wilson's renormalization group algorithms that yielded new discoveries in physics when simulated on a supercomputer, and it won him a Nobel Prize. The fractal idea is used in visualization systems to compute realistic graphic images, such as trees or horizons, rapidly.
+
+4 For the more mathematically inclined, the Mandelbrot set is the points in the complex plane at which the series of values of a function converges. A complex number is represented as a+bi, where i=sqrt(-1) and i2 = -1. The equation of the series is z(n+1) = z2(n)+c where z(n) and c are complex numbers. Having chosen a value of c, compute a series of z(n)-values starting with z(0)=c. (You may need to go to an algebra refresher for algorithms to multiply complex numbers.) If the z(n) sequence converges (stays within a short radius of c for all n), color the chosen value of c black. If it diverges color c blue or yellow. Now repeat this for all c points on a grid.
+
+#### 7.4.2 Telephone Engineers
+
+When the first telephone exchanges were designed in the early 1900s, telephone engineers confronted a serious design issue. In a town of K customers, there are potentially K2 connections. Guaranteeing every customer could connect to any other customer at any time they desired would be hopelessly complex and expensive, especially since most of the time most of the customers are not talking at all. To control the complexity and cost, engineers decided to build switches that would handle up to N calls at once (N is substantially less than K). This of course brings a risk that a customer cannot get a dial tone if the exchange is already carrying N calls. The design question was how to choose N so that the probability of encountering the busy signal is small, for example 0.001. A random walk computational model yields an answer. The model has states n = 0, 1, 2, ... , N representing the number of calls in progress up to a maximum of N, here N = 10. Requests to initiate new calls are occurring randomly at rate λ. Individual callers hang up randomly at rate μ. Each new-call arrival increases the state by 1 and each hang-up decreases it by 1. The state diagram in the figure below represents the movement through the possible states. Telephone engineers define p(n) the fraction of time the system is in state n and can prove a difference equation p(n) = (λ/nμ)p(n–1). They calculate all the probabilities by guessing p(0), calculating each p(n) from its predecessor p(n-1), and then normalizing so that the sum of all p(n) is 1. Then they find the largest N so that p(N) is below the target threshold. For example, if they find p(N) = 0.001 when N = 10, they predict that a new caller has a chance 0.001 of not getting a dial tone when the exchange capacity is 10 calls.
+
+A key idea here was modeling the physical process with a state space representing all the possible states of the system, connected by transitions representing the random rates of flow between pairs of states. By invoking a flow balance principle — total flow into a state equals total flow out — engineers got a set of equations relating the proportions of time p(s) each state s is occupied. They can then calculate the values of p(s) by applying the equations. This form of modeling is very common in queueing theory and system performance evaluation because all the measures of interest, such as throughput, response time, and overflow probabilities, are easy to calculate from the p(s).
+
+#### 7.4.3 Doctor's Waiting Room
+
+Engineers have also used state space models to build controllers of systems. In this example (see the figure below), a doctor wishes to build an electronic controller for her office, which consists of a four-person waiting room and a one-person treatment room. Patients enter the waiting room and sit down. As soon as the doctor is free, she calls the next patient into the treatment room. When done, the patient departs by a separate door. The doctor wants an indicator lamp to glow in the treatment room when patients are waiting, and another to glow in the waiting room when she is busy treating someone. The engineer designing the controller uses a computational model with states (n,t) where n = 0,1,2,3,4 is the number in the waiting room and t = 0,1 is the number in the treatment room. The controller implements the state diagram above. The indicator lamp in the treatment room glows whenever n > 0, and the lamp in the waiting room whenever t > 0. State transitions occur at three events: patient arrival (a), patient departure (d), and patient called by the doctor (c). Sensors located in the three office doors signal these events.
+
+In this case the model is not used to evaluate probabilities of state occupancies, but to plan the states and transitions of an electronic circuit. It is of course possible to interpret the state diagram as in the previous example, where a, b, and c are flow rates between the states.
+
+#### 7.4.4 Aircraft Simulation
+
+Aeronautics engineers use simulations from computational fluid dynamics to model airflows around proposed aircraft. They have become so good at this that they can test new aircraft designs without wind tunnels and space shuttle designs without test flights. The first step is to build a 3-D mesh of the space surrounding the aircraft (see the figure on the following page). The spacing of the grid points is smaller near the fuselage where the changes in air movement are greatest. Then the differential equations of airflow are converted to difference equations on the mesh, and a supercomputer grinds out the profiles of the flow field and forces on each part of the aircraft over time. The numerical results are converted to shaded images (as shown in the figure on the next page) to visualize where the stresses on the aircraft are greatest.
+
+This form of modeling is common in science. A physical process is modeled as differential equations that relate the values of the process at a point in space to the values of the process at close neighbors. The space in which the process is to be studied is modeled with a mesh. The difference equation is used to relate each mesh point value to its immediate neighbors. A graphical display converts the field of values on the grid to a colored picture. The whole mesh can be recomputed for the next time step, giving an animated visualization.
+
+#### 7.4.5 Genetic Algorithms
+
+Since the 1950s, various geneticists experimented with computer simulations of biological evolution, studying how various traits are passed on and how a population evolves to adapt to its circumstances. In 1975 John Holland adapted the idea of these simulations as a general method for finding near optimal solutions to complex problems in many domains. The idea, depicted in the flow diagram in the figure below, is to develop a population of candidate solutions to the problem, encoded as bit-strings. Each bit-string is evaluated by a fitness function and the most-fit members of the population are selected for reproduction by mutation and crossover. A bit-string is modified by mutation when one or several of its bits are randomly flipped. A pair of bit-strings are modified by crossover by selecting a random breakpoint and exchanging the two tails of the strings. This generates a new population. The process is iterated many times until there are no further improvements in the most-fit individuals or until the computational budget is exhausted. This process is surprisingly good at finding near-optimal solutions to optimization problems whose direct solutions would otherwise be intractable.
+
+### 7.5 Grand Challenges and Wicked Problems
+
+Computing has changed dramatically since the time when computational modeling grew up. In the 1980s, the hosting system for grand-challenge models was a supercomputer. Today the hosting system is the cloud — a massively distributed system of data and processing resources around the world. Commercial cloud services allow users to mobilize immense storage and processing power they need just when they need it. In addition, users are no longer constrained to deal with finite computations — those that start, compute, deliver their output, and stop. Instead devices now tap endless flows of data and processing power as needed and users count on the whole thing to keep operating indefinitely. With so much cheap, massive computing power, more people can be computational designers and tackle grand-challenge problems.
+
+Yet there are important limits to what all this computing power can do. One limit is that most computational methods have a sharp focus — they are very good at the particular task for which they were designed, but not for seemingly similar tasks. That limit can often be overcome with a new design that closes a gap in the old design. Facial recognition is an example. A decade ago, methods of detecting and recognizing faces in images were not very good — people had to look at the images themselves. Today, deep learning (neural network) algorithms have been used to design very reliable automated face recognizers, overcoming the earlier gap. These recognizers are trained by showing them a large number of cases of labeled images. But recognizers are「fragile」in the sense that no one knows how the machine will do when presented with inputs outside the training sets. Overcoming fragility has motivated computational scientists to look at machines that learn without training sets. A recent example is a machine that learned to play the board game Go by competing against other machines, eventually becoming good enough to beat the world's highest-ranked Go player in a five-game match.
+
+Self-learning machines have raised another concern: explainability. Designers and users want to know how the machine reached its conclusion. The idea that a machine can reach a conclusion makes sense when algorithms are seen as step-by-step procedures because the result can be explained by examining the steps followed. But when the algorithms are not step-by-step procedures, as with face recognizers and Go, that is not possible. All there is inside is an inscrutable, complex mass of connections. It is really the same problem with fellow humans — how do we explain why we do certain things? If asked directly, we may not know, and it certainly cannot be figured out by dissecting our brains. Other ways are needed to know when machines can be trusted and when not. Machine learning–related computational thinking is still in its infancy.
+
+Another limit to what can be done with computing power concerns the many problems that cannot be solved at all with computation. We gave examples in chapter 3, which are either not computational at all, or so complex that they are forever beyond any computing power we can muster. But complexity is not the only barrier. Another is that some problems are inherently outside of science and technology and cannot be solved by scientific and technological methods. A favorite category is「wicked problems」 — especially issues in the interactions of social communities and technologies. They defy solution when factions have enough power to defeat a proposal they dislike but not enough power to form a consensus. Examples are many: Millions of「clean」cars collectively produce unhealthy smog in dense cities. New information technology fosters the growth of income inequality where designers reap much more bounty than users. STEM education struggles to learn how to prepare students to face great uncertainty about the future of work, societal safety nets, technology, and climate change. The solutions to these problems are not scientific, technical, or computational but will emerge from social cooperation among the groups that now offer competing and conflicting approaches. Although computational thinking can help by visualizing the large-scale effects of individual actions, only social consensus and social action can resolve wicked problems.
+
+Computational thinking is a powerful force within science. It emphasizes the「computational way」of doing science and makes its practitioners into skilled computational designers (and thinkers) in their fields of science. It brings forth new information interpretations in a diversity of disciplines. Computational thinkers in sciences spend much of their time modeling physical processes, designing solution methods for those processes, running simulations, and visualizing the results.
+
+### References and Further Reading
+
+Aho, Al. (2011). Computation and computational thinking.
+
+Akera, Atshushi. (2007). Calculating a Natural World: Scientists, Engineers, and Computers During the Rise of U.S. Cold War Research. MIT Press.
+
+Baltimore, David. (2001). How biology became an information science. In The Invisible Future. Peter Denning, ed., pp. 43–46. McGraw-Hill.
+
+Denning, Peter. (2017). Remaining trouble spots with computational thinking. Communications of the ACM 60 (6) (June): 33–39.
+
+Wilson, Ken. (1989). Grand challenges to computational science. In Future Generation Computer Systems, pp. 33–35. Elsevier.
+
+Wolfram, Stephen. (2002). A New Kind of Science. Wolfram Media.
+
+## 0801. Teaching Computational Thinking for All
+
+My basic idea is that programming is the most powerful medium of developing the sophisticated and rigorous thinking needed for mathematics, for grammar, for physics, for statistics, and all the「hard」subjects. Maybe I would even include philosophy and historical analysis. In short, I believe more than ever that programming should be a key part of the intellectual development of people growing up.
+
+—— Seymour Papert (Papert, 2005)
+
+Through the 1990s, CT education was mostly the purview of universities; very little CT education was available elsewhere. Pre-college K–12 schools had a scattering of computer courses; most focused on computer literacy and a handful on programming. A tipping point came after 2000 when many people saw how pervasive computing was in everyday work and home life. Educators and policymakers began to agree that understanding the mechanisms of digitalization is an important 21st-century skill.
+
+The previously obscure notion of the algorithm entered everyday conversation as people cited value they had received from algorithms on their web searches, income tax preparation, online shopping, spreadsheets, neatly formatted documents, display-ready presentations, and computerized courses, and then later on smartphones, social networks, ride hailing, short-term renting, dating, finding friends, and much more. It seemed that understanding how it all works is central for coping in the modern world. It was finally time to bring computing to the K–12 level of education.
+
+### 8.1 Computing Education
+
+Getting computing education to K–12 schools was a struggle of a whole different order from getting computing education into universities. Numerous pilot projects to introduce computers in schools foundered because few teachers had any experience with computers and there was little political support in school boards. By the 1980s, a sea change began as more parents and teachers acquired home computers and came to see the growing importance of computing in their own work. The「computer literacy」courses introduced at that time were generally disappointing from the CT perspective because they focused on the use of tools like word processors and spreadsheets, not on programming.
+
+Getting computing education to K-12 schools was a struggle of a whole different order from getting computing education into universities. Courses on computer literacy, later fluency, did not take hold. A computational thinking movement started in 2006 that energized educators and school boards to bring computer courses into all K-12 schools.
+
+In the late 1990s, at the same time when the internet started to become a household commodity, a new education movement favoring「fluency with information technology」over literacy gained momentum and was supported by a popular textbook of the same name. It was an attractive notion that fluency with language and practices of computing would be a powerful asset in the emerging digitalized world. Bringing computing education to schools would enable children to become smart users of computing technology and would introduce them to the limitations and risks of algorithmic processes behind emerging functions such as online purchasing, Internet searching, news services, communication, and later social media. Despite its attraction, the fluency movement did not produce a widespread change in computing education in K–12 schools.
+
+Then, in 2006, Jeannette Wing proposed that computational thinking is what everyone wants; not literacy or fluency. [1] She struck a resonant chord. In the next several years at the US National Science Foundation (NSF), she mobilized $48 million in resources and convinced many people to bring computer courses into all K–12 schools. Their major successes included getting education organizations to issue definitions of CT and associated curricula at different grade levels; training teachers in CS principles; starting a new family of CS-principles introductory courses at universities; and developing a new Advanced Placement curriculum and exam to interface high schools to these new introductory courses. CT went mainstream.
+
+But as suggested above, this success was not easy. School boards in K–12 institutions had a long history of reluctance to add a computing curriculum in their schools. The CT movement brought a turn of mind to many school boards. Without that movement, we would not be talking about computational thinking in K–12 education at the scale we do it today. In this chapter, we will interpret the progression of computing education as a series of waves that started with the form of CT available in the 1950s (algorithmizing and mathematical problem solving), moved to Papert's Mindstorms, then to literacy and fluency, and culminated most recently in a modern version of CT designed for children in schools.
+
+1 Wing (2006)
+
+1-2『
+
+这篇计算机思维的论文之前在多个场合看到过，自己 2019 年下载了的「2019016Computational thinking」并存入了 Zotero。YouTube 也有 Wing 的一个视频，结合起来一起看。（2021-05-25）
+
+[Jeannette Wing: Computational Thinking - YouTube](https://www.youtube.com/watch?v=YVEUOHw3Qb8)
+
+视频也下载了「202101Computational-Thinking」存入了/Users/Daglas/Movies/dalong.KnowledgeVideo/2021009youtube。
+
+』
+
+### 8.2 General-Purpose Thinking Tools?
+
+Academic education for automatic computing machinery began in the late 1940s, when computing pioneers started educational programs on numerical methods for computing on large-scale machines. These early efforts went mainstream in the 1950s when the mass production of stored-program computers created a demand for a large number of people who could program them. After the early entry by private companies, university educators started organizing conferences to discuss computing education in the mid-1950s. By 1960, some 150 US universities offered some training in computing. There was, however, no standard view on what people needed to know about computing; individual programs depended on local idiosyncrasies such as specific jobs, needs of businesses, personal agendas of the faculty, research contracts, and other stakeholder interests. [2]
+
+Already in those early days some computing educators described their visions of computing as a thinking tool for learning — a tool to deal with problems and questions in many fields besides computer science. Alan Perlis, who founded the computer science department at Carnegie Mellon University, was an outspoken advocate for this vision. He said that computing would be automating processes in many fields, and people in those fields would be「algorithmizing.」With this term, he referred to mental skills for reasoning about problems and developing computational solutions. George Forsythe cited Perlis in his 1958 address for the Mathematical Association of America:「Whereas we think we know something when we learn it, and are convinced we know it when we can teach it, the fact is that we don't really know it until we can code it for an automatic computer!」A decade later, Forsythe echoed the claim that computing provides general-purpose mental tools that would serve a person for a lifetime. Both Perlis and Forsythe firmly believed that everyone in every field will benefit from learning computing's procedural ways of doing things. They believed that computational models would be useful in all fields.
+
+The visions of computing education grew ever more ambitious about what CT will be able to achieve. Marvin Minsky, a famous pioneer in artificial intelligence, argued, in his 1969 Turing Award speech, that computing would surpass mathematics in importance for early education. [3] Donald Knuth, a pioneer in understanding algorithms, argued that teaching a computer to do something forces precision and leads to deeper understanding than traditional means of thinking. [4] Another pioneer argued that the modern successor to「the classical person」would be「Turing's person.」[5] Two famous computing educators wrote that computing's procedural epistemology is creating a revolution in how people think and express themselves. [6] All this optimism about computing skills transferring to general problem solving turned out to be premature, as we discuss next.
+
+2 Tedre, Simon, and Malmi (2018).
+
+3 Minsky (1970)
+
+4 Knuth (1974).
+
+5 Bolter (1984)
+
+6 Abelson and Sussman (1996)
+
+### 8.3 CT Is Not Easily Transferable
+
+The first wave of bringing CT to K–12 schools focused on programming. In the mid-1960s, some US high schools got DEC PDP-8 minicomputers and enterprising teachers organized courses around them. Numerous initiatives for using computers in schools over the 1960s and 1970s led to a few notable innovations. For example, the Little Man Computer for teaching machine languages and computers to students was introduced in 1965; one of the early programming languages for children, Logo, was introduced in 1967; and the famous concept for Dynabook, a children's portable computer, was born in 1968. Although minicomputers and some microcomputers were common in the late 1970s, educators, lacking financial resources and political will, were unable to transform the pilot courses into a large-scale rollout to schools.
+
+The Logo programming language was a standout among the many initiatives of the 1960s. It was not a stand-alone, general programming language. It was a part of an integrated framework of pedagogical, technological, and educational ideas designed by Seymour Papert based in his deeply grounded understanding of how children learn. His 1980 book Mindstorms, written after a decade of research and experimentation with Logo, was a milestone for computing education and teaching computational thinking. Papert coined the phrase「computational thinking」for the practice of procedural thinking he taught to children. He argued that learning is most effective when learners「construct knowledge」 — they acquire practices from being immersed in a world of practices. They build their knowledge from practicing it rather than being told. The learning theory of constructionism became very popular in education. Papert continued to advocate self-directed learning, project learning, meaningful representations, facilitation-based education, and the use of technology to support learning in the classroom. His ideas influenced the Lego company to design and market the children's programmable bricks called Lego Mindstorms.
+
+Teaching fundamental computational thinking skills, such as programming and computer modeling, is much harder than teaching spreadsheets, word processing, and other application tools of computing. Despite the popularity of constructionism, the central idea of Mindstorms — the shift from「learning to program」to「programming to learn」 — was hard to market among teachers. How could we achieve universal teaching of computational thinking without enough willing teachers? Could we rely on a smaller set of interested teachers to teach everybody?
+
+The hope that a small number of teachers could teach CT to everybody was paired with the transfer hypothesis. The hypothesis is a belief that CT is a metacognitive skill learned from programming; students who learn CT in one domain became better problem-solvers in other domains, too. This belief bolstered the position that teaching computing should be an essential element of K–12 education. The most enthusiastic supporters of the hypothesis made claims such as「the concept of procedure is the secret educators have so long been seeking,」and「the pedagogic value of algorithmic approach aids in the understanding of concepts of all kinds.」They argued that teaching programming improves generic thinking skills such as logical thinking and generally「sharpens the mind.」The transfer hypothesis would indeed be important if it could be validated.
+
+Critics of the transfer hypothesis referred to a research base in developmental cognitive science, arguing that there was no evidence of skill-transfer from programming to other subjects. Research with adults did not support transfer of cognitive skills between domains. Programming itself is a complex network of skills including mathematical abilities, conditional reasoning, analogical reasoning, procedural thinking, temporal reasoning, and memory capacity. It was not clear which parts of this complex transferred or not. After much detailed investigation, education researchers eventually concluded there is not enough evidence to accept the transfer hypothesis. It was not compelling as a justification to teach computing in K–12 schools.
+
+Given that the transfer hypothesis does not work, schools needed more teachers who understood CT and could teach it in different contexts. Few teachers understood computers well enough to do this. Teaching a computer literacy course might be within their reach, but that baby step would not qualify them to teach CT. In the mid-2000s, when the US NSF began supporting the training of more computing teachers, the shortage of qualified teachers began to abate.
+
+### 8.4 From Literacy to Fluency
+
+The early advocates of algorithmic thinking would be appalled at many of the「computer literacy」courses in the 1980s and 1990s, which focused on how to use desktop applications, such as word processors, spreadsheets, and sketchpads. Motivated students and teachers found these courses boring. Literacy with desktop software was a far cry from their aspirations to participate in and shape the computer revolution. The professional societies, including ACM, IEEE-CS, and the British Computer Society, offered to help K–12 educators develop computer courses with more depth, but got little buy-in. In 1999, a US National Research Council commission upped the ante, reframing the question from literacy to fluency. Fluency offered capabilities, concepts, and skills essential for some levels of computational thinking. The NRC initiative was paired with a textbook Fluency with Information Technology that became quite popular among high school teachers.
+
+Many schools brought computing into their curricula for pragmatic reasons as they responded to demands from parents and school boards. They sought access to simulations and other teaching software, access to basic programming, participation in the Internet revolution, learning 21st-century skills, preparation for employment in STEM fields, broadened social participation, and a new means for children to express individual creativity. [7] Educators and parents were disposed toward these goals because they believed that learning programming teaches important skills no other subject does, and because they did not want their children to be at a disadvantage in a world increasingly dependent on skills with information and communication technology.
+
+In the 2000s, the entry of programming and computational design into schools was also easier because of advances in programming methodology and technology and changes in what entry-level programmers needed to know. New languages such as Python were much easier to use and hid well the underlying details of the operating system and hardware. Graphical, drag-and-drop user interfaces were very successful. Powerful tools automated significant parts of the programming process.
+
+With all these advancements in programming languages, tools, and methods, programming was accessible to more students and teachers than ever before. There were more opportunities for becoming fluent in computing. But even so, in 2010 many schools had no computer courses or Advanced Placement curriculum in computing. Gaining fluency was not powerful enough to be a driving force.
+
+7 Guzdial (2015)
+
+### 8.5 Computational Thinking Revived
+
+Jeannette Wing's 2006 essay on computational thinking launched a new wave in the movement to provide computing courses for all students in K–12 schools. The term computational thinking resonated and inspired action where literacy and fluency had not. Wing mobilized significant resources at the NSF to bring a large number of researchers into investigations of CT in education, to train a large number of teachers for teaching CT, to mobilize private organizations to produce K–12 curriculum recommendations for CT, and to develop a new Advanced Placement curriculum and exam on computing principles. Wing's essay became one of the most cited in computing education, a rallying point in a global movement to penetrate CT into K–12 education.
+
+Major organizations including CSTA (Computer Science Teachers Association), the British CAS (Computing at School), Code.org, and the Australian ACARA2 (Australian Curriculum, Assessment, and Reporting Authority) developed and recommended curriculum frameworks for K–12 CT. These organizations promoted coding clubs, coding boot camps, and the international movement called「Hour of Code.」CT became a key word gathering hundreds of thousands of hits in news stories, blog postings, book chapters, articles, research projects, and essays on computing education.
+
+The rapid infusion of so many enthusiastic newcomers who were unfamiliar with the long prior history of CT led to considerable confusion about definitions and learning objectives of CT. Some invented new CT frameworks for K–12 schools from scratch, imperfectly reinventing ideas that had been discussed for decades, omitting important ideas, confusing CT with the use of applications, and incorporating into their dogma some serious misconceptions about computing and algorithms. This resulted in a variety of tensions between different groups that used CT. [8] Here are the some of the most common points of contention, many of which can be explained by differences between CT for beginners and CT for professionals — basic CT in K–12 is surely different from advanced CT in higher education — as well as different contexts of application:
+
+1 Whether CT is limited to thinking about the mechanics of constructing algorithms — or includes thinking about machines, computational science, software engineering, and design.
+
+2 Whether CT is mostly about programming — or also encompasses systems, networks, and architectures; or whether it is not really about any of those.
+
+3 Whether the definition, that CT is the formulation of algorithms to solve problems, is too narrow a view of CT's scope.
+
+4 Whether algorithms are only those that fit the strict definition from the theory of computing — or whether algorithms could also be more loosely defined.
+
+5 Whether algorithms necessarily include an abstract machine in the background.
+
+6 Whether algorithms are primarily directions for controlling machines — or are primarily means of expressing procedures.
+
+7 Whether using computational tools teaches CT.
+
+8 Whether carrying out daily step-by-step procedures is a manifestation of CT.
+
+9 Whether CT is learned from practicing programming — or from well-designed learning activities that use steps and rules.
+
+10 Whether learning CT in the context of computing transfers to problem-solving skills in other fields.
+
+11 Whether CT is domain dependent — or is a meta-skill valid in all domains.
+
+12 Whether computational processes are found in nature — or whether they are limited to algorithms and machines.
+
+13 Whether information processing by computers differs from information processing done by humans — and whether「information processing agents」can include things such as molecules, DNA, or quarks.
+
+14 Whether students' learning should be assessed from their demonstrating skill at designing computations — or from their knowledge of certain key concepts.
+
+15 Whether satisfaction of customers with the job that software does should be part of the assessment of software success.
+
+16 Whether K–12 CT education has to stick with strict definitions of computing — or could for pragmatic and pedagogical reasons take some liberties.
+
+We have expressed our stance on these questions at various points throughout this book. We see CT as an old, rich human practice that has been perfected in the modern age of the electronic computer. We see CT as a mental discipline for thinking about designing computations of all kinds, a skill at the advanced levels honed and improved through extensive practice and experience. We see many different levels and styles of CT from basic computing skills and insights to highly advanced, specialized ones. We see that there are many good ways for teaching entry level CT. We see that ultimately nearly all CT will boil down to machine-realizability. We see CT as mostly domain dependent — for example, how you think about computation in biology is different from physics, chemistry, or humanities. We see as wishful the notion that CT is an innate human ability exercised daily by using computational tools and performing routine everyday procedures. We see the attempt to define algorithms as a set of possibly ambiguous steps resolved by human computers as a misunderstanding of computing.
+
+We would like to point out one other movement to bring computing into K–12 schools. Known as CS Unplugged, [9] it seeks to teach computing concepts and practices through games, magic tricks, and activities. It was founded in the late 1990s by Tim Bell, Michael Fellows, and Ian Whitten. It has gained a worldwide following and influenced the design of the ACM K–12 and code.org curriculum recommendations.
+
+In summary, we see plenty of room for a broad, pluralistic approach to teaching computational thinking while remaining faithful to computing's well-honed disciplinary ways of thinking and practicing. Most of all, we hope that all teachers of computing bring their students a good sense of the richness and beauty of the many dimensions of computation.
+
+8 Denning (2017).
+
+9 See [Computer Science Field Guide](https://csfieldguide.org.nz/en/) and [CS Unplugged](https://csunplugged.org/zh-hans/).
+
+### References and Further Reading
+
+Abelson, Harold, and Gerald J. Sussman. (1996). Structure and Interpretation of Computer Programs. 2nd edition. MIT Press.
+
+Bolter, J. David. (1984). Turing's Man: Western Culture in the Computer Age. University of North Carolina Press.
+
+Denning, Peter. (2017). Remaining trouble spots with computational thinking. Communications of the ACM 60 (6) (June): 33–39.
+
+Guzdial, Mark. (2015). Learner-Centered Design of Computing Education: Research on Computing for Everyone. Synthesis Lectures on Human-Centered Informatics. Morgan & Claypool.
+
+Kestenbaum, David. (2005). The challenges of IDC: What have we learned from our past? Communications of the ACM 48 (1): 35–38. [A conversation with Seymour Papert, Marvin Minsky, Alan Kay]
+
+Knuth, Donald E. (1974). Computer science and its relation to mathematics. American Mathematical Monthly 81 (April): 323–343.
+
+Lockwood, James, and Aidan Mooney. (2017). Computational Thinking in Education: Where Does It Fit? A Systematic Literary Review. Technical report, National University of Ireland Maynooth.
+
+Minsky, Marvin. (1970). Form and content in computer science. Journal of the ACM 17 (2): 197–215.
+
+Tedre, Matti, Simon, and Lauri Malmi. (2018). Changing aims of computing education: a historical survey. Computer Science Education, June.
+
+Wing, Jeanette M. (2006). Computational thinking. Communications of the ACM 49 (3): 33–35.
+
+## 0901. Future Computation
+
+Technology is part of our civilization. Sometimes people talk about conflict between humans and machines, and you can see that in a lot of science fiction. But the machines we're creating are not some invasion from Mars. We create these tools to expand our own reach.
+
+—— Ray Kurzweil (2013)
+
+Computational thinking is an ongoing quest to capture computing's ways of thinking and practicing. It is in never-ending flux, constantly renewing itself. Although many of the central CT precepts are very old, evolution of computing practice and technological state-of-the-art have affected how we see CT and what is central to CT. For instance, ever-evolving software development suites, new languages, and cloud services are shifting computational design tasks away from lower-level programming operations toward higher and higher levels of abstraction — thereby making computing jobs more design-intensive. Traditional programming is losing its role as the primary interface to computations; instead, domain-specific and intelligent tools are enabling more and more users to harness the potential of computers without programming them. CT expands well beyond programming and software development.
+
+We will discuss some of the forces that are shaping our world and their likely effects on how we see computing and think about it. We will also discuss some important questions that CT cannot help us with. CT has its limits.
+
+### 9.1 New Computational Models
+
+One of the most obvious reasons why CT is changing is that computing technologies are changing. Throughout the long reign of Moore's law for silicon chips, the basic architecture of chips in computers and mobile devices has remained true to the von Neumann design from 1945 — separate memory and processing units, with a processor stepping through instructions stored in memory. The notion of「computational steps」in the modern definitions of CT comes from this design as well as from Alan Turing's definitions of computing.
+
+But Moore's law cannot be sustained because of the physics of silicon and the nature of the chip-making process. [1] For this reason, researchers have been searching for new technologies that might supersede silicon-based von Neumann architectures and continue the exponential growth rate of information processing speed. Quantum computers, neural networks, reversible computers, DNA computers, memristor computers, and a few others are prime candidates. Each technology defines a new computational model that is the target for designers.
+
+Consider, for instance, the D-wave, a commercial quantum computer. [2] It is designed to solve a set of equations, well known in physics as the Ising Model, which describe how certain systems settle into minimum energy states. Programming a D-wave computer means to encode the problem as a set of Ising equations and to input the coefficients into the machine; execution means to let the machine settle into a minimum energy state corresponding to the solution of the equations (a few microseconds); readout consists of reading the qubits (quantum bits) of the machine and interpreting them as the answer. There is no concept here of an「instruction set」or of programming as「designing a sequence of steps.」Most computer scientists, on being shown how to set up the D-wave machine for the first time, experience a mind tilt — the process is nothing like the programming process they have known all their professional lives. [3] Trained physicists have much less trouble understanding the machine. The current working definition of CT — formulating a problem so that it can be solved as a series of computational steps — fails to describe the computational thinking this machine involves.
+
+DNA computing is another technology being investigated. In 1994 researchers performed an experiment in which they encoded possible paths in a map into strands of DNA, and then used the chemical methods of the day to evolve the initial mixture into one where the majority of strands represented the shortest tour of the map. [4] Considerable progress has been made with this technology. In 2016, another research team used the modern CRISPR gene editing technique to insert an image into the DNA of a bacterium. Computer scientists trained to think in terms of computational steps have more trouble than molecular biologists understanding how DNA computing works.
+
+These examples illustrate CT has expanded beyond the idea of problem solving with computational steps. Our broader definition — designing computations that get computers to do jobs for us, as well as explaining and interpreting the world as a complex of information processes — is closer to the mark.
+
+1 Denning and Lewis (2017).
+
+2 McGeoch (2014).
+
+3 See Walter Tichy's interview with Catherine McGeoch, Ubiquity July 2017, for a worked example of an Ising equation and its encoding into a form for the D-wave machine to solve, https://ubiquity.acm.org/article.cfm?id=3084688.
+
+4 Adleman (1994).
+
+### 9.2 Design
+
+The ongoing increase in the importance of design is another reason CT is changing. Computational thinking is no longer confined to developing programs and algorithms to solve computational problems. Only a small portion of apps development, for example, is concerned with algorithms; the bulk of the work focuses on design of systems to deal with the concerns of a community. Design in this sense is an ongoing interaction between designers and users, watching their reactions to prototype software, evaluating what works and what does not work, and adapting the software accordingly. This is a much broader view of design than the「blueprint,」the「plan,」or the「setup of an experiment」views of early programming and software engineering communities. It is a skill set that combines sensibilities to moods and histories in communities with deep knowledge of existing technologies and other useful components. Design requires understanding humans in their communities as much as it requires understanding technology.
+
+One effect of new designs in computing has been the automation of many cognitive tasks that as recently as a decade ago were considered out of reach of computing machinery. This kind of automation is displacing workers and has caused great concern that many current jobs could be automated, putting many people out of work. The flip side of the coin, however, is that the new technologies breed new problems that require new designs — creating new jobs for designers.
+
+Computational design is now a skill that you can have in any field besides your primary disciplinary skills. You do not have to be a computer scientist to be a computational designer. Computational design captures the spirit of today's computing revolution better than computational thinking does. Past technology revolutions showed us that the new technologies ultimately created more jobs than they displaced. The current computing revolutions in machine learning and app development are producing new jobs for designers while rendering obsolete some existing jobs by automating them. To help smooth the transitions, governments should help more with training and education programs so that displaced workers can learn the design skills of the new jobs.
+
+The new emphasis on design is rejuvenating the engineering aspect of computing, which is much more sensitive to design than the science side is. The engineering side brings to computational thinking concerns about reliability, fault tolerance, architecture, and systems that are sidelined in the theory- and algorithm-oriented definitions of CT. What is more, it brings to CT human concerns, such as recognizing the social worlds that are embracing computing, adopting a design into a community's practice, recognizing ethical issues brought forth by technology side effects, and providing means that human judgment and care influence the actions of machines.
+
+### 9.3 Machine Learning
+
+Neural networks, first articulated in the 1940s as possible models for electronic computers, have become the main technology behind artificial intelligence (AI) and data analytics today. The neural network was a mathematical model in which a neuron「fired」when the combination of signals from other neurons exceeded its built-in threshold; the「fired」neuron entered an excited state that was then communicated to other neurons. The motivation for imitating the brain was that automatic computers might do human tasks better when built of similar components. Of course, a circuit of these neuron models is nothing like a real brain. The logic circuits of the first computers ran much faster than neural circuits. Today the situation is different: we now know how to use cheap graphics cards to speed up neural network calculations. IBM and Intel now market chips that are even faster; they recognize that a new way of thinking is needed to put their chips to best use and they offer courses in the operation and use of their chips.
+
+Early neural networks were small and easily confused when presented with new inputs not in their training sets. Modern neural networks consist of many layers, have much higher capacity, and are less easily confused. Thanks to graphics processing chips, trained neural networks of many layers respond to inputs almost instantaneously. Since layers, nodes, and connection weights do not change after the network is trained, performance does not depend on the data input. As neural network implementations typically do not have loops, they run in a constant time with constant memory spaces. That means that neural networks can be used in real-time applications with deadlines much more reliably than traditional programs.
+
+A big attraction of neural networks is that they are「trained」rather than「programmed.」For example, we do not have very reliable algorithms for face recognition, but neural networks can be trained to recognize given faces quite reliably. These networks are often called「self-programmed」because no programmer specifies the internal weights — although the weight-adjusting algorithm used in training can be viewed as an automatic programmer. For many problems, it is much easier to find or create suitable training data than to write a rule-based program. As mentioned in previous chapters, a big issue with neural networks is that there is no way to「explain」how the network generated an output, as is possible with traditional programs. Knowing the reasons behind a conclusion is important in many application areas such as medical diagnosis; neural networks confound that. CT has already had to adjust to include the tools used to build and train neural networks. Bigger challenges lie ahead with assessing the reliability and security of neural networks.
+
+Another big attraction is that neural networks can be trained by having them interact with other neural networks instead of given data sets. The network for AlphaGo, which beat the world champion Go player in 2017, was trained by having it play against another AlphaGo network; it learned Go from play rather than from training on a large set of recorded Go games. This way of training networks by letting them learn from each other has the potential to be game changing.
+
+### 9.4 Human-Computer Teaming
+
+Garry Kasparov, the world champion chess grandmaster, was defeated in 1997 by IBM's Deep Blue computer. That game marks a milestone in chess because it was the first time a computer program beat a grandmaster. Kasparov had played several previous matches against lesser computers, winning them all.
+
+Kasparov did not declare the game of chess dead. Instead, he invented a new kind of chess, Advanced Chess. In Advanced Chess, the two players of a match are each assisted by a computer. Before committing to the next move, the human player consults the computer program to gain insights into the possible effects of moves. The computer-assisted chess players played better chess than when they played without computers, but also better chess than computers alone played.
+
+The notion that a human-computer team can always perform better than a very good machine is controversial. There are reports of recent Advanced Chess tournaments in which teams did poorly compared to matches between computers without humans. In medicine, diagnosticians teamed with computers do not always perform as well as the very best diagnostic computer.
+
+Still, human-computer teaming has attracted a lot of attention in artificial intelligence research because it is capable of performing computations that no human or computer could do alone. An early example of this was the labeling of digital images with searchable keywords. Doing it by hand was far too slow to be useful for labeling images online. In 2006, Luis von Ahn of Carnegie Mellon University invented an online game where thousands of pairs of humans labeled the images presented to them; if their keywords matched, their labeled image went into the searchable database. The「labeling function」implemented by these human-computer teams had been thought to be non-computable. The human computer teams were more powerful than computers.
+
+Human-computer teaming requires a different kind of computational thinking than traditional computer programming. We watch with great interest how the controversy over whether teams can outperform machines plays out in the future.
+
+### 9.5 Technology Jumping
+
+In 2006 Ray Kurzweil, a futurist and inventor of computing technologies, prophesied that by 2030 we will be able to build a computer the size of the brain, with the same number of neurons and connections as the brain. [5] Such a computer would, he envisioned, develop its own consciousness and superintelligence. How such computers would treat humanity is an unanswerable question. The best that can be said is that the new machines would have such different concerns from ours that we cannot fathom how they would treat us. That moment of their creation is called the singularity because of the utter unpredictability of what lies after an artificial intelligence develops consciousness.
+
+Kurzweil arrived at his conclusion by extrapolating Moore's law, the prediction of Gordon Moore in 1965 that silicon chips would double in capacity about every two years for the same price. The computer chip industry has followed the law by doubling power every two years for over half a century. In many ways Moore's law is a triumph of computational thinking because chip engineers needed to think hard to find ever better ways to build computing circuits.
+
+Kurzweil exploited the phenomenon of technology jumping in his analysis. Since the beginning of the information age in the early 1900s, he argued, the same doubling effect was observed in the technologies of the day, for example punched card machines or vacuum tube machines. When one technology could no longer produce the two-year doubling, another took over. Moore's law for silicon is actually the fifth wave of technologies displaying two-year doubling. Kurzweil has confidently predicted that more technology jumps will occur and sustain the trend, allowing him to predict the processing power available by 2030 and beyond, and arrive at the singularity.
+
+Technology jumping is a standard practice of the computing industry. The adoption of a particular technology versus time almost always follows an S-curve with exponential growth until an inflection point, after which the growth slows down as the market saturates. Business leaders are sensitive to inflection points because a competitor with a better, exponentially growing technology can upend their businesses when their own growth slows. They try to anticipate inflection points by developing new technology in their research labs and jumping to it when their business reaches the inflection point. They can then ride the new technology wave during its exponential growth stage.
+
+Although the singularity is a product of computing and computational thinking, it cannot be addressed with computational thinking, and we cannot improve our understanding of it through computational thinking.
+
+5 Kurzweil (2006).
+
+### 9.6 The Whole World Is a Computer Hypothesis
+
+Some scientists have argued that information is the basis of all physics. Every particle and every interaction is the product of information flows and exchanges at a more fundamental level than the smallest particles known. In 2002, Stephen Wolfram, a physicist and inventor of the Mathematica program — a triumph of computational thinking in itself — published a big book in support of this claim. [6] In 2003, Nick Bostrom, a philosopher, argued for a possibility that we are characters in a simulation run by a much more intelligent species studying their ancestors. While other physicists see some merit in the claim that all particles and interactions can be explained with quantum mechanical probability waves, which are forms of information, they regard the idea that our world is a digital simulation as far-fetched. [7]
+
+The whole-world-is-computer hypothesis appeals to those who believe that computational thinking and computing are pervasive without limits.
+
+6 Wolfram (2002).
+
+7 In April 2016, Scientific American magazine reported on a symposium of physicists and philosophers discussing the whole-world-is-computer hypothesis, giving the impression that they take more delight in entertaining themselves with the hypothesis than in the hypothesis itself. See [Are We Living in a Computer Simulation? - Scientific American](https://www.scientificamerican.com/article/are-we-living-in-a-computer-simulation/).
+
+### 9.7 Ideological Fights over What Should Be Taught
+
+There is a never-ending debate on what should be taught in a computing curriculum. There are two hot spots in the debate. One concerns the selection of programming language and programming framework that students should be introduced to. Should it be a language that is easy to learn and has the least-confusing structure and syntax, such as Python? Or should it be a language that is used by their future employers in industry, such as Java or Javascript? What are the benefits of starting with a framework that treats programs as sources of instructions for a machine (known as an「imperative」framework) compared to one treating programs as compositions of functions (known as a「functional」framework)? These debates have been a staple of computing faculty meetings since the 1960s and are not likely to abate in the years ahead.
+
+The other hot spot is the tension between the ideals of science-mathematics and of engineering-design. The science-mathematics ideal teaches abstractions of things in the world and leaves it to the student to apply the abstraction to the case at hand. The engineering-design ideal focuses on all the details that a builder has to get right for the resulting program to be safe and reliable. The science-math view has had the upper hand for many years, but with the rise of design, the engineering view is gaining new currency. In reality, both traditions are important for the success of computing: the science and engineering sides need each other.
+
+### 9.8 Reflection on the Emerging World
+
+We write this book at the 50th anniversary of the first recommendations for developing a computing curriculum made by the ACM (Association for Computing Machinery), a society of computing professionals that we both belong to. That curriculum and its subsequent specifications were shaped by many factors noted in the previous chapters:
+
+1 Strong emphasis on technology development from the beginning.
+
+2 Wide resistance to forming computing departments from other academic departments that did not accept computing as a legitimate field.
+
+3 Developing a computing community network at the dawn of the internet era.
+
+4 Being torn by intense debates over the roles of science, math, and engineering in computing, manifested as struggles over how to teach software engineering and information technology, and how much to trust formal methods for software development.
+
+5 Coming to grips with the emergence of computational science and now the penetration of computing into nearly every field of human endeavor.
+
+6 The deaths and resurrections of artificial intelligence and its claims about automation and the future of humanity.
+
+This battle-hardened inheritance does not help us with many of the pressing issues of the world emerging around us. The worldwide connectivity we helped bring about through the Internet has brought many benefits from shrinking the world and globalizing trade. But it has also spawned conflicts between non-state organizations and traditional nations, trade wars, protectionism, terrorism, widespread detachment, fake news, misinformation and disinformation, political polarization, and considerable unease and uncertainty about how to move in the world. Access to troves of information via the Internet has begun to show us that knowledge does not confer wisdom, and we long for wise leaders who have yet to appear. The promise of respectful information society enabled by the Internet has turned into polarized society enabled by social media. The world we encounter in our daily lives is full of surprises, unexpected events, and contingencies that not even our best learning machines and data analytics can help us with. We are now finding that many resources including sea and air access are contested among nations; we lack means to resolve the resulting disputes and we worry that the resulting conflicts could trigger wars or economic collapses. We see that collective human action affects the global environment but have yet to find ways to protect our environment we will bequeath to our children and grandchildren.
+
+This leaves us with a big question: how shall we shape computing education so that our graduates can develop the design sensibilities, wisdom, and caring they will need to navigate in this world, of which they will be citizens? Our current curriculum, chock full of courses covering the 2013 body of knowledge, is not up to this task.
+
+A place to start would be to open up space in our crowded curriculum to have conversations on big questions about the consequences of computing throughout the world. These conversations need to be interdisciplinary and intergenerational. Their purpose would not be to solve problems but think together — to edify — to develop mutual understanding, appreciation, and respect around these issues. Some examples of big questions ripe for edifying conversations attending computational thinking are:
+
+Our battle-hardened notions of computational thinking do not help with many of the pressing issues of the world emerging around us. Access to troves of information via the Internet has begun to show us that knowledge does not confer wisdom.
+
+1 What cannot be automated? What should be automated? How far can automation take us? Who gets to decide what is automated and what is not?
+
+2 How can AI generate more jobs through automation than it displaces?
+
+3 How can we help people whose jobs are displaced by software and hardware we have designed?
+
+4 How do we cultivate good designers?
+
+5 How can we increase trust on decisions by neural networks when given inputs outside their training sets?
+
+6 How will we discourage the development of an automated surveillance society?
+
+7 What technological solutions can be found to the cybersecurity problem?
+
+8 How do we make our world work when computers have been embedded into almost all devices connected to the global network?
+
+9 How does digital technology affect global politics, nationalism, balance of trade, climate change, and other issues of globalization?
+
+10 In what ways will blockchains and cryptocurrencies affect our problems with trust in central authorities? Are they too expensive to maintain?
+
+11 How do we protect societies that are deeply dependent on computing from an attack on a critical component of infrastructure, like the electric grid or the Internet?
+
+12 How do we prepare people to appreciate the difference between wisdom and abundance of information?
+
+13 What are the social implications of brain-computer interfaces and neural implants into our brains and bodies?
+
+14 What economic avalanches are possible because multiple, interdependent technologies are dropping in cost exponentially?
+
+We do not believe any of us has answers to any of these questions. But we need to be having the conversations about them. In so doing we need to embrace the mathematicians, scientists, sociologists, philosophers, anthropologists, lawyers, engineers, and everyone else in our field. It is time for us to think together about the design and impacts of our technology and so shape our future with wisdom and understanding. It is time to give up the old tensions that we inherited from times long past, and work together as brothers and sisters, mothers and fathers, old and young on these big questions.
+
+### References and Further Reading
+
+Adleman, Leonard M. (1994). Molecular computation of solutions to combinatorial problems. Science 266 (5187): 1021–1024.
+
+Brynjolfsson, E., and McAfee, A. (2014). The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies. W. W. Norton & Company.
+
+Denning, Peter. J., and Ted G. Lewis. (2017). Exponential laws of computing growth. Communications of ACM 60 (1) (January): 54–65.
+
+Friedman, Thomas. (2016). Thank You for Being Late. Farrar, Straus and Giroux.
+
+Kelly, Kevin. (2017). The Inevitable: Understanding the 12 Technological Forces That Will Shape Our Future. Penguin Books.
+
+Kurzweil, Ray. (2006). The Singularity Is Near. Penguin Books.
+
+McGeoch, Catherine. (2014). Adiabatic Quantum Computation and Quantum Annealing. Synthesis Series on Quantum Computing. Morgan & Claypool.
+
+Wolfram, Stephen. (2002). A New Kind of Science. Wolfram Media.
