@@ -262,13 +262,9 @@ The sciences do not try to explain, they hardly even try to interpret, they main
 
 —— John von Neumann (1955)
 
-### 0501. 行动卡 ——
+### 0501. 数据信息卡 ——
 
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 数据信息卡 ——
-
-### 0701. 任意卡 —— 大型软件开发的 2 个洞见
+### 0601. 任意卡 —— 大型软件开发的 2 个洞见
 
 信息源自「2020136Computational-Thinking0501.md」
 
@@ -276,7 +272,7 @@ Fred Brooks was the manager of a team of 300 programmers who built the IBM 360 o
 
 2『人月神话那本书里，Brooks 对大型软件开发的 2 个洞见，做一张任意卡片。（2021-05-25）』—— 已完成
 
-### 0702. 任意卡 —— 科学家里的三类角色
+### 0602. 任意卡 —— 科学家里的三类角色
 
 信息源自「2020136Computational-Thinking0701.md」
 
