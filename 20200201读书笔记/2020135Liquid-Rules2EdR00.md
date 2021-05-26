@@ -6,11 +6,39 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡 ——
+### 0201. 术语卡 —— 闪点
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+信息源自「2020135Liquid-Rules0101.md」
 
-### 0202. 术语卡 ——
+In the meantime, oil lamps evolved. The design of a ninth- century oil lamp looks simple, but it is remarkably sophisticated. Think about a bowl of olive oil. If you simply try to light it, you'll find it's quite difficult. It's hard because olive oil has a very high flashpoint — the temperature at which a flammable liquid will spontaneously react with the oxygen in the air and burst into flames. For olive oil this is 600ºF. That's why cooking with olive oil is so safe. If you spill it in your kitchen, it's not going to ignite. Also, to fry most foods you need to get to a temperature of only around 400ºF, which is still about two hundred degrees below olive oil's flashpoint, so it's easy to cook without the oil burning.
+
+与此同时，油灯也在进化。9 世纪的油灯设计看起来很简单，却出人意料地精巧。如果这是一碗橄榄油呢？如果你想将它点燃，就会发现这十分困难。之所以不易，是因为橄榄油具有非常高的闪点。闪点，是指可燃液体与空气中的氧气自发反应并形成火焰的最低温度。橄榄油的闪点是 315℃，所以使用橄榄油烹饪非常安全。如果你将它溅到了厨房里，它不会立即被点燃。而且，煎炸大多数食物时，你只需要将温度加热到 200℃左右，这仍然比橄榄油的闪点低了 100 多摄氏度。因此，用橄榄油烹饪菜肴很轻松，不会出现油滴爆燃的情况。
+
+1-2『天天跟闪点交道，这里米奥多尼克对闪点的解释通俗易懂。做一张术语卡片。（2021-05-26）』—— 已完成
+
+### 0202. 术语卡 —— 芯吸效应
+
+信息源自「2020135Liquid-Rules0101.md」
+
+But at 600ºF, your pot of olive oil will burst into flames and, in doing so, will create a lot of light. Not only is this incredibly dangerous, but the flames will be short-lived; they'll consume all the fuel very quickly. Surely, you must be thinking, there's a better way to burn olive oil for light. And as it turns out, there is. You don't have to heat up the full pot of oil. If you take a piece of string, submerge it in the oil, leaving the top poking above the surface, and then light it, a bright flame is created at the tip of the string. It is not the string that creates the flame; it is the oil emerging from it. This is ingenious, but it gets better. If you continue to let it burn, the flame doesn't travel down into the oil — instead, the oil climbs up the string, igniting only when it gets to the top. This system can maintain the flame for hours; indeed, for as long as there is oil in the bowl. It's a process called wicking and seems miraculous — the oil is able to defy gravity and move autonomously — but it's a basic principle of liquids and it's possible because they possess something called surface tension.
+
+What gives liquids their ability to flow is their structure — they are an intermediate state between the chaos of gas and the static prison (for molecules) of solids. In gases, molecules have enough heat energy to break away from one another and move autonomously. This makes gases dynamic — they expand to fill the available space — but they have almost no structure. In solids the force of attraction between the atoms and molecules is much greater than the heat energy they possess, causing them to bond together. Thus, solids have a lot of structure but their atoms have little autonomy — when you pick up a bowl, all the atoms of that bowl come together as one object. Liquids are an intermediate state between the two. The atoms have enough heat energy to break some of the bonds with their neighbors but not enough to break all of them and become a gas. So they are stuck in the liquid but able to move around within it. This is what a liquid is — a form of matter in which molecules swim around, making and breaking connections with one another.
+
+Molecules at the surface of a liquid and those inside it experience different environments. Molecules at the surface are not completely surrounded by other molecules, so they undergo less bonding on average than those in the middle of the liquid. This imbalance of forces between the surface and the interior of the liquid creates a force of tension — called surface tension. The force is tiny, but it's still big enough to oppose the force of gravity on small things: this is why some insects are able to walk on the surface of ponds.
+
+A pond skater insect walking on water.
+
+Look carefully at the pond skater insect as it「walks」on water, and you'll see that its legs are repelled by the water — this happens because the surface tension between the water and the insect's legs generates a repulsive force that acts against gravity. Some liquid-solid interactions do the opposite and create a molecular force of attraction. This is true of water and glass. Take a glass of water and you will see that the edges of the water are pulled up where they meet the glass. We call this the meniscus, and it too is a surface-tension effect.
+
+不过，被加热到 315℃时，你的橄榄油锅会突然变成火焰，并发出大量的光。这个过程不仅异常危险，火焰也昙花一现，飞快地消耗掉所有燃料。你一定在想，是否还有比点燃橄榄油更好的照明方法，当然有。如果你将一根棉线浸入油中，只露出一截线头儿，然后将其点燃，棉线的顶端就会产生一抹明亮的火焰，这样就不需要点燃整个锅里的油了。生成火焰的不是棉线，而是从棉线中渗出的油。这个办法十分巧妙，但还能进一步改进。如果你想让它继续燃烧，火焰不会向下烧到油中，油反而会顺着棉线向上爬，只有在它到达顶部时才会被点燃。这可以让火焰燃烧数小时之久，实际上，只要碗里有油，火就不会灭。油能无视重力的存在而自由移动，这一过程叫作芯吸效应。看起来似乎有些不可思议，但这是液体的基本性质，因为它拥有一种叫作表面张力的特性。
+
+1-2『哇塞，长见识了，「油能无视重力的存在而自由移动」，这里的芯吸效应做一张术语卡片。（2021-05-26）』—— 已完成
+
+液体具有流动特性，因为它的结构处于混沌的气态与「监狱般」的固态（对分子而言）之间，是一种过渡状态。在气体中，分子具有足够多的热能，可以互相挣脱并自主运动。这就使气体具有动态性，它们可以膨胀，直到填满所有可用的空间，但它们几乎没有结构。在固体中，原子和分子间的吸引力比它们拥有的热能更强，这使它们紧密地结合在一起。因此，固体具有很多结构，却几乎没有自主性。当你拿起一只碗的时候，碗上的所有原子都一起运动，形成一个整体。液体是两者的中间状态，原子具有的热能足以打破它们与相邻原子的一部分结合力，却又不足以打破与所有原子的联系而变为气体。因此，它们只能被困于液体中，却又能在其中四处移动。这便是液体的本质 —— 一种物质形态，分子可以自由徜徉，与其他分子不断地建立或切断联系。
+
+液体表面的分子所处的环境与液体内部的那些分子不同。它们并没有完全被其他分子包围，所受到的平均作用力要低于液体内部的分子。表面分子与内部分子受力不平衡，形成了一股张力，我把它称为「表面张力」。这股力非常小，却又大到足以抵抗施加在小型物体上的重力，这也是一些昆虫能在池塘水面上行走的原因。
+
+仔细看一下水黾在水面上行走的过程，你会发现它的腿是被水抵开的。之所以会这样，是因为水和虫腿之间的表面张力产生了排斥力，并抵消了重力。而一些固液界面的作用力正好相反，形成的是分子间的引力，水和玻璃就是如此。观察玻璃杯中的水，你会发现水接触玻璃杯的边缘部分像是被拽了上去，我们称之为「弯月面」，这也是一种表面张力效应。
 
 ### 0203. 术语卡 ——
 
@@ -22,13 +50,15 @@
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡 ——
+### 0501. 数据信息卡 —— 橄榄油作为地中海文明的「特产」之一
 
-行动卡是能够指导自己的行动的卡。
+信息源自「2020135Liquid-Rules0101.md」
 
-### 0601. 数据信息卡 ——
+9 世纪时，橄榄油是作为波斯油灯燃料的不二选择。在这一地区，橄榄树生长得十分茂盛，不仅耐干旱，还出产大量橄榄果，橄榄果被压榨后便可得到橄榄油。大约 20 颗橄榄果就可以榨出一汤勺的橄榄油，这足以供一盏油灯照明 1 个小时。如果一个家庭每晚需要照明 5 个小时，那么一天就要用掉 100 颗橄榄果，一年就要用掉 3.6 万颗橄榄果，这还只是供一盏灯。波斯人为了让他们的帝国出产足够多的油用于照明，就需要大量的土地和时间，因为橄榄树通常在种下的前 20 年里不会产果。波斯人还要保护他们的土地，以防被那些觊觎这一宝贵资源的人夺走，所以他们要管理城镇，而这就意味着需要更多的橄榄树，以便所有人都能烹饪和照明。为了供给一支军队，他们需要为之缴税，而在波斯，缴税就是向政府上缴一部分橄榄果。因此你会发现，橄榄油是波斯的社会与文化核心，所有中东文明都是如此，直到他们发现新能源和税收替代物。拉齐的实验证明，这种新能源就在他们的脚下，但它还要继续待上 1000 年。
 
-### 0701. 任意卡 ——
+1-2『之前在其他地方听说过，橄榄油作为地中海文明的「特产」之一，这里算是知道缘由了。做一张信息数据卡片。（2021-05-26）』—— 已完成
+
+### 0601. 任意卡 ——
 
 ## 汇总
 
@@ -160,7 +190,43 @@
 
 眼泪分成三种，分别是基础性泪水、反射性泪水和心理性泪水，前两种都是日常生活中随时分泌的，一般不会流出眼眶。而心理性泪水常常伴随着悲伤或者喜悦的情感，这才是我们常说的眼泪，它的成分也和其他两种泪水不一样，里面含有应激激素，科学家们猜测，这些激素和人渴望沟通的心理状态有关。还有研究发现，当男人看到女人哭的时候，体内的激素水平也会发生波动。正因为人类拥有这种共情能力，所以我们在看到别人流泪的时候，不仅不会觉得恶心，还会感到同情或者感动。或许，这就是液体能给我们带来的最复杂、最深情的感觉。
 
-## 序言
+## Introduction
+
+PEANUT BUTTER, HONEY, PESTO sauce, toothpaste, and, most painfully, a bottle of single-malt whiskey — these are just some of the liquids I've had confiscated at airport security. I inevitably lose the plot in such situations. I say things like「I want to see your supervisor」or「Peanut butter is not a liquid,」even though I know it is. Peanut butter flows and assumes the shape of its container — that is what liquids do — and so peanut butter is one. Even so, it just infuriates me that in a world full of「smart」technology, airport security still can't tell the difference between a liquid spread and a liquid explosive.
+
+Although bringing more than 3.4 ounces of liquid through security has been banned since 2006, our detection technology has not improved much in that time. X-ray machines can see through your luggage to detect objects. In particular they alert security to suspicious shapes: distinguishing guns from hairdryers, and knives from pens. But liquids don't have a shape. They just take the form of whatever is containing them. Airport scanning technology can also detect density and a range of chemical elements. But here again they run into problems. The molecular makeup of the explosive nitroglycerin, for instance, is similar to peanut butter's. They're both made from carbon, hydrogen, nitrogen, and oxygen — and yet one is a liquid explosive while the other is just, well, delicious. There are an enormous number of dangerous toxins, poisons, bleaches, and pathogens that are incredibly difficult to distinguish from more innocent liquids in a quick and reliable manner. And it is this line of argument, which I've heard from many security guards (and their supervisors), that usually persuades me to agree — begrudgingly — that my peanut butter, or one of the other liquids I seem to regularly forget to take out of my carry-on luggage, is a significant risk.
+
+Liquids are the alter ego of dependable solid stuff. Whereas solid materials are humanity's faithful friend, taking on the permanent shapes of clothes, shoes, phones, cars, and indeed airports, liquids are fluid; they will take on any shape, but only while contained. When they're not contained, they are always on the move, seeping, corroding, dripping, and escaping our control. If you put a solid material somewhere, it stays there — barring forcible removal — often doing something very useful, like holding up a building or supplying electricity for a whole community. Liquids, on the other hand, are anarchic: they have a knack for destroying things. In a bathroom, for instance, it is a constant battle to keep water from seeping into cracks and pooling under the floor, where it gets up to no good, rotting and undermining the wooden joists; on a smooth tile floor, water is the perfect slip hazard, causing an enormous number of injuries; and when it gathers in the corners of the bathroom, it can harbor black slimy fungus and bacteria, which threaten to infiltrate our bodies and make us sick. And yet, despite all this treachery, we love the stuff; we love bathing in water, and showering in it, drenching the whole body. And what bathroom is complete without a cornucopia of bottled liquid soaps, shampoos, and conditioners, jars of cream, and tubes of toothpaste? We delight in these miraculous liquids and yet we worry about them too: Are they bad for us? Do they cause cancer? Do they ruin the environment? With liquids, delight and suspicion go hand in hand. They are duplicitous by nature, neither a gas nor a solid but something in between, something inscrutable and mysterious.
+
+Take mercury, for instance, which has delighted and poisoned humanity for thousands of years. As a child I used to play with liquid mercury, flicking it around on tabletops, fascinated by its oth erworldliness, until I was made aware of its toxicity. But in many ancient cultures mercury was thought to prolong life, heal fractures, and maintain good health. It's not clear why it was held in such regard — perhaps because it is special in being the only pure metal that is liquid at room temperature. The first emperor of China, Qin Shi Huang, took mercury pills for his health but died at thirty-nine, probably as a result. Even so, he was buried in a tomb full of rivers of flowing mercury. The ancient Greeks used mercury in ointments, and alchemists believed that a combination of mercury and another elemental substance, sulfur, formed the basis of all metals — a perfect balance between mercury and sulfur creating gold. This was the origin of the erroneous belief that different metals could be transmuted into gold if mixed in the right proportions. While that proved to be the stuff of legend, gold does dissolve in mercury. If you heat up that liquid once it has absorbed the metal, it will evaporate, leaving behind a solid lump of gold. For most ancient people, that process was indistinguishable from magic.
+
+Mercury isn't the only liquid that can consume another substance and contain it within itself. Add salt to water and it will soon disappear — the salt is somewhere, but where has it gone? Yet if you do the same with oil, the salt just sits there. Why? Liquid mercury may absorb solid gold, but it rejects water. Why is that? Water absorbs gases, including oxygen, and if it didn't, we would live in a very different world — it is the oxygen dissolved in water that allows fish to breathe. And although water can't carry enough oxygen for humans to breathe, other liquids can. There's a type of oil — perfluorocarbon liquid — that is very unreactive chemically and electrically. It is so inert that you can put your cellphone in a beaker of perfluorocarbon liquid and it will continue to operate normally. Perfluorocarbon liquid can also absorb oxygen in such high concentrations that it is breathable by humans. This sort of liquid breathing — breathing liquid instead of air — has many possible uses, the most important of which is to treat premature babies suffering from respiratory-distress syndrome.
+
+Still, it is liquid water that has the ultimate life-giving property. This is because it can dissolve not just oxygen, but many other chemicals too, including carbon-based molecules, and so provides the aqueous environment required for the emergence of life — for new organisms to spontaneously come into existence. Or at least that is the theory. And it is why, when scientists look for life on other planets, they look for liquid water. But liquid water is rare in the universe. It's possible that Europa, one of the moons of Jupiter, might have oceans of liquid water below its icy crust. There might also be liquid water on Enceladus, one of the moons of Saturn. But Earth is the only body in the solar system where a lot of water is readily available on the surface.
+
+A peculiar set of circumstances on our planet has made possible the surface temperatures and pressures that can sustain liquid water. In particular, if it weren't for Earth's molten-metal liquid core, which creates the magnetic field that protects us from the solar wind, all our water would most likely have disappeared billions of years ago. In short, on our planet, liquid begat liquid, and that led to life.
+
+But liquids are destructive too. Foams feel soft because they are easily compressed; if you jump on to a foam mattress, you'll feel it give beneath you. Liquids don't do this; instead they flow — with one molecule moving into the space freed up by another molecule. You see this in a river, or when you turn on a tap, or if you use a spoon to stir your coffee. When you jump off a diving board and hit a body of water, the water has to flow away from you. But the flowing takes time, and if your speed of impact is too great, the water won't be able to flow away fast enough, and so it pushes back at you. It's that force that stings your skin as you belly-flop into a pool, and makes falling into water from a great height like landing on concrete. The incompressibility of water is also why waves can exert such deadly power, and in the case of tsunamis, why they can demolish buildings and cities, tossing cars around as if they were driftwood. For instance, the Indian Ocean earthquake in 2004 triggered a series of tsunamis, killing 230,000 people across fourteen countries. It was the eighth-worst natural disaster ever recorded.
+
+Another dangerous property of liquids is their ability to explode. When I began my Ph.D. at Oxford University, I had to prepare small specimens for the electron microscope. This involved cooling a liquid called an electropolishing solution to a temperature of –4ºF. The liquid was a mixture of butoxyethanol, acetic acid, and perchloric acid. Another Ph.D. student in the lab, Andy Godfrey, showed me how to do this, and I thought I'd gotten the hang of it. But after a few months Andy noticed that I often let the temperature of the solution rise while electropolishing.「I wouldn't do that,」he said, raising his eyebrows as he peered over my shoulder one day. When I inquired why, he pointed me toward the lab manual of chemical hazards:
+
+Perchloric acid is a corrosive acid and destructive to human tissue. Perchloric acid can be a health hazard if inhaled, ingested or splashed on skin or eyes. Once heated above room temperature or used at concentrations above 72 per cent (any temperature), perchloric acid becomes a strong oxidizing acid. Organic materials are especially susceptible to spontaneous combustion if mixed or contacted with perchloric acid. Perchloric acid vapours may form shock-sensitive perchlorates in ventilation system ductwork.
+
+In other words, it can explode.
+
+Upon inspection of the lab I found many similarly transparent colorless liquids, most of which were indistinguishable from one another. We used hydrofluoric acid, for instance, which, apart from being an acid that can eat its way through concrete, metals, and flesh, is also a contact poison that interferes with nerve function. This has an insidious consequence — namely, that you can't feel the acid as it's burning you. Accidental exposure can easily go unnoticed as the acid continues to eat its way through your skin.
+
+Alcohol too fits into the category of poison. It may be poisonous only in high doses, but it has killed many more people than hydrofluoric acid has. Yet alcohol plays an enormous role in societies and cultures around the globe, having historically been used as an antiseptic, an antitussive, an antidote, a tranquilizer, and a fuel. Alcohol's main attraction is that it depresses the nervous system — it's a psychoactive drug. Many people can't function without their daily glass of wine, and most social functions revolve around places where alcohol is served. We (rightly) may not trust these liquids, but we love them anyway.
+
+We feel alcohol's physiological effects as it's absorbed into the bloodstream. The thumping of our heartbeat is a constant reminder of blood's role in the body and its need to constantly circulate: we run thanks to the power of a pump, and when the pumping stops, we die. Of all the liquids in the world, surely blood is one of the most vital. Fortunately, the heart can now be replaced, bypassed, and plumbed in and out of the body. Blood itself can be added and removed, stored, shared, frozen, and revived. And indeed, without our blood banks, every year millions of people undergoing surgery, injured in war zones, or involved in traffic accidents would die.
+
+But blood can be contaminated with infections such as HIV and hepatitis, and so it can harm as well as heal. Thus, we must take into consideration the duplicitous nature of blood, as of all liquids. The important question is not whether a particular liquid can be trusted or not, is good or bad, is healthy or poisonous, is delicious or disgusting, but rather whether we understand it enough to harness it.
+
+There is no better way to illustrate the power and delight we gain from controlling liquids than by taking a look at those involved in the flight of an airplane and the experience of the passengers onboard. And so that is what this book is about, a transatlantic flight, and all the strange and wonderful liquids that play a part in it. I took this flight because I had not blown myself up while completing my Ph.D., but had instead continued to do materials science research and eventually become director of the Institute of Making, at University College London. There, part of our research involves understanding how liquids can masquerade as solids. For instance, the tar from which roads are made is, like peanut butter, a liquid, even though it gives the impression of being a solid. Our research has led to invitations to fly to conferences all around the world, and this book is an account of one such trip, from London to San Francisco.
+
+The flight is described through the language of molecules, heartbeats, and ocean waves. My aim is to unlock the mysterious properties of liquids and how we have come to rely on them. The flight takes us over the volcanoes of Iceland, the frozen expanse of Greenland, the lakes dotted around Hudson Bay, and then south to the coastline of the Pacific Ocean. This canvas is big enough to accommodate a discussion of liquids from the scale of oceans down to droplets in the clouds, along with the curious liquid crystals in the onboard entertainment system, the beverages served by the flight attendants, and, of course, the aviation fuel that keeps a plane in the stratosphere.
+
+In each chapter I consider a different part of the flight and the qualities of liquids that made it possible: their ability to combust, to dissolve, or to be brewed, to name a few. I show how wicking, droplet formation, viscosity, solubility, pressure, surface tension, and many other strange properties of liquids can allow us to fly around the globe. And in doing so I reveal why liquids flow up a tree but down a hill, why oil is sticky, how waves can travel so far, why things dry, how liquids can be crystals, how not to poison yourself making hooch, and, most important perhaps, how to make the perfect cup of tea. So please, come fly with me — I can promise you a strange and marvelous trip.
 
 我曾在机场安检处有过一次遭遇，花生酱、蜂蜜、香蒜酱、牙膏，一股脑儿都被没收了，最让我心疼的是，还有一瓶单一麦芽威士忌。在当时的处境下，我无可奈何，只能说着「我要见你们领导」或是「花生酱不算液体」之类的话，尽管我心里明白，它就是液体。因为花生酱可以流动，呈现出外包装的形状，这是液体的特性，所以花生酱是一种液体。然而，这件事还是让我愤愤不平。因为即便是在充满「智能」技术的机场安检处，工作人员也依然不能区分液体面包酱和液体炸药。
 
