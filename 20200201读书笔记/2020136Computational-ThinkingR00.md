@@ -254,13 +254,21 @@ Descriptions of software entities that abstract away their complexity often abst
 
 —— Frederick Brooks (1986)
 
-### 0401. 金句卡 —— The sciences do not try to explain, they hardly even try to interpret, they mainly make models
+### 0402. 金句卡 —— The sciences do not try to explain, they hardly even try to interpret, they mainly make models
 
 信息源自「2020136Computational-Thinking0701.md」
 
 The sciences do not try to explain, they hardly even try to interpret, they mainly make models.
 
 —— John von Neumann (1955)
+
+### 0403. 金句卡 ——「learning to program」to「programming to learn」
+
+信息源自「2020136Computational-Thinking0801.md」
+
+Teaching fundamental computational thinking skills, such as programming and computer modeling, is much harder than teaching spreadsheets, word processing, and other application tools of computing. Despite the popularity of constructionism, the central idea of Mindstorms — the shift from「learning to program」to「programming to learn」 — was hard to market among teachers. How could we achieve universal teaching of computational thinking without enough willing teachers? Could we rely on a smaller set of interested teachers to teach everybody?
+
+2『「learning to program」to「programming to learn」做一张金句卡片。（2021-05-27）』—— 已完成
 
 ### 0501. 数据信息卡 ——
 
