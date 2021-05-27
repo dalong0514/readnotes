@@ -1,52 +1,26 @@
-## Preface
-
-Block is one of the most important productivity tools in AutoCAD. By optimizing your blocks, you will find that AutoCAD is not just about drawing lines or just get the drawings done. You can draw lines fast, but productivity is beyond that. It is not just to get the drawings done.
-
-You need to be able to modify drawings easily during the design process. You may be able to finish your drawing very quickly, but you may spend too much time when you are doing revisions. If you do, then you are not productive. Drawings also should provide necessary information. Furthermore, you will want to add some intelligence so that you can automate some process.
-
-In this e-book, you can learn how to create, automate, and manage your blocks. We are not only discussing features, but we are also talking about productivity concept. Moreover, how you can use blocks to solve problems in AutoCAD.
-
-Prerequisite: This e-book is intended for basic to intermediate AutoCAD users. However, I believe it can give some fresh information to veteran users. You have to at a minimum, know and able to use AutoCAD basic features.
-
-The tutorial files: We include tutorial files with this e-book. Extract the zip file to a location you can access easily. When you find instruction to open a drawing file, you can find it in tutorial files folder.
-
-Download the exercise file here: AutoCAD Block Best Practices tutorial files.
-
-2『已下载书籍附件。（2021-04-20）』
-
-Drawing units in this e-book: This e-book uses the metric unit. However, drawing unit should not be an issue. You do not draw many objects in the exercises. We focus more on productivity concept.
-
-However, if this book instructs you to create a new file, create it using ISO template.
-
 ## 0101. The Block Basic
 
 We all learned how to use AutoCAD from different resources. Not all of those resources include block in their learning material. At least I often do not find it in books from local publishers here. I also remember when I took an AutoCAD class; they do not teach me anything about the AutoCAD block. Probably because I only took a basic class.
 
-I assume that this could happen to you too. So let's start this book from the basic of AutoCAD block.
+I assume that this could happen to you too. So let's start this book from the basic of AutoCAD block. If you already know how to create, insert, and modify the block, you may skip this chapter. However, I recommend you to at least skim through this chapter.
 
-If you already know how to create, insert, and modify the block, you may skip this chapter. However, I recommend you to at least skim through this chapter.
-
-Block advantages
+### 1.1 Block advantages
 
 Why are we using blocks?
 
-1. Blocks are single objects. If you have a complex drawing, selecting many lines, hatches, arc, and circles can be tedious and prone to mistakes. If you define them as a block, you can select them easier. You can also select multiple blocks with the same at once using filter or QSELECT.
+1 Blocks are single objects. If you have a complex drawing, selecting many lines, hatches, arc, and circles can be tedious and prone to mistakes. If you define them as a block, you can select them easier. You can also select multiple blocks with the same at once using filter or QSELECT.
 
-2. When we update a block definition, it will also update all blocks with the same definition. This feature is very useful if you often need to change your symbol or a common design. However, if
+2 When we update a block definition, it will also update all blocks with the same definition. This feature is very useful if you often need to change your symbol or a common design. However, if you work in a team, you need to consider which part of your design should use XREF instead of blocks.
 
-you work in a team, you need to consider which part of your design should use XREF instead of
-
-blocks.
-
-3. You can save blocks in a separate file as reusable contents library. You easily reuse them later.
+3 You can save blocks in a separate file as reusable contents library. You easily reuse them later.
 
 This technique will make your drawing process faster and also maintain drawing standard. You can share them for all AutoCAD users in your company, to make your drawing uniform between AutoCAD users.
 
-4. Blocks can provide information. You can use that information and report them in a table. For example, the report can be a hole table (in the manufacturing industry), schedule or BOM, or points coordinate.
+4 Blocks can provide information. You can use that information and report them in a table. For example, the report can be a hole table (in the manufacturing industry), schedule or BOM, or points coordinate.
 
-5. Autodesk has added many features related to blocks. Using dynamic blocks and annotative blocks can help to reduce tasks and confusion among users.
+5 Autodesk has added many features related to blocks. Using dynamic blocks and annotative blocks can help to reduce tasks and confusion among users.
 
-Creating Block
+### 1.2 Creating Block
 
 The most basic thing in learning block is to create and to use it. There are several ways to create a block.
 
@@ -66,11 +40,11 @@ There are several options available, but let's focus on field and buttons that a
 
 To create a block, you have to define at least:
 
-1. Block name
+1 Block name
 
-2. Base point of the block
+2 Base point of the block
 
-3. Objects you want to add to the block.
+3 Objects you want to add to the block.
 
 Defining block name
 
@@ -108,7 +82,7 @@ Now click OK in the dialog box. Save your file.
 
 If you select the valve, now it is only one object. No longer consists of three objects. You can only see one grip: the block base point.
 
-Inserting Block
+### 1.3 Inserting Block
 
 We have created the valve block. Now let's use it.
 
@@ -198,7 +172,7 @@ You can also drag and drop the block to your drawing area.
 
 This method inserts only the block you need, not all definition in the drawing.
 
-Working with Units
+### 1.4 Working with Units
 
 Before we continue, let's discuss the relationship between drawing and block unit.
 
@@ -214,7 +188,7 @@ To prevent confusion in your drawing, start with an appropriate template. If you
 
 template when you create a new drawing. Imperial users usually do not have this problem because AutoCAD uses the imperial unit as default.
 
-Modifying Block
+### 1.5 Modifying Block
 
 I consider block as reusable contents. I usually do not modify the block library, but I replace blocks in my drawing.
 
@@ -224,9 +198,9 @@ However, many AutoCAD users consider it as a benefit of using block. When you up
 
 I suggest you modify block for these reasons:
 
-1. The block needs correction/update. We usually modify a block in block library for this purpose, not only in the specific drawing.
+1 The block needs correction/update. We usually modify a block in block library for this purpose, not only in the specific drawing.
 
-2. The block defines a common design that we often modify during the design process. However, for standard parts (bolt, nuts, and other standard parts) avoid to modify it. You may need it in the future. Create new block then use the new one.
+2 The block defines a common design that we often modify during the design process. However, for standard parts (bolt, nuts, and other standard parts) avoid to modify it. You may need it in the future. Create new block then use the new one.
 
 Disassemble and redefine block
 
@@ -251,3 +225,49 @@ Repeat the same process for creating AutoCAD block. After you recreate the block
 Examine your drawing. You should see all of your blocks are now updated.
 
 Using block editor
+
+Another way to modify block is by using block editor.
+
+Block editor is a very powerful tool. It is not just we can modify block here, but we can also add intelligence to it. We cover the dynamic block in the later chapter.
+
+Activate edit block tool.
+
+AutoCAD asks you, which block you want to edit. If you have more than one block, you see them listed here. Select gate flanged valve and click OK.
+
+Alternatively, you can select a block from your drawing, right click and choose block editor from the contextual menu.
+
+AutoCAD open block editor. You see contextual ribbon tab, only tools you need to modify your block is available here.
+
+You can work with your block as you draw in AutoCAD. Do not move your block from its origin (0,0).
+
+Remember, the origin of your block is its base point.
+
+Let's make some changes here. Add more lines to make our valve to look like below.
+
+After you finish, click Save block from your ribbon.
+
+Click close block editor on the right most of our contextual ribbon tab.
+
+AutoCAD asks you to save the changes or discards it. Click save changes.
+
+If you do not save it before you click close, AutoCAD asks you if you want to save your block.
+
+Similar to when you exit AutoCAD, but you have not save your file after making some changes.
+
+### 1.6 Replacing Block
+
+We use「modify block」to make changes. However, during the design process, we often need to replace objects with other objects from our library.
+
+If we want to replace all blocks with another block definition, then we can use replace block tool.
+
+Replace block is an express tool. You need to have express tools installed on your computer.
+
+If you do not have it installed, you can add it later using this tip from AutoCAD tips blog. If you use AutoCAD LT, this tool is not available for you.
+
+To use this tool, you must have replacement block in your drawing. You cannot replace a block definition with a drawing or block defined in another drawing. Insert or create it first before you can use this tool.
+
+After you activate the tool, press = to activate selection tool. Select block that you want to replace.
+
+Repeat the process to select the replacement block.
+
+After you finish, you see all blocks with that definition are updated. Replacing block is a very handy tool if you want to replace all screw with different size, replace a different type of windows and for a similar purpose.

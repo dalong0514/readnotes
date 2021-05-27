@@ -2,9 +2,9 @@
 
 ## 目录
 
-2021039AutoCAD-Block-Best-Practices0501.md
+0501 Adding Intelligence to Your Block
 
-## 2021039AutoCAD-Block-Best-Practices0501.md
+## 0501. Adding Intelligence to Your Block
 
 There are two ways you can add intelligence to your block. You can use actions or constraints. Autodesk introduces 2D parametric design or constraints in AutoCAD 2010.
 
@@ -30,6 +30,8 @@ You may place it anywhere you want it to. However, make sure you can find it eas
 
 This parameter shows warning sign. It means this parameter is not finished yet. You have some tasks to make it works.
 
+1『原来动态块里的感叹警号表示没完成的任务。（2021-05-27）』
+
 Click visibility states button on your Ribbon => Visibility panel.
 
 By default, we have one visibility state named VisibilityState0. Select it and click Rename button. Change its name to simple. We are going to use it for simple panel door.
@@ -37,6 +39,8 @@ By default, we have one visibility state named VisibilityState0. Select it and c
 You can rename visibility state by clicking the name once, click Rename button, or right click then choose rename state from the contextual menu. Similar like renaming file name in Windows Explorer.
 
 Create three new visibility states. Give them name panel, panel glass, and glass. When you create a new state, leave it to the default setting. Just input the state name.
+
+1『这里新建状态的时候选择第三个「在新状态中保持现有对象的可见性不变」。（2021-05-27）』
 
 After you finish, select simple and click set to current. AutoCAD sets current visibility state to the last one you created. We start working on Simple state, so set it as current.
 
@@ -60,7 +64,7 @@ Save your block and close block editor. Test your block. Select single door bloc
 
 You should see visibility control at the bottom right of your door, or wherever you put it in the making process. Click it and change the visibility state.
 
-2『四个门的切换，要去实践一下。（2021-04-20）』—— 未完成
+2『四个门的切换，要去实践一下。（2021-04-20）补充：作者的思路是在不同的状态里新画图形，还有一个方法个人觉得更好，把所有的状态图形都画好放在一起，然后再每个状态里选中不在此状态下的「对象」，右键 => 对象可见性 => 在当前状态下隐藏。还有一个更佳的操作，右上角有一个「可见性模式」，点一下后，之前在该模式下隐藏的对象也能「显示」出来，这样就能「所有」的对象了。而且让某个对象是否在该状态下可见也可以通过旁边的「使可见」、「使不可见」来调整，更方便。（2021-05-27）』
 
 #### 5.1.1 Adding objects to current state
 
@@ -112,7 +116,7 @@ Let's add the parameter to our rectangle sides. Snap to its corners to define wh
 
 Before we continue, open properties palette. Select distance1 parameter, and change the parameter name to b. Modify the number of grips to 1. Do the same with distance2. Change parameter name to h, and the number of grips to 1. We reduce the grips number because we only need to stretch it to one direction.
 
-1-2『不把 number of grips 修改为 1，后果会咋样？有待验证。（2021-04-20）』—— 未完成
+1-2『不把 number of grips 修改为 1，后果会咋样？有待验证。（2021-04-20）回复：现在算是知道夹点数（number of grips）的含义了，是有几个可显示的拉伸点的意思。（2021-05-27）』
 
 If you do not click bottom left point first, then you may see the arrow disappear. This option will remove the 2nd arrow that you defined when placing parameter. You can also remove unnecessary arrow by selecting them and press delete.
 
@@ -148,7 +152,7 @@ We are still working in block editor. If you already close block editor, select 
 
 Open properties palette then select linear parameter. In the Properties palette, change the base location to the midpoint. By changing the base location to the midpoint, our parameter stretch in both directions just by using single action. This behavior can keep our insertion point at block center.
 
-1『超级关键的知识点，change the base location to the midpoint，可以让动态块拉伸的时候是两个方向，这样可以保证拉伸的时候基点不变。这个设置，应用场景应该很多。（2021-04-20）』
+1『超级关键的知识点，change the base location to the midpoint，可以让动态块拉伸的时候是两个方向，这样可以保证拉伸的时候基点不变。这个设置，应用场景应该很多。（2021-04-20）回复：此时此刻看这里的信息才真有感觉，之前一直在找双向拉伸的实现方法，在哔哔哩哩上的教学视频上看到把线性参数的基点位置改为「中点」即可。想不到这里就有答案，第一次看的时候因为没具体场景没啥感觉，但当时的直觉蛮准的，知道这个是个关键知识点。（2021-05-27）』
 
 The parameter stretches to both sides now, but we have to add one more action to stretch our object to the left. Add action like we did before, using b parameter.
 
@@ -169,6 +173,8 @@ Repeat the same process to h parameter. Don't forget to test your block after yo
 By defining a list, we allow users to stretch column only to specific sizes. However, if they need to change both directions, they must stretch it twice. We can expand this capability further. Let's edit the block again in block editor.
 
 Insert lookup parameter to your block. Again, we see the warning sign. We need to add lookup action. Insert it from your authoring palette. After you place lookup action, select the parameter. AutoCAD opens a dialog box like below.
+
+1『看到增加「查询」动作了，很适合用于数量一定的「数据集」。（2021-05-27）』
 
 Click add properties to associate this action to our linear parameters. Another dialog box opens. You should see b and h parameters here. Hold [ctrl] and click both of them. We are going to use them all. Make sure you select add input properties in property type.
 

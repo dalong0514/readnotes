@@ -1,50 +1,4 @@
-Another way to modify block is by using block editor.
-
-Block editor is a very powerful tool. It is not just we can modify block here, but we can also add intelligence to it. We cover the dynamic block in the later chapter.
-
-Activate edit block tool.
-
-AutoCAD asks you, which block you want to edit. If you have more than one block, you see them listed here. Select gate flanged valve and click OK.
-
-Alternatively, you can select a block from your drawing, right click and choose block editor from the contextual menu.
-
-AutoCAD open block editor. You see contextual ribbon tab, only tools you need to modify your block is available here.
-
-You can work with your block as you draw in AutoCAD. Do not move your block from its origin (0,0).
-
-Remember, the origin of your block is its base point.
-
-Let's make some changes here. Add more lines to make our valve to look like below.
-
-After you finish, click Save block from your ribbon.
-
-Click close block editor on the right most of our contextual ribbon tab.
-
-AutoCAD asks you to save the changes or discards it. Click save changes.
-
-If you do not save it before you click close, AutoCAD asks you if you want to save your block.
-
-Similar to when you exit AutoCAD, but you have not save your file after making some changes.
-
-Replacing Block
-
-We use「modify block」to make changes. However, during the design process, we often need to replace objects with other objects from our library.
-
-If we want to replace all blocks with another block definition, then we can use replace block tool.
-
-Replace block is an express tool. You need to have express tools installed on your computer.
-
-If you do not have it installed, you can add it later using this tip from AutoCAD tips blog. If you use AutoCAD LT, this tool is not available for you.
-
-To use this tool, you must have replacement block in your drawing. You cannot replace a block definition with a drawing or block defined in another drawing. Insert or create it first before you can use this tool.
-
-After you activate the tool, press = to activate selection tool. Select block that you want to replace.
-
-Repeat the process to select the replacement block.
-
-After you finish, you see all blocks with that definition are updated. Replacing block is a very handy tool if you want to replace all screw with different size, replace a different type of windows and for a similar purpose.
-
-ATTACHING INFORMATION TO BLOCK
+# 0201. Attaching Information to Block
 
 Now we know how to create a block. We are going further in this chapter to add information to our blocks. We add information to a block using block attributes.
 
@@ -411,5 +365,4 @@ Using annotative block
 Let's try to use this block. The one we convert before is already placed in 1:1 scale. Change current scale and insert your block.
 
 Remember: change active scale first, then insert your block.
-
 

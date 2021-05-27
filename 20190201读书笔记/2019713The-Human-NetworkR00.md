@@ -1,5 +1,3 @@
-# 2019713The-Human-NetworkR00
-
 ## 记忆时间
 
 ## 卡片
