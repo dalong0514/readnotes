@@ -48,7 +48,7 @@
 
 49	Repeated floating-point value. Multiple 49 groups may appear in one entity for variable-length tables (such as the dash lengths in the LTYPE table). A 7x group always appears before the first 49 group to specify the table length.
 
-50-58	Angles (output in degrees to DXF files and radians through AutoLISP and ARX applications).
+50-58 Angles (output in degrees to DXF files and radians through AutoLISP and ARX applications).
 
 60	Entity visibility. Integer value. Absence or 0 indicates visibility; 1 indicates invisibility.
 
