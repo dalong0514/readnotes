@@ -1,12 +1,46 @@
-Copyright © 1998 by W. D. Hillis.
+## 记忆时间
 
-Hillis, W. Daniel.
+## 卡片
 
-The pattern on the stone : the simple ideas that make computers work / W. Daniel Hillis. — 1st ed.
+### 0101. 主题卡 —— 计算机本质基于的三大原则
 
-书名：丹尼尔·希利斯讲计算机
+This is the book I wish I had read when I first started learning about the field of computing. Unlike most books on computers — which are either about how to use them or about the technology out of which they're built (ROM, RAM, disk drives, and so on) — this is a book about ideas. It explains, or at least introduces, most of the important ideas in the field of computer science, including Boolean logic, finite-state machines, programming languages, compilers and interpreters, Turing universality, information theory, algorithms and algorithmic complexity, heuristics, uncomutable functions, parallel computing, quantum computing, neural networks, machine learning, and self-organizing systems. Anyone interested enough in computers to be reading this book will probably have encountered many of these ideas before, but outside of a formal education in computer science there are few opportunities to see how they all fit together. This book makes the connections — all the way from simple physical processes like the closing of a switch to the learning and adaptation exhibited by self-organizing parallel computers.
 
-出版时间：2021 年 1 月
+A few general themes underlie an exposition of the nature of computers: the first is the principle of functional abstraction , which leads to the aforementioned hierarchy of causes and effects. The structure of the computer is an example of the application of this principle — over and over again, at many levels. Computers are understandable because you can focus on what is happening at one level of the hierarchy without worrying about the details of what goes on at the lower levels. Functional abstraction is what decouples the ideas from the technology.
+
+The second unifying theme is the principle of the universal computer  — the idea that there is really only one kind of computer, or, more precisely, that all kinds of computers are alike in what they can and cannot do. As near as we can tell, any computing device, whether it's built of transistors, sticks and strings, or neurons, can be simulated by a universal computer. This is a remarkable hypothesis: as I will explain, it suggests that making a computer think like a brain is just a matter of programming it correctly.
+
+The third theme in this book, which won't be fully addressed until the last chapter, is in some sense the antithesis of the first. There may be an entirely new way of designing and programming computers — a way not based on the standard methods of engineering. This would be exciting, because the way we normally design systems begins to break down when the systems become too complicated. The very principles that enable us to design computers lead ultimately to a certain fragility and inefficiency. This weakness has nothing to do with any fundamental limitations of information-processing machines — it's a limitation of the hierarchical method of design. But what if instead we were to use a design process analogous to biological evolution — that is, a process in which the behaviors of the system emerge from the accumulation of many simple interactions, without any「top-down」control? A computing device designed by such an evolutionary process might exhibit some of the robustness and flexibility of a biological organism — at least, that's the hope. This approach is not yet well understood, and it may turn out to be impractical. It is the topic of my current research.
+
+2『计算机本质基于的三大原则，做一张主题卡片。（2021-06-07）』
+
+In an explanation of the nature of computers, there are some fundamentals that have to be dealt with before we can move on to the good stuff. The first two chapters introduce the fundamentals: Boolean logic, bits, and finite-state machines. The payoff is that by the end of chapter 3 you'll understand how computers work, top to bottom. This sets the stage for the exciting ideas about universal computing machines, which begin in chapter 4.
+
+The philosopher Gregory Bateson once defined information as「the difference that makes a difference.」Another way of saying this is that information is in the distinctions we choose to make significant. In a primitive electrical calculator, say, information is indicated by light bulbs that go on or off depending on whether a current is flowing or not. The voltage of the signal doesn't matter, nor does the direction of current flow. All that matters is that a wire carries one of two possible signals, one of which causes a bulb to light. The distinction that we choose to make significant — the difference that makes a difference, in Bateson's phrase — is between current flowing and not flowing. Bateson's definition is a good one, but the phrase has always meant something more to me. In my lifetime of four decades, the world has been transformed. Most of the changes we've seen in business, politics, science, and philosophy in that time have been caused by, or enabled by, developments in information technology. A lot of things are different in the world today, but the difference that has made the difference has been computers.
+
+These days, computers are popularly thought of as multimedia devices, capable of incorporating and combining all previous forms of media — text, graphics, moving pictures, sound. I think this point of view leads to an underestimation of the computer's potential. It is certainly true that a computer can incorporate and manipulate all other media, but the true power of the computer is that it is capable of manipulating not just the expression of ideas but also the ideas themselves. The amazing thing to me is not that a computer can hold the contents of all the books in a library but that it can notice relationships between the concepts described in the books — not that it can display a picture of a bird in flight or a galaxy spinning but that it can imagine and predict the consequences of the physical laws that create these wonders. The computer is not just an advanced calculator or camera or paintbrush; rather, it is a device that accelerates and extends our processes of thought. It is an imagination machine, which starts with the ideas we put into it and takes them farther than we ever could have taken them on our own.
+
+### 0201. 术语卡 ——
+
+根据反常识，再补充三个证据——就产生三张术语卡。
+
+### 0202. 术语卡 ——
+
+### 0203. 术语卡 ——
+
+### 0301. 人名卡 ——
+
+根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+
+### 0401. 金句卡 ——
+
+最后根据他写的非常震撼的话语——产生一张金句卡。
+
+### 0501. 数据信息卡 ——
+
+### 0601. 任意卡 ——
+
+最后还有一张任意卡，记录个人阅读感想。
 
 ## Preface: Magic in the Stone
 

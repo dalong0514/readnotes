@@ -64,7 +64,7 @@ The fact that evolved software cannot always be understood makes some people ner
 
 EVOLVING A THINKING MACHINE
 
-Simulated evolution is not in itself a solution to the problem of making a thinking machine, but it points us in the right direction. The key idea is to shift the burden of complexity away from the hierarchy of design and onto the combinatorial power of the computer. Essentially, simulated evolution is a kind of heuristic search technique that searches the space of possible designs. The heuristics it uses to search the space are Try a design similar to the best designs you have found so far and Combine elements of two successful designs . Both heuristics work well.
+Simulated evolution is not in itself a solution to the problem of making a thinking machine, but it points us in the right direction. The key idea is to shift the burden of complexity away from the hierarchy of design and onto the combinatorial power of the computer. Essentially, simulated evolution is a kind of heuristic search technique that searches the space of possible designs. The heuristics it uses to search the space are Try a design similar to the best designs you have found so far and Combine elements of two successful designs. Both heuristics work well.
 
 Simulated evolution is a good way to create novel structures, but it is an inefficient way to tune an existing design. Its weaknesses as well as its strengths stem from evolution's inherent blindness to the「Why」of a design. Unlike the feedback systems described in the last chapter, where specific changes were made to correct specific failures, evolution chooses variations blindly, without taking into account how the changes will affect the outcome.
 

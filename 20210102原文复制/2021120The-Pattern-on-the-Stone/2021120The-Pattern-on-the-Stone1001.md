@@ -1,16 +1,16 @@
 ## FURTHER READING
 
-Hillis, W. Daniel. The Connection Machine . The MIT Press Series in Artificial Intelligence (MIT, 1989).
+Hillis, W. Daniel. The Connection Machine. The MIT Press Series in Artificial Intelligence (MIT, 1989).
 
 Knuth, Donald Ervin. The Art of Computer Programming , 4 vols. (Addison-Wesley, 1997).
 
 Minsky, Marvin Lee. Computation: Finite and Infinite Machines (Prentice Hall, 1967).
 
-Patterson, David A., and John L. Hennessy. Computer Architecture: A Quantitative Approach . 2d ed. (Morgan Kaufman Publishers, 1996).
+Patterson, David A., and John L. Hennessy. Computer Architecture: A Quantitative Approach. 2d ed. (Morgan Kaufman Publishers, 1996).
 
 Weiner, Norbert. Human Use of Human Beings: Cybernetics and Society (Avon, 1986).
 
-Winston, Patrick Henry. Artificial Intelligence . 3d ed. (Addison-Wesley, 1998).
+Winston, Patrick Henry. Artificial Intelligence. 3d ed. (Addison-Wesley, 1998).
 
 ACKNOWLEDGMENTS
 
@@ -24,13 +24,13 @@ INDEX
 
 Adaptation
 
-in response to error, 123–124 . See also  Learning
+in response to error, 123–124. See also  Learning
 
 Adding machines, 12
 
 Addition, 29–30
 
-Addresses, 51 , 52 , 55 . See also  Memory
+Addresses, 51 , 52 , 55. See also  Memory
 
 Airline reservation system, 112
 
@@ -56,7 +56,7 @@ for pseudo-randomness, 71
 
 for sorting cards, 80–82
 
-for traveling salesman problem, 82–83 . See also  Heuristics
+for traveling salesman problem, 82–83. See also  Heuristics
 
 Amdahl's Law, 112–113 , 114
 
@@ -82,7 +82,7 @@ instructions for, 53 , 58
 
 And function logic block, 11–12 , 21–26
 
-combining, 29–30 . See also  Logic blocks
+combining, 29–30. See also  Logic blocks
 
 「Arch」definition program, 124–127 , 131 , 135
 
@@ -102,7 +102,7 @@ evolution of, 145–147
 
 MIT Artificial Intelligence Lab, 113
 
-thinking-machine evolution, 147–153 . See also  Neural networks
+thinking-machine evolution, 147–153. See also  Neural networks
 
 ASCII code, 28
 
@@ -128,7 +128,7 @@ Binary function, 26–27 , 64–66
 
 Binary rules, 22–26
 
-Binary signal, 10 , 93–94 . See also  Bits
+Binary signal, 10 , 93–94. See also  Bits
 
 Bird, nest-building behavior, 149–150
 
@@ -150,7 +150,7 @@ Boole, George, 2
 
 Boolean logic, viii , x , 2–10 , 19
 
-Boolean logic blocks, 33–34 , 39 , 50 , 51 , 56 , 58 . See also  Logic blocks
+Boolean logic blocks, 33–34 , 39 , 50 , 51 , 56 , 58. See also  Logic blocks
 
 Brain
 
@@ -160,7 +160,7 @@ learning process in, 128–129 , 148–150
 
 process of, compared to computer processes, ix , 64 , 75 , 113 , 141 , 144 , 147 , 152–153
 
-visual image transmission to, 133–135 . See also  Thought process
+visual image transmission to, 133–135. See also  Thought process
 
 Cause and effect, viii , ix
 
@@ -186,7 +186,7 @@ Church thesis, 69
 
 Clock rate, 35
 
-Code breaking, 82–83 . See also  Encryption
+Code breaking, 82–83. See also  Encryption
 
 Combination lock, 31 , 35– 36
 
@@ -222,7 +222,7 @@ evolutionary development of, ix–x
 
 functional abstraction role in, 18–19
 
-principles of, 3–4 , 142 . See also  Design
+principles of, 3–4 , 142. See also  Design
 
 Computer network, 109
 
@@ -270,7 +270,7 @@ Decoherence, 74
 
 Decomposition, 115–117
 
-Design, ix–x . See also  Computer design
+Design, ix–x. See also  Computer design
 
 Digital clock, 34–35
 
@@ -280,7 +280,7 @@ Digital states, quantum view of, 72
 
 Einstein, Albert, 73
 
-Electrical circuits, 3 , 4 . See also  Switches
+Electrical circuits, 3 , 4. See also  Switches
 
 Electricity, 72
 
@@ -310,7 +310,7 @@ detection of, 102–106 , 104
 
 in learning environment, 121–122
 
-relation to response, 123–124 . See also  Mistakes
+relation to response, 123–124. See also  Mistakes
 
 Evolution
 
@@ -366,7 +366,7 @@ brain area for, 139 , 141
 
 of programming language, 39
 
-recognition of error in, 36–37 . See also  Language
+recognition of error in, 36–37. See also  Language
 
 Halting problem, 68–69
 
@@ -376,7 +376,7 @@ and artificial intelligence, 148
 
 discussed, 83–87
 
-and hill climbing, 89–90 . See also  Algorithm
+and hill climbing, 89–90. See also  Algorithm
 
 Hierarchical structure, of computers, vii–viii , ix , 19 , 58–59 , 109 , 142 , 143
 
@@ -424,11 +424,11 @@ Instructions
 
 control/processing instructions, 52–53
 
-function of, 51–52 , 58 . See also  Programming languages
+function of, 51–52 , 58. See also  Programming languages
 
 Intelligence
 
-emergence of, 138 , 151–153 . See also  Artificial intelligence ; Learning
+emergence of, 138 , 151–153. See also  Artificial intelligence ; Learning
 
 Internet, 119–120
 
@@ -444,7 +444,7 @@ in neural network, 128
 
 rules for, 23
 
-Invert function logic block, 11–12 , 21–26 , 30 . See also  Logic blocks
+Invert function logic block, 11–12 , 21–26 , 30. See also  Logic blocks
 
 Investigation of the Laws of Thought, An (Boole), 2
 
@@ -460,7 +460,7 @@ compared to programming language, 39 , 49–50
 
 human understanding of, 37 , 151
 
-software as, vii . See also  Grammar ; Vocabulary
+software as, vii. See also  Grammar ; Vocabulary
 
 Learning
 
@@ -476,13 +476,13 @@ Leibniz, Gottfried Wilhelm, 12
 
 Letters
 
-binary representation of, 25 , 28 . See also Intelligence
+binary representation of, 25 , 28. See also Intelligence
 
 compression of, 94–95
 
 computer representation of, 11
 
-recognition of, 132 . See also  Grammar ; Words
+recognition of, 132. See also  Grammar ; Words
 
 Logic blocks
 
@@ -500,7 +500,7 @@ functions of, 21–30
 
 for mathematical operations, 29–30
 
-quantum, 74 . See also specific function blocks
+quantum, 74. See also specific function blocks
 
 Logical functions
 
@@ -508,7 +508,7 @@ expression and implementation of, 3–4 , 29 , 58
 
 instructions for, 52
 
-role in computer operation, 58 . See also specific functions
+role in computer operation, 58. See also specific functions
 
 Logical operations, 2
 
@@ -520,9 +520,9 @@ Loop, 53
 
 Macaque monkey, 141– 142
 
-Machine language, 50 , 56–58 . See also  Programming languages
+Machine language, 50 , 56–58. See also  Programming languages
 
-Machine learning, viii . See also  Learning
+Machine learning, viii. See also  Learning
 
 Majority voting, by logic block, 24–25 , 26–27 , 105
 
@@ -554,7 +554,7 @@ quantum mechanical, 73–74
 
 role in computer program, 50 , 57 , 58 , 92
 
-segregation of from processor, 108 . See also  Addresses ; Registers ; Storage
+segregation of from processor, 108. See also  Addresses ; Registers ; Storage
 
 Minsky, Marvin, 38 , 132
 
@@ -562,7 +562,7 @@ Mistakes
 
 in computer program, 48–49 , 90 , 121 , 144
 
-learning from, 121 , 131 , 134 . See also  Error
+learning from, 121 , 131 , 134. See also  Error
 
 Morphogenesis, 148–149
 
@@ -572,7 +572,7 @@ Moving pictures
 
 of atmosphere, 118
 
-compression of, 96 . See also  Pictures
+compression of, 96. See also  Pictures
 
 Multimedia, xi
 
@@ -630,7 +630,7 @@ rules for, 22
 
 Or function logic block, 11–12 , 21–26
 
-combining, 29–30 . See also  Logic blocks
+combining, 29–30. See also  Logic blocks
 
 Output
 
@@ -656,7 +656,7 @@ data parallel decomposition, 115–117
 
 Parallel processing, by water molecule, 73
 
-Parallel wiring, 6–9 , 7 . See also  Wiring pattern
+Parallel wiring, 6–9 , 7. See also  Wiring pattern
 
 Pascal, Blaise, 12
 
@@ -684,7 +684,7 @@ decomposition of, 117
 
 parallel computation of, 115
 
-recognition of, 132 . See also  Moving pictures
+recognition of, 132. See also  Moving pictures
 
 Pixels, 95 , 97 , 114
 
@@ -700,7 +700,7 @@ as compression technique, 99–100
 
 evolutionary development of, ix–x , 121 , 145–147
 
-training for, 124–127 . See also  Software
+training for, 124–127. See also  Software
 
 Program counter, 53 , 54
 
@@ -734,7 +734,7 @@ algorithm for, 71
 
 defined, 67 , 100
 
-generation of, 145 . See also  Randomness
+generation of, 145. See also  Randomness
 
 Quantum computing, viii , 71–76
 
@@ -744,7 +744,7 @@ Randomness
 
 defined, 100
 
-discussed, 66–67 . See also  Pseudorandom numbers
+discussed, 66–67. See also  Pseudorandom numbers
 
 Recursion
 
@@ -766,7 +766,7 @@ in finite-state machine, 33 –34 , 56 , 58
 
 in memory, 50–51 , 52 , 53 , 58
 
-program counter, 53 . See also  Memory
+program counter, 53. See also  Memory
 
 Resolution, 96
 
@@ -796,7 +796,7 @@ Self-organizing systems, viii , 133–135 , 138 , 140
 
 Sequence recognition, 35–36 , 37
 
-Series wiring, 6–9 , 7 . See also  Wiring pattern
+Series wiring, 6–9 , 7. See also  Wiring pattern
 
 Shannon, Claude, 3 , 4 , 87
 
@@ -804,7 +804,7 @@ Shor, Peter, 74
 
 Sock matching, 77–78 , 79–80
 
-Software, vii , 10 , 51 , 143 , 144 . See also  Program
+Software, vii , 10 , 51 , 143 , 144. See also  Program
 
 Sorting program, 145–147
 
@@ -822,7 +822,7 @@ State diagram
 
 for combination lock, 36
 
-for traffic light, 32 –33 . See also  Finite-state machine
+for traffic light, 32 –33. See also  Finite-state machine
 
 Steele, Guy, 49
 
@@ -830,7 +830,7 @@ Storage
 
 bit function in, 91–92
 
-in register, 33 . See also  Memory
+in register, 33. See also  Memory
 
 Subroutines
 
@@ -858,7 +858,7 @@ serial/parallel wiring of, 6–9 , 59
 
 「Symbolic Analysis of Relay Switching Circuits, A」(Shannon), 3
 
-Technology, viii . See also  Engineering
+Technology, viii. See also  Engineering
 
 Telephone bills, 118–119
 
@@ -866,15 +866,15 @@ Telephone system computers, 120 , 144
 
 Thermostat, 122
 
-Thinking machine, 147–153 . See also  Artificial intelligence
+Thinking machine, 147–153. See also  Artificial intelligence
 
 Thought process
 
-of brain and computer, ix , xi , 2 , 3 , 64 , 75 , 137–138 . See also  Brain ; Computation
+of brain and computer, ix , xi , 2 , 3 , 64 , 75 , 137–138. See also  Brain ; Computation
 
 Tic-tac-toe machine, 5–10 , 8 , 21 , 85 , 88
 
-binary rules application to, 22–23 . See also  Chess-playing machine
+binary rules application to, 22–23. See also  Chess-playing machine
 
 Tinker Toy computer, 16–18 , 17
 
@@ -882,7 +882,7 @@ Time
 
 as component of computation, 9 , 13 , 92–93
 
-parallel computation of, 118–119 . See also  Finite-state machines
+parallel computation of, 118–119. See also  Finite-state machines
 
 Tinker Toy computer, 16–18 , 17
 
@@ -892,7 +892,7 @@ Training
 
 of computer program, 124–127
 
-in self-organizing systems, 133–135 . See also  Learning
+in self-organizing systems, 133–135. See also  Learning
 
 Transistors, 9 , 15
 
@@ -914,7 +914,7 @@ artificial neurons as, 128
 
 finite-state machines, 30–38
 
-logical functions, 21–30 . See also  Logic blocks
+logical functions, 21–30. See also  Logic blocks
 
 Universal computer concept, ix
 
@@ -934,7 +934,7 @@ eye-brain connections for, 133–135 , 134
 
 Vocabulary
 
-in programming language, 39 , 50 . See also  Words
+in programming language, 39 , 50. See also  Words
 
 Water molecules, 72–73
 
@@ -956,7 +956,7 @@ learning, 140 , 141
 
 in memory, 51
 
-translation of, 57 . See also  Vocabulary
+translation of, 57. See also  Vocabulary
 
 Writing, to register, 33–34
 

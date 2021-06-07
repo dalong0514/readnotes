@@ -1,6 +1,6 @@
 # 0101. Nuts And Bolts
 
-W hen I was a child, I read a story about a boy who built a robot out of parts he found lying around a junkyard. The boy's robot could move, talk, and think, just like a person, and it became his friend. For some reason, I found the idea of building a robot very appealing, so I decided to build one myself. I remember collecting body parts — tubes for the arms and legs, motors for the muscles, lightbulbs for the eyes, and a big paint can for the head — in the full and optimistic expectation that after they were assembled and the contraption was plugged in, I would end up with a working mechanical man.
+When I was a child, I read a story about a boy who built a robot out of parts he found lying around a junkyard. The boy's robot could move, talk, and think, just like a person, and it became his friend. For some reason, I found the idea of building a robot very appealing, so I decided to build one myself. I remember collecting body parts — tubes for the arms and legs, motors for the muscles, lightbulbs for the eyes, and a big paint can for the head — in the full and optimistic expectation that after they were assembled and the contraption was plugged in, I would end up with a working mechanical man.
 
 After nearly electrocuting myself a few times, I began to get my parts to move, light up, and make noises. I felt I was making progress. I began to understand how to construct movable joints for the arms and legs. But something even more important was beginning to dawn on me: I didn't have the slightest idea how to control the motors and the lights, and I realized that something was missing in my knowledge of how robots worked. I now have a name for what was missing: it's called computation. Back then, I called it「thinking,」and I saw that I didn't have a clue about how to get something to think. It seems obvious to me now that computation is the hardest part of building a mechanical man, but as a child this came as a surprise.
 
@@ -14,7 +14,17 @@ After nearly electrocuting myself a few times, I began to get my parts to move, 
 
 Fortunately, the first book I ever read on the subject of computation was a classic. My father was an epidemiologist, and we were living in Calcutta at the time. Books in English were hard to come by, but in the library of the British consulate I found a dusty copy of a book written by the nineteenth-century logician George Boole. The title of the book was what attracted me: An Investigation of the Laws of Thought. This grabbed my imagination. Could there really be laws that governed thought? In the book, Boole tried to reduce the logic of human thought to mathematical operations. Although he did not really explain human thinking, Boole demonstrated the surprising power and generality of a few simple types of logical operations. He invented a language for describing and manipulating logical statements and determining whether or not they are true. The language is now called Boolean algebra.
 
-Boolean algebra is similar to the algebra you learned in high school, except that the variables in the equations represent logic statements instead of numbers. Boole's variables stand for propositions that are either true or false, and the symbols , , and  represent the logical operations And, Or, and Not. For example, the following is a Boolean algebraic equation
+Boolean algebra is similar to the algebra you learned in high school, except that the variables in the equations represent logic statements instead of numbers. Boole's variables stand for propositions that are either true or false, and the symbols XXXX represent the logical operations And, Or, and Not. For example, the following is a Boolean algebraic equation.
+
+1『
+
+原书中的公式用 PHP 代码表示的话（2021-06-08）：
+
+```php
+!(A||B) = !A && !B
+```
+
+』
 
 This particular equation, called De Morgan's theorem (after Boole's colleague Augustus De Morgan), says that if neither A nor B is true, then both A and B must be false. The variables A and B can represent any logical (that is, true or false) statement. This particular equation is obviously correct, but Boolean algebra also allows much more complex logical statements to be written down and proved or disproved.
 
@@ -56,9 +66,7 @@ Another difference between the tic-tac-toe machine and a general-purpose compute
 
 布尔逻辑
 
-幸运的是，我读的第一本有关计算机的书是一本经典之作。我的父亲是一位流行病学家，那时我们居住在加尔各答，很难读到英文著作。在英国领事馆的图书室里，我找到了一本表面布满灰尘的书，作者是 19 世纪的逻辑学家乔治·布尔（George Boole），书名为《思维规律的研究》（An Investigation of the Laws of Thought
-
-）。这个书名立刻吸引了我，令我心驰神往，难道真的存在支配思维的法则吗？在这本书中，布尔试图将人类的思维逻辑简化为数学运算。他虽然没有真正解释清楚人类的思维过程，但道出了简单的逻辑运算的惊人力量和普适性。他还发明了一种语言，可以用来描述和处理逻辑陈述，以及判定这些陈述的真假。这种语言现在被称为布尔代数（Boolean algebra）。
+幸运的是，我读的第一本有关计算机的书是一本经典之作。我的父亲是一位流行病学家，那时我们居住在加尔各答，很难读到英文著作。在英国领事馆的图书室里，我找到了一本表面布满灰尘的书，作者是 19 世纪的逻辑学家乔治·布尔（George Boole），书名为《思维规律的研究》（An Investigation of the Laws of Thought）。这个书名立刻吸引了我，令我心驰神往，难道真的存在支配思维的法则吗？在这本书中，布尔试图将人类的思维逻辑简化为数学运算。他虽然没有真正解释清楚人类的思维过程，但道出了简单的逻辑运算的惊人力量和普适性。他还发明了一种语言，可以用来描述和处理逻辑陈述，以及判定这些陈述的真假。这种语言现在被称为布尔代数（Boolean algebra）。
 
 布尔代数与我们在高中所学的代数相似，差别仅在于等式中的变量所代表的东西从数字变成了逻辑命题。布尔变量代表非真即假的命题，符号∧、∨、¬ 分别代表「与」「或」「非」逻辑运算。例如下列的布尔代数方程：
 
@@ -122,13 +130,13 @@ FIGURE 6 An And block constructed by connecting an Or block to inverters
 
 除了电流外，我们也可以采取机械运动的方式来表示二进制位。图 1-4 说明了如何借助这种方法实现「或」功能 —— 滑杆向右移动表示输入 1。当输入杆 A 和 B 都保持在左侧时，表示两个输入都为 0，这时输出杆由于受到弹簧向左的推力而保持原位不动；当任何一个输入杆向右移动时，输出杆就会因受力而移至右侧。图 1-5 中的装置实现了另一种逻辑功能，即「非」功能。这种装置可以将所有输入的信号转换成与之相反的信号，例如，它能将左边的输入杆转换成右边的输出杆，反之亦然。
 
-图 1-5　用以实现「非」功能的机械式取反器
+图 1-5 用以实现「非」功能的机械式取反器
 
 「与」「或」「非」功能被统称为逻辑块，将它们组合起来就能实现其他逻辑功能。例如，将「或」逻辑块的输出和「非」逻辑块的输入相连，便可以实现「或非」功能，即当两个输入都不为 1 时，「或非」的输出才为 1。再举一个例子（应用德·摩根定律），将两个「非」逻辑块的输出分别连接至一个「或」逻辑块的输入，再将此逻辑块的输出连接至第三个「非」逻辑块的输入（见图 1-6），那么这 4 个逻辑块就共同实现了逻辑「与」的功能，即当两个输入都为 1 时，最后的输出才是 1。
 
 三个「非」逻辑块的输入（见图 1-6），那么这 4 个逻辑块就共同实现了逻辑「与」的功能，即当两个输入都为 1 时，最后的输出才是 1。
 
-图 1-6　一个「或」逻辑块和若干「非」逻辑块组成一个「与」逻辑块
+图 1-6 一个「或」逻辑块和若干「非」逻辑块组成一个「与」逻辑块
 
 早期的计算器是由机械部件制造成的。17 世纪，法国数学家布莱士·帕斯卡（Blaise Pascal）制造出了一台机械加法器，这让德国自然科学家戈特弗里德·威廉·莱布尼茨（Gottfried Wilhelm Leibniz）和英国博学家罗伯特·胡克（Robert Hooke）深受启发，他们改良了这台加法器，使其可以运算乘法和除法，甚至可以求取平方根。不过，这些机器都是不可编程的。到了 1833 年，英国数学家、发明家查尔斯·巴贝奇（Charles Babbage）设计并参与制造了一台可编程的机械式计算机。实际上，在我的童年时期，即 20 世纪 60 年代，大多数算术计算器都是机械式的。我非常喜欢这些机械式计算机，因为里面的运作过程能被清楚地看到，这一点是电子计算机无法实现的。当我设计电子计算机芯片时，会将电路想象成移动的机械部件。
 
