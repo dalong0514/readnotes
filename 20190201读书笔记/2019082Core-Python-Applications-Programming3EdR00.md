@@ -178,7 +178,9 @@ Patterns that use these symbols differ from most of the others we describe in th
 
 Again, if you want to match either (or both) of these characters verbatim, you must use an escaping backslash. For example, if you wanted to match any string that ended with a dollar sign, one possible regex solution would be the pattern 
 
-    .*\$$
+```py
+.*\$$
+```
 
 The special characters \b and \B pertain to word boundary matches. The difference between them is that \b will match a pattern to a word boundary, meaning that a pattern must be at the beginning of a word, whether there are any characters in front of it (word in the middle of a string) or not (word at the beginning of a line). And likewise, \B will match a pattern only if it appears starting in the middle of a word (i.e., not at a word boundary). Here are some examples:
 
@@ -202,7 +204,7 @@ For single-character regexes, though, the pipe and brackets are equivalent. For 
 
 In addition to single characters, the brackets also support ranges of characters. A hyphen between a pair of symbols enclosed in brackets is used to indicate a range of characters; for example A–Z, a–z, or 0–9 for uppercase letters, lowercase letters, and numeric digits, respectively. This is a lexicographic range, so you are not restricted to using just alphanumeric characters. Additionally, if a caret (^) is the first character immediately inside the open left bracket, this symbolizes a directive not to match any of the characters in the given character set.
 
-『 z.[0-9] 是字母"z"后面跟着任何一个字符，然后跟着一个数字；[r-u][env-y][us] 是字母"r"、"s"、"t"或者"u"后面跟着"e"、"n"、"v"、"w"、"x"或者"y"，然后跟着"u"或者"s"；[^aeiou] 是一个非元音字符（练习：为什么我们说"非元音"而不是"辅音"？）；[^\t\n] 是不匹配制表符或者 \n；["-a] 是在一个 ASCII 系统中，所有字符都位于""和"a"之间，即 34~97 之间。』
+z.[0-9] 是字母 "z" 后面跟着任何一个字符，然后跟着一个数字；[r-u][env-y][us] 是字母 "r"、"s"、"t" 或者 "u" 后面跟着 "e"、"n"、"v"、"w"、"x" 或者 "y"，然后跟着 "u" 或者 "s"；[^aeiou] 是一个非元音字符（练习：为什么我们说「非元音」而不是「辅音」？）；[^\t\n] 是不匹配制表符或者 \n；["-a] 是在一个 ASCII 系统中，所有字符都位于 "" 和 "a" 之间，即 34-97 之间。
 
 1『原来 [^XX] 是否定掉 [] 里的所有字符，之前的理解又偏误。（2020-03-30）』
 
@@ -210,7 +212,7 @@ In addition to single characters, the brackets also support ranges of characters
 
 We will now introduce the most common regex notations, namely, the special symbols \*, +, and ?, all of which can be used to match single, multiple, or no occurrences of string patterns. The asterisk or star operator (*) will match zero or more occurrences of the regex immediately to its left (in language and compiler theory, this operation is known as the Kleene Closure). The plus operator (+) will match one or more occurrences of a regex (known as Positive Closure), and the question mark operator (?) will match exactly 0 or 1 occurrences of a regex.
 
-1『Kleene Closure、Positive Closure，又见名词「闭包」。』
+1『 Kleene Closure、Positive Closure，又见名词「闭包」。』
 
 There are also brace operators ({}) with either a single value or a comma-separated pair of values. These indicate a match of exactly N occurrences (for {N}) or a range of occurrences; for example, {M, N} will match from M to N occurrences. These symbols can also be escaped by using the backslash character; \\* matches the asterisk, etc.
 
@@ -220,7 +222,9 @@ In the previous table, we notice the question mark is used more than once (overl
 
 目前知道 ? 有 2 个用法：一是匹配 0 或者 1 次；二是作为贪婪匹配的标识，如果问号紧跟在任何使用闭合操作符的匹配后面，它将直接要求正则表达式引擎匹配尽可能少的次数；三是扩展表示法的时候是以 ? 开头的。之前网上看到的匹配 html 标签的正则就是采用了第 2 个用法：
 
-    <div(([\s\S])*?)<\/div>
+```html
+<div(([\s\S])*?)<\/div>
+```
 
 』
 
@@ -228,7 +232,7 @@ What does "as few repetitions as possible" mean? When patternmatching is employe
 
 『当模式匹配使用分组操作符时，正则表达式引擎将试图「吸收」匹配该模式的尽可能多的字符。这通常被叫做贪婪匹配。问号要求正则表达式引擎去「偷懒」，如果可能，就在当前的正则表达式中尽可能少地匹配字符，留下尽可能多的字符给后面的模式（如果存在）。』
 
-2『greedy，贪婪匹配的概念终于出来了。做一张术语卡片。』
+2『 greedy，贪婪匹配的概念终于出来了。做一张术语卡片。』
 
 1『注意，使用特殊字符匹配的是其前面的那个字母。[dn]ot? 是字母 d 或者 n，后面跟着一个 o，然后是最多一个 t，例如，do、no、dot、not；[0-9]{15,16} 是匹配 15 或者 16 个数字（例如信用卡号码）；\</?[^>]+> 是匹配全部有效的（和无效的）HTML 标签；[KQRBNP][a-h][1-8]-[a-h][1-8] 是在「长代数」标记法中，表示国际象棋合法的棋盘移动（仅移动，不包括吃子和将军）。 即 K、Q、R、B、N 或 P 等字母后面加上 a1～h8 之间的棋盘坐标。 前面的坐标表示从哪里开始走棋，后面的坐标代表走到哪个位置（棋格）上。』
 
