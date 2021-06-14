@@ -98,11 +98,11 @@ Sometimes the deﬁnition of a function will include the domain. (This was the c
 
 OK, so square roots of negative numbers are bad. What else can cause a screw-up? Here's a list of the three most common possibilities:
 
-1. The denominator of a fraction can't be zero.
+1 The denominator of a fraction can't be zero.
 
-2. You can't take the square root (or fourth root, sixth root, and so on) of a negative number.
+2 You can't take the square root (or fourth root, sixth root, and so on) of a negative number.
 
-3. You can't take the logarithm of a negative number or of 0. (Remember logs? If not, see Chapter 9!)
+3 You can't take the logarithm of a negative number or of 0. (Remember logs? If not, see Chapter 9!)
 
 You might recall that tan(90 ◦ ) is also a problem, but this is really a special case of the ﬁrst item above. You see,
 
@@ -112,11 +112,11 @@ log 10 (x + 8) 26 − 2x f(x) = √, (x − 2)(x + 19)
 
 then what is the domain of f? Well, for f(x) to make sense, here's what needs to happen:
 
-• We need to take the square root of (26−2x), so this quantity had better be nonnegative. That is, 26 − 2x ≥ 0. This can be rewritten as x ≤ 13. Section 1.1.3: Finding the range using the graph • 5
+1 We need to take the square root of (26−2x), so this quantity had better be nonnegative. That is, 26 − 2x ≥ 0. This can be rewritten as x ≤ 13. Section 1.1.3: Finding the range using the graph • 5
 
-• We also need to take the logarithm of (x + 8), so this quantity needs to be positive. (Notice the diﬀerence between logs and square roots: you can take the square root of 0, but you can't take the log of 0.) Anyway, we need x + 8 > 0, so x > −8. So far, we know that −8 < x ≤ 13, so the domain is at most (−8, 13].
+2 We also need to take the logarithm of (x + 8), so this quantity needs to be positive. (Notice the diﬀerence between logs and square roots: you can take the square root of 0, but you can't take the log of 0.) Anyway, we need x + 8 > 0, so x > −8. So far, we know that −8 < x ≤ 13, so the domain is at most (−8, 13].
 
-• The denominator can't be 0; this means that (x−2) = 0 and (x+19) = 0. ̸ ̸ In other words, x = 2 and x = −19. This last one isn't a problem, since ̸ ̸ we already know that x lies in (−8, 13], so x can't possibly be −19. We do have to exclude 2, though.
+3 The denominator can't be 0; this means that (x−2) = 0 and (x+19) = 0. ̸ ̸ In other words, x = 2 and x = −19. This last one isn't a problem, since ̸ ̸ we already know that x lies in (−8, 13], so x can't possibly be −19. We do have to exclude 2, though.
 
 So we have found that the domain is the set (−8, 13] except for the number 2. This set could be written as (−8, 13] \{ 2 }. Here the backslash means “not including.”
 
@@ -128,11 +128,11 @@ So we have found that the domain is the set (−8, 13] except for the number 2. 
 
 好了，我们知道取负数的平方根会出问题。那么，还有什么会把问题搞糟呢？以下是 3 种最常见的情况。
 
-1. 分数的分母不能是零。
+1、分数的分母不能是零。
 
-2. 不能取一个负数的平方根(或四次根，六次根，等等)。
+2、不能取一个负数的平方根(或四次根，六次根，等等)。
 
-3. 不能取一个负数或零的对数。(还记得对数函数吗？如果忘了，就请看看第 9 章！)
+3、不能取一个负数或零的对数。(还记得对数函数吗？如果忘了，就请看看第 9 章！)
 
 或许你还记得 tan(90°) 也是一个问题，但这实际上是上述第一项的特例。你看，
 
@@ -140,11 +140,11 @@ So we have found that the domain is the set (−8, 13] except for the number 2. 
 
 那么，f 的定义域是什么呢？当然，为了使 f(x) 有意义，以下是我们必须要做的。
 
-- 我们需要取 (26-2x) 的平方根，所以，这个量必须是非负的。也就是说，26-2x≥0。还可以写成 x≤13。
+1、我们需要取 (26-2x) 的平方根，所以，这个量必须是非负的。也就是说，26-2x≥0。还可以写成 x≤13。
 
-- 我们也需要取 (x+8) 的对数，所以，这个量必须是正的。（注意对数和平方根的区别：可以取 0 的平方根，但不能取 0 的对数。)不管怎么说，我们需要 x+8>0，所以 x>-8）。到现在为止，我们知道 -8<x≤13，所以，定义域最多是(-8，13]。
+2、我们也需要取 (x+8) 的对数，所以，这个量必须是正的。（注意对数和平方根的区别：可以取 0 的平方根，但不能取 0 的对数。)不管怎么说，我们需要 x+8>0，所以 x>-8）。到现在为止，我们知道 -8<x≤13，所以，定义域最多是(-8，13]。
 
-- 分母不能为 0，这就是说 (x-2)≠0 且 (x+19)≠0。换句话说，x≠2 且 x≠-19。最后一个条件不是问题，因为我们已经知道 x 处于 (-8，13] 内，所以 x 不可能是 -19。我们还应该把 2 去掉。
+3、分母不能为 0，这就是说 (x-2)≠0 且 (x+19)≠0。换句话说，x≠2 且 x≠-19。最后一个条件不是问题，因为我们已经知道 x 处于 (-8，13] 内，所以 x 不可能是 -19。我们还应该把 2 去掉。
 
 这样，我们就找到了其定义域是除了 2 以外的集合(-8，13]。这个集合可以写作 (-8，13]\{2}，这里的反斜杠表示「不包括」。
 
@@ -212,16 +212,15 @@ So, here's the situation: we're given a function f, and we pick y in the range o
 
 function which reverses the transformation. Starting with the output y, the new function ﬁnds the one and only input x which leads to the output. The new function is called the inverse function of f, and is written as f −1. Here's a summary of the situation in mathematical language:
 
-1. Start with a function f such that for any y in the range of f, there is exactly one number x such that f(x) = y. That is, diﬀerent inputs give diﬀerent outputs. Now we will deﬁne the inverse function f −1.
+1 Start with a function f such that for any y in the range of f, there is exactly one number x such that f(x) = y. That is, diﬀerent inputs give diﬀerent outputs. Now we will deﬁne the inverse function f −1.
 
-2. The domain of f −1 is the same as the range of f.
+2 The domain of f −1 is the same as the range of f.
 
-3. The range of f −1 is the same as the domain of f.
+3 The range of f −1 is the same as the domain of f.
 
-4. The value of f −1 (y) is the number x such that f(x) = y. So,
+4 The value of f −1 (y) is the number x such that f(x) = y. So,
 
 if f(x) = y,
-
 
 The transformation f −1 acts like an undo button for f: if you start with x and transform it into y using the function f, then you can undo the eﬀect of the transformation by using the inverse function f −1 on y to get x back.
 
@@ -289,13 +288,13 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 所以，这里有一种情形：给定一个函数 f，我们在 f 的值域中选择 y。在理想状况下，仅有一个 x 值满足 f(x)=y。如果上述理想状况对于值域中的每一个 y 来说都成立，那么就可以定义一个新的函数，它将逆转变换。我们以输出 y 开始，这个新的函数发现一个且仅有一个输入 x 满足 f(x)=y。这个新的函数称为 f 的反函数，并写作 f-1。以下是使用数学语言对上述情况的总结。
 
-1. 从一个函数 f 出发，使得：对于在 f 值域中的任意 y，都只有唯一的 x 值满足 f(x)=y。也就是说，不同的输入对应不同的输出。现在，我们就来定义反函数 f-1。
+1、从一个函数 f 出发，使得：对于在 f 值域中的任意 y，都只有唯一的 x 值满足 f(x)=y。也就是说，不同的输入对应不同的输出。现在，我们就来定义反函数 f-1。
 
-2. f-1 的定义域和 f 的值域相同。
+2、f-1 的定义域和 f 的值域相同。
 
-3. f-1 的值域和 f 的定义域相同。
+3、f-1 的值域和 f 的定义域相同。
 
-4. f-1(y) 的值就是满足 f(x)=y 的 x。所以，如果 f(x)=y，那么 f-1(y)=x。
+4、f-1(y) 的值就是满足 f(x)=y 的 x。所以，如果 f(x)=y，那么 f-1(y)=x。
 
 变换 f-1 就像是 f 的恢复按钮：如果你以 x 开始，并通过函数 f 将它变换为 y，那么可以通过在 y 上的反函数 f-1 来恢复这个变换的效果，取回 x。
 
@@ -307,7 +306,7 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 这样一来，我们就可以描述水平线检验：如果每一条水平线和一个函数的图像相交至多一次，那么这个函数就有一个反函数。如果即使只有一条水平线和图像相交多于一次，那么这个函数就没有反函数。例如，我们来看一下图 1-4 中 f(x)=x^3 和 g(x)=x^2 的图像。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019091.PNG)
+![](./res/2019001.png)
 
 图 1-4
 
@@ -319,7 +318,7 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 另一方面，如果你知道函数图像是什么样子的，反函数的图像就会很容易画出来。基本思想就是在图像上画一条 y=x 的直线，然后将这条直线假想为一个双面的镜子。反函数就是原始函数的镜面反射。如果 f(x)=x^3，那么 f-1 的图像如图 1-5 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019092.PNG)
+![](./res/2019092.png)
 
 图 1-5
 
@@ -329,7 +328,7 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 终于，我们要提及第三个问题了：如果水平线检验失败并且没有反函数，那应该怎么办呢？我们的问题是，对于相同的 y 有多个 x 值。解决此问题的唯一方法是：除了这些多个 x 值中的一个，我们放弃所有其他值。也就是说，我们必须决定要保留哪一个 x 值，然后放弃剩余的值。正如在 1.1 节中看到的，这称为限制函数的定义域。事实上，我们删去部分曲线，使得保留下来的部分能够通过水平线检验。例如 g(x)=x^2，可以删除左半边的图像，如图 1-6 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019093.PNG)
+![](./res/2019093.png)
 
 图 1-6
 
@@ -337,13 +336,13 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 为了找到反函数的方程，我们必须在方程 y=x^2 中解出 x。很明显，问题的解就是 x=√y 或 x=-√y，但是我们需要哪一个呢？我们知道反函数的值域和原始函数的定义域是相同的，它被限制为 [0，∞)，所以我们需要一个非负的数来作为答案，即 x=√y。这就是说，h-1(y)=√y。当然，我们也可以把原始图像的右半边删除，将定义域限制为 (-∞，0]。在那种情况下，我们得到一个定义域为 (-∞，0]的函数j，并且也满足 j(x)=x^2，但是只是在这个定义域上才成立。这个函数也有反函数，反函数是负的平方根，即 j-1(y)=-√y，如图 1-7 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019094.PNG)
+![](./res/2019094.png)
 
 图 1-7
 
 顺便说一下，如果你取的原始函数 g 定义是 g(x)=x^2，其定义域为 (-∞，∞)，没有通过水平线检验，并且你试图将它在镜面 y=x 中反射，那么会得到如图 1-8 图像。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019095.PNG)
+![](./res/2019095.png)
 
 图 1-8
 
@@ -483,7 +482,7 @@ k 是另一个完全不同的函数。上述事实的寓意在于，函数的乘
 
 当你将函数 f 和 g(x)=x-a(a是常数) 进行复合后，就会出现复合函数中一个简单但很重要的例子。对复合得到的新函数 h(x)=f(x-a)，需要关注的是新函数 y=h(x) 和函数 y=f(x) 的图像是一样的，只不过 y=h(x) 的函数图像向右平移了 a 个单位。如果 a 是负的，那么就是向左平移(亦即，向右平移 -3 个单位与向左平移 3 个单位是一样的)。那么，如何画 y=(x-1)^2 的图像呢？就像画 y=x^2 的图像一样，只是用 x-1 来代替 x。所以可将函数 y=x^2 向右平移 1 个单位，如图 1-9 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019096.PNG)
+![](./res/2019096.png)
 
 图 1-9
 
@@ -788,7 +787,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 当知道函数的奇偶性之后，一个比较好的事情就是画函数图像比较容易了。事实上，如果你能将函数的右半边图像画出来，那么画左半边图像就是小菜一碟。我们先讨论当 f 是偶函数时的情形。因 f(x)=f(-x)，y=f(x) 的图像在 x 和 -x 坐标上方具有相同的高度，且对所有的 x 都成立，故如下页图 1-10 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019097.PNG)
+![](./res/2019097.png)
 
 图 1-10
 
@@ -796,7 +795,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 另一个方面，我们讨论当 f 是奇函数的情形。因 f(-x)=-f(x)，y=f(x) 图像在 x 坐标上方和 -x 坐标下方具有相同的高度。(当然，若 f(x) 是负的，你可以调换一下「上方」和「下方」两个词。)在任一情形下的图像如图 1-11 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019098.PNG)
+![](./res/2019098.png)
 
 图 1-11
 
@@ -830,7 +829,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 形如 f(x)=mx+b 的函数叫做线性函数。如此命名原因很简单：因为它们的图像是直线。直线的斜率是 m。设想一下，此时此刻你就在这页纸中，这条直线就像是座山，你从左向右开始登山。见图 1-12。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019099.PNG)
+![](./res/2019099.png)
 
 图 1-12
 
@@ -842,7 +841,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 情况一：b=0，这时函数变为 y=mx。直线通过原点，x 轴和 y 轴的截距都为零。接下来再求另一点，把 x=1 代入，可得 y=m。所以，直线 y=mx 通过原点和 (1，m) 这两点。例如，直线 y=-2x 通过原点以及 (1，-2)，如图 1-13 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019100.PNG)
+![](./res/2019100.png)
 
 图 1-13
 
@@ -850,7 +849,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 下面举一个有趣的例子，考虑函数 y=(1/2)x-1。很显然，y 轴截距为 -1，斜率为 1/2。为画这条直线，我们还需要求出 x 轴的截距，通过设 y=0 可以得出，化简后得出 x=2。图像如图 1-14 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019101.PNG)
+![](./res/2019101.png)
 
 图 1-14
 
@@ -884,13 +883,13 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 例如上述多项式的系数为 4，因为不存在比 4 大的 x 的幂指数。次数为 n 的多项式的通式的数学写法为：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019112.PNG)
+![](./res/2019112.png)
 
 其中 an 为 x^n 的系数，an-1 为 x^(n-1) 的系数，以此类推，最后一项 a0 为 1 的系数。
 
 因为 x^n 是所有多项式的基本项，你应该知道它们的图像是什么样的。偶次幂的图像之间是非常类似的，同样奇次幂的图像之间也很类似。图 1-15 是从 x^0 到 x^7 的图像。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019102.PNG)
+![](./res/2019102.png)
 
 图 1-15
 
@@ -898,7 +897,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 例如，我们刚才提到的 5x^4-4x^3+10 多项式，5 为它的首项系数。实际上，我们只需考虑首项系数正负以及多项式次数的奇偶就能决定图像两端的走势了。所以对于图像两端的走势共有如下 4 种情况，如图 1-16 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019103.PNG)
+![](./res/2019103.png)
 
 图 1-16
 
@@ -912,7 +911,7 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 对于前两种情况解为：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019113.PNG)
+![](./res/2019113.png)
 
 注意该表达式根号下为判别式。二次函数的一个重要技术是「配方」。下面我用实例说明。
 
@@ -922,15 +921,15 @@ Anyway, that's all I have to say about functions, apart from trig functions whic
 
 接下来，我们考虑 x 的系数 -(3/2)，被 2 除得，再平方得 9/16。我们希望系数为 9/16 而不是 5，下面我们做一些脑力练习：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019114.PNG)
+![](./res/2019114.png)
 
 为什么要加一次 9/16，又减一次 9/16 呢？因为这样的话，前三项为平方形式。这时，我们得到：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019115.PNG)
+![](./res/2019115.png)
 
 接下来，只剩最后一小步。最后恢复系数 2，我们有：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019116.PNG)
+![](./res/2019116.png)
 
 可以发现，这是一种更好的二次函数形式。你一定要学会如何配方，因为我们要在第 18 和第 19 章用这个技巧。
 
@@ -940,7 +939,7 @@ p(x)/q(x) 这种形式的函数，其中 p 和 q 为多项式，叫做有理函�
 
 最简单的有理函数是多项式本身，即 q(x) 为 1 的有理函数。另一个简单的例子是 1/(x^n)，其中 n 为正整数。我们看图 1-17 中一些有理函数的图像。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019104.PNG)
+![](./res/2019104.png)
 
 图 1-17
 
@@ -954,7 +953,7 @@ y=b^x(b>1) 的图像与上图很类似。有几点值得注意。
 
 首先，该函数的定义域为全体实数；其次，y 轴的截距为 1 并且值域为大于零的实数；最后，左端的水平渐近线为 x 轴。再强调一下，该图像非常接近于 x 轴，但永远不会接触到 x 轴，无论在你的图形计算器上多么接近。(在第 3 章的学习中，我们会再次见到渐近线。)y=2^(-x) 与 y=2^x 关于 y 轴对称，如图 1-18 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019105.PNG)
+![](./res/2019105.png)
 
 图 1-18
 
@@ -962,7 +961,7 @@ y=b^x(b>1) 的图像与上图很类似。有几点值得注意。
 
 由于 y=2^x 的图像满足水平线检验，所以该函数有反函数。这个反函数就是以 2 为底的对数 y=log2(x)。以直线 y=x 为对称轴，y=log2(x) 如图 1-19 所示。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019106.PNG)
+![](./res/2019106.png)
 
 图 1-19
 
@@ -976,7 +975,7 @@ y=b^x(b>1) 的图像与上图很类似。有几点值得注意。
 
 我们研究由 f(x)=|x| 定义的绝对值函数。该函数的定义为：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019107.PNG)
+![](./res/2019107.png)
 
 另一个研究这个绝对值函数的方法是数轴上 0 和 x 的距离。更概括地说，你也应该知道：
 
@@ -984,13 +983,13 @@ y=b^x(b>1) 的图像与上图很类似。有几点值得注意。
 
 例如，假设你需要去找不等式 |x-1|≤3 在数轴上的覆盖区域。我们能解释该不等式为 x 和 1 之间的距离小于或等于 3。也就是说，我们要找到所有与 1 之间的距离不大于 3 的点。所以我们画一个数轴并标记 1 的位置，如图 1-20 所示：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019108.PNG)
+![](./res/2019108.png)
 
 图 1-20
 
 距离不大于 3 的点最左到 -2 最右到 4，所以区域如图 1-21 所示：
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019109.PNG)
+![](./res/2019109.png)
 
 图 1-21
 
@@ -1000,13 +999,13 @@ y=b^x(b>1) 的图像与上图很类似。有几点值得注意。
 
 最后我来说说函数的图像。如果你知道一个函数的图像，那么可以得到函数绝对值的图像，即以 x 轴为对称轴，把 x 轴下方的图像映射上来，x 轴上方的图像不变。例如，对于 |x| 的图像，可以通过翻转 y=x 在 x 轴下方的部分得到，图 y=|x| 的图像如图 1-22。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019110.PNG)
+![](./res/2019110.png)
 
 图 1-22
 
 怎样画 y=|log2(x)| 的图像呢？使用图像对称的原理，则这个绝对值函数的图像如图 1-23。
 
-![](https://raw.githubusercontent.com/dalong0514/selfstudy/master/图片链接/化工书籍/2019111.PNG)
+![](./res/2019111.png)
 
 图 1-23
 

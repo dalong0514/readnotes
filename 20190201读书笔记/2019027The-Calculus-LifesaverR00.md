@@ -1,10 +1,10 @@
-英文出版时间：2007 年
+## 记忆时间
 
-中文修订版出版时间：2016 年
+内容提要：本书阐述了求解微积分的技巧，详细讲解了微积分基础、极限、连续、微分、导数的应用、积分、无穷级数、泰勒级数与幂级数等内容，旨在教会读者如何思考问题从而找到解题所需的知识点，着重训练大家自己解答问题的能力。
+
+英文出版时间：2007 年；中文修订版出版时间：2016 年
 
 Adrian Banner
-
-## 记忆时间
 
 ## 卡片
 
@@ -28,17 +28,11 @@ Adrian Banner
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡 ——
+### 0501. 数据信息卡 ——
 
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 数据信息卡 ——
-
-### 0701. 任意卡 ——
+### 0601. 任意卡 ——
 
 最后还有一张任意卡，记录个人阅读感想。
-
-内容提要：本书阐述了求解微积分的技巧，详细讲解了微积分基础、极限、连续、微分、导数的应用、积分、无穷级数、泰勒级数与幂级数等内容，旨在教会读者如何思考问题从而找到解题所需的知识点，着重训练大家自己解答问题的能力。
 
 ## 译者序
 
@@ -102,17 +96,17 @@ The inspiration for this book came from my students at Princeton University. Ove
 
 10、本书提及的这些录像是什么？在[网站](www.calclifesaver.com)上，你可以找到我的年度复习研讨录像，其中涉及了很多（但不是全部！）本书的章节和例题。
 
-### How to Use This Book to Study for an Exam
+### 01. How to Use This Book to Study for an Exam
 
 There's a good chance you have a test or exam coming up soon. I am sympathetic to your plight: you don't have time to read the whole book! There's a table on the next page that identiﬁes the main sections that will help you to review for the exam. Also, throughout the book, the following icons appear in the margin to allow you quickly to identify what's relevant:
 
-• A worked-out example begins on this line.
+1 A worked-out example begins on this line.
 
-• Here's something really important.
+2 Here's something really important.
 
-• You should try this yourself.
+3 You should try this yourself.
 
-• Beware: this part of the text is mostly for interest. If time is limited, skip to the next section.
+4 Beware: this part of the text is mostly for interest. If time is limited, skip to the next section.
 
 Also, some important formulas or theorems have boxes around them: learn these well.
 
@@ -132,7 +126,7 @@ Also, some important formulas or theorems have boxes around them: learn these we
 
 一些重要的公式或定理带有边框，一定要好好学啊。
 
-### Two all-purpose study tips
+### 02. Two all-purpose study tips
 
 1 Write out your own summary of all the important points and formulas to memorize. Math isn't about memorization, but there are some key formulas and methods that you should have at your ﬁngertips. The act of making the summary is often enough to solidify your understanding. This is the main reason why I don't summarize the important points at the end of a chapter: it's much more valuable if you do it yourself.
 
