@@ -18,17 +18,17 @@ Returning to our discussion of solution and precipitation, if we increase the te
 
 现在回到我们的溶解与淀积的讨论上。如果增加食盐溶液的温度，那么原子离开的比率就会增加，而原子回来的比率也会增加。结果是一般很难预言会朝哪一个方向发展，固体溶解得多一些还是少一些。当温度提高时，大多数物质更易溶解，但是某些物质则更不易溶解。
 
-1-2『有更正了自己的一个错误观念，温度越低溶解度越大，对于绝大部分物质是对的，但有些物质却相反，记得以后留意收集那些特例。做一张反常识卡片。』——已完成
+1-2『有更正了自己的一个错误观念，温度越低溶解度越大，对于绝大部分物质是对的，但有些物质却相反，记得以后留意收集那些特例。做一张反常识卡片。』—— 已完成
 
 ### 0101. 主题卡 —— 验证猜测的三个方法
 
 How can we tell whether the rules which we「guess」at are really right if we cannot analyze the game very well? There are, roughly speaking, three ways. 
 
-2『补充进之前做的主题卡「验证猜测的三个方法」。（2021-01-27）』——已完成
+2『补充进之前做的主题卡「验证猜测的三个方法」。（2021-01-27）』—— 已完成
 
 First, there may be situations where nature has arranged, or we arrange nature, to be simple and to have so few parts that we can predict exactly what will happen, and thus we can check how our rules work. (In one corner of the board there may be only a few chess pieces at work, and that we can ﬁgure out exactly.) 
 
-A second good way to check rules is in terms of less speciﬁc rules derived from them. For example, the rule on the move of a bishop on a chessboard is that it moves only on the diagonal. One can deduce, no matter how many moves may be made, that a certain bishop will always be on a red square. So, without being able to follow the details, we can always check our idea about the bishop’s motion by ﬁnding out whether it is always on a red square. Of course it will be, for a long time, until all of a sudden we ﬁnd that it is on a black square (what happened of course, is that in the meantime it was captured, another pawn crossed for queening, and it turned into a bishop on a black square). That is the way it is in physics. For a long time we will have a rule that works excellently in an over-all way, even when we cannot follow the details, and then some time we may discover a new rule. From the point of view of basic physics, the most interesting phenomena are of course in the new places, the places where the rules do not work — not the places where they do work! That is the way in which we discover new rules. 
+A second good way to check rules is in terms of less speciﬁc rules derived from them. For example, the rule on the move of a bishop on a chessboard is that it moves only on the diagonal. One can deduce, no matter how many moves may be made, that a certain bishop will always be on a red square. So, without being able to follow the details, we can always check our idea about the bishop's motion by ﬁnding out whether it is always on a red square. Of course it will be, for a long time, until all of a sudden we ﬁnd that it is on a black square (what happened of course, is that in the meantime it was captured, another pawn crossed for queening, and it turned into a bishop on a black square). That is the way it is in physics. For a long time we will have a rule that works excellently in an over-all way, even when we cannot follow the details, and then some time we may discover a new rule. From the point of view of basic physics, the most interesting phenomena are of course in the new places, the places where the rules do not work — not the places where they do work! That is the way in which we discover new rules. 
 
 The third way to tell whether our ideas are right is relatively crude but probably the most powerful of them all. That is, by rough approximation. While we may not be able to tell why Alekhine moves this particular piece, perhaps we can roughly understand that he is gathering his pieces around the king to protect it, more or less, since that is the sensible thing to do in the circumstances. In the same way, we can often understand nature, more or less, without being able to see what every little piece is doing, in terms of our understanding of the game. 
 
@@ -46,7 +46,7 @@ The third way to tell whether our ideas are right is relatively crude but probab
 
 At ﬁrst the phenomena of nature were roughly divided into classes, like heat, electricity, mechanics, magnetism, properties of substances, chemical phenomena, light or optics, x-rays, nuclear physics, gravitation, meson phenomena, etc. However, the aim is to see complete nature as diﬀerent aspects of one set of phenomena. That is the problem in basic theoretical physics, today — to ﬁnd the laws behind experiment; to amalgamate these classes. Historically, we have always been able to amalgamate them, but as time goes on new things are found. We were amalgamating very well, when all of a sudden x-rays were found. Then we amalgamated some more, and mesons were found. Therefore, at any stage of the game, it always looks rather messy. A great deal is amalgamated, but there are always many wires or threads hanging out in all directions. That is the situation today, which we shall try to describe.
 
-2『补充进之前做的主题卡「大统一理论」。（2021-01-27）』——已完成
+2『补充进之前做的主题卡「大统一理论」。（2021-01-27）』—— 已完成
 
 Some historic examples of amalgamation are the following. First, take heat and mechanics. When atoms are in motion, the more motion, the more heat the system contains, and so heat and all temperature eﬀects can be represented by the laws of mechanics. Another tremendous amalgamation was the discovery of the relation between electricity, magnetism, and light, which were found to be diﬀerent aspects of the same thing, which we call today the electromagnetic ﬁeld. Another amalgamation is the uniﬁcation of chemical phenomena, the various properties of various substances, and the behavior of atomic particles, which is in the quantum mechanics of chemistry. The question is, of course, is it going to be possible to amalgamate everything, and merely discover that this world represents diﬀerent aspects of one thing?
 
@@ -62,9 +62,9 @@ Nobody knows. All we know is that as we go along, we ﬁnd that we can amalgamat
 
 ### 0103. 主题卡 —— 量子动力学
 
-In the years before 1920, the picture of space as a three-dimensional space, and of time as a separate thing, was changed by Einstein, ﬁrst into a combination which we call space-time, and then still further into a curved space-time to represent gravitation. So the「stage」is changed into space-time, and gravitation is presumably a modiﬁcation of space-time. Then it was also found that the rules for the motions of particles were incorrect. The mechanical rules of「inertia」and「forces」are wrong — Newton’s laws are wrong — in the world of atoms. Instead, it was discovered that things on a small scale behave nothing like things on a large scale. That is what makes physics diﬃcult — and very interesting. It is hard because the way things behave on a small scale is so「unnatural」; we have no direct experience with it. Here things behave like nothing we know of, so that it is impossible to describe this behavior in any other than analytic ways. It is diﬃcult, and takes a lot of imagination. 
+In the years before 1920, the picture of space as a three-dimensional space, and of time as a separate thing, was changed by Einstein, ﬁrst into a combination which we call space-time, and then still further into a curved space-time to represent gravitation. So the「stage」is changed into space-time, and gravitation is presumably a modiﬁcation of space-time. Then it was also found that the rules for the motions of particles were incorrect. The mechanical rules of「inertia」and「forces」are wrong — Newton's laws are wrong — in the world of atoms. Instead, it was discovered that things on a small scale behave nothing like things on a large scale. That is what makes physics diﬃcult — and very interesting. It is hard because the way things behave on a small scale is so「unnatural」; we have no direct experience with it. Here things behave like nothing we know of, so that it is impossible to describe this behavior in any other than analytic ways. It is diﬃcult, and takes a lot of imagination. 
 
-Quantum mechanics has many aspects. In the ﬁrst place, the idea that a particle has a deﬁnite location and a deﬁnite speed is no longer allowed; that is wrong. To give an example of how wrong classical physics is, there is a rule in quantum mechanics that says that one cannot know both where something is and how fast it is moving. The uncertainty of the momentum and the uncertainty of the position are complementary, and the product of the two is bounded by a small constant. We can write the law like this: `ΔxΔp ≥ h/2π`, but we shall explain it in more detail later. This rule is the explanation of a very mysterious paradox: if the atoms are made out of plus and minus charges, why don’t the minus charges simply sit on top of the plus charges (they attract each other) and get so close as to completely cancel them out? Why are atoms so big? Why is the nucleus at the center with the electrons around it? It was ﬁrst thought that this was because the nucleus was so big; but no, the nucleus is very small. An atom has a diameter of about 10^-8 cm. The nucleus has a diameter of about 10^-13 cm.
+Quantum mechanics has many aspects. In the ﬁrst place, the idea that a particle has a deﬁnite location and a deﬁnite speed is no longer allowed; that is wrong. To give an example of how wrong classical physics is, there is a rule in quantum mechanics that says that one cannot know both where something is and how fast it is moving. The uncertainty of the momentum and the uncertainty of the position are complementary, and the product of the two is bounded by a small constant. We can write the law like this: `ΔxΔp ≥ h/2π`, but we shall explain it in more detail later. This rule is the explanation of a very mysterious paradox: if the atoms are made out of plus and minus charges, why don't the minus charges simply sit on top of the plus charges (they attract each other) and get so close as to completely cancel them out? Why are atoms so big? Why is the nucleus at the center with the electrons around it? It was ﬁrst thought that this was because the nucleus was so big; but no, the nucleus is very small. An atom has a diameter of about 10^-8 cm. The nucleus has a diameter of about 10^-13 cm.
 
 If we had an atom and wished to see the nucleus, we would have to magnify it until the whole atom was the size of a large room, and then the nucleus would be a bare speck which you could just about make out with the eye, but very nearly all the weight of the atom is in that inﬁnitesimal nucleus. What keeps the electrons from simply falling in? This principle: If they were in the nucleus, we would know their position precisely, and the uncertainty principle would then require that they have a very large (but uncertain) momentum, i.e., a very large kinetic energy. With this energy they would break away from the nucleus. They make a compromise: they leave themselves a little room for this uncertainty and then jiggle with a certain amount of minimum motion in accordance with this rule. (Remember that when a crystal is cooled to absolute zero, we said that the atoms do not stop moving, they still jiggle. Why? If they stopped moving, we would know where they were and that they had zero motion, and that is against the uncertainty principle. We cannot know where they are and how fast they are moving, so they must be continually wiggling in there!)
 
@@ -86,7 +86,7 @@ In principle, then, quantum electrodynamics is the theory of all chemistry, and 
 
 于是，我们对电磁相互作用有了新的见解。我们把一种新类型的粒子加入到电子、质子及中子的行列，这种新的粒子称为光子。而这种电子与质子相互作用的新的见解被称为量子电动力学，它就是电磁理论，不过其中的一切在量子力学上都是正确的。这是光和物质，或电场与电荷之间相互作用的基本理论，就物理学来说它是我们最伟大的成就。在这个理论中，我们得到了除万有引力与原子核过程之外的所有一般现象的根本规则。比如，从量子电动力学可以得出所有已知的电学、力学和化学定律：弹子碰撞的定律、导线在磁场中运动的定律、一氧化碳的比热、霓虹灯的色彩、盐的密度、以及氢与氧形成水的反应等全都是这理论的推论。所有这些细节，如果简单到能使我们运用近似方法的话，都可以得出，这实际上当然不可能，不过我们总能对发生的事多少有所理解。目前，在原子核外面还没有发现量子电动力学定律有什么例外，对于原子核我们不知道是否会有例外，因为对于核内的过程我们简直还不太清楚。
 
-2『量子动力学，即电磁学，是除万有引力和原子核过程外的所有一般现象的根本规则，做一张主题卡片。』——已完成
+2『量子动力学，即电磁学，是除万有引力和原子核过程外的所有一般现象的根本规则，做一张主题卡片。』—— 已完成
 
 这样，在原则上，量子电动力学是一切化学以及生命的理论 一一 如果生命最后归结为化学，因而也就归结为物理的话（因为化学本身已经归结为物理，涉及化学中的那部分物理早就知道了）。不仅如此，量子电动力学这个伟大的理论还预言了许多新的事实。首先，它说明了甚高能光子、射线等的性质。它还预言了另一个十分出乎意外的事：除电子外，还应当有同样质量、但带有正电荷的称为正电子的粒子，并且这两种粒子碰在一起时，会彼此湮没而放出光或 γ 射线（其实，光与 γ 射线完全是一回事，只是频率不同而已）。这件事情的推广 —— 即对每个粒子总有一个反粒子 —— 现在知道是正确的。电子的反粒子有另一个名称，即正电子，但其他大多数反粒子，就称反某某子，如反质子、反中子。在量子电动力学中提出了两个基本数据 一一 电子质量与电荷，所有世界上其他的数被认为可以从这两个数据推导出来。实际上，这不完全正确，因为化学还有一整套数据，它告诉我们原子核是多重，这就把我们引导到下一部分内容中去了。
 
@@ -106,13 +106,11 @@ In principle, then, quantum electrodynamics is the theory of all chemistry, and 
 
 到现在为止，在我们所描述的一切过程中，原子和离子的伙伴并没有变更，但是当然也有这种情况，原子的组合的确改变了，形成新的分子。图 1-8 就是说明这一情况的。在一个过程中如果原子的伙伴重新排列，我们就称之为化学反应。其他前面所描述的过程称为物理过程，但是二者之间并没有明显的界限。（大自然并不关心我们究竟如何去称呼，她只知道不断地进行工作。）图 1-8 表示碳在氧气中的燃烧，在氧气中，两个氧原子紧紧地吸引在一起。（为什么不是三个甚至四个吸引在一起？这是此类原子过程的一个很典型的特征。原子是非常特别的：它们喜欢一定的伙伴，一定的方向，等等。物理学的任务就是要分析每一个原子为什么想要它所希望要的东西。无论如何，两个氧原子形成了一个饱和的、适宜的分子。)
 
-1『大自然并不关心我们究竟如何去称呼，她只知道不断地进行工作。这一句话又是醍醐灌顶，物理过程、化学过程只是人为的分类，方便我们区分概念而已，其实二者没啥明显的分界，都是那么自然而然发生着的。做一张金句卡片。』——已完成
+1『大自然并不关心我们究竟如何去称呼，她只知道不断地进行工作。这一句话又是醍醐灌顶，物理过程、化学过程只是人为的分类，方便我们区分概念而已，其实二者没啥明显的分界，都是那么自然而然发生着的。做一张金句卡片。』—— 已完成
 
-### 0501. 行动卡 ——
+### 0501. 数据信息卡 —— 原子的尺寸
 
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 数据信息卡 —— 原子的尺寸
+Why is the nucleus at the center with the electrons around it? It was ﬁrst thought that this was because the nucleus was so big; but no, the nucleus is very small. An atom has a diameter of about 10^-8 cm. The nucleus has a diameter of about 10^-13 cm.
 
 尺寸：1-2 A。
 
@@ -122,9 +120,9 @@ In principle, then, quantum electrodynamics is the theory of all chemistry, and 
 
 原子的半径约为 1-2x10^-8 厘米，10^-8 厘米现在称为 1A（这只是另一个名称），所以我们说原子的半径为 1-2A。另一个记住原子大小的方法是这样的：如果把苹果放大到地球那样大，那么苹果中的原子就差不多有原来的苹果那样大。
 
-1-2『上面对原子尺寸的比喻真贴切，一下子有了感性认知，费曼 NB 就 NB 在这一点上，他总是能给你举一些很贴切的例子把高深的东西讲的特别通俗。做一张信息数据卡片。』——已完成
+1-2『上面对原子尺寸的比喻真贴切，一下子有了感性认知，费曼 NB 就 NB 在这一点上，他总是能给你举一些很贴切的例子把高深的东西讲的特别通俗。做一张信息数据卡片。』—— 已完成
 
-### 0602. 数据信息卡 —— 液体蒸发会导致冷却
+### 0502. 数据信息卡 —— 液体蒸发会导致冷却
 
 Here is something else: Which molecules leave? When a molecule leaves it is due to an accidental, extra accumulation of a little bit more than ordinary energy, which it needs if it is to break away from the attractions of its neighbors. Therefore, since those that leave have more energy than the average, the ones that are left have less average motion than they had before. So the liquid gradually cools if it evaporates. Of course, when a molecule of vapor comes from the air to the water below there is a sudden great attraction as the molecule approaches the surface. This speeds up the incoming molecule and results in generation of heat. So when they leave they take away heat; when they come back they generate heat. Of course when there is no net evaporation the result is nothing — the water is not changing temperature. If we blow on the water so as to maintain a continuous preponderance in the number evaporating, then the water is cooled. Hence, blow on soup to cool it!
 
@@ -132,7 +130,7 @@ Here is something else: Which molecules leave? When a molecule leaves it is due 
 
 1-2『液体蒸发会导致冷却，费曼这个视角的解释太 NB 了，做一张信息数据卡片。』——已完成
 
-### 0603. 数据信息卡 —— 酶的工作原理
+### 0503. 数据信息卡 —— 酶的工作原理
 
 In the cells of living systems there are many elaborate chemical reactions, in which one compound is changed into another and another. To give some impression of the enormous eﬀorts that have gone into the study of biochemistry, the chart in Fig. 3-1 summarizes our knowledge to date on just one small part of the many series of reactions which occur in cells, perhaps a percent or so of it. 
 
@@ -146,19 +144,19 @@ An enzyme is made of another substance called protein. Enzymes are very big and 
 
 考虑这样一个类似的情况：如果我们要把一个物体从一个地方拿到另一个地方，而这两个地方处在相同的水平高度，但是分别在一座小山的两边，那么我们可以把物体推过山顶，但是要做到这一点需要一些附加的能量。由于这种原因，大多数化学反应都不会发生，因为有种所谓的活化能妨碍这一反应的进行。为了在一种化合物中增加一个额外的原子，就要使这个原子靠得足够紧，以便能出现某种重新排列，这样它就结合到那个化合物上去了。但是如果我们不能给它足够的能量使之靠得足够近，它就不会越过势垒，只是上去了一部分路程后又倒退回来。然而，假如我们真的能把分子拿在手中，把其中的原子推来推去使它出现个缺口，让新原子进入，然后又使缺口一下子合拢，我们就找到了另一个办法，即绕过势垒，这不需要额外的能量，因此反应就较容易进行。现在，在细胞里确实存在着一些很大的分子，比起我们刚描述过其变化的分子要大得多，它们以某种复杂的方式使较小的分子处于恰当的状态，从而使反应易于发生。这些很大的、复杂的分子称为酶（它们起先被叫做酵素，因为最早是在糖发酵时发现的。事实上三羧酸循环的某些反应最初就是在发酵中发现的）。由于有酶存在，反应就会进行。
 
-2『这里介绍的酶、催化剂的原理，以一座小山两边同水平位置上的石头做隐喻，绝妙。做一张信息数据卡片。』——已完成
+2『这里介绍的酶、催化剂的原理，以一座小山两边同水平位置上的石头做隐喻，绝妙。做一张信息数据卡片。』—— 已完成
 
 酶是由另一种称为蛋白质的物质构成的。酶分子族是非常庞大而复杂的，每一种酶互不相同，并且都控制着一定的特殊反应。图 3-1 中每个反应中都写上了酶的名称（有时同种酶可以控制两种反应）。我们要强调指出：酶本身并不直接参与反应，它们并没有变化，只是使一个原子从一个地方跑到另一个地方。干完了这件事后，它又准备对下一个原子做同样的事，犹如工厂里的机器一样。当然，必须对某种原子进行补充，并且可以处理另一些原子。比如，以氢为例，有些酶具有特殊的结构单元，能在各种化学反应中运送氢原子。例如，有三种或四种脱氢酶在我们整个循环的各个地方都用到。有趣的是，有一种机构使一个地方释放某些氢原子并将其取走，然后用到其他的地方去。
 
-### 0604. 数据信息卡 —— 磁铁有磁场的原理
+### 0504. 数据信息卡 —— 磁铁有磁场的原理
 
 简言之，电流和磁铁均会产生磁场。且慢！试问磁铁究竟是什么？如果磁场是由运动电荷产生的，那么，来自一块磁铁的磁场是否有可能也是由于电流的原因呢？看来的确是这样。我们可以将实验中的条形磁铁用一个导电线圈来代替，如图 1-9 所示。当电流通过线圈同时也有电流通过在线圈上面的那根直导线 一一 时，我们便会观察到导线的运动与以前用磁铁而不用线圈时完全一样。换言之，线圈里的电流模仿了一块磁铁。因此，看来一块磁铁的作用就如同它含有一种永恒的环行电流一样。事实上，我们可以用铁原子中的恒定电流来理解磁铁。在图 1-7 中，作用在磁铁上的力就是由式（1.1）中的第二项引起的。
 
 究竟这些电流是从哪里来的呢？一种可能来自原子轨道中电子的运动。实际上虽然对于某些材料来说这是正确的，但对铁来说却是不正确的。一个电子，除了在原子中环行之外，还绕它本身的轴旋转 一一 有些像地球的自转 —— 正是由于自旋所产生的电流才为铁提供了磁场（我们说「有些像地球的自转」，是因为这一问题在量子力学中竟是那么奥妙，以致一些经典概念并不能真正恰当地描述这些事物）。在大多数物质中，有些电子这样自旋，另一些电子那样自旋，所以磁性互相抵消；可是在铁里 一一 由于某个我们将在以后加以讨论的神秘原因 一一 有许多电子却绕着它们的排列整齐的轴旋转着，这正是磁性的起源。
 
-1『磁铁有磁场的原理，做一张信息数据卡片。』——已完成
+1『磁铁有磁场的原理，做一张信息数据卡片。』—— 已完成
 
-### 0605. 数据信息卡 —— 冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的
+### 0505. 数据信息卡 —— 冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的
 
 We now return to our drop of water and look in another direction. Suppose that we decrease the temperature of our drop of water. Suppose that the jiggling of the molecules of the atoms in the water is steadily decreasing. We know that there are forces of attraction between the atoms, so that after a while they will not be able to jiggle so well. What will happen at very low temperatures is indicated in Fig. 1-4: the molecules lock into a new pattern which is ice. This particular schematic diagram of ice is wrong because it is in two dimensions, but it is right qualitatively. The interesting point is that the material has a deﬁnite place for every atom, and you can easily appreciate that if somehow or other we were to hold all the atoms at one end of the drop in a certain arrangement, each atom in a certain place, then because of the structure of interconnections, which is rigid, the other end miles away (at our magniﬁed scale) will have a deﬁnite location. So if we hold a needle of ice at one end, the other end resists our pushing it aside, unlike the case of water, in which the structure is broken down because of the increased jiggling so that the atoms all move around in diﬀerent ways. 
 
@@ -166,40 +164,40 @@ The diﬀerence between solids and liquids is, then, that in a solid the atoms a
 
 Figure 1-4 is an invented arrangement for ice, and although it contains many of the correct features of ice, it is not the true arrangement. One of the correct features is that there is a part of the symmetry that is hexagonal. You can see that if we turn the picture around an axis by 60◦, the picture returns to itself. So there is a symmetry in the ice which accounts for the six-sided appearance of snowﬂakes. Another thing we can see from Fig. 1-4 is why ice shrinks when it melts. The particular crystal pattern of ice shown here has many「holes」in it, as does the true ice structure. When the organization breaks down, these holes can be occupied by molecules. Most simple substances, with the exception of water and type metal, expand upon melting, because the atoms are closely packed in the solid crystal and upon melting need more room to jiggle around, but an open structure collapses, as in the case of water.
 
-2『冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的。做一张信息数据卡片。2021-01-22』——已完成
+2『冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的。做一张信息数据卡片。2021-01-22』—— 已完成
 
-### 0605. 数据信息卡 —— 量子具备的两大特性
+### 0505. 数据信息卡 —— 量子具备的两大特性
 
 在 1920 年以前，我们的世界图像大致是这样的：宇宙活动的「舞台」是欧几里得所描绘的三维几何空间，一切事物在被称为「时间」的一种介质里变化，舞台上的基本元素是粒子，例如原子，它们具有某些特性。首先它具有惯性：如果一个粒子正在运动，它将沿着同一方向继续运动下去，除非有力作用其上。此外，第二个基本元素就是力，当时认为共有两类力。第一类力是一种极其复杂细致的相互作用，它们以复杂的方式将各种各样的原子约束在不同的组合之中，它们决定当温度升高时食盐是溶解得快些还是慢些；另一类已知的力是一种长程的相互作用，它是与距离平方成反比而变化的平缓的吸引力，称为万有引力。这条定律已为我们所知，它是很简单的。当然，为什么物体的运动一经开始就能保持下去，或者为什么存在一条万有引力定律，我们则不清楚。
 
-2『量子具备的两大特性：惯性和力。做一张信息数据卡片。（2021-01-27）』——已完成
+2『量子具备的两大特性：惯性和力。做一张信息数据卡片。（2021-01-27）』—— 已完成
 
-### 0606. 数据信息卡 —— 肌肉的两种蛋白
+### 0506. 数据信息卡 —— 肌肉的两种蛋白
 
 The opposite eﬀect is that, from somewhere in the brain, a message is sent out along a nerve. What happens at the end of the nerve? There the nerve branches out into ﬁne little things, connected to a structure near a muscle, called an endplate. For reasons which are not exactly understood, when the impulse reaches the end of the nerve, little packets of a chemical called acetylcholine are shot oﬀ (ﬁve or ten molecules at a time) and they aﬀect the muscle ﬁber and make it contract — how simple! What makes a muscle contract? A muscle is a very large number of ﬁbers close together, containing two diﬀerent substances, myosin and actomyosin, but the machinery by which the chemical reaction induced by acetylcholine can modify the dimensions of the muscle is not yet known. Thus the fundamental processes in the muscle that make mechanical motions are not known.
 
 相反的效应是从大脑中某个地方沿着神经发出一个信息。这时在神经的末梢会出现什么情况呢？神经在末梢处分成了细微的小纤维，这些小纤维与肌肉附近的一种称为端板的结构相连接。由于一些现在还不完全理解的原因，当脉冲信号抵达神经末梢后，射出一小团小团称为乙酰胆碱的化学物质（每次 5-10 个分子），它们影响了肌肉纤维而使其收缩 一一 这一切多么简单！什么东西使肌肉会发生收缩呢？肌肉是由极多的彼此紧贴的纤维所组成的，它含有两种不同的物质：肌球蛋白和肌动球蛋白。但是由乙酰胆碱所引起的那种改变分子大小的化学反应机制现在还不清楚，因而在肌肉中引起机械运动的基本过程也未被我们所知。
 
-2『肌肉的两种蛋白，做一张信息数据卡片。（2021-02-08）』——已完成
+2『肌肉的两种蛋白，做一张信息数据卡片。（2021-02-08）』—— 已完成
 
-### 0701. 任意卡 —— 水里的软木塞，类比电磁场中的电荷
+### 0601. 任意卡 —— 水里的软木塞，类比电磁场中的电荷
 
 于是我们就有了两条规则：1）电荷产生电场；2）电荷在电场中会受到力的作用而运动。如果我们讨论下述现象的话，建立这两条规则的理由就清楚了：假如我们使某物体（比方说梳子）带电，然后把一张带电的纸片放在一定距离之外，当我们来回移动梳子时，纸片就会有反应，并且总是指向梳子。如果我们使梳子晃动得快些，就会发现纸片的运动有点滞后，即作用有所延迟（起先，当我们相当慢地晃动梳子时，我们发现一种错综复杂的现象，这就是磁。磁的影响与作相对运动的电荷有关，所以磁力和电的作用力实际上可以归之于一个场，就像同一件事的两个不同的方面。变化的电场不能离开磁而存在）。假如我们把纸片移得更远，滞后就更大，这时能观察到一件有趣的事：虽然两个带电体之间的作用力应当与距离平方成反比，但是我们发现，当摇动一个电荷时，电作用的影响范围要比起初所猜想的大得多。这就是说，作用的减弱要比反平方的规则来得慢。
 
 这里有一个类比：如果我们在水池里，而在近处漂浮着一个软木塞，我们可以用另一个软木塞划水来「直接」移动那个木塞。如果现在你只注意两个软木塞，你能看到的将是一个立即响应另一个的运动 一一 在软木塞之间存在着某种「相互作用」。当然，我们实际上所做的只是搅动了水；然后水又去扰动另一个木塞。于是我们就能提出一条「定律」：如果稍微划下水，那么水中附近的物体就会移动。当然，假若第二个软木塞离得较远，则它将几乎不动，因为我们只是局部地搅动水。另一方面，假如我们晃动木塞，就会产生一个新的现象，即这部分水推动了那部分水，等等，于是波就传播开去，这样，由于晃动，就有一种波及十分远的影响和一种振荡的影响，这是无法用直接相互作用来理解的。所以那种直接作用的概念必须用水的存在来代替，或者，对于电的情形，用我们所谓的电磁场来代替。
 
-2『水里的软木塞，类比电磁场中的电荷，费曼这个隐喻太赞了。做一张任意卡片。』——已完成
+2『水里的软木塞，类比电磁场中的电荷，费曼这个隐喻太赞了。做一张任意卡片。』—— 已完成
 
-### 0702. 任意卡 —— 对临界温度临界压力的理解
+### 0602. 任意卡 —— 对临界温度临界压力的理解
 
 Now although ice has a「rigid」crystalline form, its temperature can change —  ice has heat. If we wish, we can change the amount of heat. What is the heat in the case of ice? The atoms are not standing still. They are jiggling and vibrating. So even though there is a deﬁnite order to the crystal — a deﬁnite structure — all of the atoms are vibrating「in place.」As we increase the temperature, they vibrate with greater and greater amplitude, until they shake themselves out of place. We call this melting. As we decrease the temperature, the vibration decreases and decreases until, at absolute zero, there is a minimum amount of vibration that the atoms can have, but not zero. This minimum amount of motion that atoms can have is not enough to melt a substance, with one exception: helium. Helium merely decreases the atomic motions as much as it can, but even at absolute zero there is still enough motion to keep it from freezing. Helium, even at absolute zero, does not freeze, unless the pressure is made so great as to make the atoms squash together. If we increase the pressure, we can make it solidify.
 
-1-2-3『这里跟常压下临界温度、临界压力的概念关联上了，比如一个物质的临界温度小于常温，你在常温下再怎么加压也没法使其液化，水的临界温度很高，所以水蒸气很容易冷凝。费曼这里说，氦气在常压下，再怎么降温，它也不会液化。直觉上跟临界温度临界压力是一个底层逻辑。做一张任意卡片，待验证。（2021-01-22）』——已完成
+1-2-3『这里跟常压下临界温度、临界压力的概念关联上了，比如一个物质的临界温度小于常温，你在常温下再怎么加压也没法使其液化，水的临界温度很高，所以水蒸气很容易冷凝。费曼这里说，氦气在常压下，再怎么降温，它也不会液化。直觉上跟临界温度临界压力是一个底层逻辑。做一张任意卡片，待验证。（2021-01-22）』—— 已完成
 
-### 0703. 任意卡 —— 正、负电荷组成的原子相互离开较远与较近的场景
+### 0603. 任意卡 —— 正、负电荷组成的原子相互离开较远与较近的场景
 
 那么，我们会得到什么结果呢？假定我们有两个异类电荷，一正一负，并且彼此十分靠近。现在，在若干距离之外，还有另一个电荷。它会感到吸引吗？实际上它几乎不会感到什么作用，因为如果前两个电荷的大小相等，来自一个电荷的吸引被来自另一个电荷的排斥所抵消，所以，在任何可估计的距离上只有很小的一点作用力。另一方面，如果我们使第三个电荷非常靠近前两个时，就会发生吸引作用。因为同类电荷的斥力与异类电荷的引力倾向于使异类电荷靠近而使同类电荷远离。这样，排斥作用就将小于吸引作用。这就是为什么由正、负电荷组成的原子相互离开较远时只感受到很小一点作用力（重力除外），而当它们彼此靠近时，就能够互相「看到内部」而重新安排其电荷，结果产生极强的相互作用的原因。
 
-2『看第二遍才算弄明白。假设有三个电荷 A、B、C，A 和 B 离的很近，基本可以作为一个整体 AB，那么 C 与 AB 的作用力很小的，因为 A、C 间的吸引力与 B、C 间的排斥力基本抵消了。当 C 离 AB 很近时，A、B、C 会重新组合形成一个新整体 ABC。正、负电荷组成的原子相互离开较远时只感受到很小一点作用力（重力除外），而当它们彼此靠近时，就能够互相「看到内部」而重新安排其电荷，结果产生极强的相互作用。做一张任意卡片。（2021-01-27）』——已完成
+2『看第二遍才算弄明白。假设有三个电荷 A、B、C，A 和 B 离的很近，基本可以作为一个整体 AB，那么 C 与 AB 的作用力很小的，因为 A、C 间的吸引力与 B、C 间的排斥力基本抵消了。当 C 离 AB 很近时，A、B、C 会重新组合形成一个新整体 ABC。正、负电荷组成的原子相互离开较远时只感受到很小一点作用力（重力除外），而当它们彼此靠近时，就能够互相「看到内部」而重新安排其电荷，结果产生极强的相互作用。做一张任意卡片。（2021-01-27）』—— 已完成
 
 原子间作用力的最终基础是电的作用。由于这种力是如此巨大，以致所有正的与负的电荷通常都以尽可能紧密的方式结合在一起。所有的事物，甚至我们自己，都由极精细的和彼此强烈作用着的正、负微粒所组成，所有正的微粒与所有负的微粒正好抵消。有时，碰巧我们「擦」去了一些负电荷或正电荷（通常擦去负电荷较为容易），在这种情况下将会发现电力不再平衡，于是就能看到电的吸引作用。
