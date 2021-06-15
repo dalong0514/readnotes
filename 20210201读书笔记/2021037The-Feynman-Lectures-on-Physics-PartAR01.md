@@ -26,7 +26,7 @@ A recital of Richard Feynman’s myriad scientiﬁc and educational accomplishme
 
 Richard Feynman died on February 15, 1988, in Los Angeles.
 
-2『费曼，做一张人名卡。（2021-01-17）』——未完成
+2『费曼，做一张人名卡。（2021-01-17）』—— 未完成
 
 理査德·费恩曼（R. P. Feynman）1918 年生于纽约市，1942 年在普林斯顿大学获得博士学位。第二次世界大战期间，尽管当时他还很年轻，就已经在洛斯阿拉莫斯的曼哈顿计划中发挥了重要作用。以后，他在康奈尔大学和加利福尼亚理工学院任教。1965 年，因在量子电动力学方面的工作和朝永振一郎及施温格尔（J. Schwinger）同获诺贝尔物理学奖。
 
