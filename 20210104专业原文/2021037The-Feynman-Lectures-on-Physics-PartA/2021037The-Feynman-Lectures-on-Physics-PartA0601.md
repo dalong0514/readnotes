@@ -1,3 +1,7 @@
+# 0601. Probability
+
+「The true logic of this world is in the calculus of probabilities.」
+
 —James Clerk Maxwell
 
 6-1 Chance and likelihood「Chance」is a word which is in common use in everyday living. The radio reports speaking of tomorrow’s weather may say:「There is a sixty percent chance of rain.」You might say:「There is a small chance that I shall live to be one hundred years old.」Scientists also use the word chance. A seismologist may be interested in the question:「What is the chance that there will be an earthquake of a certain size in Southern California next year?」A physicist might ask the question:「What is the chance that a particular geiger counter will register twenty counts in the next ten seconds?」A politician or statesman might be interested in the question:「What is the chance that there will be a nuclear war within the next ten years?」You may be interested in the chance that you will learn something from this chapter.

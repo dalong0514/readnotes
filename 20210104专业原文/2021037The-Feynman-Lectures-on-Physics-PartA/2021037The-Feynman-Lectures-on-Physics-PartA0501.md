@@ -1,4 +1,4 @@
-Time and Distance
+# 0501. Time and Distance
 
 5-1 Motion In this chapter we shall consider some aspects of the concepts of time and distance. It has been emphasized earlier that physics, as do all the sciences, depends on observation. One might also say that the development of the physical sciences to their present form has depended to a large extent on the emphasis which has been placed on the making of quantitative observations. Only with quantitative observations can one arrive at quantitative relationships, which are the heart of physics.
 
@@ -197,10 +197,3 @@ minimum error, given in fact by
 where ∆E is the error in our knowledge of the energy of the process whose time period we are measuring. If we wish to know more precisely when something happened we must know less about what happened, because our knowledge of the energy involved will be less. The time uncertainty is also related to the wave nature of matter.
 
 5-19
-
-6
-
-Probability
-
-「The true logic of this world is in the calculus of probabilities.」
-

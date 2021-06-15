@@ -1,4 +1,4 @@
-Conservation of Energy
+# 0401. Conservation of Energy
 
 4-1 What is energy? In this chapter, we begin our more detailed study of the diﬀerent aspects of physics, having ﬁnished our description of things in general. To illustrate the ideas and the kind of reasoning that might be used in theoretical physics, we shall now examine one of the most basic laws of physics, the conservation of energy. There is a fact, or if you wish, a law, governing all natural phenomena that are known to date. There is no known exception to this law—it is exact so far as we know. The law is called the conservation of energy. It states that there is a certain quantity, which we call energy, that does not change in the manifold changes which nature undergoes. That is a most abstract idea, because it is a mathematical principle; it says that there is a numerical quantity which does not change when something happens. It is not a description of a mechanism, or anything concrete; it is just a strange fact that we can calculate some number and when we ﬁnish watching nature go through her tricks and calculate the number again, it is the same. (Something like the bishop on a red square, and after a number of moves—details unknown—it is still on some red square. It is a law of this nature.) Since it is an abstract idea, we shall illustrate the meaning of it by an analogy.
 
@@ -181,6 +181,4 @@ With regard to the conservation of energy, we should note that available energy 
 used in the United States today! Therefore it is up to the physicist to ﬁgure out how to liberate us from the need for having energy. It can be done.
 
 4-15
-
-5
 
