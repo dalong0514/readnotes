@@ -12,9 +12,29 @@ Adrian Banner
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡 ——
+### 0201. 术语卡 —— 闭区间和开区间
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+信息源自「2019027The-Calculus-Lifesaver0101.md」
+
+In the rest of this book, our functions will always have codomain R, and the domain will always be as much of R as possible (unless stated otherwise). So we'll often be dealing with subsets of the real line, especially connected intervals such as { x : 2 ≤ x < 5 }. It's a bit of a pain to write out the full set notation like this, but it sure beats having to say "all the numbers between 2 and 5, including 2 but not 5." We can do even better using interval notation.
+
+We'll write [a, b] to mean the set of all numbers between a and b, including a and b themselves. So [a, b] means the set of all x such that a ≤ x ≤ b. For example, [2, 5] is the set of all real numbers between 2 and 5, including 2 and 5. (It's not just the set consisting of 2, 3, 4, and 5: don't forget that there are loads of fractions and irrational numbers between 2 and 5, such as 5/2, √ 7, and π.) An interval such as [a, b] is called closed.
+
+If you don't want the endpoints, change the square brackets to parentheses. In particular, (a, b) is the set of all numbers between a and b, not including a or b. So if x is in the interval (a, b), we know that a < x < b. The set (2, 5) includes all real numbers between 2 and 5, but not 2 or 5. An interval of the form (a, b) is called open.
+
+You can mix and match: [a, b) consists of all numbers between a and b, including a but not b. And (a, b] includes b but not a. These intervals are closed at one end and open at the other. Sometimes such intervals are called half-open. An example is the set { x : 2 ≤ x < 5 } from above, which can also be written as [2, 5).
+
+There's also the useful notation (a, ∞) for all the numbers greater than a not including a; [a, ∞) is the same thing but with a included. There are three other possibilities which involve −∞; all in all, the situation looks like this: 
+
+我们写 [a, b] 是指从 a 到 b 端点间的所有实数，包括 a 和 b。所以 [a，b] 指的是所有使得 a≤x≤b 成立的 x 的集合。
+
+例如，[2, 5] 是所有介于 2 和 5 之间（包括 2 和 5）的实数的集合。（它不仅仅包括 2、3、4 和 5，不要忘记还有一大堆处于 2 和 5 之间的分数和无理数，比如 5/2、和 π。）像 [a, b] 这种形式表示的区间我们称作闭区间。
+
+如果你不想包括端点，把方括号变为圆括弧就行了。所以 (a, b) 指的是介于 a 和 b 之间、但不包括 a 和 b 的所有实数的集合。这样，如果 x 在区间 (a, b) 中，我们就知道 a<x<b。集合 (2，5) 表示介于 2 和 5 之间、但不包括 2 和 5 的所有实数。像 (a, b) 这种形式表示的区间我们称作开区间。
+
+2『闭区间和开区间，做一张术语卡片。（2021-06-16）』
+
+你也可以混和匹配：[a, b) 指的是介于 a 和 b 之间、包括 a 但不包括 b 的所有实数的集合；(a, b] 包括 b，但不包括 a。这些区间在一个端点处是闭的，而在另一个端点处是开的。有时候，像这样的区间我们称作半开区间。上述的 `{x:2≤x<5}` 就是一个例子，也可以写成 [2，5)。还有一个有用的记号就是 (a, ∞)，它是指大于 a 但不包括 a 的所有数；[a, ∞) 也一样，只是它包括 a。还有 3 个涉及 ∞ 的可能性。总而言之，情况如下。
 
 ### 0202. 术语卡 ——
 
@@ -28,11 +48,61 @@ Adrian Banner
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 数据信息卡 ——
+### 0501. 数据信息卡 —— 
 
-### 0601. 任意卡 ——
+信息源自「2019027The-Calculus-Lifesaver0101.md」
 
-最后还有一张任意卡，记录个人阅读感想。
+Sometimes the deﬁnition of a function will include the domain. (This was the case, for example, with our function g from Section 1.1 above.) Most of the time, however, the domain is not provided. The basic convention is that the domain consists of as much of the set of real numbers as possible. For example, if k(x) = √ x, the domain can't be all of R, since you can't take the square root of a negative number. The domain must be [0, ∞), which is just the set of all numbers greater than or equal to 0.
+
+OK, so square roots of negative numbers are bad. What else can cause a screw-up? Here's a list of the three most common possibilities:
+
+1 The denominator of a fraction can't be zero.
+
+2 You can't take the square root (or fourth root, sixth root, and so on) of a negative number.
+
+3 You can't take the logarithm of a negative number or of 0. (Remember logs? If not, see Chapter 9)
+
+2『上面的 3 种常见去定义域的条件，做一张信息数据卡片。（2021-06-18）』
+
+You might recall that tan(90°) is also a problem, but this is really a special case of the ﬁrst item above. You see,
+
+$$tan(90) = \frac{sin(90)}{cons(90)} = 1/0$$
+
+有时候，函数的定义中包括了定义域。（确实如此，比如 1.1 节中的函数 g）然而，大多数情况下，定义域是没有给出的。按照惯例，定义域包括尽可能多的实数集合。例如 k(x)=√x，其定义域就不可能是 R 中的所有实数，因为不可能得到一个负数的平方根。其定义域一定是 [0，∞)，就是大于或等于 0 的所有实数的集合。
+
+好了，我们知道取负数的平方根会出问题。那么，还有什么会把问题搞糟呢？以下是 3 种最常见的情况。
+
+1、分数的分母不能是零。
+
+2、不能取一个负数的平方根（或四次根，六次根，等等）。
+
+3、不能取一个负数或零的对数。(还记得对数函数吗？如果忘了，就请看看第 9 章！）
+
+或许你还记得 tan(90°) 也是一个问题，但这实际上是上述第一项的特例。你看：
+
+$$tan(90) = \frac{sin(90)}{cons(90)} = 1/0$$
+
+所以，tan(90°) 是无定义的，实际上是因为其隐藏的分母为零。
+
+### 0601. 任意卡 —— 如何判断一个图形是否是函数图像
+
+信息源自「2019027The-Calculus-Lifesaver0101.md」
+
+You can draw any ﬁgure you like on a coordinate plane, but the result may not be the graph of a function. So what's special about the graph of a function? What is the graph of a function f, anyway? Well, it's the collection of all points with coordinates (x, f(x)), where x is in the domain of f. Here's another way of looking at this: start with some number x. If x is in the (a, b) domain, you plot the point (x, f(x)), which of course [a, b] is at a height of f(x) units above the point x on the x-axis. If x isn't in the domain, you don't plot (a, b] anything. Now repeat for every real number x to build [a, b) up the graph.
+
+Here's the key idea: you can't have two points with the same x-coordinate. In other words, no two points on the graph can lie on the same vertical line. Otherwise, how would you know which of the two or more heights above the point x on the x-axis corresponds to the value of f(x)? So, this leads us to the vertical line test: 
+
+if you have some graph and you want to know whether it's the graph of a function, see whether any vertical line intersects the graph more than once. If so, it's not the graph of a function; but if no vertical line intersects the graph more than once, you are indeed dealing with the graph of a function. For example, the circle of radius x units centered at the origin has a graph like this:
+
+你可以在坐标平面上画任何你想画的图形，但结果可能不是一个函数的图像。所以，函数的图像有什么特别之处呢？或者说，什么是函数 f 的图像呢？
+
+它是所有坐标为 (x, f(x)) 的点的集合，其中，x 在 f 的定义域中。还有另外一种方式来看待它：我们以某个实数 x 开始。如果 x 在定义域中，你就画点 (x, f(x))，它自然是，在 x 轴上的点 x 的正上方，高度为 f(x)。如果 x 没有在定义域中，你不能画任何点。现在，对于每一个实数 x，我们重复这个过程，从而构造出函数的图像。
+
+这里有个重要思想：你不可能有两个点有相同的 x 坐标。换句话说，在图像上没有两个点会落在相对于 x 轴的同一条垂线上。要不然，你又将如何知道在点 x 上方的两个或多个高度的点中，哪一个是对应于 f(x) 的值呢？
+
+这样，就有了垂线检验：如果你有某个图像并且想知道它是否是函数的图像，就来看看是否任何的垂线和图像相交多于一次。如果是这样的话，那它就不是函数的图像；反之，如果没有一条垂线和图像相交多于一次，那么你的确是在处理函数的图像。
+
+2『判断一个图形是否是函数图像，用「垂线检验」。做一张任意卡片。（2021-06-16）』—— 已完成
 
 ## 译者序
 

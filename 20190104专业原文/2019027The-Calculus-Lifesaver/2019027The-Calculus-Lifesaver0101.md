@@ -24,11 +24,11 @@ Trigonometric functions, or trig functions for short, are dealt with in the next
 
 A function is a rule for transforming an object into another object. The object you start with is called the input, and comes from some set called the domain. What you get back is called the output; it comes from some set called the codomain. Here are some examples of functions:
 
-1 Suppose you write $f(x)=x^2$. You have just deﬁned a function f which transforms any number into its square. Since you didn't say what the domain or codomain are, it's assumed that they are both R, the set of all real numbers. So you can square any real number, and get a real number back. For example, f transforms 2 into 4; it transforms −1/2 into 1/4; and it transforms 1 into 1. This last one isn't much of a change at all, but that's no problem: the transformed object doesn't have to be diﬀerent from the original one. When you write f(2) = 4, what you really mean is that f transforms 2 into 4. By the way, f is the transformation rule, while f(x) is the result of applying the transformation rule to the variable x. So it's technically not correct to say “f(x) is a function”; it should be “f is a function.”
+1 Suppose you write $f(x)=x^2$. You have just deﬁned a function f which transforms any number into its square. Since you didn't say what the domain or codomain are, it's assumed that they are both R, the set of all real numbers. So you can square any real number, and get a real number back. For example, f transforms 2 into 4; it transforms −1/2 into 1/4; and it transforms 1 into 1. This last one isn't much of a change at all, but that's no problem: the transformed object doesn't have to be diﬀerent from the original one. When you write f(2) = 4, what you really mean is that f transforms 2 into 4. By the way, f is the transformation rule, while f(x) is the result of applying the transformation rule to the variable x. So it's technically not correct to say "f(x) is a function"; it should be "f is a function."
 
 2 Now, let $g(x)=x^2$ with domain consisting only of numbers greater than or equal to 0. (Such numbers are called nonnegative.) This seems like the same function as f, but it's not: the domains are diﬀerent. For example, f(−1/2) = 1/4, but g(−1/2) isn't deﬁned. The function g just chokes on anything not in the domain, refusing even to touch it. Since g and f have the same rule, but the domain of g is smaller than the domain of f, we say that g is formed by restricting the domain of f.
 
-3 Still letting $f(x)=x^2$, what do you make of f(horse)? Obviously this is undeﬁned, since you can't square a horse. On the other hand, let's set h(x) = number of legs x has, where the domain of h is the set of all animals. So h(horse) = 4, while h(ant) = 6 and h(salmon) = 0. The codomain could be the set of all nonnegative integers, since animals don't have negative or fractional numbers of legs. By the way, what is h(2)? This isn't deﬁned, of course, since 2 isn't in the domain. How many legs does a “2” have, after all? The question doesn't really make sense. You might also think that h(chair) = 4, since most chairs have four legs, but that doesn't work either, since a chair isn't an animal, and so “chair” is not in the domain of h. That is, h(chair) is undeﬁned.
+3 Still letting $f(x)=x^2$, what do you make of f(horse)? Obviously this is undeﬁned, since you can't square a horse. On the other hand, let's set h(x) = number of legs x has, where the domain of h is the set of all animals. So h(horse) = 4, while h(ant) = 6 and h(salmon) = 0. The codomain could be the set of all nonnegative integers, since animals don't have negative or fractional numbers of legs. By the way, what is h(2)? This isn't deﬁned, of course, since 2 isn't in the domain. How many legs does a "2" have, after all? The question doesn't really make sense. You might also think that h(chair) = 4, since most chairs have four legs, but that doesn't work either, since a chair isn't an animal, and so "chair" is not in the domain of h. That is, h(chair) is undeﬁned.
 
 4 Suppose you have a dog called Junkster. Unfortunately, poor Junkster has indigestion. He eats something, then chews on it for a while and tries to digest it, fails, and hurls. Junkster has transformed the food into... something else altogether. We could let j(x) = color of barf when Junkster eats x, where the domain of j is the set of foods that Junkster will eat. The codomain is the set of all colors. For this to work, we have to be conﬁdent that whenever Junkster eats a taco, his barf is always the same color (say, red). If it's sometimes red and sometimes green, that's no good: a function must assign a unique output for each valid input.
 
@@ -58,7 +58,7 @@ So why isn't the range the same thing as the codomain? Well, the range is actual
 
 那么，为什么值域和上域不是一回事呢？值域实际上是上域的一个子集。上域是可能输出的集合，而值域则是实际输出的集合。下面给出上述函数的值域。
 
-如果 f(x)=x^2，其定义域和上域均为，其值域是非负数的集合。毕竟，平方一个数，其结果不可能是负数。那你又如何知道值域是所有的非负数呢？如果平方每一个数，结果一定包括所有的非负数。例如，平方「根号2」或「负根号2」结果都是 2。
+如果 f(x)=x^2，其定义域和上域均为实数 R，其值域是非负数的集合。毕竟，平方一个数，其结果不可能是负数。那你又如何知道值域是所有的非负数呢？如果平方每一个数，结果一定包括所有的非负数。例如，平方「根号2」或「负根号2」结果都是 2。
 
 如果 g(x)=x^2，其中，g 的定义域仅为非负数，但其上域仍是所有实数，其值域又是非负数的集合。当平方每一个非负数时，结果仍然会包括所有的非负数。
 
@@ -68,7 +68,7 @@ So why isn't the range the same thing as the codomain? Well, the range is actual
 
 ### 1.1.1 Interval notation
 
-In the rest of this book, our functions will always have codomain R, and the domain will always be as much of R as possible (unless stated otherwise). So we'll often be dealing with subsets of the real line, especially connected intervals such as { x : 2 ≤ x < 5 }. It's a bit of a pain to write out the full set notation like this, but it sure beats having to say “all the numbers between 2 and 5, including 2 but not 5.” We can do even better using interval notation.
+In the rest of this book, our functions will always have codomain R, and the domain will always be as much of R as possible (unless stated otherwise). So we'll often be dealing with subsets of the real line, especially connected intervals such as { x : 2 ≤ x < 5 }. It's a bit of a pain to write out the full set notation like this, but it sure beats having to say "all the numbers between 2 and 5, including 2 but not 5." We can do even better using interval notation.
 
 We'll write [a, b] to mean the set of all numbers between a and b, including a and b themselves. So [a, b] means the set of all x such that a ≤ x ≤ b. For example, [2, 5] is the set of all real numbers between 2 and 5, including 2 and 5. (It's not just the set consisting of 2, 3, 4, and 5: don't forget that there are loads of fractions and irrational numbers between 2 and 5, such as 5/2, √ 7, and π.) An interval such as [a, b] is called closed.
 
@@ -76,21 +76,23 @@ If you don't want the endpoints, change the square brackets to parentheses. In p
 
 You can mix and match: [a, b) consists of all numbers between a and b, including a but not b. And (a, b] includes b but not a. These intervals are closed at one end and open at the other. Sometimes such intervals are called half-open. An example is the set { x : 2 ≤ x < 5 } from above, which can also be written as [2, 5).
 
-There's also the useful notation (a, ∞) for all the numbers greater than a not including a; [a, ∞) is the same thing but with a included. There are three other possibilities which involve −∞; all in all, the situation looks like this: PSfrag replacements
+There's also the useful notation (a, ∞) for all the numbers greater than a not including a; [a, ∞) is the same thing but with a included. There are three other possibilities which involve −∞; all in all, the situation looks like this: 
 
 区间表示法
 
-在本书剩余部分，我们的函数总有上域，并且其定义域总会尽可能和差不多(除非另有说明)。因此，我们会经常涉及实轴的子集，尤其是像 {x:2≤x<5} 这样的了连通区间。像这样写出完整的集合有点儿烦，但总比说「介于2和5之间的所有数，包括2但不包括5」要强。使用区间表示法会让我们做得更好。
+在本书剩余部分，我们的函数总有上域，并且其定义域总会尽可能和差不多（除非另有说明）。因此，我们会经常涉及实轴的子集，尤其是像 `{x:2≤x<5}` 这样的了连通区间。像这样写出完整的集合有点儿烦，但总比说「介于 2 和 5 之间的所有数，包括 2 但不包括 5」要强。使用区间表示法会让我们做得更好。
 
-我们写 [a，b] 是指从 a 到 b 端点间的所有实数，包括 a 和 b。所以 [a，b] 指的是所有使得 a≤x≤b 成立的 x 的集合。
+我们写 [a, b] 是指从 a 到 b 端点间的所有实数，包括 a 和 b。所以 [a，b] 指的是所有使得 a≤x≤b 成立的 x 的集合。
 
-例如，[2，5] 是所有介于 2 和 5 之间(包括2和5)的实数的集合。(它不仅仅包括 2、3、4 和 5，不要忘记还有一大堆处于 2 和 5 之间的分数和无理数，比如 5/2、和 π。)像 [a，b] 这种形式表示的区间我们称作闭区间。
+例如，[2, 5] 是所有介于 2 和 5 之间（包括 2 和 5）的实数的集合。（它不仅仅包括 2、3、4 和 5，不要忘记还有一大堆处于 2 和 5 之间的分数和无理数，比如 5/2、和 π。）像 [a, b] 这种形式表示的区间我们称作闭区间。
 
-如果你不想包括端点，把方括号变为圆括弧就行了。所以 (a，b) 指的是介于 a 和 b 之间、但不包括 a 和 b 的所有实数的集合。这样，如果 x 在区间 (a，b) 中，我们就知道 a<x<b。集合 (2，5) 表示介于 2 和 5 之间、但不包括 2 和 5 的所有实数。像 (a，b) 这种形式表示的区间我们称作开区间。
+如果你不想包括端点，把方括号变为圆括弧就行了。所以 (a, b) 指的是介于 a 和 b 之间、但不包括 a 和 b 的所有实数的集合。这样，如果 x 在区间 (a, b) 中，我们就知道 a<x<b。集合 (2，5) 表示介于 2 和 5 之间、但不包括 2 和 5 的所有实数。像 (a, b) 这种形式表示的区间我们称作开区间。
 
-你也可以混和匹配：[a，b) 指的是介于 a 和 b 之间、包括 a 但不包括 b 的所有实数的集合；(a，b] 包括 b，但不包括 a。这些区间在一个端点处是闭的，而在另一个端点处是开的。有时候，像这样的区间我们称作半开区间。上述的 {x:2≤x<5} 就是一个例子，也可以写成 [2，5)。
+2『闭区间和开区间，做一张术语卡片。（2021-06-16）』
 
-还有一个有用的记号就是 (a，∞)，它是指大于 a 但不包括 a 的所有数；[a，∞) 也一样，只是它包括 a。还有 3 个涉及 ∞ 的可能性。总而言之，情况如下。
+你也可以混和匹配：[a, b) 指的是介于 a 和 b 之间、包括 a 但不包括 b 的所有实数的集合；(a, b] 包括 b，但不包括 a。这些区间在一个端点处是闭的，而在另一个端点处是开的。有时候，像这样的区间我们称作半开区间。上述的 `{x:2≤x<5}` 就是一个例子，也可以写成 [2，5)。还有一个有用的记号就是 (a, ∞)，它是指大于 a 但不包括 a 的所有数；[a, ∞) 也一样，只是它包括 a。还有 3 个涉及 ∞ 的可能性。总而言之，情况如下。
+
+![](./res/2019001.png)
 
 ### 1.1.2 Finding the domain { x : a < x < b }
 
@@ -102,23 +104,27 @@ OK, so square roots of negative numbers are bad. What else can cause a screw-up?
 
 2 You can't take the square root (or fourth root, sixth root, and so on) of a negative number.
 
-3 You can't take the logarithm of a negative number or of 0. (Remember logs? If not, see Chapter 9!)
+3 You can't take the logarithm of a negative number or of 0. (Remember logs? If not, see Chapter 9)
 
-You might recall that tan(90 ◦ ) is also a problem, but this is really a special case of the ﬁrst item above. You see,
+2『上面的 3 种常见去定义域的条件，做一张信息数据卡片。（2021-06-18）』—— 已完成
 
-so the reason tan(90 ◦ ) is undeﬁned is really that a hidden denominator is zero. Here's another example: if we try to deﬁne
+You might recall that tan(90°) is also a problem, but this is really a special case of the ﬁrst item above. You see,
 
-log 10 (x + 8) 26 − 2x f(x) = √, (x − 2)(x + 19)
+$$tan(90) = \frac{sin(90)}{cons(90)} = 1/0$$
+
+so the reason tan(90°) is undeﬁned is really that a hidden denominator is zero. Here's another example: if we try to deﬁne
+
+$$f(x) = \frac{log_{10}(x+8)\sqrt{26-2x}}{(x-2)(x+19)}$$
 
 then what is the domain of f? Well, for f(x) to make sense, here's what needs to happen:
 
-1 We need to take the square root of (26−2x), so this quantity had better be nonnegative. That is, 26 − 2x ≥ 0. This can be rewritten as x ≤ 13. Section 1.1.3: Finding the range using the graph • 5
+1 We need to take the square root of (26−2x), so this quantity had better be nonnegative. That is, 26 − 2x ≥ 0. This can be rewritten as x ≤ 13.
 
 2 We also need to take the logarithm of (x + 8), so this quantity needs to be positive. (Notice the diﬀerence between logs and square roots: you can take the square root of 0, but you can't take the log of 0.) Anyway, we need x + 8 > 0, so x > −8. So far, we know that −8 < x ≤ 13, so the domain is at most (−8, 13].
 
-3 The denominator can't be 0; this means that (x−2) = 0 and (x+19) = 0. ̸ ̸ In other words, x = 2 and x = −19. This last one isn't a problem, since ̸ ̸ we already know that x lies in (−8, 13], so x can't possibly be −19. We do have to exclude 2, though.
+3 The denominator can't be 0; this means that (x−2) ≠ 0 and (x+19) ≠ 0. In other words, x ≠ 2 and x ≠ −19. This last one isn't a problem, since we already know that x lies in (−8, 13], so x can't possibly be −19. We do have to exclude 2, though.
 
-So we have found that the domain is the set (−8, 13] except for the number 2. This set could be written as (−8, 13] \{ 2 }. Here the backslash means “not including.”
+So we have found that the domain is the set (−8, 13] except for the number 2. This set could be written as `(−8, 13] \ {2}`. Here the backslash means "not including."
 
 求定义域
 
@@ -130,53 +136,65 @@ So we have found that the domain is the set (−8, 13] except for the number 2. 
 
 1、分数的分母不能是零。
 
-2、不能取一个负数的平方根(或四次根，六次根，等等)。
+2、不能取一个负数的平方根（或四次根，六次根，等等）。
 
-3、不能取一个负数或零的对数。(还记得对数函数吗？如果忘了，就请看看第 9 章！)
+3、不能取一个负数或零的对数。(还记得对数函数吗？如果忘了，就请看看第 9 章！）
 
-或许你还记得 tan(90°) 也是一个问题，但这实际上是上述第一项的特例。你看，
+或许你还记得 tan(90°) 也是一个问题，但这实际上是上述第一项的特例。你看：
 
-所以，tan(90°) 是无定义的，实际上是因为其隐藏的分母为零。这里还有一个例子：如果我们定义，
+$$tan(90) = \frac{sin(90)}{cons(90)} = 1/0$$
+
+所以，tan(90°) 是无定义的，实际上是因为其隐藏的分母为零。这里还有一个例子。
+
+如果我们定义：
+
+$$f(x) = \frac{log_{10}(x+8)\sqrt{26-2x}}{(x-2)(x+19)}$$
 
 那么，f 的定义域是什么呢？当然，为了使 f(x) 有意义，以下是我们必须要做的。
 
 1、我们需要取 (26-2x) 的平方根，所以，这个量必须是非负的。也就是说，26-2x≥0。还可以写成 x≤13。
 
-2、我们也需要取 (x+8) 的对数，所以，这个量必须是正的。（注意对数和平方根的区别：可以取 0 的平方根，但不能取 0 的对数。)不管怎么说，我们需要 x+8>0，所以 x>-8）。到现在为止，我们知道 -8<x≤13，所以，定义域最多是(-8，13]。
+2、我们也需要取 (x+8) 的对数，所以，这个量必须是正的。（注意对数和平方根的区别：可以取 0 的平方根，但不能取 0 的对数。）不管怎么说，我们需要 x+8>0，所以 x>-8。到现在为止，我们知道 -8<x≤13，所以，定义域最多是 (-8，13]。
 
 3、分母不能为 0，这就是说 (x-2)≠0 且 (x+19)≠0。换句话说，x≠2 且 x≠-19。最后一个条件不是问题，因为我们已经知道 x 处于 (-8，13] 内，所以 x 不可能是 -19。我们还应该把 2 去掉。
 
-这样，我们就找到了其定义域是除了 2 以外的集合(-8，13]。这个集合可以写作 (-8，13]\{2}，这里的反斜杠表示「不包括」。
+这样，我们就找到了其定义域是除了 2 以外的集合 (-8，13]。这个集合可以写作 `(-8，13]\{2}`，这里的反斜杠表示「不包括」。
 
 ### 1.1.3 Finding the range using the graph
 
-Let's deﬁne a new function F by specifying that its domain is [−2, 1] and that F(x) = x 2 on this domain. (Remember, the codomain of any function we look at will always be the set of all real numbers.) Is F the same function as f, where f(x) = x 2 for all real numbers x? The answer is no, since the two functions have diﬀerent domains (even though they have the same rule). As in the case of the function g from Section 1.1 above, the function F is formed by restricting the domain of f.
+Let's deﬁne a new function F by specifying that its domain is [−2, 1] and that F(x) = x^2 on this domain. (Remember, the codomain of any function we look at will always be the set of all real numbers.) Is F the same function as f, where f(x) = x^2 for all real numbers x? The answer is no, since the two functions have diﬀerent domains (even though they have the same rule). As in the case of the function g from Section 1.1 above, the function F is formed by restricting the domain of f.
 
-Now, what is the range of F? Well, what happens if you square every PSfrag replacements number between −2 and 1 inclusive? You should be able to work (a, this b) out directly, but this is a good opportunity to see how to use a graph to ﬁnd the [a, b] range of a function. The idea is to sketch the graph of the function, (a, b] then imagine two rows of lights shining from the far left and far right of the graph [a, b) horizontally toward the y-axis. The curve will cast two shadows, one on the (a, ∞) left side and one on the right side of the y-axis. The range is the [a, union ∞) of both shadows: that is, if any point on the y-axis lies in either the left-hand or (−∞, b) the right-hand shadow, it is in the range of the function. Let's see (−∞, how b] this works with our function F:
+Now, what is the range of F? Well, what happens if you square every number between −2 and 1 inclusive? You should be able to work (a, this b) out directly, but this is a good opportunity to see how to use a graph to ﬁnd the [a, b] range of a function. The idea is to sketch the graph of the function, (a, b] then imagine two rows of lights shining from the far left and far right of the graph [a, b) horizontally toward the y-axis. The curve will cast two shadows, one on the (a, ∞) left side and one on the right side of the y-axis. The range is the union of both shadows: that is, if any point on the y-axis lies in either the left-hand or (−∞, b) the right-hand shadow, it is in the range of the function. Let's see how this works with our function F:
+
+![](./res/2019002.png)
 
 The left-hand shadow covers all the points on the y-axis between 0 and 4 inclusive, which is [0, 4]; on the other hand, the right-hand shadow covers the points between 0 and 1 inclusive, which is [0, 1]. The right-hand shadow doesn't contribute anything extra: the total coverage is still [0, 4]. This is the range of F.
 
 利用图像求值域
 
-让我们来定义一个新的函数 F，指定其定义域为 [-2，1]，并且，F(x)=x^2 在此定义域上。(记住，我们看到的任何函数的上域总是所有实数的集合。)其中，对于所有的实数 x，f(x)=x^2，F 和 f 是同一个函数吗？回答是否定的，因为两个函数的定义域不相同(尽管它们有相同的函数规则)。正如 1.1 节中的函数 g，函数 F 是由限制 f 的定义域得到的。
+让我们来定义一个新的函数 F，指定其定义域为 [-2, 1]，并且，F(x)=x^2 在此定义域上。（记住，我们看到的任何函数的上域总是所有实数的集合。）其中，对于所有的实数 x，f(x)=x^2，F 和 f 是同一个函数吗？回答是否定的，因为两个函数的定义域不相同（尽管它们有相同的函数规则）。正如 1.1 节中的函数 g，函数 F 是由限制 f 的定义域得到的。
 
-现在，F 的值域又是什么呢？如果你将 -2 到 1 之间(包括 -2 和 1)的每一个实数平方的话，会发生什么呢？
+现在，F 的值域又是什么呢？如果你将 -2 到 1 之间（包括 -2 和 1）的每一个实数平方的话，会发生什么呢？
 
 你应该有能力直接求解，但这是观察如何利用图像来求一个函数的值域的很好机会。基本思想就是画出函数图像，然后想象从图像的左边和右边很远的地方朝向 y 轴水平地射入两束亮光。曲线会在 y 轴上有两个影子，一个在 y 轴的左侧，另一个在 y 轴的右侧。值域就是影子的并集；也就是说，如果 y 轴上的任意一点落在左侧或是右侧的影子里，那么它处于函数的值域中。我们以函数 F 为例来看一下图 1-1 这是怎么运作的吧。
 
-图 1-1 中左侧的影子覆盖了在 y 轴从 0 到 4(包括 0 和 4)的所有点，也就是 [0，4]；另一方面，右侧的影子覆盖了从 0 到 1(包括 0 和 1)的所有点，也就是 [0，1]。右侧的影子没有任何其他的贡献，全部的覆盖范围仍然是 [0，4]。这就是函数 F 的值域。
+图 1-1 中左侧的影子覆盖了在 y 轴从 0 到 4（包括 0 和 4）的所有点，也就是 [0，4]；另一方面，右侧的影子覆盖了从 0 到 1（包括 0 和 1）的所有点，也就是 [0, 1]。右侧的影子没有任何其他的贡献，全部的覆盖范围仍然是 [0, 4]。这就是函数 F 的值域。
 
 ### 1.1.4 The vertical line test
 
-In the last section, we used the graph of a function to ﬁnd its range. The graph of a function is very important: it really shows you what the function “looks like.” We'll be looking at techniques for sketching graphs in Chapter 12, but for now I'd like to remind you about the vertical line test.
+In the last section, we used the graph of a function to ﬁnd its range. The graph of a function is very important: it really shows you what the function "looks like." We'll be looking at techniques for sketching graphs in Chapter 12, but for now I'd like to remind you about the vertical line test.
 
-You can draw any ﬁgure you like on a coordinate plane, but the result may not be the graph of a function. So what's special about the graph of a function? What is the graph of a function f, anyway? Well, it's the collection of all points with coordinates (x, f(x)), where x is in the domain of f. Here's PSfrag replacements another way of looking at this: start with some number x. If x is in the (a, b) domain, you plot the point (x, f(x)), which of course [a, b] is at a height of f(x) units above the point x on the x-axis. If x isn't in the domain, you don't plot (a, b] anything. Now repeat for every real number x to build [a, b) up the graph.
+You can draw any ﬁgure you like on a coordinate plane, but the result may not be the graph of a function. So what's special about the graph of a function? What is the graph of a function f, anyway? Well, it's the collection of all points with coordinates (x, f(x)), where x is in the domain of f. Here's another way of looking at this: start with some number x. If x is in the (a, b) domain, you plot the point (x, f(x)), which of course [a, b] is at a height of f(x) units above the point x on the x-axis. If x isn't in the domain, you don't plot (a, b] anything. Now repeat for every real number x to build [a, b) up the graph.
 
-Here's the key idea: you can't have two points with the same x-coordinate. (a, ∞) In other words, no two points on the graph can lie [a, on ∞) the same vertical line. Otherwise, how would you know which of the two or more heights above the (−∞, b) point x on the x-axis corresponds to the value of f(x)? So, this leads us to (−∞, b] the vertical line test: if you have some graph and you want to know whether (−∞, ∞) it's the graph of a function, see whether any x : a vertical < x < line b intersects the graph { } more than once. If so, it's not the graph of x a : a function; ≤ x ≤ b but if no vertical line { } intersects the graph more than once, you x are : a indeed dealing with the graph { < x ≤ b } of a function. For example, the circle of x radius : a ≤ 3 x units < b centered at the origin { } has a graph like this:
+Here's the key idea: you can't have two points with the same x-coordinate. In other words, no two points on the graph can lie on the same vertical line. Otherwise, how would you know which of the two or more heights above the point x on the x-axis corresponds to the value of f(x)? So, this leads us to the vertical line test: 
 
-Such a commonplace object should be a function, right? No, check the vertical lines that are shown in the diagram. Sure, to the left of −3 or to the right of 3, there's no problem—the vertical lines don't even hit the graph, which is ﬁne. Even at −3 or 3, the vertical lines only intersect the curve in one point each, which is also ﬁne. The problem is when x is in the interval (−3, 3). For PSfrag replacements Section 1.2: Inverse Functions • 7 (a, b) [a, b] any of these values of x, the vertical line through (x, 0) intersects the circle (a, b] twice, which screws up the circle's potential function-status. You just don't [a, b) know whether f(x) is the top point or the bottom (a, ∞) point.
+if you have some graph and you want to know whether it's the graph of a function, see whether any vertical line intersects the graph more than once. If so, it's not the graph of a function; but if no vertical line intersects the graph more than once, you are indeed dealing with the graph of a function. For example, the circle of radius x units centered at the origin has a graph like this:
 
-The best way to salvage the situation is to chop ∞) the circle in half hori[a, zontally and choose only the top or the bottom (−∞, half. b) The equation for the whole circle is x 2 + y 2 = 9, whereas the equation (−∞, for b] the top semicircle is 2 y = √ 9 − x 2 (−∞, =.Thebottomsemicirclehasequationy − √ 9 − x. These last ∞) two are functions, both with domain [−3, x 3]. : a If < x you < b felt like chopping in a { } diﬀerent way, you wouldn't actually have to take semicircles—you could chop { x : a ≤ x ≤ b } and change between the upper and lower semicircles, as long as you don't vi{ x : a < x ≤ b } olate the vertical line test. For example, here's the graph of a function which { x : a ≤ x < b } also has domain [−3, 3]:
+![](./res/2019003.png)
+
+Such a commonplace object should be a function, right? No, check the vertical lines that are shown in the diagram. Sure, to the left of −3 or to the right of 3, there's no problem — the vertical lines don't even hit the graph, which is ﬁne. Even at −3 or 3, the vertical lines only intersect the curve in one point each, which is also ﬁne. The problem is when x is in the interval (−3, 3). For any of these values of x, the vertical line through (x, 0) intersects the circle (a, b] twice, which screws up the circle's potential function-status. You just don't know whether f(x) is the top point or the bottom point.
+
+The best way to salvage the situation is to chop the circle in half horizontally and choose only the top or the bottom half. The equation for the whole circle is x^2 + y^2 = 9, whereas the equation the top semicircle is y = √ 9−x^2. The bottom semicircle has equationy −√ 9−x^2. These last two are functions, both with domain [−3, 3]. If you felt like chopping in a diﬀerent way, you wouldn't actually have to take semicircles — you could chop and change between the upper and lower semicircles, as long as you don't violate the vertical line test. For example, here's the graph of a function which also has domain [−3, 3]:
 
 The vertical line test checks out, so this is indeed the graph of a function.
 
@@ -186,19 +204,21 @@ The vertical line test checks out, so this is indeed the graph of a function.
 
 你可以在坐标平面上画任何你想画的图形，但结果可能不是一个函数的图像。所以，函数的图像有什么特别之处呢？或者说，什么是函数 f 的图像呢？
 
-它是所有坐标为 (x，f(x)) 的点的集合，其中，x 在 f 的定义域中。还有另外一种方式来看待它：我们以某个实数 x 开始。如果 x 在定义域中，你就画点 (x，f(x))，它自然是，在 x 轴上的点 x 的正上方，高度为 f(x)。如果 x 没有在定义域中，你不能画任何点。现在，对于每一个实数 x，我们重复这个过程，从而构造出函数的图像。
+它是所有坐标为 (x, f(x)) 的点的集合，其中，x 在 f 的定义域中。还有另外一种方式来看待它：我们以某个实数 x 开始。如果 x 在定义域中，你就画点 (x, f(x))，它自然是，在 x 轴上的点 x 的正上方，高度为 f(x)。如果 x 没有在定义域中，你不能画任何点。现在，对于每一个实数 x，我们重复这个过程，从而构造出函数的图像。
 
 这里有个重要思想：你不可能有两个点有相同的 x 坐标。换句话说，在图像上没有两个点会落在相对于 x 轴的同一条垂线上。要不然，你又将如何知道在点 x 上方的两个或多个高度的点中，哪一个是对应于 f(x) 的值呢？
 
 这样，就有了垂线检验：如果你有某个图像并且想知道它是否是函数的图像，就来看看是否任何的垂线和图像相交多于一次。如果是这样的话，那它就不是函数的图像；反之，如果没有一条垂线和图像相交多于一次，那么你的确是在处理函数的图像。
 
+2『判断一个图形是否是函数图像，用「垂线检验」。做一张任意卡片。（2021-06-16）』 —— 已完成
+
 例如，以原点为中心，半径为 3 个单位的圆的图像，如图 1-2 所示。
 
-这么普通的对象应该是个函数，对吗？不对，让我们进行如图所示的垂线检验。当然，在 -3 的左边或是 3 的右边都没有问题(垂线甚至都没有击中图像)，这很好。就连在 -3 或 3 上，垂线和图像也仅仅有一次相交，这也很好。问题出在 x 落在区间 (-3，3) 上时。对于这其中的任意 x 值，垂线通过 (x，0) 和圆相交两次，这就扭曲了圆的潜在函数特质。你不知道 f(x) 到底是对应上方的点还是下方的点。
+这么普通的对象应该是个函数，对吗？不对，让我们进行如图所示的垂线检验。当然，在 -3 的左边或是 3 的右边都没有问题（垂线甚至都没有击中图像），这很好。就连在 -3 或 3 上，垂线和图像也仅仅有一次相交，这也很好。问题出在 x 落在区间 (-3, 3) 上时。对于这其中的任意 x 值，垂线通过 (x, 0) 和圆相交两次，这就扭曲了圆的潜在函数特质。你不知道 f(x) 到底是对应上方的点还是下方的点。
 
-最好的解决方法是把圆分成上下两个半圆，并只选择上一半或者下一半。整个圆的方程是 x^2+y^2=9，然而，上半圆的方程是 y=√(9-x^2)，下半圆的方程是 y=-√(9-x^2)。这最后两个就是函数了，定义域都是 [-3，3]。你可以以不同的方式来分割，实际上，你不是必须要把它分成半圆(可以分割并改变上半圆和下半圆，只要不违反垂线检验就行了。)
+最好的解决方法是把圆分成上下两个半圆，并只选择上一半或者下一半。整个圆的方程是 x^2+y^2=9，然而，上半圆的方程是 y=√(9-x^2)，下半圆的方程是 y=-√(9-x^2)。这最后两个就是函数了，定义域都是 [-3, 3]。你可以以不同的方式来分割，实际上，你不是必须要把它分成半圆（可以分割并改变上半圆和下半圆，只要不违反垂线检验就行了。）
 
-例如，图 1-3 也是一个函数的图像，其定义域也是 [-3，3]：
+例如，图 1-3 也是一个函数的图像，其定义域也是 [-3, 3]：
 
 ## 1.2 Inverse Functions
 
@@ -226,59 +246,7 @@ The transformation f −1 acts like an undo button for f: if you start with x an
 
 This raises some questions: how do you see if there's only one value of x that satisﬁes the equation f(x) = y? If so, how do you ﬁnd the inverse, and what does its graph look like? If not, how do you salvage the situation? We'll answer these questions in the next three sections.
 
-1.2.1 The horizontal line test
-
-For the ﬁrst question—how to see that there's only one value of x that works PSfrag replacements for any y in the range—perhaps the best way is to look at the graph of your (a, b) function. We want to pick y in the range of f and hopefully only have one value [a, b] of x such that f(x) = y. What this means is that the horizontal line through (a, b] the point (0, y) should intersect the graph exactly once, at some point (x, y). [a, b) That x is the one we want. If the horizontal line intersects the (a, curve ∞) more [a, ∞) than once, there would be multiple potential inverses x, which is bad. In that (−∞, b) case, the only way to get an inverse function is to restrict the domain; we'll (−∞, b] come back to this very shortly. What if the horizontal line doesn't intersect (−∞, ∞) the curve at all? Then y isn't in the range after all, which is x : a OK. < x < b { }
-
-So, we have just described the horizontal line test: if every x : a horizontal line { ≤ x ≤ b } ≤ } intersects the graph of a function at most once, the function { x : a has < x an b inverse. } If even one horizontal line intersects the graph more than { x once, : a ≤ there x < b isn't an x : x ≥ a } inverse function. For example, look at the graphs of f(x) = x 3 { and g(x) = x 2 :
-
-No horizontal line hits y = f(x) more than once, so f (a, has b) an inverse. On the other hand, some of the horizontal lines hit the curve [a, y b] = g(x) twice, so g has no inverse. Here's the problem: if you want to solve (a, b] y = x 2 for x, where [a, b) y is positive, then there are two solutions, x = √ y and x = − √ y. You don't know which one to take! (a, ∞)
-
-[a, ∞)
-
-1.2.2 Finding the inverse
-
-(−∞, b)
-
-(−∞, b]
-
-Now let's move on to the second of our questions: (−∞, how do ∞) you ﬁnd the inverse of a function f? Well, you write down y = { x f(x) : a < and x < try b } to solve for x. In 3 our example of f(x) = x 3 { 3 x so,wehavey = x, : a x ≤ = x ≤ b y. } This means that √ 3 f −1 (y) = √ y. If the variable y here oﬀends { x : you, a < by x ≤ all b } means switch it to 3 x: you can write f −1 (x) = √ x if you prefer. { x : Of a ≤ course, x < b } solving for x is not always easy and in fact is often impossible. On { x the : x other ≥ a } hand, if you know what the graph of your function looks like, the { graph x : x > of a the inverse function } ≤ } is easy to ﬁnd. The idea is to draw the line y = { x x on : x the b graph, then pretend that this line is a two-sided mirror. The inverse { x function : x < b } is the reﬂection of the original function in this mirror. When f(x) = x 3, here's what f −1 looks R like:
-
-The original function f is reﬂected in the mirror y = x to get the inverse function. Note that the domain and range of both f and f −1 are the whole real line.
-
-1.2.3 Restricting the domain
-
-Finally, we'll address our third question: if the horizontal line test fails and there's no inverse, what can be done? Our problem is that there are multiple values of x that give the same y. The only way to get around the problem is to throw away all but one of these values of x. That is, we have to decide which one of our values of x we want to keep, and throw the rest away. As we saw in Section 1.1 above, this is called restricting the domain of our function. Eﬀectively, we ghost out part of the curve so that what's left no longer fails the horizontal line test. For example, if g(x) = x 2, we can ghost out the left half of the graph like this:
-
-The new (unghosted) curve has the reduced domain [0, ∞) and satisﬁes the shadow horizontal line test, so there is an inverse function. More precisely, 0 the function h, which has domain [0, ∞) and is deﬁned by h(x) = x 2 on this 1 domain, has PSfrag replacements an inverse. Let's play the reﬂection game to see what it looks like:
-
-To ﬁnd the equation of the inverse, we { have x : x to ≥ a solve } for x in the equation y = x 2. Clearly the solution is x = √ y { or x : x x = − } y, but which one do we >a √ need? We know that the range of the { inverse ≤ function is the same as the x : x b } domain of the original function, which we have restricted to be [0, ∞). So { x : x < b } we need a nonnegative number as our answer, and that has to be x = √ y. R That is, h −1 (y) = √ y. Of course, we could have ghosted out the right half of a the original graph to restrict the domain to (−∞, 0]. In that case, we'd get a b function j which has domain (−∞, 0] and again satisﬁes j(x) = x 2, but only shadow on this domain. This function also has an inverse, 0 but the inverse is now the negative square root: j −1 (y) = − √ y. 1
-
-By the way, if you take the original function g 4 given by g(x) = x 2 with domain (−∞, ∞), which fails the horizontal line −2 test, and try to reﬂect it in the mirror y = x, you get the following picture: 3
-
-Notice that the graph fails the vertical line test, so it's not the graph of a function. This illustrates the connection between the vertical and horizontal line tests—when horizontal lines are reﬂected in the mirror y = x, they become vertical lines.
-
-1.2.4 Inverses of inverse functions
-
-One more thing about inverse functions: if f has an inverse, it's true that f −1 (f(x)) = x for all x in the domain of f, and also that f(f −1 (y)) = y for all y in the range of f. (Remember, the range of f is the same as the domain of f −1, so you can indeed take f −1 (y) for y in the range of f without causing any screwups.)
-
-3 For example, if f(x) = x 3, then f has an inverse given by f −1 (x) = √ x, 3 and so f −1 (f(x)) = √ x 3 = x for any x. Remember, the inverse function is like an undo button. We use x as an input to f, and then give the output to f −1 ; this undoes the transformation and gives us back x, the original number. 3 Similarly, f(f −1 (y)) = ( √ y) 3 = y. So f −1 is the inverse function of f, and f is the inverse function of f −1. In other words, the inverse of the inverse is the original function.
-
-Now, you have to be careful in the case where you restrict the domain. Let g(x) = x 2 ; we've seen that you need to restrict the domain to get an inverse. Let's say we restrict the domain to [0, ∞) and carelessly continue to refer to the function as g instead of h, as in the previous section. We would then say that g −1 (x) = √ x. If you calculate g(g −1 (x)), you ﬁnd that this is ( √ x) 2, which equals x, provided that x ≥ 0. (Otherwise you can't take the square root in the ﬁrst place.)
-
-On the other hand, if you work out g −1 (g(x)), you get √ x 2, which is not always the same thing as x. For example, if x = −2, then x 2 = 4 and so √ x 2 = √ 4 = 2. So it's not true in general that g −1 (g(x)) = x. The problem is that −2 isn't in the restricted-domain version of g. Technically, you can't even compute g(−2), since −2 is no longer in the domain of g. We really should be working with h, not g, so that we remember to be more careful. Nevertheless, in practice, mathematicians will often restrict the domain without changing letters! So it will be useful to summarize the situation as follows:
-
-If the domain of a function f can be restricted so that f has an inverse f −1, then
-
-• f(f −1 (y)) = y for all y in the range of f; but
-
-• f −1 (f(x)) may not equal x; in fact, f −1 (f(x)) = x only when x is in the restricted domain.
-
-We'll be revisiting these important points in the context of inverse trig functions in Section 10.2.6 of Chapter 10.
-
-
-
-## 1.2 反函数
+反函数
 
 我们假设一个函数 f。你给了它一个输入 x；如果 x 在 f 的定义域中，就能得到一个输出，我们称它为 f(x)。现在，我们把过程倒过来，并问：如果你选一个实数 y，那么应该赋予 f 什么样的输入才能得到这个输出 y 呢？
 
@@ -300,9 +268,29 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 这会引发一些问题：你是如何知道只有唯一的 x 值满足 f(x)=y 的呢？如果是这样，如何求得反函数呢？如何知道其图像是什么样子的呢？如果不是这样，你又如何挽救这一局面呢？在接下来的 3 个小节中我们会对这些问题做出回答。
 
-### 1.2.1 水平线检验
+### 1.2.1 The horizontal line test
 
-对于第一个问题——如何知道对于 f 值域中的任意 y，只有一个 x 值满足 f(x)=y，最好的方法也许是看一下函数图像。我们想要在 f 值域中选择 y，并且希望只有一个 x 值满足 f(x)=y。这就意味着通过点 (0，y) 的水平线应该和图像仅有一次相交，且交点为点 (x，y)。那个 x 就是我们想要的。如果水平线和曲线相交多于一次，那将会有多个可能的对应 x 值，情况会很糟。如果是那样，获得反函数唯一的方法就是对定义域加以限制，我们很快会讨论这一点。如果水平线根本就没有和曲线相交，会怎样呢？就是 y 根本没有在值域当中，这样也不错。
+For the ﬁrst question — how to see that there's only one value of x that works PSfrag replacements for any y in the range — perhaps the best way is to look at the graph of your (a, b) function. We want to pick y in the range of f and hopefully only have one value [a, b] of x such that f(x) = y. What this means is that the horizontal line through (a, b] the point (0, y) should intersect the graph exactly once, at some point (x, y). [a, b) That x is the one we want. If the horizontal line intersects the (a, curve ∞) more [a, ∞) than once, there would be multiple potential inverses x, which is bad. In that (−∞, b) case, the only way to get an inverse function is to restrict the domain; we'll (−∞, b] come back to this very shortly. What if the horizontal line doesn't intersect (−∞, ∞) the curve at all? Then y isn't in the range after all, which is x : a OK. < x < b { }
+
+So, we have just described the horizontal line test: if every x : a horizontal line { ≤ x ≤ b } ≤ } intersects the graph of a function at most once, the function { x : a has < x an b inverse. } If even one horizontal line intersects the graph more than { x once, : a ≤ there x < b isn't an x : x ≥ a } inverse function. For example, look at the graphs of f(x) = x 3 { and g(x) = x 2 :
+
+No horizontal line hits y = f(x) more than once, so f (a, has b) an inverse. On the other hand, some of the horizontal lines hit the curve [a, y b] = g(x) twice, so g has no inverse. Here's the problem: if you want to solve (a, b] y = x 2 for x, where [a, b) y is positive, then there are two solutions, x = √ y and x = − √ y. You don't know which one to take! (a, ∞)
+
+[a, ∞)
+
+1.2.2 Finding the inverse
+
+(−∞, b)
+
+(−∞, b]
+
+Now let's move on to the second of our questions: (−∞, how do ∞) you ﬁnd the inverse of a function f? Well, you write down y = { x f(x) : a < and x < try b } to solve for x. In 3 our example of f(x) = x 3 { 3 x so,wehavey = x, : a x ≤ = x ≤ b y. } This means that √ 3 f −1 (y) = √ y. If the variable y here oﬀends { x : you, a < by x ≤ all b } means switch it to 3 x: you can write f −1 (x) = √ x if you prefer. { x : Of a ≤ course, x < b } solving for x is not always easy and in fact is often impossible. On { x the : x other ≥ a } hand, if you know what the graph of your function looks like, the { graph x : x > of a the inverse function } ≤ } is easy to ﬁnd. The idea is to draw the line y = { x x on : x the b graph, then pretend that this line is a two-sided mirror. The inverse { x function : x < b } is the reﬂection of the original function in this mirror. When f(x) = x 3, here's what f −1 looks R like:
+
+The original function f is reﬂected in the mirror y = x to get the inverse function. Note that the domain and range of both f and f −1 are the whole real line.
+
+水平线检验
+
+对于第一个问题 —  — 如何知道对于 f 值域中的任意 y，只有一个 x 值满足 f(x)=y，最好的方法也许是看一下函数图像。我们想要在 f 值域中选择 y，并且希望只有一个 x 值满足 f(x)=y。这就意味着通过点 (0，y) 的水平线应该和图像仅有一次相交，且交点为点 (x，y)。那个 x 就是我们想要的。如果水平线和曲线相交多于一次，那将会有多个可能的对应 x 值，情况会很糟。如果是那样，获得反函数唯一的方法就是对定义域加以限制，我们很快会讨论这一点。如果水平线根本就没有和曲线相交，会怎样呢？就是 y 根本没有在值域当中，这样也不错。
 
 这样一来，我们就可以描述水平线检验：如果每一条水平线和一个函数的图像相交至多一次，那么这个函数就有一个反函数。如果即使只有一条水平线和图像相交多于一次，那么这个函数就没有反函数。例如，我们来看一下图 1-4 中 f(x)=x^3 和 g(x)=x^2 的图像。
 
@@ -312,7 +300,11 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 没有一条水平线和 y=f(x) 相交多于一次，所以 f 有一个反函数。另一方面，一些水平线和曲线 y=g(x) 相交两次，所以 g 没有反函数。这里有个问题：如果通过 y=x^2 来求解 x，其中 y 为正，那么就会出现两个解：x=√y 和 x=-√y。你不知道要取哪一个。
 
-### 1.2.2 求逆
+
+
+
+
+求逆
 
 现在，来看我们的第二个问题：如何求得函数 f 的反函数呢？你记下 y=f(x)，并试图解出 x。在 f(x)=x^3 的例子中，有 y=x^3，所以 x=3√y。这就意味着 f-1(y)=3√y，如果你不喜欢变量 y，可以将它改写为 x，如果你愿意，可以写成 f-1(x)=3√x。当然了，求解 x 并不总是那么简单，事实上，求解经常是不可能的。
 
@@ -324,7 +316,19 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 原始函数 f 在 y=x 这面「镜子」中被反射，从而得到反函数。注意：f 和 f-1 的定义域和值域都是整个实轴。
 
-### 1.2.3 限制定义域
+### 1.2.3 Restricting the domain
+
+Finally, we'll address our third question: if the horizontal line test fails and there's no inverse, what can be done? Our problem is that there are multiple values of x that give the same y. The only way to get around the problem is to throw away all but one of these values of x. That is, we have to decide which one of our values of x we want to keep, and throw the rest away. As we saw in Section 1.1 above, this is called restricting the domain of our function. Eﬀectively, we ghost out part of the curve so that what's left no longer fails the horizontal line test. For example, if g(x) = x 2, we can ghost out the left half of the graph like this:
+
+The new (unghosted) curve has the reduced domain [0, ∞) and satisﬁes the shadow horizontal line test, so there is an inverse function. More precisely, 0 the function h, which has domain [0, ∞) and is deﬁned by h(x) = x 2 on this 1 domain, has PSfrag replacements an inverse. Let's play the reﬂection game to see what it looks like:
+
+To ﬁnd the equation of the inverse, we { have x : x to ≥ a solve } for x in the equation y = x 2. Clearly the solution is x = √ y { or x : x x = − } y, but which one do we >a √ need? We know that the range of the { inverse ≤ function is the same as the x : x b } domain of the original function, which we have restricted to be [0, ∞). So { x : x < b } we need a nonnegative number as our answer, and that has to be x = √ y. R That is, h −1 (y) = √ y. Of course, we could have ghosted out the right half of a the original graph to restrict the domain to (−∞, 0]. In that case, we'd get a b function j which has domain (−∞, 0] and again satisﬁes j(x) = x 2, but only shadow on this domain. This function also has an inverse, 0 but the inverse is now the negative square root: j −1 (y) = − √ y. 1
+
+By the way, if you take the original function g 4 given by g(x) = x 2 with domain (−∞, ∞), which fails the horizontal line −2 test, and try to reﬂect it in the mirror y = x, you get the following picture: 3
+
+Notice that the graph fails the vertical line test, so it's not the graph of a function. This illustrates the connection between the vertical and horizontal line tests — when horizontal lines are reﬂected in the mirror y = x, they become vertical lines.
+
+限制定义域
 
 终于，我们要提及第三个问题了：如果水平线检验失败并且没有反函数，那应该怎么办呢？我们的问题是，对于相同的 y 有多个 x 值。解决此问题的唯一方法是：除了这些多个 x 值中的一个，我们放弃所有其他值。也就是说，我们必须决定要保留哪一个 x 值，然后放弃剩余的值。正如在 1.1 节中看到的，这称为限制函数的定义域。事实上，我们删去部分曲线，使得保留下来的部分能够通过水平线检验。例如 g(x)=x^2，可以删除左半边的图像，如图 1-6 所示。
 
@@ -348,7 +352,25 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 注意，这个图像不会通过垂线检验，所以它不是函数的图像。这说明垂线检验和水平线检验之间有一定的联系，即当水平线被镜面 y=x 反射后会变成垂线。
 
-### 1.2.4 反函数的反函数
+### 1.2.4 Inverses of inverse functions
+
+One more thing about inverse functions: if f has an inverse, it's true that f −1 (f(x)) = x for all x in the domain of f, and also that f(f −1 (y)) = y for all y in the range of f. (Remember, the range of f is the same as the domain of f −1, so you can indeed take f −1 (y) for y in the range of f without causing any screwups.)
+
+3 For example, if f(x) = x 3, then f has an inverse given by f −1 (x) = √ x, 3 and so f −1 (f(x)) = √ x 3 = x for any x. Remember, the inverse function is like an undo button. We use x as an input to f, and then give the output to f −1 ; this undoes the transformation and gives us back x, the original number. 3 Similarly, f(f −1 (y)) = ( √ y) 3 = y. So f −1 is the inverse function of f, and f is the inverse function of f −1. In other words, the inverse of the inverse is the original function.
+
+Now, you have to be careful in the case where you restrict the domain. Let g(x) = x 2 ; we've seen that you need to restrict the domain to get an inverse. Let's say we restrict the domain to [0, ∞) and carelessly continue to refer to the function as g instead of h, as in the previous section. We would then say that g −1 (x) = √ x. If you calculate g(g −1 (x)), you ﬁnd that this is ( √ x) 2, which equals x, provided that x ≥ 0. (Otherwise you can't take the square root in the ﬁrst place.)
+
+On the other hand, if you work out g −1 (g(x)), you get √ x 2, which is not always the same thing as x. For example, if x = −2, then x 2 = 4 and so √ x 2 = √ 4 = 2. So it's not true in general that g −1 (g(x)) = x. The problem is that −2 isn't in the restricted-domain version of g. Technically, you can't even compute g(−2), since −2 is no longer in the domain of g. We really should be working with h, not g, so that we remember to be more careful. Nevertheless, in practice, mathematicians will often restrict the domain without changing letters! So it will be useful to summarize the situation as follows:
+
+If the domain of a function f can be restricted so that f has an inverse f −1, then
+
+• f(f −1 (y)) = y for all y in the range of f; but
+
+• f −1 (f(x)) may not equal x; in fact, f −1 (f(x)) = x only when x is in the restricted domain.
+
+We'll be revisiting these important points in the context of inverse trig functions in Section 10.2.6 of Chapter 10.
+
+反函数的反函数
 
 有关反函数还有一点：如果 f 有反函数，那么对于在 f 定义域中的所有 x，f-1(f(x))=x 成立；同样，对于在 f 值域当中的所有 y，都有 x，f(f-1(y))=y。(记住，f 的值域和 f-1 的定义域相同，所以的确可以取 f-1(y) 作为 f 值域当中的 y，不会导致任何曲解。)
 
@@ -362,16 +384,13 @@ We'll be revisiting these important points in the context of inverse trig functi
 
 在 10.2.6 节，对于反三角函数，我们会继续讨论这些要点。
 
-
-
 ## 1.3 Composition of Functions
 
 Let's say we have a function g given by g(x) = x 2. You can replace x by anything you like, as long as it makes sense. For example, you can write [a, b] (a, b] [a, b) (a, ∞) rag replacements [a, ∞) (−∞, (a, b)
 
 (−∞, [a, b]
 
-
-g(y) = y 2, or g(x + 5) = (x + 5) 2. This last example shows that you need to be very careful with parentheses. It would be wrong to write g(x+5) = x+5 2, since this is just x + 25, which is not the same thing as (x + 5) 2. If in doubt, use parentheses. That is, if you need to write out f(something), replace every instance of x by (something), making sure to include the parentheses. Just about the only time you don't need to use parentheses is when the function is an exponential function—for example, if h(x) = 3 x, then you can just write h(x 2 + 6) = 3 x 2 +6. You don't need parentheses since you're already writing the x 2 + 6 as a superscript.
+g(y) = y 2, or g(x + 5) = (x + 5) 2. This last example shows that you need to be very careful with parentheses. It would be wrong to write g(x+5) = x+5 2, since this is just x + 25, which is not the same thing as (x + 5) 2. If in doubt, use parentheses. That is, if you need to write out f(something), replace every instance of x by (something), making sure to include the parentheses. Just about the only time you don't need to use parentheses is when the function is an exponential function — for example, if h(x) = 3 x, then you can just write h(x 2 + 6) = 3 x 2 +6. You don't need parentheses since you're already writing the x 2 + 6 as a superscript.
 
 R 4 a −2 b 3
 
@@ -395,7 +414,7 @@ f
 
 (x) = 3 x y = h(x) y = h −1 (x)
 
-Now consider the function f deﬁned by f(x) = cos(x 2 ). If I give you a number x, how do you compute f(x)? Well, ﬁrst you square it, then you take the cosine of the result. Since we can decompose the action of f(x) into these two separate actions which are performed one after the other, we might as well describe those actions as functions themselves. So, let g(x) = x 2 and h(x) = cos(x). To simulate what f does when you use x as an input, you could ﬁrst give x to g to square it, and then instead of taking the result back you could ask g to give its result to h instead. Then h spits out a number, which is the ﬁnal answer. The answer will, of course, be the cosine of what came out of g, which was the square of the original x. This behavior exactly mimics f, so we can write f(x) = h(g(x)). Another way of expressing this is to write f = h ◦ g; here the circle means “composed with.” That is, f is h composed with g, or in other words, f is the composition of h and g. What's tricky is that you write h before g (reading from left to right as usual!) but you apply g ﬁrst. I agree that it's confusing, but what can I say—you just have to deal with it.
+Now consider the function f deﬁned by f(x) = cos(x 2 ). If I give you a number x, how do you compute f(x)? Well, ﬁrst you square it, then you take the cosine of the result. Since we can decompose the action of f(x) into these two separate actions which are performed one after the other, we might as well describe those actions as functions themselves. So, let g(x) = x 2 and h(x) = cos(x). To simulate what f does when you use x as an input, you could ﬁrst give x to g to square it, and then instead of taking the result back you could ask g to give its result to h instead. Then h spits out a number, which is the ﬁnal answer. The answer will, of course, be the cosine of what came out of g, which was the square of the original x. This behavior exactly mimics f, so we can write f(x) = h(g(x)). Another way of expressing this is to write f = h ◦ g; here the circle means "composed with." That is, f is h composed with g, or in other words, f is the composition of h and g. What's tricky is that you write h before g (reading from left to right as usual!) but you apply g ﬁrst. I agree that it's confusing, but what can I say — you just have to deal with it.
 
 It's useful to practice composing two or more functions together. For example, if g(x) = 2 x, h(x) = 5x 4, and j(x) = 2x − 1, what is a formula for the function f = g ◦ h ◦ j? Well, just replace one thing at a time, starting with j, then h, then g. So:
 
@@ -446,7 +465,7 @@ One simple but important example of { composition } of functions occurs x:x<b wh
 
 Similarly, the graph of y = (x + 2) 2 is the graph of y = x 2 shifted to the left by 2 units, since you can interpret (x + 2) as (x − (−2)).
 
-## 1.3 函数的复合
+函数的复合
 
 我们说对于有表达式 g(x)=x^2 的函数 g，可以将 x 替换成任何使函数有意义的对象，如 g(y)=y^2 或 g(x+5)=(x+5)^2。后一个例子需要特别注意小括号，若写成 g(x+5)=x+5^2 就是错的，因为 x+25 并不等于 (x+5)^2。所以在替换过程中如果拿不准，可用小括号。也就是说，如果你需将 f(x) 写成 f(某表达式)，可将每一个 x 替换成(某表达式)，这时一定要加小括号。唯一不需要加小括号的情况是当函数是指数函数时，如 h(x)=3^x，则可写 h(x^2+6)=3^(x^2+6)，不需要加小括号是因为已经将 x^2+6 写成上标了。
 
@@ -490,11 +509,11 @@ k 是另一个完全不同的函数。上述事实的寓意在于，函数的乘
 
 ## 1.4 Odd and Even Functions
 
-Some functions have some symmetry properties that make them easier to deal with. Consider the function f given by f(x) = x 2. Pick any positive number you like (I'll choose 3) and hit it with f (I get 9). Now take the negative of that number, −3 in my case, and hit that with f (I get 9 again). You should get the same answer both times, as I did, regardless of which number you chose. You can express this phenomenon by writing f(−x) = f(x) for all x. That is, if you give x to f as an input, you get back the same answer as if you used the input −x instead. Notice that g(x) = x 4 and h(x) = x 6 also have this property—in fact, j(x) = x n, where n is any even number (n could in fact be negative), has the same property. Inspired by this, we say that a function f is even if f(−x) = f(x) for all x in the domain of f. It's not good enough for this equation to be true for some values of x; it has to be true for all x in the domain of f.
+Some functions have some symmetry properties that make them easier to deal with. Consider the function f given by f(x) = x 2. Pick any positive number you like (I'll choose 3) and hit it with f (I get 9). Now take the negative of that number, −3 in my case, and hit that with f (I get 9 again). You should get the same answer both times, as I did, regardless of which number you chose. You can express this phenomenon by writing f(−x) = f(x) for all x. That is, if you give x to f as an input, you get back the same answer as if you used the input −x instead. Notice that g(x) = x 4 and h(x) = x 6 also have this property — in fact, j(x) = x n, where n is any even number (n could in fact be negative), has the same property. Inspired by this, we say that a function f is even if f(−x) = f(x) for all x in the domain of f. It's not good enough for this equation to be true for some values of x; it has to be true for all x in the domain of f.
 
 Now, let's say we play the same game with f(x) = x 3. Take your favorite positive number (I'll stick with 3) and hit that with f (I get 27). Now try again with the negative of your number, −3 in my case; I get −27, and you should also get the negative of what you got before. You can express this mathematically as f(−x) = −f(x). Once again, the same property holds for j(x) = x n when n is any odd number (and once again, n could be negative). So, we say that a function f is odd if f(−x) = −f(x) for all x in the domain of f.
 
-In general, a function might be odd, it might be even, or it might be neither odd nor even. Don't forget this last point! Most functions are neither odd nor even. On the other hand, there's only one function that's both odd and even, which is the rather boring function given by f(x) = 0 for all x (we'll call this the “zero function”). Why is this the only odd and even function? Let's convince ourselves. If the function f is even, then f(−x) = f(x) for all x. But if it's also odd, then f(−x) = −f(x) for all x. Take the ﬁrst of these equations and subtract the second from it. You should get 0 = 2f(x), which means that f(x) = 0. This is true for all x, so the function f must just be the zero function. One other nice observation is that if a function f is odd, and the number 0 is in its domain, then f(0) = 0. Why is it so? Because f(−x) = −f(x) is true for all x in the domain of f, so let's try it for x = 0. You get f(−0) = −f(0). But −0 is the same thing as 0, so we have f(0) = −f(0). This simpliﬁes to 2f(0) = 0, or f(0) = 0 as claimed.
+In general, a function might be odd, it might be even, or it might be neither odd nor even. Don't forget this last point! Most functions are neither odd nor even. On the other hand, there's only one function that's both odd and even, which is the rather boring function given by f(x) = 0 for all x (we'll call this the "zero function"). Why is this the only odd and even function? Let's convince ourselves. If the function f is even, then f(−x) = f(x) for all x. But if it's also odd, then f(−x) = −f(x) for all x. Take the ﬁrst of these equations and subtract the second from it. You should get 0 = 2f(x), which means that f(x) = 0. This is true for all x, so the function f must just be the zero function. One other nice observation is that if a function f is odd, and the number 0 is in its domain, then f(0) = 0. Why is it so? Because f(−x) = −f(x) is true for all x in the domain of f, so let's try it for x = 0. You get f(−0) = −f(0). But −0 is the same thing as 0, so we have f(0) = −f(0). This simpliﬁes to 2f(0) = 0, or f(0) = 0 as claimed.
 
 Anyway, starting with a function f, how can you tell if it is odd, even, or neither? And so what if it is odd or even anyway? Let's look at this second question before coming back to the ﬁrst one. One nice thing about knowing that a function is odd or even is that it's easier to graph the function. In fact, if you can graph the right-hand half of the function, the left-hand half is a piece of cake! Let's say that f is an even function. Then since f(x) = f(−x), the graph of y = f(x) is at the same height above the x-coordinates x and −x. This is true for all x, so the situation looks something like this:
 
@@ -502,7 +521,7 @@ We can conclude that the graph of an even function has mirror sym0 metry about t
 
 Same height
 
-−3 On the other hand, let's say that f is an odd function. g(x) = x Since 2 we have f(−x) = −f(x), the graph of y = f(x) is at the same height above the f(x) = x 3 x-coordinate x as it is below the x-coordinate −x. (Of course, if f(x) is g(x) = x 2 negative, then you have to switch the words “above” and “below.”) In any f(x) = x 3 case, the picture looks like this:
+−3 On the other hand, let's say that f is an odd function. g(x) = x Since 2 we have f(−x) = −f(x), the graph of y = f(x) is at the same height above the f(x) = x 3 x-coordinate x as it is below the x-coordinate −x. (Of course, if f(x) is g(x) = x 2 negative, then you have to switch the words "above" and "below.") In any f(x) = x 3 case, the picture looks like this:
 
 The symmetry is now a point symmetry about the origin. That is, the graph of an odd function has 180 ◦ point symmetry about the origin. This means that if you only have the right half of a function which you know is odd, you can get the left half as follows. Pretend that the curve is sitting on top of the paper, so you can pick it up if you like but you can't change its shape. Instead of picking it up, put a pin through the curve at the origin (remember, odd functions must pass through the origin if they are deﬁned at 0) and then spin the whole curve around half a revolution. This is what the left-hand half of the graph looks like. (This doesn't work so well if the curve isn't continuous, that is, if the curve isn't all in one piece!) Check to see that the above graph and also the graph of y = x 3 have this symmetry.
 
@@ -602,9 +621,9 @@ shadow
 
 Section 1.5: Graphs of Linear Functions • 17 0
 
-1 4 1.5 Graphs of Linear Functions −2 3 Functions of the form f(x) = mx + b are called linear. There's a good reason −3 for this: the graphs of these functions are g(x) lines. = (As far as we're concerned, x2  f(x) = x3  the word “line” always means “straight line.”) The slope of the line is given by m. Imagine for a moment that you are in g(x) the = x page, 2 climbing the line as f(x) = x 3 if it were a mountain. You start at the PSfrag left side replacements of the page and head to the x) right, like this:
+1 4 1.5 Graphs of Linear Functions −2 3 Functions of the form f(x) = mx + b are called linear. There's a good reason −3 for this: the graphs of these functions are g(x) lines. = (As far as we're concerned, x2  f(x) = x3  the word "line" always means "straight line.") The slope of the line is given by m. Imagine for a moment that you are in g(x) the = x page, 2 climbing the line as f(x) = x 3 if it were a mountain. You start at the PSfrag left side replacements of the page and head to the x) right, like this:
 
-If the slope m is positive, as it is in the above { x : a ≤ picture, x < b } then you are heading uphill. The bigger m is, the steeper the climb. { x : x ≥ On a } the other hand, if the { } slope is negative, then you are heading downhill. x : x > a The more negative the { ≤ b } slope, the steeper the downhill grade. If the slope x : x is zero, then the line is ﬂat, { x : x < b } or horizontal—you're going neither uphill nor downhill, just trudging along a ﬂat line. R
+If the slope m is positive, as it is in the above { x : a ≤ picture, x < b } then you are heading uphill. The bigger m is, the steeper the climb. { x : x ≥ On a } the other hand, if the { } slope is negative, then you are heading downhill. x : x > a The more negative the { ≤ b } slope, the steeper the downhill grade. If the slope x : x is zero, then the line is ﬂat, { x : x < b } or horizontal — you're going neither uphill nor downhill, just trudging along a ﬂat line. R
 
 a To sketch the graph of a linear function, you only need to identify two b points on the graph. This is because there's only one line that goes through shadow two diﬀerent points. You just put your ruler on the points and draw the line. 0 One point is easy to ﬁnd, namely, the y-intercept. Set x = 0 in the equation 1 y = mx + b, and you see that y = m × 0 + b = b. That is, the y-intercept is 4 −2 equal to b, so the line goes through (0, b). To ﬁnd another point, you could ﬁnd the x-intercept by setting y = 0 and ﬁnding what 3 x is. This works pretty well except in two cases. The ﬁrst case is when b = −3 0, in which case we are g(x) = x 2 just dealing with y = mx. This goes through the origin, so the x-intercept f(x) = x 3 and the y-intercept are both zero. To get another point, you'll just have to g(x) = x 2 substitute in x = 1 and see that y = m. So, f(x) the = line x 3 y = mx goes through the origin and (1, m). For example, the line mirror y = (
 
@@ -627,7 +646,7 @@ y2 −y1 If a line goes through (x 1, y 1 ) and (x 2, y 2 ), its slope is equal 
 So, what is the equation of the line through (−3, 4) and (2, −6)? Let's ﬁnd the slope ﬁrst: 
 −6 4 −10 slope = = −2. 
 = 2 − (−3) 5 
-We now know that the line goes through (−3, 4) and has slope −2, so its equation is y − 4 = −2(x − (−3)), or after simplifying, y = −2x − 2. Alternatively, we could have used the other point (2, −6) with slope −2 to see that the equation of the line is y − (−6) = −2(x − 2), which simpliﬁes to y = −2x − 2. Thankfully this is the same equation as before—it doesn't matter which point you pick, as long as you have used both points to ﬁnd the slope. 
+We now know that the line goes through (−3, 4) and has slope −2, so its equation is y − 4 = −2(x − (−3)), or after simplifying, y = −2x − 2. Alternatively, we could have used the other point (2, −6) with slope −2 to see that the equation of the line is y − (−6) = −2(x − 2), which simpliﬁes to y = −2x − 2. Thankfully this is the same equation as before — it doesn't matter which point you pick, as long as you have used both points to ﬁnd the slope. 
 PSfrag replacements 
 (a, b) Section 1.6: Common Functions and Graphs • [a, b] 19 
 1.6 Common Functions and Graphs 
@@ -646,7 +665,7 @@ g(x) = x2 where a n is the coeﬃcient of x n, a n−1 is the coeﬃcient of x n
 Sketching the graphs of more general polynomials is more diﬃcult. Even ﬁndf(x) = x3  (−∞, b) ing the x-intercepts is often impossible unless the polynomial is mirror very simple. (y = x) −1 (−∞, b] There is one aspect of the graph that is fairly straightforward, f which (x) is = 3 x what √ (−∞, ∞) happens at the far left and right sides of the graph. This is determined by y = h(x) y = h −1 (x) { x : a < x < b } the so-called leading coe ﬃ cient, which is the coeﬃcient of the highest-degree 1)2  { x : a ≤ x ≤ b } term. This is basically the number a n deﬁned above. For example, y = (x in − our { x : a < x ≤ b } polynomial f(x) = 5x 4 − 4x 3 + 10 from above, the leading coeﬃcient is 5. −1 In x { x : a ≤ x < b } fact, it only matters whether the leading coeﬃcient is positive or negative. It Same height { x : x ≥ a } also matters whether the degree of the polynomial is odd or even; so there are { x : x > a } four possibilities for what the edges of the graph can look like:
 
 
-The wiggles in the center of these diagrams aren't relevant—they depend on the other terms of the polynomial. The diagram is just supposed to show what the graphs look like near the left and right edges. In this sense, the graph of our polynomial f(x) = 5x 4 − 4x 3 + 10 looks like the leftmost picture above, since n = 4 is even and a n = 5 is positive.
+The wiggles in the center of these diagrams aren't relevant — they depend on the other terms of the polynomial. The diagram is just supposed to show what the graphs look like near the left and right edges. In this sense, the graph of our polynomial f(x) = 5x 4 − 4x 3 + 10 looks like the leftmost picture above, since n = 4 is even and a n = 5 is positive.
 
 Let's spend a little time on degree 2 polynomials, which are called quadratics. Instead of writing p(x) = a 2 x 2 +a 1 x+a 0, it's easier to write the coeﬃcients as a, b, and c, so we have p(x) = ax 2 + bx + c. Quadratics have two, one, or zero (real) roots, depending on the sign of the discriminant. The discriminant, which is often written as ∆, is given by ∆ = b 2 − 4ac. There are three possibilities. If ∆ > 0, then there are two roots; if ∆ = 0, there is one root, which is called a double root; and if ∆ < 0, then there are no roots. In the ﬁrst two cases, the roots are given by
 
@@ -725,7 +744,7 @@ y = log 2 (x)
 
 y = 10x 
 
-Same height y = −2x | x − y | is the distance between x and y on the number line. −2 −x 1 For example, suppose that you need to identify Same y = the x length, region − 1 | x − 1 | ≤ 3 on the 2 opposite signs number line. You can interpret the inequality as “the distance between x and = 2 y −2x 1 is less than or equal to 3.” That is, we are looking for all the points that −1 are no more than 3 units away from the number y 1. = So, let's take a number 2 x line and mark in the number 1 as follows: y2 1 = 10 x
+Same height y = −2x | x − y | is the distance between x and y on the number line. −2 −x 1 For example, suppose that you need to identify Same y = the x length, region − 1 | x − 1 | ≤ 3 on the 2 opposite signs number line. You can interpret the inequality as "the distance between x and = 2 y −2x 1 is less than or equal to 3." That is, we are looking for all the points that −1 are no more than 3 units away from the number y 1. = So, let's take a number 2 x line and mark in the number 1 as follows: y2 1 = 10 x
 
 y = x−1 y = 2 −x 2 1 y = log 2 (x) −1 The points which are no more than 3 units away extend y = 2 x to −2 on the left and 4 on the right, so the region we want looks like y this: = 10x 
 
