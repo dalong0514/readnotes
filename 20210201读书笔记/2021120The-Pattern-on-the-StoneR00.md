@@ -70,7 +70,7 @@ The philosopher Gregory Bateson once defined information as「the difference tha
 
 These days, computers are popularly thought of as multimedia devices, capable of incorporating and combining all previous forms of media — text, graphics, moving pictures, sound. I think this point of view leads to an underestimation of the computer's potential. It is certainly true that a computer can incorporate and manipulate all other media, but the true power of the computer is that it is capable of manipulating not just the expression of ideas but also the ideas themselves. The amazing thing to me is not that a computer can hold the contents of all the books in a library but that it can notice relationships between the concepts described in the books — not that it can display a picture of a bird in flight or a galaxy spinning but that it can imagine and predict the consequences of the physical laws that create these wonders. The computer is not just an advanced calculator or camera or paintbrush; rather, it is a device that accelerates and extends our processes of thought. It is an imagination machine, which starts with the ideas we put into it and takes them farther than we ever could have taken them on our own.
 
-## 再版前言 —— 计算机背后不曾改变的基本原理
+再版前言 —— 计算机背后不曾改变的基本原理
 
 本书初版问世很久之后，我的出版商惊讶地发现：它在当下仍然很受欢迎。这也是我有机会为本书写再版前言的原因。本书已被翻译为十几种语言，至今仍有众多读者。自本书问世以来，计算机技术及应用发生了天翻地覆的变化。不过本书并不着眼于计算机的具体技术及应用，而是关注计算机背后不曾改变的基本原理，这也是本书能持续热卖的关键所在。
 
@@ -82,7 +82,7 @@ These days, computers are popularly thought of as multimedia devices, capable of
 
 关于未来的发展，本书提出了两个可能的方向。第一个是量子计算，正如书中所述，它具有巨大的潜力，但目前并无可行的实现方式。当我写下这句话时，现实情况仍是如此。从理论和技术方面来说，量子计算取得了巨大突破，但它们中的任何一个的计算速度都比不上传统计算机。正如本书初版所述，量子计算仍是「一个值得关注的领域」。本书预测的第二个可能方向是，计算机能像生物进化过程那样实现自我设计。目前，这个方向已经显现出了隐约的曙光，不过在很大程度上，它只是一个未实现的可能方案。目前，我们还缺乏相关理论来说明这个过程如何才能成为现实。我对未来发现这些新原理持乐观态度，期待能够在本书的后续版本中继续讨论。
 
-## 前言 —— 石头中的魔术
+前言 —— 石头中的魔术
 
 在一块石头上，我蚀刻了一系列几何图案，在外行看来，这些图案显得神秘而又复杂，但我清楚地知道，只要布局正确，这些图案就会赋予这块石头一种特殊的能力，即对人类从未说过的一种咒语做出回应。如果我用这种语言提问，石头便会应答：这是一个我用符咒创造的世界，一个在石头图案中想象的世界。
 
