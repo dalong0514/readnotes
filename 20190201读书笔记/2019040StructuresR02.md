@@ -1,0 +1,410 @@
+## 记忆时间
+
+## 目录
+
+0301 The invention of stress and strain
+
+## 0301. The invention of stress and strain
+
+现在我们可以总结一下这一章的内容：
+
+1、应力，它表示固体内某一点的原子因受载荷作用而被拉开或挤压的难度（即要施加多大的力）。
+
+2、应变，它表示固体内某一点的原子被拉开或挤压的程度。
+
+3、应力和应变不是一回事。
+
+4、我们常常用材料的强度指代破坏它所需的应力。
+
+5、杨氏模量，它表示材料有多强劲或松软。
+
+6、强度和刚度也不是一回事。
+
+引用《强材料新科学研究》中的一段文字：「饼干硬而弱，钢材硬且强，尼龙柔（低 E）且强，树莓果冻柔（低 E）且弱。这两种属性共同定义了固体，你也能用它们合理地评估新材料。」
+
+对于上述种种，你也许会感到些许怀疑或困惑，但下面这件事可能会让你稍感安慰。不久前，我在剑桥大学花了整整一晚的时间，试图向两位举世闻名的科学巨擘解释应力、应变、强度和刚度之间的根本区别，因为他们准备向英国政府提议一个耗资巨大的项目。但是，我不清楚他们听明白了多少。
+
+### 3.0
+
+–or Baron Cauchy and the decipherment of Young’s modulus
+
+What would life be without arithmetic, but a scene of horrors?
+
+Rev. Sydney Smith, letter to a young lady, 22 July 1835
+
+Apart from Newton and the prejudices of the eighteenth century, the main reason why the science of elasticity got stuck for so long was that the few scientists who did study it tried to deal with forces and deflections by considering the structure as a whole – as Hooke had done – rather than by analysing the forces and extensions which could be shown to exist at any given point within the material. All through the eighteenth century and well into the nineteenth, very clever men, such as Leonhard Euler (1707–83) and Thomas Young (1773–1829), performed what must appear to the modern engineer to be the most incredible intellectual contortions in their attempts to solve what now seem to us to be quite straightforward problems.
+
+The concept of the elastic conditions at a specified point inside a material is the concept of stress and strain. These ideas were first put forward in a generalized form by Augustin Cauchy (1789–1857) in a paper to the French Academy of Sciences in 1822. This paper was perhaps the most important event in the history of elasticity since Hooke. After this, that science showed promise of becoming a practical tool for engineers rather than a happy hunting-ground for a few somewhat eccentric philosophers. From his portrait, painted at about this time, Cauchy looks rather a pert young man, but he was undoubtedly an applied mathematician of great ability.
+
+When, eventually, English nineteenth-century engineers bothered to read what Cauchy had said on the subject, they found that, not only were the basic concepts of stress and strain really quite easy to understand, but, once they had been understood, the whole study of structures was much simplified. Nowadays these ideas can be understood by anybody,* and it is hard to account for the bewildered and even resentful attitude which is sometimes taken up by laymen when ‘stresses and strains' are mentioned. I once had a research student with a nice new degree in zoology who was so upset by the whole idea of stress and strain that she ran away from the university and hid herself. I still do not see why.
+
+应力与应变 —— 柯西男爵与杨氏模量
+
+生活中要是没了算术，将是多么恐怖的场景？
+
+—— 西德尼·史密斯（Sydney Smith），引自 1835 年 7 月 22 日致一位年轻女士的信
+
+弹性科学之所以长期停滞不前，除了因为牛顿与 18 世纪的偏见之外，还有一个主要原因，那就是少数研究它的科学家在尝试处理力和挠度的问题时将结构视为一个整体，就像胡克曾经做的那样，而非分析材料内任意一点上的力和伸长量。整个 18 世纪直至 19 世纪，莱昂哈德·欧拉（Leonhard Euler）和托马斯·杨（Thomas Young）等顶级智者，试图应对大多数现代工程师眼中最不可思议的智力挑战，解决我们今天看来一目了然的问题。
+
+在材料内部，某一点的弹性状态指的就是应力和应变。奥古斯丁·柯西（Augustin Cauchy）在 1822 年提交给法兰西科学院的一篇论文中率先提出了这两个概念。这篇论文或许是自胡克以来弹性研究史上最重要的成果，此后这门学科逐渐成为工程师的实践工具，而不再只是几个蹩脚哲学家的消遣。根据大致绘于此时的肖像画，柯西看上去就像一个毛头小子，但毋庸置疑，他也是一位能力非凡的应用数学家。
+
+2『应力和应变，做一张术语卡片。（2021-06-19）』
+
+最终，19 世纪的英国工程师费尽心力去解读柯西在这个课题上的三言两语，他们发现，不仅应力和应变的基本概念非常容易理解，而且一旦理解了，关于结构的整个研究也变得非常简洁明了。如今，任何人都能理解这两个概念，[1] 所以提及「应力和应变」时，有些人仍会采取困惑甚至愤恨的态度，就让人很难理解了。我带过一个研究生，她当时刚获得动物学学位，但被应力和应变的整套观念弄得心烦意乱，以致逃离了大学。我至今仍搞不懂这是为什么。
+
+[1] 显然，《牛津词典》除外。当然，在日常交流中，这两个词被用来描述人的精神状态，其含义似乎是一样的。但在自然科学中，这两个词的含义相当清晰，区别也相当明显。
+
+### 3.1 Stress – which is not to be confused with strain
+
+As it happened, Galileo himself very nearly stumbled upon the idea of stress. In the Two New Sciences, the book he wrote in his old age at Arcetri, he states very clearly that, other things being equal, a rod which is pulled in tension has a strength which is proportional to its cross-sectional area. Thus, if a rod of two square centimetres cross-section breaks at a pull of 1,000 kilograms, then one of four square centimetres cross-section will need a pull of 2,000 kilograms force in order to break it, and so on. That it should have taken nearly two hundred years to divide the breaking load by .the area of the fracture surface, so as to get what we should now call a ‘breaking stress' (in this case 500 kilograms per square centimetre) which might be applied to all similar rods made from the same material almost passes belief.
+
+Cauchy perceived that this idea of stress can be used, not only to predict when a material will break, but also to describe the state of affairs at any point inside a solid in a much more general kind of way. In other words the ‘stress' in a solid is rather like the ‘pressure' in a liquid or a gas. It is a measure of how hard the atoms and molecules which make up the material are being pushed together or pulled apart as a result of external forces.
+
+Thus, to say ‘The stress at that point in this piece of steel is 500 kilograms per square centimetre' is no more obscure or mysterious than to say ‘The pressure of the air in the tyres of my car is 2 kilograms per square centimetre – or 28 pounds per square inch.' However, although the concepts of pressure and stress are fairly closely comparable, we have to bear in mind that pressure acts in all three directions within a fluid while the stress in a solid is often a directional or one-dimensional affair. Or, at any rate, so we shall consider it for the present.
+
+Numerically, the stress in any direction at a given point in a material is simply the force or load which happens to be acting in that direction at the point, divided by the area on which the force acts.* If we call the stress at a certain point s, then
+
+$$Sress = s = \frac{load}{area} = \frac{P}{A}$$
+
+where P = load or force and A is the area over which the force P can be considered as acting.
+
+Figure 1. Stress in a bar under tension. (Compressive stress is exactly analogous.)
+
+To revert to our brick, which we left in the last chapter hanging from its string. If the brick weighs 5 kilograms and the string has a cross-section of 2 square millimetres, then the brick pulls on the string with a force of 5 kilograms, and the stress in the string will be:
+
+or, if we prefer it, 250 kilograms force per square centimetre or kgf/cm2.
+
+如何区分应力与应变
+
+事实上，伽利略差点儿就提出了应力的概念。他晚年在阿切特里创作的《两门新科学》（Two New Sciences）把这个问题论述得非常清楚：在其余因素都不变的情况下，拉伸状态下杆的强度与其横截面积成正比。因此，若一根横截面积为 2 平方厘米的杆在 1 000 千克配重的拉伸作用下断裂，那么横截面积为 4 平方厘米的杆则需要 2 000 千克配重的拉力才能让它断裂，以下类推。大概过了将近 200 年，人们用断裂载荷除以断口面积，得到了我们今天所谓的「断裂应力」（在这个情境中，断裂应力为 500 千克力 [2] / 平方厘米）。它适用于所有由同种材料制成的均质杆，这实在是太棒了。
+
+柯西察觉到，这种应力的概念普遍适用，不仅可用来预测材料何时会断裂，还可以用来描述固体内任意点的状态。换句话说，固体中的应力有点儿像液体或气体中的压力，它度量的是构成材料的原子和分子在外力作用下聚集或分离的难度。
+
+1『这个隐喻太赞了，「固体中的应力如同液体或气体中的压力，它度量的是构成材料的原子或分子在外力作用下聚集或分离的难度。」做一张金句卡片。（2021-06-19）』—— 已完成
+
+因此，「这块钢中某点的应力为 500 千克力 / 平方厘米」与「我的汽车轮胎里的气压是 2 千克力 / 平方厘米或者 28 磅力 / 平方英寸」，这两种表述同样简单易懂。然而，尽管压力和应力的概念紧密相关，但我们需要牢记的一点是，流体中的压力作用在全部三个方向上，而固体中的应力通常是单向或一维的。不管怎样，我们下面来探讨一下。
+
+定量地看，材料中某个点在任一方向上的应力等于沿该方向作用在该点上的力或载荷除以该力的作用面积。[3] 若我们设某点的应力为 s，则有：
+
+$$应力 = s = \frac{荷载}{面积} = \frac{P}{A}$$
+
+其中，P 为载荷或力，而 A 是 P 的作用面积（见图 3–1）。
+
+回到我们上一章中提到的砖头例子。如果砖头重 5 千克，绳子的横截面积为 2 平方毫米，那么绳子的应力为：
+
+或者，我们也可以把它写成 250 千克力 / 平方厘米（kgf/cm2）。
+
+图 3–1 一根木棒在拉伸作用下的应力（挤压作用下的应力同理）
+
+[2] 1 千克力指 1 千克物体所受的重力。—— 编者注
+
+[3] 可是，一个「点」怎么会有「面积」呢？我们可以参考速度的类比：我们把单位时间经过的距离表示为速度，例如 100 英里 / 小时（约为 161 千米 / 小时），但我们通常关心的是某个无限短暂瞬间的速度。
+
+### 3.2 Units of stress
+
+This raises the vexed question of units of stress. Stress can be expressed in any units of force divided by any units of area – and it frequently is. To reduce the amount of confusion we shall stick to the following units in this book.
+
+MEGANEWTONSPER SQUARE METRE: MN/m2. This is the SI unit. As most people know, the SI (System International) habit is to make the unit of force the Newton.
+
+1-0 Newton = 0-102 kilograms force = 0-225 pounds force (roughly the weight of one apple).
+
+1 Meganewton = one million Newtons, which is almost exactly 100 tons force.
+
+POUNDS (FORCE) PER SQUARE INCH: p.s.i. This is the traditional unit in English-speaking countries, and it is still very widely used by engineers, especially in America. It is also in common use in a great many tables and reference books.
+
+KILOGRAMS (FORCE) PER SQUARE CENTIMETRE: kgf/cm2 (sometimes kg/cm2). This is the unit in common use in Continental countries, including Communist ones.
+
+FOR CONVERSION
+
+Thus the stress in our piece of string, which we found to be 250 kgf/cm2, is also equal to 24-5 MN/m2 or 3,600 p.s.i. Since the calculation of stresses is not usually a very accurate business, there is no sense in fussing too much about very exact conversion factors.
+
+It is worth repeating that it is important to realize that the stress in a material, like the pressure in a fluid, is a condition which exists at a point and it is not especially associated with any particular cross-sectional area, such as a square inch or a square centimetre or a square metre.
+
+应力的单位
+
+这就引出了应力的单位这个棘手的问题。应力可以表示为任意单位的力除以任意单位的横截面积，我们通常就是这样做的。为了避免混淆，我们在本书中统一使用以下单位。
+
+兆牛顿 / 平方米（MN/m2）。这是一个国际单位制的单位。大部分人都知道，国际单位制中力的惯用单位是牛顿。
+
+1.0 牛顿 = 0.102 千克力 = 0.225 磅力（差不多相当于一个苹果的重量）。
+
+1『结构专业的人常说的受力多少牛每平米（KN/m2），原来来源于此，1KN/m2 差不多是每平方面积上荷载 102 公斤，醍醐灌顶啊。1 牛顿数值的记忆可以通过 1 公斤除以 9.81 算出来。另外：超级意外的是，1 牛顿的力竟然差不多是一个苹果的重量，跟牛顿被苹果砸中脑袋的故事「关联」上了，只是巧合么。（2021-06-19）』
+
+1 兆牛顿 = 100 万牛顿，约等于 100 吨力。
+
+磅（力）/ 平方英寸（psi）。这是一个传统的英制单位，仍被工程师广泛使用，尤其是在美国。它也常见于大量表格和工具书中。
+
+千克（力）/ 平方厘米（kgf/cm2，有时也写作 kg/cm2）。这个单位常见于欧洲大陆国家。
+
+单位间换算：
+
+1 MN/m2=10.2 kgf/cm2=146 psi
+
+1 psi=0.006 85 MN/m2=0.07 kgf/cm2
+
+1 kgf/cm2=0.098 MN/m2=14.2 psi
+
+所以，绳子的应力 250 kgf/cm2 约等于 24.5 MN/m2 或 3 600 psi。应力的计算通常不是一项精益求精的工作，过于追求换算精度实在没有必要。值得强调的是，材料中的应力就像流体中的压力，是某一点的状态，而与横截面积无关，不管它是 1 平方英寸（约为 6.45 平方厘米）、1 平方厘米，还是 1 平方米。
+
+2『上面的信息全部补充进术语卡片「应力和应变」。（2021-06-19）』—— 已完成
+
+### 3.3 Strain – which is not the same thing as stress
+
+Just as stress tells us how hard – that is, with how much force – the atoms at any point in a solid are being pulled apart, so strain tells us how far they are being pulled apart – that is, by what proportion the bonds between the atoms are stretched.
+
+Figure 2. Strain in a bar under tension. (Compressive strain is exactly analogous.)
+
+Thus, if a rod which has an original length L is caused to stretch by an amount l by the action of a force on it, then the strain, or proportionate change of length, in the rod will be e, let us say, such that:
+
+To return to our string, if the original length of the string was, say, 2 metres (or 200 cm), and the weight of the brick causes it to stretch by 1 centimetre, then the strain in the string is:
+
+Engineering strains are usually quite small, and so engineers very often express strains as percentages, which reduces the opportunities for confusion with noughts and decimal points.
+
+Like stress, strain is not associated with any particular length or cross-section or shape of material. It is also a condition at a point. Again, since we calculate strain by dividing one length by another length – i.e. the extension by the original length – strain is a ratio, which is to say a number, and it has no units, SI, British or anything else. All this applies just as much in compression, of course, as it does in tension.
+
+什么是应变
+
+应力表示的是固体中任意一点的原子被拉开有多难，即要用多大的力；而应变告诉我们能把它们拉开多远，也就是说，原子间化学键被拉伸多大的比例（见图 3–2）。
+
+图 3–2 一根木棒在拉伸作用下的应变（挤压作用下的应变同理）
+
+因此，如果一根原长为 L 的木棒在一个力的作用下被拉伸的长度为 l，那么这根木棒的应变或长度变化比为 e：
+
+$$e = \frac{l}{L}$$
+
+回到绳子的例子，如果绳的原长为 2 米（或 200 厘米），砖块的重量使它伸长了 1 厘米，那么绳子的应变为：
+
+工程中的应变往往很小，所以工程师常用百分数表示应变，以降低数错零和弄错小数点位置的风险。
+
+像应力一样，应变与材料的长度、横截面积或形状都无关，它只是某个点的状态。此外，因为我们计算应变时是用一个长度除以另一个长度 —— 伸长量除以原长，所以应变是一个比值，它没有单位，无论是在国际单位制、英制还是其他任何单位制中。当然，上述种种既适用于拉伸的情况，也适用于压缩的情况。
+
+### 3.4 Young's modulus- or how stiff is this material?
+
+As we have said, Hooke's law in its original form, though edifying, was the result of a rather inglorious muddle between the properties of materials and the behaviour of structures. This muddle arose mainly from the lack of the concepts of stress and strain, but we also have to bear in mind the difficulties which would have existed in the past in connection with testing materials.
+
+Nowadays, when we want to test a material – as distinct from a structure – we generally make what is called a ‘test-piece' from it. The shapes of test-pieces may vary a good deal but usually they have a parallel stem, on which measurements can be made, and are provided with thickened ends by which they can be attached to the testing machine. An ordinary metal test-piece often looks like Figure 3.
+
+Figure 3. A typical tensile test-piece.
+
+Testing machines also vary a good deal in size and in design, but basically they are all mechanical devices for applying a measured load in tension or in compression.
+
+The stress in the stem of the test-piece is obtained merely by dividing the load recorded at each stage on the dial of the machine by the area of its cross-section. The extension of the stem of the test-piece under load – and therefore the strain in the material – is usually measured by means of a sensitive device called an extensometer, which is clamped to two points on the stem.
+
+With equipment of this kind it is generally quite easy to measure the stress and the strain which occur within a specimen of a material as we increase the load upon it. The relationship between stress and strain for that material is given by the graph of stress plotted against strain which we call the ‘stress-strain diagram'. This stress-strain diagram, which may look something like Figure 4, is very characteristic of any given material, and its shape is usually unaffected by the size of the test-piece which happens to have been used.
+
+Figure 4. A typical ‘stress-strain diagram'.
+
+When we come to plot the stress-strain diagram for metals and for a number of other common solids we are very apt to find that, at least for moderate stresses, the graph is a straight line. When this is so we speak of the material as ‘obeying Hooke's law' or sometimes of a ‘Hookean material'.
+
+What we also find, however, is that the slope of the straight part of the graph varies greatly for different materials (Figure 5). It is clear that the slope of the stress-strain diagram measures how readily each material strains elastically under a given stress. In other words it is a measure of the elastic stiffness or floppiness of a given solid.
+
+Figure 5. The slope of the straight part of the stress-strain diagram is characteristic of each different material. E, the Young's modulus of elasticity, represents this slope.
+
+For any given material which obeys Hooke's law, the slope of the graph or the ratio of stress to strain will be constant. Thus for any particular material
+
+Young's modulus is sometimes called ‘the elastic modulus' and sometimes ‘E', and is quite often spoken of as ‘stiffness' in ordinary technical conversation. The word ‘modulus', by the way, is Latin for ‘a little measure'.
+
+Our string, it may be remembered, was strained 0-5 per cent or 0-005 by the weight of the brick, which imposed a stress of 24-5 MN/m2 or 3,600 p.s.i. The Young's modulus of the string is therefore
+
+杨氏模量
+
+我们说过，尽管胡克定律的原始形式颇具启发性，但却是混淆材料特性与结构行为的尴尬产物。这种混淆主要是由于未对应力和应变进行准确定义，但我们也不要忘记过去在测试材料方面遇到的困难。
+
+今天，当我们测试一种材料（与测试一个结构不同）时，我们一般会制取一份所谓的「试样」。试样的形状可能各不相同，但它们通常都有一个平直的主体（可在其上做测试），还有更粗一些的末端（可用来与测试仪器连接）。普通的金属试样一般如图 3–3 所示。
+
+图 3–3 一个典型的拉伸试样
+
+测试仪器的尺寸和设计也各不相同，但基本上它们都是对试样施加载荷的机械装置。通过读取机器表盘上的载荷数，再除以横截面积，便可得到试样主体上的应力。我们通常会用引伸计这种灵敏的仪器在主体上夹取两点，进而测量在载荷作用下试样主体的伸长量以及材料的应变。
+
+有了这种设备我们可以很容易地测量试样的应力和应变。材料应力和应变间的关系可以由「应力–应变」曲线呈现，如图 3–4 所示，它充分反映了给定材料的特征，其形状通常不受试样尺寸的影响。
+
+图 3–4 典型的应力–应变曲线
+
+如果我们为金属等常见固体材料绘制「应力–应变」曲线，就会很容易地发现，至少在应力适度的条件下，该曲线呈现为一条直线。这就是所谓的「遵循胡克定律」的材料，有时也叫「胡克材料」。然而，我们还发现，对于不同的材料，直线的斜率差别很大（见图 3–5）。显然，「应力–应变」曲线的斜率度量了该材料在给定应力下的弹性。换言之，它度量了给定固体的弹性刚度或弛度。
+
+图 3–5 应力–应变曲线的直线部分的斜率表征了不同材料的不同弹性。斜率 E 表示的是杨氏模量
+
+1『上面图里各个材料的弹性模量（刚度）：钢材 > 铝材 > 骨骼 > 木材。（2021-06-19）』
+
+对于遵循胡克定律的给定材料，斜率或应力与应变之比为定值。杨氏模量有时也被称为「弹性模量」（elastic modulus），记作 E，在平常的技术交流中它往往会被说成是「刚度」。顺便说一下，「模量」（modulus）这个词在拉丁文中的意思是「一个小的度量尺寸」。
+
+1-3『解惑了解惑了，之前竟然在其他人口里听到的某某材料的「刚度」，竟然就是弹性模量（杨氏模量），也即胡克定律里的那个斜率。太赞了。（2021-06-19）』
+
+回想一下绳子的例子，在由砖头的重量产生的 24.5 MN/m2 或 3 600 psi 应力的影响下，产生了 0.5% 或 0.005 的应变。所以，绳子的杨氏模量为：4900 MN/m2。
+
+### 3.5 Units of stiffness or Young's modulus
+
+Since we are dividing a stress by a fraction, which is to say a number, which has no dimensions, Young's modulus has the same dimensions as a stress and is expressed in stress units, that is to say MN/m2, p.s.i. or kgf/cm2. Since, however, Young's modulus may be regarded as that stress which would double the length of the material (i.e. the stress at 100 per cent strain) – if the material did not break first – the numbers involved are often large, and some people find them difficult to visualize.
+
+杨氏模量的单位
+
+因为我们是用应力去除以一个无量纲的分数，所以杨氏模量与应力具有同样的量纲，即以应力的单位表示。但是，由于杨氏模量衡量的是将材料拉伸为原长的两倍时的应力（也就是百分之百应变时的应力，前提是该材料还未断裂），其数值往往很大，让人觉得难以想象。
+
+### 3.6 Practical values of Young's modulus
+
+The Young's moduli of a number of common biological and engineering materials are given in Table 1. Starting from the cuticle of the pregnant locust (which is low, but not very exceptionally low, for biological materials; the cuticle of the male locust and of the virgin female locust is a lot stiffer, by the way) the Young's moduli are arranged in ascending order all the way to diamond. It will be seen that the range of stiffness varies by about 6,000,000 to one. Which is a lot. We shall discuss why this should be so in Chapter 8.
+
+It may be noticed that a good many common soft biological materials do not occur in this table. This is because their elastic behaviour does not obey Hooke's law, even approximately, so that it is really impossible to define a Young's modulus, at any rate in the terms we have been talking about. We shall come back to this sort of elasticity later on.
+
+TABLE 1 Approximate Young's moduli of various solids
+
+By courtesy of Dr Julian Vincent, Department of Zoology, University of Reading.
+
+Young's modulus is nowadays regarded as a pretty fundamental concept; it thoroughly pervades engineering and materials science and is beginning to invade biology. Yet it took all of the first half of the nineteenth century for the penny to drop in the minds of engineers. This was partly due to sheer conservatism and partly due to the late arrival of any workable concept of stress and strain.
+
+Given these ideas, few things are simpler or more obvious than Young's modulus; without them, the whole affair must have seemed impossibly difficult. Young, who was to play an important part in the decipherment of Egyptian hieroglyphics and who had one of the finest brains of his generation, obviously had a very severe intellectual struggle.
+
+Working around the year 1800, he had to approach the problem by a route quite different from that which we have just used, and he considered the question in terms of what we should now call the Specific modulus', that is, by how much a column of a material might be expected to shorten under its own weight. Young's own definition of his modulus, published in 1807, is as follows: ‘The modulus of the elasticity of any substance is a column of the same substance, capable of producing a pressure on its base which is to the weight causing a certain degree of compression as the length of the substance is to the diminution of its length.'*
+
+After which, Egyptian hieroglyphics must have appeared simple.
+
+It was said of Young by one of his contemporaries that ‘His words were not those in familiar use, and the arrangement of his ideas seldom the same as those he conversed with. He was therefore worse calculated than any man I ever knew for the communication of knowledge.' All the same we have to realize that Young was wrestling with an idea that was scarcely capable of expression without the concepts of stress and strain, which did not come into use until fifteen or twenty years later. The modern definition of Young's modulus (E = stress/strain) was given in 1826 – three years before Young died – by the French engineer Navier (1785-1836). As the inventor of stress and strain, Cauchy was eventually made a baron by the French government. He seems to have deserved it.
+
+常见材料的杨氏模量
+
+常见生物材料和工程材料的杨氏模量值可见表 3–1：从怀孕蝗虫的表皮（其值很低，但对生物材料而言，不算特别低；顺便说一下，雄性蝗虫和雌性蝗虫幼虫的表皮都很强劲）起，杨氏模量按升序排列，直至钻石。我们将看到，在刚度变化区间内，上限与下限之比大到 6 000 000。我们将在第 8 章中探讨其中的原因。
+
+表 3–1 各种固体的杨氏模量的近似值
+
+| Material | Young's modulus (E) p.s.i. | Young's modulus (E) MN/m2 |
+| --- | --- | --- |
+| 怀孕蝗虫的表皮（Soft cuticle of pregnant locust*） | 30 | 0.2 |
+| 橡胶（Rubber） | 1,000 | 7 |
+| 鸡蛋壳膜（Shell membrane of egg） | 1,100- | 8 |
+| 人体软骨（Human cartilage） | 3,500 | 24 |
+| 人体肌腱（Human tendon） |  80,000 | 600 |
+| 墙板（Wallboard） | 200,000 | 1,400 |
+| 未加固的塑料、聚乙烯、尼龙（Unreinforced plastics, polythene, nylon） | 200,000 | 1,400 |
+| 胶合板（Plywood） | 1,000,000 | 7,000 |
+| 木材（顺纹）Wood (along grain) | 2,000,000 | 14,000 |
+| 新鲜的骨头（Fresh bone） | 3,000,000 | 21,000 |
+| 金属镁（Magnesium metal） | 6,000,000 | 42,000 |
+| 普通玻璃（Ordinary glasses） | 10,000,000 | 70,000 |
+| 铝合金（Aluminium alloys） | 10,000,000 | 70,000 |
+| 黄铜和青铜（Brasses and bronzes） | 17,000,000 | 120,000 |
+| 铁和钢（Iron and steel） | 30,000,000 | 210,000 |
+| 氧化铝（蓝宝石）Aluminium oxide (sapphire) | 60,000,000 | 420,000 |
+| 钻石（Diamond） | 170,000,000 | 1,200,000 |
+
+2『各个材料的杨氏模量近似值，做一张信息数据卡片。（2021-06-19）』—— 已完成
+
+表格来源：By courtesy of Dr Julian Vincent, Department of Zoology, University of Reading.
+
+1-2『表里看到墙板的杨氏模量是 1400 MN/m2，相当于 142.8 吨/平，超级大，不过它是指把墙板拉伸至原来 2 倍所需的应力，那么我做关心的是一定厚度的墙板，能承受的最大荷载是多少呢。或者说，200mm 厚的楼板，应变是多少的时候会倒塌。目前想到的是：200mm 厚的楼板，应变 1mm 所需的应力为 0.714T（即 714 公斤）。正确的解答待以后确认。（2021-06-19）』—— 未完成
+
+值得注意的是，许多常见的柔性生物材料都不在上表中。这是因为它们的弹性行为即便近似，也不遵循胡克定律，所以在我们使用的术语体系中，实在没法定义它们的杨氏模量。我们稍后再来讨论这类弹性问题。
+
+如今，杨氏模量被视为一个相当基本的概念；它已完全渗入工程学与材料科学领域，并开始向生物学领域进军。然而，最初历经了整个 19 世纪上半叶的时间，这个概念才在工程师的脑海中留下了些许印象。部分原因在于纯粹的保守主义，还有部分原因是应力和应变的概念来得太迟了。
+
+有了这些概念，杨氏模量就变得更简单也更直观了；离开了它们，有些东西理解起来将非常困难。托马斯·杨在对埃及象形文字的解读方面扮演了重要角色，他拥有同时代人中最聪慧的头脑，但也身陷一场最严酷的智力斗争之中。
+
+1-3『上面提到的托马斯·杨原来就是破解古埃及文字的那个大牛啊，竟然是同一个人，太意外了，第一次知道他是在吴军的《信息论》专栏课里。（2021-06-19）』
+
+1800 年前后，他用了一种与我们刚才介绍的截然不同的方法来应对这一难题，他依靠的是「比模量」的概念，即一段柱状材料在其自身重量的作用下会缩短多少。托马斯·杨于 1807 年给杨氏模量下了定义：「任意材料的弹性模量是指同一材料的一段柱体对其底部产生的压力与造成某一压缩量的重量之比等于该材料长度与长度缩短量之比。」[4]
+
+相较而言，埃及象形文字也显得简单多了。
+
+一位同时代的人这样评价托马斯·杨：「他的措辞不是人们惯用的，也常常词不达意。因此，在知识交流方面，他比我认识的任何人都逊色。」尽管如此，我们务必明白托马斯·杨是在缺少应变和应力的定义的前提下表述了一个极其复杂的概念，而那两个概念直到 15-20 年后才开始使用。法国工程师纳维叶（Navier）在 1826 年给出了杨氏模量的现代定义（E = 应力 / 应变），三年后托马斯·杨就去世了。作为应力和应变概念的提出者，柯西最终被法国政府授予男爵封号，他当之无愧。
+
+[4] 尽管科学素为贵族大臣们所关注，且你的论文也颇受重视，但它太学究气了…… 简言之，就是太难以理解了。 —— 英国海军部致托马斯·杨函
+
+### 3.7 Strength
+
+It is necessary to avoid confusion between the strength of a structure and the strength of a material. The strength of a structure is simply the load (in pounds force or Newtons or kilograms force) which will just break the structure. This figure is known as the ‘breaking load', and it naturally applies only to some individual, specific structure.
+
+The strength of a material is the stress (in p.s.i. or MN/m2 or kgf/cm2) required to break a piece of the material itself. It will generally be the same for all specimens of any given solid. We are most often concerned with the tensile strength of materials, which is sometimes called the ‘ultimate tensile stress' or U.T.S. This is usually determined by breaking small test-pieces in a testing machine. Naturally, the object of many strength calculations is to predict the strength of a structure from the known strength of its material.
+
+TABLE 2 Approximate tensile strengths of various solids
+
+The tensile strengths of a good many materials are given in Table 2. As with stiffness, it will be seen that the range of strengths in both biological and engineering solids is very wide indeed. For instance, the contrast between the weakness of muscle and the strength of tendon is striking, and this accounts for the very different cross-sections of muscles and their equivalent tendons. Thus the thick and sometimes bulging muscle in our calves transmits its tension to the bone of our heel, so that we can walk and jump, by means of the Achilles or calcaneal tendon, which, although it is pencil-thin, is generally quite adequate for the job. Again, we can see why engineers are unwise to put tensile forces on concrete unless that weak material is sufficiently reinforced with strong steel rods.
+
+The strong metals are rather stronger, on the whole, than the strong non-metals. However, nearly all metals are considerably denser than most biological materials (steel has a specific gravity of 7-8, most zoological tissues about 1-1). Thus, strength for weight, metals are not too impressive when compared with plants and animals.
+
+We might now sum up what has been said in this chapter: load
+
+It expresses how hard (i.e. with how much force) the atoms at a point within a solid are being pulled apart or pushed together by a load.
+
+It expresses how ./or the atoms at a point within a solid are being dragged apart or pushed together.
+
+Stress is not the same thing as strain.
+
+Strength. By the strength of a material we usually mean that stress which is needed to break it.
+
+It expresses how stiff or how floppy a material is.
+
+Strength is not the same thing as stiffness.
+
+To quote from The New Science of Strong Materials: ‘A biscuit is stiff but weak, steel is stiff and strong, nylon is flexible (low E) and strong, raspberry jelly is flexible (low E) and weak. The two properties together describe a solid about as well as you can reasonably expect two figures to do.'
+
+In case you should ever have felt any trace of doubt or confusion on these points, it might be of some comfort to know that, not so long ago, I spent a whole evening in Cambridge trying to explain to two scientists of really shattering eminence and worldwide fame the basic difference between stress and strain and strength and stiffness in connection with a very expensive project about which they were proposing to advise the government. I am still uncertain how far I was successful.
+
+1 Except, apparently, the Oxford Dictionary, The words are used, of course, in casual conversation to describe the mental state of people and as if they meant the same thing. In physical science the meanings of the two words are quite clear and distinct.
+
+2 How can a ‘point' have an ‘area'? Consider the analogy of speed: we express speed as the distance covered in a certain length of time, e.g. miles per hour, although we are concerned usually with the speed at any given -infinitely brief- moment.
+
+3 Though science is much respected by their Lordships and your paper is much esteemed, it is too learned... in short it is not understood (Admiralty letter to Young).
+
+结构强度与材料强度
+
+切记不要把结构强度和材料强度混为一谈。结构强度是指破坏结构所需的载荷，以磅力、牛顿或千克力为单位。这个量度被称作「断裂载荷」，它仅适用于一些特殊的结构。
+
+1-2『真实瞌睡了有人送枕头，这里的结构强度就解答了自己之前「200mm 楼面荷载」的疑问。结构强度和材料强度做一张术语卡片。（2021-06-19）』
+
+材料强度是指破坏材料本身所需的应力，以 psi、MN/m2 或 kgf/cm2 为单位。对于某种固体，无论其样品形态如何，其材料强度一般都是相同的。我们最常关注的是材料的抗拉强度，有时也叫作「极限抗拉应力」，通常使用测试仪器拉断小型试样来确定。所以，我们往往会根据已知的材料强度来测算结构强度。
+
+表 3–2 给出了很多材料的抗拉强度。与刚度一样，生物意义和工程意义上的固体，其强度的变化范围很广。例如，肌肉之弱和肌腱之强对比显著，这也可以解释为何肌肉及其等效肌腱的截面不同。当我们小腿肚上粗壮且时而凸起的肌肉将其紧张状态传递给脚后跟的骨头时，我们便能行走和跳跃，靠的就是跟腱，尽管它非常纤细，但足以胜任这项功能。此外，我们也将看到，为什么工程师在混凝土这种弱材料被强钢筋加固之前就贸然施加拉力，是一种不明智之举。
+
+表 3–2 各种固体的抗拉强度的近似值
+
+| Material | Tensile strength(p.s.i.) | ensile strength(MN/m2) |
+| --- | --- | --- |
+| 非金属（Non-metals） | - | - |
+| 肌肉组织（新鲜但已死）Muscle tissue (fresh but dead) | 15 | 0.1 |
+| 膀胱壁（新鲜但已死）Bladder wall | 34 | 0.2 |
+| 胃壁（新鲜但已死）Stomach wall | 62 | 0.4 |
+| 肠（新鲜但已死）Intestine | 70 | 0.5 |
+| 动脉壁（新鲜但已死）Artery wall | 240 | 1.7 |
+| 软骨（新鲜但已死）Cartilage | 430 | 3.0 |
+| 水泥和混凝土（Cement and concrete） | 600 | 4.1 |
+| 普通砖头（Ordinary brick） | 800 | 5.5 |
+| 新鲜的皮肤（Fresh skin） | 1,500 | 10.3 |
+| 鞣制皮革（Tanned leather） | 6,000 | 41.1 |
+| 新鲜的肌腱（Fresh tendon） | 12,000 | 82 |
+| 麻绳（Hemp rope） | 12,000 | 82 |
+| 顺纹木材（风干）Wood (air dry): along grain | 15,000 | 103 |
+| 横纹木材（风干）Wood (air dry): across grain | 500 | 3.5 |
+| 新鲜的骨骼（Fresh bone） | 16,000 | 110 |
+| 普通玻璃（Ordinary glass） |  5,000-25,000 | 35-175 |
+| 人类毛发（Human hair） | 28,000 | 192 |
+| 蜘蛛网（Spider's web） | 35,000 | 240 |
+| 优质陶瓷（Good ceramics） |  5,000-50,000 | 35-350 |
+| 蚕丝（Silk） | 50,000 | 350 |
+| 棉纤维（Cotton fibre） | 50,000 | 350 |
+| 肠线（Catgut ） | 50,000 | 350 |
+| 亚麻（Flax） | 100,000 | 700 |
+| 玻璃纤维塑料（Fibreglass plastics） | 50,000-150,000 | 350-1,050 |
+| 碳纤维塑料（Carbon-fibre plastics） | 50,000-150,000 | 350-1,050 |
+| 尼龙线（Nylon thread） | 150,000 | 1,050 |
+| - | - | - |
+| 金属（Metals） | - | - |
+| 钢材（STEELS） | - | - |
+| 钢琴丝（非常脆）Steel piano wire (very brittle) | 450,000 | 3,100 |
+| 高强度工程钢（High tensile engineering steel） | 225,000 | 1,550 |
+| 工业低碳钢（Commercial mild steel） | 60,000 | 400 |
+| 锻铁（WROUGHT IRON） | - | - |
+| 传统锻铁（Traditional） | 15,000-40,000 | 100-300 |
+| 铸铁（CAST IRON） | - | - |
+| 传统铸铁（非常脆）Traditional (very brittle) | 10,000-20,000 | 70-140 |
+| 现代铸铁（Modern） | 20,000-40,000 | 140-300 |
+| 其他金属（OTHER METALS） | - | - |
+| 铸铝（Aluminium: cast） | 10,000 | 70 |
+| 锻制铝合金（wrought alloys） | 20,000-80,000 | 140-600 |
+| 紫铜（Copper） | 20,000 | 140 |
+| 黄铜（Brasses） | 18,000-60,000 | 120-400 |
+| 青铜（Bronzes） | 15,000-80,000 | 100-600 |
+| 镁合金（Magnesium alloys） | 30,000-40,000 | 200-300 |
+| 钛合金（Titanium alloys） | 100,000-200,000 | 700-1,400 |
+
+2『各种固体的抗拉强度的近似值，做一张信息数据卡片。（2021-06-19）』—— 已完成
+
+总的来说，强劲的金属比强劲的非金属的强度更大。但是，几乎所有金属又都比大多数生物材料致密得多（钢的比重为 7.8，而大部分的动物组织约为 1.1）。因此，考虑到重量因素，金属的强度相较于植物和动物，并不太突出。

@@ -24,7 +24,7 @@ But in the early days of the oil industry, the mid-nineteenth century, diesel en
 
 蒸馏原油的时候，小分子会先被提取出来。含有 5 至 8 个碳原子的烃类分子会成为极易燃烧的清澈透明液体。它的闪点为 -45℃，也就是说，即便气温低至零下，它也很容易被点燃。实际上，因为太容易被点燃，将这种液体加入油灯也会变得格外危险。所以，在石油工业发展早期，它都被当成废料丢弃。后来，当我们更了解它的优点时，它就成了香饽饽，特别是将它和空气混合后再点燃，能产生足以推动活塞的热气体。再后来，它被命名为汽油，而我们现在将它作为汽油发动机的燃料。
 
-1-2『这里第一次如此清晰的认识到原油中各个组分。1）5 个碳原子以下的是常见的那些液化烃，甲烷、乙烷、丙烷、丁烷。2）5-8 个碳原子的是汽油。3）9-21 个碳原子的是柴油。4）认为制作出来的 6-16 个碳原子的煤油。原油中的各个组分做一张主题卡片。（2021-05-26）』—— 已完成
+1-2『这里第一次如此清晰的认识到原油中各个组分。1）5 个碳原子以下的是常见的那些液化烃，甲烷、乙烷、丙烷、丁烷。2）5-8 个碳原子的是汽油。3）9-21 个碳原子的是柴油。4）人为制作出来的 6-16 个碳原子的煤油。原油中的各个组分做一张主题卡片。（2021-05-26）』—— 已完成
 
 含有 9 至 21 个碳原子的分子大一点，可以形成比汽油沸点更高的清澈透明液体。它蒸发的速度比较慢，也没那么容易被点燃。不过，因为每个分子都很大，所以当它和氧气发生反应的时候，可以释放出更多的能量，还是以热气体的形式。它不容易被点燃，除非将它喷入空气中。它在突然变成火焰之前，还可以被压缩至较高的密度。这是由鲁道夫·狄塞尔（Rudolf Diesel）在 1897 年发现的，最终这一液体以他的名字命名，并成就了他的伟大发明 —— 柴油机，那是 20 世纪最成功的发动机。
 
@@ -38,7 +38,7 @@ But in the early days of the oil industry, the mid-nineteenth century, diesel en
 
 In the meantime, oil lamps evolved. The design of a ninth- century oil lamp looks simple, but it is remarkably sophisticated. Think about a bowl of olive oil. If you simply try to light it, you'll find it's quite difficult. It's hard because olive oil has a very high flashpoint — the temperature at which a flammable liquid will spontaneously react with the oxygen in the air and burst into flames. For olive oil this is 600ºF. That's why cooking with olive oil is so safe. If you spill it in your kitchen, it's not going to ignite. Also, to fry most foods you need to get to a temperature of only around 400ºF, which is still about two hundred degrees below olive oil's flashpoint, so it's easy to cook without the oil burning.
 
-与此同时，油灯也在进化。9 世纪的油灯设计看起来很简单，却出人意料地精巧。如果这是一碗橄榄油呢？如果你想将它点燃，就会发现这十分困难。之所以不易，是因为橄榄油具有非常高的闪点。闪点，是指可燃液体与空气中的氧气自发反应并形成火焰的最低温度。橄榄油的闪点是 315℃，所以使用橄榄油烹饪非常安全。如果你将它溅到了厨房里，它不会立即被点燃。而且，煎炸大多数食物时，你只需要将温度加热到 200℃左右，这仍然比橄榄油的闪点低了 100 多摄氏度。因此，用橄榄油烹饪菜肴很轻松，不会出现油滴爆燃的情况。
+与此同时，油灯也在进化。9 世纪的油灯设计看起来很简单，却出人意料地精巧。如果这是一碗橄榄油呢？如果你想将它点燃，就会发现这十分困难。之所以不易，是因为橄榄油具有非常高的闪点。闪点，是指可燃液体与空气中的氧气自发反应并形成火焰的最低温度。橄榄油的闪点是 315℃，所以使用橄榄油烹饪非常安全。如果你将它溅到了厨房里，它不会立即被点燃。而且，煎炸大多数食物时，你只需要将温度加热到 200℃ 左右，这仍然比橄榄油的闪点低了 100 多摄氏度。因此，用橄榄油烹饪菜肴很轻松，不会出现油滴爆燃的情况。
 
 1-2『天天跟闪点交道，这里米奥多尼克对闪点的解释通俗易懂。做一张术语卡片。（2021-05-26）』—— 已完成
 
