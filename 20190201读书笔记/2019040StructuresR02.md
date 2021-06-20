@@ -4,6 +4,8 @@
 
 0301 The invention of stress and strain
 
+0401 Designing for safety
+
 ## 0301. The invention of stress and strain
 
 现在我们可以总结一下这一章的内容：
@@ -408,3 +410,245 @@ In case you should ever have felt any trace of doubt or confusion on these point
 2『各种固体的抗拉强度的近似值，做一张信息数据卡片。（2021-06-19）』—— 已完成
 
 总的来说，强劲的金属比强劲的非金属的强度更大。但是，几乎所有金属又都比大多数生物材料致密得多（钢的比重为 7.8，而大部分的动物组织约为 1.1）。因此，考虑到重量因素，金属的强度相较于植物和动物，并不太突出。
+
+## 0401. Designing for safety
+
+— or can you really trust strength calculations?
+
+That with music loud and long,
+
+I would build that dome in air,
+
+That sunny dome! Those caves of ice!
+
+And all who heard should see them there,
+
+And all should cry, Beware! Beware!
+
+S. T. Coleridge, Kubla Khan
+
+Naturally all this business about stresses and strains is only a means to an end; that is, to enable us to design safer and more effective structures and devices of one kind or another and to understand better how such things work.
+
+Apparently Nature does not have to bother. The lilies of the field toil not, neither do they calculate, but they are probably excellent structures, and indeed Nature is generally a better engineer than man. For one thing she has more patience and, for another, her way of going about the design process is quite different.
+
+In living creatures the broad general arrangement or lay-out of the parts is controlled during growth by the R N A-DNA mechanism – the famous ‘double helix' of Wilkins, Crick and Watson.* However, in each individual plant or animal, once the general arrangement has been achieved, there is a good deal of latitude about the structural details. Not only the thickness, but also the composition of each load-carrying component is determined, to a considerable extent, by the use which is actually made of it and by the forces which it has to resist during life.† Thus the proportions of a living structure tend to become optimized with regard to its strength. Nature seems to be a pragmatic rather than a mathematical designer; and, after all, bad designs can always be eaten by good ones.
+
+Unfortunately, these design methods are not, as yet, available to human engineers, who are therefore driven to use either guesswork or calculation or, more often, some combination of the two. Both for safety and for economy it is clearly desirable to be able to predict how the various parts of an engineering structure will share the load between them and so to determine how thick or how thin they ought to be. Again, we generally want to know what deflections to expect when a structure is loaded, because it may be just as bad a thing for a structure to be too flexible as for it to be too weak,
+
+设计的安全性 —— 裂缝是怎么出现的？
+
+乐音高昂且悠扬，
+
+伴我凌空筑此穹堂，
+
+此穹堂之煌煌！彼幽穴之冰霜！
+
+凡闻者必来此仰望，
+
+凡见者必喟，提防！提防！
+
+—— 柯勒律治（S. T. Coleridge），《忽必烈汗》（Kubla Khan）
+
+当然，关乎应力和应变的种种只是达到目的的一种手段，帮助我们设计出更安全有效的结构和装置，以及更好地理解它们如何工作。
+
+显然，大自然不必如此大费周章。田间百合本无心，也不必费神计算，但它们本身都是了不起的结构。实际上，大自然有时是比人类更高明的工程师。一方面，它有更多的耐心；另一方面，它对设计流程的处理方式独树一帜。
+
+在生物体中，整体或局部的构造在生长期间受制于 RNA–DNA（核糖核酸–脱氧核糖核酸）机制，即威尔金斯（Wilkins）、克里克（Crick）和沃森（Watson）发现的著名的双螺旋结构。[1] 但是，对具体的植物或动物而言，整体构造一旦成形，其结构细节便五花八门。不仅要确定厚度，还要确定每个负载部位的安排，在很大程度上，这取决于其实际构成部分的运用及其生长中不得不对抗的力量。[2] 因此，生物结构的比例会随其强度而趋于优化。大自然似乎是一位追求实用而非数学化的设计师；毕竟，糟糕的设计总是会被优良的设计吃掉。
+
+遗憾的是，这些设计方法到目前为止还未被人类工程师掌握，因此他们不得不借助猜测或计算，甚至双管齐下。出于安全性和经济性的考虑，我们总是期望能够预测一个工程结构的各部分如何分担它们之间的载荷，以确定它们应该有多厚。而且，我们通常想弄明白一个结构负载时的预期挠度，因为太柔或太弱都不好。
+
+[1] The Double Helix, by James D. Watson, Weidenfeld & Nicolson, 1968.
+
+[2] 这个过程也起着反作用；航天员在太空中经历一段时间的失重后，骨骼会因钙质流失而变得更脆弱。
+
+### 4.1 French theory versus British pragmatism
+
+Once the basic concepts of strength and stiffness had been stated and understood, a considerable number of mathematicians set themselves to devise techniques for analysing elastic systems operating in two and three dimensions, and they began to use these methods to examine the behaviour of many different shapes of structures under loads. It happened that, during the first half of the nineteenth century, most of these theoretical elasticians were Frenchmen. Although very possibly there is something about elasticity Which is peculiarly suited to the French temperament,* the practical encouragement for this research seems to have come, directly or indirectly, from Napoleon I and from the ficole Poly-technique, which was founded in 1794.
+
+Because much of this work was abstract and mathematical it was not understood or generally accepted by most practising engineers until about 1850. This was especially the case in England and America, where practical men were regarded as greatly superior to ‘mere theoreticians'. And besides, one Englishman had always beaten three Frenchmen. Of the Scottish engineer, Thomas Telford (1757-1834), whose magnificent bridges we can still admire, it is related that:
+
+He had a singular distaste for mathematical studies, and never even made himself acquainted with the elements of geometry; so remarkable indeed was this peculiarity that when we had occasion to recommend to him a young friend as a neophyte in his office, and founded our recommendation on his having distinguished himself in mathematics, he did not hesitate to say that he considered such acquirements as rather disqualifying than fitting him for the situation.
+
+Telford, however, really was a great man, and, like Nelson, he tempered his confidence with an attractive humility. When the heavy chains for the Menai suspension bridge (Plate 11) had been hoisted successfully in the presence of a large crowd, Telford was discovered, away from the cheering spectators, giving thanks on his knees.†
+
+Not all engineers were as inwardly humble as Telford, and Anglo-Saxon attitudes at this time were often tinged, not only with intellectual idleness, but also with arrogance. Even so, scepticism about the trustworthiness of strength calculations was not unjustified. We must be clear that what Telford and his colleagues were objecting to was not a numerate approach as such -they were at least as anxious as anybody else to know what forces were acting on their materials – but rather the means of arriving at these figures. They felt that theoreticians were too often blinded by the elegance of their methods to the neglect of their assumptions, so that they produced the right answer to the wrong sum. In other words, they feared that the arrogance of mathematicians might be more dangerous than the arrogance of pragmatists, who, after all, were more likely to have been chastened by practical experience.
+
+Shrewd North-Country consulting engineers realized, as all successful engineers must, that when we analyse a situation mathematically, we are really making for ourselves an artificial working model of the thing we want to examine. We hope that this algebraical analogue or model will perform in a way which resembles the real thing sufficiently closely to widen our understanding and to enable us to make useful predictions.
+
+With fashionable subjects like physics or astronomy the correspondence between model and reality is so exact that some people tend to regard Nature as a sort of Divine Mathematician. However attractive this doctrine may be to earthly mathematicians, there are some phenomena where it is wise to use mathematical analogies with great caution. The way of an eagle in the air; the way of a serpent upon a rock; the way of a ship in the midst of the sea and the way of a man with a maid are difficult to predict analytically. One does sometimes wonder how mathematicians ever manage to get married. After King Solomon had built his temple, he would probably have added that the way of a structure with a load has a good deal in common at least with ships and eagles.
+
+The trouble with things like these is that many of the real situations which are apt to arise are so complicated that they cannot be fully represented by one mathematical model. With structures there are often several alternative possible modes of failure. Naturally the structure breaks in whichever of these ways turns out to be the weakest – which is too often the one which nobody had happened to think of, let alone do sums about.
+
+A deep, intuitive appreciation of the inherent cussedness of materials and structures is one of the most valuable accomplishments an engineer can have. No purely intellectual quality is really a substitute for this. Bridges designed upon the best ‘modern' theories by Polytechniciens like Navier sometimes fell down. As far as I know, none of the hundreds of bridges and other engineering works which Telford built in the course of his long professional life ever gave serious trouble. Thus, during the period when French structural theory was outstanding, a great proportion of the railways and bridges on the Continent were being built by gritty and taciturn English and Scottish engineers who had little respect for the calculus.
+
+法兰西的理性与不列颠的务实
+
+一旦阐明和理解了强度和刚度的基本概念，很多数学家便着手研究关于二维和三维弹性系统的分析技术，并用这些方法检验各种形状的负载结构的行为。巧合的是，在 19 世纪上半叶，大部分研究这种理论的人都是法国人。尽管弹性这个话题可能尤其契合法兰西人的气质，[3] 但其实直接或间接促进这项研究的人是拿破仑一世（Napoleon I），以及创立于 1794 年的法国巴黎综合理工大学。
+
+由于这项工作既抽象又与数学相关，所以直到 1850 年左右，它才被大部分执业工程师理解或接受。在英国和美国，情况尤其如此，人们认为实干家比「纯理论家」可靠得多。而且，「一个英国人能顶上三个法国人」。关于苏格兰工程师托马斯·特尔福德（Thomas Telford）—— 我们现在仍能欣赏到他设计的宏伟桥梁 —— 有这样的记载：
+
+他特别厌恶数学研究，甚至连几何学的基础知识也不熟悉；这种做派实在是惊世骇俗，以至于当我们推荐一位在数学上表现很好的年轻朋友到他的办公室工作时，他竟然毫不犹豫地说那个人不符合他的要求。
+
+然而，特尔福德确实是个了不起的人。像纳尔逊（Nelson）一样，他以一种迷人的谦逊锤炼自己的信心。当梅奈悬索桥（见插图 11）的沉重铁链在众人面前成功吊装时，特尔福德正在远离万众欢腾的地方跪地感恩。[4]
+
+并非所有工程师都像特尔福德那样谦卑，在这个时代，大多数的盎格鲁-撒克逊人不仅懒于动脑，而且态度傲慢。即便如此，他们对强度计算可信度的怀疑也不是毫无道理。我们必须清楚，特尔福德和他的同行反对的并不是定量方法本身（他们至少和其他任何人一样，渴望弄明白是什么力作用在他们的材料上），而是得到这些数据的手段。他们觉得理论家常沉溺于方法之优雅，而忽略了他们是在做假设，以至于他们会基于错误的计算得出答案。换言之，他们担心数学家的傲慢可能比务实者的自负更危险，但归根结底，后者历经的实践磨炼更多。
+
+英格兰北部那些精明的顾问工程师，就像所有成功的工程师一样意识到，当我们从数学角度分析一种情境时，我们其实是在人为制造一个关于我们要检验的东西的模型。我们希望，这个代数化的模拟或模型以一种足够接近实物的方式运作，以便拓宽我们的理解，使我们做出有用的预测。
+
+随着物理学或天文学等学科的流行，模型与现实之间的精准对应使一些人逐渐将大自然视为某种神圣的数学家。无论这条教义多么吸引世俗数学家，在一些现象中，如履薄冰地运用数学类比才是明智之举。鹰翔空中，蛇伏石上，船行汪洋以及男女之间，都难以用解析方法做出预测。人们有时会纳闷数学家究竟是怎么结成婚的。所罗门王造好神殿后或许会补充说，一个结构负载的方式至少与船和鹰有很多共通之处。
+
+这些事情的麻烦之处在于，许多经常出现的真实情况如此复杂，以至于不能完全用一个数学模型来表示。对于结构，常有几种可能的失败模式。当然，结构总会在其最弱的地方垮掉，而这个地方往往是人们没有想到的，更不用说做过计算了。
+
+对材料和结构固有的强度做一番深刻且直观的评估，是一位工程师最有价值的成就之一。没有哪种纯粹的智慧能取而代之。就算是像纳维叶这样毕业于法国巴黎综合理工大学的人借助最好的「现代」理论设计的桥梁，有时也会倒塌。据我所知，在特尔福德漫长的职业生涯中，他建造的数百座桥梁及其他工程还没有出现大问题的。因此，在法式结构理论大放异彩的时期，欧洲大陆上的铁路和桥梁中有很大一部分是由埋头苦干且不懂微积分的英格兰和苏格兰工程师建造的。
+
+[3] 法国的索菲·热尔曼（Sophie Germain）可能是唯一一位在弹性领域取得成就的女性。与此相关的是，这一时期最具高等教育背景和理论头脑的两位工程师 —— 马可·布鲁内尔爵士（Sir Marc Brunel）和他的儿子伊桑巴德·金德姆·布鲁内尔（Isambard Kingdom Brunel）都是法裔。
+
+[4] 无视数学的英国传统靠 19 世纪一群杰出的工程师传承不绝，尤其是亨利·罗伊斯爵士（Sir Henry Royce），他造出了「世界上最好的轿车」。
+
+### 4.2 Factors of safety and factors of ignorance
+
+All the same, after about 1850 even British and American engineers did begin to do calculations about the strength of important structures, such as large bridges. They calculated the highest probable tensile stresses in the structure by the methods of the day, and they saw to it that these stresses were less than the official ‘tensile strength' of the material. To make quite sure, they made the highest calculated working stress much less – three or four or even seven or eight times less – than the strength of the material as determined by breaking a simple, smooth, parallel-stemmed test-piece.* This was called ‘applying a factor of safety'. Any attempt to save weight and cost by reducing the factor of safety was only too likely to lead to disaster.
+
+Accidents were very apt to be put down as due to ‘defective material', and a few of them may have been. Metals, of course, do vary in strength between different samples, and there is always some risk of poor material being built into a structure. However, iron and steel usually vary in strength by only a few per cent and very, very rarely by anything like a factor of three or four, let alone seven or eight. Practically always discrepancies as big as this between the theoretical and the actual strengths are due to other causes; at some unknown place in the structure the real stress must be very much higher than the calculated stress, and thus the ‘factor of safety' is sometimes referred to as the ‘factor of ignorance'.
+
+Nineteenth-century engineers usually made things which were subject to tension stresses, such as boilers and beams and ships, out of wrought iron or mild steel, which had, with some justice, the reputation of being ‘safe' materials. When a large factor of ignorance had been applied to the strength calculations, such structures often turned out to be quite satisfactory, although in fact accidents continued to occur fairly frequently.
+
+Trouble became increasingly common with ships. The demand for speed and lightness led both the Admiralty and the shipbuilders into difficulties, since ships tended to break in two at sea although the highest calculated stresses seemed to be quite safe and moderate. In 1901, for instance, a brand-new turbine destroyer, H.M.S. Cobra, one of the fastest ships in the world, suddenly broke in two and sank in the North Sea in fairly ordinary weather. Thirty-six lives were lost. Neither the subsequent court martial nor the Admiralty Committee of Inquiry shed much light on the technical causes of the accident.
+
+In 1903, therefore, the Admiralty made and published a number of experiments with a similar destroyer, H.M.S. Wolf at sea in rough weather. These showed that the stresses deduced from strain measurements made on the hull under real conditions were rather less than those calculated by the designers before the ship was built. Since both sets of stresses were far below the known ‘strength' of the steel from which the ship was constructed – the factor of safety being between five and six – these experiments were only moderately enlightening.
+
+安全系数与无知系数
+
+大约在 1850 年之后，即使是英国或美国工程师也开始计算大型桥梁等重要结构的强度了。他们用当时的方法估算出结构的最大拉应力，以确保这些应力小于材料额定的「抗拉强度」。为了做到万无一失，他们令算出的最大工作应力远远小于该材料的强度，取 1/3、1/4 甚至 1/7 或 1/8（材料的强度由拉断一个简单、光滑且主体平直的试样决定）。[5] 这就是所谓的「应用安全系数」。任何通过减小安全系数来节约重量和成本的尝试，都很有可能引发灾难。
+
+2『安全系数和无知系数，做一张术语卡片。（2021-06-20）』—— 已完成
+
+这类事故极易被归因于「材料缺陷」，少数几次确实是这样。当然，不同金属样品之间的强度差异很大，而且劣质材料确实会混入结构中。但是，钢铁的强度差异往往只有百分之几，3 倍或 4 倍实属罕见，更不用说 7 倍或 8 倍了。所以在实践中，理论强度和实际强度之间的差异往往是由其他原因造成的；在结构中的某些未知区域，真实的应力肯定比计算出的应力大得多，因此「安全系数」有时也被称为「无知系数」。
+
+19 世纪的工程师经常用锻铁或低碳钢制造需承受拉应力的东西，比如锅炉、横梁和船舶，所以这些材料也拥有「安全」材料之誉。当我们在强度计算中引入一个较大的安全系数时，结果常常相当令人满意，但实际上事故仍然层出不穷。
+
+船舶制造遇到的麻烦越来越多。对高航速和轻量化的要求使英国海军部和造船厂都陷入了困境，虽然算出的最大应力看似相当安全，但船舶在海上还是免不了被断成两截。例如，1901 年，当时世界上最快的舰艇之一 —— 一艘新式涡轮驱逐舰（英国皇家海军的眼镜蛇号），意外被断成两截，沉入了风平浪静的北海。这起事故造成 36 人丧生，但事后军事法庭和英国海军部调查委员会都没有详细披露造成此次事故的技术原因。
+
+于是，海军部于 1903 年用类似的皇家海军狼号驱逐舰，在天气恶劣的海上做了一系列实验，并公布了结果。结果表明，真实条件下测量得出的船体应力比造船前设计师计算出来的结果小得多。因为两组应力都远低于已知的造船钢材的「强度」—— 安全系数为 5-6，所以这些实验都仅作为参考。
+
+[5] 1910 年，在蒸汽机车的连杆设计中，安全因数至少要达到 18。
+
+3『
+
+[强度 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BC%BA%E5%BA%A6)
+
+极限抗拉强度是在外力作用下，材料抵抗破坏的能力 [1]，也可翻译为极限拉伸强度，简称强度。
+
+根据外力的作用方式，有多种强度指标，如抗拉强度、抗弯强度、抗剪强度等。当材料承受拉力时，强度性能指标主要是屈服强度和抗拉强度。
+
+注意强度和硬度是本质上不同的概念。玻璃等硬而脆的物质，虽然硬度大（变形与外力之比小）但强度小（在断裂之前能承受的总外力小）。对于同系列的金属，此二者可以有一定的对应关系。强度测量往往需要彻底毁坏材料，而硬度试验则毁坏较小或不毁坏。所以校定的硬度强度换算关系被用来由硬度推算强度。
+
+金属材料的强度是金属材料的在外力作用下抵抗永久变形和断裂的能力。工程上常用来表示金属材料强度的指标有屈服强度和抗拉强度。
+
+屈服强度是金属材料发生屈服现象时达到塑性变形发生而力不增加的应力点。
+
+抗拉强度是指金属材料在拉断前所能承受的最大应力。
+
+』
+
+### 4.3 Stress concentrations – or how to start a crack
+
+The first important step towards the understanding of problems of this kind was achieved, not by very expensive practical experiments on full-scale structures, but by theoretical analysis. In 1913 C. E. Inglis, who was later Professor of Engineering at Cambridge and was the very opposite of a ‘remote and ineffectual don', published a paper in the Transactions of the Institution of Naval Architects whose consequences and applications extend far beyond the strength of ships.
+
+What Inglis said about elasticians was really very much what Lord Salisbury is supposed to have said about politicians, namely that it is a great mistake to use only small-scale maps. For nearly a century elasticians had been content to plot the distribution of stresses in broad, general or Napoleonic terms. Inglis showed that this approach can be relied on only when the material and the structure have smooth surfaces and no sudden changes of shape.
+
+Geometrical irregularities, such as holes and cracks and sharp corners, which had previously been ignored, may raise the local stress – often only over a very small area – very dramatically indeed. Thus holes and notches may cause the stress in their immediate vicinity to be much higher than the breaking stress of the material, even when the general level of stress in the surrounding neighbourhood is low and, from general calculations, the structure might appear to be perfectly safe.
+
+This fact had been known, of course, in a general kind of way, to the people who put the grooves in slabs of chocolate and to those who perforate postage stamps and other kinds of paper. A dressmaker cuts a ‘nick' in the selvedge of a piece of cloth before she tears it. Serious engineers, however, had not shown much interest in these fracture phenomena, which were not considered to belong to' proper' engineering.
+
+Figure 1. Stress trajectories in a bar uniformly loaded in tension (a) without and (b) with a crack.
+
+That almost any hole or crack or re-entrant in an otherwise continuous solid will cause a local increase of stress is easily explained. Figure la shows a smooth, uniform bar or plate of material, subject to a uniform tensile stress, s. The lines crossing the material represent what are called ‘stress trajectories', that is to say, typical paths by which the stress is handed on from one molecule to the next. In this case they are, of course, straight parallel lines, uniformly spaced.
+
+If we now interrupt a number of these stress trajectories by making a cut or a crack or a hole in the material, then the forces which the trajectories represent have to be balanced and reacted in some way. What actually happens is more or less what one would expect; the forces have to go round the gap, and as they do so the stress trajectories are crowded together to a degree which depends chiefly upon the shape of the hole (Figure lb). In the case of a long crack, for instance, the crowding around the tip of the crack is often very severe. Thus in this immediate region there is more force per unit area and so the local stress is high (Plate 2).
+
+Inglis was able to calculate the increase of stress which occurs at the tip of an elliptical hole in a solid which obeys Hooke's law.* Although his calculations are strictly true only for elliptical holes they apply with sufficient accuracy to openings of other shapes. Thus they apply not only to port-holes and doors and hatchways in ships and aeroplanes and similar structures but also to cracks and scratches and holes in all sorts of other materials and devices – to fillings in teeth, for example.
+
+In terms of simple algebra what Inglis said was that, if we have a piece of material which is subject to a remotely applied stress s, and if we make a notch or a crack or a re-entrant of any kind in it having a length or depth L, and if this crack or re-entrant has a radius at the tip of r, then the stress at and very near to the tip is no longer s but is raised to:
+
+For a semi-circular notch or a round hole (when r — L) the stress will thus have the value of 3s; but for openings like doors and hatchways, which often have sharp corners, r will be small and L large, and so the stress at the comers may be very high -quite high enough to account for ships breaking in two.
+
+In the Wolf experiments, extensometers, or strain-gauges, were clamped to the ship's plating in various positions. By this means the extension or elastic movement of the steel plates could be read off. From this the strain – and thus the stress – in the steel was easily calculated. As it happened none of the extensometers was placed close to the corners of hatchways or other openings. If this had been done some very frightening readings would almost certainly have been obtained when the ship was plunging into a head sea in Portland Race.
+
+When we turn from hatchways to cracks the situation is even worse, because, while cracks are often centimetres or even metres long, the radius of the tip of the crack may be of molecular dimensions – less than a millionth of a centimetre – so that is very large; thus the stress at the tip of the crack may well be a hundred or even a thousand times higher than the stress elsewhere in the material.
+
+If Inglis's results had to be taken entirely at their face value it would scarcely be possible to make a safe tension structure at all. In fact the materials which are actually used in tension, metals, wood, rope, Fibreglass, textiles and most biological materials, are ‘ tough', which means, as we shall see in the next chapter, that they contain more or less elaborate defences against the effects of stress concentrations. However, even in the best and toughest of materials, this protection is only relative, and every tension structure is susceptible to some extent.
+
+The ‘brittle solids', however, which are used in technology, like glass and stone and concrete, do not have these defences. In other words they correspond pretty closely to the assumptions which were made in Inglis's calculations. Moreover we do not need to put in stress-raising notches artificially in order to weaken these materials. Nature has already done this liberally, and real solids are nearly always full of all kinds of small holes and cracks and scratches, even before we begin to make a structure out of them.
+
+For these reasons it is rash to use any of the brittle solids in situations where they may be subject to appreciable tension stresses. They are, of course, very widely used in masonry and for roads and so on where they are, at least officially, in compression. Where we cannot avoid a certain amount of tension, for instance in glass windows, we have to take care to keep the tensile stresses very small indeed and to use a large factor of safety.
+
+In talking of stress concentrations we must note that weakening effects are not exclusively caused by holes and cracks and other deficiencies of material. One can also cause stress concentrations by adding material, if this induces a sudden local increase of stiffness. Thus if we put a new patch on an old garment or a thick plate of armour on the thin side of a warship, no good will come of it.*
+
+The reason for this is that the stress trajectories are diverted just as much by an area which strains too little, such as a stiff patch, as they are by an area which strains too much, such as a hole. Anything which is, so to speak, elastically out of step with the rest of the structure will cause a stress concentration and may therefore be dangerous.
+
+When we seek to ‘strengthen' something by adding extra material we have to be careful we do not in fact make it weaker. The inspectors employed by insurance companies and government departments who insist on pressure vessels and other structures being' strengthened' by the addition of extra gussets and webs are sometimes responsible, in my experience, for the very accidents which they have tried to prevent.
+
+Nature is generally rather good at avoiding stress concentrations of this and other kinds. However, one would think that stress concentrations must be of significance in orthopaedic surgery, especially when the surgeon fits a stiff metal prosthesis to a relatively flexible bone.
+
+NOTE. In Inglis's formula (p. 67) L is the length of a crack proceeding inwards from the surface, i.e. half the length of an internal crack.
+
+1 See, for instance, The Double Helix, by James D. Watson, Weidenfeld & Nicolson, 1968.
+
+2 The process also works in reverse; the bones of astronauts lose calcium and become weaker after a period of weightlessness in space.
+
+3 Almost the only woman to have gained distinction in elasticity, Mademoiselle Sophie Germain (1776-1831), was French. It may be relevant that two of our most highly educated and theoretically-minded engineers during this period, Sir Marc Brunei (1769-1849) and his son, Isambard Kingdom Brunei (1806-59), were of French origin.
+
+4 The British tradition of totally ignoring mathematics has been splendidly continued in the present century by a number of distinguished engineers, notably Sir Henry Royce, who did, after all, create the ‘best car in the world'.
+
+5 Factors of safety as high as eighteen were used in the design of connecting-rods for steam locomotives at least as late as 1910.
+
+6As a matter of fact the effect of a round hole in a plate under tension had been calculated by Kirsch in Germany in 1898 and that of an elliptical hole by Kolosoff in Russia in 1910, but, as far as I know, little notice was taken of these results in English shipbuilding circles.
+
+7 'Partial strength produces general weakness' (Sir Robert Seppings (1767-1840), Surveyor of the Navy 1813-32).
+
+裂缝是如何产生的
+
+要理解这类问题，最重要的不是做耗资巨大的全尺寸结构实验，而是进行理论分析。1913 年，英格利斯（C. E. Inglis）—— 后来的剑桥工程学教授，与「坐而论道的教员」截然不同 —— 在《船舶工程师学会学报》上发表了一篇论文，引发了更广泛的讨论和应用，而不仅限于船舶的强度。
+
+英格利斯希望告诉弹性研究者的事与索尔兹伯里勋爵（Lord Salisbury）对政客说的话几乎一样，即只用小比例地图是个严重的错误。近一个世纪以来，弹性研究者一直满足于用宽泛、大致或拿破仑式的术语绘制应力分布图。英格利斯表明，这种方法只适用于表面光滑且没有形状突变的材料和结构。
+
+几何上的不规则性，比如孔洞、裂缝和尖锐边角，之前被忽视了，但实际上，它们会显著提高局部应力 —— 通常分布在一个非常小的区域内。因此，孔洞和沟槽可能导致其相邻区域的应力比该材料的断裂应力大得多，即便周边区域应力的总体水平很低且根据计算该结构可能是安全的。
+
+当然，从某种意义上说，在巧克力块上刻槽及在邮票和其他纸张上打孔的人都知道这个事实。一个裁缝在撕开一块布之前，会先在其边缘剪出一个「口子」。然而，严肃的工程师对这类断裂现象没有多大兴趣，没有考虑将其归为「严格意义」上的工程学问题。
+
+不连续固体中的任何孔洞、裂缝或凹陷，几乎都会导致局部应力的增加，这很容易解释。图 4–1（a）显示了一段光滑均匀的木棒受到一个均匀的拉应力 s 的作用。穿过材料的虚线表示所谓的「应力作用线」，即应力从一个分子传递到下一个分子的典型路径。当然，在这种情况下，它们是一组间隔均匀的平行线。
+
+图 4–1 在均匀拉伸的载荷下，无裂缝（a）和有裂缝（b）的木条上的应力作用线
+
+如果我们现在通过在材料上制造一个切口、裂缝或孔洞来阻碍某些应力作用线，这些作用线代表的力为保持平衡就需要以某种方式做出反应。实际发生的事情与人们想象的多少有些相同：力不得不绕过缺口，应力作用线的聚集程度主要取决于孔洞的形状［见图 4–1（b）］。例如，如果裂缝较长，那么裂缝尖端附近的应力作用线往往异常密集。因此在其相邻区域，单位面积上的力更大，局部应力也更大（插图 2）。
+
+英格利斯算出了遵循胡克定律的固体上一个椭圆孔洞的尖端处的应力增加量。[6] 他的计算不只对椭圆孔洞是严格正确的，用于其他形状的开口也足够精确。因此，其结果不仅适用于船舶、飞机等类似结构中的舷孔、舱门和舱口，还可用于各种其他材料和装置中的裂缝、划痕和孔洞，例如牙齿填充物。
+
+根据简单的代数运算，英格利斯说，若我们有一块材料受到远场应力 s 的作用，我们在其上制造一个任意形状、长度或深度为 L、尖端半径为 r 的沟槽、裂缝或凹陷，它的尖端及其相邻处的应力就不再是 s，而是增加为：
+
+$$s(1+2\sqrt{\frac{L}{r}})$$
+
+所以，对半圆沟槽或圆孔洞而言（r=L），其应力值为 3s；但对像舱门和舱口这样常有尖锐边角的开口来说，r 会很小而 L 会很大，所以边角处的应力可能非常大，足以让船舶断成两截。
+
+在狼号驱逐舰实验中，引伸计或应变仪被夹在舰船镀层的不同位置。借助这些仪器，我们可以读出钢板的伸长量或弹性运动。据此，钢板的应变和应力就很容易计算出来了。巧合的是，没有一个引伸计被置于靠近舱口或其他开口的边角处。如果这样做，当船扎进波特兰岛大潮的浪头时，肯定能取得一些非常惊人的读数。
+
+当我们从舱口转向裂缝时，情况变得更糟了，因为裂缝长度通常为厘米乃至米的量级，而其尖端半径可达到分子尺度 —— 小于百万分之一厘米，这使得 L/r 非常大。因此，裂缝尖端处的应力很可能是材料中其他地方应力的上百倍，甚至上千倍。
+
+如果英格利斯的结果完全按其表面意义取值，那么我们根本不可能造出一个安全的承张结构。事实上，在拉伸状态下实际使用的材料，如金属、木材、绳索、玻璃纤维、织物以及大部分生物材料，都很坚韧。这意味着，它们或多或少会具备某种精妙的机制来抵御应力集中的效应，我们将在下一章中讨论这个问题。然而，即便在最好、最坚韧的材料中，这种防护也是相对的，而每种承张结构在某种程度上都是敏感的。
+
+但是，像玻璃、石头和混凝土等「脆性固体」，则没有这种防护机制。换言之，它们相当符合英格利斯在计算中所做的假设。而且，我们不需要人为制造可增加应力的沟槽来弱化这些材料。大自然已经慷慨地为我们准备了，在我们用它们来搭建结构之前，真实的固体几乎总是遍布各种微小的孔洞、裂缝和划痕。
+
+基于这些原因，在承受相当大的拉应力的情况下，使用任何脆性固体的行为都是轻率之举。当然，它们在砖石建筑、道路等领域应用广泛，但至少应在承压状态下。有时我们无法避免一定的张力，例如在玻璃窗中，我们既要小心维持非常小的拉应力，还得应用一个较大的安全系数。
+
+谈到应力集中，我们务必注意，弱化效应并不完全是由孔洞、裂缝及其他材料缺陷造成的。附加材料也可以导致应力集中，前提是这样做诱发了局部刚度的突增。因此，如果我们在旧衣服上打块新补丁，或者在军舰的薄弱处加装护甲板，是不会有好结果的。[7]
+
+原因在于，像强劲的补片这样小的应变区域造成的应力作用线转移，同像孔洞这样大的应变区域造成的应力作用线转移的效应差不多。可以说，弹性与结构的其余部分不协调的任何材料都会导致应力集中，并可能带来危险。
+
+当我们试图通过附加材料来「强化」某物时，务必要小心，不要适得其反。据我的经验，受雇于保险公司和政府部门的检验员，若坚持通过安装加固件和加固套「强化」压力容器和其他结构，有时就可能引发他们试图防止的事故。大自然通常很擅长规避这种或那种应力集中。但是，有人认为应力集中对于骨科手术意义重大，尤其是在外科大夫把强劲的金属假体安装到柔韧的骨头上时。
+
+（注：在英格利斯的公式中，L 是裂缝从材料表面向内延伸的长度，如果裂缝在材料内部，则取其长度的一半。）
+
+[6] 事实上，在拉伸作用下一块板上的一个圆孔洞的应力效应，已由德国的基尔希（Kirsch）于 1898 年算出，而椭圆孔洞的应力效应已由俄国的克罗索夫（Kolosoff）于 1910 年算出。但据我所知，这些结果在英语区的船舶工业领域几乎没有引起注意。
+
+[7] 1813-1832 年英国海军测量师罗伯特·赛平斯爵士（Sir Robert Seppings）曾说：「局部强化导致整体弱化。」
