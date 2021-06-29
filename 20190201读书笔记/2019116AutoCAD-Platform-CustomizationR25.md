@@ -36,6 +36,8 @@ Classes are the elements on which a COM library is built — think of them as a 
 
 The vla-object data type is used in AutoLISP to represent an object or collection. (You'll learn how to work with the AutoCAD COM library in the「Using the AutoCAD COM Library」section, and with the COM libraries related to Windows and Microsoft Office in the「Leveraging the Windows and Microsoft Office COM Libraries」section, later in this chapter.) Many of the objects you will want to work with can be accessed using properties and methods described in the next section. However, there are some objects that you must create or get an instance of before you can work with them.
 
+2『之前没注意到的知识点：vla-object 要么是对象 object，要么是集合 collection。（2021-06-28）』
+
 For example, you can use the `vlax-create-object` function to create an instance of an application or secondary object that isn't accessible from an object that is already in memory. The `vlax-get-object` function can be used to get an instance of an object that is already in memory. When an object is in memory, it can be accessed and manipulated. The following shows the syntax of the `vlax-create-object` and `vlax-get-object` functions:
 
 ```c
@@ -66,7 +68,7 @@ nil
 #<VLA-OBJECT _Application 000000002f1e3b98>
 ```
 
-1-2『测试过了，word 2016 版的 program ID 是 `Word.Application.16`。补充：后面的信息得知，其实没必要写版本号，直接 `Word.Application`。（2021-03-06）』
+1-2『测试过了，word 2016 版的 program ID 是 `Word.Application.16`。补充：后面的信息得知，其实没必要写版本号，直接 `Word.Application`。（2021-03-06）补充：之前的理解有偏误，上面写版本号使用创建对象的函数 vlax-create-object，而下面不写版本号是直接获取电脑内存（默认 word 打开着）中，用的函数是vlax-get-object，两个函数不一样的。（2021-06-28）』
 
 The following shows how to get an instance of the Microsoft Word application that has already been started:
 
@@ -149,7 +151,7 @@ Layouts:
 
 1-3『
 
-跑了下，完全没问题，获取到了 3 个布局的信息。这里可以深挖的信息量很多的：1）此时才了解到，一个实体对象其 DXF 码 410 的值「model」就是这里的「布局」名称。2）获取当前「活动」图纸的所有数据 `(vla-get-activedocument (vlax-get-acad-object))`，这个函数极其重要。3）里面涉及到很多函数可以去官方文档研读，而且可以顺藤摸瓜找到更多实用的函数。比如将函数 `vla-get-layouts` 更改为 `vla-get-blocks` 即可获取到所有块的数据。而且对象数据的全景图详见下面的官方文档链接，要反复研读。（2021-03-06）
+跑了下，完全没问题，获取到了 3 个布局的信息。这里可以深挖的信息量很多的：1）此时才了解到，一个实体对象其 DXF 码 410 的值「model」就是这里的「布局」名称。2）获取当前「活动」图纸的所有数据 `(vla-get-activedocument (vlax-get-acad-object))`，这个函数极其重要。3）里面涉及到很多函数可以去官方文档研读，而且可以顺藤摸瓜找到更多实用的函数。比如将函数 `vla-get-layouts` 更改为 `vla-get-blocks` 即可获取到所有块的数据。而且对象数据的全景图详见下面的官方文档链接，要反复研读。（2021-03-06）补充：还可以借助 VScode 里函数提示的功能，发掘更过类似于 `vla-get-layouts` 的函数。（2021-06-28）
 
 [AutoLisp: Object Model (ActiveX)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-A809CD71-4655-44E2-B674-1FE200B9FE30)
 
@@ -180,6 +182,8 @@ Here are its arguments:
 A class uses two different approaches to expose itself to a programming language such as AutoLISP or VBA: properties and methods. They are available when an instance of a class is created in memory as an object. Properties are used to describe and query the characteristics of an object. For example, the Length and TrueColor properties of a Line object are used to specify that line's length and color. Properties can be designated as read-only.
 
 Methods are used to manipulate and perform an action on an object. ActiveX allows you to define two types of methods: subroutines and functions. Subroutines never return a value; functions can return a single value. For example, the Delete and Copy methods are used to remove or duplicate an object in a drawing. The Delete method doesn't return a value, whereas the Copy method returns a new instance of an object.
+
+1-3『 subroutines and functions 的概念是 VBA 里的，好在自己懂 VBA，好亲切。（2021-06-28）』
 
 The objects in a COM library are typically unique, so the `vlax-dump-object` function can be used to list the properties and methods that a particular object supports. The following shows the syntax of the `vlax-dump-object` function:
 
@@ -261,6 +265,8 @@ T
 ```
 
 (RO) after a property name indicates that the property is read-only and the value cannot be changed. The number in the parentheses after each method listed in the Methods supported section of the output indicates the number of arguments that the method expects; no number in the parentheses indicates the method doesn't accept any argument values.
+
+1『之前还真没注意到这 2 个细节：1）RO 表示只读。2）方法后面的数字表示入参的数量。（2021-06-28）』
 
 #### 12.1.3 Getting and Specifying the Value of an Object's Property
 
@@ -344,7 +350,7 @@ You can determine whether an object supports a method by using the `vlax-method-
 
 vla-object isn't the only new data type that you will have to understand when working with ActiveX. Many methods and properties use what is known as a variant. The variant data type is the chameleon of data types; it can represent any supported data type. A variant in AutoLISP is represented by the vla-variant data type. Arrays are yet another type of data that you will need to become familiar with. An array is represented by the vla-array data type and is similar to the AutoLISP list data type.
 
-2『这里的 Variants and Arrays，做一张术语卡片。（2021-03-07）』—— 已完成
+2『这里的 Variants and Arrays，做一张术语卡片。（2021-03-07）补充：此时才意识到，Variants 和 Arrays 是跟 vla-object 同一个抽象层次的东西。（2021-06-28）』—— 已完成
 
 #### Making Variants
 
@@ -457,7 +463,8 @@ Here are examples that assign values to and get values from the arrays defined i
 "Description" 
 ; Assign double/real values to a two-element array 
 (vlax-safearray-put-element pt2D 0 0.0) 
-0.0 (vlax-safearray-put-element pt2D 1 5.25) 
+0.0 
+(vlax-safearray-put-element pt2D 1 5.25) 
 5.25 
 ; Get the first element in an array 
 (vlax-safearray-get-element pt2D 0) 
@@ -700,6 +707,8 @@ A new layer named NewLayer is added to the drawing, assigned the color 4 (Cyan),
 
 Adding graphical objects to a drawing with ActiveX is different from what you have done previously when using the command, entmake, and entmakex functions. When using ActiveX, you must specify where an object should be created — the methods of the AutoCAD COM library are not contextually driven. You must explicitly work in model space or paper space.
 
+2『关键知识点：用 ActiveX 生成实体对象，一定要指定是加到「哪个」collection 里去。（2021-06-28）』
+
 The following exercise defines a function that prompts the user for two points: the opposite corners of a rectangle. User input is handled using the methods available through the Utility object. The two points specified are used to define the four corners of a rectangle, by making an array of eight elements and then populating the XY pairs of each point defined for the rectangle. The array is used to specify the vertices of the lightweight polyline to add in the model space of the current drawing. Once the lightweight polyline is added, the Closed property is used to close the lightweight polyline.
 
 1 Open the ActiveX.lsp file in Notepad (Windows) or TextEdit (Mac OS).
@@ -842,6 +851,8 @@ As I mentioned earlier, this chapter provides an introduction to the various con
 ### 12.4 Leveraging the Windows and Microsoft Office COM Libraries
 
 The Microsoft ecosystem is full of hidden gems that can increase your productivity and improve everyday workflows. Many programs that are available for free or for purchase let you create proposals or manipulate information in a database, but Windows and Microsoft Office allow you to leverage what they do best by using the COM libraries that they expose. There aren't many companies that allow you to manipulate or access their programs programmatically like Microsoft does, so take advantage of these benefits whenever possible.
+
+1-3『作者的意思是 Microsoft Office COM Libraries 给开发者的权限很大，可以做很多事情。最近也在 GitHub 上找到一个操作 Excel 的三方库（github.autolisp => cathedral），需仔细研读。（2021-06-28）』
 
 Using the COM libraries for Windows and Microsoft Office, you can accomplish the following:
 
@@ -997,7 +1008,7 @@ For example, consider the difference between the insert command, which displays 
 
 Dialog Control Language (DCL) is the technology used to lay out and design dialog boxes that can be used with AutoLISP programs. Support for DCL was originally added to Autodesk® AutoCAD® R11 and has remained essentially unchanged through AutoCAD 2015. Dialog boxes are defined and stored in ASCII text files with a .dcl extension. Once a DCL file has been created, AutoLISP can then load and display the dialog contained in the DCL file. After the dialog is displayed, AutoLISP is used to control what happens when the user clicks or otherwise manipulates the controls in the dialog box.
 
-A DCL file can contain multiple dialog-box definitions. Each dialog box and control is defined through the use of a tile. The appearance of a tile is affected by what are known as attributes—think of attributes as the properties of a drawing object.
+A DCL file can contain multiple dialog-box definitions. Each dialog box and control is defined through the use of a tile. The appearance of a tile is affected by what are known as attributes — think of attributes as the properties of a drawing object.
 
 With the exception of the tile that defines the dialog box (the dialog tile), tiles typically start with a colon followed by the name of the tile type you want to place on the dialog box. The dialog tile must start with a user-defined name that is unique in the DCL file; this name is used to display the dialog box in the AutoCAD drawing environment. A pair of curly brackets that contain the attributes of the tile typically follows the name or type of a tile. Each attribute must end with a semicolon.
 
@@ -1053,9 +1064,9 @@ DCL has remained unchanged since AutoCAD R12, which is great from a compatibilit
 
 Here are the two DCL alternatives that I am aware of:
 
-1 ObjectDCL—A technology that must be licensed from DuctiSoft ([ObjectDCL](http://objectdcl.com/))
+1 ObjectDCL — A technology that must be licensed from DuctiSoft ([ObjectDCL](http://objectdcl.com/))
 
-2 OpenDCL—An open source application based on the ObjectDCL application; OpenDCL can be downloaded from [OpenDCL](https://opendcl.com/wordpress/).
+2 OpenDCL — An open source application based on the ObjectDCL application; OpenDCL can be downloaded from [OpenDCL](https://opendcl.com/wordpress/).
 
 1-2『感觉是捡到金子了，这 2 个做交互界面的工具太赞了，一定要去研读。（2020-10-08）』
 
@@ -1073,7 +1084,7 @@ DCL files can be created and edited using Notepad, the Visual LISP® Editor, or 
 
 #### Simplifying User Interaction and Option Presentation
 
-Have you ever sat and scratched your head in hopes of deciphering the options displayed as part of a prompt string for a command or custom function? Maybe you have tried to use a command that presented nested option prompts, and no matter how well you guessed, you got the wrong results. Both of these situations waste time. Fortunately, there is a solution to these problems and it is in the form of dialog boxes. Dialog boxes, or more specifically DCL in AutoLISP, can be used to improve users' experience by allowing them to follow a nonlinear workflow and provide only the information required to complete a task. Users can quickly scan and change values before completing a task. At the end of the day, a dialog box can help to reduce clicks, which means saving time—and time is money.
+Have you ever sat and scratched your head in hopes of deciphering the options displayed as part of a prompt string for a command or custom function? Maybe you have tried to use a command that presented nested option prompts, and no matter how well you guessed, you got the wrong results. Both of these situations waste time. Fortunately, there is a solution to these problems and it is in the form of dialog boxes. Dialog boxes, or more specifically DCL in AutoLISP, can be used to improve users' experience by allowing them to follow a nonlinear workflow and provide only the information required to complete a task. Users can quickly scan and change values before completing a task. At the end of the day, a dialog box can help to reduce clicks, which means saving time — and time is money.
 
 ---
 
@@ -1108,7 +1119,7 @@ An example of a dialog tile was shown earlier in this chapter; see Listing 23.1 
 
 #### 13.2.2 Adding Tiles
 
-A dialog box can contain a variety of tiles—commonly referred to as controls—that can be used to get input from the user. The tiles that are available for placement in a dialog box are common to many Windows dialog boxes. The following shows the basic syntax of a tile:
+A dialog box can contain a variety of tiles — commonly referred to as controls — that can be used to get input from the user. The tiles that are available for placement in a dialog box are common to many Windows dialog boxes. The following shows the basic syntax of a tile:
 
 ```c
 : tile_name { 
@@ -1237,7 +1248,7 @@ Table 23.4 Tile subassemblies
 
 Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
 
-1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』——已完成
+1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』 —  — 已完成
 
 #### Grouping Tiles into Clusters
 
@@ -1378,7 +1389,7 @@ ex_createLabelObject : dialog {
 
 You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
 
-1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』——已完成
+1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』 —  — 已完成
 
 The Visual LISP Editor makes it easy to create, modify, and preview a DCL file. When a DCL file is open and in the current window of the editor, you can click Tools Interface Tools Preview in DCL Editor to preview the dialog box. A dialog box allows you to specify which dialog in the DCL file to preview. The Visual LISP Editor sends some AutoLISP code to the AutoCAD Command prompt and displays the dialog box. Click Cancel or another tile to close the dialog box and return to the Visual LISP Editor.
 
@@ -1612,7 +1623,7 @@ After a tile key, mode, and index have been specified with the `start_list` func
 
 Once you have modified a list, use the `end_list` function. The `end_list` ends the modification of the list that was started with the `start_list` function. The `end_list` function returns a value of nil regardless of whether the list was successfully modified.
 
-1-2『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）回复：这个功能其实非常有用，比如想开发的功能，先根据某个属性值匹配通配符来筛选管道号块，筛出来的块只把属性值提取出来添加到这个列表让用户看到。第二部输入要替换的原字符以及新字符，这个功能一定要实现。（2020-10-10）做一张任意卡片。』——已完成
+1-2『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）回复：这个功能其实非常有用，比如想开发的功能，先根据某个属性值匹配通配符来筛选管道号块，筛出来的块只把属性值提取出来添加到这个列表让用户看到。第二部输入要替换的原字符以及新字符，这个功能一定要实现。（2020-10-10）做一张任意卡片。』 —  — 已完成
 
 The following code shows how to replace and assign a list of two values to a `popup_list` tile with the key of `list_layers`. The `list_layers` key refers to the Layer To Place Object On `popup_list` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
@@ -1657,7 +1668,7 @@ An interactive tile can be assigned an AutoLISP expression that is to be execute
 
 NOTE: After you create an instance of a dialog box with the `new_dialog` function, you can assign a string value to a tile from the custom program with the `client_data_tile` function; this is in addition to the tile's value attribute. When the AutoLISP expressions assigned to the tile's action attribute are executed, you can reference this string value with the `$data` variable. For more information on the `client_data_tile` function, refer to the AutoCAD Help system.
 
-1-2『直觉上 `client_data_tile` 这个函数非常有用，去深挖。目前的感觉是在外面用这个函数把外面的数据传递给 tile，然后再通过 tile 的内置变量 `$data` 提取出来，但为啥要绕一圈呢，肯定是有原因的。（2020-10-09）』——未完成
+1-2『直觉上 `client_data_tile` 这个函数非常有用，去深挖。目前的感觉是在外面用这个函数把外面的数据传递给 tile，然后再通过 tile 的内置变量 `$data` 提取出来，但为啥要绕一圈呢，肯定是有原因的。（2020-10-09）』 —  — 未完成
 
 Table 23.11 Predefined variables that contain information about the current tile
 
@@ -1773,7 +1784,7 @@ The following code shows how to get the current value of the tile with the key o
 
 #### 13.3.3 Terminating or Closing a Dialog Box
 
-A dialog box must be terminated—or closed—when it is no longer needed and the end user wants to return to the drawing area. The `done_dialog` function is used to indicate that the dialog box can be terminated. You commonly add this function as the last part of the AutoLISP expression assigned to the action attribute of a button tile such as OK or Cancel that terminates a dialog box. Before `done_dialog` is executed, you want to make sure you get the value of any tiles or tile attribute values by using the `get_tile` or `get_attr` function.
+A dialog box must be terminated — or closed — when it is no longer needed and the end user wants to return to the drawing area. The `done_dialog` function is used to indicate that the dialog box can be terminated. You commonly add this function as the last part of the AutoLISP expression assigned to the action attribute of a button tile such as OK or Cancel that terminates a dialog box. Before `done_dialog` is executed, you want to make sure you get the value of any tiles or tile attribute values by using the `get_tile` or `get_attr` function.
 
 NOTE: The OK and Cancel buttons defined in the predefined subassemblies automatically execute (done_dialog 1) and (done_dialog 0), respectively, when the button is clicked. `done_dialog` needs to be executed only for tiles that close a dialog box.
 
@@ -2346,7 +2357,7 @@ The following steps explain how to test the `-drawplate` function in the drawpla
 
 9 At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label. AutoCAD draws the completed plate, as expected.
 
-1-2『如何在一个 lsp 文件里调用另外一个 lsp 文件。直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。做一张任意卡片。』——已完成
+1-2『如何在一个 lsp 文件里调用另外一个 lsp 文件。直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。做一张任意卡片。』 —  — 已完成
 
 The following steps explain how to test the revised version of the drawplate function:
 
