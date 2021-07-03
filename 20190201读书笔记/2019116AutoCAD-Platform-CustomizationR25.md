@@ -1137,25 +1137,18 @@ Table 23.2 Interactive tiles available with the dialog tile
 
 Table 23.2 lists and describes the interactive tiles that can be added to a dialog tile for getting input from the user when a dialog box is displayed.
 
-1 button. Push or command button that, when clicked, executes a function.
-
-2 `edit_box`. Free-form text box in which the user can enter an alphanumeric value.
-
-3 image. Container that displays a slide image. The slide image can be a stand-alone SLB file or one from a compiled slide library SLD file.
-
-4 `image_button`. Graphical button that displays a slide image that, when clicked, executes a function.
-
-5 `list_box`. List box that contains a set of predefined items from which the user can select one or more items.
-
-6 `popup_list`. Drop-down list that contains a set of predefined items from which the user can choose a single item.
-
-7 `radio_button`. Option button that allows for a single choice among multiple option buttons.
-
-8 slider. Scroll bar–like control that allows the user to specify a value within a specific range.
-
-9 text. Label that displays information to the user or identifies the intention of a control.
-
-10 toggle. Check-box button that allows for multiple choices.
+| Tile name | Description |
+| --- | --- | --- |
+| button | Push or command button that, when clicked, executes a function. |
+| edit_box | Free-form text box in which the user can enter an alphanumeric value. |
+| image | Container that displays a slide image. The slide image can be a stand-alone SLB file or one from a compiled slide library SLD file. |
+| image_button | Graphical button that displays a slide image that, when clicked, executes a function. |
+| list_box | List box that contains a set of predefined items from which the user can select one or more items. |
+| popup_list | Drop-down list that contains a set of predefined items from which the user can choose a single item. |
+| radio_button | Option button that allows for a single choice among multiple option buttons. |
+| slider | Scroll bar–like control that allows the user to specify a value within a specific range. |
+| text | Label that displays information to the user or identifies the intention of a control. |
+| toggle | Check-box button that allows for multiple choices. |
 
 Table 23.3 Common attributes used with control tiles
 
@@ -1235,6 +1228,8 @@ ex_createLabelObject : dialog {
 
 In addition to the tiles listed in Table 23.2, DCL makes use of tile subassemblies. Tile subassemblies are used to provide common arrangements of exit buttons. Table 23.4 shows several of the available tile subassemblies that can be used in a dialog tile. You can view the names of the subassemblies in the base.dcl file located in the AutoCAD Support folder. A subassembly ends with a semicolon, as shown in Listings 23.1 and 23.2. You can't change the attribute values of a subassembly provided by AutoCAD, but you can re-create a subassembly with different attribute values in your own DCL files. Use the syntax found in the base.dcl file as the basis for your new subassembly code. The base.dcl file can be found in the AutoCAD support-file search path by entering (findfile "base.dcl") at the Command prompt.
 
+1-2『还真在电脑里搜索到了「base.dcl」文件，有时间可以研读一下，看是否能获得有用信息。（2021-06-30）』—— 未完成
+
 Table 23.4 Tile subassemblies
 
 |  Tile Subassembly | Description  |
@@ -1248,7 +1243,7 @@ Table 23.4 Tile subassemblies
 
 Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
 
-1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』 —  — 已完成
+1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』—— 已完成
 
 #### Grouping Tiles into Clusters
 
@@ -1556,7 +1551,7 @@ The tiles of a dialog box are all enabled by default, meaning the user can click
 
 I recommend setting the enabled state of a tile using the mode_tile function and not the is_enabled attribute. The main reason for doing so is because the disabling of a tile is often based on the condition of other tiles or choices made by the user in the dialog box. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section.
 
-1『作者建议 `mode_tile` 来设置 tile 的激活状态，不用用 tile 自身的属性 `is_enabled` 来设置，记住这点。（2020-10-09）』
+1-2『作者建议 `mode_tile` 来设置 tile 的激活状态，不用用 tile 自身的属性 `is_enabled` 来设置，记住这点。（2020-10-09）补充：`mode_tile` 设置 tile 激活状态，做一张主题卡片。（2021-07-03）』—— 已完成
 
 The following shows the syntax of the `mode_tile` function:
 

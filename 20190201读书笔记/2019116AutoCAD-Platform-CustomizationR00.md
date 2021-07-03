@@ -413,6 +413,38 @@ In these steps, you create a custom function named `roomlabel_createblkdef` that
 
 1-2『自动生成块参照之前已经学会了 2 种后台方法，而上面是自动生成块定义的实现，目前块定义是人工去做好，然后存放在一个图形 dwg 库里的。如果以后遇到要自动生成块定义的场景，可参考此处的代码。做一张主题卡片。（2021-04-03）』
 
+### 0113. 主题卡 —— mode_tile 设置 tile 激活状态
+
+信息源自「2019116AutoCAD-Platform-Customization0213.md」
+
+The tiles of a dialog box are all enabled by default, meaning the user can click or enter text in any interactive tile of a dialog box. The `is_enabled` attribute of a tile controls the tile's default enabled state. When `is_enabled` is set to false, the user is unable to interact with the tile when the dialog box is displayed. The enabled state of a tile can be changed using the `mode_tile` function.
+
+I recommend setting the enabled state of a tile using the mode_tile function and not the is_enabled attribute. The main reason for doing so is because the disabling of a tile is often based on the condition of other tiles or choices made by the user in the dialog box. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section.
+
+1-2『作者建议 `mode_tile` 来设置 tile 的激活状态，不用用 tile 自身的属性 `is_enabled` 来设置，记住这点。（2020-10-09）补充：`mode_tile` 设置 tile 激活状态，做一张主题卡片。（2021-07-03）』—— 已完成
+
+The following shows the syntax of the `mode_tile` function:
+
+```c
+(mode_tile key mode)
+```
+
+Here are its arguments:
+
+key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
+
+mode. The mode argument is an integer value that specifies the mode that should be applied to the tile. Table 23.8 lists the available modes that can be applied to a tile.
+
+Table 23.8 Modes available for use with `the mode_tile` function
+
+|  Mode | Description  |
+|---|---|
+| 0 | Enables an interactive tile |
+| 1 | Disables an interactive tile |
+| 2 | Sets focus to an interactive tile |
+| 3 | Selects the text in an edit_box tile |
+| 4 | Toggles highlighting for an image tile |
+
 ### 0201. 术语卡 —— Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
