@@ -1161,7 +1161,8 @@ The code in this example looks for a user specified item within a list. The Auto
 测试数组，元素处理集合的元素时，常常遇到需要知道数组的全部元素或部分元素是否满足某些条件。为了尽可能有效地编写这段代码，JavaScript 数组具有内置的 every 和 some 方法，如清单 9.8 所示。1）every 方法接收回调函数，对集合中的每个 ninja 对象检查是否含有 name 属性。当且仅当全部的回调函数都返回 true 时，every 方法才返回 true，否则返回 false。
 
 ```js
-var allNinjasAreNamed = ninjas.every(ninja => "name" in ninja);
+var allNinjasAreNamed = ninjas
+(ninja => "name" in ninja);
 ```
 
 some 方法从数组的第 1 项开始执行回调函数，直到回调函数返回 true。如果有一项元素执行回调函数时，返回 true，some 方法返回 true；否则，some 方法返回 false。
