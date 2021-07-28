@@ -1448,6 +1448,14 @@ NOT returns true if it's argument is false and returns false if it's argument is
 
 AutoLISP is based on the LISP programming language but was written by Autodesk specifically for AutoCAD. It was introduced with AutoCAD version 2.18 (a minor version update of AutoCAD 2.1) in January 1986. Autodesk continued to enhance and extend AutoLISP up to and including AutoCAD Release 13 in November 1994. From Release 14 onwards, Autodesk have not developed AutoLISP, choosing to focus efforts on the then new Visual LISP version of the language. Despite the fact that AutoLISP has not changed in almost two decades, it remains incredibly popular with AutoCAD users. This is mainly due to its ease of use and the massive productivity gains that can be earned through its implementation. See the AutoLISP Wikipedia article for more information.
 
+### 0308. 任意卡 —— 启动加载命令
+
+```c
+(defun s::startup ()
+  (vl-load-all "D:\\dataflowcad\\dataflow.VLX")
+)
+```
+
 ## 0101Introduction.md
 
 可以搜索问题的官方地址，可以按 Google 搜索的规则来：
