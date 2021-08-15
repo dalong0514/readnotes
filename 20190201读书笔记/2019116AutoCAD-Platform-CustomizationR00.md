@@ -325,7 +325,38 @@ In the previous section, you learned how to get the object that represents the a
 )
 ```
 
-1『上面的方法可以判断，打开的图纸是在模型空间里还是布局空间里，常规都是模型空间里，此判断可以忽略。（2021-03-07）』
+1『
+
+上面的方法可以判断，打开的图纸是在模型空间里还是布局空间里，常规都是模型空间里，此判断可以忽略。（2021-03-07）
+
+收回之前的观点，这个判断很重要，在做总图构建筑物一览表时，因他们的表格都是做在总图 Layout 空间里的，这时候插入块就要插入到布局空间，这里的判断就用上了。（2021-08-15）
+
+```c
+; 2021-03-17
+; refactored at 2021-08-15
+;; Insert Block into mode or Layout
+(defun InsertBlockByScaleUtils (insPt blockName layerName propertyDictList scale / acadObj curDoc insertionPnt modelSpace blockRefObj blockAttributes)
+  (setq acadObj (vlax-get-acad-object))
+  (setq curDoc (vla-get-activedocument acadObj)) 
+  (setq insertionPnt (vlax-3d-point insPt))
+  ; Get a reference to the current space in AutoCAD - refactored at 2021-08-15
+  (if (= (vla-get-activespace curDoc) acModelSpace) 
+    (setq modelSpace (vla-get-ModelSpace curDoc)) 
+    (setq modelSpace (vla-get-PaperSpace curDoc)) 
+  )
+  (setq blockRefObj (vla-InsertBlock modelSpace insertionPnt blockName scale scale scale 0))
+  (vlax-put-property blockRefObj 'Layer layerName)
+  (setq blockAttributes (vlax-variant-value (vla-GetAttributes blockRefObj)))
+  (mapcar '(lambda (x) 
+            (vla-put-TextString (vlax-safearray-get-element blockAttributes (car x)) (cdr x))
+          ) 
+    propertyDictList
+  ) 
+  (princ)
+)
+```
+
+』
 
 When you want to add an object, such as a Layer object, to a collection, you can use one of the many Add methods available through the AutoCAD COM library. The following exercise shows how to create a function that checks for the existence of a layer and that creates the layer if it's not found; it then sets the layer as current by using the AutoCAD COM library and ActiveX. The function is similar to the createlayer function that you defined in the utility.lsp file in the various exercises throughout this book.
 
