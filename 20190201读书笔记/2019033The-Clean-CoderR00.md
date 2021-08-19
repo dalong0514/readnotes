@@ -1,10 +1,10 @@
+## 记忆时间
+
 英语原书出版时间：2011 年
 
 中文版出版时间：2012 年第一版；得到上的电子书出版时间是 2016 年，应该是再印刷的版次。
 
 本书是编程大师「Bob 大叔」40 余年编程生涯的心得体会的总结，讲解要成为真正专业的程序员需要具备什么样的态度，需要遵循什么样的原则，需要采取什么样的行动。作者以自己以及身边的同事走过的弯路、犯过的错误为例，意在为后来者引路，助其职业生涯迈上更高台阶本书适合所有程序员阅读，也可供所有想成为具备职业素的职场人士参考。
-
-## 记忆时间
 
 ## 卡片
 
@@ -20,11 +20,11 @@
 
 ### 0203. 术语卡——
 
-### 0301. 人名卡——Robert C. Martin
+### 0301. 人名卡 —— Robert C. Martin
 
 Robert C. Martin（19-），人称 Bob 大叔，大师中的大师。代表作有：。
 
-Robert C. Martin (“Uncle Bob”) has been a programmer since 1970. He is founder and president of Object Mentor, Inc., an international firm of highly experienced software developers and managers who specialize in helping companies get their projects done. Object Mentor offers process improvement consulting, object-oriented software design consulting, training, and skill development services to major corporations worldwide. Martin has published dozens of articles in various trade journals and is a regular speaker at international conferences and trade shows. He has authored and edited many books, including:
+Robert C. Martin ("Uncle Bob") has been a programmer since 1970. He is founder and president of Object Mentor, Inc., an international firm of highly experienced software developers and managers who specialize in helping companies get their projects done. Object Mentor offers process improvement consulting, object-oriented software design consulting, training, and skill development services to major corporations worldwide. Martin has published dozens of articles in various trade journals and is a regular speaker at international conferences and trade shows. He has authored and edited many books, including:
 
 • Designing Object Oriented C++ Applications Using the Booch Method.
 
@@ -44,8 +44,6 @@ A leader in the industry of software development, Martin served for three years 
 
 ### 0401. 金句卡——
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
-
 ### 0501. 任意卡——
 
 Between 1986 and 2000 I worked closely with Jim Newkirk, a colleague from Teradyne. He and I shared a passion for programming and for clean code. We would spend nights, evenings, and weekends together playing with different programming styles and design techniques. We were continually scheming about business ideas. Eventually we formed Object Mentor, Inc., together.
@@ -54,19 +52,19 @@ I learned many things from Jim as we plied our schemes together. But one of the 
 
 ## Foreword
 
-You’ve picked up this book, so I assume you are a software professional. That’s good; so am I. And since I have your attention, let me tell you why I picked up this book. It all starts a short time ago in a place not too far away. Cue the curtain, lights and camera, Charley ….
+You've picked up this book, so I assume you are a software professional. That's good; so am I. And since I have your attention, let me tell you why I picked up this book. It all starts a short time ago in a place not too far away. Cue the curtain, lights and camera, Charley ….
 
 Several years ago I was working at a medium-sized corporation selling highly regulated products. You know the type; we sat in a cubicle farm in a three-story building, directors and up had private offices, and getting everyone you needed into the same room for a meeting took a week or so.
 
 We were operating in a very competitive market when the government opened up a new product. Suddenly we had an entirely new set of potential customers; all we had to do was to get them to buy our product. That meant we had to file by a certain deadline with the federal government, pass an assessment audit by another date, and go to market on a third date.
 
-Over and over again our management stressed to us the importance of those dates. A single slip and the government would keep us out of the market for a year, and if customers couldn’t sign up on day one, then they would all sign up with someone else and we’d be out of business. It was the sort of environment in which some people complain, and others point out that “pressure makes diamonds.”
+Over and over again our management stressed to us the importance of those dates. A single slip and the government would keep us out of the market for a year, and if customers couldn't sign up on day one, then they would all sign up with someone else and we'd be out of business. It was the sort of environment in which some people complain, and others point out that "pressure makes diamonds."
 
-I was a technical project manager, promoted from development. My responsibility was to get the web site up on go-live day, so potential customers could download information and, most importantly, enrollment forms. My partner in the endeavor was the business-facing project manager, whom I’ll call Joe. Joe’s role was to work the other side, dealing with sales, marketing, and the non-technical requirements. He was also the guy fond of the “pressure makes diamonds” comment.
+I was a technical project manager, promoted from development. My responsibility was to get the web site up on go-live day, so potential customers could download information and, most importantly, enrollment forms. My partner in the endeavor was the business-facing project manager, whom I'll call Joe. Joe's role was to work the other side, dealing with sales, marketing, and the non-technical requirements. He was also the guy fond of the "pressure makes diamonds" comment.
 
-If you’ve done much work in corporate America, you’ve probably seen the finger-pointing, blamestorming, and work aversion that is completely natural. Our company had an interesting solution to that problem with Joe and me.
+If you've done much work in corporate America, you've probably seen the finger-pointing, blamestorming, and work aversion that is completely natural. Our company had an interesting solution to that problem with Joe and me.
 
-A little bit like Batman and Robin, it was our job to get things done. I met with the technical team every day in a corner; we’d rebuild the schedule every single day, figure out the critical path, then remove every possible obstacle from that critical path. If someone needed software; we’d go get it. If they would “love to” configure the firewall but “gosh, it’s time for my lunch break,” we would buy them lunch. If someone wanted to work on our configuration ticket but had other priorities, Joe and I would go talk to the supervisor.
+A little bit like Batman and Robin, it was our job to get things done. I met with the technical team every day in a corner; we'd rebuild the schedule every single day, figure out the critical path, then remove every possible obstacle from that critical path. If someone needed software; we'd go get it. If they would "love to" configure the firewall but "gosh, it's time for my lunch break," we would buy them lunch. If someone wanted to work on our configuration ticket but had other priorities, Joe and I would go talk to the supervisor.
 
 Then the manager.
 
@@ -74,41 +72,41 @@ Then the director.
 
 We got things done.
 
-It’s a bit of an exaggeration to say that we kicked over chairs, yelled, and screamed, but we did use every single technique in our bag to get things done, invented a few new ones along the way, and we did it in an ethical way that I am proud of to this day.
+It's a bit of an exaggeration to say that we kicked over chairs, yelled, and screamed, but we did use every single technique in our bag to get things done, invented a few new ones along the way, and we did it in an ethical way that I am proud of to this day.
 
 I thought of myself as a member of the team, not above jumping in to write a SQL statement or doing a little pairing to get the code out the door. At the time, I thought of Joe the same way, as a member of the team, not above it.
 
 Eventually I came to realize that Joe did not share that opinion. That was a very sad day for me. It was Friday at 1:00 pm; the web site was set to go live very early the following Monday.
 
-We were done. *DONE*. Every system was go; we were ready. I had the entire tech team assembled for the final scrum meeting and we were ready to flip the switch. More than “just” the technical team, we had the business folks from marketing, the product owners, with us.
+We were done. *DONE*. Every system was go; we were ready. I had the entire tech team assembled for the final scrum meeting and we were ready to flip the switch. More than "just" the technical team, we had the business folks from marketing, the product owners, with us.
 
 We were proud. It was a good moment.
 
 Then Joe dropped by.
 
-He said something like, “Bad news. Legal doesn’t have the enrollment forms ready, so we can’t go live yet.”
+He said something like, "Bad news. Legal doesn't have the enrollment forms ready, so we can't go live yet."
 
-This was no big deal; we’d been held up by one thing or another for the length of the entire project and had the Batman/Robin routine down pat. I was ready, and my reply was essentially, “All right partner, let’s do this one more time. Legal is on the third floor, right?”
+This was no big deal; we'd been held up by one thing or another for the length of the entire project and had the Batman/Robin routine down pat. I was ready, and my reply was essentially, "All right partner, let's do this one more time. Legal is on the third floor, right?"
 
 Then things got weird.
 
-Instead of agreeing with me, Joe asked, “What are you talking about Matt?”
+Instead of agreeing with me, Joe asked, "What are you talking about Matt?"
 
-I said, “You know. Our usual song and dance. We’re talking about four PDF files, right? That are done; legal just has to approve them? Let’s go hang out in their cubicles, give them the evil eye, and get this thing done!”
+I said, "You know. Our usual song and dance. We're talking about four PDF files, right? That are done; legal just has to approve them? Let's go hang out in their cubicles, give them the evil eye, and get this thing done!"
 
-Joe did not agree with my assessment, and answered, “We’ll just go live late next week. No big deal.”
+Joe did not agree with my assessment, and answered, "We'll just go live late next week. No big deal."
 
 You can probably guess the rest of the exchange; it sounded something like this:
 
-Matt: “But why? They could do this in a couple hours.”
+Matt: "But why? They could do this in a couple hours."
 
-Joe: “It might take more than that.”
+Joe: "It might take more than that."
 
-Matt: “But they’ve got all weekend. Plenty of time. Let’s do this!”
+Matt: "But they've got all weekend. Plenty of time. Let's do this!"
 
-Joe: “Matt, these are professionals. We can’t just stare them down and insist they sacrifice their personal lives for our little project.”
+Joe: "Matt, these are professionals. We can't just stare them down and insist they sacrifice their personal lives for our little project."
 
-Matt: (pause) “. . . Joe . . . what do you think we’ve been doing to the engineering team for the past four months?” Joe: “Yes, but these are professionals.”
+Matt: (pause) ". . . Joe . . . what do you think we've been doing to the engineering team for the past four months?" Joe: "Yes, but these are professionals."
 
 Pause.
 
@@ -118,23 +116,23 @@ What. Did. Joe. Just. Say?
 
 At the time, I thought the technical staff were professionals, in the best sense of the word.
 
-Thinking back over it again, though, I’m not so sure.
+Thinking back over it again, though, I'm not so sure.
 
-Let’s look at that Batman and Robin technique a second time, from a different perspective. I thought I was exhorting the team to its best performance, but I suspect Joe was playing a game, with the implicit assumption that the technical staff was his opponent. Think about it: Why was it necessary to run around, kicking over chairs and leaning on people?
+Let's look at that Batman and Robin technique a second time, from a different perspective. I thought I was exhorting the team to its best performance, but I suspect Joe was playing a game, with the implicit assumption that the technical staff was his opponent. Think about it: Why was it necessary to run around, kicking over chairs and leaning on people?
 
-Shouldn’t we have been able to ask the staff when they would be done, get a firm answer, believe the answer we were given, and not be burned by that belief? Certainly, for professionals, we should . . . and, at the same time, we could not. Joe didn’t trust our answers, and felt comfortable micromanaging the tech team—and at the same time, for some reason, he did trust the legal team and was not willing to micromanage them.
+Shouldn't we have been able to ask the staff when they would be done, get a firm answer, believe the answer we were given, and not be burned by that belief? Certainly, for professionals, we should . . . and, at the same time, we could not. Joe didn't trust our answers, and felt comfortable micromanaging the tech team—and at the same time, for some reason, he did trust the legal team and was not willing to micromanage them.
 
-What’s that all about?
+What's that all about?
 
 Somehow, the legal team had demonstrated professionalism in a way the technical team had not.
 
 Somehow, another group had convinced Joe that they did not need a babysitter, that they were not playing games, and that they needed to be treated as peers who were respected.
 
-No, I don’t think it had anything to do with fancy certificates hanging on walls or a few extra years of college, although those years of college might have included a fair bit of implicit social training on how to behave.
+No, I don't think it had anything to do with fancy certificates hanging on walls or a few extra years of college, although those years of college might have included a fair bit of implicit social training on how to behave.
 
-Ever since that day, those long years ago, I’ve wondered how the technical profession would have to change in order to be regarded as professionals.
+Ever since that day, those long years ago, I've wondered how the technical profession would have to change in order to be regarded as professionals.
 
-Oh, I have a few ideas. I’ve blogged a bit, read a lot, managed to improve my own work life situation and help a few others. Yet I knew of no book that laid out a plan, that made the whole thing explicit.
+Oh, I have a few ideas. I've blogged a bit, read a lot, managed to improve my own work life situation and help a few others. Yet I knew of no book that laid out a plan, that made the whole thing explicit.
 
 Then one day, out of the blue, I got an offer to review an early draft of a book; the book that you are holding in your hands right now.
 
@@ -142,7 +140,7 @@ This book will tell step by step exactly how to present yourself and interact as
 
 In some cases, the examples are word for word.
 
-Some of those examples have replies, counter-replies, clarifications, even advice for what to do if the other person tries to “just ignore you.”
+Some of those examples have replies, counter-replies, clarifications, even advice for what to do if the other person tries to "just ignore you."
 
 Hey, look at that, here comes Joe again, stage left this time:
 
@@ -154,11 +152,11 @@ Instead of shirking from commitments, the technical staff actually makes them. I
 
 Now imagine that the staff is actually working together. When the programmers are blocked by operations, they pick up the phone and the sysadmin actually gets started on the work.
 
-When Joe comes by to light a fire to get ticket 14321 worked on, he doesn’t need to; he can see that the DBA is working diligently, not surfing the web. Likewise, the estimates he gets from staff seem downright consistent, and he doesn’t get the feeling that the project is in priority somewhere between lunch and checking email. All the tricks and attempts to manipulate the schedule are not met with, “We’ll try,” but instead, “That’s our commitment; if you want to make up your own goals, feel free.”
+When Joe comes by to light a fire to get ticket 14321 worked on, he doesn't need to; he can see that the DBA is working diligently, not surfing the web. Likewise, the estimates he gets from staff seem downright consistent, and he doesn't get the feeling that the project is in priority somewhere between lunch and checking email. All the tricks and attempts to manipulate the schedule are not met with, "We'll try," but instead, "That's our commitment; if you want to make up your own goals, feel free."
 
-After a while, I suspect Joe would start to think of the technical team as, well, professionals. And he’d be right.
+After a while, I suspect Joe would start to think of the technical team as, well, professionals. And he'd be right.
 
-Those steps to transform your behavior from technician to professional? You’ll find them in the rest of the book.
+Those steps to transform your behavior from technician to professional? You'll find them in the rest of the book.
 
 Welcome to the next step in your career; I suspect you are going to like it.
 
@@ -214,27 +212,27 @@ Joe 也不必大动干戈才能推进解决 14321 号问题；他可以看到 DB
 
 ## Preface
 
-At 11:39 am EST on January 28, 1986, just 73.124 seconds after launch and at an altitude of 48,000 feet, the Space Shuttle Challenger was torn to smithereens by the failure of the right-hand solid rocket booster (SRB). Seven brave astronauts, including high school teacher Christa McAuliffe, were lost. The expression on the face of McAuliffe’s mother as she watched the demise of her daughter nine miles overhead haunts me to this day.
+At 11:39 am EST on January 28, 1986, just 73.124 seconds after launch and at an altitude of 48,000 feet, the Space Shuttle Challenger was torn to smithereens by the failure of the right-hand solid rocket booster (SRB). Seven brave astronauts, including high school teacher Christa McAuliffe, were lost. The expression on the face of McAuliffe's mother as she watched the demise of her daughter nine miles overhead haunts me to this day.
 
 The Challenger broke up because hot exhaust gasses in the failing SRB leaked out from between the segments of its hull, splashing across the body of the external fuel tank. The bottom of the main liquid hydrogen tank burst, igniting the fuel and driving the tank forward to smash into the liquid oxygen tank above it. At the same time the SRB detached from its aft strut and rotated around its forward strut. Its nose punctured the liquid oxygen tank. These aberrant force vectors caused the entire craft, moving well above mach 1.5, to rotate against the airstream. Aerodynamic forces quickly tore everything to shreds.
 
 Between the circular segments of the SRB there were two concentric synthetic rubber O-rings. When the segments were bolted together the O-rings were compressed, forming a tight seal that the exhaust gasses should not have been able to penetrate.
 
-But on the evening before the launch, the temperature on the launch pad got down to 17°F, 23 degrees below the O-rings’ minimum specified temperature and 33 degrees lower than any previous launch. As a result, the O-rings grew too stiff to properly block the hot gasses. Upon ignition of the SRB there was a pressure pulse as the hot gasses rapidly accumulated. The segments of the booster ballooned outward and relaxed the compression on the O-rings. The stiffness of the O-rings prevented them from keeping the seal tight, so some of the hot gasses leaked through and vaporized the O-rings across 70 degrees of arc.
+But on the evening before the launch, the temperature on the launch pad got down to 17°F, 23 degrees below the O-rings' minimum specified temperature and 33 degrees lower than any previous launch. As a result, the O-rings grew too stiff to properly block the hot gasses. Upon ignition of the SRB there was a pressure pulse as the hot gasses rapidly accumulated. The segments of the booster ballooned outward and relaxed the compression on the O-rings. The stiffness of the O-rings prevented them from keeping the seal tight, so some of the hot gasses leaked through and vaporized the O-rings across 70 degrees of arc.
 
 The engineers at Morton Thiokol who designed the SRB had known that there were problems with the O-rings, and they had reported those problems to managers at Morton Thiokol and NASA seven years earlier. Indeed, the O-rings from previous launches had been damaged in similar ways, though not enough to be catastrophic. The coldest launch had experienced the most damage. The engineers had designed a repair for the problem, but implementation of that repair had been long delayed.
 
 The engineers suspected that the O-rings stiffened when cold. They also knew that temperatures for the Challenger launch were colder than any previous launch and well below the red-line. In short, the engineers knew that the risk was too high. The engineers acted on that knowledge. They wrote memos raising giant red flags. They strongly urged Thiokol and NASA managers not to launch. In an eleventh-hour meeting held just hours before the launch, those engineers presented their best data. They raged, and cajoled, and protested. But in the end, the managers ignored them.
 
-When the time for launch came, some of the engineers refused to watch the broadcast because they feared an explosion on the pad. But as the Challenger climbed gracefully into the sky they began to relax. Moments before the destruction, as they watched the vehicle pass through Mach 1, one of them said that they’d “dodged a bullet.”
+When the time for launch came, some of the engineers refused to watch the broadcast because they feared an explosion on the pad. But as the Challenger climbed gracefully into the sky they began to relax. Moments before the destruction, as they watched the vehicle pass through Mach 1, one of them said that they'd "dodged a bullet."
 
-Despite all the protest and memos, and urgings of the engineers, the managers believed they knew better. They thought the engineers were overreacting. They didn’t trust the engineers’ data or their conclusions. They launched because they were under immense financial and political pressure. They hoped everything would be just fine.
+Despite all the protest and memos, and urgings of the engineers, the managers believed they knew better. They thought the engineers were overreacting. They didn't trust the engineers' data or their conclusions. They launched because they were under immense financial and political pressure. They hoped everything would be just fine.
 
 These managers were not merely foolish, they were criminal. The lives of seven good men and women, and the hopes of a generation looking toward space travel, were dashed on that cold morning because those managers set their own fears, hopes, and intuitions above the words of their own experts. They made a decision they had no right to make. They usurped the authority of the people who actually knew: the engineers.
 
-But what about the engineers? Certainly the engineers did what they were supposed to do. They informed their managers and fought hard for their position. They went through the appropriate channels and invoked all the right protocols. They did what they could, within the system—and still the managers overrode them. So it would seem that the engineers can walk away without blame.
+But what about the engineers? Certainly the engineers did what they were supposed to do. They informed their managers and fought hard for their position. They went through the appropriate channels and invoked all the right protocols. They did what they could, within the system — and still the managers overrode them. So it would seem that the engineers can walk away without blame.
 
-But sometimes I wonder whether any of those engineers lay awake at night, haunted by that image of Christa McAuliffe’s mother, and wishing they’d called Dan Rather.
+But sometimes I wonder whether any of those engineers lay awake at night, haunted by that image of Christa McAuliffe's mother, and wishing they'd called Dan Rather.
 
 1986 年 1 月 28 日，美国东部时间上午 11:39，「挑战者」号航天飞机在发射仅 73.124 秒后，因右侧固体火箭推进器的故障，在 1.5 万米的高空化成碎片。7 名航天勇魂断苍穹，其中包括高中教师克丽斯塔·麦考利芙。麦考利芙的母亲目睹女儿在 1.5 万米高空中不幸罹难，当时她脸上的表情，至今印刻在我的心头无法拂去。
 
@@ -256,31 +254,31 @@ But sometimes I wonder whether any of those engineers lay awake at night, haunte
 
 ### About The Book
 
-This book is about software professionalism. It contains a lot of pragmatic advice in an attempt to answer questions, such as: 1) What is a software professional? 2) How does a professional behave? 3) How does a professional deal with conflict, tight schedules, and unreasonable managers? 4) When, and how, should a professional say “no”? 5) How does a professional deal with pressure?
+This book is about software professionalism. It contains a lot of pragmatic advice in an attempt to answer questions, such as: 1) What is a software professional? 2) How does a professional behave? 3) How does a professional deal with conflict, tight schedules, and unreasonable managers? 4) When, and how, should a professional say "no"? 5) How does a professional deal with pressure?
 
 But hiding within the pragmatic advice in this book you will find an attitude struggling to break through. It is an attitude of honesty, of honor, of self-respect, and of pride. It is a willingness to accept the dire responsibility of being a craftsman and an engineer. That responsibility includes working well and working clean. It includes communicating well and estimating faithfully. It includes managing your time and facing difficult risk-reward decisions.
 
-But that responsibility includes one other thing—one frightening thing. As an engineer, you have a depth of knowledge about your systems and projects that no managers can possibly have. With that knowledge comes the responsibility to act.
+But that responsibility includes one other thing — one frightening thing. As an engineer, you have a depth of knowledge about your systems and projects that no managers can possibly have. With that knowledge comes the responsibility to act.
 
 ## Acknowledgements
 
-My career has been a series of collaborations and schemes. Though I’ve had many private dreams and aspirations, I always seemed to find someone to share them with. In that sense I feel a bit like the Sith, “Always two there are.”
+My career has been a series of collaborations and schemes. Though I've had many private dreams and aspirations, I always seemed to find someone to share them with. In that sense I feel a bit like the Sith, "Always two there are."
 
 The first collaboration that I could consider professional was with John Marchese at the age of 13. He and I schemed about building computers together. I was the brains and he was the brawn. I showed him where to solder a wire and he soldered it. I showed him where to mount a relay and he mounted it. It was a load of fun, and we spent hundreds of hours at it. In fact, we built quite a few very impressive-looking objects with relays, buttons, lights, even Teletypes! Of course, none of them actually did anything, but they were very impressive and we worked very hard on them. To John: Thank you!
 
 In my freshman year of high school I met Tim Conrad in my German class. Tim was smart. When we teamed up to build a computer, he was the brains and I was the brawn. He taught me electronics and gave me my first introduction to a PDP-8. He and I actually built a working electronic 18-bit binary calculator out of basic components. It could add, subtract, multiply, and divide. It took us a year of weekends and all of spring, summer, and Christmas breaks. We worked furiously on it. In the end, it worked very nicely. To Tim: Thank you!
 
-Tim and I learned how to program computers. This wasn’t easy to do in 1968, but we managed. We got books on PDP-8 assembler, Fortran, Cobol, PL/1, among others. We devoured them. We wrote programs that we had no hope of executing because we did not have access to a computer. But we wrote them anyway for the sheer love of it.
+Tim and I learned how to program computers. This wasn't easy to do in 1968, but we managed. We got books on PDP-8 assembler, Fortran, Cobol, PL/1, among others. We devoured them. We wrote programs that we had no hope of executing because we did not have access to a computer. But we wrote them anyway for the sheer love of it.
 
 Our high school started a computer science curriculum in our sophomore year. They hooked up an ASR-33 Teletype to a 110-baud, dial-up modem. They had an account on the Univac 1108 time-sharing system at the Illinois Institute of Technology. Tim and I immediately became the de facto operators of that machine. Nobody else could get near it.
 
-The modem was connected by picking up the telephone and dialing the number. When you heard the answering modem squeal, you pushed the “orig” button on the Teletype causing the originating modem to emit its own squeal. Then you hung up the phone and the data connection was established.
+The modem was connected by picking up the telephone and dialing the number. When you heard the answering modem squeal, you pushed the "orig" button on the Teletype causing the originating modem to emit its own squeal. Then you hung up the phone and the data connection was established.
 
-The phone had a lock on the dial. Only the teachers had the key. But that didn’t matter, because we learned that you could dial a phone (any phone) by tapping out the phone number on the switch hook. I was a drummer, so I had pretty good timing and reflexes. I could dial that modem, with the lock in place, in less than 10 seconds.
+The phone had a lock on the dial. Only the teachers had the key. But that didn't matter, because we learned that you could dial a phone (any phone) by tapping out the phone number on the switch hook. I was a drummer, so I had pretty good timing and reflexes. I could dial that modem, with the lock in place, in less than 10 seconds.
 
 We had two Teletypes in the computer lab. One was the online machine and the other was an offline machine. Both were used by students to write their programs. The students would type their programs on the Teletypes with the paper tape punch engaged. Every keystroke was punched on tape. The students wrote their programs in IITran, a remarkably powerful interpreted language. Students would leave their paper tapes in a basket near the Teletypes.
 
-After school, Tim and I would dial up the computer (by tapping of course), load the tapes into the IITran batch system, and then hang up. At 10 characters per second, this was not a quick procedure. An hour or so later, we’d call back and get the printouts, again at 10 characters per second. The Teletype did not separate the students’ listings by ejecting pages. It just printed one after the next after the next, so we cut them apart using scissors, paper-clipped their input paper tape to their listing, and put them in the output basket.
+After school, Tim and I would dial up the computer (by tapping of course), load the tapes into the IITran batch system, and then hang up. At 10 characters per second, this was not a quick procedure. An hour or so later, we'd call back and get the printouts, again at 10 characters per second. The Teletype did not separate the students' listings by ejecting pages. It just printed one after the next after the next, so we cut them apart using scissors, paper-clipped their input paper tape to their listing, and put them in the output basket.
 
 Tim and I were the masters and gods of that process. Even the teachers left us alone when we were in that room. We were doing their job, and they knew it. They never asked us to do it. They never told us we could. They never gave us the key to the phone. We just moved in, and they moved out—and they gave us a very long leash. To my Math teachers, Mr. McDermit, Mr. Fogel, and Mr. Robien: Thank you!
 
@@ -296,15 +294,15 @@ Then I went to work at Teradyne where I met Russ Ashdown, Ken Finder, Bob Copith
 
 Then there was Mike Carew. At Teradyne, he and I became the dynamic duo. We wrote several systems together. If you wanted to get something done, and done fast, you got Bob and Mike to do it. We had a load of fun together. Thanks, Mike!
 
-Jerry Fitzpatrick also worked at Teradyne. We met while playing Dungeons & Dragons together, but quickly formed a collaboration. We wrote software on a Commodore 64 to support D&D users. We also started a new project at Teradyne called “The Electronic Receptionist.” We worked together for several years, and he became, and remains, a great friend. Thanks, Jerry!
+Jerry Fitzpatrick also worked at Teradyne. We met while playing Dungeons & Dragons together, but quickly formed a collaboration. We wrote software on a Commodore 64 to support D&D users. We also started a new project at Teradyne called "The Electronic Receptionist." We worked together for several years, and he became, and remains, a great friend. Thanks, Jerry!
 
 I spent a year in England while working for Teradyne. There I teamed up with Mike Kergozou. He and I schemed together about all manner of things, though most of those schemes had to do with bicycles and pubs. But he was a dedicated programmer who was very focused on quality and discipline (though, perhaps he would disagree). Thanks, Mike!
 
 Returning from England in 1987, I started scheming with Jim Newkirk. We both left Teradyne (months apart) and joined a start-up named Clear Communications. We spent several years together there toiling to make the millions that never came. But we continued our scheming. Thanks, Jim!
 
-In the end we founded Object Mentor together. Jim is the most direct, disciplined, and focused person with whom I’ve ever had the privilege to work. He taught me so many things, I can’t enumerate them here. Instead, I have dedicated this book to him.
+In the end we founded Object Mentor together. Jim is the most direct, disciplined, and focused person with whom I've ever had the privilege to work. He taught me so many things, I can't enumerate them here. Instead, I have dedicated this book to him.
 
-There are so many others I’ve schemed with, so many others I’ve collaborated with, so many others who have had an impact on my professional life: Lowell Lindstrom, Dave Thomas, Michael Feathers, Bob Koss, Brett Schuchert, Dean Wampler, Pascal Roy, Jeff Langr, James Grenning, Brian Button, Alan Francis, Mike Hill, Eric Meade, Ron Jeffries, Kent Beck, Martin Fowler, Grady Booch, and an endless list of others. Thank you, one and all.
+There are so many others I've schemed with, so many others I've collaborated with, so many others who have had an impact on my professional life: Lowell Lindstrom, Dave Thomas, Michael Feathers, Bob Koss, Brett Schuchert, Dean Wampler, Pascal Roy, Jeff Langr, James Grenning, Brian Button, Alan Francis, Mike Hill, Eric Meade, Ron Jeffries, Kent Beck, Martin Fowler, Grady Booch, and an endless list of others. Thank you, one and all.
 
 Of course, the greatest collaborator of my life has been my lovely wife, Ann Marie. I married her when I was 20, three days after she turned 18. For 38 years she has been my steady companion, my rudder and sail, my love and my life. I look forward to another four decades with her.
 
@@ -330,7 +328,7 @@ Tim 和我自学了计算机编程，在 1968 年，这并不是件容易的事�
 
 课后，Tim 和我会拔通计算机（当然是通过敲打又簧的方式拔通的），把纸带加载到 Itran 批处理系统里，然后挂断电话。载入速度大概是每秒 10 个字母吧，这个过程井不快。大概一小时后，我们会回拨电话，接收打印内容，这次仍然是每秒 10 个字母。电传打字机无法根据学生姓名分页返回结果列表。它只能一页接一页不断地打出返回结果。因此，我们需要用剪刀把返回的打印结果剪开，用夹子把输入纸带和结果列表夹在一起，再放到专门装输出结果的篮子里。
 
-Tim 和我成了此道达人。甚至连老师们看到我们在那个房间里也不会来过问。我们其实有点越界了，他们对此也很清楚，因为他们从未要求我们这么做，也从没说我们可以这么做，更没给过我们电话的钥匙。我们悄悄进去，他们默契离开一一放手让我们去做。在此，向我的数学老师 Mcdermita 先生、Fogel 先生和 Robien 先生一并说声：「谢谢你们」。
+Tim 和我成了此道达人。甚至连老师们看到我们在那个房间里也不会来过问。我们其实有点越界了，他们对此也很清楚，因为他们从未要求我们这么做，也从没说我们可以这么做，更没给过我们电话的钥匙。我们悄悄进去，他们默契离开 一一 放手让我们去做。在此，向我的数学老师 Mcdermita 先生、Fogel 先生和 Robien 先生一并说声：「谢谢你们」。
 
 做完作业之后，我们就开始玩了。我们会一个程序接一个程序地写着玩，极尽疯狂之能事。我们在电传打字机上编写能够使用 ASCI 绘制圆形和抛物线的程序。我们编写随机漫步程序和随机文字生成程序。我们将 50 的阶乗算到最后一位。我们乐此不疲地想出各种编程题目，井努力用程序实现。
 
@@ -344,13 +342,13 @@ Jerry Fitzpatrick 也是我在 Teradyne 时的同事，我们是在玩「龙与�
 
 在 Teradyne 时，我曾在英国工作过一年。在那儿我和 Mike Kergozou 搭档，期间所有事情我们几乎都是两人一起筹划的，虽然这些事情大部分与自行车和酒吧分不开。Mike 是个十分勤勉的程序员，注重质量和原则（不过，或许他自己可能不会认同这样的评价）。谢谢你，Mike!
 
-1987 年从英国回来后，我开始和 Jim Newkir 搭档。我们都离开了 Teradyne（前后相隔几个月），加入了一家新创公司 Clear Communication。我们在那里一起努力拼了好几年，却一直没能成就财富梦想。但是，我们还是力前行。谢谢你，Jim。最终我们一起创办了 Object Mentor 公司。在所有我有幸共事过的人中，Jim 是最率直、最严谨和最专注的。他教会我许多事情，内容之多无法在此一一列举。为此，我谨将本书题献给他！
+1987 年从英国回来后，我开始和 Jim Newkir 搭档。我们都离开了 Teradyne（前后相隔几个月），加入了一家新创公司 Clear Communication。我们在那里一起努力拼了好几年，却一直没能成就财富梦想。但是，我们还是力前行。谢谢你，Jim。最终我们一起创办了 Object Mentor 公司。在所有我有幸共事过的人中，Jim 是最率直、最严谨和最专注的。他教会我许多事情，内容之多无法在此 一一 列举。为此，我谨将本书题献给他！
 
 当然，我亲爱的妻子 Ann Marie 是我最好的人生搭档。我 20 岁时和 Ann 结婚，那时她的 18 岁生日刚过去 3 天。38 年来，她一直是我坚定不移的伴侣，是我的舵，我的帆，也是我的爱与生命。我期待同她携手再走 40 年。现在，我的合作伙伴和搭档则是我的孩子们。我和大女儿 Angela 合作紧密，她是我可爱的小保姆和坚强的助手，她让我在专注前行的同时，不会错过一个约会或是遗忘任何承诺。我和儿子 Micah 也是业务上的搭档。他创办了 8thlight.com，他的商业头脑远胜于年轻时的我。我们新近的合作事业 cleancoders.com 令人激动！我的小儿子 Justin 刚刚开始加入 Micah！的 8th Light。我的小女儿 Gina 是霍尼韦尔的化学工程师。他们的事业刚刚拉开序幕！
 
 ## About The Author
 
-Robert C. Martin (“Uncle Bob”) has been a programmer since 1970. He is founder and president of Object Mentor, Inc., an international firm of highly experienced software developers and managers who specialize in helping companies get their projects done. Object Mentor offers process improvement consulting, object-oriented software design consulting, training, and skill development services to major corporations worldwide. Martin has published dozens of articles in various trade journals and is a regular speaker at international conferences and trade shows. He has authored and edited many books, including:
+Robert C. Martin ("Uncle Bob") has been a programmer since 1970. He is founder and president of Object Mentor, Inc., an international firm of highly experienced software developers and managers who specialize in helping companies get their projects done. Object Mentor offers process improvement consulting, object-oriented software design consulting, training, and skill development services to major corporations worldwide. Martin has published dozens of articles in various trade journals and is a regular speaker at international conferences and trade shows. He has authored and edited many books, including:
 
 • Designing Object Oriented C++ Applications Using the Booch Method
 
@@ -370,11 +368,11 @@ A leader in the industry of software development, Martin served for three years 
 
 2『 Bob 大叔，做一张人名卡片。』——已完成
 
-## 译者序——享受职业素养
+## 译者序 —— 享受职业素养
 
 我在招聘中经常会问：「在你过去的工作中，遭遇过哪些印象深刻的困难，最后是怎么解决的？」依我的经验，简历写得再漂亮的人，如果这个问题答不好，大都可以直接忽略。为什么会有这种结论？因为我们需要招聘的不是「经历丰富的人，而是「有职业素养」的人。你遇到的问题可能很容易也可能很难，但我看重的并不是问题的难度，而是解决问题的方式、步骤以及反思的程度。恢复误删数据，对很多人来说这是非常简单的任务。我更感兴趣的是怎样分析问题，找了怎样的资料，采取了怎样的步骤，此后做了哪些措施来避免这种错误再次出现。在我看来，与问题本身的难度相比，解问题的方式、步骤以及反思的程度，才能体现出一个人的职业素养。
 
-是的，上面我两次提到了「职业素养」。相比起「专业主义」「职业化」等说法，我更喜欢用它来翻译 Professionalism，因为素养强调的并不是天赋的神秘，也不是技艺的高深，而是持续积淀的结晶方面，它体现了能力和素质；另一方面，它又强调了持续的积累和养成。作为职员，基本技能不够练，当然谈不上职业素养。但是仅仅能迅速地编写代码，却不关心代码背后的意义，不能迅速判断、解决程序运行中的各种题，不能自信满满地为自己交付的程序承担责任，同样是与职业素绝缘的一一许多所谓的高手，正是缺乏职业素的典型。
+是的，上面我两次提到了「职业素养」。相比起「专业主义」「职业化」等说法，我更喜欢用它来翻译 Professionalism，因为素养强调的并不是天赋的神秘，也不是技艺的高深，而是持续积淀的结晶方面，它体现了能力和素质；另一方面，它又强调了持续的积累和养成。作为职员，基本技能不够练，当然谈不上职业素养。但是仅仅能迅速地编写代码，却不关心代码背后的意义，不能迅速判断、解决程序运行中的各种题，不能自信满满地为自己交付的程序承担责任，同样是与职业素绝缘的 一一 许多所谓的高手，正是缺乏职业素的典型。
 
 这只是我对于「职业素养」的理解。由个体经验总结的「职业素养」，多有一半爪的嫌疑，所以即便你认同上面的观点，也难免感觉「只见树木，不见森林」。其实真正的「职业素养」绝不限于上述几方面，而是要广阔得多，深刻得多。要想一技术人员「职业素养」的全貌，已经有很多现成的资料可以参考，本书就是其中的佼佼者。
 
@@ -386,13 +384,13 @@ A leader in the industry of software development, Martin served for three years 
 
 有时候，获取正确决策的唯一途径，便是勇敢无地说出「不」字… 我们要明白，委屈专业原则以求全，并不是问题的解决之道。弃这些原则，只会制造出更多的麻烦。
 
-对我来说，这段话堪称振发聩。而且，这种思维，这种视角，其实是许多技术人员所不屑或者不愿面对的一一最初我也这么认为，但尝试在工作中主动说了几次「不」之后，我逐渐发现：花三分的力气去抵制无理的需求，可以节省十分甚至二十分的开发时间；相反，自欺人地说服自己湊合接受了无理需求，往往会非常被动乃至无法脱身，到最后，项目就落得著名的 BMOS/360 操作系统的下场，越挣扎，巨兽在泥潭中就陷得越深。
+对我来说，这段话堪称振发聩。而且，这种思维，这种视角，其实是许多技术人员所不屑或者不愿面对的 一一 最初我也这么认为，但尝试在工作中主动说了几次「不」之后，我逐渐发现：花三分的力气去抵制无理的需求，可以节省十分甚至二十分的开发时间；相反，自欺人地说服自己湊合接受了无理需求，往往会非常被动乃至无法脱身，到最后，项目就落得著名的 BMOS/360 操作系统的下场，越挣扎，巨兽在泥潭中就陷得越深。
 
 要学习这样的道理，当然也可以参加培训班，听取授课或者读讲义，但那未免太显正经而缺乏亲和力。Bob 大叔的特别之处在于，他总是可以通过浅显易的故事，清晰而敏锐地揭示问题的核心阅读过程中常会会心一笑，因为遇到了开发人员都懂的妙趣，比如费尽全力也是徒劳，无法让其他人理解「编辑程序的程序」。笑过之后，又会明白许多道理——无法让其他理解「编辑程序的程序」并不是真正的原因，真正的原因是：客户......对功能的设想，其实经不起电脑前真刀真枪的考验。问题在于，东西画在纸上与真正做出来是不一样的。业务方看到真正的运行情况时就会意识到，自己想要的根本不是这样。一看到已经满足的需求，关于到底要什么，他们就会冒出更好的想法——通常并不是他们当时看到的样子。真正的解办法，是约定共同认可的验收测试标准，并在开发过程中保持沟通。以我的经验来看，这一点是说得非常对的。我曾经尝试在与业务部门确定目标原型之后，要求对方指派对接人在 IT 部坐班，负责协商、跟进整个开发流程，确认每一点修改。这样既保证最终结果符合业务部门的需求，又提高了开发人员的工作效率，综合来看成效非常显著。
 
 类似的例子还有很多，在阅读这本书时，我经常会惋惜：如果早一点读到这本书，或许我之前就不会犯这样那样的错误，就能更早更好地积累自己的职业素养。况且能有妙趣橫生的书讲述看似枯燥的「职业素养」，对读者来说，又是一种幸运。德国作家托玛斯曼曾经津津乐道于「斜躺在沙发上整天阅读叔本华」的美妙感觉，那是因为叔本华的文笔优美、流畅，可以把哲学变为惬意的享受。作为同时读过叔本华和 Bob 大叔的人，我想说，斜躺在沙发上整天阅读《程序员的业素养》，认识和了解开发人员的职业素养，同样是相当惬意的享受。
 
-## 译者序 2——负阴抱阳，知行合
+## 译者序 2 —— 负阴抱阳，知行合
 
 师者，所以传道授业解也。Robert C. Martin，软件开发社区中亲切地称他为 Bob 大叔，正是这样一位明师。2003 年，他的《敏捷软件开发：原则、模式与实践》（下称 ASD）在国内上市。我那时进入软件开发行业刚刚一两年，这本书真可谓是及时雨。在精读全书和细心对照书中案例练习后，我感觉自己在面向对象设计方面的功力有了比较明显的提升。那时因工作环境所限，身边没有能够手把手给予技术辅导的导师，因此，那时在我心中 Bob 大叔无疑就是一盏指路明灯。后来在网上找到了不少 Bob 大叔的演讲 PPT，沿着链接，又找到了 Object Mentor 公司其他一些软件开发专家的演讲 PPT 和博客，我如饥似渴地阅读揣摩。现在回头想来，正是在这个阶段我开始建立起「编程技艺」的视角。
 
