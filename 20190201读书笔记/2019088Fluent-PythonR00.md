@@ -57,8 +57,3 @@ This book is not an A-to-Z exhaustive reference of Python. Its emphasis is on th
 1『这本书的内容只涉及 Python 独有的语言特性以及其内置包。』
 
 If you are just learning Python, this book is going to be hard to follow. Not only that, if you read it too early in your Python journey, it may give you the impression that every Python script should leverage special methods and metaprogramming tricks. Premature abstraction is as bad as premature optimization.
-
-
-
-
-

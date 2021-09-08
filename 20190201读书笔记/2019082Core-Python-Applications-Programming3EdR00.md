@@ -50,7 +50,7 @@ What does "as few repetitions as possible" mean? When patternmatching is employe
 
 总体看下来，觉得这书其实不错：几乎涵盖了 Python 所有主流的应用情景，如果是紧急项目很有可能通过此书来简单地快速开发；作者对代码和 API 讲解也容易弄懂。因为同样的应用场景我在 Java 下做过开发，很容易理解，不过真心不推荐初学者食用该书，概念性的东西作者一笔带过，把重点放在项目的开发（比如网络协议还没搞懂，上来直接就套接字编程），而且可惜的是因为涉及的方面过多因此都没有达到「入门」水准，广而不精。
 
-## PREFACE
+## Preface
 
 The changes brought about in version 3.x continue the trend of iterating and improving the language, taking a larger step toward removing some of its last major flaws, and representing a bigger jump in the continuing evolution of the language. Similarly, the structure of the book is also making a rather significant transition. Due to its size and scope, Core Python Programming as it has existed wouldn’t be able to handle all the new material introduced in this third edition.
 
