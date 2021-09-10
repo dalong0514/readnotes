@@ -2,6 +2,10 @@
 
 ## 目录
 
+0401产生新事物
+
+0501经验的启示
+
 ## 0401. 产生新事物
 
 尽管还有很多问题悬而未决，但是适应理论把与老想法、老实务、老形式或老产品生存繁衍过程有关的效率和意外处理得相当好（Cyert and March 1963；March 1988，第 8 章；1994；1999a，第 15 章；Nelson and Winter 1982；Hannan and Freeman 1989；Cohen and Sproull 1996；March，Schulz，and Zhou 2000；Hodgkinson and Starbuck 2008）。适应理论对创造、利用并保护新想法、新实务、新形式或新产品免遭淘汰的探索过程处理得不太好（Becker，Knudsen，and March 2006）。后面这个过程以及有关这一过程的理念构成了新事物理论的雏形，是本章的讨论焦点。

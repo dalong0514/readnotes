@@ -1,9 +1,5 @@
 ## 记忆时间
 
-0101创新技术
-
-## 目录
-
 ## 0101. 创新技术
 
 Technology of Creativity
