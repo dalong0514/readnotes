@@ -761,7 +761,7 @@ We asked them each to submit a brief essay on the meaning of this book to their 
 
 我们邀请他们每位提供一篇短文，来介绍本书对于他们生活的意义。下面是他们对本书及其作者的致词原文。
 
-### Boris Zlotin
+### 01. Boris Zlotin
 
 The history of the human race is the history of men who take control over their lives and destiny.
 
@@ -817,7 +817,7 @@ boris zlotin，书籍如下：
 
 鲍里斯·斯洛提先生是 Ideation International 公司的首席科学家。他著有 10 本关于 TRIZ 的书，其中 3 本是与根里奇·阿奇舒勒先生合写的。他还发表了 100 多篇 TRIZ 方面的文章，也是国际 TRIZ 协会委员会的成员之一。
 
-## Simon Litvin
+### 02. Simon Litvin
 
 The Word that Became Action: About G. Altshuller's The Innovation Algorithm
 
@@ -853,7 +853,7 @@ Simon Litvin is Vice President of Pragmatic Vision, Inc., and a Member of the Co
 
 2『已下载书籍「2021143Engineering-of-Creativity」，作者是 Semyon D. Savransky，感觉就是「西蒙·利特温」，待验证。（2021-08-22）』—— 未完成
 
-## Victor Fey
+### 03. Victor Fey
 
 I once asked Altshuller what helped him endure the years of horrifying and humiliating conditions in the GULAG's concentration camps: 12-hour working days, starvation, cold weather, lack of elementary sanitary settings, diseases, taunts by wardens.
 
@@ -969,7 +969,7 @@ Victor R. Fey is a Managing Partner of The TRIZ Group, and Adjunct Professor of 
 
 ## 附录 A —— 矛盾矩阵和 40 个发明原理
 
-### A1：予盾矩阵的应用
+### A1：矛盾矩阵的应用
 
 列夫·舒利亚克：用一个例子来看如何循序渐进地应用矛盾矩阵。
 
