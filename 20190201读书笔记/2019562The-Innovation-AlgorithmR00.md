@@ -589,7 +589,63 @@ Anova Global 的创始人 Paul Babbitt 和 Wenling Babbitt 夫妇一直致力于
 
 2008 年 3  周 24 日
 
-## 英文版译者前言
+## Preface: by Way of Introduction
+
+There have been many milestones in the development and spread of TRIZ since we published our last translation, 40 Principles, early in 1998. But they all pale beside one event:
+
+On September 24, 1998, Genrich Saulovich Altshuller, after a prolonged illness, passed away.
+
+This news shocked everyone who knew him personally, and knew of him through his work. We take some heart in knowing that the Master got to see the emergence of his brainchild from the Russian「underground」into the seeds of a world-wide phenomenon. Our first Altshuller translation, And Suddenly the Inventor Appeared, in less than five years, has been translated into Spanish, Japanese, Chinese and Korean. It has been reprinted around the world, and is about to enter its fourth printing in America. In the meantime, knowledge of TRIZ has spread throughout the world, and the word「TRIZ」itself has become synonymous with contemporary innovation. And, significantly, the Altshuller Institute for TRIZ Studies is now a reality — something that greatly pleased its namesake.
+
+Today, thousands of people are learning TRIZ, opening many new avenues for application to all areas of human activity. Besides its traditional technological use, TRIZ is entering management, marketing, art, education, psychology, and other diverse fields. As it grows, TRIZ can provide unprecedented opportunities to solve the problems most threatening to our species and our planet.
+
+Thankfully, the founder of this phenomenal science lived to see these results of his heroic life's effort. We are confident that someday Genrich Altshuller's name will be carved among those of all the great individuals who shaped human destiny.
+
+As the story of TRIZ continues to spread, Western readers are demanding more of Altshuller's original writings, particularly his fundamental texts created during that period when TRIZ philosophy began taking shape as a science. In response, we have committed the Technical Innovation Center to continue translating and publishing as much of his work as possible.
+
+The book you hold in your hands, The Innovation Algorithm, is a landmark TRIZ text. First published in 1969, a second highly-reworked edition followed in 1973. With this book Altshuller lays-out the foundation of TRIZ theory and methodology, and walks the reader through ARIZ, the carefully crafted algorithm for realizing TRIZ's immense problem-solving powers.
+
+While translating this edition, we were fascinated — and astonished by the depth and philosophical foundation of Altshuller's work. Thirty-five years after its first appearance, his concept of technical creativity has not only continued to be applicable, but has become a more powerful tool for the rapid and efficient solving of technical problems. This proves the strength of the foundation Altshuller constructed with ARIZ in this book.
+
+The Innovation Algorithm is divided into three sections. In the first,「Technology of Creativity,」Altshuller analyzes different existing methods of technical creativity along with their supporting philosophies. He concludes that humanity needs new, more effective tools and guidance for innovation. He proposes that, since people can be trained to become doctors or musicians, they can also be trained to be innovative. Analyzing huge quantities of available data, Altshuller determines that there are fundamental, typical tools and principles that everyone can learn to assist them in creativity and innovation. With these initial skill-sets, humanity can achieve increasing innovative abilities. The first section ends with his vision of the Ideal System, and the types of contradictions that always arise blocking the achievement of its Ideal Final Result. The key is to learn how to overcome these typical, ubiquitous road blocks.
+
+In the second section,「Dialectics of Invention,」Altshuller provides us with that key — a new approach to solving inventive problems — called ARIZ (the Russian acronym for, 'Algorithm of Inventive Problem Solving'). This step-by-step process provides precise problem definitions while guiding the user towards an ideal solution concept. In addition, Altshuller explains the 40 Principles that can resolve many technical contradictions without compromise.
+
+The last part of the book,「Man and Algorithm,」describes the main obstacles to creativity — psychological barriers — and how to overcome them through cultivating「TRIZ mind」— a higher creative consciousness.
+
+This, in our opinion, all adds up to a book which is a scientific marvel of the 20th Century.
+
+Translation of the text from Altshuller's native Russian was a somewhat difficult task. Altshuller's writing style is more like that of a novelist than a scientist. His text is packed with idioms whose meanings are mainly understood only in Russian. In fact, some Russian TRIZ experts expressed the view that it is impossible to translate Altshuller into other languages. We took the challenge while attempting to preserve the original flavor of Altshuller's writing. However, this was a lengthy and exacting process that took over a year to complete.For those interested in such things, we divided the process into the following steps:
+
+1 Lev made a rough translation.
+
+2 Steve rewrote this into as close an English interpretation as possible.
+
+3 Lev verified the accuracy of Steve's interpretation, making corrections when needed.
+
+3 Together, both retranslated questionable passages to ensure their proper meaning.
+
+4 Steve produced a final edited draft.
+
+5 Richard Langevin read this draft for「errors in logic.」
+
+6 Robyn Cutler performed extensive proofreading.
+
+7 Both Lev and Steve reviewed the final document.
+
+Consequently, all credit for what does work should go directly to Mr. Altshuller; all responsibility for what does not must revert to Mr. Shulyak and Mr. Rodman.
+
+Finally, we all hope that the reader will thoroughly enjoy this book, and become ignited by the power of this new process for mastering technical creativity.
+
+Lev Shulyak & Steve Rodman January, 1999
+
+We would like to express our deepest gratitude to the following people:
+
+Robyn Cutler, Lidya Shulyak, Victor Fey, Simon Litvin, Boris Zlotin, Leonid Lerner, Richard Langevin, Isak Bukhman, Larry Abramoff, Jampa Dhondup, Thinley Dhargay, and Peter Thuse (Commonwealth Printing), Peter Geraty (Praxis Bindery), & Bookcrafters, Inc.
+
+For the Master (1926-1998)
+
+英文版译者前言
 
 自从 1998 年初英文版译作《40 个发明原理》出版之后，在 TRIZ 的发展和推广过程中，发生了许多里程碑式的事件。但是，所有这些成就，在一件事情面前显得那么苍白：1998 年 9 月 24 日，根里奇·斯拉维奇·阿奇舒勒（Genrich Saulovich Altshuller）在久病之后永远地离开了我们。
 
@@ -643,7 +699,33 @@ Anova Global 的创始人 Paul Babbitt 和 Wenling Babbitt 夫妇一直致力于
 
 1999 年 1 月
 
-## 三个问题
+## Three Questions
+
+A Short Interview with Genrich Altshuller, Summer, 1998
+
+While preparing our translation of this book, we approached Genrich Altshuller with a proposal that he submit a special introduction for inclusion in the book. This would give him the opportunity to personnally address his many new readers in the west, and perhaps express to them his hopes — and concerns — for the future development of his brainchild, TRIZ.
+
+Mr. Altshuller enthusiastically agreed. However, because of his ill health, he indicated that we should write the introduction for him. We were both dubious about this until it was proposed that an interview with Mr. Altshuller be conducted, and an introduction composed from his responses. The tone would be humanistic and philosophical, rather than technical, in keeping with the direction of his later work.
+
+So, about mid-summer 1998, we sent Mr. Altshuller three general questions. The plan was to propose broad topics for his consideration and response. Then, subsequent question and answer sessions would flesh-out his ideas.
+
+Unfortunately, the universe had other plans.
+
+All that exists now is his initial response to our first broad-topic questions. Out of deep respect and affection for Mr. Altshuller, they are printed here.
+
+Question 1: What do you think the long-term effect of TRIZ might be on the wellfare of humanity?
+
+Of course, I would like to answer this in an optimistic spirit. However, the history of science and technology does not give us a very consoling forecast. The social well-being, the social relationship between good and evil, has little to do with levels of science and technology — even if this may seem paradoxical.
+
+Question 2: What are some important future applications of TRIZ beyond technical systems?
+
+This is a very interesting question. Scientists and inventors hold onto their illusions for a long time. Sometimes, a new search is only made in areas where conventional science and technology spin their wheels. The same happened a while back with the Great Breakthrough to the Poles. 'What can we gain from reaching the North Pole? It is just an empty place.' It is just an empty place with worthless ice. However, almost all technology — along with a significant amount of scientific research — is connected, in one way or another, to the Great Breakthrough to the Poles. Later, many of these 'worthless' discoveries and inventions were used in general technology.
+
+Question 3: Widespread application of TRIZ will undoubtably lead to a technological explosion. Is this good, or bad?
+
+This is neither good nor bad. It is inevitable. If people can create a strong theory that allows for understanding the "technological explosion," then they will live in a crazy, but exciting and interesting world. If the "technological explosion" becomes uncontrollable mankind will face a sad epoch.
+
+三个问题
 
 1998 年夏，与根里奇·阿奇舒勒先生的短暂会晤。
 
@@ -657,25 +739,51 @@ Anova Global 的创始人 Paul Babbitt 和 Wenling Babbitt 夫妇一直致力于
 
 现在仅存的是他对这些广泛议题的最初答复。出于对阿奇舒勒先生深深的尊敬和爱戴，我们把它附在这里。
 
-### 问题 1：TRIZ 对人类福祉有什么长期影响？
+问题 1：TRIZ 对人类福祉有什么长期影响？
 
 当然，我愿意本着乐观主义精神回答这个问题，不过科学技术的历史并未给我们一个非常令人欣慰的预测。社会安宁、善良与邪恶之间的社会关系与科学技术水平的高低几乎毫无关联，尽管这看起来可能很荒谬。
 
-### 问题 2：未来 TRIZ 在技术系统之外会有什么重要的应用？
+问题 2：未来 TRIZ 在技术系统之外会有什么重要的应用？
 
 这是一个很有趣的问题。长期以来科学家和发明家抱着他们的幻想不变，有时新的探索只能诞生在传统科学和技术裹足不前的领域。不久前在人类征服极地的伟大壮举中，这样的事情就发生了。「到北极去，我们能得到什么好处？那儿啥也没有。」除了没用的冰，别无他物。不过，几乎所有的技术和大量的科学研究，从某种意义上讲与征服极地的壮举相似。后来，许多这样「没有价值」的发现和发明在技术中得到了普遍应用。
 
-### 问题 3：TRIZ 的广泛应用无疑将导致技术爆炸，这是好还是坏呢？
+问题 3：TRIZ 的广泛应用无疑将导致技术爆炸，这是好还是坏呢？
 
 不好也不坏。这是不可避免的。如果人们能够创造一个强大的理论，通过这个理论人们能更好地理解「技术爆炸」，那么他们就会生活在一个疯狂但令人激动和有趣的世界里。如果「技术爆炸」变得不可控，人类将面临一个悲惨时代。
 
-## 三个致词
+## Three tributes
+
+Victor Fey, Boris Zlotin and Simon Litvin were all designated「TRIZ Masters」in September, 1998 by TRIZ's father, Genrich Altshuller. They were three of Mr. Alshuller's closest associates, and were all profoundly influenced by The Innovation Algorithm upon first encountering it in their native Russian.
+
+We asked them each to submit a brief essay on the meaning of this book to their lives. As both a tribute to this book and its author, their responses follow:
 
 维克托·菲、鲍里斯·斯洛提和西蒙·利特温在 1998 年 9 月，被 TRIZ 之父阿奇舒勒先生授予「TRIZ 大师」。他们都是阿奇舒勒先生交情深厚的同事，自从第一次看到本书的俄文版，就被它深深打动。
 
 我们邀请他们每位提供一篇短文，来介绍本书对于他们生活的意义。下面是他们对本书及其作者的致词原文。
 
-### 致词 1：鲍里斯·斯洛提
+### Boris Zlotin
+
+The history of the human race is the history of men who take control over their lives and destiny.
+
+Agriculture provides enough food for constantly growing populations. Industry helped reduce dependence upon climate and natural disasters. The ability to write and publish, and now computers, provides an effective knowledge exchange and utilization. Today, there are many effective means to satisfy all the basic requirements of the human race except the most important one — forecasting the future of technical evolution. For thousands of years people have tried to control their destiny, to shape it by their vision. However, they were missing the knowledge to forecast what would happen, to overcome contradictions, to solve scientific and technical problems for the realization of their vision.
+
+Control of the future becomes possible through development of the Theory of Solving Inventive Problems (TRIZ), created by Genrich Altshuller — the genius of such a level that is born only once in each Century.
+
+More than 50 years ago, in 1946, at the age of 20, Genrich decided to think-out a methodology of inventiveness that would give any person the ability to become more creative. His name for this methodology constantly changed. At first, Altshuller called it「Algorithm of Innovation,」then「The Algorithm of Solving Inventive Problems,」then the「Theory of Solving Inventive Problems」(TRIZ). Its contents constantly expanded. Today, TRIZ is the theory of the evolution of technical and non-technical systems, where inventiveness is one important part together with the methodology of forecasting, solution of scientific problems, methodology of creativity training, and so on. Today, thousands of people around the world use TRIZ. This snowball effect (a human avalanche) was triggered by one person — Genrich Altshuller.
+
+The book you are holding in your hands became a milestone in TRIZ development. This is not the first, nor the last, book written by Altshuller on the subject of inventiveness. However, this is a very special book. Many tools described in it have been surpased. It does not have the laws of technical system evolution, S-Field analysis, standard solutions, and many other tools that round-out TRIZ today. However, it contains the core ideas that always will be part of the golden fund of TRIZ. This book is to the Theory of Solving Inventive Problems what Newton's Phylosophiae Naturalis Principia Mathematica is to Physics. Everyone who wants to become a TRIZ expert, and really understand Ideality, Technical Contradictions, Evolution of Technical Systems, and many other things, must first read this book.
+
+There is one more thing I would like to say:
+
+This is a very special book for me personally.
+
+The first time I read this book was in 1974 and, like the magic flute of Hamlin's Pied Piper, it carried me away. I left my job, my PhD unfinished, and successfully started a career becoming a professional TRIZ master and inventor. This road led me to meet, and later create a friendship with, Genrich Altshuller, the most unusual person I have ever known. This book led me to have a close working relationship with Altshuller, training people and further developing TRIZ. It led me to later form the Kishinev Scientific School of TRIZ, to participate in solving more than 6,000 problems in different areas of technology and business, and later to form several companies in Russia, and now, the USA (Ideation International, Inc.).
+
+I have never regreted following my commitment to advance and disseminate TRIZ.
+
+Boris Zlotin is Chief Scientist of Ideation International, Inc. He is the author of ten books on TRIZ, including three published together with G. Altshuller. He has written more than 100 papers in the area of TRIZ. He is also a member of the Committee of the International TRIZ Association.
+
+致词 1：鲍里斯·斯洛提
 
 人类的历史就是人们掌握生活和命运的历史。
 
@@ -709,7 +817,25 @@ boris zlotin，书籍如下：
 
 鲍里斯·斯洛提先生是 Ideation International 公司的首席科学家。他著有 10 本关于 TRIZ 的书，其中 3 本是与根里奇·阿奇舒勒先生合写的。他还发表了 100 多篇 TRIZ 方面的文章，也是国际 TRIZ 协会委员会的成员之一。
 
-### 致词 2：西蒙·利特温
+## Simon Litvin
+
+The Word that Became Action: About G. Altshuller's The Innovation Algorithm
+
+「In the beginning was the word . . . .」
+
+In 1969, while still a student, I accidentally bought a book with a flashy title. It was devoted to a new area of knowledge — the methodology of innovation.
+
+About 15 years later, Genrich Altshuller offered his Scale of Fantasy that provides an objective system for grading literary writings and books. One criteria that Altshuller used for this evaluation was the degree of influence a book had on a reader. The highest grade, in his opinion, must be given to a book that changed the life of its reader. For me, The Innovation Algorithm was such a book.
+
+Its first edition of 100,000 copies sold-out immediately. This was very surprising considering that it was a technical book. The book is saturated with thoughts, ideas and convincing examples about his theory of inventiveness. Besides, it was created by the hands of a brilliant writer, and possessed charm and an unusual attractive force. Even the titles of its sections and chapters could be put together like elements of a jigsaw puzzle, creating a picture of the theory of innovation. Titles like:
+
+Inventing Methods of Inventing Through Knowledge, not Numbers Step-by-Step An Alloy Made of Logic, Intuition, and Skills How the Algorithm Works Breaking an Old Structure Over the Barriers
+
+Today, TRIZ is accepted all over the world. New tools to improve technology have become part of TRIZ's system, along with collected examples of practical utilization of these tools. New TRIZ software has been created and successfully used, and yet the main ideas in Altshuller's The Innovation Algorithm have not lost their significance. Those ideas are: The process of creativity can be learned; the process of creativity can be detected and become accessible to those who want to solve creative problems; there exists an「algorithm」for invention.
+
+Simon Litvin is Vice President of Pragmatic Vision, Inc., and a Member of the Committee of the International TRIZ Association. He is the author of six books and 80 papers on TRIZ, FSA and DCI (Development of Creative Imagination). He has participated in 12 seminars with Genrich Altshuller. Their close association lasted until Altshuller's last days.
+
+致词 2：西蒙·利特温
 
 将思想变为行动：关于根里奇·阿奇舒勒先生的创新算法。
 
@@ -727,7 +853,25 @@ boris zlotin，书籍如下：
 
 2『已下载书籍「2021143Engineering-of-Creativity」，作者是 Semyon D. Savransky，感觉就是「西蒙·利特温」，待验证。（2021-08-22）』—— 未完成
 
-### 致词 3：维克托·菲
+## Victor Fey
+
+I once asked Altshuller what helped him endure the years of horrifying and humiliating conditions in the GULAG's concentration camps: 12-hour working days, starvation, cold weather, lack of elementary sanitary settings, diseases, taunts by wardens.
+
+Altshuller responded that there were three kinds of people who managed to survive not only physically, but also, which was more important, as individuals: The profoundly pious, high-ranking servicemen, and「crazy inventors.」
+
+He considered himself belonging to the latter group. Altshuller was developing TRIZ, and this gave him the necessary strength to keep his spirit up. In the foundation of Altshuller's philosophy is a reverence for the creative individual. Quite often TRIZ is perceived as a set of powerful tools for solving engineering problems. Albeit true, TRIZ is much more than that. First, and foremost, it is a new way of thinking. TRIZ is a tool for developing skills for what Altshuller called Strong Thinking (this is a literal translation from Russian; another possible rendition would be Analytical Independent Thinking).
+
+Altshuller held that the well-being (both ethically and economically) of any society depends to a large extent on the proportion of creative individuals in that society. A creative individual, according to Altshuller, is a person pursuing a major noble goal (some examples are: Allen Bombard, Albert Schweitzer, Albert Einstein, etc.). A creative individual has to be able to think freely (creatively); i.e., analytically, holistically and independently. Altshuller also believed that many acute problems that mankind faces, and will inevitably confront in the future, could be eliminated/prevented if not for our inability to think logically and independently. Man's only means of understanding and changing reality is reason. We cannot survive unless we fully develop and employ our intellectual power to achieve ethical and material goals that can assure the continual evolution of the human race. Hence, among such fundamental rights of an individual as the right to life, work, liberty, freedom of conscience, freedom of opinion, and others, there should also be an inalienable right to develop skills of Strong Thinking. TRIZ is an instrument for developing the basics of such thinking. Besides its immense importance for society, Strong Thinking has a more intimate appeal: it is a source of the joy of creativity which, equally with a passionate love, is the most potent human emotion.
+
+Thanks to TRIZ, the excitement of discovery and invention, and the thrilling sensation of the beauty of an original thought, can be experienced not only by the lucky few who inherited the inborn ability to create, but by many more who want to engage themselves in the search for new ideas. In the evening of September 28, 1998 my friend and I were sitting across from each other in a sleeping car of the St. Petersburg — Petrozavodsk train. The next morning, in a small Russian city of Petrozavodsk we would say the last goodbye to our Mentor, Genrikh Saulovich Altshuller. Saddened and downhearted, we kept silence listening to the rumble of the wheels and beating of the rain against the window. My friend broke the silence:
+
+「You know, when life sometimes gets to me, and it looks like there is no ray of hope ahead, I pick a book by Altshuller from the shelf — any book open it to any page, and start reading. This proved to be the best elixir for me, for in a short while I begin feeling hope and faith in myself coming back.」
+
+As he spoke, I remembered the thoughts and feelings that overwhelmed me after reading my first book on TRIZ — the very same book you are holding in your hands. I was seventeen years old and was astounded by the singularity and colossal scale of the main idea of TRIZ — to make that rarest gift, talented thinking, available to everybody. This awe has stayed with me ever since then. I wish you every success in making TRIZ your best guide into the daring world of creativity.
+
+Victor R. Fey is a Managing Partner of The TRIZ Group, and Adjunct Professor of Mechanical Engineering at Wayne State University. From 1978 through 1990 he was a close associate, and friend, of Genrich Altshuller, and performed basic research in the areas of the laws of technological system evolution, laws of societal system evolution, and in the principles of solving scientific problems. He was also Altshuller's personal representative in the U.S. from 1991 until Altshuller's death in 1998.
+
+致词 3：维克托·菲
 
 我曾经问阿奇舒勒先生，是什么让您能够忍受在古拉格集中营（GULAG' s concentration camps）里可怕而屈辱的生活条件：每天工作 12 个小时，饥饿、寒冷、疾病、缺少基本的卫生设施，还有看守们的辱骂。
 
@@ -822,6 +966,136 @@ boris zlotin，书籍如下：
 列宁格勒技术创新大学的创始人米特罗发诺夫，讲述了一位来自列宁格勒的著名发明家罗伯特·安格林（Robert Anglin）的故事。安格林已经用试错法艰难地完成了 40 多个发明。有一次，他来参加 TRIZ 研讨班。在 TRIZ 培训课程中，他非常安静。当大家都离开之后，他还坐在桌边，用手抱着头。「浪费了多少时间啊！」他说，「多少时间啊如果能早一点知道 TRIZ 的话！」
 
 1989 年成立了俄罗斯 TRIZ 协会，阿奇舒勒担任主席。
+
+## 附录 A —— 矛盾矩阵和 40 个发明原理
+
+### A1：予盾矩阵的应用
+
+列夫·舒利亚克：用一个例子来看如何循序渐进地应用矛盾矩阵。
+
+破冰船必须在冰厚 10ft（1ft= 0.3048m）的水道上运输货物（见图 A1-1）。传统的方法是，前面破冰船在冰中开出一条通道，船队跟随其后。破 冰船前进的速度只有 2km/h。我们必须提高速度，至少到 6km/h，当然越快越好。其他的运输方式不能接受我们的研究表明，在当时的工业水平下，破冰船的引擎是效率最高的。
+
+解答：[1] 主要的目标是把船速从 2km/h 提高到 6km/h（也就是提高船的生产率）。实现这个目标的一种常用方法是增加船的引擎功率，然而增加功率会使船的其他参数（传动系统的占用空间、船的总重量等）产生连锁反应，这是我们不想要的。因此，存在技术矛盾（TC, Technica Contradiction）。
+
+[1] 以上是对破冰船问题的分析。不过我们并不想提供所述概念的工程实现，我们的目的是指出可能的工程设计方向
+
+TC1：速度和功率。
+
+TC2：生产率和功率。
+
+在矛盾矩阵中我们找到对应的行和列。第 9 行对应速度，第 39 行对应生产率，第 21 列对应功率。如表 A1-1 所示，列出了这两个矛盾。
+
+表 A1-1 技术矛盾和对应的矩阵行列
+
+我们来分析一些建议的原理，所有加粗的原理序号表示最佳建议。
+
+1、原理 19 —— 周期性动作原理。
+
+说明：1）由周期性动作（脉动）代替连续性动作。2）如果动作已经是周期性的，则改变其频率。3）利用脉动之间的停顿来执行附加的动作。
+
+运用该原理中的任一条，都可以产生一个破冰的动作。例如：不是连续地让船穿过冰层，而采用摇摆运动破冰之后前进。
+
+2、原理 35 —— 物理状态的改变原理。
+
+说明：1）改变系统的物理状态。2）改变浓度或者密度。3）改变柔韧程度。4）改变温度或者体积。
+
+该原理建议，改变船和冰相互作用部分的物理状态或者密度。它在两个矛盾陈述中都提到了。如何改变船的密度和物理状态呢？我们稍后讨论这个问题。下面我们检査一下原理 2。
+
+3、原理 2 抽取原理。
+
+说明：1）将物体中「干扰」部分或者特性抽取出来。2）只抽取物体中必要的部分或者特性。
+
+这条原理建议去掉船和冰相干扰的部分。
+
+4、原理 10 —— 预处理原理。
+
+说明：1）事先全部或者部分完成物体需要的改变。2）事先把物体放在最方便的位置，以便能立即投入使用。
+
+原理 10 建议，在船和冰相互作用之前做点什么事情。
+
+结论：大部分原理建议改变和冰相互作用的那一部分船体。完全去掉船的这一部分，那么船通过冰将没有问题了 —— 如果不考虑船的底部将沉到海底的情况。为防止这种情况，可以将船的上部和下部用两个薄的刀片连接起来，而刀片切割冰层就容易多了。把船的横截面最小化，从而就可以减少切割冰层时所需要的力。船的底部留在冰层下面，同时还可以装载货物。现在这个破冰船也可以当做货船用（图 A1-2）。
+
+### A3：40 个发原理
+
+1、分割原理。1）将物体分割成独立的部分。2）使物体成为可组合的部件（易于拆卸和组装）。3）增加物体被分割的程度。
+
+2、抽取（提取，找回，移走）原理。1）将物体中「干扰」的部分或特性抽取出来。2）只抽取物体中需要的部分或特性。
+
+3、局部质量原理。1）将物体或外部环境（动作）的同类结构转变成异类结构。2）物体的不同部分实现不同的功能；3）物体的每个部分应放在最利于其运行的条件下。
+
+4、非对称原理。1）用非对称的形式代替对称形式。2）如果物体已经是非对称的，那么增加其非对称的程度。
+
+5、合并原理。1）合并空间上同类的物体，或预定要相邻操作的物体。2）合并时间上的同类或相邻的操作。
+
+6、普遍性原理。1）一个物体能实现多种功能，因此可以去掉其他部件。
+
+7、嵌套（俄罗斯套娃）原理。1）将一个物体放到另一个物体中，这个物体再放到第三个物体中，以此类推。2）一个物体穿过另一个物体的空腔。
+
+8、配重原理。1）通过与其他物体结合产生升力，来补偿物体的重量。2）由受外部环境影响的气动力，或者水动力来补偿物体的重量。
+
+9、预先反作用原理。预先给物体施加反作用，以补偿过量的或者不想要的压力。
+
+10、预处理原理。1）事先对物体完全或部分实施必要的改变。2）事先把物体放在最方便的位置，以便能立即投入使用。
+
+11、预先应急措施原理。1）预先准备好相应的应急措施，以提高物体的可靠性。
+
+12、等势原理。1）改变工作条件，而不需要升降物体。
+
+13、反过来做原理。1）不直接实施问题指出的动作，而是实施一个相反的动作（例如用冷却代替加热）。2）使物体或外部环境移动的部分静止，或者使静止的部分移动。3）把物体上下颠倒。
+
+14、曲面化原理。1）用曲线部件代替直线部件，用球面代替平面，用球体代替立方体。2）采用滚筒、球体、螺旋体。3）利用离心力，用旋转运动代替直线运动。
+
+15、动态性原理。1）改变物体或外部环境的特性，以便在操作的每个阶段，都能提供最佳性能。2）如果物体不能移动，让它移动，让物体各部分都可以相互移动。3）把物体分成几个部分，它们能够改变彼此的相对位置。
+
+16、部分或超额行动原理。1）如果得到规定效果的 100% 很难，那么就完成得多一些或少一些。
+
+17、 转变到新维度原理。1）把物体的动作、布局从一维变成二维，二维变成三维，以此类推。2）利用物体不同级别的组合。3）将物体倾斜或侧放。4）使用给定表面的「另一面」。5）把光线投射到邻近的区域，或者到物体的反面。
+
+18、机械振动原理。1）使用振动。2）如果振动已经存在，那么增加其频率直至超音频。3）使用共振频率。4）使用压电振动代替机械振动。5）使用超声波振动和电磁场的结合。
+
+19、周期性动作原理。1）用周期性的动作（脉动）代替连续的动作。2）如果动作已经是周期性的，则改变其频率。3）利用脉动之间的停顿来执行额外的动作。
+
+20、有效动作的连续性原理。1）连续实施动作不要中断，物体的所有部分应该一直处于满负荷工作状态。2）去除所有空闲的、中间的动作。3）用循环的动作代替「来来回回」的动作。
+
+21、快速通过原理。1）非常快速地实施有害的或危险的操作。
+
+22、变害为利原理。1）利用有害的因素（特别是环境中的）获得积极的效果。2）通过与另一个有害因素结合，来消除一个有害因素。3）增加有害因素到一定程度，使之不再有害。
+
+23、反馈原理。1）引入反馈。2）如果已经有反馈，那么改变它。
+
+24、中介物原理。1）使用中间物体来传递或者执行一个动作。2）临时把初始物体和另一个容易移走的物体结合。
+
+25、自服务原理。1）物体在实施辅助和维修操作时，必须能自我服务。2）利用废弃的材料和能量。
+
+26、复制原理。1）用简化的、便宜的复制品来替代易碎的或不方便操作的物体。2）如果已经使用了可见光的复制品，那么使用红外光或紫外光的复制品。3）用光学图像替代物体（或物体系统），然后缩小或放大它。
+
+27、一次性用品原理。1）用廉价物品替代昂贵物品，在某些属性上作出妥协（例如寿命）。
+
+28、替代机械系统原理。1）用光、声、热、嗅觉系统替代机械系统。2）用电、磁或电磁场来与物体交互作用。3）用移动场替代静止场，用随时间而变化的场替代固定场，用结构化的场替代随机场。4）使用场，并结合铁磁性颗粒。
+
+29、气动或液压结构原理。用气态或液态部件来代替固体部件。可以用空气或水，也可以用气垫或水垫，使这些部件膨胀。
+
+31、柔性膜或薄膜原理。1）用柔性膜或薄膜代替常用的结构。2）用柔性膜或薄膜将物体与它的外部环境分隔开。
+
+31、多孔材料原理。1）让物体变成多孔的，或使用辅助的多孔部件（如插入、覆盖等）。2）如果一个物体已经是多孔的，那么事先往孔里填充某种物质。
+
+32、改变颜色原理。1）改变物体或其环境的颜色。2）改变物体或其环境的透明度。3）对于难以看到的物体或过程，使用颜色添加剂来观测。4）如果已经使用了这样的添加剂，那么使用发光追踪或原子追踪。
+
+33、同质性原理。1）与主物体交互的物体，应该由主物体的同种材料（或具有相似属性的材料）制成。
+
+34、抛弃和再生部件原理。1）物体的部件在完成其功能，或者变得没用之后，就被扔掉（丢弃、溶解、挥发等），或者在工作过程中已经改变。2）物体已经用掉的部件，应该在工作期间恢复。
+
+35、改变特性原理。1）改变系统的物理状态。2）改变浓度或密度。3）改变柔韧程度。4）改变温度或体积。
+
+36、状态转变原理。1）利用状态转变时的现象（例如体积变化、热量的吸收或释放等）。
+
+37、热膨胀原理。1）改变材料的温度，利用其膨胀或收缩效应。2）利用具有不同热膨胀系数的多种材料。
+
+38、加速氧化原理。从氧化的一个级别，转变到下一个更高的级别：1）从环境的空气到氧化的空气。2）从氧化的空气到纯氧。3）从纯氧到电离的氧气。4）从电离的氧气到臭氧化的氧气。5）从臭氧化的氧气到臭氧。6）从臭氧到单氧。
+
+39、惰性环境原理。1）用惰性环境代替通常环境。2）往物体中增加中性物质或添加剂。3）在真空中实施过程。
+
+40、复合材料原理。1）用复合材料代替同性质的材料。
 
 ## C 关于英文译者
 
