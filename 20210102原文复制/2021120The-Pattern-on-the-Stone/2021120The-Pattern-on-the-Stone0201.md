@@ -1,4 +1,4 @@
-# 0201. Univeral Building Blocks
+## 0201. Univeral Building Blocks
 
 F rom now on, we can forget about wires and switches and work with the abstraction of logic blocks operating on 1's and 0's, a simple step that allows us to pass from the realm of engineering into the realm of mathematics. This is the most abstract chapter in the book; it will show you how the methods used to construct a tic-tac-toe machine can be used to construct almost any function. In it, we'll define a powerful set of building blocks: logical functions and finite-state machines. With these elements, it's easy to build a computer.
 
@@ -6,7 +6,7 @@ F rom now on, we can forget about wires and switches and work with the abstracti
 
 关于线路和开关的介绍，我们先放到一边，接下来，我们从工程领域进入数学领域，探讨一下以 0 和 1 的形式运作的逻辑块的抽象原理。本章的内容是这本书最为抽象的一章，我将会向大家展示如何以建造井字游戏机的方法实现任何一种功能。我们还将定义一组功能强大的构件：逻辑功能和有限状态机。利用这些工具，我们可以轻松地构建出一台计算机。
 
-## 2.1 Logical Funcitons
+### 2.1 Logical Funcitons
 
 In constructing the tic-tac-toe machine, we began by writing the game tree, whch gave us a set of rules for generating the outputs from the inputs. This turns out to be a generally useful method of attack. Once we write down the rules that specify what outputs we want for each combination of inputs, we can build a device that implements these rules using And, Or , and Invert functions. The logic blocks And , Or , and Invert form a universal construction set , which can be used to implement any set of rules. (These primitive types of logic blocks are sometimes also called logic gates.)
 
@@ -98,7 +98,7 @@ Combining Ands and Ors according to this strategy is one way to build any logica
 
 依据上述方法来组合「与」「或」逻辑块，我们便可以实现任何一种逻辑功能。不过，这虽然是一种可行的方法，但不是最有效的。通过巧妙的设计，我们可以采用比上述方法所需构件更少的方法来搭建线路，而且，还可以采用其他类型的构件，或者将输入至输出的线路延迟时间减至最低程度。在设计逻辑功能的过程中，我们通常会碰到一些典型的难题：如何用「与」逻辑块和「非」逻辑块构建出「或」逻辑块？（这个很简单）如何用一组「或」逻辑块和「与」逻辑块以及两个「非」逻辑块实现一个具有三个「非」逻辑块的功能？（这个比较困难，但可以实现。）在计算机设计过程中，我们经常会遇到这类难题，不过，这也正是使设计过程变得有趣的地方。
 
-## 2.2 Finite-State Machines
+### 2.2 Finite-State Machines
 
 The methods I've described can be used to implement any function that stays constant in time, but a more interesting class of functions are those that involve sequences in time. To handle such functions, we use a device called a finite-state machine. Finite-state machines can be used to implement time-varying functions — functions that depend not just on the current input but also on the previous history of inputs. Once you learn to recognize a finite-state machine, you'll notice them everywhere — in combination locks, ballpoint pens, even legal contracts. The basic idea of a finite-state machine is to combine a look-up table, constructed using Boolean logic, with a memory device. The memory is used to store a summary of the past, which is the state of the finite-state machine.
 

@@ -2,7 +2,19 @@
 
 ## 卡片
 
+书籍的中文名是《丹尼尔·希利斯讲计算机》，出版时间是 2021 年 1 月，个人觉得书名翻译的很不好，应该为《刻字石头上的魔法》，哈哈。（2021-10-10）
+
 ### 0101. 主题卡 —— 计算机本质基于的三大原则
+
+印象：
+
+1、第一原则。分层的思想，之前在书籍「计算机系统概论」以及万维钢精英日课里书籍「柏拉图与技术呆子」里都有涉及，从晶体管一步步往上抽象到应用软件，具体详见那边的信息。
+
+2、第二原则。通用计算机思想，冯·诺依曼提出来的，具体可以看吴军的专栏「谷歌方法论」以及冯·诺依曼的 Paper。
+
+3、第三原则。生物计算机思维，跟第一原则想法，计算机的实现从分层结构转为网络结构（复杂系统），从自上而下的设计转变为自下而上的涌现，也是目前作者研究的方向。
+
+信息源自「Preface: Magic in the Stone」
 
 This is the book I wish I had read when I first started learning about the field of computing. Unlike most books on computers — which are either about how to use them or about the technology out of which they're built (ROM, RAM, disk drives, and so on) — this is a book about ideas. It explains, or at least introduces, most of the important ideas in the field of computer science, including Boolean logic, finite-state machines, programming languages, compilers and interpreters, Turing universality, information theory, algorithms and algorithmic complexity, heuristics, uncomutable functions, parallel computing, quantum computing, neural networks, machine learning, and self-organizing systems. Anyone interested enough in computers to be reading this book will probably have encountered many of these ideas before, but outside of a formal education in computer science there are few opportunities to see how they all fit together. This book makes the connections — all the way from simple physical processes like the closing of a switch to the learning and adaptation exhibited by self-organizing parallel computers.
 
@@ -42,6 +54,18 @@ These days, computers are popularly thought of as multimedia devices, capable of
 
 最后还有一张任意卡，记录个人阅读感想。
 
+## 再版前言 —— 计算机背后不曾改变的基本原理
+
+本书初版问世很久之后，我的出版商惊讶地发现：它在当下仍然很受欢迎。这也是我有机会为本书写再版前言的原因。本书已被翻译为十几种语言，至今仍有众多读者。自本书问世以来，计算机技术及应用发生了天翻地覆的变化。不过本书并不着眼于计算机的具体技术及应用，而是关注计算机背后不曾改变的基本原理，这也是本书能持续热卖的关键所在。
+
+我必须承认，令我感到诧异的不是在数字革命之初就已存在的那些关于计算机科学的原理如今依然很重要，而是迄今为止，几乎没有新的原理补充进来。10 多年过去了，虽然计算机技术及应用以及编程技术都取得了巨大进步，对社会产生的影响也远远超出了预言家的预期，但计算机背后的工作原理，即本书所阐述的关于计算机的概念，仍没有改变。我本来想利用再版的机会增添一些新内容，但令我感到吃惊的是，并无新的基本原理可供补充。
+
+在目前的版本中，我选择性地删除了一些无须再费笔墨解释的概念。不过，这并非意味着这些内容是错误的。例如，在一个每天都享受云并行计算服务的读者看来，并行计算方面的内容并无新意。真正令人费解的是，为何 20 世纪有如此多的专家都坚信，并行计算机永远不会被投入使用。此外，如今的你们可能会对本书中有关人工智能的观点有所抵触，因为目前你们与智能机器相处得十分融洽。事实上，20 世纪时许多人对智能计算机的概念感到惶恐不安，比如，当计算机第一次击败人类国际象棋冠军时，许多人感到很沮丧。然而，过了不到 20 年，当计算机在一项流行的益智电视节目中再次击败人类冠军时，更多人开始为计算机鼓劲加油。从那时起，人们普遍将计算机视为助手而非威胁。
+
+除了修订拼写错误之外，我尽可能地保持了本书初版的原汁原味，不去刻意提高文字的感性程度，实际上，感性是一种不断变化的浮动目标。与其紧跟必将过时的当下潮流，还不如让作品定格在某一时刻更为有趣。同时，本书写成于计算机科学发展历程中的一个特殊时期，虽然那时计算机已经显示出了足以改变我们生活的潜力，但这一切很大程度上还未实现。那时的计算机非常简单，以至于我对自己设计的计算机的每个晶体管和所编写的每行代码都了如指掌。不过，正如本书最后一章预期的那样，我们现在到达了一个临界点，即计算机系统的复杂度已经超出了任何人所能完全理解和掌握的程度。
+
+关于未来的发展，本书提出了两个可能的方向。第一个是量子计算，正如书中所述，它具有巨大的潜力，但目前并无可行的实现方式。当我写下这句话时，现实情况仍是如此。从理论和技术方面来说，量子计算取得了巨大突破，但它们中的任何一个的计算速度都比不上传统计算机。正如本书初版所述，量子计算仍是「一个值得关注的领域」。本书预测的第二个可能方向是，计算机能像生物进化过程那样实现自我设计。目前，这个方向已经显现出了隐约的曙光，不过在很大程度上，它只是一个未实现的可能方案。目前，我们还缺乏相关理论来说明这个过程如何才能成为现实。我对未来发现这些新原理持乐观态度，期待能够在本书的后续版本中继续讨论。
+
 ## Preface: Magic in the Stone
 
 I etch a pattern of geometric shapes onto a stone. To the uninitiated, the shapes look mysterious and complex, but I know that when arranged correctly they will give the stone a special power, enabling it to respond to incantations in a language no human being has ever spoken. I will ask the stone questions in this language, and it will answer by showing me a vision: a world created by my spell, a world imagined within the pattern on the stone.
@@ -69,18 +93,6 @@ In an explanation of the nature of computers, there are some fundamentals that h
 The philosopher Gregory Bateson once defined information as「the difference that makes a difference.」Another way of saying this is that information is in the distinctions we choose to make significant. In a primitive electrical calculator, say, information is indicated by light bulbs that go on or off depending on whether a current is flowing or not. The voltage of the signal doesn't matter, nor does the direction of current flow. All that matters is that a wire carries one of two possible signals, one of which causes a bulb to light. The distinction that we choose to make significant — the difference that makes a difference, in Bateson's phrase — is between current flowing and not flowing. Bateson's definition is a good one, but the phrase has always meant something more to me. In my lifetime of four decades, the world has been transformed. Most of the changes we've seen in business, politics, science, and philosophy in that time have been caused by, or enabled by, developments in information technology. A lot of things are different in the world today, but the difference that has made the difference has been computers.
 
 These days, computers are popularly thought of as multimedia devices, capable of incorporating and combining all previous forms of media — text, graphics, moving pictures, sound. I think this point of view leads to an underestimation of the computer's potential. It is certainly true that a computer can incorporate and manipulate all other media, but the true power of the computer is that it is capable of manipulating not just the expression of ideas but also the ideas themselves. The amazing thing to me is not that a computer can hold the contents of all the books in a library but that it can notice relationships between the concepts described in the books — not that it can display a picture of a bird in flight or a galaxy spinning but that it can imagine and predict the consequences of the physical laws that create these wonders. The computer is not just an advanced calculator or camera or paintbrush; rather, it is a device that accelerates and extends our processes of thought. It is an imagination machine, which starts with the ideas we put into it and takes them farther than we ever could have taken them on our own.
-
-再版前言 —— 计算机背后不曾改变的基本原理
-
-本书初版问世很久之后，我的出版商惊讶地发现：它在当下仍然很受欢迎。这也是我有机会为本书写再版前言的原因。本书已被翻译为十几种语言，至今仍有众多读者。自本书问世以来，计算机技术及应用发生了天翻地覆的变化。不过本书并不着眼于计算机的具体技术及应用，而是关注计算机背后不曾改变的基本原理，这也是本书能持续热卖的关键所在。
-
-我必须承认，令我感到诧异的不是在数字革命之初就已存在的那些关于计算机科学的原理如今依然很重要，而是迄今为止，几乎没有新的原理补充进来。10 多年过去了，虽然计算机技术及应用以及编程技术都取得了巨大进步，对社会产生的影响也远远超出了预言家的预期，但计算机背后的工作原理，即本书所阐述的关于计算机的概念，仍没有改变。我本来想利用再版的机会增添一些新内容，但令我感到吃惊的是，并无新的基本原理可供补充。
-
-在目前的版本中，我选择性地删除了一些无须再费笔墨解释的概念。不过，这并非意味着这些内容是错误的。例如，在一个每天都享受云并行计算服务的读者看来，并行计算方面的内容并无新意。真正令人费解的是，为何 20 世纪有如此多的专家都坚信，并行计算机永远不会被投入使用。此外，如今的你们可能会对本书中有关人工智能的观点有所抵触，因为目前你们与智能机器相处得十分融洽。事实上，20 世纪时许多人对智能计算机的概念感到惶恐不安，比如，当计算机第一次击败人类国际象棋冠军时，许多人感到很沮丧。然而，过了不到 20 年，当计算机在一项流行的益智电视节目中再次击败人类冠军时，更多人开始为计算机鼓劲加油。从那时起，人们普遍将计算机视为助手而非威胁。
-
-除了修订拼写错误之外，我尽可能地保持了本书初版的原汁原味，不去刻意提高文字的感性程度，实际上，感性是一种不断变化的浮动目标。与其紧跟必将过时的当下潮流，还不如让作品定格在某一时刻更为有趣。同时，本书写成于计算机科学发展历程中的一个特殊时期，虽然那时计算机已经显示出了足以改变我们生活的潜力，但这一切很大程度上还未实现。那时的计算机非常简单，以至于我对自己设计的计算机的每个晶体管和所编写的每行代码都了如指掌。不过，正如本书最后一章预期的那样，我们现在到达了一个临界点，即计算机系统的复杂度已经超出了任何人所能完全理解和掌握的程度。
-
-关于未来的发展，本书提出了两个可能的方向。第一个是量子计算，正如书中所述，它具有巨大的潜力，但目前并无可行的实现方式。当我写下这句话时，现实情况仍是如此。从理论和技术方面来说，量子计算取得了巨大突破，但它们中的任何一个的计算速度都比不上传统计算机。正如本书初版所述，量子计算仍是「一个值得关注的领域」。本书预测的第二个可能方向是，计算机能像生物进化过程那样实现自我设计。目前，这个方向已经显现出了隐约的曙光，不过在很大程度上，它只是一个未实现的可能方案。目前，我们还缺乏相关理论来说明这个过程如何才能成为现实。我对未来发现这些新原理持乐观态度，期待能够在本书的后续版本中继续讨论。
 
 前言 —— 石头中的魔术
 

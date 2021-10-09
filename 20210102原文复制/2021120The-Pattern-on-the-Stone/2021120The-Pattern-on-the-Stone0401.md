@@ -1,10 +1,10 @@
-HOW UNIVERSAL ARE TURING MACHINES?
+## 0401. How Universal are Turing Machines?
 
 W hat are the limits to what a computer can do? Must all computers be composed of Boolean logic and registers, or might there be other kinds, even more powerful? These questions take us to the most philosophically interesting topics in this book: Turing machines, computability, chaotic systems, Goedel's incompleteness theorem, and quantum computing — topics at the center of most discussions about what computers can and cannot do.
 
 Because computers can do some things that seem very much like human thinking, people often worry that they threaten our unique position as rational beings, and there are some who seek reassurance in mathematical proofs of the limits of computers. There have been analogous controversies in human history. It was once considered important that the Earth be at the center of the universe, and our imagined position at the center was emblematic of our worth. The discovery that we occupied no central position — that our planet was just one of a number of planets in orbit around the Sun — was deeply disturbing to many people at the time, and the philosophical implications of astronomy became a topic of heated debate. A similar controversy arose over evolutionary theory, which also appeared as a threat to humankind's uniqueness. At the root of these earlier philosophical crises was a misplaced judgment of the source of human worth. I am convinced that most of the current philosophical discussions about the limits of computers are based on a similar misjudgment.
 
-TURING MACHINES
+### TURING MACHINES
 
 The central idea in the theory of computation is that of a universal computer  — that is, a computer powerful enough to simulate any other computing device. The general-purpose computer described in the preceding chapters is an example of a universal computer; in fact most computers we encounter in everyday life are universal computers. With the right software and enough time and memory, any universal computer can simulate any other type of computer, or (as far as we know) any other device at all that processes information.
 
@@ -18,7 +18,7 @@ Today, we call the combination of a finite-state machine with an infinitely long
 
 I find Turing's particular construction difficult to think about. To me, the conventional computer, which has a memory instead of a tape, is a more comprehensible example of a universal machine. For instance, it is easier for me to see how a conventional computer can be programmed to simulate a Turing machine than vice versa. What is amazing to me is not so much Turing's imaginary construct but his hypothesis that there is only one type of universal computing machine. As far as we know, no device built in the physical universe can have any more computational power than a Turing machine. To put it more precisely, any computation that can be performed by any physical computing device can be performed by any universal computer, as long as the latter has sufficient time and memory. This is a remarkable statement, suggesting as it does that a universal computer with the proper programming should be able to simulate the function of a human brain.
 
-LEVELS OF POWER
+### LEVELS OF POWER
 
 How can Turing's hypothesis be true? Surely some other kind of computer could be more powerful than the ones we have described. For one thing, the computers we have discussed so far have been binary, that is, they represent everything in terms of 1 and 0. Wouldn't a computer be more powerful if it could represent things in terms of a three-state logic, like Yes, No , and Maybe? No, it would not. We know that a three-state computer would be able to do no more than a two-state computer, because you can simulate the one using the other. With a two-state computer, you can duplicate any operation that can be performed on a three-state computer, by encoding each of the three states as a pair of bits — 00 for Yes , say, and 11 for No , and 01 for Maybe. For every possible function in three-state logic, there is a corresponding function in two-state logic which operates on this representation. This is not to say that three-state computers might not have some practical advantage over two-state computers: for instance, they might use fewer wires and therefore might be smaller, or cheaper to produce. But we can say for certain that they would not be able to do anything new. They would just be one more version of a universal machine.
 
@@ -30,7 +30,7 @@ The problem with analog computers is that their signals can achieve only a limit
 
 Some people might argue that while the noise of an analog computer may not be meaningful, it is not necessarily useless. One can certainly imagine computations that are helped by the presence of noise. Later, for example, we will describe computations requiring random numbers. But a digital computer, too, can generate random noise if randomness is called for in a computation.
 
-RANDOM NUMBERS
+### RANDOM NUMBERS
 
 How can a digital computer generate randomness? Can a deterministic system like a computer produce a truly random sequence of numbers? In a formal sense, the answer is No, since everything a digital computer does is determined by its design and its inputs. But the same could be said of a roulette wheel — after all, the ball's final landing place is determined by the physics of the ball (its mass, its velocity) and the spinning wheel. If we knew the exact design of the apparatus and the exact「inputs」governing the spin of the wheel and the throw of the ball, we could predict the number on which the ball would land. The outcome appears random because it exhibits no obvious pattern and is difficult, in practice, to predict.
 
@@ -40,7 +40,7 @@ A roulette wheel is an example of what physicists call a chaotic system  — a s
 
 Digital computers are predictable and unpredictable in exactly the same senses as the rest of the physical world. They follow deterministic laws, but these laws have complicated consequences that are extremely difficult to predict. It is often impractical to guess what computers are going to do before they do it. As is true of physical systems, it does not take much to make a computation complex. In computers, chaotic systems — systems whose outcomes depend sensitively on the initial conditions — are the norm.
 
-COMPUTABILITY
+### COMPUTABILITY
 
 While a universal computer can compute anything that can be computed by any other computing device, there are some things that are just impossible to compute. Of course, it is not possible to compute answers to vaguely defined questions, like「What is the meaning of life?」or questions for which we lack data, like「What is the winning number in tomorrow's lottery?」But there are also flawlessly defined computational problems that are impossible to solve. Such problems are called noncomputable.
 
@@ -56,7 +56,7 @@ Some mathematicians and philosophers have ascribed almost mystical properties to
 
 Although one is hard pressed to come up with specific examples of noncomputable problems, one can easily prove that most of the possible mathematical functions are noncomputable. This is because any program can be specified in a finite number of bits, whereas specifying a function usually requires an infinite number of bits, so there are a lot more functions than programs. Consider the kind of mathematical function that converts one number into another — the cosine, say, or the logarithm. Mathematicians can define all kinds of bizarre functions of this type: for example the function that converts every decimal number into the sum of its digits. As far as I know, this function is a useless one, but a mathematician would regard it as a legitimate function simply because it converts every number into exactly one other number. It can be proved mathematically that there are infinitely more functions than programs. Therefore, for most functions there is no corresponding program that can compute them. The actual counting involves all kinds of difficulties (including counting infinite things and distinguishing between various degrees of infinity!), but the conclusion is correct: statistically speaking, most mathematical functions are noncomputable. Fortunately, almost all these noncomputable functions are useless, and virtually all the functions we might want to compute are computable.
 
-QUANTUM COMPUTING
+### QUANTUM COMPUTING
 
 As noted earlier, the pseudorandom number sequences produced by computers look random, but there is an underlying algorithm that generates them. If you know how a sequence is generated, it is necessarily predictable and not random. If ever we needed an inherently unpredictable random-number sequence, we would have to augment our universal machine with a nondeterministic device for generating randomness.
 
@@ -81,6 +81,3 @@ If it does become possible for quantum computers to search an infinite number of
 This leads us back to the philosophical issues touched on at the beginning of the chapter — that is, the relationship between the computer and the human brain. It is certainly conceivable, as at least one well-known physicist has speculated (to hoots from most of his colleagues), that the human brain takes advantage of quantum mechanical effects. Yet there is no evidence whatsoever that this is the case. Certainly, the physics of a neuron depends on quantum mechanics, just as the physics of a transistor does, but there is no evidence that neural processing takes place at the quantum mechanical level as opposed to the classical level; that is, there is no evidence that quantum mechanics is necessary to explain human thought. As far as we know, all the relevant computational properties of a neuron can be simulated on a conventional computer. If this is indeed the case, then it is also possible to simulate a network of tens of billions of such neurons, which means, in turn, that the brain can be simulated on a universal machine. Even if it turns out that the brain takes advantage of quantum computation, we will probably learn how to build devices that take advantage of the same effects — in which case it will still be possible to simulate the human brain with a machine.
 
 The theoretical limitations of computers provide no useful dividing line between human beings and machines. As far as we know, the brain is a kind of computer, and thought is just a complex computation. Perhaps this conclusion sounds harsh to you, but in my view it takes nothing away from the wonder or value of human thought. The statement that thought is a complex computation is like the statement sometimes made by biologists that life is a complex chemical reaction: both statements are true, and yet they still may be seen as incomplete. They identify the correct components, but they ignore the mystery. To me, life and thought are both made all the more wonderful by the realization that they emerge from simple, understandable parts. I do not feel diminished by my kinship to Turing's machine.
-
-CHAPTER 5
-

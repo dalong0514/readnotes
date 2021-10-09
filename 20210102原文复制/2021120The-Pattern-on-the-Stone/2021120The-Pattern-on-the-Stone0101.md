@@ -1,4 +1,4 @@
-# 0101. Nuts And Bolts
+## 0101. Nuts And Bolts
 
 When I was a child, I read a story about a boy who built a robot out of parts he found lying around a junkyard. The boy's robot could move, talk, and think, just like a person, and it became his friend. For some reason, I found the idea of building a robot very appealing, so I decided to build one myself. I remember collecting body parts — tubes for the arms and legs, motors for the muscles, lightbulbs for the eyes, and a big paint can for the head — in the full and optimistic expectation that after they were assembled and the contraption was plugged in, I would end up with a working mechanical man.
 
@@ -10,7 +10,7 @@ After nearly electrocuting myself a few times, I began to get my parts to move, 
 
 在经历了几次严重的触电事故后，我的机器人终于可以移动和发光了，而且还会发出「嗡嗡」的声音。我感觉自己有所长进，而且我还懂得了如何为四肢制造活动关节。不过，当时我面临的最大问题是，该如何控制那些马达和灯泡。后来，我意识到自己是对机器人的工作原理缺乏了解，而现在，我知道当时缺乏的知识是什么了 —— 计算，当时我称之为「思维」，我毫不知晓如何才能让某个物体具备思维能力。现在，我清楚地知道，计算才是制造机器人最难的部分，而当时还是小孩的我很难意识到这一点。
 
-## 1.1 Boolean Logic
+### 1.1 Boolean Logic
 
 Fortunately, the first book I ever read on the subject of computation was a classic. My father was an epidemiologist, and we were living in Calcutta at the time. Books in English were hard to come by, but in the library of the British consulate I found a dusty copy of a book written by the nineteenth-century logician George Boole. The title of the book was what attracted me: An Investigation of the Laws of Thought. This grabbed my imagination. Could there really be laws that governed thought? In the book, Boole tried to reduce the logic of human thought to mathematical operations. Although he did not really explain human thinking, Boole demonstrated the surprising power and generality of a few simple types of logical operations. He invented a language for describing and manipulating logical statements and determining whether or not they are true. The language is now called Boolean algebra.
 
@@ -104,7 +104,7 @@ Another difference between the tic-tac-toe machine and a general-purpose compute
 
 井字游戏机与通用计算机的第二个重要区别是，前者只能执行单一的任务，其「程序」完全内置于线路中。换句话说，井字游戏机中没有任何软件。
 
-## 1.2 Bits and Logic Blocks
+### 1.2 Bits and Logic Blocks
 
 As I noted in the Introduction, there is no reason the tic-tac-toe machine (or any other computer) has to be built out of electrical switches. A computer can represent information using electrical currents, fluid pressures, or even chemical reactions. Whether you build a computer out of transistors, hydraulic valves, or a chemistry set, the principles on which it operates are much the same. The key idea of the tic-tac-toe machine is that the And function is implemented by connecting two switches in series and the Or function is implemented by connecting two switches in parallel, but there are many other ways to implement And and Or.
 
@@ -140,7 +140,7 @@ FIGURE 6 An And block constructed by connecting an Or block to inverters
 
 早期的计算器是由机械部件制造成的。17 世纪，法国数学家布莱士·帕斯卡（Blaise Pascal）制造出了一台机械加法器，这让德国自然科学家戈特弗里德·威廉·莱布尼茨（Gottfried Wilhelm Leibniz）和英国博学家罗伯特·胡克（Robert Hooke）深受启发，他们改良了这台加法器，使其可以运算乘法和除法，甚至可以求取平方根。不过，这些机器都是不可编程的。到了 1833 年，英国数学家、发明家查尔斯·巴贝奇（Charles Babbage）设计并参与制造了一台可编程的机械式计算机。实际上，在我的童年时期，即 20 世纪 60 年代，大多数算术计算器都是机械式的。我非常喜欢这些机械式计算机，因为里面的运作过程能被清楚地看到，这一点是电子计算机无法实现的。当我设计电子计算机芯片时，会将电路想象成移动的机械部件。
 
-## 1.3 The Fluid Computer
+### 1.3 The Fluid Computer
 
 The picture I have in my mind when I design a logic circuit is of hydraulic valves. A hydraulic valve is like a switch that controls and is controlled by the flow of water. Each valve has three connections: the input, the output, and the control. Pressure on the control connection pushes on a piston that turns off the water flow from input to output. Figure 7 shows a circuit for the Or function, built out of hydraulic valves.
 
@@ -168,7 +168,7 @@ When I design a computer chip, I draw lines on a computer screen, and the patter
 
 当我设计计算机芯片时，首先会利用计算机绘制出设计图，然后将这些图案缩小，再蚀刻在硅芯片上。屏幕上呈现的线路就相当于管道和液压阀。事实上，绝大多数计算机设计者都不必为画图劳心费神，他们只需指定逻辑块（「或」「与」等）之间的连接关系，后续诸如逻辑块的位置和开关的几何布线等细节性工作都可交由计算机来处理。在多数情况下，设计者都会专注于功能设计，而将画线工艺置之于脑后。我虽然有时也会这样做，但还是更喜欢亲手画设计图。每当我设计完一款芯片时，想做的第一件事就是利用显微镜来观察它。我这么做并非因为能从观察中获取新知识，而是着迷于感受芯片上的图案是如何缔造出现实的。
 
-## 1.4 Tinker Toys
+### 1.4 Tinker Toys
 
 Except for the miracle of reduction, there is no special reason to build computers with silicon technology. Building a computer out of any technology requires a large supply of only two kinds of elements: switches and connectors. The switch is a steering element (the hydraulic valve, or the transistor), which can combine multiple signals into a single signal. Ideally, the switch should be asymmetrical, so that the input signal affects the output signal but not vice versa, and it should have a restoring quality, so that a weak or degraded input signal will not result in a degraded output. The second element, the connector, is the wire or pipe that carries a signal between switches. This connecting element must have the ability to branch, so that a single output can feed many inputs. These are the only two elements necessary to build a computer. Later we will introduce one more element — a register, for storing information — but this can be constructed of the same steering and connecting components.
 
@@ -190,7 +190,7 @@ I constructed a later version of the Tinker Toy computer which fixed the problem
 
 为了解决这个问题，我又建造了一台积木计算机。我从未忘记第一台计算机的教训：采用的技术必须能从不完善的输入中产生完善的输出，并将微小的误差消除在萌芽阶段。数字技术的真正精髓在于：每一级都能将信号复原并保持在完善的状态。目前为止，这是我们所知道的控制复杂系统的唯一方法。
 
-## 1.5 Free to Worry about the Difference that makes a Diffierence
+### 1.5 Free to Worry about the Difference that makes a Diffierence
 
 Naming the two signals in computer logic 0 and 1 is an example of functional abstraction. It lets us manipulate information without worrying about the details of its underlying representation. Once we figure out how to accomplish a given function, we can put the mechanism inside a「black box,」or a「building block」and stop thinking about it. The function embodied by the building block can be used over and over, without reference to the details of what's inside. This process of functional abstraction is a fundamental in computer design — not the only way to design complicated systems but the most common way (later, I'll describe an alternate method). Computers are built up of a hierarchy of such functional abstractions, each one embodied in a building block. The blocks that perform functions are hooked together to implement more complex functions, and these collections of blocks in turn become the new building blocks for the next level.
 

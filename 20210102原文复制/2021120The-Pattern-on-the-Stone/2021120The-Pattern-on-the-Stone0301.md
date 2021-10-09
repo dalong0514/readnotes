@@ -1,4 +1,4 @@
-# 0301. Programming
+## 0301. Programming
 
 T he magic of a computer lies in its ability to become almost anything you can imagine, as long as you can explain exactly what that is. The hitch is in explaining what you want. With the right programming, a computer can become a theater, a musical instrument, a reference book, a chess opponent. No other entity in the world except a human being has such an adaptable, universal nature. Ultimately all these functions are implemented by the Boolean logic blocks and finite-state machines described in the previous chapter, but the human computer programmer rarely thinks about these elements; instead, programmers work with a more convenient tool called a programming language.
 
@@ -6,7 +6,7 @@ Just as Boolean logic and finite-state machines are the building blocks of compu
 
 A skilled programmer is like a poet who can put into words those ideas that others find inexpressible. If you are a poet, you assume a certain amount of shared knowledge and experience on the part of your reader. The knowledge and experience that the programmer and the computer have in common is the meaning of the programming language. How the computer「knows」the meaning of the programming language will be described later; first, we will discuss the grammar, vocabulary, and idioms of such languages.
 
-TALKING TO THE COMPUTER
+### TALKING TO THE COMPUTER
 
 There are many different programming languages. The main reasons for this diversity are history, habit, and taste, but different programming languages also exist because they are good at describing different kinds of things. Each language has its own syntax. You need to learn the syntax in order to write the language, but (like spelling and punctuation in a human language) syntax is not fundamental to the meaning or the expressive power of the language. What is important to the expressive power of the language is the vocabulary — the so-called primitives of the language — and the way the primitives can be combined to define new concepts.
 
@@ -160,7 +160,7 @@ The most important advantage of an object-oriented programming language is that 
 
 Learning a programming language is not nearly as difficult as learning a natural human language. Generally, once you have learned two or three, you can pick up others in a matter of a few hours, since the syntax is relatively simple and the vocabularies are rarely more than a few hundred words. But, as is true of a human language, there's a big difference between being able to understand the language and being able to write it well. Every computer language has its Shakespeares, and it is a joy to read their code. A well-written computer program possesses style, finesse, even humor — and a clarity that rivals the best prose.
 
-MAKING THE CONNECTION
+### MAKING THE CONNECTION
 
 How can finite-state machines be used to carry out instructions written in a language like Logo? To answer this question, we go back to a more detailed level of discussion, involving Boolean logic. There are three major steps in this connection between finite-state machines and Logo: first , we will see how a finite-state machine can be extended, by adding a storage device called a memory , which will allow the machine to store the definitions of what it's asked to do; second , we will see how this extended machine can follow instructions written in machine language , a simple language that specifies the machine's operations; and third , we will see how machine language can instruct the machine to interpret the programming language — for instance, Logo. The rest of the chapter describes how all this works in some detail — far more detail than is strictly necessary to understand the rest of the book. The reader should not feel compelled to understand every step. The important thing to appreciate is how the layers of functional abstraction build upon one another, as is summarized in the last paragraph of the chapter.
 
@@ -194,7 +194,7 @@ The operating system normally includes all the subroutines that perform input/ou
 
 With the exception of its input/output mechanisms, the computer we've just described is simply a finite-state machine connected to a memory. Both these elements can be constructed entirely from registers and Boolean logic blocks, using the techniques described in chapters 1 and 2. The finite-state machine that controls the computer is complicated, but it is no different in principle from the finite-state machine that controls a traffic light. Designing the machine is simply a matter of going through the details of memory data, address, and state sequences for each instruction to be executed, and then converting this state table into Boolean logic. Recall that since both the finite-state machine and the memory are made of registers and blocks of logic, both can be implemented by a number of technologies: electronics, hydraulics, sliding sticks.
 
-TRANSLATING THE LANGUAGE
+### TRANSLATING THE LANGUAGE
 
 So we have established a chain of connections between the technology and the instructions. But how do the instructions execute a program written in a language — Logo, for instance —  when that language is written in words and the instructions are patterns of bits? The answer is that the necessary translation is performed by the computer itself.
 
@@ -204,7 +204,7 @@ To understand how a computer translates Logo primitives into machine language, i
 
 Some of this process of looking things up and finding the corresponding sequences of machine language can be done before the program is executed. This saves time, because if the program is going to be executed more than once, there's no point in looking up the same things over and over again. When most of the work of conversion is done beforehand, the translation process is called compilation , and the program that performs the compilation is called a compiler. If most of the work is done while the program is being executed, then the process is called interpretation, and the program is called an interpreter. There is no hard and fast line between the two.
 
-WELCOME TO THE HIERARCHY
+### WELCOME TO THE HIERARCHY
 
 We are now in a position to summarize how a computer works, from top to bottom. Most readers will have lost track of the details, but remember that it is not important to remember how every step works! The important thing to remember is the hierarchy of functional abstractions.
 
