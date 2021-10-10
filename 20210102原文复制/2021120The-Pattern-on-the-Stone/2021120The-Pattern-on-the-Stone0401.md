@@ -4,7 +4,11 @@ W hat are the limits to what a computer can do? Must all computers be composed o
 
 Because computers can do some things that seem very much like human thinking, people often worry that they threaten our unique position as rational beings, and there are some who seek reassurance in mathematical proofs of the limits of computers. There have been analogous controversies in human history. It was once considered important that the Earth be at the center of the universe, and our imagined position at the center was emblematic of our worth. The discovery that we occupied no central position — that our planet was just one of a number of planets in orbit around the Sun — was deeply disturbing to many people at the time, and the philosophical implications of astronomy became a topic of heated debate. A similar controversy arose over evolutionary theory, which also appeared as a threat to humankind's uniqueness. At the root of these earlier philosophical crises was a misplaced judgment of the source of human worth. I am convinced that most of the current philosophical discussions about the limits of computers are based on a similar misjudgment.
 
-### TURING MACHINES
+计算机的能力极限是什么？所有计算机必须由布尔逻辑和寄存器构成吗？或者，是否存在其他类型且功能更强大的计算机？这些问题将我们引入本书最具哲学意味的主题：图灵机、可计算性、混沌系统、哥德尔的不完备定理以及量子计算机。这些主题涉及一个热点话题，即计算机能做什么以及不能做什么。
+
+因为计算机的一些行为方式与人类的思维过程十分相似，因此有些人担忧计算机会威胁到人类独为万物之灵的地位。还有些人试图用数字来证明计算机能力的局限性，以寻求慰藉。人类历史上曾发生过类似的争论。比如，曾经有一段时间，人类坚信地球是宇宙的中心。实际上，我们想象出的中心位置是人类价值的象征。当发现我们所在的星球并非处于宇宙中心，而只是围绕太阳旋转的众多行星之一时，许多人感到苦恼不安。随后，天文学的哲学意义变成争论的焦点。另一个类似的争论是关于进化论的。进化论也被视为对人类独特性的威胁。早年的这些哲学危机源自对人类自身价值的错误认知。我坚信，目前关于计算机能力极限的大部分争论同样源于类似的错误认知。
+
+### 4.1 Truing Machines
 
 The central idea in the theory of computation is that of a universal computer  — that is, a computer powerful enough to simulate any other computing device. The general-purpose computer described in the preceding chapters is an example of a universal computer; in fact most computers we encounter in everyday life are universal computers. With the right software and enough time and memory, any universal computer can simulate any other type of computer, or (as far as we know) any other device at all that processes information.
 
@@ -18,7 +22,21 @@ Today, we call the combination of a finite-state machine with an infinitely long
 
 I find Turing's particular construction difficult to think about. To me, the conventional computer, which has a memory instead of a tape, is a more comprehensible example of a universal machine. For instance, it is easier for me to see how a conventional computer can be programmed to simulate a Turing machine than vice versa. What is amazing to me is not so much Turing's imaginary construct but his hypothesis that there is only one type of universal computing machine. As far as we know, no device built in the physical universe can have any more computational power than a Turing machine. To put it more precisely, any computation that can be performed by any physical computing device can be performed by any universal computer, as long as the latter has sufficient time and memory. This is a remarkable statement, suggesting as it does that a universal computer with the proper programming should be able to simulate the function of a human brain.
 
-### LEVELS OF POWER
+图灵机
+
+计算理论的核心思想是通用计算机，这是一类足以模拟任何类型的计算装置的计算机。我们在前几章讨论过的一般用途的计算机就属于通用计算机。实际上，我们在日常生活中遇到的大多数计算机都是通用计算机。只要安装了合适的软件，拥有足够多的时间和存储，任何通用计算机都可以模拟其他类型的计算机，或者我们所知的任何信息处理设备。
+
+这种通用性原理产生的一个结果是，两台计算机在能力方面唯一重要的区别在于它们的运算速度和内存大小。虽然各种计算机所连接的输入和输出设备各有不同，但这些外部设备并不是计算机的关键特征，甚至没有计算机的大小、价格和外部颜色等特征重要。从本质上来说，所有类型的计算机和通用计算设备在能做哪些事上是基本相同的。
+
+1937 年，英国数学家艾伦·图灵（Alan Turing）提出了通用计算机的概念。像许多其他计算机先驱一样，图灵对制造一台会思考的机器很感兴趣，并且提出了一种设计通用计算机的方案。图灵将设想的装置称为「通用机」，因为当时「计算机」（computer）一词特指那些「执行计算任务的计算员」。
+
+为了更具象地描绘出计算机的计算原理，我们设想这样一个场景，有一位数学家正在纸质卷轴上进行数学运算。假设这条卷轴的长度是无限的，所以不必担心因缺纸而无法记录运算数据的情况。只要计算问题可解，那么无论它涉及多少步运算，数学家都能将其解答出来，尽管这么做会花费大量时间。图灵证明，只要按照一套在纸上读写信息的简单规则，一个头脑愚笨但细致的职员也可以完成聪明的数学家所做的任何计算。实际上，他证明在计算这件事情上，有限状态机可以代替人类。有限状态机每次只查看卷轴上的一个字符，因此我们最好将纸质卷轴想象为一条细长的纸带，其中每行只有一个字符。
+
+如今，我们将有限状态机和无限长的纸带的结合体称为图灵机。图灵机中的纸带类似于现代计算机的内存，两者的功能大致相同。有限状态机所做的事情只有两件：在纸上读取或写入字符，以及根据简单的固定规则来回移动。图灵还证明，任何可计算的问题都能通过在图灵机的纸带上读写字符解决，这些字符不仅可以描述问题本身，还可以指明问题的解决方法。图灵机的求解方式是，不断地在纸带上前后移动、读写字符，并计算答案，直到答案出现在纸带上。
+
+我觉得图灵构想的模型难以理解。对我来说，带有内存而非纸带的传统计算机更能轻易地解释清楚什么是通用计算机。例如，我更容易理解如何通过传统的计算机编程来模拟图灵机，反之则不然。令我感到惊叹的不是图灵构想出来的模型，而是他提出的假设，即只存在一种类型的通用计算机。据我们所知，物理世界中的任何设备都不会比图灵机拥有更强大的计算能力。更准确地来说，只要具备足够多的时间和存储空间，任何一种通用计算机都能完成所有物理计算装置所能完成的计算任务。这是一个了不起的结论，它暗示了只要我们在通用计算机上进行合理的编程，就有可能模拟出人类大脑的功能。
+
+### 4.2 Levels of Power
 
 How can Turing's hypothesis be true? Surely some other kind of computer could be more powerful than the ones we have described. For one thing, the computers we have discussed so far have been binary, that is, they represent everything in terms of 1 and 0. Wouldn't a computer be more powerful if it could represent things in terms of a three-state logic, like Yes, No , and Maybe? No, it would not. We know that a three-state computer would be able to do no more than a two-state computer, because you can simulate the one using the other. With a two-state computer, you can duplicate any operation that can be performed on a three-state computer, by encoding each of the three states as a pair of bits — 00 for Yes , say, and 11 for No , and 01 for Maybe. For every possible function in three-state logic, there is a corresponding function in two-state logic which operates on this representation. This is not to say that three-state computers might not have some practical advantage over two-state computers: for instance, they might use fewer wires and therefore might be smaller, or cheaper to produce. But we can say for certain that they would not be able to do anything new. They would just be one more version of a universal machine.
 
@@ -30,7 +48,21 @@ The problem with analog computers is that their signals can achieve only a limit
 
 Some people might argue that while the noise of an analog computer may not be meaningful, it is not necessarily useless. One can certainly imagine computations that are helped by the presence of noise. Later, for example, we will describe computations requiring random numbers. But a digital computer, too, can generate random noise if randomness is called for in a computation.
 
-### RANDOM NUMBERS
+计算能力等级
+
+图灵的假设为何得以成立？有些类型的计算机的功能确实比我们所提到的计算机更为强大。目前为止，我们所讨论的都是二进制的计算机，也就是说，它们用 1 和 0 表示一切。如果计算机采用包含三种状态的逻辑来表示一切，比如「是」「否」「可能」等，那么它的计算能力是否会更强大呢？答案是否定的。我们已经知道，三态逻辑计算机的功能不会比双态逻辑计算机更强大，因为我们可以使用后者模拟出前者。双态逻辑计算机可以模拟出三态逻辑计算机所能执行的所有运算，方法就是用一组二进制位对三种状态分别编码，比如用 00 表示「是」，用 11 表示「否」，用 01 表示「可能」。三态逻辑计算机中的每种可能的功能都可以在双态逻辑计算机中找到对应的功能。不过，这并不意味着三态逻辑计算机不具备任何实际应用层面的优势。实际上，这类计算机所需的电线更少，因此体积更小，造价更低廉。不过，我们可以肯定的是，三态逻辑计算机并不是一种创新，而是另一种版本的通用计算机。
+
+同理，四态逻辑计算机、五态逻辑计算机以及任何有限态逻辑计算机也是如此。那么，如果计算机采用模拟信号来进行计算，情况又如何呢？换言之，这种信号具有无数多种可能的数值。例如，假设一台计算机用一段连续的电压值范围来表示数。对应于连续分布的电压值，每个信号都能携带无数种信息，而不仅仅是两种、三种或五种。例如模拟计算机可通过 0～1 伏特之间的电压表示 0～1 之间的数。只要电压值足够精确，无论这个分数有多少位小数，分数的表示都可达到任意精度。
+
+不过，采用模拟信号来表示定量数值的计算机确实存在。事实上，最早的计算机就是以这种方式工作的。为了区别于前面所说的数字计算机，它们被称为模拟计算机。数字计算机中的信号只包含几种离散的信息。有些人可能会认为，模拟计算机的功能更强大，因为它们用连续的值来表示数据，而数字计算机只能用离散的值来表示数据。实际上，模拟计算机并无特别优势，因为真正的连续流在物理世界中是无法实现的。
+
+模拟计算机的缺点是，它们的信号精度是有限的。所有类型的模拟信号都会包含一定量的噪声，比如电子信号、机械信号和化学信号等。也就是说，当达到一定精度后，信号基本上是随机的。所有的模拟信号都会受到许多不相关的和未知噪声源的影响。例如，电子信号会受到电线中分子的随机运动的干扰，或者受到邻居房间中灯亮起时产生的磁场的干扰。虽然在良好的电路中，这种噪声可降至很低的水平，比如信号本身的百万分之一，但它依然存在。因此，虽然信号拥有无数种强度水平，但真正起到有意义的区分作用（即表示信息）的信号数目却是有限的。如果信号中有百万分之一的噪声，那么对于信号来说，只有约一百万种有意义的差异。因此，用一个 20 个二进制位的数字信号可以表示出信号中的全部信息（220
+
+=1 048 578）。若想让模拟计算机中的有意义的差异翻倍，就必须将所有东西的精确度都提高一倍。然而，对于数字计算机来说，只需增加一个二进制位即可。目前性能最好的模拟计算机的精确度不超过 30 个二进制位。由于数字计算机通常会用 32 位或者 64 位来表示数，因此数字计算机产生的有意义的差异比模拟计算机更高。
+
+有些人可能会反驳，虽然模拟计算机中的噪声看起来没有意义，但也并非毫无用处。我们当然可以设想噪声有助于计算，例如，我们接下来要讲的随机数。不过，如果计算中涉及随机性，数字计算机也能生成随机噪声。
+
+### 4.3 Random Numbers
 
 How can a digital computer generate randomness? Can a deterministic system like a computer produce a truly random sequence of numbers? In a formal sense, the answer is No, since everything a digital computer does is determined by its design and its inputs. But the same could be said of a roulette wheel — after all, the ball's final landing place is determined by the physics of the ball (its mass, its velocity) and the spinning wheel. If we knew the exact design of the apparatus and the exact「inputs」governing the spin of the wheel and the throw of the ball, we could predict the number on which the ball would land. The outcome appears random because it exhibits no obvious pattern and is difficult, in practice, to predict.
 
@@ -40,7 +72,17 @@ A roulette wheel is an example of what physicists call a chaotic system  — a s
 
 Digital computers are predictable and unpredictable in exactly the same senses as the rest of the physical world. They follow deterministic laws, but these laws have complicated consequences that are extremely difficult to predict. It is often impractical to guess what computers are going to do before they do it. As is true of physical systems, it does not take much to make a computation complex. In computers, chaotic systems — systems whose outcomes depend sensitively on the initial conditions — are the norm.
 
-### COMPUTABILITY
+随机数
+
+数字计算机如何才能产生随机性呢？像计算机这样的确定性系统能否产生真正意义上的随机数序列？严格来讲，答案是否定的。因为计算机中的一切都取决于其设计和输入。对于轮盘机来说也是如此，毕竟，球最终停下来的位置取决于球的物理特性（质量、速度）以及轮盘机的物理因素。如果我们能掌握轮盘机的具体设计信息、控制轮盘转动的「输入」和球的投掷，就能预测出球会落在哪一个数字上。由于球的运动并无明显的模式可循，所以结果是随机的，在实践中难以预测。
+
+和轮盘机一样，计算机可以产生相同意义上的随机数序列。实际上，计算机可以基于数学模型模拟出轮盘机的物理结构，并每次以略有不同的角度投掷一个模拟球，从而产生随机数序列中的某个数。即使计算机投掷模拟球的角度遵循相同的模式，但动态模拟轮盘机的过程会将这些微小的角度差异转换为无法预测的序列。这种数的序列称为伪随机数序列，因为其随机性只有对计算过程一无所知的观察者来说，才是随机的。由伪随机数发生器产生的序列，可以通过所有标准的随机性统计测试。
+
+轮盘机是物理学家称之为混沌系统的一个例子。在这个系统中，初始条件（比如投掷、球的质量、轮盘的直径等）的微小扰动会对系统的最终状态带来巨大影响。混沌系统的概念解释了为何一个确定性的交互系统中会出现不可预测的结果。在计算机中，有比模拟轮盘机更简单地生成伪随机数序列的方法。不过，在概念上，这些方法与轮盘机模型是相似的。
+
+如同物理世界中的万物，计算机既是可预测的，也是不可预测的。虽然它们都遵循确定性原则，但这些原则导致的复杂结果很难预测。在计算机完成某件事之前，我们难以预测它将会做什么。与物理系统一样，计算很容易变复杂。在计算机中，混沌系统随处可见，其结果敏感地取决于初始条件。
+
+### 4.4 Computability
 
 While a universal computer can compute anything that can be computed by any other computing device, there are some things that are just impossible to compute. Of course, it is not possible to compute answers to vaguely defined questions, like「What is the meaning of life?」or questions for which we lack data, like「What is the winning number in tomorrow's lottery?」But there are also flawlessly defined computational problems that are impossible to solve. Such problems are called noncomputable.
 
@@ -56,7 +98,23 @@ Some mathematicians and philosophers have ascribed almost mystical properties to
 
 Although one is hard pressed to come up with specific examples of noncomputable problems, one can easily prove that most of the possible mathematical functions are noncomputable. This is because any program can be specified in a finite number of bits, whereas specifying a function usually requires an infinite number of bits, so there are a lot more functions than programs. Consider the kind of mathematical function that converts one number into another — the cosine, say, or the logarithm. Mathematicians can define all kinds of bizarre functions of this type: for example the function that converts every decimal number into the sum of its digits. As far as I know, this function is a useless one, but a mathematician would regard it as a legitimate function simply because it converts every number into exactly one other number. It can be proved mathematically that there are infinitely more functions than programs. Therefore, for most functions there is no corresponding program that can compute them. The actual counting involves all kinds of difficulties (including counting infinite things and distinguishing between various degrees of infinity!), but the conclusion is correct: statistically speaking, most mathematical functions are noncomputable. Fortunately, almost all these noncomputable functions are useless, and virtually all the functions we might want to compute are computable.
 
-### QUANTUM COMPUTING
+可计算性
+
+尽管通用计算机可以计算其他所有类型的计算装置能做的计算，但有些问题本身就是不可解的。当然，有些定义模糊的问题，比如「生命的意义是什么」，或者缺乏数据支持的问题，比如「明天彩票的中奖号码是什么」，其答案无法通过计算得出。不过，有些定义明确的计算问题也无法通过计算解决，这类问题被称为不可计算的问题。
+
+我需要提醒大家的是，实践中几乎不会出现不可计算的问题。而且，我们很难找到一个定义明确且大家都愿意去研究的不可计算的问题。一个罕见的例子是停机问题，虽然这个问题定义明确，且有实际用处，却是不可计算的。假设我们现在要编写一个判断其他程序是否会在有限时间内停止工作的计算机程序。如果被检查的程序中没有循环和子程序递归调用，那么它必然会停止工作。然而，如果这个程序中满足上述条件，那么它可能会永远地运行下去。可以证明的是，并不存在一种算法可以检查并判定某个程序是否会陷入无限循环状态。此外，并不是没有人去寻找这一算法，而是这种算法根本不存在。停机问题是不可计算的。
+
+若想了解这背后的原因，我们先假设找到了解决停机问题的程序，其名为「停机检测」程序。这一程序将被检测的程序作为输入。虽然将程序作为输入可能看起来很诡异，但这是完全有可能的，因为程序和其他事物一样，可以用二进制位来表示。将「停机检测」这个程序作为一个子程序嵌入另一个名为「悖论」的程序中，「悖论」程序将对自己进行停机检测。假设「悖论」程序所要做的事情就是做出与「停机检测」程序输出的决定相反的动作。如果「停机检测」程序判定「悖论」程序最终会停机，那么便会通过编程让「悖论」进入无限循环状态；如果「停机检测」程序判定「悖论」程序会进入无限循环状态，就会通过编程让「悖论」程序最终停机。由于「停机检测」程序和「悖论」程序两者存在矛盾，「停机检测」程序无法判定「悖论」程序是否会停机。因此，「停机检测」程序并不是对所有程序都有效，所以不存在一个可以解决停机问题的程序。
+
+图灵设想的停机问题是一个非常重要的不可计算问题，实践中遇到的大多数不可计算问题都与它类似或者相同。虽然计算机无法解决停机问题，但这并非计算机的弱点，因为停机问题本质上是不可解的，因此也无法建造出能解决停机问题的机器。据我们所知，不存在其他装置能完成而通用计算机完成不了的计算。显然，数字计算机可以计算所有其他类型的装置能计算的问题。这个结论有时也被称为「丘奇命题」，以纪念图灵的同时代数学家阿朗佐·丘奇（Alonzo Church）。在他的研究基础上，数学家花费了大量时间来研究计算和逻辑问题。图灵、丘奇和另一位名为埃米尔·波斯特（Emil Post）的英国数学家几乎同时提出了通用计算机这一概念，这是一个体现科学同步性的典型案例。虽然他们采用的描述方法各不相同，但都于 1937 年发表了各自的成果，这为即将到来的计算机革命奠定了基础。
+
+还有一个与停机问题密不可分的不可计算问题 —— 判定任何给定数学命题的真假。没有算法能够解决这个问题，这是库尔特·哥德尔（Kurt Goedel）于 1931 年证明的哥德尔不完备性定理中的一个结论，该结论的提出时间正好在图灵提出停机问题之前。哥德尔的定理使许多数学家大为震惊，因为在这之前，他们认为任何数学命题要么为真，要么为假。哥德尔的定理表明，在任何一个足以描述算术运算的逻辑自洽的数学体系中，一定存在着既不能被证实也不能被证伪的命题。数学家向来视证明命题的真假为天职，而哥德尔的定理却证明，他们的工作在某些情况下是不可能完成的。
+
+一些数学家和哲学家将所有的未解之谜都归咎于哥德尔不完备性定理。还有少数人认为，这条定理证明了在某种程度上，人类的直觉超越了计算机的能力，因为人类能够通过直觉推导出机器无法判定真假的事实。从感情色彩上来说，这个论调很吸引人，那些不喜欢将计算机和人类相提并论的哲学家有时会抓住这个论点不放。然而，这个论点是靠不住的，无论人类是否能完成计算机所不能完成的直觉上的跳跃，哥德尔不完备性定理都没有说明，存在数学家能证明但计算机无法证明的数学命题。据我们所知，凡是能由人类证明的定理，计算机也能证明。计算机无法解决的不可计算问题，人类也无法解决。
+
+尽管我们很难找到不可计算问题的具体例子，但可以轻易地证明大多数数学函数都是不可计算的。这是因为，所有程序都可以通过有限位的二进制位来表示。不过表示一个函数需要无数位的二进制位，因此函数要远多于程序。我们可以考虑一下那些将一个数字转换成另一个数字的数学函数，比如余弦函数或者对数函数。数学家总能定义出各种奇怪的函数。比如，将十进制数转换成其位数之和的函数。在我看来，这个函数毫无用处，但数学家认为这是一个正规的函数，因为它能将一个数字转换成另一个数字。应用数学可以证明：函数是无限的，远远多于程序。因此对于大多数函数来说，没有对应的程序可以计算它们。如果对函数和程序进行实际计数，会遇到各种困难，比如计算无限的事物，区分不同程度的无限性等。不过，这个结论是正确的，因为统计表明：大多数数学函数是不可计算的。幸运的是，几乎所有这些不可计算的函数都没有用处。实际上，我们想计算的函数都是可计算的。
+
+### 4.5 Quantum Computing
 
 As noted earlier, the pseudorandom number sequences produced by computers look random, but there is an underlying algorithm that generates them. If you know how a sequence is generated, it is necessarily predictable and not random. If ever we needed an inherently unpredictable random-number sequence, we would have to augment our universal machine with a nondeterministic device for generating randomness.
 
@@ -81,3 +139,29 @@ If it does become possible for quantum computers to search an infinite number of
 This leads us back to the philosophical issues touched on at the beginning of the chapter — that is, the relationship between the computer and the human brain. It is certainly conceivable, as at least one well-known physicist has speculated (to hoots from most of his colleagues), that the human brain takes advantage of quantum mechanical effects. Yet there is no evidence whatsoever that this is the case. Certainly, the physics of a neuron depends on quantum mechanics, just as the physics of a transistor does, but there is no evidence that neural processing takes place at the quantum mechanical level as opposed to the classical level; that is, there is no evidence that quantum mechanics is necessary to explain human thought. As far as we know, all the relevant computational properties of a neuron can be simulated on a conventional computer. If this is indeed the case, then it is also possible to simulate a network of tens of billions of such neurons, which means, in turn, that the brain can be simulated on a universal machine. Even if it turns out that the brain takes advantage of quantum computation, we will probably learn how to build devices that take advantage of the same effects — in which case it will still be possible to simulate the human brain with a machine.
 
 The theoretical limitations of computers provide no useful dividing line between human beings and machines. As far as we know, the brain is a kind of computer, and thought is just a complex computation. Perhaps this conclusion sounds harsh to you, but in my view it takes nothing away from the wonder or value of human thought. The statement that thought is a complex computation is like the statement sometimes made by biologists that life is a complex chemical reaction: both statements are true, and yet they still may be seen as incomplete. They identify the correct components, but they ignore the mystery. To me, life and thought are both made all the more wonderful by the realization that they emerge from simple, understandable parts. I do not feel diminished by my kinship to Turing's machine.
+
+量子计算
+
+如前所述，计算机产生的伪随机数序列看起来是随机的，但实际上是由一个潜在的算法产生的。如果你知道序列的生成过程，那么这个序列必定是可预测的，而不是随机的。如果我们需要一个无法预测的随机数序列，就必须在通用计算机中添加一个能产生随机性的非确定性装置。
+
+有些人认为，这种随机性生成装置是一种电子式的轮盘机。然而，正如我们所看到的，由于物理规律的限制，这种装置并不是真正随机的。唯一能真正产生不可预测的结果的方法是依靠量子力学。在关于轮盘机的经典物理学模型中，原因决定了结果。然而，量子力学与之不同，它产生的结果是完全随机的。例如，一个给定的铀原子何时会衰变为铅原子，这是不可预测的。因此，我们可以用一个盖革计数器来生成真正的随机数序列。从原理上来说，这是通用计算机永远无法做到的。
+
+量子力学引出了一系列关于通用计算机的问题，目前无人能给出答案。初看起来，量子力学与数字计算机非常拟合，因为「量子」与「数字」两词传达了相同的理念。量子现象与数字现象一样，只存在于离散状态之中。从量子的角度来看，物理世界呈现出来的连续和模拟的特性，比如电流的流动，只是我们在比原子尺度更宏观的尺度上的所见所闻导致的错觉。好消息是，在量子力学的世界中，原子尺度上的一切都是离散的，一切都是数字化的。电荷由一堆电子组成，而电子不能再被分割。坏消息则是，在微观尺度下，物体之间相互作用的物理规律是违反常识的。
+
+举例来说，常识告诉我们，同一个物体不可能同时出现在两个地方。然而，在量子力学的世界中，这并不完全正确，因为没有任何物体所处的位置是完全精确的。一个亚原子粒子可以同时存在于所有的空间，只是我们在某一地点观测到它们的概率高于其他地点而已。在大多数情况下，我们可以认为粒子就位于我们观测到它们的那个地方，但为了解释我们观察到的所有现象，我们必须承认粒子的位置不止一个。几乎所有人都难以理解这个概念，包括许多物理学家。
+
+我们可以利用量子效应制造出更强大的计算机吗？目前为止，这个问题依然没有答案，但有迹象表明，这是有可能的。原子似乎更擅长于解答某些问题，比如原子之间是如何相互作用的，而这些问题恰恰是传统计算机难以解答的。例如，当两个氢原子和一个氧原子结合形成一个水分子时，这些原子就以某种方式计算出了两键之间的角度应该为 107 度。根据量子力学原理，数字计算机也可以大致计算出这一角度，但需要耗费很长的时间。而且，若想计算结果越准确，所用的时间就越长。然而，一杯水中的每个分子几乎可以瞬间完成此运算。为何单个分子的运算速度比数字计算机快得多呢？
+
+计算机计算这个量子力学问题之所以需要很长时间，原因在于，它必须考虑该水分子的无数多种可能的原子组态，才能得出精确的答案。同时，计算过程中还要考虑这些因素：构成水分子的原子可以同时处于所有的组态。这是计算机在有限时间内只能得到近似答案的原因。为了解释水分子为何能完成同样的计算，我们可以假设水分子能同时得出所有的原子组态，换句话说，它采用了并行计算的方式。我们能否利用量子力学对象的这种并行计算能力制造出更强大的计算机呢？无人知晓确切的答案。
+
+最近出现了一些引人关注的迹象，我们似乎可以利用一种被称为量子纠缠的现象制造出量子计算机。在量子力学系统中，当两个粒子互相作用时，它们的命运就会连接在一起，这种连接方式超出了我们在经典物理世界中的认知。当我们测量其中一个粒子的某些属性时，会干扰到另一个粒子的测量值，即使这两个粒子在物理空间上相隔甚远。爱因斯坦称这种没有时延的物理效应为「远距离作用的幽灵」，他对世界竟然以这种方式运行而感到不快。
+
+量子计算机可以利用量子纠缠效应来建造，这样一来，一个二进制位的量子寄存器存储的不再是一个 1 或者一个 0，而是许多个 1 和 0 的叠加态。这种情况类似于一个原子同时存在于多个地方，一个二进制位也可以同时处于多种状态（1 或 0）。不过，这种叠加态区别于 1 和 0 之间的中间态，因为 1 和 0 叠加之后还能与量子计算机中的其他二进制位产生纠缠效应。当两个这样的量子二进制位在量子逻辑块中组合时，它们产生的叠加态会以不同的方式相互作用，进而产生更为丰富的纠缠行为。因此，单个量子逻辑块可以完成的计算量非常大，甚至可能是无限的。
+
+虽然量子计算背后的理论已经相当成熟，但在使用它的过程中仍然存在一些问题。比如，我们如何利用量子计算来实现有价值的计算？物理学家彼得·肖尔（Peter Shor）提出了一种方法，它可以利用量子效应来完成某些意义重大且难度很高的计算，比如大数因式分解的计算。这一工作重新点燃了人们对量子计算机的兴趣。不过，前进的道路上依然存在许多困难，其中一个便是，量子计算机中的二进制位必须始终处于纠缠状态才能使计算生效，一旦出现极小的扰动，比如由宇宙射线或者真空本身的噪声引起的扰动，就会破坏纠缠效应。是的，在量子力学中，即使真空的特性也很怪异。量子纠缠效应的丧失现象被称为脱散，它可能会成为量子计算机的致命弱点。此外，肖尔的方法似乎只适用于特殊类型的计算问题，这类计算需要用到被称为广义傅立叶变换的快速运算。经典的图灵机也能轻易地解决这一类问题；如果真是如此，肖尔的量子算法将无异于传统计算机中的某些程序。
+
+如果量子计算机确实能同时搜索无限多种可能性，那么其计算能力将从本质上超过传统计算机。如果真的能够利用量子力学制造出比图灵机更强大的计算机，大部分科学家都会惊叹不已。然而，科学正是在一系列出人意料之中取得进步的。如果你希望出现一种令人惊叹的新型计算机，那么量子力学是一个值得关注的领域。
+
+这将我们又带回到了本章开头所讨论的哲学话题：计算机和人类大脑之间的关系。这当然是可以想象的，因为至少有一位著名物理学家推测，人类大脑利用了量子力学效应。然而，没有任何证据证明事实就是如此。当然，神经元的物理特性取决于量子力学，就如同晶体管的物理特性取决于量子力学。不过，没有证据表明神经元的信息处理发生在量子力学这一级，而非经典物理学这一级。也就是说，没有证据表明必须用量子力学来解释人类的思维。实际上，我们可以在传统计算机上模拟出神经元中所有相关的计算属性。如果事实真是如此，那么我们也可以模拟出由数百亿神经元组成的神经网络。这也就意味着，我们能通过一台通用计算机模拟出大脑。即使事实证明，大脑得益于量子计算的优势，我们也有可能利用量子效应制造出对应的装置。在这种情况下，用计算机来模拟大脑仍是可能的。
+
+计算机在理论上的局限性并不意味着人类和计算机之间存在一条有实际意义的分界线。实际上，大脑相当于一台计算机，而思维只不过是一种复杂的计算。虽然这个结论听起来可能很残酷，但在我看来，这丝毫不妨碍人类思维的非凡价值。「思维是复杂的计算」这一说法和生物学家所说的「生命是一种复杂的化学反应」一样，两者都是正确的，但并不完整。它们都说出了正确的那一部分，但忽视了其中隐藏的谜团。我认为，生命和思维都是从简单、易懂的事物中萌生而来的，这使它们变得更为奇妙。我不会因为自己与图灵机的亲密关系而感到人类是多么卑微。
