@@ -32,6 +32,22 @@ The philosopher Gregory Bateson once defined information as「the difference tha
 
 These days, computers are popularly thought of as multimedia devices, capable of incorporating and combining all previous forms of media — text, graphics, moving pictures, sound. I think this point of view leads to an underestimation of the computer's potential. It is certainly true that a computer can incorporate and manipulate all other media, but the true power of the computer is that it is capable of manipulating not just the expression of ideas but also the ideas themselves. The amazing thing to me is not that a computer can hold the contents of all the books in a library but that it can notice relationships between the concepts described in the books — not that it can display a picture of a bird in flight or a galaxy spinning but that it can imagine and predict the consequences of the physical laws that create these wonders. The computer is not just an advanced calculator or camera or paintbrush; rather, it is a device that accelerates and extends our processes of thought. It is an imagination machine, which starts with the ideas we put into it and takes them farther than we ever could have taken them on our own.
 
+### 0102. 主题卡 —— 一个程序在计算机上运行的层次结构
+
+信息源自「0301Programming」
+
+We are now in a position to summarize how a computer works, from top to bottom. Most readers will have lost track of the details, but remember that it is not important to remember how every step works! The important thing to remember is the hierarchy of functional abstractions.
+
+The work performed by the computer is specified by a program , which is written in a programming language. This language is converted to sequences of machine-language instructions by interpreters or compilers , via a predefined set of subroutines called the operating system. The instructions, which are stored in the memory of the computer, define the operations to be performed on data, which are also stored in the computer's memory. A finite-state machine fetches and executes these instructions. The instructions as well as the data are represented by patterns of bits. Both the finite-state machine and the memory are built of storage registers and Boolean logic blocks , and the latter are based on simple logical functions , such as And, Or , and Invert. These logical functions are implemented by switches , which are set up either in series or in parallel , and these switches control a physical substance, such as water or electricity, which is used to send one of two possible signals from one switch to another: 1 or 0. This is the hierarchy of abstraction that makes computers work.
+
+层次结构
+
+现在，我们可以对计算机的工作原理做一个完整的总结了。虽然大多数读者总是很容易忘却具体的细节，但对于计算机的工作原理来说，记住每个细节并无必要，重要的是记住功能抽象的层次结构。
+
+程序规定了计算机执行的任务，前者是由编程语言编写的。通过一组被称为操作系统的预先定义好的子程序，解释器或者编译器会将编程语言转换为机器语言指令序列。这些指令序列存储于计算机的内存中，并且可以操作存储于内存中的数据。有限状态机可以读取并执行这些指令。这些指令和数据都以二进制位的形式存在。有限状态机和内存都由寄存器和布尔逻辑块构成，布尔逻辑块基于「与」「或」「非」这些简单的逻辑功能构建而成，而这些逻辑功能可以通过开关来实现。开关以串联或者并联的方式相连，控制着某种物理介质，比如水、电等，而这些物理介质在开关之间传递着两种可能的信号之一，即 1 或 0。这就是计算机得以运行的功能抽象的层次结构。
+
+2『一个程序在计算机上运行的层次结构，做一张主题卡片。（2021-10-10）』—— 已完成
+
 ### 0201. 术语卡 —— 有限状态机
 
 信息源自「0201Univeral Building Blocks」
@@ -120,7 +136,29 @@ Before showing you how Boolean logic and finite-state machines are combined to p
 
 在讲解如何将布尔逻辑和有限状态机结合起来并建造一台计算机之前，这里我只作自下而上的描述，指明一下途径和方向。下一章我将会介绍计算机功能中最为抽象的内容，大多数程序员都在这一级别与计算机交流。
 
-### 0202. 术语卡 ——
+### 0202. 术语卡 —— 编程语言的编译和解释
+
+信息源自「0301Programming」
+
+So we have established a chain of connections between the technology and the instructions. But how do the instructions execute a program written in a language — Logo, for instance —  when that language is written in words and the instructions are patterns of bits? The answer is that the necessary translation is performed by the computer itself.
+
+The translation process performed by the computer is similar to the process that a patient, meticulous human translator would use to translate a document written in an unfamiliar language, given a dictionary written in the language itself. The human translator can look up the meaning of any unknown word in the dictionary, and if words in the dictionary definition are also unknown, these words can be looked up as well. This process continues until the translator reaches a definition couched in words whose meanings are known. In this analogy, the translator's (that is, the computer's) dictionary is the program, and the words known to the computer are the aforementioned primitives of the program language. These primitives are defined directly, as simple sequences of machine instructions. For instance, when the computer looks up the definition of the Logo language primitive FORWARD, it finds the sequence of machine instructions that will draw the appropriate line on the screen.
+
+To understand how a computer translates Logo primitives into machine language, it is helpful to understand the conventions that a computer uses to represent the Logo programs within its memory. One way to store a Logo program in a computer's memory is as a sequence of characters in adjacent memory locations, with each character being stored at a single location. In its memory, the computer keeps a directory of the addresses of the instruction sequences corresponding to each command name. This directory is stored in memory as a list of names paired with their addresses. The computer is able to find the location of an object with a given name by searching the directory for the name and finding the corresponding address. When the computer is asked to execute a particular command, it looks up the name in the directory to find out where its definition is stored.
+
+Some of this process of looking things up and finding the corresponding sequences of machine language can be done before the program is executed. This saves time, because if the program is going to be executed more than once, there's no point in looking up the same things over and over again. When most of the work of conversion is done beforehand, the translation process is called compilation , and the program that performs the compilation is called a compiler. If most of the work is done while the program is being executed, then the process is called interpretation, and the program is called an interpreter. There is no hard and fast line between the two.
+
+翻译语言
+
+到目前为止，我们已经在技术和指令之间建立了一系列连接。程序由词汇写成，指令由二进制位组构成。那么，在这种情况下，机器指令如何执行用编程语言（例如 Logo）编写的程序呢？答案在于计算机执行翻译的过程。
+
+计算机执行翻译的过程和人类语言的翻译过程类似。假设有一名耐心细致的翻译员正在翻译一份用陌生的语言编写的文档，并且所使用的字典也是用这种陌生的语言编写的。当他碰到未知单词时，可以查询字典，如果在词语的定义中又碰到了未知单词，可以继续查询字典。这个过程可以持续地进行下去，直到这名翻译员能读懂定义中所有词语的含义。在这个例子中，翻译员的字典相当于计算机程序，计算机能读懂的词语则相当于前面我们提到的编程语言的原语。这些原语被直接定义为简单的机器指令序列。例如，当计算机查询 Logo 语言中「FORWARD」原语的定义时，就会找到可以在屏幕上画直线的机器指令序列。
+
+若想了解计算机如何将 Logo 语言中的原语翻译成机器语言，你最好先了解一下计算机在内存中表示 Logo 程序的方法。在计算机内存中存储 Logo 程序的一种方法是，将程序字符存入一段连续的内存地址中，且每个内存地址中只存储一个字符。计算机内存中保存有一份对应于指令名称的指令序列的地址表。这份地址表存储于内存中，而且在地址表中，指令名称和指令序列是一一对应的。对于给定名称的指令，计算机可在表中查询该名，找到它的地址，进而找到具有此名的对象的存储单元。当计算机执行某个特定命令时，就会在地址表中查找这个命令的名称，并会找到其定义的存储地址。
+
+在程序执行之前，计算机就可以完成查找程序对应的机器指令序列的过程。这一操作很节省时间，因为一个程序不只执行一次，同样的查询没有必要重复多次。如果大部分翻译工作在程序执行前便已完成，那么这类翻译就被称为编译，完成上述编译过程的程序被称为编译器。如果大部分翻译工作是边执行程序边进行的，那么这类翻译被称为解释，相应的程序被称为解释器。这两者之间并无一条明确的界线。
+
+2『编译和解释，这里对两者的解释是目前自己看到的，最通俗易懂的，做一张术语卡片。（2021-10-10）』—— 已完成
 
 ### 0203. 术语卡 ——
 
@@ -132,7 +170,15 @@ Before showing you how Boolean logic and finite-state machines are combined to p
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 数据信息卡 ——
+### 0501. 数据信息卡 —— Lisp 可以直接处理二进制表示的数据
+
+信息源自「0301Programming」
+
+There are many other computer languages: LISP, Ada, FORTRAN, C, ALGOL, and the like; most of the names are obscure acronyms (such as FORTRAN, for FORmula TRANslation, and LISP, for LISt Processing). Although these languages differ from Logo in details of vocabulary and syntax, they can all express the same kinds of procedures. Some, like FORTRAN, are limited in their ability to define operations recursively or to manipulate non-numerical data. Others, like C and LISP, allow the programmer to manipulate the underlying bits representing the data, which gives the programmer more power — and more opportunity to make mistakes. In C, for example, it's perfectly possible to multiply two alphabetic characters; the result of this nonsensical operation will depend on the binary representation used by the machine. Languages like LISP offer the abstract as well as the lower-level functions. As a friend of mine, the computer scientist Guy Steele, once put it,「LISP is a high-level language, but you can still feel the bits sliding between your toes.」
+
+计算机编程语言还包括 LISP、Ada、FORTRAN、C、ALGOL 等语言，其中大多数名称源于英文首字母的缩写。例如，FORTRAN 是 FORmula TRANslation 的缩写，LISP 是 LIST Processing 的缩写。尽管这些编程语言在词汇和语法等细节上与 Logo 语言有所不同，但它们都可以定义相同类型的程序。有些编程语言在定义递归运算和处理非数值数据方面的能力有所欠缺，例如 FORTRAN。有些编程语言允许程序员直接处理二进制表示的数据，这赋予了程序员更大的权力，但同时也增加了犯错误的可能性，比如 C 和 LISP。例如，在 C 语言中，虽然将两个字符变量相乘是可行的，但这一操作不具有实际意义，其结果取决于计算机使用的二进制编码方式。像 LISP 这样的编程语言不仅具备低级功能，还具备抽象功能。计算机学者盖伊·斯蒂尔（Guy Steele）曾说过：「LISP 是一种高级编程语言，不过，你依然可以在指尖间感受到滑动的二进制位。」
+
+1『第一次知道，原来 Lisp 可以直接处理二进制表示的数据，做一张信息数据卡片。（2021-10-10）』—— 已完成
 
 ### 0601. 任意卡 ——
 

@@ -1,10 +1,14 @@
-ALGORITHMS AND HEURISTICS
+## 0501. Algorithms and Heuristics
 
 W hen I was an undergraduate at MIT, one of my roommates had several dozen pairs of socks, each pair with a slightly different color or design. He frequently postponed doing his laundry until he was completely out of clean socks, so whenever he washed them he had the not inconsiderable task of matching them all up again in pairs. Here is the way he would do it: First, he would pull a random sock out of the pile of clean laundry, then he would extract another sock at random and compare it to the first to see if it matched. If it didn't, he would throw the second sock back and pull out another one. He would keep doing this until he found a match, and then he would go through the same sequence all over again with a new sock. Since he had to look though a lot of laundry, the process went very slowly — especially at the beginning, because there were a lot more socks to be examined before a match turned up.
 
 He was studying for a degree in mathematics, and was apparently taking some kind of course in computers. One day when he had hauled his laundry basket back to our rooms, he announced,「I have decided to use a better algorithm for matching my socks.」What he meant was that he was now going to use a procedure of a fundamentally different nature. He pulled out the first sock and set it on the table, then he pulled out the next sock and compared it with the first sock; since it didn't match, he set it next to the first. Now each time he pulled out a sock he would compare it to the growing row of socks on the table. When he found a match, he would bundle that pair together and throw them in his sock drawer. When he didn't, he would add the unmatched sock to the row. Using this method, he was able to pair up his socks in a small fraction of the time it had previously required. His parents, who had paid a great deal of money for his college education, would have been proud to know that he was putting his newfound learning to such practical use.
 
-THE ALGORITHMIC GUARANTEE
+在麻省理工学院读本科时，我有这样一位室友，他备有几十双袜子，每双袜子的颜色或样式都略有不同，在将所有干净的袜子穿完之前，他一般都不会洗袜子。因此，每次洗完袜子后，他都要完成一项艰巨的任务 —— 给袜子配对。他是这么做这项工作的：先从一堆干净的袜子中随机抽出一只，然后再随机抽取另一只与第一只袜子进行比较，看是否匹配。如果配对失败，他会将第二只袜子扔回去，然后抽出另一只袜子。他会不断地重复这个过程直至找到一双匹配的袜子。然后，他会再拿出一只新袜子并重复这个过程。这种配对方式进度十分缓慢，因为需要翻看许多袜子，尤其是在开始阶段，需要翻看更多袜子才能配对成功。
+
+室友当时正在攻读数学学位，他还选修了一门计算机类的课程。有一天，他把洗衣篮带进宿舍并宣布道：「我决定利用更好的‘算法'来配对袜子。」他的意思是采用一种完全不同的方法。他取出第一只袜子放到桌子上，然后取出另一只和第一只进行比较；如果这两只不是同一双袜子，他就把第二只袜子放到第一只旁边。现在他每次取出一只袜子，都会和桌上越来越多的袜子进行比较。一旦配对成功，就将它们绑在一起并丢进装袜子的抽屉里；当两者不匹配时，他就把这只袜子放到桌上的袜子中。自从他采用这一方法后，只需很短的时间就能将所有袜子分好类。他父母为他的大学教育花费了一大笔钱，如果知道他在实践中运用所学的新知识，一定会备感骄傲。
+
+### 5.1 The Algorithmic Guarantee
 
 With or without socks, an algorithm is a fail-safe procedure, guaranteed to achieve a specific goal. The word「algorithm」comes from the name of the Arabian mathematician al-Khwarizmi, who wrote down an extensive collection of algorithms in the ninth century. The word「algebra,」in fact, comes from al jabr (「the transposition」), a term in the title of one of his books. Many of al-Khwarizmi's algorithms are still used today. He described them, of course, in Arabic, which may be why this language gained a reputation as the language of magic spells. (It has even been suggested that the incantation「abracadabra」is a corruption of al-Khwarizmi's full name, Abu Abdullah abu Jafar Muhammad ibn Musa al-Khwarizmi.)
 
@@ -30,7 +34,35 @@ The traveling salesman problem may seem unimportant, but it turns out to be equi
 
 No predictable technical breakthroughs in computers will help solve the traveling salesman problem, since even a computer a billion times faster will still be stumped by the addition of a few more cities. Exponential algorithms are just too slow to use for large problems. What could make a difference is the invention of a new algorithm: no one has ever proved that a fast algorithm for the traveling salesmen problem cannot exist. The study of algorithms has made significant progress in just the last few decades, and finding a fast one for the traveling salesman problem — or else proving that a fast one does not exist — remains one of computing's holy grails.
 
-SETTLING FOR ALMOST ALWAYS
+算法的保证性
+
+算法是一种失效安全（fail-safe）机制，能确保达成既定目标，上述配对袜子的情况就是一种示例。「算法」一词来源于阿拉伯数学家阿尔 - 赫瓦里兹米（al Khwarizmi）的名字，他在 9 世纪写下了大量关于算法的著作。实际上，「algebra」（代数）一词来源于他一本书的书名 aljabr（移项）一词。阿尔 - 赫瓦里兹米提出的许多算法直到今天仍在被使用。当然，他写下这些算法时用的是阿拉伯文，这可能就是阿拉伯语被认为是具有神奇魔力的语言的原因。甚至有人认为「abracadabra」（咒语）一词是阿尔 - 赫瓦里兹米的全名（Abu Abdullah abu Jafar Muhammad inb Musa al-Khwarizmi）的误写。
+
+计算机算法通常以程序的形式呈现。算法指的是一系列运算步骤，而不是这些运算步骤的方式。因此，同一种算法可以用不同的计算机语言来描述，甚至可以通过连接合适的寄存器和逻辑门，将算法直接嵌入到硬件中。
+
+在通常情况下，许多不同的算法可以计算出相同的结果。正如配对袜子的例子，不同的算法完成同一任务所需的时间是不同的，但结果是一样的。某些算法还具有其他方面的优势，比如占用的计算机内存很小，或者所需的通信模式很简单，可轻易通过硬件来实现。在时间和内存需求方面，好的算法和差的算法的差别通常可以达到数千甚至上百万倍。有时，一个新算法能帮助你解决以前非常棘手的问题。
+
+因为算法可以通过多种不同的方式来实现，并且可以应用于不同规模的问题，因此在得到具体问题的解决方案之前，我们无法通过测量算法的运行时间来判断算法的效率。算法的运行时间会随着实现方式和问题的规模的变化而变化。因此，我们通常根据完成任务所需的时间和问题的规模来评估算法的速度。在袜子配对的例子中，从洗衣篮中取出袜子的过程耗费了大部分时间，因此，根据每种算法取出袜子的次数和袜子总数的关系，我们就可以比较两种算法的速度。假设洗衣篮中袜子的总数为 n，在第一种算法中，找到一双匹配的袜子所需的取出和放回的平均次数为剩余袜子数目的一半，因此取出袜子的次数与袜子数目的平方成正比。在分析算法时，我们通常不用计算出准确的比例，只需知道算法的阶次为 n2，这意味着对于输入规模很大的问题，计算所需的时间与输入问题的规模的平方成正比。如果袜子的数目增加 10 倍，那么第一种算法所需的时间将增加 100 倍。所以当袜子数目很大时，这不是一个好的算法。在第二种算法中，n 只袜子中的每只都只取出一次，因此算法的阶次为 n。如果你用第二种算法来配对 10 倍于原数目的袜子，完成任务所需的时间只是原来的 10 倍。
+
+计算机编程最大的乐趣之一就是找到一种更快、更高效的新算法，尤其当许多资深专家都无法提出更优算法时。如果计算机科学家能为某种常见的问题找到更快的算法，那么他们会收获很多赞赏和荣誉，至少在计算机科学家的圈子里是这样。如果用差的算法来解决某个问题，可能需要数周，而好的算法可能仅需几分钟。因此，对于算法而言，胜人一筹的方式就是编写出一个新程序，计算出正确的解，而此时你的同事还在运用差劲的程序做计算。
+
+一般而言，最好的算法并不是显而易见的。例如，如何将一副打乱的纸牌（顺序编号）按照升序的方式进行排序？一种方案是，先浏览全副纸牌并找到编号最小的那张，将其作为排序输出的第一张牌。接下来再在剩余纸牌中寻找最小编号的纸牌，然后将其放到第一张牌的上面。依次重复该过程，直到消除所有未排序的纸牌，将所有纸牌都按升序排列。在这个过程中，每找出一张纸牌都需要遍历整副纸牌。由于共有 n 张纸牌，而且每张牌都需要进行 n 次比较，因此算法的运行时间的阶次为 n^2。
+
+如果我们知道纸牌是按从 1 到 n 进行编号的，那么就可以通过不同的方法对它们进行排序，比如采用递归定义的方法，这与第 3 章的 Logo 画树程序类似。以递归方式排序纸牌的方法如下：首先从头到尾浏览一遍纸牌，将比纸牌编号平均值小的纸牌移到下半区，比纸牌编号平均值大的纸牌移到上半区。然后使用同样的算法分别对两个半区进行排序，而且对这副牌的每一半递归地应用这一算法，即对半副牌的一半递归地应用这一算法，以此类推。每一轮迭代后，待排序的纸牌数目都会减半；当只剩最后一张牌时，递归过程结束，排序也结束。因为这个算法不断将纸牌分为两半，直到确定只有一张纸牌时为止，所以它所需的时间与 n 张纸牌被对半分开的次数成正比，即次数为「以 2 为底数的纸牌的对数」。所以这个算法的阶次为 nlogn。如果你不清楚对数的定义，请不用在意。它们的数值很小，可以忽略不计。
+
+还有一种更巧妙的递归算法，它不需要对纸牌进行连续的按序编号。这种算法可以有效地用于处理按字母顺序排序的大量名片等类似问题。这种算法被称为归并排序，它虽然看起来难以理解，但十分美妙，我非常喜欢这种算法。归并排序基于这一事实：将两个已经排好序的序列合并为一个有序的序列十分容易，只需依次从其中一个序列的顶部取出排在首位的卡片。这个合并过程只是归并排序算法中的一个子程序，整个算法的工作流程是这样的：如果序列只剩一张卡片，那么这张卡片就已经排好序；否则，就将序列分为两半，在每一半上迭代使用归并算法，即对每一半进行排序，然后使用上述合并过程将两者组合。这就是归并排序算法的全部过程。如果这个过程听起来太过简单，你可以先在少数几张卡片上试试这个算法，比如从 8 张卡片开始。归并排序算法是展示递归方法的神秘力量和精妙之处的一个很好的例子。
+
+如果一个排序算法（如归并排序算法）只需 nlogn 步，那是非常高效的。事实上，这是最快的算法。不过，这个结论的证明不在本书的范围之内，实际上，其证明的推理十分有趣。我们可以通过统计 n
+
+张卡片的排列数来说明这一点。根据这个数目，我们可以计算出为了将纸牌排好序，必须得到 nlogn 个二进制位的信息。由于每次比较两张卡片只能生成 1 个二进制位的信息，比如第一张牌的编号大于第二张牌的编号，或者相反。因此，对 n 个数进行排序，至少需要进行 nlogn 次比较。在这种情况下，归并排序算法不逊于任何算法。至于如何选择合适的排序算法，市面上有很多相关的书籍。在多数情况下，我们需要在排序中增加一些限制条件，或者已知排序对象的具体情况。最快的算法仍不得知。尽管如此，对于现有待解决的问题的规模来说，排序问题还是相对容易解决的。
+
+旅行推销员问题是一个典型的难以求解的案例。假设一位旅行推销员需要访问 n 座城市，且给定每两座城市之间的距离，旅行推销员应该以何种顺序访问这些城市才能最小化旅行距离呢？没有人能找到阶次为 n^2、n^3 或者 n 的任意次幂的算法来解决这个问题。目前已知的最佳算法的阶次为 2n，这意味着求解时间会随着问题规模的增加呈指数级增长。如果我们在旅行推销员的行程中增加 10 座城市，那么这个问题的难度会增加 1 000 倍（210 = 1 024）。如果我们再增加 30 座城市，问题的难度会增加 10 亿倍（230 约等于 109）。当问题规模变得更大时，这种指数算法的效率会变得很低。然而，对于旅行推销员问题来说，这已经是我们所知道的最快的算法了。即使目前世界上运行速度最快的计算机连续工作数十亿年，也无法及时找到几千座城市之间的最佳访问路径。
+
+虽然旅行推销员问题看起来无关紧要，但事实证明，它与许多其他问题很类似，即所谓的 NP 完全问题（NP complete problem），其中 NP 代表「非确定性多项式」。如果这类问题能得到解决，将会大有益处。如果能找到旅行推销员问题的快速解法，便能得到这些问题的解法。例如，某些用于保护秘密信息的代码能被快速破译。使用这些密码的人一定希望永远不要找到旅行推销员问题的快速算法，而这很可能会成真。
+
+在计算机领域，没有哪一种可预期的技术突破将有助于解决旅行推销员问题。因为即便计算机的运算速度提高 10 亿倍，只要增加几座城市就会被难住。指数算法的效率太低，无法用于解决大规模的问题。也许，只有发明一种新算法才可能有所作为。好消息是，至今仍无证据显示，并不存在解决旅行推销员问题的快速算法。在过去几十年内，这类算法的研究取得了重大进展，找到该问题的快速算法或者证明并不存在这种快速算法，仍然是计算科学界的圣杯。
+
+### 5.2 Settling for Almost Always
 
 As hard as the traveling salesman problem is, it is not one of the most difficult problems to solve on a computer. Some problems are known to require even more than exponential time to solve. As discussed in the previous chapter, there are noncomputable problems that we know no algorithm can solve. Even when algorithms exist for certain problems, they are not necessarily the best approach. An algorithm, by definition, is guaranteed to get the job accomplished, but this guarantee of success often comes at too high a price. In many cases, it is more practical to use a procedure that only almost always gets the right answer. Often,「almost always」is good enough. A rule that tends to give the right answer, but is not guaranteed to, is called a heuristic. It is often more practical to use a heuristic than an algorithm: for instance, there are many effective heuristics for the traveling salesman problem — procedures that will provide an almost optimal route very quickly. In fact these heuristics usually do find the best route, although they are not absolutely guaranteed to do so. A real-life traveling salesman would presumably be happier with a good, fast heuristic than with a slow algorithm.
 
@@ -38,11 +70,11 @@ A simple example of the use of heuristics is the game of chess. A talented progr
 
 A good chess-playing program can be written based on the following heuristics:
 
-1.    Estimate the relative strength of each player's position by counting the number of pieces of each type remaining on the board.
+1 Estimate the relative strength of each player's position by counting the number of pieces of each type remaining on the board.
 
-2.    Move so as to put yourself in the strongest possible position a few moves in the future.
+2 Move so as to put yourself in the strongest possible position a few moves in the future.
 
-3.    Expect your opponent to adopt a strategy similar to your own.
+3 Expect your opponent to adopt a strategy similar to your own.
 
 Each of these rules is only an approximation of the ideal strategy, and it is possible to imagine situations in which each is actually wrong. The relative strength of a player's position, for example, depends not just on the number of pieces but also on their position. A good position can often be more advantageous than an extra piece. Regardless, the first heuristic is generally correct; in most cases, having more pieces is better. Even before computers, chess players developed a simple method of numerically scoring the relative strengths of two players' positions by assigning one point for a pawn, three for a bishop, five for a rook, and so on, and using the total score of each player's remaining pieces as a measure of strength.
 
@@ -58,7 +90,37 @@ Chess-playing machines have a long and sometimes dishonorable role in the histor
 
 The simple search heuristics work because there are a relatively small number of responses to consider for each move. In checkers, where there are even fewer possible responses to each move, machines based on heuristics began beating the best human players in the 1960s. In the Chinese/Japanese game of Go, on the other hand, humans still reign, because the larger board (19 × 19) affords far more possible moves. (I prefer playing Go to chess, precisely because a search is less useful; it makes my impatience less of a disadvantage.)
 
-FITNESS LANDSCAPES
+解决问题的万能方法
+
+尽管旅行推销员问题难以通过计算机求解，但它还不是最难求解的问题。有些问题的求解耗时远远超出指数级别。正如前一章所讨论的，算法无法解决不可计算的问题，而且，即便找到了某些问题的算法，它们也不一定是最优的方法。根据定义，算法必须确保完成任务，但确保成功的承诺通常需要付出很大的代价。在许多情况下，使用一种几乎总能得到正确答案的方法更为实际。通常来说，「几乎总能」已经足够好了。这种能够尽力给出正确答案，但并不确保给出的答案一定正确的规则被称为「启发式方法」。一般而言，更为实际的做法是使用启发式方法而非算法。例如，存在很多能有效解决旅行推销员问题的启发式方法，它们能快速地提供近似的最优路径。事实上，这些启发式方法得出的路径通常是最优的，尽管它们并不能完全保证做到这一点。在现实生活中，旅行推销员可能更希望拥有一个有效、快速的启发式方法，而非一个缓慢的算法。
+
+国际象棋游戏是应用启发式方法的一个简单范例。一位具有编程天赋的程序员可能棋艺一般，但可以写出一个能够击败自己的国际象棋程序。这样的程序并不是一种算法，因为它并不能保证每局都赢。启发式方法会做出有根据的猜测，而好的启发式方法做出的猜测几乎都是正确的。最令人印象深刻的一些计算机行为往往来自启发式方法而非算法。哲学家虽然写下了很多关于「计算机局限性」的无稽之谈，但谈论的实际上只是算法的局限性。
+
+若想编写出一款优秀的国际象棋程序，可以遵循如下启发式方法：
+
+1、通过统计棋盘上每种棋子的数目来评估双方的相对实力。
+
+2、走出会使自己在之后占据最优地位的那步棋。
+
+3、设想对方也会采取相似的策略。
+
+上面的每条规则只是接近于理想的策略，并且在某些情况下，每条规则都可能是错误的。比如，下棋双方的强弱关系可能不仅取决于棋子的数目，还取决于棋子的位置。一颗处于好位置的棋子的作用通常比多一颗棋子的作用还要大。无论如何，第一条启发式方法通常是正确的，即在大多数情况下，拥有更多棋子总是更有利。早在计算机出现前，国际象棋选手就已经发明了一种简单的方法来为下棋双方的实力定量计分：兵为 1 分，象为 3 分，车为 5 分等，并用选手剩余棋子的总分值作为该场棋局实力的衡量标准。
+
+基于这些启发式方法，你可以编写出一款国际象棋程序，该程序能计算出接下来几步合理可行的走法。当然，程序最好能够计算出从游戏开始到结束之间所有的走法。在井字游戏中，很容易实现这一点，而对于国际象棋来说，即使速度最快的计算机也难以实现这一点。在典型的国际象棋中局阶段，可供下棋双方的每种走法都能使对方想出 36 种可能的应对之法。由于国际象棋平均每局超过 80 步，因此计算机需要搜索的可能性数目约为 3680，也就是 10124
+
+种可能性。即便运算速度最快的现代计算机耗时几百年，也无法完成这种规模的搜索过程。这个问题的关键点在于，可能的走法会随着下棋步数的增加呈指数级增长。因此，一般至多考虑前 5～10 步的走法。这就是为什么计算机需要使用上面列出的启发式方法来评估走法的原因。
+
+我们暂且认为第二条启发式方法是正确的，也就是同意能使自己在几步之后处于最有利地位的走法是最佳的。假设国际象棋程序只考虑 6 步棋前的情况。根据第一条启发式方法，这个程序将统计 6 步之后双方棋盘上剩余的棋子数量，并根据上述计分系统打分，由此来评估双方的实力。无论双方处于何种态势，双方的相对实力按得分的高低来判定。
+
+基于上述假设条件，程序应该如何走出最好的一步棋呢？计算机只根据对自己最有利的未来 6 步棋来选择第一步棋的走法是不够的，因为在这 6 步中，每隔一步棋的走法还决定于对方的走法。因此，我们必须假设对方始终会采取对他自己最有利的走法，这就是第三条启发式方法包含的假设。为了预测对手的走法，计算机必须将自己置于对手的位置。计算机在选择下一步棋时会评估自己所能采取的所有走法，同时还要评估对方可能会采取的应对之法，反之亦然。事实上，计算机会分别站在双方的位置，全面考虑双方在未来 6 步棋中所有可能的走法。程序会在计算机内存中的虚拟棋盘上尝试不同的走法，这就如同国际象棋大师在头脑中想象各种可能的走法。评估双方棋局形势的程序互为子程序递归调用。这个递归过程迭代 6 次后结束，此时计算机就会通过统计所剩棋子的数目来评估双方的分数。
+
+大多数国际象棋程序还会采用其他的启发式方法，其目的是放弃一些不合理的搜索，或者在涉及棋子互换的分支中进行更深入的搜索。还有很多精细的系统不借助搜索便可以完成棋局评估。例如，有些系统会为能够控制中心或者保卫「国王」的棋子加分。每种启发式方法都只是一种猜测，在某些情况下，它们都能改善搜索效率，但代价是在其他情况下可能会犯错。经过各种改进，这个基本的搜索过程几乎是所有国际象棋程序的核心。国际象棋程序能利用计算机的运算速度优势来考虑上百万种走法，因而效率极高。在这上百万种走法中，总有一种会让程序员，甚至有经验的人类棋手感到意外。这种制造意外的能力能使计算机比程序员走出更好的棋。
+
+在计算科学史上，国际象棋游戏机有着漫长且偶尔口碑不佳的历程。18 世纪，匈牙利发明家沃尔夫冈·冯·肯佩伦（Wolfgang Von Kempelen）通过一个下国际象棋的自动装置激发了全世界的想象力，这个装置很像一个机器人。后来的事实证明，这个机器之所以能运转，是因为其内部藏有一个会下棋的侏儒。1914 年，西班牙工程师路易斯·托雷斯·克韦多（Luis Torresy Quevedo）制造了一台机械装置，该装置可以在没有人类帮助的情况下，下一种简化版的国际象棋。20 世纪 40 年代末，克劳德·香农描述了如何用计算机编程实现国际象棋启发式走法的思路，其中用到的方法与上文列出的三条规则类似。尽管如此，直到很多年以后，计算机的运算速度才快到足以玩国际象棋这样复杂的游戏。这对不少哲学家来说是一个不小的打击，因为他们认为下国际象棋是人类心智所具有的独特能力。现代计算机利用同样的启发式方法击败了世界上最优秀的国际象棋棋手 —— 1997 年，深蓝计算机击败了加里·卡斯帕罗夫（Garry Kasparov）。此后，哲学家又将争论转移到了其他领域。
+
+简单的启发式方法之所以有效，是因为每步棋需要考虑的可能性相对较少。在跳棋中，每步需要考虑的可能性则更少。早在 20 世纪 60 年代，基于启发式方法的机器就开始击败人类冠军。不过，在中国和日本的围棋游戏中，人类选手仍然处于统治地位，因为 19×19 的棋盘更大，可以提供更多种可能的走法。相比于国际象棋，我更喜欢玩围棋，因为启发式方法在后者中所起的作用更小，我不至于因急躁而处于下风。
+
+### 5.3 Fitness Landscapes
 
 The use of heuristics to search through a set of possibilities is ubiquitous in computer programming and has applications far more important than game playing. This is often the way computers find「creative」solutions to problems — usually problems whose solutions are known to be among a large but finite set of possibilities called a search space. The search space in chess is the set of all possible lines of play; the search space in the traveling salesman problem consists of all possible routes linking the cities on the salesman's list. Since these spaces are too large to search exhaustively, heuristics are used to reduce the area to be searched. In the case of small search spaces, such as in the game of tic-tac-toe, the exhaustive search is preferable, because it is guaranteed to find the right answer.
 
@@ -73,3 +135,19 @@ The weakness of this method, which is called hill climbing , is that although yo
 Heuristics like hill climbing work well on the traveling salesman problem and produce good answers in a short amount of time. Even when thousands of cities are involved, it is usually possible to find at a good solution to the problem by starting out with a reasonable guess and improving it by hill climbing. So why is the traveling salesman problem considered so difficult? Using heuristics, we can almost always get almost the best itinerary. But a method that almost always works is not an algorithm. Periodically, a great deal of fuss is made by someone who has「solved」the traveling salesman problem; so far, all anyone has actually done is come up with a new heuristic. Fast heuristic solutions to the traveling salesman problem are not difficult to dream up; it is finding a fast algorithm that is the difficulty.
 
 There are many problems for which we do not need exactly the right answer every time — problems for which we can accept a less-than-perfect solution. Even when we want a perfect answer, we may not be able to afford it. For such problems, computers can produce an educated and well-considered guess. Because the computer is able to consider an enormous number of combinations and possibilities, such a guess will often surprise the programmer. When a computer uses heuristics, it is capable both of surprises and mistakes — which makes it a little more like a person and a little less like a machine.
+
+适应度地形
+
+这种利用启发式方法搜索一系列可能性的做法在计算机程序设计中随处可见，这种方法还能应用于比游戏更重要的领域。启发式方法是计算机解决某些问题时发现「创造性」的解的常用方式，这类问题的解存在于数量巨大但有限的可能性集合之中，被称为搜索空间。国际象棋的搜索空间是所有可能走法的集合；旅行推销员问题的搜索空间是旅行推销员历程表中各个城市之间所有可能的路线。因为这些空间很大，难以穷举，因此可以使用启发式方法缩小搜索的范围。如果搜索空间本身就比较小，例如井字游戏，那就应该优先选择穷举式的搜索方法，因为这样能保证找到正确的答案。
+
+通常来说，搜索空间之所以很大，是因为简单元素的组合产生了各种可能性，比如国际象棋中的每种走法、旅行推销员问题中各个城市之间的每条路径。元素的组合会致使可能性的「组合爆炸」，这里的「爆炸」是指可能性数目随着组合元素数目的增加而呈指数级增长。由于元素的组合形成了各种可能性，因此搜索空间内有一种距离感，有些组合之间享有相同元素，它们之间的关系比其他没有共享元素的组合更为「紧密」。这是搜索空间又被称为「空间」而不仅是「可能性集合」的原因。为了进一步说明这种类比关系，我们可以设想可能性集合位于一个二维平面上，这个平面有时被称为「适应度地形」（fitness landscape）。每种解的可取性或者得分由地形上的某个高度来表示。如果相似的可能性具有相近的分数，那么相近的点也具有相似的高度，因此这个地形中会有界限分明的丘陵和山谷。在这个类比中，找到最优解的方法就相当于找到最高的山顶。以旅行推销员问题为例，我们可以将地形上的每个点想象为旅行推销员制定的一个行程路线，每个点的高度代表旅行推销员的行程距离，其中更高效的行程路线对应的是最高的山顶。所以，代表行程最短的点位于最高的山顶上。
+
+最简单的空间搜索方法是，比较随机选择的两个点，并记录找到的最佳点。这种方式的搜索范围虽然会受到时间的限制，但能应用于所有类型的空间。这相当于将侦察兵空降至不同的地点，并要求他们报告自己所在位置的海拔高度。显然，这种寻找山顶的方法的效率并不高。如果搜索空间非常大，那么在一段时间内只能搜索到小部分的可能性，而且找到的最佳点也可能不是全局最优的。
+
+在类似于旅行推销员问题的搜索空间里，相近的点可能具有相似的分数，在这样的搜索空间中，更好的一种路线搜索方式是从某点出发搜索其临近点。正如在丘陵地形中，走上坡路才是最好的登顶方法，对应的启发式方法就是在搜索空间中选择局部范围内的最优解。例如，在旅行推销员问题中，计算机通过对调行程中某两个城市的次序，便可以变换最优解。如果改变城市的次序会缩短行程距离，则将它当作更好的解（向上坡迈了一步）；否则就放弃，尝试新方案。这种搜索方法就像在搜索空间中漫游，始终朝上坡方向前进，直至到达山顶。到达山顶以后，再交换任何两个城市的次序都无法得到更好的解。
+
+这种方法被称为爬山法，其缺点在于，你到达的山顶不一定是地形上的最高点。爬山法是一种启发式方法而非算法。还有一些与爬山法相似的启发式方法，它们能降低你困在某个山麓的概率。例如，你可以从不同的随机地点多次重复爬山过程，也就是说，你可以命令那些空降兵登山；或者，为了避免被困住，你可以后退一步。还存在很多种不同的方法，每种都有其自身的优点和缺点。
+
+像爬山法这样的启发式方法能够很好地解决旅行推销员问题，它能在很短的时间内得到令人满意的答案。即便涉及的城市有几千座，通常也可以从一个合理的猜测出发，利用爬山法不断改进，从而找到更好的解。那么，为什么旅行推销员问题如此难以解决呢？虽然我们几乎总能用启发式方法得到几乎最优的行程路径，但「几乎总能有效的方法」并不是一种算法。每隔一段时间，就会有人宣称「解决」了旅行推销员问题，并带来一阵喧嚣。实际上，只不过是提出了一种新的启发式方法。对于旅行推销员问题来说，其困难不在于找到高效的启发式方法，而是找到高效的算法。
+
+对于很多问题来说，我们并不会每次都得出完全正确的答案，而是会接受一个不太完美的答案。即使我们想得到一个完美的答案，也可能无法承担时间成本。对于这些问题，计算机可以给出一个有理有据且考虑周全的解。因为计算机能够考虑数量庞大的组合和可能性，其得出的推测往往会为程序员带来惊喜。当计算机使用启发式方法时，它既能制造惊喜也能犯错，这使它更像人类，而非机器。
