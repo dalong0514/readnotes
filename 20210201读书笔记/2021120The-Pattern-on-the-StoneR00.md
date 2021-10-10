@@ -180,9 +180,39 @@ There are many other computer languages: LISP, Ada, FORTRAN, C, ALGOL, and the l
 
 1『第一次知道，原来 Lisp 可以直接处理二进制表示的数据，做一张信息数据卡片。（2021-10-10）』—— 已完成
 
-### 0601. 任意卡 ——
+### 0502. 数据信息卡 —— 函数是不可计算问题的典型案例
 
-最后还有一张任意卡，记录个人阅读感想。
+信息源自「0401How Universal are Turing Machines?」
+
+Although one is hard pressed to come up with specific examples of noncomputable problems, one can easily prove that most of the possible mathematical functions are noncomputable. This is because any program can be specified in a finite number of bits, whereas specifying a function usually requires an infinite number of bits, so there are a lot more functions than programs. Consider the kind of mathematical function that converts one number into another — the cosine, say, or the logarithm. Mathematicians can define all kinds of bizarre functions of this type: for example the function that converts every decimal number into the sum of its digits. As far as I know, this function is a useless one, but a mathematician would regard it as a legitimate function simply because it converts every number into exactly one other number. It can be proved mathematically that there are infinitely more functions than programs. Therefore, for most functions there is no corresponding program that can compute them. The actual counting involves all kinds of difficulties (including counting infinite things and distinguishing between various degrees of infinity!), but the conclusion is correct: statistically speaking, most mathematical functions are noncomputable. Fortunately, almost all these noncomputable functions are useless, and virtually all the functions we might want to compute are computable.
+
+尽管我们很难找到不可计算问题的具体例子，但可以轻易地证明大多数数学函数都是不可计算的。这是因为，所有程序都可以通过有限位的二进制位来表示。不过表示一个函数需要无数位的二进制位，因此函数要远多于程序。我们可以考虑一下那些将一个数字转换成另一个数字的数学函数，比如余弦函数或者对数函数。数学家总能定义出各种奇怪的函数。比如，将十进制数转换成其位数之和的函数。在我看来，这个函数毫无用处，但数学家认为这是一个正规的函数，因为它能将一个数字转换成另一个数字。应用数学可以证明：函数是无限的，远远多于程序。因此对于大多数函数来说，没有对应的程序可以计算它们。如果对函数和程序进行实际计数，会遇到各种困难，比如计算无限的事物，区分不同程度的无限性等。不过，这个结论是正确的，因为统计表明：大多数数学函数是不可计算的。幸运的是，几乎所有这些不可计算的函数都没有用处。实际上，我们想计算的函数都是可计算的。
+
+2『函数是不可计算问题的典型案例，做一张信息数据卡片。（2021-10-10）』—— 已完成
+
+### 0601. 任意卡 —— 快速排序法的解释
+
+信息源自「0501Algorithms and Heuristics」
+
+Often the best algorithm is not obvious. Consider the problem of sorting a deck of sequentially numbered cards into ascending order. One way to do this is to start by looking through the entire deck for the lowest-numbered card. This card is removed and it becomes the first card of the sorted output pile. Next we look for the lowest card among those that remain. This in turn is removed and placed on top of the first card. The process is repeated until the unsorted cards are exhausted and the deck is arranged in ascending order. This procedure requires looking through the entire deck each time a card is extracted. Since there are n cards, each of which requires n comparisons, the run time of the algorithm is order n 2.
+
+If we know that the cards are sequentially numbered from 1 to n, then we can sort them by a different method — one that uses a recursive definition, like the Logo procedure for drawing a tree described in chapter 3. To sort a deck of cards recursively, go through the deck once, moving cards with a value lower than the mean to the bottom half of the deck and leaving the cards with higher-than-average value in the top half. Then sort the two halves of the deck using the same algorithm. Applying the same algorithm recursively to each half of the deck will involve applying it recursively to each half of the half-decks, and so on. Each step of the recursion halves the number of cards to be sorted; the recursion ends when there is only one card — in which case, it is already sorted. Because this algorithm involves repeatedly dividing the cards until you are examining only one, it will require a time proportional to the number of times n cards can be divided — or the logarithm to the base 2 of the number of cards. So the order of this algorithm is n log n. (If you don't remember what logarithms are, never mind. They are all small numbers, so they can be safely ignored.)
+
+There is an even more elegant recursive algorithm, which doesn't require the cards to be sequentially numbered; it would be useful for putting a large number of business cards into alphabetical order, for example. This algorithm, called merge sort , is harder to understand, but it's so beautiful that I cannot resist describing it. The merge-sort algorithm depends on the fact that it's easy to merge two already sorted stacks into a single sorted stack by successively pulling top-ranked cards off the top of one or the other of the stacks; this merge procedure is a subroutine of the algorithm, and the algorithm works like this: If your stack consists of only one card, then that card is already sorted. Otherwise divide the stack in half, and recursively use the merge-sort algorithm by sorting each half and then combining them using the merge procedure described above. That's all there is to it. (If this sounds too simple to work, you might want to try it with a few cards. Start with eight.) The merge-sort algorithm is a good example of the almost mysterious power and elegance of recursion.
+
+A sorting algorithm that requires just n log n steps, like merge sort, is pretty fast. In fact, it is about the fastest algorithm possible. Proving that particular statement is beyond the scope of this book, but the reasoning that underlies the proof is interesting. It can be shown by counting the number of possible orderings of n cards. From this count, it is possible to compute that n log n bits of information must be known in order to put the cards in the correct order. Since each comparison of two cards produces only 1 bit of information (either the first card is greater than the second, or it is not), then to sort n numbers requires at least n log n comparisons, so in this case the merge-sort algorithm is about as good as any other. Books have been written on the topic of choosing the proper sorting algorithm. In many cases, where certain constraints are put on the sorting, or particular knowledge is available about the objects being sorted, the fastest possible sorting algorithm remains unknown. Still, on the scale of tasks for which we would like to design algorithms, sorting is considered relatively easy.
+
+An example of a difficult task is called the traveling salesman problem. Imagine that a traveling salesman has to visit n cities. Given the traveling distance between each of the cities, in what order should the salesman visit the cities to minimize total distance traveled? No one knows an algorithm that is order n 2 , or order n 3 , or n to any power, which will accomplish this. The best algorithm known is order 2 n , meaning that the time required grows exponentially with the size of the problem. If we add ten more cities to the salesman's itinerary, the problem gets a thousand times harder (2 10 = 1,024). If we add thirty more cities, it gets about a billion times harder (2 30 is about 10 9 ). Exponential algorithms are not much use when problems get large, but for the traveling salesman problem they are the best algorithms we know. The fastest computer in the world, working for billions of years, would not have enough time to find the best route for just a few thousand cities.
+
+一般而言，最好的算法并不是显而易见的。例如，如何将一副打乱的纸牌（顺序编号）按照升序的方式进行排序？一种方案是，先浏览全副纸牌并找到编号最小的那张，将其作为排序输出的第一张牌。接下来再在剩余纸牌中寻找最小编号的纸牌，然后将其放到第一张牌的上面。依次重复该过程，直到消除所有未排序的纸牌，将所有纸牌都按升序排列。在这个过程中，每找出一张纸牌都需要遍历整副纸牌。由于共有 n 张纸牌，而且每张牌都需要进行 n 次比较，因此算法的运行时间的阶次为 n^2。
+
+如果我们知道纸牌是按从 1 到 n 进行编号的，那么就可以通过不同的方法对它们进行排序，比如采用递归定义的方法，这与第 3 章的 Logo 画树程序类似。以递归方式排序纸牌的方法如下：首先从头到尾浏览一遍纸牌，将比纸牌编号平均值小的纸牌移到下半区，比纸牌编号平均值大的纸牌移到上半区。然后使用同样的算法分别对两个半区进行排序，而且对这副牌的每一半递归地应用这一算法，即对半副牌的一半递归地应用这一算法，以此类推。每一轮迭代后，待排序的纸牌数目都会减半；当只剩最后一张牌时，递归过程结束，排序也结束。因为这个算法不断将纸牌分为两半，直到确定只有一张纸牌时为止，所以它所需的时间与 n 张纸牌被对半分开的次数成正比，即次数为「以 2 为底数的纸牌的对数」。所以这个算法的阶次为 nlogn。如果你不清楚对数的定义，请不用在意。它们的数值很小，可以忽略不计。
+
+1-2-3『真是意外收获，竟然在这里吃透了快速排序法，之前一直有点不明白的地方原来关键在于：开始的时候就知道最小数和最大数，那么对半的平均数是可以算出来的，按「半数」来切割。之前「卡在」的地方是第一次切割的时候我怎么知道「半数」在哪里，原来前提条件是你开始就知道，这一点吴军在谷歌方法论将快速排序时也忘记给读者点出来了。快速排序法的解释做一张任意卡片。（2021-10-10）』—— 已完成
+
+还有一种更巧妙的递归算法，它不需要对纸牌进行连续的按序编号。这种算法可以有效地用于处理按字母顺序排序的大量名片等类似问题。这种算法被称为归并排序，它虽然看起来难以理解，但十分美妙，我非常喜欢这种算法。归并排序基于这一事实：将两个已经排好序的序列合并为一个有序的序列十分容易，只需依次从其中一个序列的顶部取出排在首位的卡片。这个合并过程只是归并排序算法中的一个子程序，整个算法的工作流程是这样的：如果序列只剩一张卡片，那么这张卡片就已经排好序；否则，就将序列分为两半，在每一半上迭代使用归并算法，即对每一半进行排序，然后使用上述合并过程将两者组合。这就是归并排序算法的全部过程。如果这个过程听起来太过简单，你可以先在少数几张卡片上试试这个算法，比如从 8 张卡片开始。归并排序算法是展示递归方法的神秘力量和精妙之处的一个很好的例子。
+
+如果一个排序算法（如归并排序算法）只需 nlogn 步，那是非常高效的。事实上，这是最快的算法。不过，这个结论的证明不在本书的范围之内，实际上，其证明的推理十分有趣。我们可以通过统计 n 张卡片的排列数来说明这一点。根据这个数目，我们可以计算出为了将纸牌排好序，必须得到 nlogn 个二进制位的信息。由于每次比较两张卡片只能生成 1 个二进制位的信息，比如第一张牌的编号大于第二张牌的编号，或者相反。因此，对 n 个数进行排序，至少需要进行 nlogn 次比较。在这种情况下，归并排序算法不逊于任何算法。至于如何选择合适的排序算法，市面上有很多相关的书籍。在多数情况下，我们需要在排序中增加一些限制条件，或者已知排序对象的具体情况。最快的算法仍不得知。尽管如此，对于现有待解决的问题的规模来说，排序问题还是相对容易解决的。
 
 ## 再版前言 —— 计算机背后不曾改变的基本原理
 
@@ -249,3 +279,33 @@ These days, computers are popularly thought of as multimedia devices, capable of
 哲学家格雷戈里·贝特森（Gregory Bateson）曾将信息定义为「非同小可的差异」。换句话说，信息存在于我们选择用来表示意义的差异之中。例如，在原始的电子计算器中，信息是以电流流通与否造成的灯的开启和关闭来表示的，而信号的电压和电流方向则无关紧要。这其中起关键作用的是一根能够传输两种可能的信号的线路，其中一种信号是让灯亮起。在这里，产生关键作用的差异之处，也就是贝特森所说的「非同小可的差异」，就是电流的流通与否。贝特森给出的定义很明确，这个定义于我而言有着更为丰富的含义。在短短几十年间，世界发生了翻天覆地的变化。信息技术的发展引发或者促成了我们在商业、政治、科学和哲学领域所目睹的许多变革。当今世界，许多事情已异于往昔，而这一非同小可的变化皆源自计算机。
 
 人们普遍认为，计算机是一种能够融合文本、图像、动画、声音等所有已有形式的多媒体设备。然而我认为，这一观点低估了计算机的潜力。计算机当然能够综合处理各种形式的媒体，但其真正的威力是它不仅能处理概念的表示形式，而且能处理概念本身。计算机最令我震惊的地方不在于它能够储存图书馆中所有书籍的内容，而在于它能够识别并总结出书中所述的各种概念之间的关系；不在于它能展示出飞鸟或者星系自旋的图像，而在于它能猜想并预测出创造了这些奇迹的物理定律将会产生的结果。计算机不只是一台先进的计算器，或一架高级的照相机，或一支具有神奇功能的画笔，它更是一种能够加速和扩展思维过程的工具。计算机是一架富有想象力的机器，它从我们输入的概念演变为人类从未抵达的情境。
+
+## Further Reading
+
+Hillis, W. Daniel. The Connection Machine. The MIT Press Series in Artificial Intelligence (MIT, 1989).
+
+Knuth, Donald Ervin. The Art of Computer Programming , 4 vols. (Addison-Wesley, 1997).
+
+Minsky, Marvin Lee. Computation: Finite and Infinite Machines (Prentice Hall, 1967).
+
+Patterson, David A., and John L. Hennessy. Computer Architecture: A Quantitative Approach. 2d ed. (Morgan Kaufman Publishers, 1996).
+
+Weiner, Norbert. Human Use of Human Beings: Cybernetics and Society (Avon, 1986).
+
+Winston, Patrick Henry. Artificial Intelligence. 3d ed. (Addison-Wesley, 1998).
+
+## Acknowledgement
+
+This project was originally suggested to me by John Brockman, who felt that there was a need for a short book summarizing the ideas behind computers. It seemed to me like a straightforward project at the time, but I soon discovered that writing a short book on such a broad subject can be more difficult than writing a long one.
+
+I thank John and also William Frucht of Basic Books for their help in this endeavor. I wrote the book while visiting at the MIT Media Laboratory, and I would like to thank all of the faculty and students who helped and supported me there, especially the laboratory's founder and director, Nicholas Negroponte. I received significant help in the preparation of the initial manuscript from Debbie Widener, and also from Bettylou McClanahan and Peggi Oakley. Most of what is in the book was taught to me by my friend and mentor Marvin Minsky and other inspiring teachers at MIT, including Gerald Sussman, Claude Shannon, Seymour Papert, Tomaso Poggio, Patrick Winston, and Tom Knight.
+
+I would also like to thank those who read through early drafts and gave me helpful comments: Jerry Lyons, Seymour Papert, George Dyson, Chris Sykes, Brian Eno, Po Bronson, Argye Hillis, and Pati Hillis. I received helpful advice on specific chapters from Tommy Poggio, Neil Gershenfeld, Simon Garfinkel, Mitchell Resnick, and Marvin Minsky. I was very fortunate to have the help of Sara Lippincott, who edited the text, much improving it in the process. Finally, I would like to thank my family: my parents Argye and Bill, who encouraged my interests in designing complex machines; my children, Noah, Asa, and India; and especially my wife, Pati, who patiently encouraged and supported me throughout the project.
+
+致谢
+
+最初，是约翰·布罗克曼（John Brockman）鼓励我写这本书的。他认为市面上需要一本简短易懂的书籍来总结计算机背后的原理。当时我觉得这是一项很简单的工作，但很快就发现，写一本主题如此宽泛的短篇著作要比写一篇类似的长篇著作更为艰难。
+
+我要感谢布罗克曼和威廉·弗鲁特（William Frucht）在本书出版过程中给予的帮助。我是在访问麻省理工学院媒体实验室期间写下这本书的，感谢那里所有曾经帮助和支持过我的老师和学生，尤其是实验室创始人兼执行总监尼古拉斯·尼葛洛庞帝（Nicholas Negroponte）。我在准备初稿时得到了黛比·怀德纳（DebbieWidener）以及贝蒂罗·麦克拉纳罕（Bettylou McClanhan）和佩吉·奥克利（Peggi Oakley）的大力协助。书中的大部分内容由我的朋友兼导师马文·明斯基和麻省理工学院其他启迪心智的老师传授于我，包括杰拉尔德·苏斯曼（Gerald Sussman）、克劳德·香农、西摩·帕佩特、托马索·波焦（Tomaso Poggio）、帕特里克·温斯顿和汤姆·奈特（Tom Knight）。
+
+我还要感谢那些通读本文初稿并提出了重要意见的人们：杰里·莱昂斯（Jerry Lyons）、西摩·帕佩特、乔治·戴森（George Dyson）、克里斯·赛克斯（ChrisSykes）、布赖恩·伊诺（Brian Eno）、波·布朗森（Po Bronson）、阿盖·希利斯（Argye Hillis）和帕蒂·希利斯（Pati Hillis）。我还从汤米·波焦（TommyPoggio）、尼尔·格申菲尔德（Neil Gershenfeld）、西蒙·加芬克尔（Simon Garfinkel）、米切尔·雷斯尼克（Mitchell Resnick）和马文·明斯基等人那里获得了一些具体的有益建议。感谢本书编辑萨拉·利平科特（Sara Lippincott）的帮助，我感到非常幸运，她的编辑工作大大提高了本书的质量。最后，我要感谢我的家人：我的父母阿盖和比尔，他们培养并鼓励了我对机器设计的兴趣；我的孩子诺厄、阿萨和因迪，尤其是我的妻子帕蒂，她在本书写作期间一直耐心地鼓励和支持我。

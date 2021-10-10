@@ -12,6 +12,20 @@ The problem with using the number of characters times 8 as a measure of the numb
 
 It would be nice to have a measure of information that didn't depend on the form of representation. A more fundamental measure of information would be the minimum number of bits required to represent the text. This is easy to define, but not necessarily easy to calculate.
 
+0601 存储：信息和密码
+
+到目前为止，我们基本上没有考虑过计算机因存储空间而受到的限制。理想的状态是，通用计算机具有无限的存储空间。然而，对于具体的计算机来说，其存储空间时常受限于成本，而且总是有限的。只要存储空间足以满足当前的任务需求，我们就可以不用考虑这一限制。不过，一些算法和应用程序具有大量数据需要被存储，所以存储空间便成为一个重要的考虑因素。用于表示物理世界的应用程序通常需要占用大量存储空间，比如图像、声音和三维模型等。知道应用程序需要多少存储空间非常重要，因为它不仅可以用于判断计算机是否拥有足够的空间运行该程序，还可以用于估算处理信息所需的时间。
+
+作为测量信息的单位，二进制位适用于信息的传输和存储。从某种意义上来说，传输和存储是同一事物的两个不同方面：传输是将一条信息从一个地点发送到另一个地点，而存储是将一条信息从一个时刻「发送」到另一个时刻。除非你习惯于在四维时空思考问题，否则可能难以理解将传输和存储等同视之的想法。邮寄信件不仅是一种通信方式，还同时具备传输和存储两方面的特性。给他人寄信是在空间范畴内传输信息的一种方式，而给自己寄信是在时间范畴内存储信息的一种方式。实际上，所有形式的通信都具有空间和时间两方面的属性。电子计算机存储信息的一种方式就是，让信息不断循环流通，这就相当于在电子世界给自己寄信。
+
+我们知道，存储容量为 n 个二进制位的计算机最多可以存储 n 位的信息。然而，对于给定的信息，我们如何确定需要多少位呢？若想计算出这个问题的答案，并不容易。实际上，存在若干不同的正确答案。如果进一步思考这个问题，我们会接触到压缩、查错和纠正、随机数、密码等概念。
+
+数据的编码方式决定了传输和存储一段数据所需的位数。对于一些复杂的信息来说，比如一本书中的文字，可以将其表示为一串更简单的序列，例如，用组成文本的字符表示这本书。在这种常用的表示方法中，文本信息的位数等于文本中的字符数乘以每个字符所用的位数。本书约有 250 000 个字符，而我的笔记本电脑存储一个字符需要 8 位（1 个字节）。因此，用于存储本书的计算机文件约为 200 万个位。你可能会就此得出结论，这本书之所以包含 200 万个位的信息，是因为计算机用于存储本书的存储空间就这么大。不过，这只是信息的一种度量方式，这种度量方式取决于信息的表示形式。这是一种有效的衡量标准，因为它不仅告知了计算机需要多少存储空间来存储信息，还告知了处理这些信息所需的时间。例如，如果我知道自己的计算机以每秒 2000 万位的速度向磁盘中写入信息，并且知道需要用 200 万位来表示本书，那么我就可以计算出将这本书存入磁盘的时间 ——1/10 秒。
+
+不过，用字符数乘以 8 得到的数字作为文本信息的度量值存在一定的问题：此时文本信息的位数取决于计算机使用的字符表示方法。不同的计算机或者在同一台计算机上运行的不同应用程序，存储完全相同的字符序列所需的位数可能不尽相同。例如，如果用 8 位来表示每个字符，则可表示 256 种不同的字符，但本书中的字符数少于 64 种 —— 大写和小写的字母共 26 个，再加上数字和标点符号。因此，更有效的编码方式是使用 6 位（26=64）表示一个字符，这样可将本书压缩至 150 万位左右。
+
+如果存在一种不依赖信息表示形式的测量方式，那就最好不过了。一种更本质的测量信息的方式是表示文本最少需用多少个位。这种方式虽然很容易定义，但不容易计算。
+
 ### 6.1 Compression
 
 How much can we compress a given text without losing information? Reducing the number of bits per character from 8 to 6 is a simple form of compression. Other compression methods are based on taking advantage of regularities in the text. For instance, the letters T and E occur far more often in most English-language texts than the letters Q and Z. A more efficient code would use a shorter sequence of 1's and 0's to represent the more common letters. Using a variable-length encoding of characters to achieve a more compact representation was a trick used by early telegraph operators and radio amateurs. In Morse code, the letter E is represented by a single dot and the letter T by a single dash. Less common letters, like Q and Z, are represented by sequences of up to four dots and dashes. Because a third type of signal — a space — is used to mark the ends of letters, the dots and dashes of Morse code don't exactly correspond to 1's and 0's, but the principle is similar.
@@ -50,6 +64,40 @@ This leads us to another measure of information: The amount of information in a 
 
 Once a string of information is compressed as much as possible, it will exhibit no regularity. This is true because any regularity would be an opportunity for further compression. The string of 1's and 0's representing optimally compressed text would look completely random, like the record of the flipping of a coin. In fact, many mathematicians use this property of incompressibility as a definition of randomness — a satisfyingly simple definition, but one that often is not very useful in practice, since it's very difficult to tell whether or not a given string of bits is random in this sense. It's easy to decide, when we recognize any regularity, that a string can be compressed — but we can't prove that the string cannot be compressed if we see no pattern. The pseudorandom number sequences described in chapter 4 are a good example of sequences that appear random but have an underlying pattern. By the above definition of randomness they are highly nonrandom, because a very long sequence can be briefly described, simply by describing the algorithm that produced it — in this case, the roulette-wheel simulation.
 
+压缩
+
+在不丢失信息的情况下，我们能将文本压缩多少呢？一种简单的压缩方式是，将每个字符的位数从 8 位减少至 6 位。有的压缩方式会利用文本的规律性。例如，在英文文本中，字母 T 和 E 出现的频率远高于字母 Q 和 Z。那么更高效的编码方法就是，用更短的 1、0 序列来表示出现频率更高的字母。早期电报员和无线电业爱好者使用的一个技巧是，利用长度可变的字符编码方式来实现更紧凑的表示形式。在莫尔斯码中，单个点代表字母 E，单条画线代表字母 T。其他不常见的字母，比如 Q 和 Z，则由一列长度最多为 4 的点和画线组成。不过，还有第三种信号 —— 停顿，用于表示字母的结束。因此，莫尔斯码的点和画线并不完全对应于二进制位的 1 和 0，但其基本原理是相似的。
+
+如果使用 1、0 序列来表示一个长度可变的字符代码，必须仔细选择编码方式，以便将二进制位组成的信息流毫无歧义地分解成单个字符。只要某个字符的二进制位序列的开头部分与其他字符的子序列不同，那么这个分解就是有可能的。例如，用 4 位表示常见的字符且首位字符为 1；用 7 位表示不常见的字符且首位字符为 0。此时，二进制位信息流就能被准确地划分为短字符和长字符。选择一种充分利用不同字母相对频率的可变长度字符编码，可以有效地实现文本的压缩。以本书文本为例，这种方法能将原来的 200 万个位缩减至 100 万个位左右，压缩比例达 50%。
+
+所有的压缩方法都利用了数据的规律性。上面介绍的编码方式利用了单个字符出现频率的规律性，还存在其他规律性可供利用。例如，在本书中，并非所有相邻的字母组都以同等频率出现，字母 Q 后面几乎总是跟着字母 U，但字母 Z 后面绝不会出现字母 K。我们可以为双字母组而非单个字母设计一个采用可变长度字符编码的系统，充分地利用双字母组合出现频率的非均等性。在编码中，可以使用较短的二进制位序列表示更常见的字母组，使用较长的二进制位序列来表示很少出现的字母组。这种方式可以使存储本书所需的位数再压缩 10%，达到平均每字符 3.5 位的压缩水平。
+
+利用多字母组合的规律性进行编码，效率将会更高。例如，在本书中，「这」一字出现了约 3 000 次。如果使用一个较短的二进制位序列来表示这个字，将非常有效。同理，有许多字词也适合用这种方式来编码，比如「计算机」「二进制位」等这些经常在本书中出现的词。
+
+除了字母组合的统计规律，还存在其他方面的规律性。例如，语法、句子结构和标点符号等也具有规律性，这些都可以用于进一步压缩文本。不过，在某些时刻，我们得到的边际收益会逐渐递减。如果使用目前最佳的统计方法，表示每个字符的位数最终可压缩至不到 2 位，这个压缩水平是 8 位标准字符代码的 25%。
+
+压缩在文本中的应用效果相当不错，但它在表示现实世界的信号时的应用效果更好，比如声音和图像等。这些信号通过被称为模数转换（analog-to-digitalconversion）的过程输入计算机。这些输入通常是连续的模拟信号，比如声音的强度、光线的亮度等，在黑白照片中，点或像素可以为白色、黑色，或者介于两者之间的任意灰色。由于计算机无法表示无数多种可能性，因此它通过将每个像素转换成有限的灰度集合中的某个值来简化信号。通常来说，灰度的等级数目为 2 的整数次幂，这样便能与存储的位数相匹配。例如，可以用 8 位来表示黑白图片中的像素点亮度，因此共有 256 种灰度。也可以用 12 位来表示更高质量的图片，此时对应的灰度值有 4 096 种。计算机通常用 24 位来表示彩色图片中的像素点，其中每种三原色的亮度各由一个 8 位表示。
+
+另一个决定图像质量的参数是分辨率，即照片中的像素数目。一张由 1 000×1 000 点阵组成的高分辨率图像比一张分辨率为 100×100 的图像更加清晰。不过，由于前者的像素点数为 1 000 000，而非 10 000，因此计算机需要的存储空间将增加 100 倍，需要的图像处理时长也会增加 100 倍。
+
+由于高分辨率图像包含大量数据，因此我们通常希望将其压缩，以降低存储和传输成本。对于动态影像来说，尤其如此，其每秒包含的图像帧数为 24～100。幸运的是，图像容易压缩，因为它们具有高度的规律性。在大多数图像中，单个像素点的颜色和亮度通常与临近点的几乎相同。例如，在一张关于人脸的图像中，面颊中相邻部位的两个像素点具有非常相似的亮度和颜色。大多数图像的压缩算法都利用了这种相似性。对于亮度和颜色一致的区域，图像压缩算法只用几个数就可以表示其颜色和大小。其他图像压缩算法采用了更为复杂的规律形式，例如，图像中不同区域的纹理的相似性。对于诸如电视转播等动态影像来说，压缩算法通常利用前后相继的各帧图像之间的相似性，这种方法可以实现 10 倍的图像压缩比，以及 100 倍的视频压缩比。类似的压缩方法可以应用于声音信息的压缩。
+
+对于图像所包含的信息量来说，这种压缩方法有些违反直觉。如果用表示图像所需的最少位数作为图像信息的度量，那么更易于压缩的图像包含的信息量更少。例如，一张面部图像的信息量比一堆沙滩鹅卵石图像的信息量更少，因为面部图像中相邻的像素点更加相似，而传输和存储一张鹅卵石图像则需要更多的信息量，即使人类观察者认为面部图像的信息更为丰富。根据这种度量方式，包含信息量最多的图像将是由随机像素点组成的图像，如同充满噪声和杂讯的电视机屏幕。如果图像中的像素点和相邻像素点之间没有任何相关性，那么压缩图像时就没有规律可循。虽然这样的图像对我们来说毫无意义，其计算机表示却具有最大的信息量。
+
+信息度量的最小表示方法与我们对于信息内容的直观认识并不完全一致，因为计算机没有区分有意义和无意义的信息，它只需记录每个像素点的颜色，或者沙滩上每个鹅卵石的位置，即使这些细节对我们来说并不重要。判定哪些信息有意义、哪些信息没有意义是一门精妙的艺术，这取决于图像的使用方式和使用者。在外行看来，X 光片上的一点小瑕疵无关紧要，但对于医生而言，它却意义非凡。像毕加索这样伟大的艺术家能够将复杂的景象「压缩」成几条简单的线条，但为了实现这一点，他需要经过复杂的判断来决定用图像的哪些部分传达最重要的意义（见图 6-1）。
+
+如果计算机通过只存储有意义的信息来压缩图像，那么表示图像所需的位数将更接近于我们对图像信息量的直观认知。例如，当表示由随机像素阵列组成的图像时，计算机可以指出该图像无规律性，其信息毫无意义。当要求计算机重构这张图片时，它可以简单地生成一张由随机像素阵列组成的新图像，而新图像和源图像在诸如像素灰度等细节方面存在差别，不过，这些差别在人眼中并无意义。
+
+许多有关图像和声音的压缩算法会丢弃一些无意义的信息，以减少表示的信息量，这类算法被称为有损压缩。这类算法假设，人类的眼睛和耳朵会忽略图像和声音中的某些细节。有损压缩法一般适用于已知解压的信息用于何种目标的情况。例如，如果电影中的某个细节只出现在一帧图像中，那么将这帧图像丢弃也不失为一种安全的做法，因为没有人会注意到这个细节。
+
+还有另外一种重要的图像压缩方法，它能实现比上述方法更高的压缩程度。如果已知原始图像的生成过程，那么与存储原始图像相比，存储这个生成的过程可能更加有效。例如，如果图像是由画家绘制的一系列线条组成的画作，那么可以通过存储线条列表来表示这幅画作，计算机经常使用这种方法制作简单的线条画。
+
+通过存储事物的生成过程或程序来表示该事物的方法也适用于其他类型的数据，比如声音等。当涉及声音对象时，这种方法就类似于通过乐谱来记录音乐的方法。不过在计算机中，乐谱记录了生成原声音乐所需的全部细节，包括乐器的音调、小提琴的运弓方法，甚至乐队的演奏情绪。如果某个对象能由计算机生成，那么根据定义，计算机中一定有该对象的准确生成过程，而关于此过程的描述便可作为该对象的表示。
+
+这样，我们又可以得出一个关于信息度量的结论：一个二进制位模式的信息量等同于能够生成这些二进制位的最短计算机程序的长度。无论这个二进制位模式最终表示的是图像、声音、文本、数字，还是其他事物，这种关于信息的定义都是成立的。这个定义相当有趣，因为它考虑到了模式中的各类规律，特别是包含了上述所有的压缩方法。这个定义似乎依赖于计算机的机器语言。不过，任何计算机都可以模拟其他的计算机，因此，信息度量之差仅是用于模拟所需的少许代码而已。
+
+当信息被尽可能地压缩后，就不再具有规律性。这是因为任何规律性都是一次压缩信息的机会。文本经过最优压缩后，表示文本的 1 和 0 序列看起来完全是随机的，就像随机投掷硬币得到的记录一样。事实上，许多数学家将不可压缩性作为定义随机性的方式。虽然这个定义很简洁，但在实际应用中并没有多大用处，因为这种定义方式很难判断一串序列是不是随机的。当我们识别到字符串的规律性时，不难判断出该序列可以被压缩；但如果找不到字符串的规律性，并不能证明该序列不可被压缩。第 4 章描述的伪随机数就是这样的例子：它们虽然看起来是随机的，却具有一种潜在的规律模式。根据上面关于随机性的定义，这里的伪随机数具有高度的非随机性，因为通过伪随机数生成的算法能将一长串数字中的规律简明扼要地归纳出来，轮盘机模拟程序就属于这种情况。
+
 ### 6.2 Encryption
 
 Those sequences that appear random but have a hidden underlying pattern can be used to create codes for encrypting data. Imagine, for example, that I wish to send a secret message to a friend of mine. If we both have a copy of the same random-number generator, so that we can generate the same sequence of pseudorandom numbers, we could use this sequence to hide the content of the message from anyone who might intercept it. Let's say that the message to be transmitted is a stream of bits representing characters, using the standard 8-bit-per-character representation. This standardized representation could presumably be interpreted and understood by any eavesdropper; it is what cryptographers call the plain text of the message. To encrypt the message, we pair each bit in the plain text to the corresponding bit in the pseudorandom bit stream. If the pseudorandom bit is 1, we invert the corresponding plain-text bit. If the pseudorandom bit is 0, we leave the corresponding plain-text bit alone. This will invert about half the bits in the plain text, but the eavesdropper won't know which half. Unless the eavesdropper knows the pseudorandom sequence, this string of 1's and 0's will be utterly meaningless. My friend the recipient, on the other hand, knows how to generate exactly the same random sequence, which can be used to reinvert the inverted bits, thereby restoring (decrypting) the message. This method, or something very similar to it, is at the heart of most encryption schemes.
@@ -57,6 +105,14 @@ Those sequences that appear random but have a hidden underlying pattern can be u
 Encrypting a message is analogous to sending it in a locked box that can be opened only with a special key. In the encryption method just described, the key is the random-number generator. Anyone who has the key is able to perform the conversion. In the example above, the same key is used for encryption and decryption, but it is also possible to construct codes that use different keys for encryption and decryption. In a public encryption scheme, the keys for encryption and decryption are different, and an eavesdropper who knows the encryption key will not thereby know the key needed to decrypt. This method of transmitting messages is extremely useful. For example, if I wish to receive an encrypted message, I can publicize the description of the key necessary to encode messages to me. Anyone will be able to send me a secret message, whether I know them or not. Since the public key tells the sender only how to encrypt the message, not how to decrypt it, others will not be able to unlock the encoded message. Only my private key, which I keep secret, allows an encrypted message to be converted back into plain text. This is called public key encryption. Public key encryption solves an important practical problem: for example, many businesses that accept credit card numbers over the Internet publish their own public key, so that customers can encrypt their credit card numbers without fear that they will be intercepted and read.
 
 The public-key-encryption scheme is also useful in reverse, for authenticating messages. In this case, I publicize the key for decrypting a message but keep secret my key for encryption. Whenever I want to send out a message that I wish to「sign」as being verifiably from me, I encrypt the message with my private key. Any recipient of the message can use the public key for decrypting the message. They will know it was really from me because only someone who knows my private key could have encrypted such a message.
+
+加密
+
+有些序列虽然表面上看起来是随机的，却包含了隐藏的固有规律模式，它们可用于制作由数据加密的编码。例如，我想给朋友发送一条秘密信息。如果我们都有相同的伪随机数生成器，就能生成一串相同的伪随机数序列。然后，我们可以利用这个序列将信息内容隐藏起来，他人将无法窃取。假设要传输的信息是用字符表示的二进制位信息流，采用每字符 8 位的标准格式，任何窃听者都可以看懂这种标准化的表示形式，密码学家称之为明文（plain text）。为了加密信息，我们将明文中的位和伪随机数序列中的位一一配对。如果伪随机数序列中的位是 1，则置换对应的明文；如果伪随机数序列中的位是 0，则保持对应的明文不变。这样，明文中约有一半的位数被置换，但窃取者不会知道是哪一半，除非他们都知道伪随机数序列，否则这些由 1 和 0 组成的序列对他们来说毫无意义。在另一头，我的朋友知道如何生成完全相同的伪随机数序列，该序列能用于置换那些已经被置换的序列，从而重构（解密）出原始信息。这种方法或者其他类似的方法是大多数加密系统的核心。
+
+对信息加密相当于将其放到只有使用特殊的密钥才能打开的带锁的箱子里。在刚才介绍的加密方法中，这把钥匙是伪随机数生成器，所有拥有这把钥匙的人都能执行置换操作。在上述例子中，加密和解密所使用的是同一把密钥，不过，也可以在加密和解密过程中使用不同的密钥。在公共加密体系中，加密和解密使用的密钥是不一样的，知道加密密钥的破译者不知道解密所需的密钥。这种传输信息的方式非常有用。例如，如果我想接收加密后的信息，就可以对外公布加密信息所需的密钥。这样，任何人都可以向我发送秘密信息，无论我是否认识他们。由于公开密钥只会告知发送者如何加密信息，而不会告知如何解密信息，所以其他人无法破译这些编码后的信息，只有我私下保存的密钥才能将密文转换成明文。这种方法被称为公共密钥加密法。公共密钥加密法解决了一类重要问题。比如，许多在互联网上接收信用卡账号支付的商家会发布他们的公钥，这样客户就能加密传输他们的信用卡账号，无须担忧账号被拦截和窃取。
+
+此外，这种公共密钥加密法在信息认证方面也大有用处。在这种情况下，我会公开用于解密的公钥，而用于加密的密钥则不公开。当我想发送一条信息，并希望用其签名来证明该信息来自我时，我就用密钥对其加密。任何接收到这条信息的人都可以用公钥解密这条信息。他们也能确定这条信息来自我，因为只有知道我的密钥的人才能加密这条信息。
 
 ### 6.3 Error Detection
 
@@ -81,3 +137,25 @@ Given a well-defined set of possible errors — such as wires breaking, switches
 Does this mean that you can construct an arbitrarily reliable computer? Not exactly. While a computer can be constructed so as to eliminate a particular type of error, errors of unanticipated types may occur which produce correlated errors in the redundant module. For instance, the burnout of one module may cause another module to overheat, or some kind of magnetic pulse may even cause all modules to err simultaneously. Engineers are capable of designing a logic block that can deal with any type of error they can imagine, but the history of technology shows that our imaginations are not always sufficient. The most dramatic failures are usually surprises.
 
 A second reason not to expect a perfect computer is that most computer failures are not caused by incorrect operation of the logic. They stem from errors in design — usually in the design of the software. Programmed computers, including their software, are by far the most complex systems ever designed by human beings. The number of interacting components in a computer is orders of magnitude larger than the number of components in the most complex airplane. Modern engineering methods are not really up to designing objects of such complexity. A modern computer can have literally millions of logical operations going on simultaneously, and it is impossible to anticipate the consequences of every possible combination of events. The methods of functional abstraction described in the previous chapters help keep the interactions under control, but these abstractions depend on everything interacting as expected. When unanticipated interactions occur (and they do), the assumption on which the abstraction rests breaks down, and the consequences can be catastrophic. In a practical sense, the behavior of a large computer system, even if no failures occur, is sometimes unpredictable — and this is the overarching reason that it is impossible to design a perfectly reliable computer.
+
+查错
+
+除了压缩和加密之外，编码和解码还有许多其他用途。例如，在某些情况下，为了降低出错率，我们会在必要的位之外再附加几位。一种被称为查错码（error-detection code）的冗余码可用于检测传输过程中发生的错误，比如传输的是 0，但接收时却变成了 1。还有一类被称为差错校正码（error-correction code）的代码，它们是一种包含了足够冗余信息的代码，可用于检测和校正此类错误。
+
+一种显而易见的冗余形式是多次发送信息。将信息发送两次就能起到检测差错的作用。如果一方发送了同一信息的两个副本，但对方接收到的两条信息却略有不同，这意味着在传输过程中一定出现了差错。一种简单的差错校正码是将同一信息重复发送三次。假设其中只有一条信息受到了破坏，那么接收者可以通过另外两份相同的副本来重构正确的信息。
+
+幸运的是，有些查错码和差错校正码可以用更少的冗余信息达到同样的结果。一种常用的查错码是奇偶校验码（parity code）。这种方法可以通过增加一个冗余位来检测任意长度信息中出错的一个位。举一个奇偶校验码的具体例子，当在嘈杂的通信线路中传输字符时，我们经常采用 8 位码。编码中的第 8 位即被称为奇偶校验位，当且仅当前 7 位中 1 的数目为偶数时，则此位才为 1。这意味着 8 位中的 1 的数目始终为奇数。如果传输线路中的噪声导致 1 变成了 0，或者相反，那么接收到的 8 位中的 1 的数目就变成了偶数。据此，接收者可以检测到差错的存在。计算机存储系统也采用类似的奇偶校验码来检测错误。使用一个奇偶校验位，我们就能检测出任意长度信息中的错误。这种简单的奇偶校验码的局限性在于，一个奇偶校验码只能检测单个位的错误。如果一个信息中出现两个位同时被置换的数据错误，那么即便数据本身是不准确的，其奇偶性仍是正确的。
+
+不过，使用多个奇偶校验位便可以检测出多个错误。此外，还可以给接收者提供足够的信息，使其不仅用于检测错误，还可以用于纠正错误。也就是说，即使信息存在差错，接收者也能够重构原始消息。图 6-2 所示的二维奇偶校验码就是一个具体的例子。
+
+图 6-2 使用 9 个数据位和 6 个奇偶校验位的差错校正码
+
+这种代码包括 9 个数据位和 6 个奇偶校验位。表示信息的 9 位排列成 3 行，每行 3 位。每行和每列各有一个奇偶校验位。当信息中的某一个数据位出现错误时，两个奇偶校验位会同时检测出异常，也就是能确定该异常位于某一行某一列。据此，信息接收者就会知道位于异常行和异常列交叉位置的那个数据位是不正确的，应该将其置换。另一方面，如果一个奇偶校验位在传输中出现错误，那么就只有某一行或某一列的奇偶校验结果是异常的，这样便不会出现某一行和某一列同时出现异常的情况。为了可视化编码结构，可以用二维模式来表示这些位，但代码可以按照任何顺序传输。这种差错校验码通常用于保护大型计算机存储空间中的字符。我们可以使用类似的技术设计出许多种其他代码，用于检测或者纠正不同类型和数目的错误。
+
+差错校正码能够处理信息传输和存储过程中出现的错误。那么计算本身的错误又当如何呢？事实证明，即使组成逻辑块的某些子模块无法正常工作，也依然可以搭建出能产生正确答案的逻辑块。同样，基本的检测工具还是某种形式的冗余。构建容错逻辑块的一种方法是，将每个逻辑块复制三份。如第 2 章图 2-3 所示，可以将少数服从多数逻辑块用于统筹这三个复制逻辑块的输出。如果其中一个逻辑块出现了错误，就以少数为由将其排除在外。这种简单的方法能够防止单个模块出现错误（除非少数服从多数逻辑块本身会出错）。
+
+如果给定一组可能发生的、定义明确的错误，比如断线、开关失灵以及 0 变成 1 等，那么无论元件多么不可靠，都可以用它们构造出具有任意可靠性的计算装置。此任务只需以系统的形式组装具有足够冗余度的逻辑元件便可完成。例如，如果你发明了一种新型开关，比如分子开关，它的速度非常快，或者价格非常便宜，但会在 20% 的时间内出错，通过在电路中搭建恰当的冗余结构，你仍然能够利用它制造出一台具有 99.99999% 可靠性的计算机。
+
+这是否意味着你可以搭建一台具有任意可靠性的计算机呢？答案并非如此。尽管在搭建计算机时，某种特定类型的错误可以被消除，但还是有可能发生意料之外的错误，它们会在冗余逻辑块之间产生关联故障。举个例子，某个烧毁的逻辑块可能会导致另一个逻辑块的温度过高，或是某种形式的磁场脉冲会导致所有逻辑块同时出错。工程师设计的逻辑块只能处理他们预想范围内的错误。技术的发展史表明，人类的考虑并非始终万无一失，惨痛的失败通常发生在意料之外。
+
+奢望建造一台完美的计算机是不现实的，因为大多数计算机故障并不是由错误的逻辑运算造成的，而是源于错误的设计，通常是错误的软件设计。计算机及其软件是迄今为止人类设计出的最为复杂的系统。计算机中交互的元件数目比最复杂的飞机的元件数目还要多出几个量级。现代工程技术并不足以支撑设计如此复杂的物体。一台现代计算机可同时运行的逻辑运算高达数百万条，因此我们无法预测出各个事件所有可能的组合的后果。虽然前几章介绍的功能抽象的方法有助于控制这些交互行为，但这些功能抽象基于一个前提，即一切交互作用都按照设想的那样进行。当出现预期之外的交互行为时（实际中的确会出现），这些功能抽象基于的假设便不再成立，其后果可能是灾难性的。实际上，即使没有出现故障，大型计算机的行为有时也是不可预测的。这是无法设计出一台绝对可靠的计算机的重要原因。

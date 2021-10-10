@@ -6,6 +6,8 @@
 
 0501 Algorithms and Heuristics
 
+0601 Memory: Information and Section Codes
+
 ## 0401. How Universal are Turing Machines?
 
 W hat are the limits to what a computer can do? Must all computers be composed of Boolean logic and registers, or might there be other kinds, even more powerful? These questions take us to the most philosophically interesting topics in this book: Turing machines, computability, chaotic systems, Goedel's incompleteness theorem, and quantum computing — topics at the center of most discussions about what computers can and cannot do.
@@ -64,9 +66,7 @@ Some people might argue that while the noise of an analog computer may not be me
 
 不过，采用模拟信号来表示定量数值的计算机确实存在。事实上，最早的计算机就是以这种方式工作的。为了区别于前面所说的数字计算机，它们被称为模拟计算机。数字计算机中的信号只包含几种离散的信息。有些人可能会认为，模拟计算机的功能更强大，因为它们用连续的值来表示数据，而数字计算机只能用离散的值来表示数据。实际上，模拟计算机并无特别优势，因为真正的连续流在物理世界中是无法实现的。
 
-模拟计算机的缺点是，它们的信号精度是有限的。所有类型的模拟信号都会包含一定量的噪声，比如电子信号、机械信号和化学信号等。也就是说，当达到一定精度后，信号基本上是随机的。所有的模拟信号都会受到许多不相关的和未知噪声源的影响。例如，电子信号会受到电线中分子的随机运动的干扰，或者受到邻居房间中灯亮起时产生的磁场的干扰。虽然在良好的电路中，这种噪声可降至很低的水平，比如信号本身的百万分之一，但它依然存在。因此，虽然信号拥有无数种强度水平，但真正起到有意义的区分作用（即表示信息）的信号数目却是有限的。如果信号中有百万分之一的噪声，那么对于信号来说，只有约一百万种有意义的差异。因此，用一个 20 个二进制位的数字信号可以表示出信号中的全部信息（220
-
-=1 048 578）。若想让模拟计算机中的有意义的差异翻倍，就必须将所有东西的精确度都提高一倍。然而，对于数字计算机来说，只需增加一个二进制位即可。目前性能最好的模拟计算机的精确度不超过 30 个二进制位。由于数字计算机通常会用 32 位或者 64 位来表示数，因此数字计算机产生的有意义的差异比模拟计算机更高。
+模拟计算机的缺点是，它们的信号精度是有限的。所有类型的模拟信号都会包含一定量的噪声，比如电子信号、机械信号和化学信号等。也就是说，当达到一定精度后，信号基本上是随机的。所有的模拟信号都会受到许多不相关的和未知噪声源的影响。例如，电子信号会受到电线中分子的随机运动的干扰，或者受到邻居房间中灯亮起时产生的磁场的干扰。虽然在良好的电路中，这种噪声可降至很低的水平，比如信号本身的百万分之一，但它依然存在。因此，虽然信号拥有无数种强度水平，但真正起到有意义的区分作用（即表示信息）的信号数目却是有限的。如果信号中有百万分之一的噪声，那么对于信号来说，只有约一百万种有意义的差异。因此，用一个 20 个二进制位的数字信号可以表示出信号中的全部信息（2^20=1 048 578）。若想让模拟计算机中的有意义的差异翻倍，就必须将所有东西的精确度都提高一倍。然而，对于数字计算机来说，只需增加一个二进制位即可。目前性能最好的模拟计算机的精确度不超过 30 个二进制位。由于数字计算机通常会用 32 位或者 64 位来表示数，因此数字计算机产生的有意义的差异比模拟计算机更高。
 
 有些人可能会反驳，虽然模拟计算机中的噪声看起来没有意义，但也并非毫无用处。我们当然可以设想噪声有助于计算，例如，我们接下来要讲的随机数。不过，如果计算中涉及随机性，数字计算机也能生成随机噪声。
 
@@ -87,6 +87,8 @@ Digital computers are predictable and unpredictable in exactly the same senses a
 和轮盘机一样，计算机可以产生相同意义上的随机数序列。实际上，计算机可以基于数学模型模拟出轮盘机的物理结构，并每次以略有不同的角度投掷一个模拟球，从而产生随机数序列中的某个数。即使计算机投掷模拟球的角度遵循相同的模式，但动态模拟轮盘机的过程会将这些微小的角度差异转换为无法预测的序列。这种数的序列称为伪随机数序列，因为其随机性只有对计算过程一无所知的观察者来说，才是随机的。由伪随机数发生器产生的序列，可以通过所有标准的随机性统计测试。
 
 轮盘机是物理学家称之为混沌系统的一个例子。在这个系统中，初始条件（比如投掷、球的质量、轮盘的直径等）的微小扰动会对系统的最终状态带来巨大影响。混沌系统的概念解释了为何一个确定性的交互系统中会出现不可预测的结果。在计算机中，有比模拟轮盘机更简单地生成伪随机数序列的方法。不过，在概念上，这些方法与轮盘机模型是相似的。
+
+1-3『混沌系统，第一次知道这个概念是在书籍「复杂」里，原来伪计算机里随机数的实现原理也是靠它。（2021-10-10）』
 
 如同物理世界中的万物，计算机既是可预测的，也是不可预测的。虽然它们都遵循确定性原则，但这些原则导致的复杂结果很难预测。在计算机完成某件事之前，我们难以预测它将会做什么。与物理系统一样，计算很容易变复杂。在计算机中，混沌系统随处可见，其结果敏感地取决于初始条件。
 
@@ -121,6 +123,8 @@ Although one is hard pressed to come up with specific examples of noncomputable 
 一些数学家和哲学家将所有的未解之谜都归咎于哥德尔不完备性定理。还有少数人认为，这条定理证明了在某种程度上，人类的直觉超越了计算机的能力，因为人类能够通过直觉推导出机器无法判定真假的事实。从感情色彩上来说，这个论调很吸引人，那些不喜欢将计算机和人类相提并论的哲学家有时会抓住这个论点不放。然而，这个论点是靠不住的，无论人类是否能完成计算机所不能完成的直觉上的跳跃，哥德尔不完备性定理都没有说明，存在数学家能证明但计算机无法证明的数学命题。据我们所知，凡是能由人类证明的定理，计算机也能证明。计算机无法解决的不可计算问题，人类也无法解决。
 
 尽管我们很难找到不可计算问题的具体例子，但可以轻易地证明大多数数学函数都是不可计算的。这是因为，所有程序都可以通过有限位的二进制位来表示。不过表示一个函数需要无数位的二进制位，因此函数要远多于程序。我们可以考虑一下那些将一个数字转换成另一个数字的数学函数，比如余弦函数或者对数函数。数学家总能定义出各种奇怪的函数。比如，将十进制数转换成其位数之和的函数。在我看来，这个函数毫无用处，但数学家认为这是一个正规的函数，因为它能将一个数字转换成另一个数字。应用数学可以证明：函数是无限的，远远多于程序。因此对于大多数函数来说，没有对应的程序可以计算它们。如果对函数和程序进行实际计数，会遇到各种困难，比如计算无限的事物，区分不同程度的无限性等。不过，这个结论是正确的，因为统计表明：大多数数学函数是不可计算的。幸运的是，几乎所有这些不可计算的函数都没有用处。实际上，我们想计算的函数都是可计算的。
+
+2『函数是不可计算问题的典型案例，做一张信息数据卡片。（2021-10-10）』—— 已完成
 
 ### 4.5 Quantum Computing
 
@@ -218,7 +222,7 @@ No predictable technical breakthroughs in computers will help solve the travelin
 
 在通常情况下，许多不同的算法可以计算出相同的结果。正如配对袜子的例子，不同的算法完成同一任务所需的时间是不同的，但结果是一样的。某些算法还具有其他方面的优势，比如占用的计算机内存很小，或者所需的通信模式很简单，可轻易通过硬件来实现。在时间和内存需求方面，好的算法和差的算法的差别通常可以达到数千甚至上百万倍。有时，一个新算法能帮助你解决以前非常棘手的问题。
 
-因为算法可以通过多种不同的方式来实现，并且可以应用于不同规模的问题，因此在得到具体问题的解决方案之前，我们无法通过测量算法的运行时间来判断算法的效率。算法的运行时间会随着实现方式和问题的规模的变化而变化。因此，我们通常根据完成任务所需的时间和问题的规模来评估算法的速度。在袜子配对的例子中，从洗衣篮中取出袜子的过程耗费了大部分时间，因此，根据每种算法取出袜子的次数和袜子总数的关系，我们就可以比较两种算法的速度。假设洗衣篮中袜子的总数为 n，在第一种算法中，找到一双匹配的袜子所需的取出和放回的平均次数为剩余袜子数目的一半，因此取出袜子的次数与袜子数目的平方成正比。在分析算法时，我们通常不用计算出准确的比例，只需知道算法的阶次为 n2，这意味着对于输入规模很大的问题，计算所需的时间与输入问题的规模的平方成正比。如果袜子的数目增加 10 倍，那么第一种算法所需的时间将增加 100 倍。所以当袜子数目很大时，这不是一个好的算法。在第二种算法中，n 只袜子中的每只都只取出一次，因此算法的阶次为 n。如果你用第二种算法来配对 10 倍于原数目的袜子，完成任务所需的时间只是原来的 10 倍。
+因为算法可以通过多种不同的方式来实现，并且可以应用于不同规模的问题，因此在得到具体问题的解决方案之前，我们无法通过测量算法的运行时间来判断算法的效率。算法的运行时间会随着实现方式和问题的规模的变化而变化。因此，我们通常根据完成任务所需的时间和问题的规模来评估算法的速度。在袜子配对的例子中，从洗衣篮中取出袜子的过程耗费了大部分时间，因此，根据每种算法取出袜子的次数和袜子总数的关系，我们就可以比较两种算法的速度。假设洗衣篮中袜子的总数为 n，在第一种算法中，找到一双匹配的袜子所需的取出和放回的平均次数为剩余袜子数目的一半，因此取出袜子的次数与袜子数目的平方成正比。在分析算法时，我们通常不用计算出准确的比例，只需知道算法的阶次为 n^2，这意味着对于输入规模很大的问题，计算所需的时间与输入问题的规模的平方成正比。如果袜子的数目增加 10 倍，那么第一种算法所需的时间将增加 100 倍。所以当袜子数目很大时，这不是一个好的算法。在第二种算法中，n 只袜子中的每只都只取出一次，因此算法的阶次为 n。如果你用第二种算法来配对 10 倍于原数目的袜子，完成任务所需的时间只是原来的 10 倍。
 
 计算机编程最大的乐趣之一就是找到一种更快、更高效的新算法，尤其当许多资深专家都无法提出更优算法时。如果计算机科学家能为某种常见的问题找到更快的算法，那么他们会收获很多赞赏和荣誉，至少在计算机科学家的圈子里是这样。如果用差的算法来解决某个问题，可能需要数周，而好的算法可能仅需几分钟。因此，对于算法而言，胜人一筹的方式就是编写出一个新程序，计算出正确的解，而此时你的同事还在运用差劲的程序做计算。
 
@@ -226,13 +230,13 @@ No predictable technical breakthroughs in computers will help solve the travelin
 
 如果我们知道纸牌是按从 1 到 n 进行编号的，那么就可以通过不同的方法对它们进行排序，比如采用递归定义的方法，这与第 3 章的 Logo 画树程序类似。以递归方式排序纸牌的方法如下：首先从头到尾浏览一遍纸牌，将比纸牌编号平均值小的纸牌移到下半区，比纸牌编号平均值大的纸牌移到上半区。然后使用同样的算法分别对两个半区进行排序，而且对这副牌的每一半递归地应用这一算法，即对半副牌的一半递归地应用这一算法，以此类推。每一轮迭代后，待排序的纸牌数目都会减半；当只剩最后一张牌时，递归过程结束，排序也结束。因为这个算法不断将纸牌分为两半，直到确定只有一张纸牌时为止，所以它所需的时间与 n 张纸牌被对半分开的次数成正比，即次数为「以 2 为底数的纸牌的对数」。所以这个算法的阶次为 nlogn。如果你不清楚对数的定义，请不用在意。它们的数值很小，可以忽略不计。
 
+1-2-3『真是意外收获，竟然在这里吃透了快速排序法，之前一直有点不明白的地方原来关键在于：开始的时候就知道最小数和最大数，那么对半的平均数是可以算出来的，按「半数」来切割。之前「卡在」的地方是第一次切割的时候我怎么知道「半数」在哪里，原来前提条件是你开始就知道，这一点吴军在谷歌方法论将快速排序时也忘记给读者点出来了。快速排序法的解释做一张任意卡片。（2021-10-10）』—— 已完成
+
 还有一种更巧妙的递归算法，它不需要对纸牌进行连续的按序编号。这种算法可以有效地用于处理按字母顺序排序的大量名片等类似问题。这种算法被称为归并排序，它虽然看起来难以理解，但十分美妙，我非常喜欢这种算法。归并排序基于这一事实：将两个已经排好序的序列合并为一个有序的序列十分容易，只需依次从其中一个序列的顶部取出排在首位的卡片。这个合并过程只是归并排序算法中的一个子程序，整个算法的工作流程是这样的：如果序列只剩一张卡片，那么这张卡片就已经排好序；否则，就将序列分为两半，在每一半上迭代使用归并算法，即对每一半进行排序，然后使用上述合并过程将两者组合。这就是归并排序算法的全部过程。如果这个过程听起来太过简单，你可以先在少数几张卡片上试试这个算法，比如从 8 张卡片开始。归并排序算法是展示递归方法的神秘力量和精妙之处的一个很好的例子。
 
-如果一个排序算法（如归并排序算法）只需 nlogn 步，那是非常高效的。事实上，这是最快的算法。不过，这个结论的证明不在本书的范围之内，实际上，其证明的推理十分有趣。我们可以通过统计 n
+如果一个排序算法（如归并排序算法）只需 nlogn 步，那是非常高效的。事实上，这是最快的算法。不过，这个结论的证明不在本书的范围之内，实际上，其证明的推理十分有趣。我们可以通过统计 n 张卡片的排列数来说明这一点。根据这个数目，我们可以计算出为了将纸牌排好序，必须得到 nlogn 个二进制位的信息。由于每次比较两张卡片只能生成 1 个二进制位的信息，比如第一张牌的编号大于第二张牌的编号，或者相反。因此，对 n 个数进行排序，至少需要进行 nlogn 次比较。在这种情况下，归并排序算法不逊于任何算法。至于如何选择合适的排序算法，市面上有很多相关的书籍。在多数情况下，我们需要在排序中增加一些限制条件，或者已知排序对象的具体情况。最快的算法仍不得知。尽管如此，对于现有待解决的问题的规模来说，排序问题还是相对容易解决的。
 
-张卡片的排列数来说明这一点。根据这个数目，我们可以计算出为了将纸牌排好序，必须得到 nlogn 个二进制位的信息。由于每次比较两张卡片只能生成 1 个二进制位的信息，比如第一张牌的编号大于第二张牌的编号，或者相反。因此，对 n 个数进行排序，至少需要进行 nlogn 次比较。在这种情况下，归并排序算法不逊于任何算法。至于如何选择合适的排序算法，市面上有很多相关的书籍。在多数情况下，我们需要在排序中增加一些限制条件，或者已知排序对象的具体情况。最快的算法仍不得知。尽管如此，对于现有待解决的问题的规模来说，排序问题还是相对容易解决的。
-
-旅行推销员问题是一个典型的难以求解的案例。假设一位旅行推销员需要访问 n 座城市，且给定每两座城市之间的距离，旅行推销员应该以何种顺序访问这些城市才能最小化旅行距离呢？没有人能找到阶次为 n^2、n^3 或者 n 的任意次幂的算法来解决这个问题。目前已知的最佳算法的阶次为 2n，这意味着求解时间会随着问题规模的增加呈指数级增长。如果我们在旅行推销员的行程中增加 10 座城市，那么这个问题的难度会增加 1 000 倍（210 = 1 024）。如果我们再增加 30 座城市，问题的难度会增加 10 亿倍（230 约等于 109）。当问题规模变得更大时，这种指数算法的效率会变得很低。然而，对于旅行推销员问题来说，这已经是我们所知道的最快的算法了。即使目前世界上运行速度最快的计算机连续工作数十亿年，也无法及时找到几千座城市之间的最佳访问路径。
+旅行推销员问题是一个典型的难以求解的案例。假设一位旅行推销员需要访问 n 座城市，且给定每两座城市之间的距离，旅行推销员应该以何种顺序访问这些城市才能最小化旅行距离呢？没有人能找到阶次为 n^2、n^3 或者 n 的任意次幂的算法来解决这个问题。目前已知的最佳算法的阶次为 2^n，这意味着求解时间会随着问题规模的增加呈指数级增长。如果我们在旅行推销员的行程中增加 10 座城市，那么这个问题的难度会增加 1 000 倍（2^10 = 1 024）。如果我们再增加 30 座城市，问题的难度会增加 10 亿倍（2^30 约等于 10^9）。当问题规模变得更大时，这种指数算法的效率会变得很低。然而，对于旅行推销员问题来说，这已经是我们所知道的最快的算法了。即使目前世界上运行速度最快的计算机连续工作数十亿年，也无法及时找到几千座城市之间的最佳访问路径。
 
 虽然旅行推销员问题看起来无关紧要，但事实证明，它与许多其他问题很类似，即所谓的 NP 完全问题（NP complete problem），其中 NP 代表「非确定性多项式」。如果这类问题能得到解决，将会大有益处。如果能找到旅行推销员问题的快速解法，便能得到这些问题的解法。例如，某些用于保护秘密信息的代码能被快速破译。使用这些密码的人一定希望永远不要找到旅行推销员问题的快速算法，而这很可能会成真。
 
@@ -282,9 +286,7 @@ The simple search heuristics work because there are a relatively small number of
 
 上面的每条规则只是接近于理想的策略，并且在某些情况下，每条规则都可能是错误的。比如，下棋双方的强弱关系可能不仅取决于棋子的数目，还取决于棋子的位置。一颗处于好位置的棋子的作用通常比多一颗棋子的作用还要大。无论如何，第一条启发式方法通常是正确的，即在大多数情况下，拥有更多棋子总是更有利。早在计算机出现前，国际象棋选手就已经发明了一种简单的方法来为下棋双方的实力定量计分：兵为 1 分，象为 3 分，车为 5 分等，并用选手剩余棋子的总分值作为该场棋局实力的衡量标准。
 
-基于这些启发式方法，你可以编写出一款国际象棋程序，该程序能计算出接下来几步合理可行的走法。当然，程序最好能够计算出从游戏开始到结束之间所有的走法。在井字游戏中，很容易实现这一点，而对于国际象棋来说，即使速度最快的计算机也难以实现这一点。在典型的国际象棋中局阶段，可供下棋双方的每种走法都能使对方想出 36 种可能的应对之法。由于国际象棋平均每局超过 80 步，因此计算机需要搜索的可能性数目约为 3680，也就是 10124
-
-种可能性。即便运算速度最快的现代计算机耗时几百年，也无法完成这种规模的搜索过程。这个问题的关键点在于，可能的走法会随着下棋步数的增加呈指数级增长。因此，一般至多考虑前 5～10 步的走法。这就是为什么计算机需要使用上面列出的启发式方法来评估走法的原因。
+基于这些启发式方法，你可以编写出一款国际象棋程序，该程序能计算出接下来几步合理可行的走法。当然，程序最好能够计算出从游戏开始到结束之间所有的走法。在井字游戏中，很容易实现这一点，而对于国际象棋来说，即使速度最快的计算机也难以实现这一点。在典型的国际象棋中局阶段，可供下棋双方的每种走法都能使对方想出 36 种可能的应对之法。由于国际象棋平均每局超过 80 步，因此计算机需要搜索的可能性数目约为 3680，也就是 10124 种可能性。即便运算速度最快的现代计算机耗时几百年，也无法完成这种规模的搜索过程。这个问题的关键点在于，可能的走法会随着下棋步数的增加呈指数级增长。因此，一般至多考虑前 5～10 步的走法。这就是为什么计算机需要使用上面列出的启发式方法来评估走法的原因。
 
 我们暂且认为第二条启发式方法是正确的，也就是同意能使自己在几步之后处于最有利地位的走法是最佳的。假设国际象棋程序只考虑 6 步棋前的情况。根据第一条启发式方法，这个程序将统计 6 步之后双方棋盘上剩余的棋子数量，并根据上述计分系统打分，由此来评估双方的实力。无论双方处于何种态势，双方的相对实力按得分的高低来判定。
 
@@ -295,6 +297,8 @@ The simple search heuristics work because there are a relatively small number of
 在计算科学史上，国际象棋游戏机有着漫长且偶尔口碑不佳的历程。18 世纪，匈牙利发明家沃尔夫冈·冯·肯佩伦（Wolfgang Von Kempelen）通过一个下国际象棋的自动装置激发了全世界的想象力，这个装置很像一个机器人。后来的事实证明，这个机器之所以能运转，是因为其内部藏有一个会下棋的侏儒。1914 年，西班牙工程师路易斯·托雷斯·克韦多（Luis Torresy Quevedo）制造了一台机械装置，该装置可以在没有人类帮助的情况下，下一种简化版的国际象棋。20 世纪 40 年代末，克劳德·香农描述了如何用计算机编程实现国际象棋启发式走法的思路，其中用到的方法与上文列出的三条规则类似。尽管如此，直到很多年以后，计算机的运算速度才快到足以玩国际象棋这样复杂的游戏。这对不少哲学家来说是一个不小的打击，因为他们认为下国际象棋是人类心智所具有的独特能力。现代计算机利用同样的启发式方法击败了世界上最优秀的国际象棋棋手 —— 1997 年，深蓝计算机击败了加里·卡斯帕罗夫（Garry Kasparov）。此后，哲学家又将争论转移到了其他领域。
 
 简单的启发式方法之所以有效，是因为每步棋需要考虑的可能性相对较少。在跳棋中，每步需要考虑的可能性则更少。早在 20 世纪 60 年代，基于启发式方法的机器就开始击败人类冠军。不过，在中国和日本的围棋游戏中，人类选手仍然处于统治地位，因为 19×19 的棋盘更大，可以提供更多种可能的走法。相比于国际象棋，我更喜欢玩围棋，因为启发式方法在后者中所起的作用更小，我不至于因急躁而处于下风。
+
+1『深度学习打破了作者的这个观点，2016 年是 AI 元年，哈哈。（2021-10-10）』
 
 ### 5.3 Fitness Landscapes
 
@@ -324,6 +328,170 @@ There are many problems for which we do not need exactly the right answer every 
 
 这种方法被称为爬山法，其缺点在于，你到达的山顶不一定是地形上的最高点。爬山法是一种启发式方法而非算法。还有一些与爬山法相似的启发式方法，它们能降低你困在某个山麓的概率。例如，你可以从不同的随机地点多次重复爬山过程，也就是说，你可以命令那些空降兵登山；或者，为了避免被困住，你可以后退一步。还存在很多种不同的方法，每种都有其自身的优点和缺点。
 
+1-3『随机爬山法，第一次听到是万维钢精英日课里研读书籍「混乱」时。（2021-10-10）』
+
 像爬山法这样的启发式方法能够很好地解决旅行推销员问题，它能在很短的时间内得到令人满意的答案。即便涉及的城市有几千座，通常也可以从一个合理的猜测出发，利用爬山法不断改进，从而找到更好的解。那么，为什么旅行推销员问题如此难以解决呢？虽然我们几乎总能用启发式方法得到几乎最优的行程路径，但「几乎总能有效的方法」并不是一种算法。每隔一段时间，就会有人宣称「解决」了旅行推销员问题，并带来一阵喧嚣。实际上，只不过是提出了一种新的启发式方法。对于旅行推销员问题来说，其困难不在于找到高效的启发式方法，而是找到高效的算法。
 
 对于很多问题来说，我们并不会每次都得出完全正确的答案，而是会接受一个不太完美的答案。即使我们想得到一个完美的答案，也可能无法承担时间成本。对于这些问题，计算机可以给出一个有理有据且考虑周全的解。因为计算机能够考虑数量庞大的组合和可能性，其得出的推测往往会为程序员带来惊喜。当计算机使用启发式方法时，它既能制造惊喜也能犯错，这使它更像人类，而非机器。
+
+## 0601. Memory: Information and Section Codes
+
+So far, we have mostly ignored the limitations imposed on a computer by the size of its memory. An idealized universal computer has an infinite memory, but a real computer's memory is limited, usually by expense. As long as the size of the memory is adequate for the task at hand, we are free to ignore the limitation, but some memory-intensive algorithms and applications store such large amounts of data that the amount of memory available becomes an important consideration. Applications that manipulate representations of the physical world — such as images, sounds, or three-dimensional models — are often memory-intensive. Knowing how much memory is required for a given application is important not only in judgments about whether or not the computer is big enough to handle it but also for estimating the time required to process the information.
+
+The bit — the unit of measure for information — is appropriate both for the communication of information and for its storage. In a sense, communication and storage are just two aspects of the same thing: communication sends a message from one place to another; storage「sends」a message from one time to another. Unless you are accustomed to thinking in four-dimensional spacetime terms, this equivalence between moving and storing may seem strange, but think of mailing a letter as a means of communication which has aspects of both. Mailing a letter to someone else is a way to move information in space; mailing a letter to yourself is a way to store information in time. When examined closely, any form of communication is seen to have both a spatial and a temporal aspect. One way that electronic computers store information is to constantly recirculate it, in the electronic equivalent of a self-addressed letter.
+
+We know that computers with n bits of memory can hold up to n bits of information, but how do we determine how many bits are required to represent a given piece of information? For instance, how many bits are in the words of this book? Calculating the answer turns out to be not particularly easy; in fact, there are several different correct answers. Thinking about this question leads us to ideas about compression, error detection and correction, random numbers, and secret codes.
+
+The number of bits required to send or store a given piece of data will depend on how the data is encoded. One way to represent a complex message, like the text of a book, is to represent it as a sequence of simpler parts: for example, the characters that spell out the text. In this common representation, the number of bits in the message is equal to the number of characters in the text times the number of bits per character. The text of this book contains about 250,000 characters, and my computer uses a code that requires 8 bits (a byte) to store a character, so the size of the file that the computer uses to store the text is about 2 million bits. You may be tempted to conclude that this book contains about 2 million bits of information, since that's how much memory the computer uses to store the text, but this is only one measure of the information — a measure that depends on the representation of the message. It's a useful measure, because it tells you not only how much memory the computer needs to store the information but also how much time is needed to process it. For example, if I know that my computer can write information on a disk at 20 million bits per second, and I know that it uses a 2-million-bit representation of this book, then I can calculate that it will take about 1/10 of a second to store the book in a file on disk.
+
+The problem with using the number of characters times 8 as a measure of the number of bits in the text is that it depends on the representation scheme used by the computer. A different computer, or a different application program running on the same computer, might store the very same sequence of characters in a different number of bits. For instance, with 8 bits per character, it is possible to represent 256 different characters, but the text in this book uses fewer than 64 different characters — 26 letters, upper and lower case, numerals, and punctuation marks. Therefore, a more efficient code would represent each character by using 6 bits of information (2 6 = 64), and hence compress the representation of the text to only 1.5 million bits.
+
+It would be nice to have a measure of information that didn't depend on the form of representation. A more fundamental measure of information would be the minimum number of bits required to represent the text. This is easy to define, but not necessarily easy to calculate.
+
+0601 存储：信息和密码
+
+到目前为止，我们基本上没有考虑过计算机因存储空间而受到的限制。理想的状态是，通用计算机具有无限的存储空间。然而，对于具体的计算机来说，其存储空间时常受限于成本，而且总是有限的。只要存储空间足以满足当前的任务需求，我们就可以不用考虑这一限制。不过，一些算法和应用程序具有大量数据需要被存储，所以存储空间便成为一个重要的考虑因素。用于表示物理世界的应用程序通常需要占用大量存储空间，比如图像、声音和三维模型等。知道应用程序需要多少存储空间非常重要，因为它不仅可以用于判断计算机是否拥有足够的空间运行该程序，还可以用于估算处理信息所需的时间。
+
+作为测量信息的单位，二进制位适用于信息的传输和存储。从某种意义上来说，传输和存储是同一事物的两个不同方面：传输是将一条信息从一个地点发送到另一个地点，而存储是将一条信息从一个时刻「发送」到另一个时刻。除非你习惯于在四维时空思考问题，否则可能难以理解将传输和存储等同视之的想法。邮寄信件不仅是一种通信方式，还同时具备传输和存储两方面的特性。给他人寄信是在空间范畴内传输信息的一种方式，而给自己寄信是在时间范畴内存储信息的一种方式。实际上，所有形式的通信都具有空间和时间两方面的属性。电子计算机存储信息的一种方式就是，让信息不断循环流通，这就相当于在电子世界给自己寄信。
+
+我们知道，存储容量为 n 个二进制位的计算机最多可以存储 n 位的信息。然而，对于给定的信息，我们如何确定需要多少位呢？若想计算出这个问题的答案，并不容易。实际上，存在若干不同的正确答案。如果进一步思考这个问题，我们会接触到压缩、查错和纠正、随机数、密码等概念。
+
+数据的编码方式决定了传输和存储一段数据所需的位数。对于一些复杂的信息来说，比如一本书中的文字，可以将其表示为一串更简单的序列，例如，用组成文本的字符表示这本书。在这种常用的表示方法中，文本信息的位数等于文本中的字符数乘以每个字符所用的位数。本书约有 250 000 个字符，而我的笔记本电脑存储一个字符需要 8 位（1 个字节）。因此，用于存储本书的计算机文件约为 200 万个位。你可能会就此得出结论，这本书之所以包含 200 万个位的信息，是因为计算机用于存储本书的存储空间就这么大。不过，这只是信息的一种度量方式，这种度量方式取决于信息的表示形式。这是一种有效的衡量标准，因为它不仅告知了计算机需要多少存储空间来存储信息，还告知了处理这些信息所需的时间。例如，如果我知道自己的计算机以每秒 2000 万位的速度向磁盘中写入信息，并且知道需要用 200 万位来表示本书，那么我就可以计算出将这本书存入磁盘的时间 ——1/10 秒。
+
+不过，用字符数乘以 8 得到的数字作为文本信息的度量值存在一定的问题：此时文本信息的位数取决于计算机使用的字符表示方法。不同的计算机或者在同一台计算机上运行的不同应用程序，存储完全相同的字符序列所需的位数可能不尽相同。例如，如果用 8 位来表示每个字符，则可表示 256 种不同的字符，但本书中的字符数少于 64 种 —— 大写和小写的字母共 26 个，再加上数字和标点符号。因此，更有效的编码方式是使用 6 位（26=64）表示一个字符，这样可将本书压缩至 150 万位左右。
+
+如果存在一种不依赖信息表示形式的测量方式，那就最好不过了。一种更本质的测量信息的方式是表示文本最少需用多少个位。这种方式虽然很容易定义，但不容易计算。
+
+### 6.1 Compression
+
+How much can we compress a given text without losing information? Reducing the number of bits per character from 8 to 6 is a simple form of compression. Other compression methods are based on taking advantage of regularities in the text. For instance, the letters T and E occur far more often in most English-language texts than the letters Q and Z. A more efficient code would use a shorter sequence of 1's and 0's to represent the more common letters. Using a variable-length encoding of characters to achieve a more compact representation was a trick used by early telegraph operators and radio amateurs. In Morse code, the letter E is represented by a single dot and the letter T by a single dash. Less common letters, like Q and Z, are represented by sequences of up to four dots and dashes. Because a third type of signal — a space — is used to mark the ends of letters, the dots and dashes of Morse code don't exactly correspond to 1's and 0's, but the principle is similar.
+
+To make a variable-length code using 1's and 0's, it is necessary to choose the code patterns carefully, so that a stream of bits can be broken unambiguously into characters. This is possible as long as no bit sequence used to represent a character begins with a subsequence of 1's and 0's used to represent another character. For example, all common characters could be represented by 4 bits, starting with a 1, while less common characters might have 7 bits and start with a 0. This would allow the stream of bits to be divided unambiguously into short and long characters. Choosing a variable-length code that best takes advantage of the relative frequency of the various letters will result in substantial compression of the text. In the case of the text of this book, it would reduce the number of bits from the original 2 million to about 1 million, a compression of 50 percent.
+
+Any method of compressing takes advantage of regularities in the data. The code just described takes advantage of regularities in the rate of occurrence of single characters, but there are other regularities that can be exploited. For instance, not all pairs of adjacent letters occur with equal frequency in this book. The letter Q is almost always followed by the letter U, and the letter Z is never followed by the letter K. By developing a system of variable-length code for pairs of letters rather than for individual letters, we can take advantage of the fact that two-letter combinations do not occur with equal frequency. The code can use shorter sequences of bits for the more common pairs and long sequences for pairs that occur rarely. If we use this method, the number of bits required to store the text of this book could be reduced by a further 10 percent, to an average of about 3.5 bits per letter.
+
+A still more efficient code would take advantage of regularities that occur in longer sequences of letters. For example, the word「the」occurs about 3,000 times in this text. It would be advantageous to use a code that uses a relatively short sequence of bits to represent this entire word. Similarly, there are many other words, such as「computer」and「bit,」that occur so often in this particular text that they, too, are worth encoding.
+
+There are also regularities beyond these statistical regularities in the letter sequences. For instance, there are regularities in grammar, sentence structure, and punctuation that allow further compression of the text. But at some point we will begin to get diminishing returns. In the end, the compression that uses the best available statistical methods would probably reach an average representation size of fewer than 2 bits per character — about 25 percent of the standard 8-bit character representation.
+
+Compression works fairly well on text, but it works even better on signals that are representations of the real world, like sounds and pictures. These signals are usually read into the computer by a process known as analog-to-digital conversion. Such inputs — the intensity level of a sound, say, or the brightness of a light — are usually continuously variable, analog signals. For example, a dot, or pixel , in a black-and-white photograph may be either white or black or any of the infinite shades of gray in between. Since the computer has no way of representing an infinite number of possibilities, it simplifies the signal by reducing each pixel to one of a finite set of levels of gray. Typically, the number of gradations is an exact power of 2, so that it will fit into a specific number of storage bits. For instance, the brightness of a dot in a black-and-white picture might be represented by 8 bits, so that 256 shades of gray could be represented. A higher-quality image would be represented with a 12-bit code, producing 4,096 shades of gray. A color image might use 24 bits per dot — 8 bits for the intensity of each of the three primary colors.
+
+The other parameter determining the quality of a photographic image is its resolution  — that is, the number of pixels used to represent it. A high-resolution image produced by an array of 1,000 × 1,000 dots will be a more accurate representation than an image with a resolution of 100 × 100. However, since the representation of the high-resolution image uses 1,000,000 pixels instead of 10,000, your computer will need 100 times as much memory for storage, and processing the image will take 100 times as long. Quality costs.
+
+Since high-resolution images can contain a large number of bits, it is often desirable to compress them, in order to reduce the cost of storage and transmission. This is especially true of moving images, which typically contain from 24 to 100 frames per second. Fortunately, images are relatively easy to compress, because there is a high degree of regularity in an image. In most pictures, the intensity and color of a particular pixel is often nearly identical to the intensity and color of neighboring pixels. Two pixels representing adjacent parts of the same cheek in the image of a face, say, would likely be very similar in brightness and color. Most image-compression algorithms take advantage of this similarity. An image-compression algorithm may represent areas of uniform brightness and color by having just a few numbers represent the color and size of the area. Other image-compression methods take advantage of more complex forms of regularity: for example, similar textures in different parts of the image. For moving pictures, such as television broadcasts, compression methods generally take advantage of the similarity of sequential frames. Using such techniques, one can often compress the representation of a photograph by a factor of 10 and of a moving image by a factor of 100. Similar compression methods can be applied to sounds.
+
+These compression methods lead to a counterintuitive notion of the amount of information contained in a picture. If the minimum number of bits required to represent the image is taken as a measure of the amount of information in the image, then an image that is easy to compress will have less information. A picture of a face, for example, will have less information than a picture of a pile of pebbles on the beach, because the adjacent pixels in the facial image are more likely to be similar. The pebbles require more information to be communicated and stored, even though a human observer might find the picture of the face much more informative. By this measure, the picture containing the most information would be a picture of completely random pixels, like the static on a damaged television set. If the dots in the image have no correlation to their neighbors, there is no regularity to compress. Such pictures look completely meaningless to us — and may truly be meaningless — but they require the greatest amount of information in order to be represented by a computer.
+
+The minimal representation measure of information does not correspond well to our intuition about information content because the computer is making no distinction between meaningful and meaningless information. The computer must represent the color of every pixel, or the position of every pebble on the beach, even though these details may not be important to the viewer. Deciding what information is and is not meaningful is a subtle art; it depends on how an image is being used and who is using it. The position of a tiny blemish on an X-ray image might be irrelevant to an untrained eye but very meaningful to a physician. A great artist like Picasso may be able to「compress」the image of a complex scene into a few simple lines, but in doing so he exercises a complex judgment in deciding which aspects of the image communicate the most meaning (see Figure 23 ).
+
+If the computer were to compress an image by storing only the meaningful information, then the number of bits in the representation would correspond more closely to our commonsense notion about the information contained in the image. For example, the computer might represent the array of random pixels by indicating that this image has no regularity and no meaningful information. When asked to reconstruct this picture, it could simply generate another array of random pixels. The details — which pixel was which exact shade — would be different in the original and the reconstructed images, but these differences would be meaningless to the human eye.
+
+FIGURE 23
+
+Picasso sketch
+
+Many image- and sound-compression algorithms discard certain meaningless information in order to reduce the size of the representation. These so-called lossy compression algorithms assume that a certain level of detail in the image or sound will be ignored by the eye or the ear. Lossy compression methods are generally used when it is known that the decompressed information will serve some particular purpose. For instance, if a particular detail appears only in a single frame of a movie, it may be safe to throw it away, since it will go unnoticed.
+
+There is another important form of image representation, which is able to achieve an even greater degree of compression than the methods just described. If the process that generates the original image is known, then it may be more efficient to store a record of that process rather than a record of the image itself. For instance, if the image was a drawing, created by a person who drew a series of lines, then the drawing may be represented by storing a list of the lines — a representation scheme often used by computers for making simple line drawings.
+
+The idea of representing something by storing the procedure or program that generated it is applicable to other types of data as well, such as sounds. Where sound is concerned, the technique may seem no more profound than the notion of recording a piece of music by writing down the score, but in a computer the score is able to represent every detail necessary to reproduce the original — the tuning of the instruments, the bowing of the violins, even the mood of the orchestra. If an object can be generated by a computer, then by definition there is a precise procedure for generating it, so a description of that procedure will serve as representation of the object.
+
+This leads us to another measure of information: The amount of information in a pattern of bits is equal to the length of the smallest computer program capable of generating those bits. This definition of information holds whether the pattern of bits ultimately represents a picture, a sound, a text, a number, or anything else. The definition is interesting, because it allows for any type of regularity within the pattern. In particular, it subsumes all the methods of compression described above. (It might seem that such a definition depends on the details of the computer's machine language, but recall that any computer can simulate any other, so the measure from one computer to another will vary only by the small amount of code needed to perform the simulation.)
+
+Once a string of information is compressed as much as possible, it will exhibit no regularity. This is true because any regularity would be an opportunity for further compression. The string of 1's and 0's representing optimally compressed text would look completely random, like the record of the flipping of a coin. In fact, many mathematicians use this property of incompressibility as a definition of randomness — a satisfyingly simple definition, but one that often is not very useful in practice, since it's very difficult to tell whether or not a given string of bits is random in this sense. It's easy to decide, when we recognize any regularity, that a string can be compressed — but we can't prove that the string cannot be compressed if we see no pattern. The pseudorandom number sequences described in chapter 4 are a good example of sequences that appear random but have an underlying pattern. By the above definition of randomness they are highly nonrandom, because a very long sequence can be briefly described, simply by describing the algorithm that produced it — in this case, the roulette-wheel simulation.
+
+压缩
+
+在不丢失信息的情况下，我们能将文本压缩多少呢？一种简单的压缩方式是，将每个字符的位数从 8 位减少至 6 位。有的压缩方式会利用文本的规律性。例如，在英文文本中，字母 T 和 E 出现的频率远高于字母 Q 和 Z。那么更高效的编码方法就是，用更短的 1、0 序列来表示出现频率更高的字母。早期电报员和无线电业爱好者使用的一个技巧是，利用长度可变的字符编码方式来实现更紧凑的表示形式。在莫尔斯码中，单个点代表字母 E，单条画线代表字母 T。其他不常见的字母，比如 Q 和 Z，则由一列长度最多为 4 的点和画线组成。不过，还有第三种信号 —— 停顿，用于表示字母的结束。因此，莫尔斯码的点和画线并不完全对应于二进制位的 1 和 0，但其基本原理是相似的。
+
+如果使用 1、0 序列来表示一个长度可变的字符代码，必须仔细选择编码方式，以便将二进制位组成的信息流毫无歧义地分解成单个字符。只要某个字符的二进制位序列的开头部分与其他字符的子序列不同，那么这个分解就是有可能的。例如，用 4 位表示常见的字符且首位字符为 1；用 7 位表示不常见的字符且首位字符为 0。此时，二进制位信息流就能被准确地划分为短字符和长字符。选择一种充分利用不同字母相对频率的可变长度字符编码，可以有效地实现文本的压缩。以本书文本为例，这种方法能将原来的 200 万个位缩减至 100 万个位左右，压缩比例达 50%。
+
+所有的压缩方法都利用了数据的规律性。上面介绍的编码方式利用了单个字符出现频率的规律性，还存在其他规律性可供利用。例如，在本书中，并非所有相邻的字母组都以同等频率出现，字母 Q 后面几乎总是跟着字母 U，但字母 Z 后面绝不会出现字母 K。我们可以为双字母组而非单个字母设计一个采用可变长度字符编码的系统，充分地利用双字母组合出现频率的非均等性。在编码中，可以使用较短的二进制位序列表示更常见的字母组，使用较长的二进制位序列来表示很少出现的字母组。这种方式可以使存储本书所需的位数再压缩 10%，达到平均每字符 3.5 位的压缩水平。
+
+利用多字母组合的规律性进行编码，效率将会更高。例如，在本书中，「这」一字出现了约 3 000 次。如果使用一个较短的二进制位序列来表示这个字，将非常有效。同理，有许多字词也适合用这种方式来编码，比如「计算机」「二进制位」等这些经常在本书中出现的词。
+
+除了字母组合的统计规律，还存在其他方面的规律性。例如，语法、句子结构和标点符号等也具有规律性，这些都可以用于进一步压缩文本。不过，在某些时刻，我们得到的边际收益会逐渐递减。如果使用目前最佳的统计方法，表示每个字符的位数最终可压缩至不到 2 位，这个压缩水平是 8 位标准字符代码的 25%。
+
+压缩在文本中的应用效果相当不错，但它在表示现实世界的信号时的应用效果更好，比如声音和图像等。这些信号通过被称为模数转换（analog-to-digitalconversion）的过程输入计算机。这些输入通常是连续的模拟信号，比如声音的强度、光线的亮度等，在黑白照片中，点或像素可以为白色、黑色，或者介于两者之间的任意灰色。由于计算机无法表示无数多种可能性，因此它通过将每个像素转换成有限的灰度集合中的某个值来简化信号。通常来说，灰度的等级数目为 2 的整数次幂，这样便能与存储的位数相匹配。例如，可以用 8 位来表示黑白图片中的像素点亮度，因此共有 256 种灰度。也可以用 12 位来表示更高质量的图片，此时对应的灰度值有 4 096 种。计算机通常用 24 位来表示彩色图片中的像素点，其中每种三原色的亮度各由一个 8 位表示。
+
+另一个决定图像质量的参数是分辨率，即照片中的像素数目。一张由 1 000×1 000 点阵组成的高分辨率图像比一张分辨率为 100×100 的图像更加清晰。不过，由于前者的像素点数为 1 000 000，而非 10 000，因此计算机需要的存储空间将增加 100 倍，需要的图像处理时长也会增加 100 倍。
+
+由于高分辨率图像包含大量数据，因此我们通常希望将其压缩，以降低存储和传输成本。对于动态影像来说，尤其如此，其每秒包含的图像帧数为 24～100。幸运的是，图像容易压缩，因为它们具有高度的规律性。在大多数图像中，单个像素点的颜色和亮度通常与临近点的几乎相同。例如，在一张关于人脸的图像中，面颊中相邻部位的两个像素点具有非常相似的亮度和颜色。大多数图像的压缩算法都利用了这种相似性。对于亮度和颜色一致的区域，图像压缩算法只用几个数就可以表示其颜色和大小。其他图像压缩算法采用了更为复杂的规律形式，例如，图像中不同区域的纹理的相似性。对于诸如电视转播等动态影像来说，压缩算法通常利用前后相继的各帧图像之间的相似性，这种方法可以实现 10 倍的图像压缩比，以及 100 倍的视频压缩比。类似的压缩方法可以应用于声音信息的压缩。
+
+对于图像所包含的信息量来说，这种压缩方法有些违反直觉。如果用表示图像所需的最少位数作为图像信息的度量，那么更易于压缩的图像包含的信息量更少。例如，一张面部图像的信息量比一堆沙滩鹅卵石图像的信息量更少，因为面部图像中相邻的像素点更加相似，而传输和存储一张鹅卵石图像则需要更多的信息量，即使人类观察者认为面部图像的信息更为丰富。根据这种度量方式，包含信息量最多的图像将是由随机像素点组成的图像，如同充满噪声和杂讯的电视机屏幕。如果图像中的像素点和相邻像素点之间没有任何相关性，那么压缩图像时就没有规律可循。虽然这样的图像对我们来说毫无意义，其计算机表示却具有最大的信息量。
+
+信息度量的最小表示方法与我们对于信息内容的直观认识并不完全一致，因为计算机没有区分有意义和无意义的信息，它只需记录每个像素点的颜色，或者沙滩上每个鹅卵石的位置，即使这些细节对我们来说并不重要。判定哪些信息有意义、哪些信息没有意义是一门精妙的艺术，这取决于图像的使用方式和使用者。在外行看来，X 光片上的一点小瑕疵无关紧要，但对于医生而言，它却意义非凡。像毕加索这样伟大的艺术家能够将复杂的景象「压缩」成几条简单的线条，但为了实现这一点，他需要经过复杂的判断来决定用图像的哪些部分传达最重要的意义（见图 6-1）。
+
+如果计算机通过只存储有意义的信息来压缩图像，那么表示图像所需的位数将更接近于我们对图像信息量的直观认知。例如，当表示由随机像素阵列组成的图像时，计算机可以指出该图像无规律性，其信息毫无意义。当要求计算机重构这张图片时，它可以简单地生成一张由随机像素阵列组成的新图像，而新图像和源图像在诸如像素灰度等细节方面存在差别，不过，这些差别在人眼中并无意义。
+
+许多有关图像和声音的压缩算法会丢弃一些无意义的信息，以减少表示的信息量，这类算法被称为有损压缩。这类算法假设，人类的眼睛和耳朵会忽略图像和声音中的某些细节。有损压缩法一般适用于已知解压的信息用于何种目标的情况。例如，如果电影中的某个细节只出现在一帧图像中，那么将这帧图像丢弃也不失为一种安全的做法，因为没有人会注意到这个细节。
+
+还有另外一种重要的图像压缩方法，它能实现比上述方法更高的压缩程度。如果已知原始图像的生成过程，那么与存储原始图像相比，存储这个生成的过程可能更加有效。例如，如果图像是由画家绘制的一系列线条组成的画作，那么可以通过存储线条列表来表示这幅画作，计算机经常使用这种方法制作简单的线条画。
+
+通过存储事物的生成过程或程序来表示该事物的方法也适用于其他类型的数据，比如声音等。当涉及声音对象时，这种方法就类似于通过乐谱来记录音乐的方法。不过在计算机中，乐谱记录了生成原声音乐所需的全部细节，包括乐器的音调、小提琴的运弓方法，甚至乐队的演奏情绪。如果某个对象能由计算机生成，那么根据定义，计算机中一定有该对象的准确生成过程，而关于此过程的描述便可作为该对象的表示。
+
+这样，我们又可以得出一个关于信息度量的结论：一个二进制位模式的信息量等同于能够生成这些二进制位的最短计算机程序的长度。无论这个二进制位模式最终表示的是图像、声音、文本、数字，还是其他事物，这种关于信息的定义都是成立的。这个定义相当有趣，因为它考虑到了模式中的各类规律，特别是包含了上述所有的压缩方法。这个定义似乎依赖于计算机的机器语言。不过，任何计算机都可以模拟其他的计算机，因此，信息度量之差仅是用于模拟所需的少许代码而已。
+
+当信息被尽可能地压缩后，就不再具有规律性。这是因为任何规律性都是一次压缩信息的机会。文本经过最优压缩后，表示文本的 1 和 0 序列看起来完全是随机的，就像随机投掷硬币得到的记录一样。事实上，许多数学家将不可压缩性作为定义随机性的方式。虽然这个定义很简洁，但在实际应用中并没有多大用处，因为这种定义方式很难判断一串序列是不是随机的。当我们识别到字符串的规律性时，不难判断出该序列可以被压缩；但如果找不到字符串的规律性，并不能证明该序列不可被压缩。第 4 章描述的伪随机数就是这样的例子：它们虽然看起来是随机的，却具有一种潜在的规律模式。根据上面关于随机性的定义，这里的伪随机数具有高度的非随机性，因为通过伪随机数生成的算法能将一长串数字中的规律简明扼要地归纳出来，轮盘机模拟程序就属于这种情况。
+
+### 6.2 Encryption
+
+Those sequences that appear random but have a hidden underlying pattern can be used to create codes for encrypting data. Imagine, for example, that I wish to send a secret message to a friend of mine. If we both have a copy of the same random-number generator, so that we can generate the same sequence of pseudorandom numbers, we could use this sequence to hide the content of the message from anyone who might intercept it. Let's say that the message to be transmitted is a stream of bits representing characters, using the standard 8-bit-per-character representation. This standardized representation could presumably be interpreted and understood by any eavesdropper; it is what cryptographers call the plain text of the message. To encrypt the message, we pair each bit in the plain text to the corresponding bit in the pseudorandom bit stream. If the pseudorandom bit is 1, we invert the corresponding plain-text bit. If the pseudorandom bit is 0, we leave the corresponding plain-text bit alone. This will invert about half the bits in the plain text, but the eavesdropper won't know which half. Unless the eavesdropper knows the pseudorandom sequence, this string of 1's and 0's will be utterly meaningless. My friend the recipient, on the other hand, knows how to generate exactly the same random sequence, which can be used to reinvert the inverted bits, thereby restoring (decrypting) the message. This method, or something very similar to it, is at the heart of most encryption schemes.
+
+Encrypting a message is analogous to sending it in a locked box that can be opened only with a special key. In the encryption method just described, the key is the random-number generator. Anyone who has the key is able to perform the conversion. In the example above, the same key is used for encryption and decryption, but it is also possible to construct codes that use different keys for encryption and decryption. In a public encryption scheme, the keys for encryption and decryption are different, and an eavesdropper who knows the encryption key will not thereby know the key needed to decrypt. This method of transmitting messages is extremely useful. For example, if I wish to receive an encrypted message, I can publicize the description of the key necessary to encode messages to me. Anyone will be able to send me a secret message, whether I know them or not. Since the public key tells the sender only how to encrypt the message, not how to decrypt it, others will not be able to unlock the encoded message. Only my private key, which I keep secret, allows an encrypted message to be converted back into plain text. This is called public key encryption. Public key encryption solves an important practical problem: for example, many businesses that accept credit card numbers over the Internet publish their own public key, so that customers can encrypt their credit card numbers without fear that they will be intercepted and read.
+
+The public-key-encryption scheme is also useful in reverse, for authenticating messages. In this case, I publicize the key for decrypting a message but keep secret my key for encryption. Whenever I want to send out a message that I wish to「sign」as being verifiably from me, I encrypt the message with my private key. Any recipient of the message can use the public key for decrypting the message. They will know it was really from me because only someone who knows my private key could have encrypted such a message.
+
+加密
+
+有些序列虽然表面上看起来是随机的，却包含了隐藏的固有规律模式，它们可用于制作由数据加密的编码。例如，我想给朋友发送一条秘密信息。如果我们都有相同的伪随机数生成器，就能生成一串相同的伪随机数序列。然后，我们可以利用这个序列将信息内容隐藏起来，他人将无法窃取。假设要传输的信息是用字符表示的二进制位信息流，采用每字符 8 位的标准格式，任何窃听者都可以看懂这种标准化的表示形式，密码学家称之为明文（plain text）。为了加密信息，我们将明文中的位和伪随机数序列中的位一一配对。如果伪随机数序列中的位是 1，则置换对应的明文；如果伪随机数序列中的位是 0，则保持对应的明文不变。这样，明文中约有一半的位数被置换，但窃取者不会知道是哪一半，除非他们都知道伪随机数序列，否则这些由 1 和 0 组成的序列对他们来说毫无意义。在另一头，我的朋友知道如何生成完全相同的伪随机数序列，该序列能用于置换那些已经被置换的序列，从而重构（解密）出原始信息。这种方法或者其他类似的方法是大多数加密系统的核心。
+
+对信息加密相当于将其放到只有使用特殊的密钥才能打开的带锁的箱子里。在刚才介绍的加密方法中，这把钥匙是伪随机数生成器，所有拥有这把钥匙的人都能执行置换操作。在上述例子中，加密和解密所使用的是同一把密钥，不过，也可以在加密和解密过程中使用不同的密钥。在公共加密体系中，加密和解密使用的密钥是不一样的，知道加密密钥的破译者不知道解密所需的密钥。这种传输信息的方式非常有用。例如，如果我想接收加密后的信息，就可以对外公布加密信息所需的密钥。这样，任何人都可以向我发送秘密信息，无论我是否认识他们。由于公开密钥只会告知发送者如何加密信息，而不会告知如何解密信息，所以其他人无法破译这些编码后的信息，只有我私下保存的密钥才能将密文转换成明文。这种方法被称为公共密钥加密法。公共密钥加密法解决了一类重要问题。比如，许多在互联网上接收信用卡账号支付的商家会发布他们的公钥，这样客户就能加密传输他们的信用卡账号，无须担忧账号被拦截和窃取。
+
+此外，这种公共密钥加密法在信息认证方面也大有用处。在这种情况下，我会公开用于解密的公钥，而用于加密的密钥则不公开。当我想发送一条信息，并希望用其签名来证明该信息来自我时，我就用密钥对其加密。任何接收到这条信息的人都可以用公钥解密这条信息。他们也能确定这条信息来自我，因为只有知道我的密钥的人才能加密这条信息。
+
+### 6.3 Error Detection
+
+Encoding and decoding bits have many other applications besides compression and security. For instance, there are situations in which we may represent a message using more bits than necessary, in order to reduce the chance of error. Codes that use some form of redundancy for detecting transmission errors — for example, a 0 that was received as a 1 — are called error-detecting codes. Other codes, called error-correcting codes , contain enough redundant information to correct as well as detect such errors.
+
+An obvious form of redundancy is to send a message more than once. Sending a message twice allows for error detection. If two copies of the same message are transmitted, but slightly different messages are received, then there must have been some error in transmission. A simple error-correcting code would be to repeat the message three times. Assuming that only one of the messages was corrupted, then the recipient would reconstruct the correct message by choosing the two copies that were the same.
+
+Fortunately there are error-detecting and error-correcting codes that achieve results with far less redundancy. A commonly used scheme for detecting errors is a parity code. This scheme can detect a single-bit error in a message of any length by the addition of one redundant bit. As a specific example of a parity code, consider the 8-bit code often used for transmitting characters over noisy communications lines. The eighth bit, called the parity bit , is 1 if, and only if, the number of 1's in the seven other bits is even. This means that the number of 1's in the 8-bit sequence should always be odd. If noise in the transmission line causes a 1 to be received as a 0, or vice versa, then the 8-bit message that is received will have an even number of 1's. The recipient therefore will be able to detect that there has been an error. Similar parity schemes are used for detecting errors in the memory systems of computers. One bit of parity can be used to detect an error in a message of any number of bits. A limitation of this simple parity code is that it's good at detecting only a single error. A message that has two inverted bits will have the correct parity, even though the data is incorrect.
+
+By using multiple parity bits, it is possible to detect multiple errors. It is also possible to give the recipient enough information not only to detect an error but to correct it; that is, the recipient is able to reconstruct the original message even though there has been an error. An example of such a code is the two-dimensional parity code illustrated in Figure 24.
+
+This code contains 9 bits of message information and 6 bits of parity. The message bits are arranged in 3 rows of 3 bits each. There is 1 parity bit for every horizontal row and 1 for every vertical column. A single-bit error in a message will cause two parity failures to be detected, one in a row and one in a column. The recipient of the message will then know that the bit at the intersection of the failing row and the failing column is incorrect and should be inverted. If there is an error in transmission of one of the parity bits, on the other hand, then either a row or a column will show an incorrect parity but not both. The bits are drawn in a two-dimensional pattern to help you visualize the structure of the code, but they can be transmitted in any order. Such error-correcting codes are often used to protect each word in the memory of a large computer. Using similar techniques, many other codes can be constructed which will detect and/or correct various types and numbers of errors.
+
+FIGURE 24
+
+An error correction code with 9 data bits and 6 check bits
+
+Error-correcting codes are able to deal with signaling errors that occur in transmission and storage of information, but what about errors in computation itself? It turns out that it is also possible to build logic blocks that produce correct answers even if some of the blocks from which they're constructed are operating incorrectly. Again, the basic tool is some form of redundancy. One way to build a fault-tolerant logic block is to copy each logic block three times. A majority-voting block, such as is shown in Figure 12 of chapter 2 , can be used to combine the answers from the three copies. If one of the copies makes an error, it will be outvoted by the others. This simple method protects against any single error (except within the majority-voting block itself).
+
+Given a well-defined set of possible errors — such as wires breaking, switches getting stuck, and 0's switching to 1's — it is possible to construct an arbitrarily reliable computing device out of arbitrarily unreliable components. This task simply requires using enough redundant logic in a systematic form. For instance, if you could build a new type of switching device — say, a molecular switch — that was extremely fast, or extremely inexpensive, but failed 20 percent of the time, you could still use it to build a computer that produced answers with 99.99999-percent reliability, by building the proper redundancy into the circuitry.
+
+Does this mean that you can construct an arbitrarily reliable computer? Not exactly. While a computer can be constructed so as to eliminate a particular type of error, errors of unanticipated types may occur which produce correlated errors in the redundant module. For instance, the burnout of one module may cause another module to overheat, or some kind of magnetic pulse may even cause all modules to err simultaneously. Engineers are capable of designing a logic block that can deal with any type of error they can imagine, but the history of technology shows that our imaginations are not always sufficient. The most dramatic failures are usually surprises.
+
+A second reason not to expect a perfect computer is that most computer failures are not caused by incorrect operation of the logic. They stem from errors in design — usually in the design of the software. Programmed computers, including their software, are by far the most complex systems ever designed by human beings. The number of interacting components in a computer is orders of magnitude larger than the number of components in the most complex airplane. Modern engineering methods are not really up to designing objects of such complexity. A modern computer can have literally millions of logical operations going on simultaneously, and it is impossible to anticipate the consequences of every possible combination of events. The methods of functional abstraction described in the previous chapters help keep the interactions under control, but these abstractions depend on everything interacting as expected. When unanticipated interactions occur (and they do), the assumption on which the abstraction rests breaks down, and the consequences can be catastrophic. In a practical sense, the behavior of a large computer system, even if no failures occur, is sometimes unpredictable — and this is the overarching reason that it is impossible to design a perfectly reliable computer.
+
+查错
+
+除了压缩和加密之外，编码和解码还有许多其他用途。例如，在某些情况下，为了降低出错率，我们会在必要的位之外再附加几位。一种被称为查错码（error-detection code）的冗余码可用于检测传输过程中发生的错误，比如传输的是 0，但接收时却变成了 1。还有一类被称为差错校正码（error-correction code）的代码，它们是一种包含了足够冗余信息的代码，可用于检测和校正此类错误。
+
+一种显而易见的冗余形式是多次发送信息。将信息发送两次就能起到检测差错的作用。如果一方发送了同一信息的两个副本，但对方接收到的两条信息却略有不同，这意味着在传输过程中一定出现了差错。一种简单的差错校正码是将同一信息重复发送三次。假设其中只有一条信息受到了破坏，那么接收者可以通过另外两份相同的副本来重构正确的信息。
+
+幸运的是，有些查错码和差错校正码可以用更少的冗余信息达到同样的结果。一种常用的查错码是奇偶校验码（parity code）。这种方法可以通过增加一个冗余位来检测任意长度信息中出错的一个位。举一个奇偶校验码的具体例子，当在嘈杂的通信线路中传输字符时，我们经常采用 8 位码。编码中的第 8 位即被称为奇偶校验位，当且仅当前 7 位中 1 的数目为偶数时，则此位才为 1。这意味着 8 位中的 1 的数目始终为奇数。如果传输线路中的噪声导致 1 变成了 0，或者相反，那么接收到的 8 位中的 1 的数目就变成了偶数。据此，接收者可以检测到差错的存在。计算机存储系统也采用类似的奇偶校验码来检测错误。使用一个奇偶校验位，我们就能检测出任意长度信息中的错误。这种简单的奇偶校验码的局限性在于，一个奇偶校验码只能检测单个位的错误。如果一个信息中出现两个位同时被置换的数据错误，那么即便数据本身是不准确的，其奇偶性仍是正确的。
+
+不过，使用多个奇偶校验位便可以检测出多个错误。此外，还可以给接收者提供足够的信息，使其不仅用于检测错误，还可以用于纠正错误。也就是说，即使信息存在差错，接收者也能够重构原始消息。图 6-2 所示的二维奇偶校验码就是一个具体的例子。
+
+图 6-2 使用 9 个数据位和 6 个奇偶校验位的差错校正码
+
+这种代码包括 9 个数据位和 6 个奇偶校验位。表示信息的 9 位排列成 3 行，每行 3 位。每行和每列各有一个奇偶校验位。当信息中的某一个数据位出现错误时，两个奇偶校验位会同时检测出异常，也就是能确定该异常位于某一行某一列。据此，信息接收者就会知道位于异常行和异常列交叉位置的那个数据位是不正确的，应该将其置换。另一方面，如果一个奇偶校验位在传输中出现错误，那么就只有某一行或某一列的奇偶校验结果是异常的，这样便不会出现某一行和某一列同时出现异常的情况。为了可视化编码结构，可以用二维模式来表示这些位，但代码可以按照任何顺序传输。这种差错校验码通常用于保护大型计算机存储空间中的字符。我们可以使用类似的技术设计出许多种其他代码，用于检测或者纠正不同类型和数目的错误。
+
+差错校正码能够处理信息传输和存储过程中出现的错误。那么计算本身的错误又当如何呢？事实证明，即使组成逻辑块的某些子模块无法正常工作，也依然可以搭建出能产生正确答案的逻辑块。同样，基本的检测工具还是某种形式的冗余。构建容错逻辑块的一种方法是，将每个逻辑块复制三份。如第 2 章图 2-3 所示，可以将少数服从多数逻辑块用于统筹这三个复制逻辑块的输出。如果其中一个逻辑块出现了错误，就以少数为由将其排除在外。这种简单的方法能够防止单个模块出现错误（除非少数服从多数逻辑块本身会出错）。
+
+如果给定一组可能发生的、定义明确的错误，比如断线、开关失灵以及 0 变成 1 等，那么无论元件多么不可靠，都可以用它们构造出具有任意可靠性的计算装置。此任务只需以系统的形式组装具有足够冗余度的逻辑元件便可完成。例如，如果你发明了一种新型开关，比如分子开关，它的速度非常快，或者价格非常便宜，但会在 20% 的时间内出错，通过在电路中搭建恰当的冗余结构，你仍然能够利用它制造出一台具有 99.99999% 可靠性的计算机。
+
+这是否意味着你可以搭建一台具有任意可靠性的计算机呢？答案并非如此。尽管在搭建计算机时，某种特定类型的错误可以被消除，但还是有可能发生意料之外的错误，它们会在冗余逻辑块之间产生关联故障。举个例子，某个烧毁的逻辑块可能会导致另一个逻辑块的温度过高，或是某种形式的磁场脉冲会导致所有逻辑块同时出错。工程师设计的逻辑块只能处理他们预想范围内的错误。技术的发展史表明，人类的考虑并非始终万无一失，惨痛的失败通常发生在意料之外。
+
+奢望建造一台完美的计算机是不现实的，因为大多数计算机故障并不是由错误的逻辑运算造成的，而是源于错误的设计，通常是错误的软件设计。计算机及其软件是迄今为止人类设计出的最为复杂的系统。计算机中交互的元件数目比最复杂的飞机的元件数目还要多出几个量级。现代工程技术并不足以支撑设计如此复杂的物体。一台现代计算机可同时运行的逻辑运算高达数百万条，因此我们无法预测出各个事件所有可能的组合的后果。虽然前几章介绍的功能抽象的方法有助于控制这些交互行为，但这些功能抽象基于一个前提，即一切交互作用都按照设想的那样进行。当出现预期之外的交互行为时（实际中的确会出现），这些功能抽象基于的假设便不再成立，其后果可能是灾难性的。实际上，即使没有出现故障，大型计算机的行为有时也是不可预测的。这是无法设计出一台绝对可靠的计算机的重要原因。

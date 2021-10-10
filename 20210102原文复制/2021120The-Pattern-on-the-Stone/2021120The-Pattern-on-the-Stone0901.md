@@ -1,4 +1,4 @@
-BEYOND ENGINEERING
+## 0901. Beyond Engineering
 
 A ccording to legend, the thirteenth-century scientist and monk Roger Bacon was a dabbler in black magic, and once constructed a talking mechanical head. It is said that he wanted to defend England from invaders by building a wall around the kingdom, and he constructed the head in order to ask its advice about how to build the wall. Bacon fashioned the head out of brass, replicating the design of a human head in every detail. He heated it over a fire while uttering magical incantations — a process that went on for days. Eventually, the head awoke and began to talk. Unfortunately, Bacon was by that time so exhausted from casting spells that he had fallen asleep. His young assistant was unwilling to awaken the master for the mere ramblings of a brass head, and the head exploded over the fire before Bacon could ask it any questions.
 
@@ -8,7 +8,17 @@ Oddly enough, I am in basic agreement with this prescientific notion: I believe 
 
 Before discussing how this emergent design process might work, let us consider our best example of intelligence: the human brain. Since the brain itself was「designed」 — by the emergent process of Darwinian evolution — it may be usefully compared with the engineered designs that we have considered so far.
 
-THE BRAIN
+0901 超越工程
+
+传说在 13 世纪，有位名叫罗杰·培根（Roger Bacon）的科学家对巫术有所涉猎，他曾经制造了一颗会说话的机械头颅。传闻他想在王国周围建造一道城墙，用来抵御英格兰的侵略。他造此头颅就是为向它咨询如何修建这道城墙。培根的头颅是用黄铜做成的，其中每个细节都是模仿真人设计的。做成之后，他将这颗机械头颅架在火上烤，并口念咒语，这个过程持续了好几天。最终，这颗机械头颅苏醒了，开始说话了。不幸的是，此时培根由于施法而疲惫不堪，不由自主地睡着了，而年轻的徒弟不愿意因为一颗黄铜头颅的胡言乱语而叫醒沉睡的师父。最终，在培根向它提问之前，机械头颅在火中爆炸了。
+
+除了培根，祈求于人工智能的人还有很多，包括德达拉斯（Dedalus）、皮格马利翁（Pygmalion）、艾伯塔斯·马格努斯（Albertus Magnus）以及布拉格的拉比学者等。这些祈求者的故事有一个共同的主题，即若想让某物具备思维能力，必须经过某种形式的熬炼和熟化。在计算机被发明之前，几乎没有人能想到，和思维一样复杂的过程能分解为可以通过装置实现的运算步骤。相反，当时的假设是，如果要创造出一种智能，就应该经历一个涌现的过程，即这样一种过程：复杂行为的涌现是数十亿局部而微小的交互行为的整体结果。这一假设的构想基础是：魔术师需要的不是正确的设计连线图，而是正确的配方。根据这个配方，各种成分可以自我组织形成智能，这个过程可以让魔术师在无法准确理解该过程或者智能本身是如何工作的情况下，创造出智能。
+
+不过，我倒是基本上认同这种前科学的理念。我相信，远在理解自然智能之前，我们就能创造出人工智能。我也认为，智能最终会从一系列复杂的交互行为中产生，但我们可能并不了解这些交互行为本身的细节，也就是说，这个过程不同于设计工程机械，而更像是烤制蛋糕或者打理花园。我们不是去设计人工智能，而是营造一个有利于培育人工智能的良好环境。人类在技术上的最大成就可能就是，制造出了跳出工程设计思维的工具，使我们的创造力超越了理解力。
+
+在讨论这个设计过程如何发挥作用之前，我们先来看看智能的最佳例子：人类的大脑。因为大脑本身是通过达尔文的进化过程「设计」出来的，所以将它和我们之前讨论的工程设计进行对比十分有意义。
+
+### 9.1 The Brain
 
 The human brain has about 10 12 neurons, and each neuron has, on average, 10 5 connections. The brain is to some degree a self-organizing system, but it would be wrong to think of it as a homogeneous mass. It contains hundreds of different types of neurons, many of which occur only in particular regions. Studies of brain tissue show that the patterns of neuronal connection, too, differ in the various regions of the brain: there are some fifty areas in which the pattern is recognizably different, and there are probably many more in which the differences in neural anatomy are too subtle for us to distinguish.
 
@@ -28,11 +38,29 @@ The important point here is that the brain is not only very complicated but also
 
 It is possible that a satisfactory description of what the brain does will be almost as complex as a description of the structure of the brain — in which case, there is no meaningful sense in which we can understand it. In engineering, the way we deal with complexity is to break it into parts. Once we understand each part separately, we can understand the interactions between the parts. The way we understand each of the parts is to apply the engineering process recursively, breaking each part into a subpart, and so on. The design of an electronic computer, along with all its software, is impressive testimony to how far this process can be pushed. As long as the function of each part is carefully specified and implemented, and as long as the interactions between the parts are controlled and predictable, this system of「divide and conquer」works very well, but an evolved object like the brain does not necessarily have this kind of hierarchical structure.
 
-FIGURE 29
+FIGURE 29 Block diagram of the macaque visual cortex
 
-Block diagram of the macaque visual cortex
+大脑
 
-THE PROBLEM WITH MODULARITY
+人类大脑约有 10^12 个神经元，每个神经元平均拥有 105 个连接。在某种程度上，大脑是一个自组织系统。然而，如果将它视为一堆同质的物质，那就大错特错了。大脑包含数百种不同类型的神经元，其中许多神经元只出现在特定区域。针对脑组织的研究表明，不同大脑区域内神经元的连接模式各不相同：其中大约有 50 个区域的连接模式存在明显的不同，实际的区域数目可能更多。不过，它们在神经解剖学上的差异太小，我们难以区分。
+
+很显然，大脑中的每块区域都具备特定的功能，例如辨别视觉图像里的颜色、发出语音中的语调或者记住事物的名字。我们之所以知道这些，是因为当特定区域因事故或者中风而受损时，与之对应的大脑功能将会丧失。例如，当大脑额叶左侧的 44 号和 45 号区域，也就是布罗卡区受到损伤时，人们就无法说出语法正确的句子。更糟糕的是，虽然他们可能吐字清晰，能理解别人的话，但无法再遣词造句了。位于大脑偏后方的环状脑回区一旦受到损伤，将导致人们读写困难。当其他某个区域受到损伤时，将导致人们无法回忆起熟悉的事物的名字，或者认出熟悉的面孔。
+
+认为大脑的各个区域类似于计算机的功能构件，这种观点是错误的。首先，对于大脑中的大多数区域来说，一个区域的损伤并不会导致某种明显的功能障碍。例如，移除大部分右额叶有时只会改变这个人的某种性格，有时甚至不会引起任何明显的变化。其次，即使在那些功能丧失十分明显的情况下，也不能贸然断定该功能只由受损区域负责，这个区域有可能仅提供该功能所需的一些次要辅助条件。虽然一辆汽车在电池耗尽之后无法启动，但我们不能就此认为电池是驱动汽车前进的唯一原因。
+
+实际上，我们可以弄清楚大脑某些区域的连接模式，尤其是靠近大脑后部、与视觉处理相关的区域。例如，有些大脑区域接受来自左眼和右眼的输入信息，并实现立体视感的连接模式。不过，在大脑的大部分区域，「布线模式」仍然是一个谜，甚至，大脑通过硬接线方式实现特定功能的观点也可能是不正确的。例如，左脑似乎负责语言功能，而右脑似乎主要负责空间认知功能，比如理解地图的能力。然而在显微镜下，左脑和右脑的组织模式看起来几乎相同。如果大脑的左右半球的连接模式存在系统差异，那么这种差异也非常微妙，我们难以辨别。
+
+可能的情况是，大脑功能可以通过某种自组织过程形成，该过程能改变各种突触连接的强度，以便使这部分区域满足特定功能。从一定程度上来说，这一点肯定是正确的。例如，当猴子失去一根手指后，它会继续使用之前用来处理来自这根手指的信息的大脑区域。这些空闲的神经元会被重新用来处理来自其他手指的信息。人类在中风痊愈后，很可能采用了类似的方法来重新安排大脑功能。中风患者最初可能会失去特定能力，比如辨识面孔，但随着时间的推移，他们可以重新学会这种能力。由于受损的神经元无法再生，因此患者可能通过调用大脑其他区域的神经元来重新获得相应的能力。
+
+如果诸如辨识面孔和语言理解等能力可以在大脑的不同区域内实现，那么从某种意义上来说，这些功能从一开始就被嵌入了大脑。新生婴儿在刚出生的前几天，对人脸特别感兴趣，在他们学会分辨简单的形状之前（比如字母），就学会了辨识人脸。同样，婴儿似乎倾向于留意声音中的某些特定模式，这使他们能够学会单词和语法。语言处理和辨识面孔等功能最终由大脑的不同区域来实现，这大概是因为这些大脑区域已经以某种方式做好了执行不同功能的准备。
+
+即使大脑中某些区域的功能是通过硬接线的方式实现的，但布线模式也不同于计算机中功能块的层次结构，即没有输入到输出的简单模式。相反，连接关系通常是双向的，也就是一组神经元同向连接，另一组神经元反向连接。
+
+关键的问题在于，大脑不仅具有很复杂的功能，而且其结构也与工程机器大不相同。这并不意味着我们无法设计出能执行大脑功能的机器，而是意味着我们不能将智能视为一种按层次结构设计的机器，指望通过分解和分析便能理解。
+
+大脑的功能可能与大脑的结构一样复杂。在这种情况下，我们还不能真正地理解大脑。在工程设计中，我们处理复杂系统的方式就是，将整体分解为若干子部分，一旦我们理解了每个部分，就掌握了各部分之间的交互关系。我们理解每个子部分的方式就是，递归地应用这一分析过程，将每个子部分再分解为更小的子部分，以此类推。电子计算机及其所有软件的设计历程深刻地说明了这一过程可以进行到何种地步。只要详细规定并实现每个部分的功能，并且只要不同部分之间的交互行为是可控和可预测的，那么这种「分而治之」的工程方法就是有效的。然而，像大脑这样的进化产物并不具备这种层次结构。
+
+### 9.2 The Problem with Moudularity
 
 The reliance on a strict hierarchical structure is the Achilles heel of the engineering process, since of necessity it creates the kind of adamant inflexibility we associate with machines. As discussed in chapter 6 , hierarchical systems are fragile in the sense that they are prone to catastrophic failure. Products of engineering are inherently fragile, because each part of an engineered system must meet the design specifications of how it should interact with other parts. These specifications serve as a kind of contract between components. If one of the components breaks its part of the contract, the design assumptions of the systems are invalid, and the system breaks down in an unpredictable way. The failure of a single low-level component can percolate through the system with catastrophic effects. Of course, complex systems like computers and airplanes are engineered to avoid these so-called single-point failures, through the methods of redundancy described in chapter 6 , but such techniques can guard the system only against anticipated failures. All the potential consequences of a particular failure must be predicted and understood — a task that becomes increasingly difficult as the machine becomes more and more complex.
 
@@ -42,7 +70,17 @@ It is amazing to me that the engineering process works as well as it does. Desig
 
 It is important to note that the problems outlined above are not inherent weakness of machines or of software per se. They are weaknesses of the engineering design process. We know that not everything that is complex is fragile. The brain is much more complicated than a computer, yet it is much less prone to catastrophic failure. The contrast in reliability between the brain and the computer illustrates the difference between the products of evolution and those of engineering. A single error in a computer's program can cause it to crash, but the brain is usually able to tolerate bad ideas and incorrect information and even malfunctioning components. Individual neurons in the brain are constantly dying, and are never replaced; unless the damage is severe, the brain manages to adapt and compensate for these failures. (Ironically, as I was writing this chapter, my computer crashed and required rebooting.) Humans rarely crash.
 
-SIMULATED EVOLUTION
+模块化的问题
+
+工程设计方法的致命弱点在于，它依赖于严密的层级结构，这必定会导致机器缺乏灵活性。正如第 6 章所讨论的那样，具有层级结构的系统容易发生灾难性故障，从这个角度来说，它们是脆弱的。从本质上来说，工程产品是脆弱的，因为工程系统中的每个子系统都必须符合规定它与其他子系统如何交互的设计规范。这些规范就像各个子系统之间的一种协议，如果有一个子系统违反了该协议，则系统设计依赖的假设便不再有效，系统就会以一种不可预测的方式崩溃。单个低级部件的故障可能会在整个系统中扩散，带来灾难性的后果。当然，在设计诸如计算机和飞机等复杂系统时，设计师会避免这些所谓的单点故障，方法就是利用第 6 章介绍的冗余技术。不过，这些技术只能防止系统出现预期范围内的故障。随着机器变得越来越复杂，若想准确地预测并完全掌握特定故障的所有潜在后果，则会异常困难。
+
+然而，问题远不止单个部件失效这么简单。在复杂系统中，即使所有部分都运行正常，当它们之间进行交互时也会产生一些意料之外的行为。通常，当大型软件系统出现故障时，负责每个子系统的程序员都会据理力争地说明自己的子程序没有问题。他们的说法往往是正确的，即每个子程序都准确地实现了各自规定的功能。系统缺陷源自规定每个子系统应该做什么以及它们之间如何交互的标准规范。如果没有预料到所有可能的交互行为，就很难正确地编写这些标准规范。对于大型复杂系统来说，比如计算机操作系统或者电话网络，即使每个子系统都按设计运行，也经常会出现一些令人费解和意料之外的行为。你或许还记得，十几年前，美国东部的几条长途电话线路停止接通呼叫达数小时之久。该系统采用了基于冗余结构的复杂容错机制。当时系统中的所有部件都运行正常，但运行于不同转接站上的同一软件的两个不同版本在交互时出现了意外，导致整个系统瘫痪。
+
+令我感到惊讶的是，工程设计方法在实践中仍然非常有效。设计像计算机或者操作系统这样复杂的对象时，可能需要数千人。如果系统非常复杂，就没有人能掌握系统的全貌。这种情况带来的后果是，弄错接口以及设计的低效性会导致许多错误，而随着系统变得越来越复杂，接口问题会变得更加严重。
+
+需要注意的是，上述列举的问题并不是机器或者软件自身固有的缺陷，它们是在工程设计过程中产生的缺陷。我们知道，并非所有复杂的事物都是脆弱的，比如大脑远比计算机复杂，但不易发生灾难性的故障。大脑和计算机之间的可靠性对比说明了进化产物和工程设计产品之间的差别。计算机程序中的单个错误可能会导致整个计算机崩溃，而大脑通常可以容忍错误的想法和的信息，甚至部分功能失常。在大脑中，虽然不断有神经元在衰亡，并且再无新的神经元补缺，但除非遭到严重的损伤，否则大脑都会设法适应和弥补这些问题。具有讽刺意味的是，在我写这一章时，我的计算机崩溃了，需要重新启动，而人类大脑几乎不会崩溃。
+
+### 9.3 Simulate Evolution
 
 So, in creating an artificial intelligence, what is the alternative to engineering? One approach is to mimic within the computer the process of biological evolution. Simulated evolution gives us a different way to design complicated hardware and software — a way that avoids many of the problems of engineering. To understand how simulated evolution works, let's look at a specific example. Say that we want to design a piece of software that sorts numbers into descending order. The standard engineering approach would be to write such a program using one of the sorting algorithms discussed in chapter 5 , but let's consider how we might instead「evolve」the software.
 
@@ -62,7 +100,27 @@ I have used mathematical tests to prove that the evolved sorting programs are fl
 
 The fact that evolved software cannot always be understood makes some people nervous about using it in real applications, but I think this nervousness is founded on false assumptions. One of the assumptions is that engineered systems are always well understood, but this is true only of relatively simple systems. As noted, no single person completely understands a complex operating system. The second false assumption is that systems are less trustworthy if they cannot be explained. Given the choice of flying in an airplane operated by an engineered computer program or one flown by a human pilot, I would pick the human pilot. And I would do so even though I don't understand how the human pilot works. I prefer to put my faith in the process that produced the pilot. As with the sorting programs, I know that a pilot is descended from a long line of survivors. If the safety of the airplane depended on sorting numbers correctly, I would rather depend on an evolved sorting program than on one written by a team of programmers.
 
-EVOLVING A THINKING MACHINE
+模拟进化
+
+在创造人工智能时，除了工程设计，还有什么其他途径呢？一种途径是在计算机中模拟生物进化的过程。模拟进化过程能为我们设计复杂的硬件和软件带来启发，还可以避免许多源自工程设计的弊端。为了理解模拟进化如何进行，我们来看一个具体的例子。假设我们要设计一款可以降序排序数字的软件。标准的工程设计方法是，使用第 5 章介绍的一种排序算法，编写对应的程序，但在这里，我们考虑如何「进化」出这款软件。
+
+第一步，生成一组由随机程序组成的「种群」。我们可以根据伪随机数生成器生成随机指令序列的方式，创建出程序种群（见第 4 章）。为了加快这个过程，我们只能使用那些对排序有用的指令，比如比较和交换指令。这里的每一个随机指令序列都是一段程序：随机种群将包含 10 000 个这样的程序，每个程序包含几百条指令。
+
+第二步是测试程序种群，找到哪些程序是最有用的。这需要我们运行每一个程序，判断它们能否将测试序列正确地排序。当然，由于程序是随机的，几乎没有一个可以通过测试，但如果运气足够好，有些程序会更接近正确的排序。例如，在偶然情况下，某个程序可能会将小数值数字移动至序列末端。通过在几个不同的数字序列上测试每个程序，我们可以为它们的适应度打分。
+
+第三步是从得分高的程序中生成新的程序种群。为此，我们需要删除低于平均分数的程序；只有适应度最高的程序才能留存下来。然后，给幸存的程序增加微小的随机改动，并对其进行大量复制，新的程序种群就这样被创造出来了，这个过程类似于具有变异特性的无性繁殖过程。或者，我们可以通过将上一代种群中的幸存者进行配对来「培育」新程序，这个过程类似于有性繁殖，实现的方法是，融合来自每个「父母」程序的指令序列，再生成「孩子」程序。「父母」程序能够留存下来的原因可能是它们具有有用的指令序列，因此「孩子」程序很可能从「父母」程序那里继承了最有用的特征。
+
+当新一代程序生成之后，它们会再次接受相同的测试和选择过程，那些最适合的程序会继续留存下来并进行繁殖。并行计算机每隔几秒就会生成新一代程序，因此选择和变异的过程可以重复数千次。每当生成新一代程序时，程序种群的平均适应度就会提高，也就是说，这些程序的排序结果将会越来越准确。经过几千次迭代后，程序将会得出完全准确的排序结果。
+
+我曾经用模拟进化过程的方法设计了一款程序，用来解决特定的排序问题。因此，我知道这种过程是行之有效的。在我的实验中，我喜欢那些能快速地进行排序的程序，因此运行更快的程序更可能留存下来。这个进化过程创造出了速度很快的排序程序。实际上，对于我感兴趣的问题来说，通过进化得来的程序比第 5 章所讲的任意一类算法都要稍快一些，而且，它们的数字排序速度比我自己编写出的程序还要快。
+
+很有趣的一点是，我并不知道在实验中进化得来的排序算法是如何工作的。我虽然仔细地检查了它们的指令序列，但还是无法理解它们，除了这些指令序列本身，我找不到关于这些程序如何工作的更简单的解释。可能这些程序是不可理解的，我们没有办法将程序的操作过程分解为一种可理解的层次结构。如果事实真是如此，即如果进化能够产生与排序程序一样简单但根本无法理解的事物，那么这对我们探究人类大脑的前景来说并不是什么好兆头。
+
+我已经用数学检验的方法证明了通过进化的方式得到的排序程序是一种完美的排序机。不过，相比于数学测试，我更信任生成程序的过程。这是因为我知道，每个进化而来的程序都来自许多程序，这些程序能否留存下来取决于它们能否排序。
+
+由进化产生的程序总是无法让人理解，这一事实会让人们在实际应用过程中感到不安。不过，我认为这种紧张不安源自错误的假设。第一个假设是通过工程方法设计的系统往往易于理解，但其实这只适用于相对简单的系统。如上所述，没有一个人能够完全理解一个复杂的操作系统。第二个错误的假设是，如果无法解释某个系统，这个系统就不太可靠。如果要选择乘坐一架由工程方法设计出的计算机程序或者人类飞行员驾驶的飞机，我会选择人类飞行员，即使我不明白人类飞行员是如何工作的，我也会这么选择，因为我更愿意相信飞行员的选拔过程。与排序程序一样，我知道合格的飞行员是从许多候选者中挑选出来的。如果飞机的安全性取决于对数列的正确排序，那我宁愿选择依靠进化得来的排序程序，而非由程序团队编写的程序。
+
+### 9.4 Evolving A Thinking Machine
 
 Simulated evolution is not in itself a solution to the problem of making a thinking machine, but it points us in the right direction. The key idea is to shift the burden of complexity away from the hierarchy of design and onto the combinatorial power of the computer. Essentially, simulated evolution is a kind of heuristic search technique that searches the space of possible designs. The heuristics it uses to search the space are Try a design similar to the best designs you have found so far and Combine elements of two successful designs. Both heuristics work well.
 
@@ -91,3 +149,33 @@ I am aware, of course, that building such a machine will create a tangle of mora
 Most people are interested in not so much the practical moral questions of a hypothetical future as the philosophical issues that the mere possibility an artificial intelligence raises about ourselves. Most of us do not appreciate being likened to machines. This is understandable: we ought to be insulted to be likened to stupid machines, such as toasters and automobiles, or even to today's computers. Saying that the mind is a relative of a current-generation computer is as demeaning as saying that a human being is related to a snail. Yet both statements are true, and both can be helpful. Just as we can learn something about ourselves by studying the neural structure of the snail, we can learn something about ourselves by studying the simple caricature of thought within today's computers. We may be animals, but in a sense our brain is a kind of machine.
 
 Many of my religious friends are shocked that I see the human brain as a machine and the mind as computation. On the other hand, my scientific friends accuse me of being a mystic because I believe that we may never achieve a complete understanding of the phenomenon of thought. Yet I remain convinced that neither religion nor science has everything figured out. I suspect that consciousness is a consequence of the action of normal physical laws, and a manifestation of a complex computation, but to me this makes consciousness no less mysterious and wonderful — if anything, it makes it more so. Between the signals of our neurons and the sensations of our thoughts lies a gap so great that it may never be bridged by human understanding. So when I say that the brain is a machine, it is meant not as an insult to the mind but as an acknowledgment of the potential of a machine. I do not believe that a human mind is less than what we imagine it to be, but rather that a machine can be much, much more.
+
+进化出会思维的机器
+
+模拟进化过程虽然并不能解决思维机器的问题，但为我们指出了一个正确的方向。关键的一点在于，将分层体系设计的复杂性问题转移到计算机的组合能力上。从本质上来说，模拟进化过程是一种启发式搜索技术，它可以搜索可能的设计空间，而用于搜索此空间的启发式方法就是：尝试与已有的最佳设计相似的设计方案，或者结合两个成功的设计方案的元素。这两种启发式方法都行之有效。
+
+虽然模拟进化过程是一种创造新结构的好方法，但它在调整现有设计方面的效率很低。它的弱点和优势源于进化理论对「为什么」如此设计这个问题的内在盲目性。第 8 章描述的反馈系统会为矫正具体的故障做出相应的变化，但进化理论与之不同，它会盲目地选择和更改方案，而不会考虑这些变更会如何影响结果。
+
+人类大脑同时利用了这两种机制，它既是学习的产物，也是进化的产物。进化勾画出了笼统的框架，而个体在与环境的相互作用中完善了细节。事实上，进化的产物并不是大脑的设计方案，而是过程（过程产生了大脑）的设计方案，它并非蓝图，而是秘方。多个层次的进化过程在同时进行，进化的过程为大脑的形成提供了秘方，推动了发育过程与环境的相互作用，并进一步激发了大脑。发育过程既包括内部驱动的形态发育过程，也包括外部驱动的学习过程。形态发育的力量促使神经细胞以正确的模式生长，而学习的过程则对神经连接进行微调。大脑学习的最终阶段是一种文化过程，通过世代相传，每代人获取的知识被传递下去。
+
+由于我逐一讲述这些机制（进化、形态发育、学习），这个过程听起来似乎是离散的，但实际上，它们是协同交织在一起的。形态发育的力量与文化教育的过程之间没有明确的分界线。当一位母亲与新生婴儿咿咿呀呀交谈时，这既是一个教育的过程，也是促使婴儿大脑成熟的辅助手段。形态发育过程本身就是一个自适应的过程，生物体内的每个细胞都在与其他细胞持续的相互作用中生长，在复杂的反馈过程中纠正错误，并确保生物体的正常发育。
+
+在创造物种的进化过程和创造个体的成长过程之间，也存在相互促进的交互作用，最能说明两者之间的交互作用的例子就是鲍德温效应。该效应由进化生物学家詹姆斯·鲍德温（James Baldwin）于 1896 年首次提出，大约一个世纪以后，计算机科学家杰弗里·欣顿（Geoffrey Hinton）重新发现了它。鲍德温效应的基本原理是，将进化与成长相结合时，可以加快进化速度；成长的自适应过程可以修复进化过程产生的缺陷。
+
+为了理解鲍德温效应，首先我们必须认识到通过进化获得这种特性的难度，即需要多个突变共同出现才能获得。以鸟类筑巢本能的进化过程为例，我们先合理地假设，完成筑巢需要几十个独立的步骤，比如寻找树枝、用喙捡起树枝、将树枝带回巢穴等。在这个例子中，我们进一步假设，每个步骤都需要不同的突变类型，并且为了获得收益（形成一个完整的鸟巢），鸟类需要完成所有的突变。换句话说，即便只缺少一个步骤，鸟巢也无法筑成，那么这只鸟就会在与其他同伴的竞争中落败，无法获得进化优势。显然，通过进化获取这一特性的问题在于，只有当其他所有突变都存在时，进化才会选择其中一个突变，而在单个个体中同时出现所有这些突变的概率极低。由于任何单一步骤就其本身来说并无什么用处，因此我们很难想象诸如筑巢之类的行为如何进化形成。
+
+鲍德温效应体现了进化与学习之间的相互促进的交互作用。这种交互作用有助于解决上述难题，其方法是当产生筑巢任务中的某一个步骤的突变时，这只鸟就会获得部分奖励。如果一只鸟儿天生就能完成其中的一些步骤，那么比起其他无法完成这些步骤的鸟儿，它就更具优势，因为它需要学习的步骤更少，所以更有可能学会筑巢。鸟儿每多一个与生俱来的步骤，学会筑巢的可能性就更高一些，因此每个步骤对它而言都很有价值。这样看来，每个突变都会受到单独的青睐。因此，随这些突变产生的各种筑巢步骤将会逐渐进入鸟类的本能库，并最终促使筑巢行为的出现，而且，比起侥幸等待单个个体中同时出现所有突变，这个过程用时更短。实际上，鸟类的学习能力加快了其进化速度。鲍德温效应不仅适用于学习过程，也适用于个体成长过程中所有的自适应机制。
+
+我之所以对通过进化能获得思维机器的前景感到乐观，部分原因是我们不必从头开始，可以根据大脑结构的模式来「初始化」最初的机器种群。无论我们在自然系统中观察到何种成长和学习模式，都可以从中选择一种，即便我们没有完全理解它们。就算我们的猜测不太准确，这也会起到一定的帮助作用，因为在解决方案附近搜索比在随机区域搜索更有效。如果在这个过程中纳入某个成长模型，思维机器的进化便可以发挥鲍德温效应的优越性。
+
+还有一种效应能显著减少复杂行为形成的时间，它被称为指导效应。至少从某种程度上来说，婴儿的智力之所以能开发是因为他能向其他人学习，部分知识可以通过纯粹的模仿获得，有些知识可以通过明确的指导获得。人类的语言是一种令人惊叹的机制，它能将思想从一个大脑转移到另一个大脑，能使人类以远超生物进化的速度将有用的知识和行为代代相传下来。人类智能的「秘诀」存在于人类基因中，也存在于人类文化中。
+
+然而，即使从我们所熟知的一切开始，我也不会奢望仅通过一个步骤就能进化到高级人工智能阶段。接下来我们来探讨这一系列阶段可能经历的进化过程。首先，我们要设计一种具有昆虫智能的机器，然后创造一个有利于昆虫智能的简单环境。通过这种发育机制让某个初始种群开始逐渐形成我们在昆虫身上观察到的神经结构。接下来，通过一系列更为丰富的模拟环境，我们可以使昆虫智能进化为青蛙智能、老鼠智能等。仅仅实现这一步就需要数十年的时间，中途还可能陷入死胡同、出现很多错误，或者一遍遍从头做起。不过，这项研究最终可能会培育出与灵长类动物大脑的复杂性和灵活性相当的人工智能。
+
+如果我们创造出了可以理解人类语言的机器，就能利用人类文化跳过上述步骤。我认为，教育这台智能机器的过程与我们教育人类孩子的过程是相似的，即需要教授知识，包括技能、事实、道德和故事等。由于我们将人类文化融入了机器智能的形成过程，因此最终得到的产物不是完全的人工智能，而是人工智能支撑的人类智能。出于这个原因，我希望我们能和谐相处。
+
+当然，建造这样一种人工智能会引发一系列道德问题。例如，一旦这种智能机器被创造出来，将其关闭是否合乎道德？我认为关闭它们可能是不对的，但我无意以人工智能产物道德地位讨论者自居。幸运的是，我们还有很多年的时间来解决这些问题。
+
+大多数人对所设想的未来场景中将会发生的道德问题并不感兴趣，他们更关心人工智能可能给人类自身带来的哲学难题。大多数人都不喜欢别人将自己与机器相提并论。这是可以理解的：将人类比作笨拙的机器，比如烤面包机和汽车，甚至计算机，确实听起来像是一种侮辱。认为人类的思维是现代计算机的近亲的观点就如同说人类是蜗牛的近亲，有损人类的尊严。然而，这两种说法都是正确的，且都对我们有所帮助。正如我们可以通过研究蜗牛的神经结构来了解自己，也可以通过研究当今计算机中简单的思维，学到关于自身的知识。我们也许是动物，但从某种意义上来说，我们的大脑是一种机器。
+
+宗教界的许多朋友对我将人脑视为机器，将思维视为计算而感到震惊。我科学界的朋友也因我宣扬我们永远无法参透思维的奥秘而指责我是神秘主义者。然而，我依然坚信，无论宗教还是科学，都没有揭示出全部的真理。我认为，意识是一般物理定律作用的结果，也是复杂计算的某种表现形式。我认为，这些说法并没有使意识失去神秘感和神奇性。如果意识是其他事物的产物，只会使意识变得更加神秘。人类的神经元信号和思维感官之间存在一条巨大的鸿沟，凭借人类的理解力可能永远无法跨越。因此，当我说大脑是一台机器时，并不是对人类思维的贬低，而是对机器潜能的承认。我不是认为人类思维比我们想象的更加简单，而是相信机器能做的比我们想象的更多。
