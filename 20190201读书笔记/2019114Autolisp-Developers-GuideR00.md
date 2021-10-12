@@ -1,8 +1,6 @@
-# 2019114Autolisp-Developers-GuideR00
-
 ## 记忆时间
 
-2020-10-06 | 2021-03-08
+2020-10-06 | 2021-03-08 | 2021-10-12
 
 ## 资源汇总
 
@@ -252,15 +250,15 @@ Selection sets are groups of one or more selected objects (entities). You can in
 (ssget "X")
 ```
 
-AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets: 
+AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets:
 
-1 ssget - Prompts the user to select objects (entities), and returns a selection set; 
+1 ssget - Prompts the user to select objects (entities), and returns a selection set;
 
-2 ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
+2 ssadd - Adds an object (entity) to a selection set, or creates a new selection set;
 
-3 ssdel - Removes an object (entity) from a selection set; 
+3 ssdel - Removes an object (entity) from a selection set;
 
-4 ssname - Returns the object (entity) name of the indexed element of a selection set; 
+4 ssname - Returns the object (entity) name of the indexed element of a selection set;
 
 5 sslength - Returns an integer containing the number of objects (entities) in a selection set.
 
@@ -275,9 +273,9 @@ The ssget function provides the most general means of creating a selection set. 
 Now suppose you want to wrap that whole expression in a function that takes the name of the artist as an argument. You can write that like this:
 
 ```c
-(defun select-by-artist (artist) 
-  (remove-if-not 
-    #'(lambda (cd) (equal (getf cd :artist) artist)) 
+(defun select-by-artist (artist)
+  (remove-if-not
+    #'(lambda (cd) (equal (getf cd :artist) artist))
     *db*
   )
 )
@@ -319,8 +317,8 @@ A list containing all elements of lst for which predicate-function returns a non
 自己写了个例子：
 
 ```c
-(vl-remove-if-not 
-  '(lambda (x) (= x 2)) 
+(vl-remove-if-not
+  '(lambda (x) (= x 2))
   '(1 2 3 4)
 )
 ```
@@ -376,9 +374,9 @@ Remarks: The vl-member-if-not function passes each element in lst to the functio
 
 ```c
 (defun c:foo ()
-  (vl-member-if-not '(lambda (x) 
+  (vl-member-if-not '(lambda (x)
                        (= x 1)
-                     ) 
+                     )
                      (list 1 1 2 1 3)
   )
 )
@@ -386,14 +384,16 @@ Remarks: The vl-member-if-not function passes each element in lst to the functio
 ; 反的数组为 '(2 1 3)
 
 (defun c:foo ()
-  (vl-member-if-not '(lambda (x) 
+  (vl-member-if-not '(lambda (x)
                        (= x 1)
-                     ) 
+                     )
                      (list 1 1 1 1)
   )
 )
 ; 返回 nil
 ```
+
+补充：其实用函数 vl-some/vl-every 可以达到同样的效果。（2021-10-12）
 
 』
 
@@ -427,7 +427,7 @@ Remarks. Use the lambda function when the overhead of defining a new function is
 (mapcar '(lambda (x)
           (setq counter (1+ counter))
           (* x 5)
-        ) 
+        )
         '(2 4 -6 10.2)
 )
 (10 20 -30 51.0)
@@ -466,9 +466,9 @@ This is equivalent to the following series of expressions, except that mapcar re
 The lambda function can specify an anonymous function to be performed by mapcar. This is useful when some of the function arguments are constant or are supplied by some other means. The following example demonstrates the use of lambda with mapcar:
 
 ```c
-(mapcar '(lambda (x) 
+(mapcar '(lambda (x)
           (+ x 3)
-          ) 
+          )
          '(10 20 30)
 )
 (13 23 33)
@@ -570,7 +570,7 @@ _$ (mapcar (function strcase) (quote ("adam" "ben" "claire" "david")))
 ("ADAM" "BEN" "CLAIRE" "DAVID")
 ```
 
-1『这里收获了好几个知识点：1）the function strcase prefixed with an apostrophe so that the strcase symbol is not evaluated，理解了很多地方看到的 symbol 概念，`'strcase` 就是一个 symbol。2）函数名加了撇号后就不会执行改函数了，形成第一个知识点的 symbol。3）撇号也可以用函数 `quote` 或者 `function` 来代替。（2021-03-08）』
+1『这里收获了好几个知识点：1）the function strcase prefixed with an apostrophe so that the strcase symbol is not evaluated，理解了很多地方看到的 symbol 概念，`'strcase` 就是一个 symbol。2）函数名加了撇号后就不会执行该函数了，形成第一个知识点的 symbol。3）撇号也可以用函数 `quote` 或者 `function` 来代替。（2021-03-08）』
 
 Functions with More than One Argument
 
@@ -638,7 +638,7 @@ Here we have defined a function titlecase which takes a single argument str, and
 The lambda function defines an anonymous function (a defun without a name if you like) and is usually used when the overhead of defining a new function is not justified - as in our case.
 
 ```
-(mapcar '(lambda (s) (strcat (strcase (substr s 1 1)) (substr s 2))) 
+(mapcar '(lambda (s) (strcat (strcase (substr s 1 1)) (substr s 2)))
         '("adam" "ben" "claire" "david")
 )
 ```
@@ -677,7 +677,7 @@ _$ (mapcar '(lambda ( x ) (+ x 2)) '(1 2 3 4 5))
 Concatenating a string with an integer, using a defined function taking two arguments:
 
 ```c
-(defun join (str int) 
+(defun join (str int)
   (strcat str (itoa int))
 )
 
@@ -732,7 +732,7 @@ If this tutorial has sparked your interest in all things mapcar and lambda, the 
 
 CAD 里实体对象的唯一标识。重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。
 
-The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. 
+The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data.
 
 1-2-3『多次见到「association lists」这个概念，印象中，书籍「2019117Practical-Common-Lisp」里也有相关介绍。查了下书籍第 11 章的章名就是「Collections」，后面详细去研究。（2021-03-08）』—— 未完成
 
@@ -1034,9 +1034,9 @@ To use functions as AutoCAD commands, be sure they adhere to the following rules
 Let's start looking at some code. To begin with, we'll write code that returns the factorial of the number 4. If you're unfamiliar with factorials, it's the mathematical process where you take a number, multiply it by a number one less, multiplied by a number one less until you get to 1. So, the factorial for the number 4 is the following formula 4 * 3 * 2 * 1 =  24.
 
 ```c
-(defun factorial (n) 
-  (cond 
-    ((= n 0) 1) 
+(defun factorial (n)
+  (cond
+    ((= n 0) 1)
     (T (* n (factorial (1- n))))
   )
 )
@@ -1049,8 +1049,8 @@ Let's start looking at some code. To begin with, we'll write code that returns t
 The cond function accepts any number of lists as arguments. It evaluates the first item in each list (in the order supplied) until one of these items returns a value other than nil. It then evaluates those expressions that follow the test that succeeded.
 
 ```c
-(cond 
-   ((minusp a) (- a)) 
+(cond
+   ((minusp a) (- a))
    (t a)
 )
 ```
@@ -1059,10 +1059,10 @@ If the variable a is set to the value -10, this returns 10. As shown, cond can b
 
 ```c
 (cond
-   ((= s "Y") 1) 
-   ((= s "y") 1) 
-   ((= s "N") 0) 
-   ((= s "n") 0) 
+   ((= s "Y") 1)
+   ((= s "y") 1)
+   ((= s "N") 0)
+   ((= s "n") 0)
    (t nil)
 )
 ```
@@ -1076,18 +1076,18 @@ cond 语句感觉还是很有用的，类似于其他语言里的 case 语句，
 ```c
 (defun c:foo (/ testNum)
   (setq testNum 2)
-  (cond 
-    ((= testNum 1) 
-     (princ "\ndalong11") 
-     (princ "\ndalong12") 
-     (princ)) 
-    ((= testNum 2) 
-     (princ "\ndalong21") 
-     (princ "\ndalong22") 
-     (princ)) 
-    ((= testNum 3) 
-     (princ "\ndalong31") 
-     (princ "\ndalong32") 
+  (cond
+    ((= testNum 1)
+     (princ "\ndalong11")
+     (princ "\ndalong12")
+     (princ))
+    ((= testNum 2)
+     (princ "\ndalong21")
+     (princ "\ndalong22")
+     (princ))
+    ((= testNum 3)
+     (princ "\ndalong31")
+     (princ "\ndalong32")
      (princ))  
   )
 )
@@ -1114,16 +1114,16 @@ Calling the above code (factorial4 4) will do the same thing as the recursive ex
 Now that you've seen a couple examples, it's really not that hard. In fact, the hardest part of writing a program that uses recursion, is to make sure the program has an 'out' or at some point stops processing and doesn't just blindly call itself forever. But it takes a while; you won't be an expert just by reading this. You'll become and expert only after using this technique many times. To help you with this, Here's a little sample code. This code was posted to the AutoCAD's Customization discussion group. It was created by Owen Wengerd ([ManuSoft Home](http://www.manusoft.com/) & [Cadlock.com](http://ww1.cadlock.com/)) and is a very good example of short, well-written recursive program.
 
 ```c
-(defun Str+ (source / prefix rchar) 
-  (cond 
-    ((= source "") "A") 
-    ((= (setq prefix (substr source 1 (1- (strlen source))) 
+(defun Str+ (source / prefix rchar)
+  (cond
+    ((= source "") "A")
+    ((= (setq prefix (substr source 1 (1- (strlen source)))
               rchar (substr source (strlen source))
-        ) 
+        )
         "Z"
-     ) 
-     (strcat (Str+ prefix) "A") 
-    ) 
+     )
+     (strcat (Str+ prefix) "A")
+    )
     ((strcat prefix (chr (1+ (ascii rchar)))))
   )
 )
@@ -1136,15 +1136,15 @@ What this codes does, it takes a string character and increments it. Its intent 
 The fact that we're dealing with numbers in this example, means that it would really not be that hard to create a loop with a few counter variables to perform this same calculation. But not all cases would be that easy. Let's look at another example that deals with nested lists…
 
 ```c
-(setq mylist '(1 2 3 (4 5 (6 7 (8 9) 10) 11) 12 13 (14 15 (16)))) 
+(setq mylist '(1 2 3 (4 5 (6 7 (8 9) 10) 11) 12 13 (14 15 (16))))
 
-(defun item-in-list (L I) 
-  (vl-some '(lambda (x) 
-              (cond 
-                ((= x I) T) 
-                ((= (type x) 'LIST) (item-in-list x I)) 
+(defun item-in-list (L I)
+  (vl-some '(lambda (x)
+              (cond
+                ((= x I) T)
+                ((= (type x) 'LIST) (item-in-list x I))
                 (T nil))
-            ) 
+            )
             L
   )
 )
@@ -1276,8 +1276,8 @@ T
 自己写了一个例子：
 
 ```c
-(defun foo () 
-  (vl-some '(lambda (x) (= x 2)) 
+(defun foo ()
+  (vl-some '(lambda (x) (= x 2))
     '(1 3 4 5 2)
   )
 )
@@ -1289,7 +1289,7 @@ T
 
 AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
 
-1-2『 
+1-2『
 
 MNL 应该就是可以显示的自定义菜单，后面需要自己实现的。（2020-07-02）回复：数据流实现了菜单，新建了一个 dataflow.cuix 文件，使用的过程中自动生成了一个 dataflow.mnr 文件。受这里的信息启发，D 盘下的 dataflowcad 文件夹里，把原来的 lsp 文件更改为 dataflow.mnl，这样的话 cuix 文件底下的不用手动加载 lsp 文件了，经验证，可行，哈哈。做一张任意卡片。（2020-10-06）
 
