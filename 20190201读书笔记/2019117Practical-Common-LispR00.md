@@ -161,7 +161,13 @@ In most programming languages, the language processor -- whether an interpreter 
 
 Inside the black box, of course, language processors are usually divided into subsystems that are each responsible for one part of the task of translating a program text into behavior or object code. A typical division is to split the processor into three phases, each of which feeds into the next: a lexical analyzer breaks up the stream of characters into tokens and feeds them to a parser that builds a tree representing the expressions in the program, according to the language's grammar. This tree -- called an abstract syntax tree -- is then fed to an evaluator that either interprets it directly or compiles it into some other language such as machine code. Because the language processor is a black box, the data structures used by the processor, such as the tokens and abstract syntax trees, are of interest only to the language implementer.
 
-1-2『这里的信息让自己对语言的运行时、编译过程有了更多的认识，但其中不少东西没吃透，先做一张主题卡。（2020-12-30）』——已完成
+1-2『
+
+这里的信息让自己对语言的运行时、编译过程有了更多的认识，但其中不少东西没吃透，先做一张主题卡。（2020-12-30）
+
+补充：正好这段时间读了书籍「2021120The-Pattern-on-the-StoneR00」，里面对编译和解释的讲解很通透，而且也做了术语卡片。两者的区别关键在于翻译成机器码是在哪个阶段，编译放在运行之前就编译好了，解释是在运行的过程中翻译。（2021-10-12）
+
+』——已完成
 
 In Common Lisp things are sliced up a bit differently, with consequences for both the implementer and for how the language is defined. Instead of a single black box that goes from text to program behavior in one step, Common Lisp defines two black boxes, one that translates text into Lisp objects and another that implements the semantics of the language in terms of those objects. The first box is called the reader, and the second is called the evaluator. 2
 
@@ -210,7 +216,7 @@ CL-USER> #'foo
 
 Once you've got the function object, there's really only one thing you can do with it -- invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY. 12 They differ only in how they obtain the arguments to pass to the function.
 
-1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）回复：这里的 `#'` 相当于 autolisp 里的 `'`。这里总算把一些只是断串起来了。定义函数（常规定义或 lambda 匿名函数）=> 通过 `'` 通说获取定义的函数体 => 通过 apply 函数调用这个函数体（需传入参数列表）从而实现调用函数。（2021-01-05）』
+1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）回复：这里的 `#'` 相当于 autolisp 里的 `'`。这里总算把一些知识片段串起来了。定义函数（常规定义或 lambda 匿名函数）=> 通过 `'` 通说获取定义的函数体 => 通过 apply 函数调用这个函数体（需传入参数列表）从而实现调用函数。（2021-01-05）』
 
 Once you start writing, or even simply using, functions that accept other functions as arguments, you're bound to discover that sometimes it's annoying to have to define and name a whole separate function that's used in only one place, especially when you never call it by name.
 
@@ -234,7 +240,7 @@ You can even use a LAMBDA expression as the "name" of a function in a function c
 
 But this is almost never done; it's merely worth noting that it's legal in order to emphasize that LAMBDA expressions can be used anywhere a normal function name can be.13
 
-1『有趣有趣，整个匿名函数表达式可以当作一个「函数名」用。通过上面的信息，进一步理解了 autolisp 里 `mapcar` 函数调用的实质，`(mapcar '(lambda (parameters) body) List)`，mapcar 所需的一个参数是匿名函数对象，而这个对象是通过撇号 `'` 来获取的。将此处信息补充进主题卡「函数对象」里。到了此处，有一种串起知识点通透的感觉，大赞。（2021-01-05）』
+1『有趣有趣，整个匿名函数表达式可以当作一个「函数名」用。通过上面的信息，进一步理解了 autolisp 里 `mapcar` 函数调用的实质，`(mapcar '(lambda (parameters) body) List)`，mapcar 所需的一个参数是匿名函数对象，而这个对象是通过撇号 `'` 来获取的。将此处信息补充进主题卡「函数对象」里。到了此处，有一种串起知识点通透的感觉，大赞。（2021-01-05）补充：上面的解释，用 apply 替换 mapcar 更合适，哈哈。（2021-10-12）』
 
 Anonymous functions can be useful when you need to pass a function as an argument to another function and the function you need to pass is simple enough to express inline. The other important use of LAMBDA expressions is in making closures, functions that capture part of the environment where they're created. You used closures a bit in Chapter 3, but the details of how closures work and what they're used for is really more about how variables work than functions, so I'll save that discussion for the next chapter. (chapter 6)
 
@@ -272,7 +278,7 @@ In general, the special operators implement features of the language that requir
 
 The others provide useful, but somewhat esoteric, features. I’ll discuss them as the features they support come up.
 
-14 Well, one difference exists—literal objects such as quoted lists, but also including double-quoted strings, literal arrays, and vectors (whose syntax you’ll see later), must not be modified. Consequently, any lists you plan to manipulate you should create with LIST.
+14 Well, one difference exists — literal objects such as quoted lists, but also including double-quoted strings, literal arrays, and vectors (whose syntax you’ll see later), must not be modified. Consequently, any lists you plan to manipulate you should create with LIST.
 
 15 This syntax is an example of a reader macro. Reader macros modify the syntax the reader uses to translate text into Lisp objects. It is, in fact, possible to define your own reader macros, but that’s a rarely used facility of the language. When most Lispers talk about “extending the syntax” of the language, they’re talking about regular macros, as I'll discuss in a moment.
 
@@ -290,7 +296,7 @@ As in other languages, in Common Lisp variables are named places that can hold a
 
 1-2『这里又见「动态语言」的概念，做一张术语卡片。』——已完成
 
-3 Actually, it’s not quite true to say that all type errors will always be detected—it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
+3 Actually, it’s not quite true to say that all type errors will always be detected — it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
 
 All values in Common Lisp are, conceptually at least, references to objects. 4 Consequently, assigning a variable a new value changes what object the variable refers to but has no effect on the previously referenced object. However, if a variable holds a reference to a mutable object, you can use that reference to modify the object, and the modification will be visible to any code that has a reference to the same object.
 
@@ -469,7 +475,7 @@ Consequently, a Common Lisp program tends to provide a much clearer mapping betw
 
 Things get more interesting when we consider how lists are evaluated. All legal list forms start with a symbol, but three kinds of list forms are evaluated in three quite different ways. To determine what kind of form a given list is, the evaluator must determine whether the symbol that starts the list is the name of a function, a macro, or a special operator. If the symbol hasn't been defined yet -- as may be the case if you're compiling code that contains references to functions that will be defined later -- it's assumed to be a function name. 12 I'll refer to the three kinds of forms as function call forms, macro forms, and special forms.
 
-2『三大类 list 的处理方式：函数、宏和操作符。做一张任意卡片。回复：突然领悟到在 Lisp 里「一切皆 lisp」，函数、表达式、变量等等。（2020-12-30）』 —  — 已完成
+2『三大类 list 的处理方式：函数、宏和操作符。做一张任意卡片。回复：突然领悟到在 Lisp 里「一切皆 list」，函数、表达式、变量等等。（2020-12-30）』—— 已完成
 
 12 In Common Lisp a symbol can name both an operator—function, macro, or special operatorand a variable. This is one of the major differences between Common Lisp and Scheme. The difference is sometimes described as Common Lisp being a Lisp-2 vs. Scheme being a Lisp-1a Lisp-2 has two namespaces, one for operators and one for variables, but a Lisp-1 uses a single namespace. Both choices have advantages, and partisans can debate endlessly which is better.
 

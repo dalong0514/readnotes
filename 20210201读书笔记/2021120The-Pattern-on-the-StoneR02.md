@@ -358,7 +358,7 @@ It would be nice to have a measure of information that didn't depend on the form
 
 数据的编码方式决定了传输和存储一段数据所需的位数。对于一些复杂的信息来说，比如一本书中的文字，可以将其表示为一串更简单的序列，例如，用组成文本的字符表示这本书。在这种常用的表示方法中，文本信息的位数等于文本中的字符数乘以每个字符所用的位数。本书约有 250 000 个字符，而我的笔记本电脑存储一个字符需要 8 位（1 个字节）。因此，用于存储本书的计算机文件约为 200 万个位。你可能会就此得出结论，这本书之所以包含 200 万个位的信息，是因为计算机用于存储本书的存储空间就这么大。不过，这只是信息的一种度量方式，这种度量方式取决于信息的表示形式。这是一种有效的衡量标准，因为它不仅告知了计算机需要多少存储空间来存储信息，还告知了处理这些信息所需的时间。例如，如果我知道自己的计算机以每秒 2000 万位的速度向磁盘中写入信息，并且知道需要用 200 万位来表示本书，那么我就可以计算出将这本书存入磁盘的时间 ——1/10 秒。
 
-不过，用字符数乘以 8 得到的数字作为文本信息的度量值存在一定的问题：此时文本信息的位数取决于计算机使用的字符表示方法。不同的计算机或者在同一台计算机上运行的不同应用程序，存储完全相同的字符序列所需的位数可能不尽相同。例如，如果用 8 位来表示每个字符，则可表示 256 种不同的字符，但本书中的字符数少于 64 种 —— 大写和小写的字母共 26 个，再加上数字和标点符号。因此，更有效的编码方式是使用 6 位（26=64）表示一个字符，这样可将本书压缩至 150 万位左右。
+不过，用字符数乘以 8 得到的数字作为文本信息的度量值存在一定的问题：此时文本信息的位数取决于计算机使用的字符表示方法。不同的计算机或者在同一台计算机上运行的不同应用程序，存储完全相同的字符序列所需的位数可能不尽相同。例如，如果用 8 位来表示每个字符，则可表示 256 种不同的字符，但本书中的字符数少于 64 种 —— 大写和小写的字母共 26 个，再加上数字和标点符号。因此，更有效的编码方式是使用 6 位（2^6=64）表示一个字符，这样可将本书压缩至 150 万位左右。
 
 如果存在一种不依赖信息表示形式的测量方式，那就最好不过了。一种更本质的测量信息的方式是表示文本最少需用多少个位。这种方式虽然很容易定义，但不容易计算。
 
@@ -386,9 +386,7 @@ The minimal representation measure of information does not correspond well to ou
 
 If the computer were to compress an image by storing only the meaningful information, then the number of bits in the representation would correspond more closely to our commonsense notion about the information contained in the image. For example, the computer might represent the array of random pixels by indicating that this image has no regularity and no meaningful information. When asked to reconstruct this picture, it could simply generate another array of random pixels. The details — which pixel was which exact shade — would be different in the original and the reconstructed images, but these differences would be meaningless to the human eye.
 
-FIGURE 23
-
-Picasso sketch
+FIGURE 23 Picasso sketch
 
 Many image- and sound-compression algorithms discard certain meaningless information in order to reduce the size of the representation. These so-called lossy compression algorithms assume that a certain level of detail in the image or sound will be ignored by the eye or the ear. Lossy compression methods are generally used when it is known that the decompressed information will serve some particular purpose. For instance, if a particular detail appears only in a single frame of a movie, it may be safe to throw it away, since it will go unnoticed.
 
@@ -462,9 +460,7 @@ By using multiple parity bits, it is possible to detect multiple errors. It is a
 
 This code contains 9 bits of message information and 6 bits of parity. The message bits are arranged in 3 rows of 3 bits each. There is 1 parity bit for every horizontal row and 1 for every vertical column. A single-bit error in a message will cause two parity failures to be detected, one in a row and one in a column. The recipient of the message will then know that the bit at the intersection of the failing row and the failing column is incorrect and should be inverted. If there is an error in transmission of one of the parity bits, on the other hand, then either a row or a column will show an incorrect parity but not both. The bits are drawn in a two-dimensional pattern to help you visualize the structure of the code, but they can be transmitted in any order. Such error-correcting codes are often used to protect each word in the memory of a large computer. Using similar techniques, many other codes can be constructed which will detect and/or correct various types and numbers of errors.
 
-FIGURE 24
-
-An error correction code with 9 data bits and 6 check bits
+FIGURE 24 An error correction code with 9 data bits and 6 check bits
 
 Error-correcting codes are able to deal with signaling errors that occur in transmission and storage of information, but what about errors in computation itself? It turns out that it is also possible to build logic blocks that produce correct answers even if some of the blocks from which they're constructed are operating incorrectly. Again, the basic tool is some form of redundancy. One way to build a fault-tolerant logic block is to copy each logic block three times. A majority-voting block, such as is shown in Figure 12 of chapter 2 , can be used to combine the answers from the three copies. If one of the copies makes an error, it will be outvoted by the others. This simple method protects against any single error (except within the majority-voting block itself).
 

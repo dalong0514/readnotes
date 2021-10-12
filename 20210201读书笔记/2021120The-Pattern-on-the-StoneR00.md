@@ -160,7 +160,29 @@ Some of this process of looking things up and finding the corresponding sequence
 
 2『编译和解释，这里对两者的解释是目前自己看到的，最通俗易懂的，做一张术语卡片。（2021-10-10）』—— 已完成
 
-### 0203. 术语卡 ——
+### 0203. 术语卡 —— 编程语言的编译和解释
+
+信息源自「0701Speed: Parallel Computers」
+
+The best formulation of these inefficiency problems is known as Amdahl's Law, after Gene Amdahl, the computer designer who came up with it in the 1960s. Amdahl's argument went something like this: There will always be a part of the computation which is inherently sequential — work that can be done by only one processor at a time. Even if only 10 percent of the computation is inherently sequential, no matter how much you speed up the remaining 90 percent, the computation as a whole will never speed up by more than a factor of 10. The processors working on the 90 percent that can be done in parallel will end up waiting for the single processor to finish the sequential 10 percent of the task. This argument suggests that a parallel computer with 1,000 processors will be extremely inefficient, since it will be only about ten times faster than a single processor. When I was trying to get funding to build my first parallel computer — a massively parallel computer with 64,000 processors — the first question I usually got at the end of one of my pitches was「Haven't you ever heard of Amdahl's Law?」
+
+Of course, I had heard of Amdahl's Law, and to tell you the truth I saw nothing wrong with the reasoning behind it. Yet I knew for certain, even though I couldn't prove it, that Amdahl's Law did not apply to the problems I was trying to solve. The reason I was so confident is that the problems I was working on had already been solved on a massively parallel processor — the human brain. I was a student at the Artificial Intelligence Laboratory at MIT, and I wanted to build a machine that could think.
+
+安达尔定律完美地解释了这些低效率问题，该定律由计算机设计师吉恩·安达尔（Gene Amdahl）于 20 世纪 60 年代提出，并以其名命名。安达尔的结论如下：总有一部分计算具有内在的顺序性，它们每次只能由单个处理器完成。即使只有 10% 的计算任务，它们实质上也具有内在的顺序性，无论如何加速剩余 90% 的并行计算任务，整体计算速度的提升比例永远不会超过 10 倍。当处理器完成那 90% 的并行计算任务后，会继续等待单个处理器来完成按顺序执行的这 10% 的计算任务。这个结论表明，具有 1 000 个处理器的并行计算机的效率极低，因为它只会比单个处理器的速度快 10 倍左右。当我试图申请基金来建造我的第一个并行计算机（一台拥有 64000 个处理器的大型并行计算机）时，收到的第一个问题通常是：「你有没有听说过安达尔定律？」
+
+2『安达尔定律，做一张术语卡片。（2021-10-11）』—— 已完成
+
+我当然听说过安达尔定律，而且我认为这个定律背后的推理过程没有问题。然而，我也确信，安达尔定律并不适用于我试图解决的问题，即便我无法证明这一点。我之所以如此确信是因为，我正在研究的问题已经通过一台大规模并行计算机得到了解决，这台计算机便是人类的大脑。当我还是麻省理工学院人工智能实验室的一名学生时，就想制造一台可以思考的机器。
+
+1974 年，当我以本科新生的身份第一次访问麻省理工学院人工智能实验室时，人工智能领域正处于爆炸性发展的阶段。第一代用简单的英文执行书写指令的程序正在开发中，能理解人类语言的计算机即将诞生；计算机在国际象棋等游戏中表现出色，而在几年前，这些游戏对它们来说还过于复杂；人工视觉系统能识别出简单的物体，例如线条画和成堆的积木；计算机甚至通过了简单的微积分测试，并解决了智商测试中的一些简单问题。通用人工智能真的离我们遥遥无期吗？
+
+几年后，当我以研究生的身份加入人工智能实验室时，问题看起来变得更加复杂了。一些简单的演示表明情况确实如此。尽管研究人员发明了许多崭新的原理和强大的工具，但当应用于更大规模、更复杂的问题时，它们并不奏效。其中有部分问题的解决受限于计算机的运行速度。人工智能的研究人员发现：将实验推广至涉及更多数据的场合时常常徒劳无获，因为计算机的运行速度已经够慢了，增加更多的数据只会拖慢它们的速度。例如，在计算机识别单个物体就需要数小时的情况下，再让计算机去识别一堆物体，结果无疑会令人感到沮丧。
+
+计算机的运行速度之所以很慢是因为，它们是按顺序执行的，也就是说，它们每次只能做一件事情，比如计算机必须逐个像素地查看一幅图像。相比之下，人类大脑能瞬间感知整幅图像，并立即将看到的图像和已知的图像进行匹配。正是由于这个原因，人类在识别物体方面比计算机快得多，即便人类视觉系统中的神经元比计算机中的晶体管慢得多。这种设计上的差异激发了我以及其他许多人去寻找大规模并行计算机的设计方法，这类计算机可以同时执行数百万次运算，并且能够像大脑那样利用并行性。既然大脑能够从低速的部件中获得高速的性能，因此，我认为安达尔定律并非适用于所有情形。
+
+现在，我知道了安达尔定律的缺陷，那就是，它假设计算任务中有固定比例的任务一定是按顺序执行的，即使只有 10%。这个假设看似合理，但事实上，大多数大规模计算并非如此。这种错误的直觉来源于对并行处理器使用方式的误解。问题的关键在于，如何在处理器之间分配计算任务。初看起来，最佳分配方式是让每个处理器分别执行程序中的不同部分。这种方式在一定程度上是有效的。然而，这就类似于向一组队伍分配任务时遇到的问题（正如前面提到的记者写稿的类比），具有如下缺点：大部分潜在的并行性都会消失于与协调相关的问题中。通过分解程序的方式对计算机进行编程，就类似于协调一大群人粉刷篱笆，即让第一个人打开油漆桶，让第二个人来处理篱笆表面，让第三个人来粉刷油漆，让第四个人来清洗刷子。这个分解过程需要高度的协调性，而且到一定程度之后，增加更多的人手并不能加快任务的完成速度。
+
+另一种更有效地使用并行计算机的方式是，让每个处理器执行相似的任务，但使用不同部分的数据。这种所谓的数据并行分解方法类似于在粉刷篱笆的任务中为每个工人分配一块独立的篱笆。虽然并非所有的问题都像粉刷篱笆一样容易分解，但这种方法在大型计算任务中的应用效果非常好。例如，通过给每个处理器分配一小块图像，图像处理任务就可以以并行的方式被完成；在国际象棋这样的搜索问题中，通过让每个处理器同时搜索不同的走法，便可以实现任务的并行分解。在这些例子中，速度的提升几乎与处理器的数量成正比，即处理器数量越多，效果越好。当然，给处理器分配任务以及收集处理器的答案会花费额外的时间。如果问题的规模很大，计算任务的完成情况会更加高效，即便有成千上万个处理器并行执行任务。
 
 ### 0301. 人名卡 ——
 

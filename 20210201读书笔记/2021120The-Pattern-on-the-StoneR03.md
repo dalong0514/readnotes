@@ -110,6 +110,8 @@ I believe that eventually the Internet will grow to include the computers embedd
 
 安达尔定律完美地解释了这些低效率问题，该定律由计算机设计师吉恩·安达尔（Gene Amdahl）于 20 世纪 60 年代提出，并以其名命名。安达尔的结论如下：总有一部分计算具有内在的顺序性，它们每次只能由单个处理器完成。即使只有 10% 的计算任务，它们实质上也具有内在的顺序性，无论如何加速剩余 90% 的并行计算任务，整体计算速度的提升比例永远不会超过 10 倍。当处理器完成那 90% 的并行计算任务后，会继续等待单个处理器来完成按顺序执行的这 10% 的计算任务。这个结论表明，具有 1 000 个处理器的并行计算机的效率极低，因为它只会比单个处理器的速度快 10 倍左右。当我试图申请基金来建造我的第一个并行计算机（一台拥有 64000 个处理器的大型并行计算机）时，收到的第一个问题通常是：「你有没有听说过安达尔定律？」
 
+2『安达尔定律，做一张术语卡片。（2021-10-11）』—— 已完成
+
 我当然听说过安达尔定律，而且我认为这个定律背后的推理过程没有问题。然而，我也确信，安达尔定律并不适用于我试图解决的问题，即便我无法证明这一点。我之所以如此确信是因为，我正在研究的问题已经通过一台大规模并行计算机得到了解决，这台计算机便是人类的大脑。当我还是麻省理工学院人工智能实验室的一名学生时，就想制造一台可以思考的机器。
 
 1974 年，当我以本科新生的身份第一次访问麻省理工学院人工智能实验室时，人工智能领域正处于爆炸性发展的阶段。第一代用简单的英文执行书写指令的程序正在开发中，能理解人类语言的计算机即将诞生；计算机在国际象棋等游戏中表现出色，而在几年前，这些游戏对它们来说还过于复杂；人工视觉系统能识别出简单的物体，例如线条画和成堆的积木；计算机甚至通过了简单的微积分测试，并解决了智商测试中的一些简单问题。通用人工智能真的离我们遥遥无期吗？
@@ -230,17 +232,13 @@ Imagine that we are trying to teach the perception to recognize the letter A, wh
 
 The first layer of the perception contains thousands of such feature-detecting neurons, each one programmed to recognize a particular kind of local feature in a particular part of the receptive field. This first layer of neurons detects features in the image which are useful for distinguishing between any letters; serifs are easy to detect, so they make letters more recognizable to the perceptron, just as they make a particular letter easier for the human eye to identify.
 
-FIGURE 26
-
-Perceptron
+FIGURE 26 Perceptron
 
 The local-feature detectors in the first layer provide the evidence, and the weights of the second layer determine how to weigh this evidence. For example, a corner pointing upward in the upper part of the image is evidence in favor of an A, while a corner pointing downward in the middle is evidence against. The perceptron learns by adjusting the weights on the inputs to the second layer. The learning algorithm is very simple: whenever the trainer indicates that the perceptron has made a mistake, the perceptron will adjust all of the weights of all the inputs that voted in favor of the mistake in such a way as to make future mistakes less likely. For instance, if the perceptron incorrectly identifies an image as an A, the weights of all the inputs that voted in favor of the false conclusion will be decreased. If the perceptron fails to identify a real A, then the inputs that voted in favor of the A will be increased. If the perceptron has enough feature detectors of the right type, this training method will eventually cause the perceptron to learn to recognize A's.
 
 The learning procedure of the perceptron is another example of feedback. The goal is to set the weights correctly, the errors are misidentifications of the training examples, and the response is to adjust the weights. Notice that perceptrons, like Winston's arch program, learn only by making mistakes. This is a characteristic of all feedback-based learning systems. Given enough training, this particular procedure will always converge upon a correct choice of weights, assuming that there is a set of weights that does the job. This makes the perceptron seem like the perfect pattern-recognition machine, but the catch is the assumption that there exists some correct pattern of weights that will accomplish the task. To recognize the letter A in various sizes, fonts, and positions, the perceptron needs a very rich set of feature detectors in the first layer.
 
-FIGURE 27
-
-Perceptron spiral
+FIGURE 27 Perceptron spiral
 
 Perceptrons can learn to recognize any letter if they are given enough features to work with, but there are some types of patterns, more complex than letters, that cannot be recognized by summing together local features in any way. For example, simply by summing up the evidence of local patches, a perceptron cannot tell whether or not all the dark spots in an image are connected, because connectedness is a global property; no local feature, by itself, can serve as evidence for or against connectedness. Figure 27 , adapted from Marvin Minsky and Seymour Papert's book Perceptrons , demonstrates that connectedness cannot always be assessed just by looking at local features.
 
