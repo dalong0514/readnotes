@@ -6,7 +6,7 @@
 
 ## 0401. Bonus Chapter 3: Development Resources
 
-This book helps you build a solid foundation in customizing and programming the Autodesk® AutoCAD ® program, but it can't teach you everything. A wide range of resources are available to help you continue learning and expand your skills further. This appendix connects you with online and training resources, peer-to-peer forums, and additional files available for this book from the companion website.
+This book helps you build a solid foundation in customizing and programming the Autodesk® AutoCAD® program, but it can't teach you everything. A wide range of resources are available to help you continue learning and expand your skills further. This appendix connects you with online and training resources, peer-to-peer forums, and additional files available for this book from the companion website.
 
 ### 1.1 Online Resources
 
@@ -37,25 +37,26 @@ General AutoCAD customization resources
 
 [HyperPics: Book Center](http://www.hyperpics.com/eBooks/)
 
-AutoCAD Platform Customization: User Interface, AutoLISP, VBA, and Beyond
+1 AutoCAD Platform Customization: User Interface, AutoLISP, VBA, and Beyond
 
 AutoCAD Platform Customization is the most comprehensive guide to streamlining and personalizing the AutoCAD platform. The AutoLISP and VBA programming languages open up a myriad of customization options, and this book provides expert guidance toward applying them to AutoCAD, Civil 3D, Plant 3D, and other AutoCAD-based programs.
 
-Streamlining Design through: Tool Palettes for AutoCAD (eBook) - 2005
+2 Streamlining Design through: Tool Palettes for AutoCAD (eBook) - 2005
 
 This book takes you through the process of using Tool Palettes and Tool Palette Groups. This book covers using the Tool Palettes Window, creating and managing tools, among many other topics. If you are a user of AutoCAD 2004 through 2006 and are looking for some additional information on Tool Palettes this book is for you.
 
-AutoCAD and AutoCAD LT All-in-One Desk Reference for Dummies - August 2006
+3 AutoCAD and AutoCAD LT All-in-One Desk Reference for Dummies - August 2006
 
 This AutoCAD and AutoCAD LT 2007 book covers how to setup drawings, create and modify objects, add annotation to your designs, create 2D and 3D drawings, plot and publish your work and manage drawings through step-by-step instructions. Whether you are new or old to AutoCAD, this book has something for everyone. The books is conveniently broken up into 10 minibooks that are focused on specific areas of the software programs.
 
-AutoCAD 2009 and AutoCAD LT 2009 All-in-One Desk Reference for Dummies - May 2008
+4 AutoCAD 2009 and AutoCAD LT 2009 All-in-One Desk Reference for Dummies - May 2008
 
 This AutoCAD and AutoCAD LT 2009 book covers how to setup drawings, create and modify objects, add annotation to your designs, create 2D and 3D drawings, plot and publish your work and manage drawings through step-by-step instructions. Whether you are new or old to AutoCAD, this book has something for everyone. The books is conveniently broken up into 9 minibooks that are focused on specific areas of the software programs.
 
-Introduction to VBA for AutoCAD (eBook) - *Discontinued*
+5 Introduction to VBA for AutoCAD (eBook) - *Discontinued*
 
 This book takes you through the process of developing macros using the VBA environment that is built into AutoCAD. It takes a look at using forms, getting user input, create and adding objects to the AutoCAD drawing and much more. If you are new to programming in general this book takes a light look at what you need to know and how to apply it. This book is for you if you are a user of AutoCAD 2000 through 2006 and are looking for a place to get started with VBA for AutoCAD.
+
 No programming experience required.
 
 』
