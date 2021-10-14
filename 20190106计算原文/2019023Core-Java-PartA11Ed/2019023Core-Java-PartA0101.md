@@ -64,9 +64,9 @@ In the following subsections, you will find a summary, with excerpts from the wh
 
 Note: The white paper can be found at www.oracle.com/technetwork/java/langenv-140151.html. You can retrieve the overview with the 11 buzzwords at http://horstmann.com/corejava/java-an-overview/7Gosling.pdf.
 
-1.2 Java「白皮书」的关键术语 
+1.2 Java「白皮书」的关键术语
 
-Java 的设计者已经编写了颇有影响力的「白皮书」，用来解释设计的初衷以及完成的情况，并且发布了一个简短的摘要。这个摘要用下面 11 个关键术语进行组织：1）简单性 2）面向对象 3）分布式 4）健壮性 5）安全性 6）体系结构中立 7）可移植性 8）解释型 9）高性能 10）多线程 11）动态性
+Java 的设计者已经编写了颇有影响力的「白皮书」，用来解释设计的初衷以及完成的情况，并且发布了一个简短的摘要。这个摘要用下面 11 个关键术语进行组织：1）简单性。2）面向对象。3）分布式。4）健壮性。5）安全性。6）体系结构中立。7）可移植性。8）解释型。9）高性能。10）多线程。11）动态性。
 
 本节将提供一个小结，给出白皮书中相关的说明，这是 Java 设计者对各个关键术语的论述，另外还会根据我们对 Java 当前版本的使用经验，给出对这些术语的理解。
 
@@ -136,11 +136,11 @@ Java is intended to be used in networked/distributed environments. Toward that e
 
 From the beginning, Java was designed to make certain kinds of attacks impossible, among them:
 
-Overrunning the runtime stack — a common attack of worms and viruses
+1 Overrunning the runtime stack — a common attack of worms and viruses.
 
-Corrupting memory outside its own process space
+2 Corrupting memory outside its own process space.
 
-Reading or writing files without permission
+3 Reading or writing files without permission.
 
 Originally, the Java attitude towards downloaded code was「Bring it on!」Untrusted code was executed in a sandbox environment where it could not impact the host system. Users were assured that nothing bad could happen because Java code, no matter where it came from, could never escape from the sandbox.
 
@@ -156,7 +156,13 @@ Note: Even though in hindsight, the Java security model was not as successful as
 
 Java 适用于网络 / 分布式环境。为了达到这个目标，在安全方面投入了很大精力。使用 Java 可以构建防病毒、防篡改的系统。
 
-从一开始，Java 就设计成能够防范各种攻击，其中包括：·运行时堆栈溢出。如蠕虫和病毒常用的攻击手段。·破坏自己的进程空间之外的内存。·未经授权读写文件。
+从一开始，Java 就设计成能够防范各种攻击，其中包括：
+
+1、运行时堆栈溢出。如蠕虫和病毒常用的攻击手段。
+
+2、破坏自己的进程空间之外的内存。
+
+3、未经授权读写文件。
 
 原先，Java 对下载代码的态度是「尽管来吧！」。不可信代码在一个沙箱环境中执行，在这里它不会影响主系统。用户可以确信不会发生不好的事情，因为 Java 代码不论来自哪里，都不能脱离沙箱。
 
@@ -325,84 +331,15 @@ Table 1.1 Evolution of the Java Language
 | Version | Year | New Language Features | Number of Classes and Interfaces |
 | --- | --- | --- | --- |
 | 1.0 | 1996 | The language itself | 211 |
-| - | - | - | - |
-| - | - | - | - |
-| - | - | - | - |
-| - | - | - | - |
-| - | - | - | - |
-| - | - | - | - |
-
-1.1
-
-1997
-
-Inner classes
-
-477
-
-1.2
-
-1998
-
-The strictfp modifier
-
-1,524
-
-1.3
-
-2000
-
-None
-
-1,840
-
-1.4
-
-2002
-
-Assertions
-
-2,723
-
-5.0
-
-2004
-
-Generic classes,「for each」loop, varargs, autoboxing, metadata, enumerations, static import
-
-3,279
-
-6
-
-2006
-
-None
-
-3,793
-
-7
-
-2011
-
-Switch with strings, diamond operator, binary literals, exception handling enhancements
-
-4,024
-
-8
-
-2014
-
-Lambda expressions, interfaces with default methods, stream and date/time libraries
-
-4,240
-
-9
-
-2017
-
-Modules, miscellaneous language and library enhancements
-
-6,005
+| 1.1 | 1997 | Inner classes | 477 |
+| 1.2 | 1998 | The strictfp modifier | 1,524 |
+| 1.3 | 2000 | None | 1,840 |
+| 1.4 | 2002 | Assertions | 2,723 |
+| 5.0 | 2004 | Generic classes,「for each」loop, varargs, autoboxing, metadata, enumerations, static import | 3,279 |
+| 6 | 2006 | None | 3,793 |
+| 7 | 2011 | Switch with strings, diamond operator, binary literals, exception handling enhancements | 4,024 |
+| 8 | 2014 | Lambda expressions, interfaces with default methods, stream and date/time libraries | 4,240 |
+| 9 | 2017 | Modules, miscellaneous language and library enhancements | 6,005 |
 
 ### 1.5 Common Misconceptions about Java
 
