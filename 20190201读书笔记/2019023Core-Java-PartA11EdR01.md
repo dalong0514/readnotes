@@ -16,8 +16,6 @@
 
 0201 The Java Programming Environment
 
-In this chapter:
-
 2.1 Installing the Java Development Kit
 
 2.2 Using the Command-Line Tools

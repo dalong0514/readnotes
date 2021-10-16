@@ -36,21 +36,15 @@ At this point, we are assuming that you successfully installed the JDK and were 
 
 Let's look more closely at one of the simplest Java programs you can have—one that merely prints a message to console:
 
-Click here to view code image
+```java
+public class FirstSample {
 
-public class FirstSample
-
-{
-
-public static void main(String[] args)
-
-{
-
-System.out.println("We will not use 'Hello, World!'");
-
+    public static void main(String[] args) {
+	// write your code here
+        System.out.println("We will not use 'Hello, World!'");
+    }
 }
-
-}
+```
 
 It is worth spending all the time you need to become comfortable with the framework of this sample; the pieces will recur in all applications. First and foremost, Java is case sensitive. If you made any mistakes in capitalization (such as typing Main instead of main), the program will not run.
 
@@ -86,35 +80,28 @@ Brace styles have inspired an inordinate amount of useless controversy. We follo
 
 For now, don't worry about the keywords static void—just think of them as part of what you need to get a Java program to compile. By the end of Chapter 4, you will understand this incantation completely. The point to remember for now is that every Java application must have a main method that is declared in the following way:
 
-Click here to view code image
-
+```Java
 public class ClassName
 
 {
-
-public static void main(String[] args)
-
-{
-
-program statements
-
+    public static void main(String[] args)
+    {
+        program statements
+    }
 }
+```
 
-}
-
-C++ Note
-
-As a C++ programmer, you know what a class is. Java classes are similar to C++ classes, but there are a few differences that can trap you. For example, in Java all functions are methods of some class. (The standard terminology refers to them as methods, not member functions.) Thus, in Java you must have a shell class for the main method. You may also be familiar with the idea of static member functions in C++. These are member functions defined inside a class that do not operate on objects. The main method in Java is always static. Finally, as in C/C++, the void keyword indicates that this method does not return a value. Unlike C/C++, the main method does not return an「exit code」to the operating system. If the main method exits normally, the Java program has the exit code 0, indicating successful completion. To terminate the program with a different exit code, use the System.exit method.
+C++ Note: As a C++ programmer, you know what a class is. Java classes are similar to C++ classes, but there are a few differences that can trap you. For example, in Java all functions are methods of some class. (The standard terminology refers to them as methods, not member functions.) Thus, in Java you must have a shell class for the main method. You may also be familiar with the idea of static member functions in C++. These are member functions defined inside a class that do not operate on objects. The main method in Java is always static. Finally, as in C/C++, the void keyword indicates that this method does not return a value. Unlike C/C++, the main method does not return an「exit code」to the operating system. If the main method exits normally, the Java program has the exit code 0, indicating successful completion. To terminate the program with a different exit code, use the System.exit method.
 
 Next, turn your attention to this fragment:
 
-Click here to view code image
-
+```java
 {
 
-System.out.println("We will not use 'Hello, World!'");
+    System.out.println("We will not use 'Hello, World!'");
 
 }
+```
 
 Braces mark the beginning and end of the body of the method. This method has only one statement in it. As with most programming languages, you can think of Java statements as sentences of the language. In Java, every statement must end with a semicolon. In particular, carriage returns do not mark the end of a statement, so statements can span multiple lines if need be.
 
@@ -122,7 +109,9 @@ The body of the main method contains a statement that outputs a single line of t
 
 Here, we are using the System.out object and calling its println method. Notice the periods used to invoke a method. Java uses the general syntax
 
+```java
 object.method(parameters)
+```
 
 as its equivalent of a function call.
 
@@ -130,7 +119,9 @@ In this case, we are calling the println method and passing it a string paramete
 
 Methods in Java, like functions in any programming language, can use zero, one, or more parameters (some programmers call them arguments). Even if a method takes no parameters, you must still use empty parentheses. For example, a variant of the println method with no parameters just prints a blank line. You invoke it with the call
 
+```java
 System.out.println();
+```
 
 Note: System.out also has a print method that doesn't add a newline character to the output. For example, System.out.print("Hello") prints Hello without a newline. The next output appears immediately after the letter o.
 
@@ -146,13 +137,13 @@ Note: System.out also has a print method that doesn't add a newline character to
 
 标准的命名规范为（类名 FirstSample 就遵循了这个规范）：类名是以大写字母开头的名词。如果名字由多个单词组成，每个单词的第一个字母都应该大写（这种在一个单词中间使用大写字母的方式称为骆驼命名法。以其自身为例，应该写成 CamelCase）。
 
-源代码的文件名必须与公共类的名字相同，并用.java 作为扩展名。因此，存储这段源代码的文件名必须为 FirstSample.java（再次提醒大家注意，大小写是非常重要的，千万不能写成 firstsample.java）。
+源代码的文件名必须与公共类的名字相同，并用 .java 作为扩展名。因此，存储这段源代码的文件名必须为 FirstSample.java（再次提醒大家注意，大小写是非常重要的，千万不能写成 firstsample.java）。
 
 如果已经正确地命名了这个文件，并且源代码中没有任何录入错误，在编译这段源代码之后就会得到一个包含这个类字节码的文件。Java 编译器将字节码文件自动地命名为 FirstSample.class，并与源文件存储在同一个目录下。最后，使用下面这行命令运行这个程序：
 
-（请记住，不要添加.class 扩展名。）程序执行之后，控制台上将会显示「Wewill not use‘Hello，World'！」。
+（请记住，不要添加 .class 扩展名。）程序执行之后，控制台上将会显示「Wewill not use‘Hello，World'！」。
 
-当使用
+当使用：
 
 运行已编译的程序时，Java 虚拟机将从指定类中的 main 方法开始执行（这里的「方法」就是 Java 中所说的「函数」），因此为了代码能够执行，在类的源文件中必须包含一个 main 方法。当然，也可以将用户自定义的方法添加到类中，并且在 main 方法中调用它们（第 4 章将讲述如何自定义方法）。
 
@@ -176,21 +167,31 @@ C++ 注释：作为一名 C++ 程序员，一定知道类的概念。Java 的类
 
 在上面这个 main 方法体中只包含了一条语句，其功能是：将一个文本行输出到控制台上。
 
-在这里，使用了 System.out 对象并调用了它的 println 方法。注意，点号（·）用于调用方法。Java 使用的通用语法是 这等价于函数调用。
+在这里，使用了 System.out 对象并调用了它的 println 方法。注意，点号（·）用于调用方法。Java 使用的通用语法是：
+
+```java
+object.method(parameters)
+```
+
+这等价于函数调用。
 
 在这个示例中，调用了 println 方法并传递给它一个字符串参数。这个方法将传递给它的字符串参数显示在控制台上。然后，终止这个输出行，使得每次调用 println 都会在新的一行上显示输出。需要注意一点，Java 与 C/C++ 一样，都采用双引号分隔字符串。（本章稍后将会详细地讲解有关字符串的知识）。
 
 与其他程序设计语言中的函数一样，在 Java 的方法中，可以没有参数，也可以有一个或多个参数（有的程序员把参数叫做实参）。对于一个方法，即使没有参数也需要使用空括号。例如，不带参数的 println 方法只打印一个空行。使用下面的语句来调用：
 
-注释：System.out 还有一个 print 方法，它在输出之后不换行。例如，System.out.print（「Hello」）打印「Hello」之后不换行，后面的输出紧跟在字母「o」之后。
+```java
+System.out.println();
+```
+
+注释：System.out 还有一个 print 方法，它在输出之后不换行。例如，System.out.print（"Hello"）打印「Hello」之后不换行，后面的输出紧跟在字母「o」之后。
 
 ### 3.2 Comments
 
 Comments in Java, as in most programming languages, do not show up in the executable program. Thus, you can add as many comments as needed without fear of bloating the code. Java has three ways of marking comments. The most common form is a //. Use this for a comment that runs from the // to the end of the line.
 
-Click here to view code image
-
+```java
 System.out.println("We will not use 'Hello, World!'"); // is this too cute?
+```
 
 When longer comments are needed, you can mark each line with a //, or you can use the /* and */ comment delimiters that let you block off a longer comment.
 
@@ -198,41 +199,29 @@ Finally, a third kind of comment is used to generate documentation automatically
 
 Listing 3.1 FirstSample/FirstSample.java
 
-Click here to view code image
+```java
+/**
+ * This is the first sample program in Core Java Chapter 3
+ * @version 1.01 1997-03-22
+ * @author Gary Cornell
+ */
 
-1 /**
+public class FirstSample
+{
+    public static void main(String[] args)
+    {
+        System.out.println("We will not use 'Hello, World!'");
+    }
+}
+```
 
-2 * This is the first sample program in Core Java Chapter 3
-
-3 * @version 1.01 1997-03-22
-
-4 * @author Gary Cornell
-
-5 */
-
-6 public class FirstSample
-
-7 {
-
-8 public static void main(String[] args)
-
-9 {
-
-10 System.out.println("We will not use 'Hello, World!'");
-
-11 }
-
-12 }
-
-Caution
-
-/* */ comments do not nest in Java. That is, you might not be able to deactivate code simply by surrounding it with /* and */ because the code you want to deactivate might itself contain a */ delimiter.
+Caution: `/* */` comments do not nest in Java. That is, you might not be able to deactivate code simply by surrounding it with /* and */ because the code you want to deactivate might itself contain a */ delimiter.
 
 3.2 注释
 
-与大多数程序设计语言一样，Java 中的注释也不会出现在可执行程序中。因此，可以在源程序中根据需要添加任意多的注释，而不必担心可执行代码会膨胀。在 Java 中，有 3 种标记注释的方式。最常用的方式是使用 //，其注释内容从 // 开始到本行结尾。
+与大多数程序设计语言一样，Java 中的注释也不会出现在可执行程序中。因此，可以在源程序中根据需要添加任意多的注释，而不必担心可执行代码会膨胀。在 Java 中，有 3 种标记注释的方式。
 
-当需要长篇的注释时，既可以在每行的注释前面标记 //，也可以使用 /* 和 */ 将一段比较长的注释括起来。
+最常用的方式是使用 //，其注释内容从 // 开始到本行结尾。当需要长篇的注释时，既可以在每行的注释前面标记 //，也可以使用 /* 和 */ 将一段比较长的注释括起来。
 
 最后，第 3 种注释可以用来自动地生成文档。这种注释以 /** 开始，以 */ 结束。请参见程序清单 3-1。有关这种注释的详细内容和自动生成文档的具体方法请参见第 4 章。
 
@@ -244,15 +233,13 @@ Caution
 
 Java is a strongly typed language. This means that every variable must have a declared type. There are eight primitive types in Java. Four of them are integer types; two are floating-point number types; one is the character type char, used for code units in the Unicode encoding scheme (see Section 3.3.3,「The char Type,」on p. 46); and one is a boolean type for truth values.
 
-Note
-
-Java has an arbitrary-precision arithmetic package. However,「big numbers,」as they are called, are Java objects and not a primitive Java type. You will see how to use them later in this chapter.
+Note: Java has an arbitrary-precision arithmetic package. However,「big numbers,」as they are called, are Java objects and not a primitive Java type. You will see how to use them later in this chapter.
 
 3.3 数据类型
 
 Java 是一种强类型语言。这就意味着必须为每一个变量声明一种类型。在 Java 中，一共有 8 种基本类型（primitive type），其中有 4 种整型、2 种浮点类型、1 种用于表示 Unicode 编码的字符单元的字符类型 char（请参见论述 char 类型的章节）和 1 种用于表示真值的 boolean 类型。
 
-注释：Java 有一个能够表示任意精度的算术包，通常称为「大数值」（bignumber）。虽然被称为大数值，但它并不是一种新的 Java 类型，而是一个 Java 对象。本章稍后将会详细地介绍它的用法。3.3.1 整型整型用于表示没有小数部分的数值，它允许是负数。Java 提供了 4 种整型，具体内容如表 3-1 所示。
+注释：Java 有一个能够表示任意精度的算术包，通常称为「大数值」（bignumber）。虽然被称为大数值，但它并不是一种新的 Java 类型，而是一个 Java 对象。本章稍后将会详细地介绍它的用法。
 
 #### 3.3.1 Integer Types
 
@@ -260,35 +247,12 @@ The integer types are for numbers without fractional parts. Negative values are 
 
 Table 3.1 Java Integer Types
 
-Type
-
-Storage Requirement
-
-Range (Inclusive)
-
-int
-
-4 bytes
-
-–2,147,483,648 to 2,147,483,647 (just over 2 billion)
-
-short
-
-2 bytes
-
-–32,768 to 32,767
-
-long
-
-8 bytes
-
-–9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
-
-byte
-
-1 byte
-
-–128 to 127
+| Type | Storage Requirement | Range (Inclusive) |
+| --- | --- | --- |
+| int | 4 bytes | –2,147,483,648 to 2,147,483,647 (just over 2 billion) |
+| short | 2 bytes | –32,768 to 32,767 |
+| long | 8 bytes | –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| byte | 1 byte | –128 to 127 |
 
 In most situations, the int type is the most practical. If you want to represent the number of inhabitants of our planet, you'll need to resort to a long. The byte and short types are mainly intended for specialized applications, such as low-level file handling, or for large arrays when storage space is at a premium.
 
@@ -298,19 +262,17 @@ Long integer numbers have a suffix L or l (for example, 4000000000L). Hexadecima
 
 Starting with Java 7, you can write numbers in binary, with a prefix 0b or 0B. For example, 0b1001 is 9. Also starting with Java 7, you can add underscores to number literals, such as 1_000_000 (or 0b1111_0100_0010_0100_0000) to denote one million. The underscores are for human eyes only. The Java compiler simply removes them.
 
-C++ Note
-
-In C and C++, the sizes of types such as int and long depend on the target platform. On a 16-bit processor such as the 8086, integers are 2 bytes, but on a 32-bit processor like a Pentium or SPARC they are 4-byte quantities. Similarly, long values are 4-byte on 32-bit processors and 8-byte on 64-bit processors. These differences make it challenging to write cross-platform programs. In Java, the sizes of all numeric types are platform-independent.
+C++ Note: In C and C++, the sizes of types such as int and long depend on the target platform. On a 16-bit processor such as the 8086, integers are 2 bytes, but on a 32-bit processor like a Pentium or SPARC they are 4-byte quantities. Similarly, long values are 4-byte on 32-bit processors and 8-byte on 64-bit processors. These differences make it challenging to write cross-platform programs. In Java, the sizes of all numeric types are platform-independent.
 
 Note that Java does not have any unsigned versions of the int, long, short,or byte types.
 
-Note
-
-If you work with integer values that can never be negative and you really need an additional bit, you can, with some care, interpret signed integer values as unsigned. For example, instead of having a byte value b represent the range from –128 to 127, you may want a range from 0 to 255. You can store it in a byte. Due to the nature of binary arithmetic, addition, subtraction, and multiplication will work provided they don't overflow. For other operations, call Byte.toUnsignedInt(b) to get an int value between 0 and 255, then process the integer value and cast back to byte. The Integer and Long classes have methods for unsigned division and remainder.
+Note: If you work with integer values that can never be negative and you really need an additional bit, you can, with some care, interpret signed integer values as unsigned. For example, instead of having a byte value b represent the range from –128 to 127, you may want a range from 0 to 255. You can store it in a byte. Due to the nature of binary arithmetic, addition, subtraction, and multiplication will work provided they don't overflow. For other operations, call Byte.toUnsignedInt(b) to get an int value between 0 and 255, then process the integer value and cast back to byte. The Integer and Long classes have methods for unsigned division and remainder.
 
 3.3.1 整型
 
-整型用于表示没有小数部分的数值，它允许是负数。Java 提供了 4 种整型，具体内容如表 3-1 所示。表 3-1 Java 整型
+整型用于表示没有小数部分的数值，它允许是负数。Java 提供了 4 种整型，具体内容如表 3-1 所示。
+
+表 3-1 Java 整型
 
 在通常情况下，int 类型最常用。但如果表示星球上的居住人数，就需要使用 long 类型了。byte 和 short 类型主要用于特定的应用场合，例如，底层的文件处理或者需要控制占用存储空间量的大数组。
 
@@ -330,31 +292,16 @@ The floating-point types denote numbers with fractional parts. The two floating-
 
 Table 3.2 Floating-Point Types
 
-Type
-
-Storage Requirement
-
-Range
-
-float
-
-4 bytes
-
-Approximately ±3.40282347E+38F (6–7 significant decimal digits)
-
-double
-
-8 bytes
-
-Approximately ±1.79769313486231570E+308 (15 significant decimal digits)
+| Type | Storage Requirement | Range |
+| --- | --- | --- |
+| float | 4 bytes | Approximately ±3.40282347E+38F (6–7 significant decimal digits) |
+| double | 8 bytes | Approximately ±1.79769313486231570E+308 (15 significant decimal digits) |
 
 The name double refers to the fact that these numbers have twice the precision of the float type. (Some people call these double-precision numbers.) The limited precision of float (6–7 significant digits) is simply not sufficient for many situations. Use float values only when you work with a library that requires them, or when you need to store a very large number of them.
 
 Numbers of type float have a suffix F or f (for example, 3.14F). Floating-point numbers without an F suffix (such as 3.14) are always considered to be of type double. You can optionally supply the D or d suffix (for example, 3.14D).
 
-Note
-
-You can specify floating-point literals in hexadecimal. For example, 0.125 = 2–3 can be written as 0x1.0p-3. In hexadecimal notation, you use a p, not an e, to denote the exponent. (An e is a hexadecimal digit.) Note that the mantissa is written in hexadecimal and the exponent in decimal. The base of the exponent is 2, not 10.
+Note: You can specify floating-point literals in hexadecimal. For example, 0.125 = 2–3 can be written as 0x1.0p-3. In hexadecimal notation, you use a p, not an e, to denote the exponent. (An e is a hexadecimal digit.) Note that the mantissa is written in hexadecimal and the exponent in decimal. The base of the exponent is 2, not 10.
 
 All floating-point computations follow the IEEE 754 specification. In particular, there are three special floating-point values to denote overflows and errors:
 
@@ -366,19 +313,17 @@ NaN (not a number)
 
 For example, the result of dividing a positive number by 0 is positive infinity. Computing 0/0 or the square root of a negative number yields NaN.
 
-Note
+Note: The constants Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, and Double.NaN (as well as corresponding Float constants) represent these special values, but they are rarely used in practice. In particular, you cannot test
 
-The constants Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, and Double.NaN (as well as corresponding Float constants) represent these special values, but they are rarely used in practice. In particular, you cannot test
-
-Click here to view code image
-
+```java
 if (x == Double.NaN) // is never true
+```
 
 to check whether a particular result equals Double.NaN. All「not a number」values are considered distinct. However, you can use the Double.isNaN method:
 
-Click here to view code image
-
+```java
 if (Double.isNaN(x)) // check whether x is "not a number"
+```
 
 Caution
 
@@ -392,19 +337,27 @@ Floating-point numbers are not suitable for financial calculations in which roun
 
 double 表示这种类型的数值精度是 float 类型的两倍（有人称之为双精度数值）。绝大部分应用程序都采用 double 类型。在很多情况下，float 类型的精度很难满足需求。实际上，只有很少的情况适合使用 float 类型，例如，需要单精度数据的库，或者需要存储大量数据。
 
+1『浮点数类型选 double 而非 float。（2021-10-16）』
+
 float 类型的数值有一个后缀 F 或 f（例如，3.14F）。没有后缀 F 的浮点数值（如 3.14）默认为 double 类型。当然，也可以在浮点数值后面添加后缀 D 或 d（例如，3.14D）。
 
-注释：可以使用十六进制表示浮点数值。例如，0.125=2-3 可以表示成 0x1.0p-3。在十六进制表示法中，使用 p 表示指数，而不是 e。注意，尾数采用十六进制，指数采用十进制。指数的基数是 2，而不是 10。
+注释：可以使用十六进制表示浮点数值。例如，0.125=2^-3 可以表示成 0x1.0p-3。在十六进制表示法中，使用 p 表示指数，而不是 e。注意，尾数采用十六进制，指数采用十进制。指数的基数是 2，而不是 10。
 
-所有的浮点数值计算都遵循 IEEE 754 规范。具体来说，下面是用于表示溢出和出错情况的三个特殊的浮点数值：
-
-·正无穷大·负无穷大·NaN（不是一个数字）
+所有的浮点数值计算都遵循 IEEE 754 规范。具体来说，下面是用于表示溢出和出错情况的三个特殊的浮点数值：1）正无穷大。2）负无穷大。3）NaN（不是一个数字）。
 
 例如，一个正整数除以 0 的结果为正无穷大。计算 0/0 或者负数的平方根结果为 NaN。
 
 注释：常量 Double.POSITIVE_INFINITY、Double.NEGATIVE_INFINITY 和 Double.NaN（以及相应的 Float 类型的常量）分别表示这三个特殊的值，但在实际应用中很少遇到。特别要说明的是，不能这样检测一个特定值是否等于 Double.NaN：
 
+```java
+if (x == Double.NaN) // is never true
+```
+
 所有「非数值」的值都认为是不相同的。然而，可以使用 Double.isNaN 方法：
+
+```java
+if (Double.isNaN(x)) // check whether x is "not a number"
+```
 
 警告：浮点数值不适用于无法接受舍入误差的金融计算中。例如，命令 System.out.println（2.0–1.1）将打印出 0.8999999999999999，而不是人们想象的 0.9。这种舍入误差的主要原因是浮点数值采用二进制系统表示，而在二进制系统中无法精确地表示分数 1/10。这就好像十进制无法精确地表示分数 1/3 一样。如果在数值计算中不允许有任何舍入误差，就应该使用 BigDecimal 类，本章稍后将介绍这个类。
 
@@ -418,71 +371,33 @@ Besides the \u escape sequences, there are several escape sequences for special 
 
 Table 3.3 Escape Sequences for Special Characters
 
-Escape Sequence
-
-Name
-
-Unicode Value
-
-\b
-
-Backspace
-
-\u0008
-
-\t
-
-Tab
-
-\u0009
-
-\n
-
-Linefeed
-
-\u000a
-
-\r
-
-Carriage return
-
-\u000d
-
-\"
-
-Double quote
-
-\u0022
-
-\'
-
-Single quote
-
-\u0027
-
-\\
-
-Backslash
-
-\u005c
-
-Click here to view code image
+| Escape Sequence | Name | Unicode Value |
+| --- | --- | --- |
+| \b | Backspace | \u0008 |
+| \t | Tab | \u0009 |
+| \n | Linefeed | \u000a |
+| \r | Carriage return | \u000d |
+| \" | Double quote | \u0022 |
+| \' | Single quote | \u0027 |
+| \\ | Backslash | \u005c |
 
 public static void main(String\u005B\u005D args)
 
 is perfectly legal—\u005B and \u005D are the encodings for [ and ].
 
-Caution
-
-Unicode escape sequences are processed before the code is parsed. For example, "\u0022+\u0022" is not a string consisting of a plus sign surrounded by quotation marks (U+0022). Instead, the \u0022 are converted into " before parsing, yielding ""+"", or an empty string.
+Caution: Unicode escape sequences are processed before the code is parsed. For example, "\u0022+\u0022" is not a string consisting of a plus sign surrounded by quotation marks (U+0022). Instead, the \u0022 are converted into " before parsing, yielding ""+"", or an empty string.
 
 Even more insidiously, you must beware of \u inside comments. The comment
 
+```java
 // \u000A is a newline
+```
 
 yields a syntax error since \u000A is replaced with a newline when the program is read. Similarly, a comment
 
+```java
 // look inside c:\users
+```
 
 yields a syntax error because the \u is not followed by four hex digits.
 
@@ -496,11 +411,17 @@ char 类型的字面量值要用单引号括起来。例如：'A' 是编码值�
 
 表 3-3 特殊字符的转义序列
 
-就完全符合语法规则，\u005B 和 \u005D 是 [和] 的编码。
+就完全符合语法规则，\u005B 和 \u005D 是 [ 和 ] 的编码。
 
 警告：Unicode 转义序列会在解析代码之前得到处理。例如，"\u0022+\u0022" 并不是一个由引号（U+0022）包围加号构成的字符串。实际上，\u0022 会在解析之前转换为 "，这会得到""+""，也就是一个空串。
 
-更隐秘地，一定要当心注释中的 \u。注释 会产生一个语法错误，因为读程序时 \u00A0 会替换为一个换行符。类似地，下面这个注释 也会产生一个语法错误，因为 \u 后面并未跟着 4 个十六进制数。
+更隐秘地，一定要当心注释中的 \u。注释：
+
+```java
+// look inside c:\users
+```
+
+会产生一个语法错误，因为读程序时 \u00A0 会替换为一个换行符。类似地，下面这个注释 也会产生一个语法错误，因为 \u 后面并未跟着 4 个十六进制数。
 
 #### 3.3.4 Unicode and the char Type
 
@@ -538,11 +459,11 @@ UTF-16 编码采用不同长度的编码表示所有 Unicode 码点。在基本�
 
 The boolean type has two values, false and true. It is used for evaluating logical conditions. You cannot convert between integers and boolean values.
 
-C++ Note
+C++ Note: In C++, numbers and even pointers can be used in place of boolean values. The value 0 is equivalent to the bool value false, and a nonzero value is equivalent to true. This is not the case in Java. Thus, Java programmers are shielded from accidents such as
 
-In C++, numbers and even pointers can be used in place of boolean values. The value 0 is equivalent to the bool value false, and a nonzero value is equivalent to true. This is not the case in Java. Thus, Java programmers are shielded from accidents such as
-
+```java
 if (x = 0) // oops... meant x == 0
+```
 
 In C++, this test compiles and runs, always evaluating to false. In Java, the test does not compile because the integer expression x = 0 cannot be converted to a boolean value.
 
@@ -559,26 +480,6 @@ C++ 注释：在 C++ 中，数值甚至指针可以代替 boolean 值。值 0 �
 As in every programming language, variables are used to store values. Constants are variables whose values don't change. In the following sections, you will learn how to declare variables and constants.
 
 3.4 变量
-
-在 Java 中，每个变量都有一个类型（type）。在声明变量时，变量的类型位于变量名之前。这里列举一些声明变量的示例：
-
-可以看到，每个声明以分号结束。由于声明是一条完整的 Java 语句，所以必须以分号结束。
-
-变量名必须是一个以字母开头并由字母或数字构成的序列。需要注意，与大多数程序设计语言相比，Java 中「字母」和「数字」的范围更大。字母包括 'A'~'Z'、'a'~'z'、'_'、'$' 或在某种语言中表示字母的任何 Unicode 字符。例如，德国的用户可以在变量名中使用字母‘'；希腊人可以用 π。同样，数字包括 '0'~'9' 和在某种语言中表示数字的任何 Unicode 字符。但 '+' 和 '' 这样的符号不能出现在变量名中，空格也不行。变量名中所有的字符都是有意义的，并且大小写敏感。变量名的长度基本上没有限制。
-
-提示：如果想要知道哪些 Unicode 字符属于 Java 中的「字母」，可以使用 Character 类的 isJavaIdentifierStart 和 isJavaIdentifierPart 方法来检查。
-
-提示：尽管 $ 是一个合法的 Java 字符，但不要在你自己的代码中使用这个字符。它只用在 Java 编译器或其他工具生成的名字中。
-
-另外，不能使用 Java 保留字作为变量名（请参看附录 A 中的保留字列表）。
-
-可以在一行中声明多个变量：
-
-不过，不提倡使用这种风格。逐一声明每一个变量可以提高程序的可读性。
-
-注释：如前所述，变量名对大小写敏感，例如，hireday 和 hireDay 是两个不同的变量名。在对两个不同的变量进行命名时，最好不要只存在大小写上的差异。不过，在有些时候，确实很难给变量取一个好的名字。于是，许多程序员将变量名命名为类型名，例如：
-
-还有一些程序员更加喜欢在变量名前加上前缀「a」：
 
 #### 3.4.1 Declaring Variables
 
@@ -610,75 +511,103 @@ As of Java 9, a single underscore _ cannot be used as a variable name. A future 
 
 You can declare multiple variables on a single line:
 
+```java
 int i, j; // both are integers
+```
 
 However, we don't recommend this style. If you declare each variable separately, your programs are easier to read.
 
-Note
+Note: As you saw, names are case sensitive, for example, hireday and hireDay are two separate names. In general, you should not have two names that only differ in their letter case. However, sometimes it is difficult to come up with a good name for a variable. Many programmers then give the variable the same name as the type, for example:
 
-As you saw, names are case sensitive, for example, hireday and hireDay are two separate names. In general, you should not have two names that only differ in their letter case. However, sometimes it is difficult to come up with a good name for a variable. Many programmers then give the variable the same name as the type, for example
-
-Click here to view code image
-
+```java
 Box box; // "Box" is the type and "box" is the variable name
+```
 
 Other programmers prefer to use an「a」prefix for the variable:
 
+```java
 Box aBox;
+```
+
+在 Java 中，每个变量都有一个类型（type）。在声明变量时，变量的类型位于变量名之前。这里列举一些声明变量的示例：
+
+可以看到，每个声明以分号结束。由于声明是一条完整的 Java 语句，所以必须以分号结束。
+
+变量名必须是一个以字母开头并由字母或数字构成的序列。需要注意，与大多数程序设计语言相比，Java 中「字母」和「数字」的范围更大。字母包括 'A'~'Z'、'a'~'z'、'_'、'$' 或在某种语言中表示字母的任何 Unicode 字符。例如，德国的用户可以在变量名中使用字母 'ä'；希腊人可以用 π。同样，数字包括 '0'~'9' 和在某种语言中表示数字的任何 Unicode 字符。但 '+' 和 '' 这样的符号不能出现在变量名中，空格也不行。变量名中所有的字符都是有意义的，并且大小写敏感。变量名的长度基本上没有限制。
+
+提示：如果想要知道哪些 Unicode 字符属于 Java 中的「字母」，可以使用 Character 类的 isJavaIdentifierStart 和 isJavaIdentifierPart 方法来检查。
+
+提示：尽管 $ 是一个合法的 Java 字符，但不要在你自己的代码中使用这个字符。它只用在 Java 编译器或其他工具生成的名字中。
+
+另外，不能使用 Java 保留字作为变量名（请参看附录 A 中的保留字列表）。
+
+可以在一行中声明多个变量：
+
+不过，不提倡使用这种风格。逐一声明每一个变量可以提高程序的可读性。
+
+注释：如前所述，变量名对大小写敏感，例如，hireday 和 hireDay 是两个不同的变量名。在对两个不同的变量进行命名时，最好不要只存在大小写上的差异。不过，在有些时候，确实很难给变量取一个好的名字。于是，许多程序员将变量名命名为类型名，例如：
+
+还有一些程序员更加喜欢在变量名前加上前缀「a」：
 
 #### 3.4.2 Initializing Variables
 
 After you declare a variable, you must explicitly initialize it by means of an assignment statement—you can never use the value of an uninitialized variable. For example, the Java compiler flags the following sequence of statements as an error:
 
-Click here to view code image
-
+```java
 int vacationDays;
 
 System.out.println(vacationDays); // ERROR--variable not initialized
+```
 
 You assign to a previously declared variable by using the variable name on the left, an equal sign (=), and then some Java expression with an appropriate value on the right.
 
+```java
 int vacationDays;
 
 vacationDays = 12;
+```
 
 You can both declare and initialize a variable on the same line. For example:
 
+```java
 int vacationDays = 12;
+```
 
 Finally, in Java you can put declarations anywhere in your code. For example, the following is valid code in Java:
 
-Click here to view code image
-
+```java
 double salary = 65000.0;
 
 System.out.println(salary);
 
 int vacationDays = 12; // OK to declare a variable here
+```
 
 In Java, it is considered good style to declare variables as closely as possible to the point where they are first used.
 
-Note
-
-Starting with Java 10, you do not need to declare the types of local variables if they can be inferred from the initial value. Simply use the keyword var instead of the type:
+Note: Starting with Java 10, you do not need to declare the types of local variables if they can be inferred from the initial value. Simply use the keyword var instead of the type:
 
 Click here to view code image
 
+```java
 var vacationDays = 12; // vacationDays is an int
 
 var greeting = "Hello"; // greeting is a String
+```
 
 We will start using this feature in the next chapter.
 
-C++ Note
+C++ Note: C and C++ distinguish between the declaration and definition of a variable. For example,
 
-C and C++ distinguish between the declaration and definition of a variable. For example,
-
+```java
 int i = 10;
+```
 
 is a definition, whereas
 
+```java
 extern int i;
+```
 
 is a declaration. In Java, no declarations are separate from definitions.
 
@@ -696,7 +625,7 @@ is a declaration. In Java, no declarations are separate from definitions.
 
 C++ 注释：C 和 C++ 区分变量的声明与定义。例如：
 
-是一个定义，而
+是一个定义，而：
 
 是一个声明。在 Java 中，不区分变量的声明与定义。
 
