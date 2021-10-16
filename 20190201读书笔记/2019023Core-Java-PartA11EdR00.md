@@ -1,25 +1,5 @@
 ## 记忆时间
 
-## 卡片
-
-### 0101. 主题卡  —  — 
-
-### 0201. 术语卡  —  — 
-
-### 0202. 术语卡  —  — 
-
-### 0203. 术语卡  —  — 
-
-### 0301. 人名卡  —  — 
-
-### 0401. 金句卡  —  — 
-
-### 0501. 数据信息卡  —  — 
-
-### 0601. 任意卡  —  — 
-
-最后还有一张任意卡，记录个人阅读感想。
-
 Core Java Volume I – Fundamentals
 
 Eleventh Edition
@@ -27,6 +7,48 @@ Eleventh Edition
 Copyright © 2019 Pearson Education Inc.
 
 WebSite: [Core Java](https://horstmann.com/corejava/)
+
+## 卡片
+
+### 0101. 主题卡  ——
+
+### 0201. 术语卡  ——
+
+### 0202. 术语卡  ——
+
+### 0203. 术语卡  ——
+
+### 0301. 人名卡  ——
+
+### 0401. 金句卡  ——
+
+### 0501. 数据信息卡  ——
+
+### 0601. 任意卡  —— 不能用 == 来比较两个字符串是否相等
+
+信息源自「0301Fundamental Programming Structures in Java」
+
+Do not use the == operator to test whether two strings are equal! It only determines whether or not the strings are stored in the same location. Sure, if strings are in the same location, they must be equal. But it is entirely possible to store multiple copies of identical strings in different places.
+
+一定不要使用 == 运算符检测两个字符串是否相等！这个运算符只能够确定两个字符串是否放置在同一个位置上。当然，如果字符串放置在同一个位置上，它们必然相等。但是，完全有可能将内容相同的多个字符串的拷贝放置在不同的位置上。
+
+1『不能用 == 来比较两个字符串是否相等。做一张任意卡片（2021-10-16）』—— 已完成
+
+如果虚拟机始终将相同的字符串共享，就可以使用 == 运算符检测是否相等。但实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不是共享的。因此，千万不要使用 == 运算符测试字符串的相等性，以免在程序中出现糟糕的 bug。从表面上看，这种 bug 很像随机产生的间歇性错误。
+
+C++ 注释：对于习惯使用 C++ 的 string 类的人来说，在进行相等性检测的时候一定要特别小心。C++ 的 string 类重载了 == 运算符以便检测字符串内容的相等性。可惜 Java 没有采用这种方式，它的字符串「看起来、感觉起来」与数值一样，但进行相等性测试时，其操作方式又类似于指针。语言的设计者本应该像对 + 那样也进行特殊处理，即重定义 == 运算符。当然，每一种语言都会存在一些不太一致的地方。
+
+If the virtual machine always arranges for equal strings to be shared, then you could use the == operator for testing equality. But only string literals are shared, not strings that are the result of operations like + or substring. Therefore, never use == to compare strings lest you end up with a program with the worst kind of bug—an intermittent one that seems to occur randomly.
+
+C++ Note: If you are used to the C++ string class, you have to be particularly careful about equality testing. The C++ string class does overload the == operator to test for equality of the string contents. It is perhaps unfortunate that Java goes out of its way to give strings the same「look and feel」as numeric values but then makes strings behave like pointers for equality testing. The language designers could have redefined == for strings, just as they made a special arrangement for +. Oh well, every language has its share of inconsistencies.
+
+C programmers never use == to compare strings but use strcmp instead. The Java method compareTo is the exact analog of strcmp. You can use
+
+```java
+if (greeting.compareTo("Hello") == 0) . . .
+```
+
+but it seems clearer to use equals instead.
 
 ## Preface
 
