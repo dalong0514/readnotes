@@ -1886,30 +1886,25 @@ returns a string with the same data as the builder or buffer contents.
 
 java.lang.StringBuilder 5.0
 
-·StringBuilder()构造一个空的字符串构建器。
+StringBuilder() 构造一个空的字符串构建器。
 
-·int length()返回构建器或缓冲器中的代码单元数量。
+int length() 返回构建器或缓冲器中的代码单元数量。
 
-·StringBuilder append（String str）追加一个字符串并返回 this。
+StringBuilder append(String str) 追加一个字符串并返回 this。
 
-·StringBuilder append（char c）追加一个代码单元并返回 this。
+StringBuilder append(char c) 追加一个代码单元并返回 this。
 
-·StringBuilder appendCodePoint（int cp）追加一个代码点，并将其转换为一个或两个代码单元并返回 this。
+StringBuilder appendCodePoint(int cp) 追加一个代码点，并将其转换为一个或两个代码单元并返回 this。
 
-·void setCharAt（int i，char c）将第 i 个代码单元设置为 c。
+void setCharAt(int i，char c) 将第 i 个代码单元设置为 c。
 
-·StringBuilder insert（int offset，String str）在 offset 位置插入一个字符串并返回 this。
+StringBuilder insert(int offset，String str) 在 offset 位置插入一个字符串并返回 this。
 
-·StringBuilder insert（int offset，Char c）在 offset 位置插入一个代码单元并返回 this。
+StringBuilder insert(int offset，Char c) 在 offset 位置插入一个代码单元并返回 this。
 
-·StringBuilder delete（int startIndex，int endIndex）删除偏移量从 startIndex 到 - endIndex-1 的代码单元并返回 this。
+StringBuilder delete(int startIndex，int endIndex) 删除偏移量从 startIndex 到 - endIndex-1 的代码单元并返回 this。
 
-·String toString()返回一个与构建器或缓冲器内容相同的字符串。
-
-
-
-
-
+·String toString() 返回一个与构建器或缓冲器内容相同的字符串。
 
 ### 3.7 Input and Output
 
@@ -1923,111 +1918,84 @@ To make our example programs more interesting, we want to accept input and prope
 
 You saw that it is easy to print output to the「standard output stream」(that is, the console window) just by calling System.out.println. Reading from the「standard input stream」System.in isn't quite as simple. To read console input, you first construct a Scanner that is attached to System.in:
 
-Click here to view code image
-
+```java
 Scanner in = new Scanner(System.in);
+```
 
 (We discuss constructors and the new operator in detail in Chapter 4.) Now you can use the various methods of the Scanner class to read input. For example, the nextLine method reads a line of input.
 
-Click here to view code image
-
+```java
 System.out.print("What is your name? ");
-
 String name = in.nextLine();
+```
 
 Here, we use the nextLine method because the input might contain spaces. To read a single word (delimited by whitespace), call
 
-Click here to view code image
-
+```java
 String firstName = in.next();
+```
 
 To read an integer, use the nextInt method.
 
-Click here to view code image
-
+```java
 System.out.print("How old are you? ");
-
 int age = in.nextInt();
+```
 
 Similarly, the nextDouble method reads the next floating-point number.
 
 The program in Listing 3.2 asks for the user's name and age and then prints a message like
 
-Click here to view code image
-
 Hello, Cay. Next year, you'll be 57
 
 Finally, note the line
 
-Click here to view code image
-
+```java
 import java.util.*;
+```
 
 at the beginning of the program. The Scanner class is defined in the java.util package. Whenever you use a class that is not defined in the basic java.lang package, you need to use an import directive. We look at packages and import directives in more detail in Chapter 4.
 
 Listing 3.2 InputTest/InputTest.java
 
-Click here to view code image
+```java
+import java.util.*;
+/**
+ * This program demonstrates console input.
+ * @version 1.10 2004-02-10
+ * @author Cay Horstmann
+ */
 
-1 import java.util.*;
+public class InputTest
 
-2
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        // get first input
+        System.out.print("What is your name? ");
+        String name = in.nextLine();
 
-3 /**
+        // get second input
+        System.out.print("How old are you? ");
+        int age = in.nextInt();
 
-4 * This program demonstrates console input.
+        // display output on console
+        System.out.println("Hello, " + name + ". Next year, you'll be " + (age + 1));
+    }
 
-5 * @version 1.10 2004-02-10
-
-6 * @author Cay Horstmann
-
-7 */
-
-8 public class InputTest
-
-9 {
-
-10 public static void main(String[] args)
-
-11 {
-
-12 Scanner in = new Scanner(System.in);
-
-13
-
-14 // get first input
-
-15 System.out.print("What is your name? ");
-
-16 String name = in.nextLine();
-
-17
-
-18 // get second input
-
-19 System.out.print("How old are you? ");
-
-20 int age = in.nextInt();
-
-21
-
-22 // display output on console
-
-23 System.out.println("Hello, " + name + ". Next year, you'll be " + (age + 1));
-
-24 }
-
-25 }
+}
+```
 
 Note: The Scanner class is not suitable for reading a password from a console since the input is plainly visible to anyone. Java 6 introduces a Console class specifically for this purpose. To read a password, use the following code:
 
-Click here to view code image
-
+```java
 Console cons = System.console();
 
 String username = cons.readLine("User name: ");
 
 char[] passwd = cons.readPassword("Password: ");
+```
 
 For security reasons, the password is returned in an array of characters rather than a string. After you are done processing the password, you should immediately overwrite the array elements with a filler value. (Array processing is discussed in Section 3.10,「Arrays,」on p. 108.)
 
@@ -2083,9 +2051,13 @@ displays the prompt and reads the user input until the end of the input line. Th
 
 （构造函数和 new 操作符将在第 4 章中详细地介绍。）现在，就可以使用 Scanner 类的各种方法实现输入操作了。例如，nextLine 方法将输入一行。
 
-在这里，使用 nextLine 方法是因为在输入行中有可能包含空格。要想读取一个单词（以空白符作为分隔符），就调用 要想读取一个整数，就调用 nextInt 方法。
+在这里，使用 nextLine 方法是因为在输入行中有可能包含空格。要想读取一个单词（以空白符作为分隔符），就调用：
 
-与此类似，要想读取下一个浮点数，就调用 nextDouble 方法。在程序清单 3-2 的程序中，询问用户姓名和年龄，然后打印一条如下格式的消息： 最后，在程序的最开始添加上一行：
+要想读取一个整数，就调用 nextInt 方法。
+
+与此类似，要想读取下一个浮点数，就调用 nextDouble 方法。在程序清单 3-2 的程序中，询问用户姓名和年龄，然后打印一条如下格式的消息：
+
+最后，在程序的最开始添加上一行：
 
 Scanner 类定义在 java.util 包中。当使用的类不是定义在基本 java.lang 包中时，一定要使用 import 指示字将相应的包加载进来。有关包与 import 指示字的详细描述请参看第 4 章。
 
@@ -2097,43 +2069,50 @@ Scanner 类定义在 java.util 包中。当使用的类不是定义在基本 jav
 
 采用 Console 对象处理输入不如采用 Scanner 方便。每次只能读取一行输入，而没有能够读取一个单词或一个数值的方法。
 
-java.util.Scanner 5.0·Scanner（InputStream in）用给定的输入流创建一个 Scanner 对象。
+java.util.Scanner 5.0
 
-·String nextLine()读取输入的下一行内容。
+Scanner(InputStream in) 用给定的输入流创建一个 Scanner 对象。
 
-·String next()读取输入的下一个单词（以空格作为分隔符）。
+String nextLine() 读取输入的下一行内容。
 
-·int nextInt()
+String next() 读取输入的下一个单词（以空格作为分隔符）。
 
-·double nextDouble()
+int nextInt()
+
+double nextDouble()
 
 读取并转换下一个表示整数或浮点数的字符序列。
 
-·boolean hasNext()检测输入中是否还有其他单词。
+boolean hasNext() 检测输入中是否还有其他单词。
 
-·boolean hasNextInt()
+boolean hasNextInt()
 
-·boolean hasNextDouble()检测是否还有表示整数或浮点数的下一个字符序列。
+boolean hasNextDouble()
+
+检测是否还有表示整数或浮点数的下一个字符序列。
 
 java.lang.System 1.0
 
-·static Console console()6
+static Console console() 6
 
 如果有可能进行交互操作，就通过控制台窗口为交互的用户返回一个 Console 对象，否则返回 null。对于任何一个通过控制台窗口启动的程序，都可使用 Console 对象。否则，其可用性将与所使用的系统有关。
 
-java.io.Console 6·static char[]readPassword（String prompt，Object...args）
+java.io.Console 6
 
-·static String readLine（String prompt，Object...args）显示字符串 prompt 并且读取用户输入，直到输入行结束。args 参数可以用来提供输入格式。有关这部分内容将在下一节中介绍。
+static char[]readPassword(String prompt，Object...args)
+
+static String readLine(String prompt，Object...args)
+
+显示字符串 prompt 并且读取用户输入，直到输入行结束。args 参数可以用来提供输入格式。有关这部分内容将在下一节中介绍。
 
 #### 3.7.2 Formatting Output
 
 You can print a number x to the console with the statement System.out.print(x). That command will print x with the maximum number of nonzero digits for that type. For example,
 
-Click here to view code image
-
+```java
 double x = 10000.0 / 3.0;
-
 System.out.print(x);
+```
 
 prints
 
@@ -2143,9 +2122,9 @@ That is a problem if you want to display, for example, dollars and cents.
 
 In early versions of Java, formatting numbers was a bit of a hassle. Fortunately, Java 5 brought back the venerable printf method from the C library. For example, the call
 
-Click here to view code image
-
+```java
 System.out.printf("%8.2f", x);
+```
 
 prints x with a field width of 8 characters and a precision of 2 characters. That is, the printout contains a leading space and the seven characters
 
@@ -2153,177 +2132,51 @@ prints x with a field width of 8 characters and a precision of 2 characters. Tha
 
 You can supply multiple parameters to printf. For example:
 
-Click here to view code image
-
+```java
 System.out.printf("Hello, %s. Next year, you'll be %d", name, age);
+```
 
 Each of the format specifiers that start with a % character is replaced with the corresponding argument. The conversion character that ends a format specifier indicates the type of the value to be formatted: f is a floating-point number, s a string, and d a decimal integer. Table 3.5 shows all conversion characters.
 
 Table 3.5 Conversions for printf
 
-Conversion Character
-
-Type
-
-Example
-
-d
-
-Decimal integer
-
-159
-
-x
-
-Hexadecimal integer
-
-9f
-
-o
-
-Octal integer
-
-237
-
-f
-
-Fixed-point floating-point
-
-15.9
-
-e
-
-Exponential floating-point
-
-1.59e+01
-
-g
-
-General floating-point (the shorter of e and f)
-
-—
-
-a
-
-Hexadecimal floating-point
-
-0x1.fccdp3
-
-s
-
-String
-
-Hello
-
-c
-
-Character
-
-H
-
-b
-
-boolean
-
-true
-
-h
-
-Hash code
-
-42628b2
-
-tx or Tx
-
-Date and time (T forces uppercase)
-
-Obsolete, use the java.time classes instead—see Chapter 6 of Volume II
-
-%
-
-The percent symbol
-
-%
-
-n
-
-The platform-dependent line separator
-
-—
+| Conversion Character | Type | Example |
+| --- | --- | --- |
+| d | Decimal integer | 159 |
+| x | Hexadecimal integer | 9f |
+| o | Octal integer | 237 |
+| f | Fixed-point floating-point | 15.9 |
+| e | Exponential floating-point | 1.59e+01 |
+| g | General floating-point (the shorter of e and f) | — |
+| a | Hexadecimal floating-point | 0x1.fccdp3 |
+| s | String | Hello |
+| c | Character | H |
+| b | boolean | true |
+| h | Hash code | 42628b2 |
+| tx or Tx | Date and time (T forces uppercase) | Obsolete, use the java.time classes instead—see Chapter 6 of Volume II |
+| % | The percent symbol | % |
+| n | The platform-dependent line separator | — |
 
 In addition, you can specify flags that control the appearance of the formatted output. Table 3.6 shows all flags. For example, the comma flag adds group separators. That is,
 
 Table 3.6 Flags for printf
 
-Flag
+| Flag | Purpose | Example |
+| --- | --- | --- |
+| + | Prints sign for positive and negative numbers. | +3333.33 |
+| space | Adds a space before positive numbers. | |
+| 0 | Adds leading zeroes. | 003333.33 |
+| - | Left-justifies field. | - |
+| ( | Encloses negative numbers in parentheses. | (3333.33) |
+| , | Adds group separators. | 3,333.33 |
+| # (for f format) | Always includes a decimal point. | 3,333. |
+| # (for x or o format) | Adds 0x or 0 prefix. | 0xcafe |
+| $ | Specifies the index of the argument to be formatted; for example, %1$d %1$x prints the first argument in decimal and hexadecimal. | 159 9F |
+| < | Formats the same value as the previous specification; for example, %d %<x prints the same number in decimal and hexadecimal. | 159 9F |
 
-Purpose
-
-Example
-
-+
-
-Prints sign for positive and negative numbers.
-
-+3333.33
-
-space
-
-Adds a space before positive numbers.
-
-| 3333.33|
-
-0
-
-Adds leading zeroes.
-
-003333.33
-
--
-
-Left-justifies field.
-
-|3333.33 |
-
-(
-
-Encloses negative numbers in parentheses.
-
-(3333.33)
-
-,
-
-Adds group separators.
-
-3,333.33
-
-# (for f format)
-
-Always includes a decimal point.
-
-3,333.
-
-# (for x or o format)
-
-Adds 0x or 0 prefix.
-
-0xcafe
-
-$
-
-Specifies the index of the argument to be formatted; for example, %1$d %1$x prints the first argument in decimal and hexadecimal.
-
-159 9F
-
-<
-
-Formats the same value as the previous specification; for example, %d %<x prints the same number in decimal and hexadecimal.
-
-159 9F
-
-Click here to view code image
-
+```java
 System.out.printf("%,.2f", 10000.0 / 3.0);
+```
 
 prints
 
@@ -2331,253 +2184,55 @@ prints
 
 You can use multiple flags, for example "%,(.2f" to use group separators and enclose negative numbers in parentheses.
 
-Note
-
-You can use the s conversion to format arbitrary objects. If an arbitrary object implements the Formattable interface, the object's formatTo method is invoked. Otherwise, the toString method is invoked to turn the object into a string. We discuss the toString method in Chapter 5 and interfaces in Chapter 6.
+Note: You can use the s conversion to format arbitrary objects. If an arbitrary object implements the Formattable interface, the object's formatTo method is invoked. Otherwise, the toString method is invoked to turn the object into a string. We discuss the toString method in Chapter 5 and interfaces in Chapter 6.
 
 You can use the static String.format method to create a formatted string without printing it:
 
-Click here to view code image
-
+```java
 String message = String.format("Hello, %s. Next year, you'll be %d", name, age);
+```
 
 In the interest of completeness, we briefly discuss the date and time formatting options of the printf method. For new code, you should use the methods of the java.time package described in Chapter 6 of Volume II. But you may encounter the Date class and the associated formatting options in legacy code. The format consists of two letters, starting with t and ending in one of the letters of Table 3.7; for example,
 
 Table 3.7 Date and Time Conversion Characters
 
-Conversion Character
-
-Type
-
-Example
-
-c
-
-Complete date and time
-
-Mon Feb 09 18:05:19 PST 2015
-
-F
-
-ISO 8601 date
-
-2015-02-09
-
-D
-
-U.S. formatted date (month/day/year)
-
-02/09/2015
-
-T
-
-24-hour time
-
-18:05:19
-
-r
-
-12-hour time
-
-06:05:19 pm
-
-R
-
-24-hour time, no seconds
-
-18:05
-
-Y
-
-Four-digit year (with leading zeroes)
-
-2015
-
-y
-
-Last two digits of the year (with leading zeroes)
-
-15
-
-C
-
-First two digits of the year (with leading zeroes)
-
-20
-
-B
-
-Full month name
-
-February
-
-b or h
-
-Abbreviated month name
-
-Feb
-
-m
-
-Two-digit month (with leading zeroes)
-
-02
-
-d
-
-Two-digit day (with leading zeroes)
-
-09
-
-e
-
-Two-digit day (without leading zeroes)
-
-9
-
-A
-
-Full weekday name
-
-Monday
-
-a
-
-Abbreviated weekday name
-
-Mon
-
-j
-
-Three-digit day of year (with leading zeroes), between 001 and 366
-
-069
-
-H
-
-Two-digit hour (with leading zeroes), between 00 and 23
-
-18
-
-k
-
-Two-digit hour (without leading zeroes), between 0 and 23
-
-18
-
-I
-
-Two-digit hour (with leading zeroes), between 01 and 12
-
-06
-
-l
-
-Two-digit hour (without leading zeroes), between 1 and 12
-
-6
-
-M
-
-Two-digit minutes (with leading zeroes)
-
-05
-
-S
-
-Two-digit seconds (with leading zeroes)
-
-19
-
-L
-
-Three-digit milliseconds (with leading zeroes)
-
-047
-
-N
-
-Nine-digit nanoseconds (with leading zeroes)
-
-047000000
-
-p
-
-Morning or afternoon marker
-
-pm
-
-z
-
-RFC 822 numeric offset from GMT
-
--0800
-
-Z
-
-Time zone
-
-PST
-
-s
-
-Seconds since 1970-01-01 00:00:00 GMT
-
-1078884319
-
-Q
-
-Milliseconds since 1970-01-01 00:00:00 GMT
-
-1078884319047
-
-Click here to view code image
-
+```java
 System.out.printf("%tc", new Date());
+```
 
 prints the current date and time in the format
-
-Click here to view code image
 
 Mon Feb 09 18:05:19 PST 2015
 
 As you can see in Table 3.7, some of the formats yield only a part of a given date—for example, just the day or just the month. It would be a bit silly if you had to supply the date multiple times to format each part. For that reason, a format string can indicate the index of the argument to be formatted. The index must immediately follow the %, and it must be terminated by a $. For example,
 
-Click here to view code image
-
+```java
 System.out.printf("%1$s %2$tB %2$te, %2$tY", "Due date:", new Date());
+```
 
 prints
-
-Click here to view code image
 
 Due date: February 9, 2015
 
 Alternatively, you can use the < flag. It indicates that the same argument as in the preceding format specification should be used again. That is, the statement
 
-Click here to view code image
-
+```java
 System.out.printf("%s %tB %<te, %<tY", "Due date:", new Date());
+```
 
 yields the same output as the preceding statement.
 
-Caution
-
-Argument index values start with 1, not with 0: %1$. . . formats the first argument. This avoids confusion with the 0 flag.
+Caution: Argument index values start with 1, not with 0: %1$. . . formats the first argument. This avoids confusion with the 0 flag.
 
 You have now seen all features of the printf method. Figure 3.6 shows a syntax diagram for format specifiers.
 
 Figure 3.6 Format specifier syntax
 
-Note
-
-The formatting of numbers and dates is locale-specific. For example, in Germany, the group separator is a period, not a comma, and Monday is formatted as Montag. Chapter 7 of Volume II shows how to control the international behavior of your applications.
+Note: The formatting of numbers and dates is locale-specific. For example, in Germany, the group separator is a period, not a comma, and Monday is formatted as Montag. Chapter 7 of Volume II shows how to control the international behavior of your applications.
 
 3.7.2 格式化输出
 
-可以使用 System.out.print（x）将数值 x 输出到控制台上。这条命令将以 x 对应的数据类型所允许的最大非 0 数字位数打印输出 x。例如：
-
-打印
+可以使用 System.out.print(x) 将数值 x 输出到控制台上。这条命令将以 x 对应的数据类型所允许的最大非 0 数字位数打印输出 x。例如：
 
 如果希望显示美元、美分等符号，则有可能会出现问题。在早期的 Java 版本中，格式化数值曾引起过一些争议。庆幸的是，Java SE5.0 沿用了 C 语言库函数中的 printf 方法。例如，调用 可以用 8 个字符的宽度和小数点后两个字符的精度打印 x。也就是说，打印输出一个空格和 7 个字符，如下所示：
 
@@ -2587,9 +2242,7 @@ The formatting of numbers and dates is locale-specific. For example, in Germany,
 
 表 3-5 用于 printf 的转换符
 
-另外，还可以给出控制格式化输出的各种标志。表 3-6 列出了所有的标志。例如，逗号标志增加了分组的分隔符。即表 3-6 用于 printf 的标志
-
-打印
+另外，还可以给出控制格式化输出的各种标志。表 3-6 列出了所有的标志。例如，逗号标志增加了分组的分隔符。即表 3-6 用于 printf 的标志：
 
 可以使用多个标志，例如，「%，（.2f」使用分组的分隔符并将负数括在括号内。
 
@@ -2605,8 +2258,6 @@ The formatting of numbers and dates is locale-specific. For example, in Germany,
 
 表 3-7 日期和时间的转换符
 
-打印
-
 还可以选择使用 < 标志。它指示前面格式说明中的参数将被再次使用。也就是说，下列语句将产生与前面语句同样的输出结果：
 
 提示：参数索引值从 1 开始，而不是从 0 开始，%1$... 对第 1 个参数格式化。这就避免了与 0 标志混淆。现在，已经了解了 printf 方法的所有特性。图 3-6 给出了格式说明符的语法图。
@@ -2619,71 +2270,58 @@ The formatting of numbers and dates is locale-specific. For example, in Germany,
 
 To read from a file, construct a Scanner object like this:
 
-Click here to view code image
-
+```java
 Scanner in = new Scanner(Path.of("myfile.txt"), StandardCharsets.UTF_8);
+```
 
 If the file name contains backslashes, remember to escape each of them with an additional backslash: "c:\\mydirectory\\myfile.txt".
 
-Note
-
-Here, we specify the UTF-8 character encoding, which is common (but not universal) for files on the Internet. You need to know the character encoding when you read a text file (see Volume II, Chapter 2 for more information). If you omit the character encoding, then the「default encoding」of the computer running the Java program is used. That is not a good idea—the program might act differently depending on where it is run.
+Note: Here, we specify the UTF-8 character encoding, which is common (but not universal) for files on the Internet. You need to know the character encoding when you read a text file (see Volume II, Chapter 2 for more information). If you omit the character encoding, then the「default encoding」of the computer running the Java program is used. That is not a good idea—the program might act differently depending on where it is run.
 
 Now you can read from the file, using any of the Scanner methods that we already described.
 
 To write to a file, construct a PrintWriter object. In the constructor, supply the file name and the character encoding:
 
-Click here to view code image
-
+```java
 PrintWriter out = new PrintWriter("myfile.txt", StandardCharsets.UTF_8);
+```
 
 If the file does not exist, it is created. You can use the print, println, and printf commands as you did when printing to System.out.
 
-Caution
+Caution: You can construct a Scanner with a string parameter, but the scanner interprets the string as data, not a file name. For example, if you call
 
-You can construct a Scanner with a string parameter, but the scanner interprets the string as data, not a file name. For example, if you call
-
-Click here to view code image
-
+```java
 Scanner in = new Scanner("myfile.txt"); // ERROR?
+```
 
 then the scanner will see ten characters of data: 'm', 'y', 'f', and so on. That is probably not what was intended in this case.
 
-Note
-
-When you specify a relative file name, such as "myfile.txt", "mydirectory/myfile.txt", or "../myfile.txt", the file is located relative to the directory in which the Java virtual machine was started. If you launched your program from a command shell, by executing
+Note: When you specify a relative file name, such as "myfile.txt", "mydirectory/myfile.txt", or "../myfile.txt", the file is located relative to the directory in which the Java virtual machine was started. If you launched your program from a command shell, by executing
 
 java MyProg
 
 then the starting directory is the current directory of the command shell. However, if you use an integrated development environment, it controls the starting directory. You can find the directory location with this call:
 
-Click here to view code image
-
+```java
 String dir = System.getProperty("user.dir");
+```
 
 If you run into grief with locating files, consider using absolute path names such as "c:\\mydirectory\\myfile.txt" or "/home/me/mydirectory/myfile.txt".
 
 As you saw, you can access files just as easily as you can use System.in and System.out. There is just one catch: If you construct a Scanner with a file that does not exist or a PrintWriter with a file name that cannot be created, an exception occurs. The Java compiler considers these exceptions to be more serious than a「divide by zero」exception, for example. In Chapter 7, you will learn various ways of handling exceptions. For now, you should simply tell the compiler that you are aware of the possibility of an「input/output」exception. You do this by tagging the main method with a throws clause, like this:
 
-Click here to view code image
-
+```java
 public static void main(String[] args) throws IOException
 
 {
-
-Scanner in = new Scanner(Path.of("myfile.txt"), StandardCharsets.UTF_8);
-
-. . .
-
+    Scanner in = new Scanner(Path.of("myfile.txt"), StandardCharsets.UTF_8);
+    . . .
 }
+```
 
 You have now seen how to read and write files that contain textual data. For more advanced topics, such as dealing with different character encodings, processing binary data, reading directories, and writing zip files, turn to Chapter 2 of Volume II.
 
-Note
-
-When you launch a program from a command shell, you can use the redirection syntax of your shell and attach any file to System.in and System.out:
-
-Click here to view code image
+Note: When you launch a program from a command shell, you can use the redirection syntax of your shell and attach any file to System.in and System.out:
 
 java MyProg < myfile.txt > output.txt
 
@@ -2715,11 +2353,19 @@ constructs a Path from the given path name.
 
 要想对文件进行读取，就需要一个用 File 对象构造一个 Scanner 对象，如下所示：
 
-如果文件名中包含反斜杠符号，就要记住在每个反斜杠之前再加一个额外的反斜杠：「c：\\mydirectory\\myfile.txt」。
+```java
+Scanner in = new Scanner(Path.of("myfile.txt"), StandardCharsets.UTF_8);
+```
+
+如果文件名中包含反斜杠符号，就要记住在每个反斜杠之前再加一个额外的反斜杠：`c：\\mydirectory\\myfile.txt`。
 
 注释：在这里指定了 UTF-8 字符编码，这对于互联网上的文件很常见（不过并不是普遍适用）。读取一个文本文件时，要知道它的字符编码 —— 更多信息参见卷 Ⅱ 第 2 章。如果省略字符编码，则会使用运行这个 Java 程序的机器的「默认编码」。这不是一个好主意，如果在不同的机器上运行这个程序，可能会有不同的表现。
 
 现在，就可以利用前面介绍的任何一个 Scanner 方法对文件进行读取。要想写入文件，就需要构造一个 PrintWriter 对象。在构造器中，只需要提供文件名：
+
+```java
+PrintWriter out = new PrintWriter("myfile.txt", StandardCharsets.UTF_8);
+```
 
 如果文件不存在，创建该文件。可以像输出到 System.out 一样使用 print、println 以及 printf 命令。
 
@@ -2731,7 +2377,7 @@ constructs a Path from the given path name.
 
 启动路径就是命令解释器的当前路径。然而，如果使用集成开发环境，那么启动路径将由 IDE 控制。可以使用下面的调用方式找到路径的位置：
 
-如果觉得定位文件比较烦恼，则可以考虑使用绝对路径，例如：「c：\\mydirectory\\myfile.txt」或者「/home/me/mydirectory/myfile.txt」。
+如果觉得定位文件比较烦恼，则可以考虑使用绝对路径，例如：「c:\\mydirectory\\myfile.txt」或者「/home/me/mydirectory/myfile.txt」。
 
 正如读者所看到的，访问文件与使用 System.in 和 System.out 一样容易。要记住一点：如果用一个不存在的文件构造一个 Scanner，或者用一个不能被创建的文件名构造一个 PrintWriter，那么就会发生异常。Java 编译器认为这些异常比「被零除」异常更严重。在第 7 章中，将会学习各种处理异常的方式。现在，应该告知编译器：已经知道有可能出现「输入 / 输出」异常。这需要在 main 方法中用 throws 子句标记，如下所示：
 
@@ -2741,12 +2387,14 @@ constructs a Path from the given path name.
 
 这样，就不必担心处理 IOException 异常了。
 
-java.util.Scanner 5.0·Scanner（File f）构造一个从给定文件读取数据的 Scanner。
+java.util.Scanner 5.0
 
-·Scanner（String data）构造一个从给定字符串读取数据的 Scanner。
+Scanner(File f) 构造一个从给定文件读取数据的 Scanner。
+
+·Scanner(String data) 构造一个从给定字符串读取数据的 Scanner。
 
 构造一个从给定字符串读取数据的 Scanner。
 
-java.io.PrintWriter 1.1·PrintWriter（String fileName）构造一个将数据写入文件的 PrintWriter。文件名由参数指定。
+java.io.PrintWriter 1.1·PrintWriter(String fileName) 构造一个将数据写入文件的 PrintWriter。文件名由参数指定。
 
-java.nio.file.Paths 7·static Path get（String pathname）根据给定的路径名构造一个 Path。
+java.nio.file.Paths 7·static Path get(String pathname) 根据给定的路径名构造一个 Path。

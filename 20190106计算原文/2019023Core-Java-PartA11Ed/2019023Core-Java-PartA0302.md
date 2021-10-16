@@ -2,9 +2,7 @@
 
 Java, like any programming language, supports both conditional statements and loops to determine control flow. We will start with the conditional statements, then move on to loops, to end with the somewhat cumbersome switch statement that you can use to test for many values of a single expression.
 
-C++ Note
-
-The Java control flow constructs are identical to those in C and C++, with a few exceptions. There is no goto, but there is a「labeled」version of break that you can use to break out of a nested loop (where, in C, you perhaps would have used a goto). Finally, there is a variant of the for loop that is similar to the range-based for loop in C++ and the foreach loop in C#.
+C++ Note: The Java control flow constructs are identical to those in C and C++, with a few exceptions. There is no goto, but there is a「labeled」version of break that you can use to break out of a nested loop (where, in C, you perhaps would have used a goto). Finally, there is a variant of the for loop that is similar to the range-based for loop in C++ and the foreach loop in C#.
 
 3.8 控制流程
 
@@ -18,25 +16,17 @@ Before learning about control structures, you need to know more about blocks.
 
 A block, or compound statement, consists of a number of Java statements, surrounded by a pair of braces. Blocks define the scope of your variables. A block can be nested inside another block. Here is a block that is nested inside the block of the main method:
 
-Click here to view code image
-
+```java
 public static void main(String[] args)
-
 {
-
-int n;
-
-. . .
-
-{
-
-int k;
-
-. . .
-
-} // k is only defined up to here
-
+    int n;
+    . . .
+    {
+        int k;
+        . . .
+    } // k is only defined up to here
 }
+```
 
 You may not declare identically named variables in two nested blocks. For example, the following is an error and will not compile:
 
@@ -62,9 +52,7 @@ int n; // ERROR--can't redefine n in inner block
 
 }
 
-C++ Note
-
-In C++, it is possible to redefine a variable inside a nested block. The inner definition then shadows the outer one. This can be a source of programming errors; hence, Java does not allow it.
+C++ Note: In C++, it is possible to redefine a variable inside a nested block. The inner definition then shadows the outer one. This can be a source of programming errors; hence, Java does not allow it.
 
 3.8.1 块作用域
 
