@@ -121,7 +121,7 @@ On Linux, add a line such as the following to the end of your ~/.bashrc or ~/.ba
 
 Click here to view code image
 
-export PATH=jdk/bin:`$`PATH
+export PATH=jdk/bin:$PATH
 
 Be sure to use the correct path to the JDK, such as /opt/jdk-11.0.4.
 
@@ -373,7 +373,6 @@ public class ImageViewer
     }
 }
 
-
 /**
  * A frame with a label to show an image.
  */
@@ -423,6 +422,100 @@ class ImageViewerFrame extends JFrame
 
 }
 ```
+
+1『
+
+上面的源码跑通了，GitHub 上找到的老版源码如下，也跑通了。这 2 段代码可以比较着看，看看 2004 年和 2018 年语法的迭代。
+
+```java
+/**
+   @version 1.22 2004-05-21
+   @author Cay Horstmann
+*/
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
+
+/**
+   A program for viewing images.
+*/
+public class ImageViewer
+{
+   public static void main(String[] args)
+   {
+      JFrame frame = new ImageViewerFrame();
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setVisible(true);
+   }
+}
+
+/**
+   A frame with a label to show an image.
+*/
+class ImageViewerFrame extends JFrame
+{
+   public ImageViewerFrame()
+   {
+      setTitle("ImageViewer");
+      setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+
+      // use a label to display the images
+      label = new JLabel();     
+      add(label);
+
+      // set up the file chooser
+      chooser = new JFileChooser();
+      chooser.setCurrentDirectory(new File("."));
+
+      // set up the menu bar
+      JMenuBar menuBar = new JMenuBar();
+      setJMenuBar(menuBar);
+
+      JMenu menu = new JMenu("File");
+      menuBar.add(menu);
+
+      JMenuItem openItem = new JMenuItem("Open");
+      menu.add(openItem);
+      openItem.addActionListener(new
+         ActionListener()
+         {
+            public void actionPerformed(ActionEvent event)
+            {
+               // show file chooser dialog
+               int result = chooser.showOpenDialog(null);
+
+               // if file selected, set it as icon of the label
+               if (result == JFileChooser.APPROVE_OPTION)
+               {
+                  String name = chooser.getSelectedFile().getPath();
+                  label.setIcon(new ImageIcon(name));
+               }
+            }
+         });
+
+      JMenuItem exitItem = new JMenuItem("Exit");
+      menu.add(exitItem);
+      exitItem.addActionListener(new
+         ActionListener()
+         {
+            public void actionPerformed(ActionEvent event)
+            {
+               System.exit(0);
+            }
+         });
+   }
+
+   private JLabel label;
+   private JFileChooser chooser;
+   private static final int DEFAULT_WIDTH = 300;
+   private static final int DEFAULT_HEIGHT = 400;
+}
+
+```
+
+』
 
 2.2 使用命令行工具
 
@@ -500,9 +593,7 @@ Note the wiggly line under string. In the tabs below the source code, click on P
 
 Figure 2.8 Error messages in Eclipse
 
-Tip
-
-Often, an Eclipse error report is accompanied by a lightbulb icon. Click on the lightbulb to get a list of suggested fixes.
+Tip: Often, an Eclipse error report is accompanied by a lightbulb icon. Click on the lightbulb to get a list of suggested fixes.
 
 2.3 使用集成开发环境
 
@@ -510,27 +601,33 @@ Often, an Eclipse error report is accompanied by a lightbulb icon. Click on the 
 
 本节将介绍如何使用 Eclipse 编译一个程序。Eclipse 是一个可以从网站 http://eclipse.org/downloads 上免费下载得到的集成开发环境。Eclipse 已经有面向 Linux、Mac OS X、Solaris 和 Windows 的版本。访问下载网站时，选择「Eclipse IDE for Java Developers」。再根据你的操作系统选择 32 位或 64 位版本。
 
-将 Eclipse 解压缩到你选择的位置，执行这个 zip 文件中的 eclipse 程序。下面是用 Eclipse 编写程序的一般步骤。1）启动 Eclipse 之后，从菜单选择 File→New→Project。2）从向导对话框中选择 Java Project（如图 2-4 所示）。
+将 Eclipse 解压缩到你选择的位置，执行这个 zip 文件中的 eclipse 程序。下面是用 Eclipse 编写程序的一般步骤。
+
+1、启动 Eclipse 之后，从菜单选择 File => New => Project。
+
+2、从向导对话框中选择 Java Project（如图 2-4 所示）。
 
 图 2-4 Eclipse 中的「New Project」对话框
 
-3）点击 Next 按钮，不选中「Use default location」复选框。点击 Browse 导航到 corejava/v1ch02/Welcome 目录（见图 2-5）。
+3、点击 Next 按钮，不选中「Use default location」复选框。点击 Browse 导航到 corejava/v1ch02/Welcome 目录（见图 2-5）。
 
 图 2-5 配置 Eclipse 工程
 
-4）点击 Finish 按钮。这个工程已经创建完成了。
+4、点击 Finish 按钮。这个工程已经创建完成了。
 
-5）点击工程窗口左边窗格中的三角，直到找到 Welcome.java 并双击。现在应该看到带有程序代码的窗口了（如图 2-6 所示）。
+5、点击工程窗口左边窗格中的三角，直到找到 Welcome.java 并双击。现在应该看到带有程序代码的窗口了（如图 2-6 所示）。
 
 图 2-6 使用 Eclipse 编辑源文件
 
-6）用鼠标右键点击最左侧窗格中的工程名（Welcome），选择 Run→RunAs→Java Application。程序输出会显示在控制台窗格中。
+6、用鼠标右键点击最左侧窗格中的工程名（Welcome），选择 Run => RunAs => Java Application。程序输出会显示在控制台窗格中。
 
 可以假定，这个程序没有输入错误或 bug（毕竟，这段代码只有几行）。为了说明问题，假定在代码中不小心出现了录入错误（或者甚至语法错误）。试着将原来的程序修改一下，让它包含一些录入错误，例如，将 String 的大小写弄错：
 
 注意 string 下面的波折线。点击源代码下标签页中的 Problems，展开小三角，会看到一个错误消息，指出有一个未知的 string 类型（见图 2-7）。点击这个错误消息。光标会移到编辑窗口中相应的代码行，可以在这里纠正错误。利用这个特性可以快速地修正错误。
 
-图 2-7 Eclipse 中的错误消息 [插图] 提示：通常，Eclipse 错误报告会伴有一个灯泡图标。点击这个图标可以得到一个建议解决这个错误的方案列表。
+图 2-7 Eclipse 中的错误消息
+
+提示：通常，Eclipse 错误报告会伴有一个灯泡图标。点击这个图标可以得到一个建议解决这个错误的方案列表。
 
 ### 2.4 JShell
 
@@ -540,13 +637,13 @@ Figure 2.9 Running JShell
 
 JShell starts with a greeting, followed by a prompt:
 
-Click here to view code image
-
+```
 | Welcome to JShell -- Version 9.0.1
 
 | For an introduction type: /help intro
 
 jshell>
+```
 
 Now type an expression, such as
 
@@ -554,79 +651,67 @@ Now type an expression, such as
 
 JShell responds with the result—in this case, the number of characters in the string「Core Java」.
 
-`$`1 ==> 9
+```
+$1 ==> 9
+```
 
 Note that you do not type System.out.println. JShell automatically prints the value of every expression that you enter.
 
-The `$`1 in the output indicates that the result is available in further calculations. For example, if you type
+The $1 in the output indicates that the result is available in further calculations. For example, if you type
 
-5 * `$`1 - 3
+```
+5 * $1 - 3
+```
 
 the response is
 
-`$`2 ==> 42
+```
+$2 ==> 42
+```
 
 If you need a variable many times, you can give it a more memorable name. However, you have to follow the Java syntax and specify both the type and the name. (We will cover the syntax in Chapter 3.) For example,
 
+```
 jshell> int answer = 6 * 7
 
 answer ==> 42
+```
 
 Another useful feature is tab completion. Type
 
+```
 Math.
+```
 
 followed by the Tab key. You get a list of all methods that you can invoke on the generator variable:
 
-Click here to view code image
-
+```
 jshell> Math.
-
-E IEEEremainder( PI abs(
-
-acos( addExact( asin( atan(
-
-atan2( cbrt( ceil( class
-
-copySign( cos( cosh( decrementExact(
-
-exp( expm1( floor( floorDiv(
-
-floorMod( fma( getExponent( hypot(
-
-incrementExact( log( log10( log1p(
-
-max( min( multiplyExact( multiplyFull(
-
-multiplyHigh( negateExact( nextAfter( nextDown(
-
-nextUp( pow( random() rint(
-
-round( scalb( signum( sin(
-
-sinh( sqrt( subtractExact( tan(
-
-tanh( toDegrees( toIntExact( toRadians(
-
-ulp(
+```
 
 Now type l and hit the Tab key again. The method name is completed to log, and you get a shorter list:
 
+```
 jshell> Math.log
 
 log( log10( log1p(
+```
 
 Now you can fill in the rest by hand:
 
+```
 jshell> Math.log10(0.001)
 
-`$`3 ==> -3.0
+$3 ==> -3.0
+```
 
 To repeat a command, hit the ↑ key until you see the line that you want to reissue or edit. You can move the cursor in the line with the ← and → keys, and add or delete characters. Hit Enter when you are done. For example, hit and replace 0.001 with 1000, then hit Enter:
 
+```
 jshell> Math.log10(1000)
 
-`$`4 ==> 3.0
+$4 ==> 3.0
+```
 
 JShell makes it easy and fun to learn about the Java language and library without having to launch a heavy-duty development environment and without fussing with public static void main.
 
@@ -664,7 +749,7 @@ Welcome 程序并不会引起人们的兴奋。接下来，给出一个图形化
 
 当然，applet 要在浏览器中查看。遗憾的是，现在很多浏览器并不提供 Java 支持，或者启用 Java 很困难。对此，最好使用 Firefox。
 
-如果使用 Windows 或 Mac OS X，Firefox 会自动启用计算机上安装的 Java。在 Linux 上，则需要用下面的命令启用这个插件：[插图]
+如果使用 Windows 或 Mac OS X，Firefox 会自动启用计算机上安装的 Java。在 Linux 上，则需要用下面的命令启用这个插件：
 
 作为检查，可以在地址栏键入 about：plugins，查找 Java 插件。确保使用这个插件的 Java SE 8 版本，为此要查找 MIME 类型 application/x-java-applet；version=1.8。接下来，将浏览器导航到 http://horstmann.com/applets/RoadApplet/RoadApplet.html，对所有安全提示都选择接受，保证最后会显示 applet。
 

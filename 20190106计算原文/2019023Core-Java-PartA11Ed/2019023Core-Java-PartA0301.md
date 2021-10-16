@@ -1,6 +1,6 @@
 # 0301. Fundamental Programming Structures in Java
 
-In this chapter
+In this chapter:
 
 3.1 A Simple Java Program
 
@@ -66,9 +66,7 @@ java ClassName
 
 to run a compiled program, the Java virtual machine always starts execution with the code in the main method in the class you indicate. (The term「method」is Java-speak for a function.) Thus, you must have a main method in the source of your class for your code to execute. You can, of course, add your own methods to a class and call them from the main method. (We cover writing your own methods in the next chapter.)
 
-Note
-
-According to the Java Language Specification, the main method must be declared public. (The Java Language Specification is the official document that describes the Java language. You can view or download it from http://docs.oracle.com/javase/specs.
+Note: According to the Java Language Specification, the main method must be declared public. (The Java Language Specification is the official document that describes the Java language. You can view or download it from http://docs.oracle.com/javase/specs.
 
 However, several versions of the Java launcher were willing to execute Java programs even when the main method was not public. A programmer filed a bug report. To see it, visit http://bugs.java.com/bugdatabase/index.jsp and enter the Bug ID 4252539. In 1999, that bug was marked as「closed, will not be fixed.」A Sun engineer added an explanation that the Java Virtual Machine Specification (at http://docs.oracle.com/javase/specs/jvms/se8/html) does not mandate that main is public and that「fixing it will cause potential troubles.」Fortunately, sanity finally prevailed. The Java launcher in Java 1.4 and beyond enforces that the main method is public.
 
@@ -4267,4 +4265,3 @@ Click here to view code image
 39 }
 
 You have now seen the fundamental programming structures of the Java language. The next chapter covers object-oriented programming in Java.
-
