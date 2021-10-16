@@ -2391,10 +2391,14 @@ java.util.Scanner 5.0
 
 Scanner(File f) 构造一个从给定文件读取数据的 Scanner。
 
-·Scanner(String data) 构造一个从给定字符串读取数据的 Scanner。
+Scanner(String data) 构造一个从给定字符串读取数据的 Scanner。
 
 构造一个从给定字符串读取数据的 Scanner。
 
-java.io.PrintWriter 1.1·PrintWriter(String fileName) 构造一个将数据写入文件的 PrintWriter。文件名由参数指定。
+java.io.PrintWriter 1.1
 
-java.nio.file.Paths 7·static Path get(String pathname) 根据给定的路径名构造一个 Path。
+PrintWriter(String fileName) 构造一个将数据写入文件的 PrintWriter。文件名由参数指定。
+
+java.nio.file.Paths 7
+
+static Path get(String pathname) 根据给定的路径名构造一个 Path。
