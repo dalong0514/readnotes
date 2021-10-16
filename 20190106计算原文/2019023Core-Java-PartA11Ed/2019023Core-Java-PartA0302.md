@@ -30,27 +30,19 @@ public static void main(String[] args)
 
 You may not declare identically named variables in two nested blocks. For example, the following is an error and will not compile:
 
-Click here to view code image
-
+```java
 public static void main(String[] args)
 
 {
-
-int n;
-
-. . .
-
-{
-
-int k;
-
-int n; // ERROR--can't redefine n in inner block
-
-. . .
-
+    int n;
+    . . .
+    {
+        int k;
+        int n; // ERROR--can't redefine n in inner block
+        . . .
+    }
 }
-
-}
+```
 
 C++ Note: In C++, it is possible to redefine a variable inside a nested block. The inner definition then shadows the outer one. This can be a source of programming errors; hence, Java does not allow it.
 
@@ -72,129 +64,99 @@ The condition must be surrounded by parentheses.
 
 In Java, as in most programming languages, you will often want to execute multiple statements when a single condition is true. In this case, use a block statement that takes the form
 
+```java
 {
+    statement1
 
-statement1
+    statement2
 
-statement2
-
-. . .
-
+    . . .
 }
+```
 
 For example:
 
-Click here to view code image
-
+```java
 if (yourSales >= target)
-
 {
-
-performance = "Satisfactory";
-
-bonus = 100;
-
+  performance = "Satisfactory";
+  bonus = 100;
 }
+```
 
 In this code all the statements surrounded by the braces will be executed when yourSales is greater than or equal to target (see Figure 3.7).
 
 Figure 3.7 Flowchart for the if statement
 
-Note
-
-A block (sometimes called a compound statement) enables you to have more than one (simple) statement in any Java programming structure that otherwise allows for a single (simple) statement.
+Note: A block (sometimes called a compound statement) enables you to have more than one (simple) statement in any Java programming structure that otherwise allows for a single (simple) statement.
 
 The more general conditional in Java looks like this (see Figure 3.8):
 
 Figure 3.8 Flowchart for the if/else statement
 
-Click here to view code image
-
 if (condition) statement1 else statement2
 
 For example:
 
-Click here to view code image
-
+```java
 if (yourSales >= target)
-
 {
-
-performance = "Satisfactory";
-
-bonus = 100 + 0.01 * (yourSales - target);
-
+  performance = "Satisfactory";
+  bonus = 100 + 0.01 * (yourSales - target);
 }
-
 else
-
 {
-
-performance = "Unsatisfactory";
-
-bonus = 0;
-
+  performance = "Unsatisfactory";
+  bonus = 0;
 }
+```
 
 The else part is always optional. An else groups with the closest if. Thus, in the statement
 
-Click here to view code image
-
+```java
 if (x <= 0) if (x == 0) sign = 0; else sign = -1;
+```
 
 the else belongs to the second if. Of course, it is a good idea to use braces to clarify this code:
 
-Click here to view code image
-
+```java
 if (x <= 0) { if (x == 0) sign = 0; else sign = -1; }
+```
 
 Repeated if . . . else if . . . alternatives are common (see Figure 3.9). For example:
 
 Figure 3.9 Flowchart for the if/else if (multiple branches)
 
-Click here to view code image
-
+```java
 if (yourSales >= 2 * target)
-
 {
-
-performance = "Excellent";
-
-bonus = 1000;
-
+  performance = "Excellent";
+  bonus = 1000;
 }
 
 else if (yourSales >= 1.5 * target)
-
 {
-
-performance = "Fine";
-
-bonus = 500;
-
+  performance = "Fine";
+  bonus = 500;
 }
 
 else if (yourSales >= target)
-
 {
-
-performance = "Satisfactory";
-
-bonus = 100;
-
+  performance = "Satisfactory";
+  bonus = 100;
 }
 
 else
-
 {
-
-System.out.println("You're fired");
-
+  System.out.println("You're fired");
 }
+```
 
 3.8.2 条件语句
 
-在 Java 中，条件语句的格式为 这里的条件必须用括号括起来。与绝大多数程序设计语言一样，Java 常常希望在某个条件为真时执行多条语句。在这种情况下，应该使用块语句（block statement），形式为
+在 Java 中，条件语句的格式为：
+
+这里的条件必须用括号括起来。与绝大多数程序设计语言一样，Java 常常希望在某个条件为真时执行多条语句。在这种情况下，应该使用块语句（block statement），形式为：
 
 例如：
 
@@ -210,9 +172,7 @@ System.out.println("You're fired");
 
 例如：
 
-其中 else 部分是可选的。else 子句与最邻近的 if 构成一组。因此，在语句
-
-中 else 与第 2 个 if 配对。当然，用一对括号将会使这段代码更加清晰：
+其中 else 部分是可选的。else 子句与最邻近的 if 构成一组。因此，在语句中 else 与第 2 个 if 配对。当然，用一对括号将会使这段代码更加清晰：
 
 重复地交替出现 if...else if... 是一种很常见的情况（请参看图 3-9）。例如：
 
@@ -220,9 +180,7 @@ System.out.println("You're fired");
 
 #### 3.8.3 Loops
 
-The while loop executes a statement (which may be a block statement) while a condition is true. The general form is
-
-Click here to view code image
+The while loop executes a statement (which may be a block statement) while a condition is true. The general form is:
 
 while (condition) statement
 
@@ -234,59 +192,40 @@ The program in Listing 3.3 determines how long it will take to save a specific a
 
 In the example, we are incrementing a counter and updating the amount currently accumulated in the body of the loop until the total exceeds the targeted amount.
 
-Click here to view code image
-
+```java
 while (balance < goal)
-
 {
-
-balance += payment;
-
-double interest = balance * interestRate / 100;
-
-balance += interest;
-
-years++;
-
+  balance += payment;
+  double interest = balance * interestRate / 100;
+  balance += interest;
+  years++;
 }
-
 System.out.println(years + " years.");
+```
 
 (Don't rely on this program to plan for your retirement. We left out a few niceties such as inflation and your life expectancy.)
 
 A while loop tests at the top. Therefore, the code in the block might never be executed. If you want to make sure a block is executed at least once, you need to move the test to the bottom, using the do/while loop. Its syntax looks like this:
 
-Click here to view code image
-
 do statement while (condition);
 
 This loop executes the statement (which is typically a block) and only then tests the condition. If it's true, it repeats the statement and retests the condition, and so on. The code in Listing 3.4 computes the new balance in your retirement account and then asks if you are ready to retire:
 
-Click here to view code image
-
+```java
 do
-
 {
-
-balance += payment;
-
-double interest = balance * interestRate / 100;
-
-balance += interest;
-
-year++;
-
-// print current balance
-
-. . .
-
-// ask if ready to retire and get input
-
-. . .
-
+  balance += payment;
+  double interest = balance * interestRate / 100;
+  balance += interest;
+  year++;
+  // print current balance
+  . . .
+  // ask if ready to retire and get input
+  . . .
 }
 
 while (input.equals("N"));
+```
 
 As long as the user answers "N", the loop is repeated (see Figure 3.11). This program is a good example of a loop that needs to be entered at least once, because the user needs to see the balance before deciding whether it is sufficient for retirement.
 
@@ -294,181 +233,92 @@ Figure 3.11 Flowchart for the do/while statement
 
 Listing 3.3 Retirement/Retirement.java
 
-Click here to view code image
+```java
+import java.util.*;
 
-1 import java.util.*;
+/**
+* This program demonstrates a while loop.
+* @version 1.20 2004-02-10
+* @author Cay Horstmann
+*/
 
-2
+public class Retirement
+{
+    public static void main(String[] args)
+    {
+        // read inputs
+        Scanner in = new Scanner(System.in);
+        System.out.print("How much money do you need to retire? ");
+        double goal = in.nextDouble();
+        System.out.print("How much money will you contribute every year? ");
+        double payment = in.nextDouble();
+        System.out.print("Interest rate in %: ");
+        double interestRate = in.nextDouble();
+        double balance = 0;
+        int years = 0;
 
-3 /**
-
-4 * This program demonstrates a while loop.
-
-5 * @version 1.20 2004-02-10
-
-6 * @author Cay Horstmann
-
-7 */
-
-8 public class Retirement
-
-9 {
-
-10 public static void main(String[] args)
-
-11 {
-
-12 // read inputs
-
-13 Scanner in = new Scanner(System.in);
-
-14
-
-15 System.out.print("How much money do you need to retire? ");
-
-16 double goal = in.nextDouble();
-
-17
-
-18 System.out.print("How much money will you contribute every year? ");
-
-19 double payment = in.nextDouble();
-
-20
-
-21 System.out.print("Interest rate in %: ");
-
-22 double interestRate = in.nextDouble();
-
-23
-
-24 double balance = 0;
-
-25 int years = 0;
-
-26
-
-27 // update account balance while goal isn't reached
-
-28 while (balance > goal)
-
-29 {
-
-30 // add this year's payment and interest
-
-31 balance += payment;
-
-32 double interest = balance * interestRate / 100;
-
-33 balance += interest;
-
-34 years++;
-
-35 }
-
-36
-
-37 System.out.println("You can retire in " + years + " years.");
-
-38 }
-
-39 }
+        // update account balance while goal isn't reached
+        while (balance > goal)
+        {
+            // add this year's payment and interest
+            balance += payment;
+            double interest = balance * interestRate / 100;
+            balance += interest;
+            years++;
+        }
+        System.out.println("You can retire in " + years + " years.");
+    }
+}
+```
 
 Listing 3.4 Retirement2/Retirement2.java
 
-Click here to view code image
+```java
+import java.util.*;
 
-1 import java.util.*;
+/**
+* This program demonstrates a do/while loop.
+* @version 1.20 2004-02-10
+* @author Cay Horstmann
+*/
 
-2
+public class Retirement2
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("How much money will you contribute every year? ");
+        double payment = in.nextDouble();
+        System.out.print("Interest rate in %: ");
+        double interestRate = in.nextDouble();
+        double balance = 0;
+        int year = 0;
+        String input;
 
-3 /**
+        // update account balance while user isn't ready to retire
+        do
+        {
+            // add this year's payment and interest
+            balance += payment;
+            double interest = balance * interestRate / 100;
+            balance += interest;
+            year++;
 
-4 * This program demonstrates a do/while loop.
+            // print current balance
+            System.out.printf("After year %d, your balance is %,.2f%n", year, balance);
+            // ask if ready to retire and get input
+            System.out.print("Ready to retire? (Y/N) ");
+            input = in.next();
+        }
 
-5 * @version 1.20 2004-02-10
-
-6 * @author Cay Horstmann
-
-7 */
-
-8 public class Retirement2
-
-9 {
-
-10 public static void main(String[] args)
-
-11 {
-
-12 Scanner in = new Scanner(System.in);
-
-13
-
-14 System.out.print("How much money will you contribute every year? ");
-
-15 double payment = in.nextDouble();
-
-16
-
-17 System.out.print("Interest rate in %: ");
-
-18 double interestRate = in.nextDouble();
-
-19
-
-20 double balance = 0;
-
-21 int year = 0;
-
-22
-
-23 String input;
-
-24
-
-25 // update account balance while user isn't ready to retire
-
-26 do
-
-27 {
-
-28 // add this year's payment and interest
-
-29 balance += payment;
-
-30 double interest = balance * interestRate / 100;
-
-31 balance += interest;
-
-32
-
-33 year++;
-
-34
-
-35 // print current balance
-
-36 System.out.printf("After year %d, your balance is %,.2f%n", year, balance);
-
-37
-
-38 // ask if ready to retire and get input
-
-39 System.out.print("Ready to retire? (Y/N) ");
-
-40 input = in.next();
-
-41 }
-
-42 while (input.equals("N"));
-
-43 }
-
-44 }
+        while (input.equals("N"));
+    }
+}
+```
 
 3.8.3 循环
 
-当条件为 true 时，while 循环执行一条语句（也可以是一个语句块）。一般格式为
+当条件为 true 时，while 循环执行一条语句（也可以是一个语句块）。一般格式为：
 
 如果开始循环条件的值就为 false，则 while 循环体一次也不执行（请参看图 3-10）。
 
@@ -496,9 +346,10 @@ The for loop is a general construct to support iteration controlled by a counter
 
 Figure 3.12 Flowchart for the for statement
 
+```java
 for (int i = 1; i <= 10; i++)
-
-System.out.println(i);
+    System.out.println(i);
+```
 
 The first slot of the for statement usually holds the counter initialization. The second slot gives the condition that will be tested before each new pass through the loop, and the third slot specifies how to update the counter.
 
@@ -506,17 +357,14 @@ Although Java, like C++, allows almost any expression in the various slots of a 
 
 Even within the bounds of good taste, much is possible. For example, you can have loops that count down:
 
+```java
 for (int i = 10; i > 0; i--)
-
-System.out.println("Counting down . . . " + i);
-
+    System.out.println("Counting down . . . " + i);
 System.out.println("Blastoff!");
+```
 
-Caution
+Caution: Be careful with testing for equality of floating-point numbers in loops. A for loop like this one
 
-Be careful with testing for equality of floating-point numbers in loops. A for loop like this one
-
-Click here to view code image
 
 for (double x = 0; x != 10; x += 0.1) . . .
 
@@ -524,79 +372,56 @@ might never end. Because of roundoff errors, the final value might not be reache
 
 When you declare a variable in the first slot of the for statement, the scope of that variable extends until the end of the body of the for loop.
 
-Click here to view code image
-
+```java
 for (int i = 1; i <= 10; i++)
-
 {
-
-. . .
-
+    . . .
 }
-
 // i no longer defined here
+```
 
 In particular, if you define a variable inside a for statement, you cannot use its value outside the loop. Therefore, if you wish to use the final value of a loop counter outside the for loop, be sure to declare it outside the loop header.
 
-Click here to view code image
-
+```java
 int i;
-
 for (i = 1; i <= 10; i++)
-
 {
-
-. . .
-
+    . . .
 }
-
 // i is still defined here
+```
 
 On the other hand, you can define variables with the same name in separate for loops:
 
-Click here to view code image
-
+```java
 for (int i = 1; i <= 10; i++)
-
 {
-
-. . .
-
+    . . .
 }
-
 . . .
-
 for (int i = 11; i <= 20; i++) // OK to define another variable named i
-
 {
-
-. . .
-
+    . . .
 }
+```
 
 A for loop is merely a convenient shortcut for a while loop. For example,
 
-Click here to view code image
-
+```java
 for (int i = 10; i > 0; i--)
-
-System.out.println("Counting down . . . " + i);
+    System.out.println("Counting down . . . " + i);
+```
 
 can be rewritten as
 
-Click here to view code image
-
+```java
 int i = 10;
-
 while (i > 0)
-
 {
-
-System.out.println("Counting down . . . " + i);
-
-i--;
-
+    System.out.println("Counting down . . . " + i);
+    i--;
 }
+```
 
 Listing 3.5 shows a typical example of a for loop.
 
@@ -606,79 +431,44 @@ In general, if you pick k numbers out of n, there are
 
 possible outcomes. The following for loop computes this value:
 
-Click here to view code image
-
+```java
 int lotteryOdds = 1;
-
 for (int i = 1; i <= k; i++)
+    lotteryOdds = lotteryOdds * (n - i + 1) / i;
+```
 
-lotteryOdds = lotteryOdds * (n - i + 1) / i;
-
-Note
-
-See Section 3.10.3,「The ‘for each' Loop,」on p. 110 for a description of the「generalized for loop」(also called「for each」loop) that was added to the Java language in Java 5.
+Note: See Section 3.10.3,「The ‘for each' Loop,」on p. 110 for a description of the「generalized for loop」(also called「for each」loop) that was added to the Java language in Java 5.
 
 Listing 3.5 LotteryOdds/LotteryOdds.java
 
-Click here to view code image
+```java
+import java.util.*;
 
-1 import java.util.*;
+/**
+* This program demonstrates a for loop.
+* @version 1.20 2004-02-10
+* @author Cay Horstmann
+*/
 
-2 3 /**
-
-4 * This program demonstrates a for loop.
-
-5 * @version 1.20 2004-02-10
-
-6 * @author Cay Horstmann
-
-7 */
-
-8 public class LotteryOdds
-
-9 {
-
-10 public static void main(String[] args)
-
-11 {
-
-12 Scanner in = new Scanner(System.in);
-
-13
-
-14 System.out.print("How many numbers do you need to draw? ");
-
-15 int k = in.nextInt();
-
-16
-
-17 System.out.print("What is the highest number you can draw? ");
-
-18 int n = in.nextInt();
-
-19
-
-20 /*
-
-21 * compute binomial coefficient n*(n-1)*(n-2)*...*(n-k+1)/(1*2*3*...*k)
-
-22 */
-
-23
-
-24 int lotteryOdds = 1;
-
-25 for (int i = 1; i <= k; i++)
-
-26 lotteryOdds = lotteryOdds * (n - i + 1) / i;
-
-27
-
-28 System.out.println("Your odds are 1 in " + lotteryOdds + ". Good luck!");
-
-29 }
-
-30 }
+public class LotteryOdds
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("How many numbers do you need to draw? ");
+        int k = in.nextInt();
+        System.out.print("What is the highest number you can draw? ");
+        int n = in.nextInt();
+        /*
+         * compute binomial coefficient n*(n-1)*(n-2)*...*(n-k+1)/(1*2*3*...*k)
+         */
+        int lotteryOdds = 1;
+        for (int i = 1; i <= k; i++)
+            lotteryOdds = lotteryOdds * (n - i + 1) / i;
+        System.out.println("Your odds are 1 in " + lotteryOdds + ". Good luck!");
+    }
+}
+```
 
 3.8.4 确定循环
 
@@ -694,9 +484,7 @@ for 语句的第 1 部分通常用于对计数器初始化；第 2 部分给出�
 
 即使遵守了这条规则，也还有可能出现很多问题。例如，下面这个倒计数的循环：
 
-警告：在循环中，检测两个浮点数是否相等需要格外小心。下面的 for 循环
-
-可能永远不会结束。由于舍入的误差，最终可能得不到精确值。例如，在上面的循环中，因为 0.1 无法精确地用二进制表示，所以，x 将从 9.99999999999998 跳到 10.09999999999998。当在 for 语句的第 1 部分中声明了一个变量之后，这个变量的作用域就为 for 循环的整个循环体。
+警告：在循环中，检测两个浮点数是否相等需要格外小心。下面的 for 循环可能永远不会结束。由于舍入的误差，最终可能得不到精确值。例如，在上面的循环中，因为 0.1 无法精确地用二进制表示，所以，x 将从 9.99999999999998 跳到 10.09999999999998。当在 for 语句的第 1 部分中声明了一个变量之后，这个变量的作用域就为 for 循环的整个循环体。
 
 特别指出，如果在 for 语句内部定义一个变量，这个变量就不能在循环体之外使用。因此，如果希望在 for 循环体之外使用循环计数器的最终值，就要确保这个变量在循环语句的前面且在外部声明！
 
@@ -724,57 +512,34 @@ For example, if you set up a menu system with four alternatives like that in Fig
 
 Figure 3.13 Flowchart for the switch statement
 
-Click here to view code image
-
+```java
 Scanner in = new Scanner(System.in);
-
 System.out.print("Select an option (1, 2, 3, 4) ");
-
 int choice = in.nextInt();
-
 switch (choice)
-
 {
-
-case 1:
-
-. . .
-
-break;
-
-case 2:
-
-. . .
-
-break;
-
-case 3:
-
-. . .
-
-break;
-
-case 4:
-
-. . .
-
-break;
-
-default:
-
-// bad input
-
-. . .
-
-break;
-
+    case 1:
+        . . .
+        break;
+    case 2:
+        . . .
+        break;
+    case 3:
+        . . .
+        break;
+    case 4:
+        . . .
+        break;
+    default:
+        // bad input
+        . . .
+        break;
 }
+```
 
 Execution starts at the case label that matches the value on which the selection is performed and continues until the next break or the end of the switch. If none of the case labels match, then the default clause is executed, if it is present.
 
-Caution
-
-It is possible for multiple alternatives to be triggered. If you forget to add a break at the end of an alternative, execution falls through to the next alternative! This behavior is plainly dangerous and a common cause for errors. For that reason, we never use the switch statement in our programs.
+Caution: It is possible for multiple alternatives to be triggered. If you forget to add a break at the end of an alternative, execution falls through to the next alternative! This behavior is plainly dangerous and a common cause for errors. For that reason, we never use the switch statement in our programs.
 
 If you like the switch statement better than we do, consider compiling your code with the -Xlint:fallthrough option, like this:
 
