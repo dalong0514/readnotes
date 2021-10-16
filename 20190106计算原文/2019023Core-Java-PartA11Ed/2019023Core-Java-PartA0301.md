@@ -633,63 +633,42 @@ C++ 注释：C 和 C++ 区分变量的声明与定义。例如：
 
 In Java, you use the keyword final to denote a constant. For example:
 
-Click here to view code image
-
+```java
 public class Constants
-
 {
-
-public static void main(String[] args)
-
-{
-
-final double CM_PER_INCH = 2.54;
-
-double paperWidth = 8.5;
-
-double paperHeight = 11;
-
-System.out.println("Paper size in centimeters: "
-
-+ paperWidth * CM_PER_INCH + " by " + paperHeight * CM_PER_INCH);
-
+    public static void main(String[] args)
+    {
+        final double CM_PER_INCH = 2.54;
+        double paperWidth = 8.5;
+        double paperHeight = 11;
+        System.out.println("Paper size in centimeters: "
+                + paperWidth * CM_PER_INCH + " by " + paperHeight * CM_PER_INCH);
+    }
 }
-
-}
+```
 
 The keyword final indicates that you can assign to the variable once, and then its value is set once and for all. It is customary to name constants in all uppercase.
 
 It is probably more common in Java to create a constant so it's available to multiple methods inside a single class. These are usually called class constants. Set up a class constant with the keywords static final. Here is an example of using a class constant:
 
-Click here to view code image
-
+```Java
 public class Constants2
 
 {
-
-public static final double CM_PER_INCH = 2.54;
-
-public static void main(String[] args)
-
-{
-
-double paperWidth = 8.5;
-
-double paperHeight = 11;
-
-System.out.println("Paper size in centimeters: "
-
-+ paperWidth * CM_PER_INCH + " by " + paperHeight * CM_PER_INCH);
-
+    public static final double CM_PER_INCH = 2.54;
+    public static void main(String[] args)
+    {
+        double paperWidth = 8.5;
+        double paperHeight = 11;
+        System.out.println("Paper size in centimeters: "
+                + paperWidth * CM_PER_INCH + " by " + paperHeight * CM_PER_INCH);
+    }
 }
-
-}
+```
 
 Note that the definition of the class constant appears outside the main method. Thus, the constant can also be used in other methods of the same class. Furthermore, if the constant is declared, as in our example, public, methods of other classes can also use it—in our example, as Constants2.CM_PER_INCH.
 
-C++ Note
-
-const is a reserved Java keyword, but it is not currently used for anything. You must use final for a constant.
+C++ Note: const is a reserved Java keyword, but it is not currently used for anything. You must use final for a constant.
 
 3.4.3 常量
 
@@ -733,7 +712,7 @@ Operators are used to combine values. As you will see in the following sections,
 
 注释：可移植性是 Java 语言的设计目标之一。无论在哪个虚拟机上运行，同一运算应该得到同样的结果。对于浮点数的算术运算，实现这样的可移植性是相当困难的。double 类型使用 64 位存储一个数值，而有些处理器使用 80 位浮点寄存器。这些寄存器增加了中间过程的计算精度。例如，以下运算：
 
-很多 Intel 处理器计算 x*y，并且将结果存储在 80 位的寄存器中，再除以 z 并将结果截断为 64 位。这样可以得到一个更加精确的计算结果，并且还能够避免产生指数溢出。但是，这个结果可能与始终在 64 位机器上计算的结果不一样。因此，Java 虚拟机的最初规范规定所有的中间计算都必须进行截断。这种行为遭到了数值计算团体的反对。截断计算不仅可能导致溢出，而且由于截断操作需要消耗时间，所以在计算速度上实际上要比精确计算慢。为此，Java 程序设计语言承认了最优性能与理想结果之间存在的冲突，并给予了改进。在默认情况下，虚拟机设计者允许对中间计算结果采用扩展的精度。但是，对于使用 strictfp 关键字标记的方法必须使用严格的浮点计算来生成可再生的结果。例如，可以把 main 方法标记为
+很多 Intel 处理器计算 x*y，并且将结果存储在 80 位的寄存器中，再除以 z 并将结果截断为 64 位。这样可以得到一个更加精确的计算结果，并且还能够避免产生指数溢出。但是，这个结果可能与始终在 64 位机器上计算的结果不一样。因此，Java 虚拟机的最初规范规定所有的中间计算都必须进行截断。这种行为遭到了数值计算团体的反对。截断计算不仅可能导致溢出，而且由于截断操作需要消耗时间，所以在计算速度上实际上要比精确计算慢。为此，Java 程序设计语言承认了最优性能与理想结果之间存在的冲突，并给予了改进。在默认情况下，虚拟机设计者允许对中间计算结果采用扩展的精度。但是，对于使用 strictfp 关键字标记的方法必须使用严格的浮点计算来生成可再生的结果。例如，可以把 main 方法标记为：
 
 于是，在 main 方法中的所有指令都将使用严格的浮点计算。如果将一个类标记为 strictfp，这个类中的所有方法都要使用严格的浮点计算。
 
@@ -747,19 +726,19 @@ The usual arithmetic operators +, -, *, / are used in Java for addition, subtrac
 
 Note that integer division by 0 raises an exception, whereas floating-point division by 0 yields an infinite or NaN result.
 
-Note
+Note: One of the stated goals of the Java programming language is portability. A computation should yield the same results no matter which virtual machine executes it. For arithmetic computations with floating-point numbers, it is surprisingly difficult to achieve this portability. The double type uses 64 bits to store a numeric value, but some processors use 80-bit floating-point registers. These registers yield added precision in intermediate steps of a computation. For example, consider the following computation:
 
-One of the stated goals of the Java programming language is portability. A computation should yield the same results no matter which virtual machine executes it. For arithmetic computations with floating-point numbers, it is surprisingly difficult to achieve this portability. The double type uses 64 bits to store a numeric value, but some processors use 80-bit floating-point registers. These registers yield added precision in intermediate steps of a computation. For example, consider the following computation:
-
+```java
 double w = x * y / z;
+```
 
 Many Intel processors compute x * y, leave the result in an 80-bit register, then divide by z, and finally truncate the result back to 64 bits. That can yield a more accurate result, and it can avoid exponent overflow. But the result may be different from a computation that uses 64 bits throughout. For that reason, the initial specification of the Java virtual machine mandated that all intermediate computations must be truncated. The numeric community hated it. Not only can the truncated computations cause overflow, they are actually slower than the more precise computations because the truncation operations take time. For that reason, the Java programming language was updated to recognize the conflicting demands for optimum performance and perfect reproducibility. By default, virtual machine designers are now permitted to use extended precision for intermediate computations. However, methods tagged with the strictfp keyword must use strict floating-point operations that yield reproducible results.
 
-For example, you can tag main as
+For example, you can tag main as:
 
-Click here to view code image
-
+```java
 public static strictfp void main(String[] args)
+```
 
 Then all instructions inside the main method will use strict floating-point computations. If you tag a class as strictfp, then all of its methods must use strict floating-point computations.
 
@@ -773,21 +752,21 @@ The Math class contains an assortment of mathematical functions that you may occ
 
 To take the square root of a number, use the sqrt method:
 
-Click here to view code image
-
+```java
 double x = 4;
 
 double y = Math.sqrt(x);
 
 System.out.println(y); // prints 2.0
+```
 
-Note
-
-There is a subtle difference between the println method and the sqrt method. The println method operates on the System.out object. But the sqrt method in the Math class does not operate on any object. Such a method is called a static method. You can learn more about static methods in Chapter 4.
+Note: There is a subtle difference between the println method and the sqrt method. The println method operates on the System.out object. But the sqrt method in the Math class does not operate on any object. Such a method is called a static method. You can learn more about static methods in Chapter 4.
 
 The Java programming language has no operator for raising a quantity to a power: You must use the pow method in the Math class. The statement
 
+```java
 double y = Math.pow(x, a);
+```
 
 sets y to be x raised to the power a (xa). The pow method's parameters are both of type double, and it returns a double as well.
 
@@ -823,31 +802,25 @@ Math.PI
 
 Math.E
 
-Tip
+Tip: You can avoid the Math prefix for the mathematical methods and constants by adding the following line to the top of your source file:
 
-You can avoid the Math prefix for the mathematical methods and constants by adding the following line to the top of your source file:
-
-Click here to view code image
-
+```java
 import static java.lang.Math.*;
+```
 
 For example:
 
-Click here to view code image
-
+```java
 System.out.println("The square root of \u03C0 is " + sqrt(PI));
+```
 
 We discuss static imports in Chapter 4.
 
-Note
+Note: The methods in the Math class use the routines in the computer's floating-point unit for fastest performance. If completely predictable results are more important than performance, use the StrictMath class instead. It implements the algorithms from the「Freely Distributable Math Library」(www.netlib.org/fdlibm), guaranteeing identical results on all platforms.
 
-The methods in the Math class use the routines in the computer's floating-point unit for fastest performance. If completely predictable results are more important than performance, use the StrictMath class instead. It implements the algorithms from the「Freely Distributable Math Library」(www.netlib.org/fdlibm), guaranteeing identical results on all platforms.
+Note: The Math class provides several methods to make integer arithmetic safer. The mathematical operators quietly return wrong results when a computation overflows. For example, one billion times three (1000000000 * 3) evaluates to -1294967296 because the largest int value is just over two billion. If you call Math.multiplyExact(1000000000, 3) instead, an exception is generated. You can catch that exception or let the program terminate rather than quietly continue with a wrong result. There are also methods addExact, subtractExact, incrementExact, decrementExact, negateExact, all with int and long parameters.
 
-Note
-
-The Math class provides several methods to make integer arithmetic safer. The mathematical operators quietly return wrong results when a computation overflows. For example, one billion times three (1000000000 * 3) evaluates to -1294967296 because the largest int value is just over two billion. If you call Math.multiplyExact(1000000000, 3) instead, an exception is generated. You can catch that exception or let the program terminate rather than quietly continue with a wrong result. There are also methods addExact, subtractExact, incrementExact, decrementExact, negateExact, all with int and long parameters.
-
-3.5.1 数学函数与常量
+3.5.2 数学函数与常量
 
 在 Math 类中，包含了各种各样的数学函数。在编写不同类别的程序时，可能需要的函数也不同。
 
@@ -887,11 +860,10 @@ Figure 3.1 Legal conversions between numeric types
 
 The six solid arrows in Figure 3.1 denote conversions without information loss. The three dotted arrows denote conversions that may lose precision. For example, a large integer such as 123456789 has more digits than the float type can represent. When the integer is converted to a float, the resulting value has the correct magnitude but loses some precision.
 
-Click here to view code image
-
+```java
 int n = 123456789;
-
 float f = n; // f is 1.23456792E8
+```
 
 When two values are combined with a binary operator (such as n + f where n is an integer and f is a floating-point value), both operands are converted to a common type before the operation is carried out.
 
@@ -903,7 +875,7 @@ Otherwise, if either of the operands is of type long, the other one will be conv
 
 Otherwise, both operands will be converted to an int.
 
-3.5.2 数值类型之间的转换
+3.5.3 数值类型之间的转换
 
 经常需要将一种数值类型转换为另一种数值类型。图 3-1 给出了数值类型之间的合法转换。
 
@@ -913,95 +885,136 @@ Otherwise, both operands will be converted to an int.
 
 当使用上面两个数值进行二元操作时（例如 n+f，n 是整数，f 是浮点数），先要将两个操作数转换为同一种类型，然后再进行计算。
 
-·如果两个操作数中有一个是 double 类型，另一个操作数就会转换为 double 类型。
+1、如果两个操作数中有一个是 double 类型，另一个操作数就会转换为 double 类型。
 
-·否则，如果其中一个操作数是 float 类型，另一个操作数将会转换为 float 类型。
+2、否则，如果其中一个操作数是 float 类型，另一个操作数将会转换为 float 类型。
 
-·否则，如果其中一个操作数是 long 类型，另一个操作数将会转换为 long 类型。
+3、否则，如果其中一个操作数是 long 类型，另一个操作数将会转换为 long 类型。
 
-·否则，两个操作数都将被转换为 int 类型。
+4、否则，两个操作数都将被转换为 int 类型。
 
 #### 3.5.4 Casts
 
 In the preceding section, you saw that int values are automatically converted to double values when necessary. On the other hand, there are obviously times when you want to consider a double as an integer. Numeric conversions are possible in Java, but of course information may be lost. Conversions in which loss of information is possible are done by means of casts. The syntax for casting is to give the target type in parentheses, followed by the variable name. For example:
 
+```java
 double x = 9.997;
-
 int nx = (int) x;
+```
 
 Now, the variable nx has the value 9 because casting a floating-point value to an integer discards the fractional part.
 
 If you want to round a floating-point number to the nearest integer (which in most cases is a more useful operation), use the Math.round method:
 
+```java
 double x = 9.997;
-
 int nx = (int) Math.round(x);
+```
 
 Now the variable nx has the value 10. You still need to use the cast (int) when you call round. The reason is that the return value of the round method is a long, and a long can only be assigned to an int with an explicit cast because there is the possibility of information loss.
 
-Caution
+Caution: If you try to cast a number of one type to another that is out of range for the target type, the result will be a truncated number that has a different value. For example, (byte) 300 is actually 44.
 
-If you try to cast a number of one type to another that is out of range for the target type, the result will be a truncated number that has a different value. For example, (byte) 300 is actually 44.
+C++ Note: You cannot cast between boolean values and any numeric type. This convention prevents common errors. In the rare case when you want to convert a boolean value to a number, you can use a conditional expression such as b ? 1 : 0.
 
-C++ Note
+3.5.4 强制类型转换
 
-You cannot cast between boolean values and any numeric type. This convention prevents common errors. In the rare case when you want to convert a boolean value to a number, you can use a conditional expression such as b ? 1 : 0.
+在上一小节中看到，在必要的时候，int 类型的值将会自动地转换为 double 类型。但另一方面，有时也需要将 double 转换成 int。在 Java 中，允许进行这种数值之间的类型转换。当然，有可能会丢失一些信息。在这种情况下，需要通过强制类型转换（cast）实现这个操作。强制类型转换的语法格式是在圆括号中给出想要转换的目标类型，后面紧跟待转换的变量名。例如：
 
-3.5.5 Combining Assignment with Operators
+这样，变量 nx 的值为 9。强制类型转换通过截断小数部分将浮点值转换为整型。
+
+如果想对浮点数进行舍入运算，以便得到最接近的整数（在很多情况下，这种操作更有用），那就需要使用 Math.round 方法：
+
+现在，变量 nx 的值为 10。当调用 round 的时候，仍然需要使用强制类型转换（int）。其原因是 round 方法返回的结果为 long 类型，由于存在信息丢失的可能性，所以只有使用显式的强制类型转换才能够将 long 类型转换成 int 类型。
+
+警告：如果试图将一个数值从一种类型强制转换为另一种类型，而又超出了目标类型的表示范围，结果就会截断成一个完全不同的值。例如，（byte）300 的实际值为 44。
+
+C++ 注释：不要在 boolean 类型与任何数值类型之间进行强制类型转换，这样可以防止发生错误。只有极少数的情况才需要将布尔类型转换为数值类型，这时可以使用条件表达式 b?1:0。
+
+#### 3.5.5 Combining Assignment with Operators
 
 There is a convenient shortcut for using binary operators in an assignment. For example,
 
+```java
 x += 4;
+```
 
 is equivalent to
 
+```java
 x = x + 4;
+```
 
 (In general, place the operator to the left of the = sign, such as *= or %=.)
 
-Note
+Note: If the operator yields a value whose type is different from that of the left-hand side, then it is coerced to fit. For example, if x is an int, then the statement
 
-If the operator yields a value whose type is different from that of the left-hand side, then it is coerced to fit. For example, if x is an int, then the statement
-
+```java
 x += 3.5;
+```
 
 is valid, setting x to (int)(x + 3.5).
 
-3.5.6 Increment and Decrement Operators
+3.5.4 结合赋值和运算符
+
+可以在赋值中使用二元运算符，这是一种很方便的简写形式。例如，
+
+等价于：
+
+（一般地，要把运算符放在 = 号左边，如 *= 或 %=）。
+
+注释：如果运算符得到一个值，其类型与左侧操作数的类型不同，就会发生强制类型转换。例如，如果 x 是一个 int，则以下语句
+
+是合法的，将把 x 设置为（int）（x+3.5）。
+
+#### 3.5.6 Increment and Decrement Operators
 
 Programmers, of course, know that one of the most common operations with a numeric variable is to add or subtract 1. Java, following in the footsteps of C and C++, has both increment and decrement operators: n++ adds 1 to the current value of the variable n, and n-- subtracts 1 from it. For example, the code
 
+```java
 int n = 12;
-
 n++;
+```
 
 changes n to 13. Since these operators change the value of a variable, they cannot be applied to numbers themselves. For example, 4++ is not a legal statement.
 
 There are two forms of these operators; you've just seen the postfix form of the operator that is placed after the operand. There is also a prefix form, ++n. Both change the value of the variable by 1. The difference between the two appears only when they are used inside expressions. The prefix form does the addition first; the postfix form evaluates to the old value of the variable.
 
-Click here to view code image
-
+```java
 int m = 7;
-
 int n = 7;
 
 int a = 2 * ++m; // now a is 16, m is 8
-
 int b = 2 * n++; // now b is 14, n is 8
+```
 
 We recommend against using ++ inside expressions because this often leads to confusing code and annoying bugs.
 
-3.5.7 Relational and boolean Operators
+3.5.6 自增与自减运算符
+
+当然，程序员都知道加 1、减 1 是数值变量最常见的操作。在 Java 中，借鉴了 C 和 C++ 的做法，也提供了自增、自减运算符：n++ 将变量 n 的当前值加 1，n-- 则将 n 的值减 1。例如，以下代码：
+
+将 n 的值改为 13。由于这些运算符会改变变量的值，所以它们的操作数不能是数值。例如，4++ 就不是一个合法的语句。
+
+实际上，这些运算符有两种形式；上面介绍的是运算符放在操作数后面的「后缀」形式。还有一种「前缀」形式：++n。后缀和前缀形式都会使变量值加 1 或减 1。但用在表达式中时，二者就有区别了。前缀形式会先完成加 1；而后缀形式会使用变量原来的值。
+
+建议不要在表达式中使用 ++，因为这样的代码很容易让人困惑，而且会带来烦人的 bug。
+
+#### 3.5.7 Relational and boolean Operators
 
 Java has the full complement of relational operators. To test for equality, use a double equal sign, ==. For example, the value of
 
+```java
 3 == 7
+```
 
 is false.
 
 Use a != for inequality. For example, the value of
 
+```java
 3 != 7
+```
 
 is true.
 
@@ -1009,13 +1022,15 @@ Finally, you have the usual < (less than), > (greater than), <= (less than or eq
 
 Java, following C++, uses && for the logical「and」operator and || for the logical「or」operator. As you can easily remember from the != operator, the exclamation point ! is the logical negation operator. The && and || operators are evaluated in「short circuit」fashion: The second argument is not evaluated if the first argument already determines the value. If you combine two expressions with the && operator,
 
+```java
 expression1 && expression2
+```
 
 and the truth value of the first expression has been determined to be false, then it is impossible for the result to be true. Thus, the value for the second expression is not calculated. This behavior can be exploited to avoid errors. For example, in the expression
 
-Click here to view code image
-
+```java
 x != 0 && 1 / x > x + y // no division by 0
+```
 
 the second part is never evaluated if x equals zero. Thus, 1 / x is not computed if x is zero, and no divide-by-zero error can occur.
 
@@ -1023,119 +1038,114 @@ Similarly, the value of expression1 || expression2 is automatically true if the 
 
 Finally, Java supports the ternary ?: operator that is occasionally useful. The expression
 
-Click here to view code image
-
+```java
 condition ? expression1 : expression2
+```
 
 evaluates to the first expression if the condition is true, to the second expression otherwise. For example,
 
+```java
 x < y ? x : y
+```
 
 gives the smaller of x and y.
 
-3.5.8 Bitwise Operators
+3.5.7 关系和 boolean 运算符
+
+Java 包含丰富的关系运算符。要检测相等性，可以使用两个等号 ==。例如，
+
+的值为 false。另外可以使用 != 检测不相等。例如，
+
+的值为 true。
+
+最后，还有经常使用的 <（小于）、>（大于）、<=（小于等于）和>=（大于等于）运算符。
+
+Java 沿用了 C++ 的做法，使用 && 表示逻辑「与」运算符，使用 || 表示逻辑「或」运算符。从 != 运算符可以想到，感叹号 ！ 就是逻辑非运算符。&& 和 || 运算符是按照「短路」方式来求值的：如果第一个操作数已经能够确定表达式的值，第二个操作数就不必计算了。如果用 && 运算符合并两个表达式，
+
+而且已经计算得到第一个表达式的真值为 false，那么结果就不可能为 true。因此，第二个表达式就不必计算了。可以利用这一点来避免错误。例如，在下面的表达式中：
+
+如果 x 等于 0，那么第二部分就不会计算。因此，如果 x 为 0，也就不会计算 1/x，除以 0 的错误就不会出现。
+
+类似地，如果第一个表达式为 true，`expression1 || expression2` 的值就自动为 true，而无需计算第二个表达式。
+
+最后一点，Java 支持三元操作符 ?:，这个操作符有时很有用。如果条件为 true，下面的表达式：
+
+就为第一个表达式的值，否则计算为第二个表达式的值。例如，
+
+会返回 x 和 y 中较小的一个。
+
+#### 3.5.8 Bitwise Operators
 
 For any of the integer types, you have operators that can work directly with the bits that make up the integers. This means that you can use masking techniques to get at individual bits in a number. The bitwise operators are
 
-Click here to view code image
-
-& (「and」) | (「or」) ^ (「xor」) ~ (「not」)
+```java
+& ("and") | ("or") ^ ("xor") ~ ("not")
+```
 
 These operators work on bit patterns. For example, if n is an integer variable, then
 
-Click here to view code image
-
+```java
 int fourthBitFromRight = (n & 0b1000) / 0b1000;
+```
 
 gives you a 1 if the fourth bit from the right in the binary representation of n is 1, and 0 otherwise. Using & with the appropriate power of 2 lets you mask out all but a single bit.
 
-Note
-
-When applied to boolean values, the & and | operators yield a boolean value. These operators are similar to the && and || operators, except that the & and | operators are not evaluated in「short circuit」fashion—that is, both arguments are evaluated before the result is computed.
+Note: When applied to boolean values, the & and | operators yield a boolean value. These operators are similar to the && and || operators, except that the & and | operators are not evaluated in「short circuit」fashion—that is, both arguments are evaluated before the result is computed.
 
 There are also >> and << operators which shift a bit pattern right or left. These operators are convenient when you need to build up bit patterns to do bit masking:
 
-Click here to view code image
-
+```java
 int fourthBitFromRight = (n & (1 << 3)) >> 3;
+```
 
 Finally, a >>> operator fills the top bits with zero, unlike >> which extends the sign bit into the top bits. There is no <<< operator.
 
-Caution
+Caution: The right-hand argument of the shift operators is reduced modulo 32 (unless the left-hand argument is a long, in which case the right-hand argument is reduced modulo 64). For example, the value of 1 << 35 is the same as 1 << 3 or 8.
 
-The right-hand argument of the shift operators is reduced modulo 32 (unless the left-hand argument is a long, in which case the right-hand argument is reduced modulo 64). For example, the value of 1 << 35 is the same as 1 << 3 or 8.
+C++ Note: In C/C++, there is no guarantee as to whether >> performs an arithmetic shift (extending the sign bit) or a logical shift (filling in with zeroes). Implementors are free to choose whichever is more efficient. That means the C/C++ >> operator may yield implementation-dependent results for negative numbers. Java removes that uncertainty.
 
-C++ Note
+3.5.8 位运算符
 
-In C/C++, there is no guarantee as to whether >> performs an arithmetic shift (extending the sign bit) or a logical shift (filling in with zeroes). Implementors are free to choose whichever is more efficient. That means the C/C++ >> operator may yield implementation-dependent results for negative numbers. Java removes that uncertainty.
+处理整型类型时，可以直接对组成整型数值的各个位完成操作。这意味着可以使用掩码技术得到整数中的各个位。位运算符包括：
 
-3.5.9 Parentheses and Operator Hierarchy
+这些运算符按位模式处理。例如，如果 n 是一个整数变量，而且用二进制表示的 n 从右边数第 4 位为 1，则：
+
+会返回 1，否则返回 0。利用 & 并结合使用适当的 2 的幂，可以把其他位掩掉，而只保留其中的某一位。
+
+注释：应用在布尔值上时，& 和 | 运算符也会得到一个布尔值。这些运算符与 && 和 || 运算符很类似，不过 & 和 | 运算符不采用「短路」方式来求值，也就是说，得到计算结果之前两个操作数都需要计算。
+
+另外，还有 >> 和 << 运算符将位模式左移或右移。需要建立位模式来完成位掩码时，这两个运算符会很方便：
+
+最后，>>> 运算符会用 0 填充高位，这与 >> 不同，它会用符号位填充高位。不存在 <<< 运算符。
+
+警告：移位运算符的右操作数要完成模 32 的运算（除非左操作数是 long 类型，在这种情况下需要对右操作数模 64）。例如，1<<35 的值等同于 1<<3 或 8。
+
+C++ 注释：在 C/C++ 中，不能保证 >> 是完成算术移位（扩展符号位）还是逻辑移位（填充 0）。实现者可以选择其中更高效的任何一种做法。这意味着 C/C++>> 运算符对于负数生成的结果可能会依赖于具体的实现。Java 则消除了这种不确定性。
+
+#### 3.5.9 Parentheses and Operator Hierarchy
 
 Table 3.4 shows the precedence of operators. If no parentheses are used, operations are performed in the hierarchical order indicated. Operators on the same level are processed from left to right, except for those that are right-associative, as indicated in the table. For example, && has a higher precedence than ||, so the expression
 
 Table 3.4 Operator Precedence
 
-Operators
+| Operators | Associativity |
+| --- | --- |
+| [] . () (method call) | Left to right |
+| ! ~ ++ -- + (unary) - (unary) () (cast) new | Right to left |
+| * / % | Left to right |
+| + - | Left to right |
+| << >> >>> | Left to right |
+| < <= > >= instanceof | Left to right |
+| == != | Left to right |
+| & | Left to right |
+| ^ | Left to right |
+| | | Left to right |
+| && | Left to right |
+| || | Left to right |
+| ?: | Right to left |
+| = += -= *= /= %= &= |= ^= <<= >>= >>>= | Right to left |
 
-Associativity
-
-[] . () (method call)
-
-Left to right
-
-! ~ ++ -- + (unary) - (unary) () (cast) new
-
-Right to left
-
-* / %
-
-Left to right
-
-+ -
-
-Left to right
-
-<< >> >>>
-
-Left to right
-
-< <= > >= instanceof
-
-Left to right
-
-== !=
-
-Left to right
-
-&
-
-Left to right
-
-^
-
-Left to right
-
-|
-
-Left to right
-
-&&
-
-Left to right
-
-||
-
-Left to right
-
-?:
-
-Right to left
-
-= += -= *= /= %= &= |= ^= <<= >>= >>>=
-
-Right to left
-
-a && b || c
+a && b
 
 means
 
@@ -1151,103 +1161,23 @@ a += (b += c)
 
 That is, the value of b += c (which is the value of b after the addition) is added to a.
 
-C++ Note
+C++ Note: Unlike C or C++, Java does not have a comma operator. However, you can use a comma-separated list of expressions in the first and third slot of a for statement.
 
-Unlike C or C++, Java does not have a comma operator. However, you can use a comma-separated list of expressions in the first and third slot of a for statement.
+3.5.9 括号与运算符级别
 
-3.5.3 强制类型转换
-
-在上一小节中看到，在必要的时候，int 类型的值将会自动地转换为 double 类型。但另一方面，有时也需要将 double 转换成 int。在 Java 中，允许进行这种数值之间的类型转换。当然，有可能会丢失一些信息。在这种情况下，需要通过强制类型转换（cast）实现这个操作。强制类型转换的语法格式是在圆括号中给出想要转换的目标类型，后面紧跟待转换的变量名。例如：
-
-这样，变量 nx 的值为 9。强制类型转换通过截断小数部分将浮点值转换为整型。
-
-如果想对浮点数进行舍入运算，以便得到最接近的整数（在很多情况下，这种操作更有用），那就需要使用 Math.round 方法：
-
-现在，变量 nx 的值为 10。当调用 round 的时候，仍然需要使用强制类型转换（int）。其原因是 round 方法返回的结果为 long 类型，由于存在信息丢失的可能性，所以只有使用显式的强制类型转换才能够将 long 类型转换成 int 类型。
-
-警告：如果试图将一个数值从一种类型强制转换为另一种类型，而又超出了目标类型的表示范围，结果就会截断成一个完全不同的值。例如，（byte）300 的实际值为 44。
-
-C++ 注释：不要在 boolean 类型与任何数值类型之间进行强制类型转换，这样可以防止发生错误。只有极少数的情况才需要将布尔类型转换为数值类型，这时可以使用条件表达式 b？1：0。
-
-3.5.4 结合赋值和运算符
-
-可以在赋值中使用二元运算符，这是一种很方便的简写形式。例如，
+表 3-4 给出了运算符的优先级。如果不使用圆括号，就按照给出的运算符优先级次序进行计算。同一个级别的运算符按照从左到右的次序进行计算（除了表中给出的右结合运算符外。）例如，由于 && 的优先级比 || 的优先级高，所以表达式表 3-4 运算符优先级：
 
 等价于：
 
-（一般地，要把运算符放在 = 号左边，如 *= 或 %=）。
+又因为 += 是右结合运算符，所以表达式：
 
-注释：如果运算符得到一个值，其类型与左侧操作数的类型不同，就会发生强制类型转换。例如，如果 x 是一个 int，则以下语句
-
-是合法的，将把 x 设置为（int）（x+3.5）。
-
-3.5.5 自增与自减运算符
-
-当然，程序员都知道加 1、减 1 是数值变量最常见的操作。在 Java 中，借鉴了 C 和 C++ 的做法，也提供了自增、自减运算符：n++ 将变量 n 的当前值加 1，n-- 则将 n 的值减 1。例如，以下代码：
-
-将 n 的值改为 13。由于这些运算符会改变变量的值，所以它们的操作数不能是数值。例如，4++ 就不是一个合法的语句。
-
-实际上，这些运算符有两种形式；上面介绍的是运算符放在操作数后面的「后缀」形式。还有一种「前缀」形式：++n。后缀和前缀形式都会使变量值加 1 或减 1。但用在表达式中时，二者就有区别了。前缀形式会先完成加 1；而后缀形式会使用变量原来的值。
-
-建议不要在表达式中使用 ++，因为这样的代码很容易让人困惑，而且会带来烦人的 bug。
-
-3.5.6 关系和 boolean 运算符
-
-Java 包含丰富的关系运算符。要检测相等性，可以使用两个等号 ==。例如，的值为 false。另外可以使用！= 检测不相等。例如，
-
-的值为 false。另外可以使用！= 检测不相等。例如，
-
-的值为 true。
-
-最后，还有经常使用的 <（小于）、>（大于）、<=（小于等于）和>=（大于等于）运算符。
-
-Java 沿用了 C++ 的做法，使用 && 表示逻辑「与」运算符，使用 || 表示逻辑「或」运算符。从！= 运算符可以想到，感叹号！就是逻辑非运算符。&& 和 || 运算符是按照「短路」方式来求值的：如果第一个操作数已经能够确定表达式的值，第二个操作数就不必计算了。如果用 && 运算符合并两个表达式，
-
-而且已经计算得到第一个表达式的真值为 false，那么结果就不可能为 true。因此，第二个表达式就不必计算了。可以利用这一点来避免错误。例如，在下面的表达式中：
-
-如果 x 等于 0，那么第二部分就不会计算。因此，如果 x 为 0，也就不会计算 1/x，除以 0 的错误就不会出现。
-
-类似地，如果第一个表达式为 true，expression1||expression2 的值就自动为 true，而无需计算第二个表达式。
-
-最后一点，Java 支持三元操作符？：，这个操作符有时很有用。如果条件为 true，下面的表达式
-
-就为第一个表达式的值，否则计算为第二个表达式的值。例如，
-
-会返回 x 和 y 中较小的一个。
-
-3.5.7 位运算符
-
-处理整型类型时，可以直接对组成整型数值的各个位完成操作。这意味着可以使用掩码技术得到整数中的各个位。位运算符包括：
-
-这些运算符按位模式处理。例如，如果 n 是一个整数变量，而且用二进制表示的 n 从右边数第 4 位为 1，则
-
-会返回 1，否则返回 0。利用 & 并结合使用适当的 2 的幂，可以把其他位掩掉，而只保留其中的某一位。
-
-注释：应用在布尔值上时，& 和 | 运算符也会得到一个布尔值。这些运算符与 && 和 || 运算符很类似，不过 & 和 | 运算符不采用「短路」方式来求值，也就是说，得到计算结果之前两个操作数都需要计算。
-
-另外，还有 >> 和 << 运算符将位模式左移或右移。需要建立位模式来完成位掩码时，这两个运算符会很方便：
-
-最后，>>> 运算符会用 0 填充高位，这与 >> 不同，它会用符号位填充高位。不存在 <<< 运算符。
-
-警告：移位运算符的右操作数要完成模 32 的运算（除非左操作数是 long 类型，在这种情况下需要对右操作数模 64）。例如，1<<35 的值等同于 1<<3 或 8。
-
-C++ 注释：在 C/C++ 中，不能保证 >> 是完成算术移位（扩展符号位）还是逻辑移位（填充 0）。实现者可以选择其中更高效的任何一种做法。这意味着 C/C++>> 运算符对于负数生成的结果可能会依赖于具体的实现。Java 则消除了这种不确定性。
-
-3.5.8 括号与运算符级别
-
-表 3-4 给出了运算符的优先级。如果不使用圆括号，就按照给出的运算符优先级次序进行计算。同一个级别的运算符按照从左到右的次序进行计算（除了表中给出的右结合运算符外。）例如，由于 && 的优先级比 || 的优先级高，所以表达式表 3-4 运算符优先级
-
-等价于
-
-又因为 += 是右结合运算符，所以表达式
-
-等价于
+等价于：
 
 也就是将 b+=c 的结果（加上 c 之后的 b）加到 a 上。
 
 C++ 注释：与 C 或 C++ 不同，Java 不使用逗号运算符。不过，可以在 for 语句的第 1 和第 3 部分中使用逗号分隔表达式列表。
 
-3.5.9 枚举类型
+3.5.10 枚举类型
 
 有时候，变量的取值只在一个有限的集合内。例如：销售的服装或比萨饼只有小、中、大和超大这四种尺寸。当然，可以将这些尺寸分别编码为 1、2、3、4 或 S、M、L、X。但这样存在着一定的隐患。在变量中很可能保存的是一个错误的值（如 0 或 m）。
 
