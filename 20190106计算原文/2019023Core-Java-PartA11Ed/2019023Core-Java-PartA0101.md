@@ -284,6 +284,18 @@ Figure 1.1 The Jmol applet
 
 When applets first appeared, they created a huge amount of excitement. Many people believe that the lure of applets was responsible for the astonishing popularity of Java. However, the initial excitement soon turned into frustration. Various versions of the Netscape and Internet Explorer browsers ran different versions of Java, some of which were seriously outdated. This sorry situation made it increasingly difficult to develop applets that took advantage of the most current Java version. Instead, Adobe's Flash technology became popular for achieving dynamic effects in the browser. Later, when Java was dogged by serious security issues, browsers and the Java browser plug-in became increasingly restrictive. Nowadays, it requires skill and dedication to get applets to work in your browser. For example, if you visit the Jmol web site at http://jmol.sourceforge.net/demo/aminoacids/, you will likely encounter a message exhorting you to configure your browser for allowing applets to run.
 
+1.3 Java applet 与 Internet
+
+这里的想法很简单：用户从 Internet 下载 Java 字节码，并在自己的机器上运行。
+
+在网页中运行的 Java 程序称为 applet。要使用 applet，需要启用 Java 的 Web 浏览器执行字节码。不需要安装任何软件。任何时候只要访问包含 applet 的网页都会得到程序的最新版本。最重要的是，要感谢虚拟机的安全性，它让我们不必再担心来自恶意代码的攻击。在网页中插入一个 applet 就如同在网页中嵌入一幅图片。applet 会成为页面的一部分。文本环绕着 applet 所占据的空间周围。关键的一点是这个图片是活动的。它可以对用户命令做出响应，改变外观，在运行它的计算机与提供它的计算机之间传递数据。
+
+图 1-1 展示了一个很好的动态网页的例子。Jmol applet 显示了分子结构，这将需要相当复杂的计算。在这个网页中，可以利用鼠标进行旋转，调整焦距等操作，以便更好地理解分子结构。用静态网页就无法实现这种直接的操作，而 applet 却可以达到此目的（可以在 http://jmol.sourceforge.net 上找到这个 applet）。
+
+图 1-1 Jmol applet
+
+当 applet 首次出现时，人们欣喜若狂。许多人相信 applet 的魅力将会导致 Java 迅速地流行起来。然而，初期的兴奋很快就淡化了。不同版本的 Netscape 与 Internet Explorer 运行不同版本的 Java，其中有些早已过时。这种糟糕的情况导致更加难于利用 Java 的最新版本开发 applet。实际上，为了在浏览器中得到动态效果，Adobe 的 Flash 技术变得相当流行。后来，Java 遭遇了严重的安全问题，浏览器和 Java 浏览器插件变得限制越来越多。如今，要在浏览器中使用 applet，这不仅需要一定的水平，而且要付出努力。例如，如果访问 Jmol 网站，可能会看到一个消息，警告你要适当地配置浏览器允许运行 applet。
+
 ### 1.4 A Short History of Java
 
 This section gives a short history of Java's evolution. It is based on various published sources (most importantly an interview with Java's creators in the July 1995 issue of SunWorld's online magazine).
@@ -341,6 +353,42 @@ Table 1.1 Evolution of the Java Language
 | 8 | 2014 | Lambda expressions, interfaces with default methods, stream and date/time libraries | 4,240 |
 | 9 | 2017 | Modules, miscellaneous language and library enhancements | 6,005 |
 
+1.4 Java 发展简史
+
+本节将介绍 Java 的发展简史。这些内容来自很多出版资料（最重要的是 SunWorld 的在线杂志 1995 年 7 月刊上对 Java 创建者的专访）。
+
+Java 的历史要追溯到 1991 年，由 Patrick Naughton 和 James Gosling（一个全能的计算机奇才）带领的 Sun 公司的工程师小组想要设计一种小型的计算机语言，主要用于像有线电视转换盒这类的消费设备。由于这些消费设备的处理能力和内存都很有限，所以语言必须非常小且能够生成非常紧凑的代码。另外，由于不同的厂商会选择不同的中央处理器（CPU），因此这种语言的关键是不与任何特定的体系结构捆绑在一起。这个项目被命名为「Green」。
+
+代码短小、紧凑且与平台无关，这些要求促使开发团队设计一个可移植的语言，可以为虚拟机生成中间代码。
+
+不过，Sun 公司的人都有 UNIX 的应用背景。因此，所开发的语言以 C++ 为基础，而不是 Lisp、Smalltalk 或 Pascal。不过，就像 Gosling 在专访中谈到的：「毕竟，语言只是实现目标的工具，而不是目标本身」。Gosling 把这种语言称为「Oak」（这么起名的原因大概是因为他非常喜欢自己办公室外的橡树）。Sun 公司的人后来发现 Oak 是一种已有的计算机语言的名字，于是，将其改名为 Java。事实证明这是一个很有灵感的选择。
+
+1992 年，Green 项目发布了它的第一个产品，称之为「*7」。这个产品具有非常智能的远程控制。遗憾的是，Sun 公司对生产这个产品并不感兴趣，Green 项目组的人员必须找出其他的方法来将他们的技术推向市场。然而，没有一个标准消费品电子公司对此感兴趣。于是，Green 项目组竞标了一个提供视频点播等新型服务的有线电视盒的项目，但没有成功（有趣的是，得到这个项目的公司的领导恰恰是开创 Netscape 公司的 Jim Clark。Netscape 公司后来对 Java 的成功给予了很大的帮助）。
+
+Green 项目（这时换了一个新名字 ——「First Person 公司」）花费了 1993 年一整年以及 1994 年的上半年，一直在苦苦寻求其技术的买家。然而，一个也没有找到（Patrick Naughton，项目组的创立人之一，也是完成此项目大多数市场工作的人，声称为了销售这项技术，累计飞行了 300000 英里）。1994 年 First Person 公司解散了。
+
+当这一切在 Sun 公司发生的时候，Internet 的万维网也在日渐发展壮大。万维网的关键是把超文本页面转换到屏幕上的浏览器。1994 年大多数人都在使用 Mosaic，这是一个 1993 年出自伊利诺斯大学超级计算中心的非商业化的 Web 浏览器（Mosaic 的一部分是由 Marc Andreessen 编写的。当时，他作为一名参加半工半读项目的本科生，编写了这个软件，每小时的薪水只有 6.85 美元。他后来成了 Netscape 公司的创始人之一和技术总监，可谓名利双收）。
+
+在接受 SunWorld 采访的时候，Gosling 说在 1994 年中期，Java 语言的开发者意识到：「我们能够建立一个相当酷的浏览器。我们已经拥有在客户机 / 服务器主流模型中所需要的体系结构中立、实时、可靠、安全 —— 这些在工作站环境并不太重要，所以，我们决定开发浏览器。」
+
+实际的浏览器是由 Patrick Naughton 和 Jonathan Payne 开发的，并演变为 HotJava 浏览器。为了炫耀 Java 语言超强的能力，HotJava 浏览器采用 Java 编写。设计者让 HotJava 浏览器具有在网页中执行内嵌代码的能力。这一「技术印证」在 1995 年 5 月 23 日的 SunWorld 上得到展示，同时引发了人们延续至今的对 Java 的狂热追逐。
+
+1996 年年初，Sun 发布了 Java 的第 1 个版本。人们很快地意识到 Java1.0 不能用来进行真正的应用开发。的确，可以使用 Java 1.0 来实现在画布上随机跳动的神经质的文本 applet，但它却没有提供打印功能。坦率地说，Java 1.0 的确没有为其黄金时期的到来做好准备。后来的 Java 1.1 弥补了其中的大多明显的缺陷，大大改进了反射能力，并为 GUI 编程增加了新的事件处理模型。不过它仍然具有很大的局限性。
+
+1998 年 JavaOne 会议的头号新闻是即将发布 Java 1.2 版。这个版本取代了早期玩具式的 GUI，并且它的图形工具箱更加精细而具有可伸缩性，更加接近「一次编写，随处运行」的承诺。在 1998 年 12 月 Java 1.2 发布三天之后，Sun 公司市场部将其名称改为更加吸引人的「Java 2 标准版软件开发工具箱 1.2 版」。
+
+除了「标准版」之外，Sun 还推出了两个其他的版本：一个是用于手机等嵌入式设备的「微型版」；另一个是用于服务器端处理的「企业版」。本书主要讲述标准版。
+
+标准版的 1.3 和 1.4 版本对最初的 Java 2 版本做出了某些改进，扩展了标准类库，提高系统性能。当然，还修正了一些 bug。在此期间，Java applet 采用低调姿态，并淡化了客户端的应用，但 Java 却成为服务器端应用的首选平台。
+
+5.0 版是自 1.1 版以来第一个对 Java 语言做出重大改进的版本（这一版本原来被命名为 1.5 版，在 2004 年的 JavaOne 会议之后，版本数字升至 5.0）。经历了多年的研究，这个版本添加了泛型类型（generic type）（类似于 C++ 的模板），其挑战性在于添加这一特性并没有对虚拟机做出任何修改。另外，还有几个受 C# 启发的很有用的语言特性：「for each」循环、自动装箱和注解。版本 6（没有后缀.0）于 2006 年年末发布。同样，这个版本没有对语言方面再进行改进。但是，改进了其他性能，并增强了类库。
+
+版本 6（没有后缀.0）于 2006 年年末发布。同样，这个版本没有对语言方面再进行改进。但是，改进了其他性能，并增强了类库。随着数据中心越来越依赖于商业硬件而不是专用服务器，Sun Microsystems 终于沦陷，于 2009 年被 Oracle 收购。Java 的开发停滞了很长一段时间。直到 2011 年 Oracle 发布了 Java 的一个新版本，Java7，其中只做了一些简单的改进。
+
+2014 年，Java 8 终于发布，在近 20 年中这个版本有了最大的改变。Java 8 提供了一种「函数式」编程方式，可以很容易地表述并发执行的计算。所有编程语言都必须与时俱进，Java 在这方面显示出非凡的能力。表 1-1 展示了 Java 语言以及类库的发展状况。可以看到，应用程序编程接口（API）的规模发生了惊人的变化。
+
+表 1-1 Java 语言的发展状况
+
 ### 1.5 Common Misconceptions about Java
 
 This chapter closes with a commented list of some common misconceptions about Java.
@@ -392,3 +440,57 @@ JavaScript, a scripting language that can be used inside web pages, was invented
 With Java, I can replace my desktop computer with a cheap「Internet appliance.」
 
 When Java was first released, some people bet big that this was going to happen. Companies produced prototypes of Java-powered network computers, but users were not ready to give up a powerful and convenient desktop for a limited machine with no local storage. Nowadays, of course, the world has changed, and for a large majority of end users, the platform that matters is a mobile phone or tablet. The majority of these devices are controlled by the Android platform, which is a derivative of Java. Learning Java programming will help you with Android programming as well.
+
+1.5 关于 Java 的常见误解
+
+在结束本章之前，我们列出了一些关于 Java 的常见误解，同时给出了解释。
+
+1、Java 是 HTML 的扩展。
+
+Java 是一种程序设计语言；HTML 是一种描述网页结构的方式。除了用于在网页上放置 Java applet 的 HTML 扩展之外，两者没有任何共同之处。
+
+2、使用 XML，所以不需要 Java。
+
+Java 是一种程序设计语言；XML 是一种描述数据的方式。可以使用任何一种程序设计语言处理 XML 数据，而 Java API 对 XML 处理提供了很好的支持。此外，许多重要的第三方 XML 工具采用 Java 编写。有关这方面更加详细的信息请参看卷 Ⅱ。
+
+3、Java 是一种非常容易学习的程序设计语言。
+
+像 Java 这种功能强大的语言大都不太容易学习。首先，必须将编写玩具式程序的轻松和开发实际项目的艰难区分开来。需要注意的是：本书只用了 7 章讨论 Java 语言。在两卷中，其他的章节介绍如何使用 Java 类库将 Java 语言应用到实际中去。Java 类库包含了数千种类和接口以及数万个函数。幸运的是，并不需要知道它们中的每一个，然而，要想 Java 解决实际问题，还是需要了解不少内容的。
+
+4、Java 将成为适用于所有平台的通用性编程语言。
+
+从理论上讲，这是完全有可能的。但在实际中，某些领域其他语言有更出色的表现，比如，Objective C 和后来的 Swift 在 iOS 设备上就有着无可取代的地位。浏览器中的处理几乎完全由 JavaScript 掌控。Windows 程序通常都用 C++ 或 C# 编写。Java 在服务器端编程和跨平台客户端应用领域则很有优势。
+
+5、Java 只不过是另外一种程序设计语言。
+
+Java 是一种很好的程序设计语言，很多程序设计人员喜欢 Java 胜过 C、C++ 或 C#。有上百种好的程序设计语言没有广泛地流行，而带有明显缺陷的语言，如：C++ 和 Visual Basic 却大行其道。
+
+这是为什么呢？程序设计语言的成功更多地取决于其支撑系统的能力，而不是优美的语法。人们主要关注：是否提供了易于实现某些功能的易用、便捷和标准的库？是否有开发工具提供商能建立强大的编程和调试环境？语言和工具集是否能够与其他计算基础架构整合在一起？Java 的成功源于其类库能够让人们轻松地完成原本有一定难度的事情。例如：联网 Web 应用和并发。Java 减少了指针错误，这是一个额外的好处，因此使用 Java 编程的效率更高。但这些并不是 Java 成功的全部原因。
+
+6、Java 是专用的，应该避免使用。
+
+最初创建 Java 时，Sun 为销售者和最终用户提供了免费许可。尽管 Sun 对 Java 拥有最终的控制权，不过在语言版本的不断发展和新库的设计过程中还涉及很多其他公司。虚拟机和类库的源代码可以免费获得，不过仅限于查看，而不能修改和再发布。Java 是「闭源的，不过可以很好地使用」。
+
+这种状况在 2007 年发生了戏剧性的变化，Sun 声称 Java 未来的版本将在 General Public License（GPL）下提供。Linux 使用的是同一个开放源代码许可。Oracle 一直致力于保持 Java 开源。只有一点美中不足 —— 专利。根据 GPL，任何人都可以得到专利许可，允许其使用和修改 Java，不过仅限于桌面和服务器平台。如果你想在嵌入式系统中使用 Java，就需要另外一个不同的许可，这很可能需要付费。不过，这些专利在未来十年就会到期，那时 Java 就完全免费了。
+
+7、Java 是解释型的，因此对于关键的应用程序速度太慢了。
+
+早期的 Java 是解释型的。现在 Java 虚拟机使用了即时编译器，因此采用 Java 编写的「热点」代码其运行速度与 C++ 相差无几，有些情况下甚至更快。
+
+对于 Java 桌面应用速度慢，人们已经抱怨很多年了。但是，今天的计算机速度远比人们发出抱怨的时候快了很多。一个较慢的 Java 程序与几年前相当快的 C++ 程序相比还要快一些。
+
+8、所有的 Java 程序都是在网页中运行的。
+
+所有的 Java applet 都是在网页浏览器中运行的。这也恰恰是 applet 的定义，即一种在浏览器中运行的 Java 程序。然而，大多数 Java 程序是运行在 Web 浏览器之外的独立应用程序。实际上，很多 Java 程序都在 Web 服务器上运行并生成用于网页的代码。
+
+9、Java 程序是主要的安全风险对于早期的 Java，有过关于安全系统失效的报道，曾经一度引起公众哗然。研究人员将这视为一种挑战，即努力找出 Java 的漏洞，对 applet 安全模型的强度和复杂度发起挑战。随后，人们很快就解决了引发问题的所有技术因素。后来又发现了更严重的漏洞，而 Sun 以及后来的 Oracle 反应却过于迟缓。浏览器制造商则有些反应过度，他们甚至默认禁用了 Java。客观地来讲，可以想想针对 Windows 可执行文件和 Word 宏有数百万种病毒攻击，并造成了巨大的损害，不过奇怪的是却很少有人批评被攻击平台的脆弱。
+
+有些系统管理员甚至在公司浏览器中禁用了 Java，而同时却允许用户下载可执行文件和 Word 文档，实际上，这些带来的风险远甚于使用 Java。尽管距离 Java 诞生已经 20 年之久，与其他常用的执行平台相比，Java 还是安全得多。
+
+10、JavaScript 是 Java 的简易版。
+
+JavaScript 是一种在网页中使用的脚本语言，它是由 Netscape 发明的，原来的名字叫做 LiveScript。JavaScript 的语法类似 Java，除此之外，两者无任何关系。当然，名字有些相像。JavaScript 的一个子集已经标准化为 ECMA-262。与 Java applet 相比，JavaScript 更紧密地与浏览器集成在一起。特别是 JavaScript 程序可以修改正在显示的文档，而 applet 只能在有限的区域内控制外观。
+
+11、使用 Java 可以用廉价的 Internet 设备取代桌面计算机。
+
+当 Java 刚刚发布的时候，一些人打赌：肯定会有这样的好事情发生。一些公司已经生产出 Java 网络计算机的原型，不过用户还不打算放弃功能强大而便利的桌面计算机，而去使用没有本地存储而且功能有限的网络设备。当然，如今世界已经发生改变，对于大多数最终用户，常用的平台往往是手机或平板电脑。这些设备大多使用安卓平台，这是 Java 的衍生产物。学习 Java 编程肯定也对 Android 编程很有帮助。
