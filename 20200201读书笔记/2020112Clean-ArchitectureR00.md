@@ -8,7 +8,7 @@
 
 常识：架构是高层，设计是底部细节。
 
-反常识： 
+反常识：
 
 数据源自「0101. What Is Design and Architecture」：
 
@@ -132,7 +132,7 @@ Science does not work by proving statements true, but rather by proving statemen
 
 Ultimately, we can say that mathematics is the discipline of proving provable statements true. Science, in contrast, is the discipline of proving provable statements false.
 
-1-2『有关科学与数学的区别，之前在很多地方看到过，比如吴军的数学通识课，但还是觉得这里作者将的相对通透，而且下面提到软件开发是科学范畴而非数学范畴，给自己醍醐灌顶的感觉。科学与数学的区别以及软件开发是科学范畴，做一张主题卡片。（2020-12-24）』——已完成
+1-2『有关科学与数学的区别，之前在很多地方看到过，比如吴军的数学通识课，但还是觉得这里作者将的相对通透，而且下面提到软件开发是科学范畴而非数学范畴，给自己醍醐灌顶的感觉。科学与数学的区别以及软件开发是科学范畴，做一张主题卡片。（2020-12-24）』—— 已完成
 
 科学和数学在证明方法上有着根本性的不同，科学理论和科学定律通常是无法被证明的，譬如我们并没有办法证明牛顿第二运动定律 F=ma 或者万有引カ定律 F=Gm1m2/r^2 是正确的，但我们可以用实际案例来演示这些定律的正确性，并通过高精度测量来证明当相关精度达到小数点后多少位时，被测量对象仍然一直满足这个定律。但我们始终没有办法像用数学方法一样推导出这个定律。而且，不管我们进行多少次正确的验，也无法排除今后会存在某一次实验可以推翻牛顿第二运动定律与万有引力定律的可能性。
 
@@ -162,7 +162,7 @@ Dijkstra 曾经说过「测试只能展示 Bug 的存在，并不能证明不存
 
 耗子叔观点：无论是微观世界的代码，还是宏观层面的架构，无论是三种程范式还是微服务架构，它们都在解决一个问题 一一 分离控制和逻辑。所谓控制就是对程序流转的与业务逻辑无关的代码或系统的控制（如多线程、异步、服务发现、部署、弹性伸缩等），所调逻辑则是实实在在的业务逻辑，是解决用户问题逻辑。控制和逻辑构成了整体的件复杂度，有效地分离控制和逻辑会让你的系统得到最大的简化。
 
-2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』——已完成
+2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』—— 已完成
 
 问题：如果你要成为一名架构师，你需要明确地区分几组词语（如何区分它们正是留给你的问题），否则你不可能成为一名合格的工程师或架构师。这几组词语是简单 VS 简陋、平衡 VS 妥协、迭代 VS 半成品。如果你不能很清楚地定义出其中的区別，那么你将很难做出正确的决定，也就不可能成为优秀的工程师或架构师。
 
@@ -304,7 +304,7 @@ Moreover, when there are cycles in the dependency graph, it can be very difficul
 
 Another, probably more significant, revolution was in programming paradigms. Paradigms are ways of programming, relatively unrelated to languages. A paradigm tells you which programming structures to use, and when to use them. To date, there have been three such paradigms. For reasons we shall discuss later, there are unlikely to be any others.
 
-1-2『编程范式，ways of programming，其与使用什么编程语言没啥关系的，编程范式做一张术语卡片。』——已完成
+1-2『编程范式，ways of programming，其与使用什么编程语言没啥关系的，编程范式做一张术语卡片。』—— 已完成
 
 除此之外，计算机编程领域还经历了另外一个更巨大、更重要的变革，那就是编程范式（paradigm）的变迁。编程范式指的是程序的编写模式，与具体的编程语言关系相对较小。这些范式会告诉你应该在什么时候采用什么样的代码结构。直到今天，我们也一共只有三个编程范式，而且未来几乎不可能再出现新的。
 
@@ -364,7 +364,7 @@ If the modules in your system can be deployed independently, then they can be de
 
 那么整个过程中。「接口」至关重要，而接口又对应于面向对象编程范式，对应于多态。这算稍微解决了之前的疑惑：依赖倒置跟面向对象编程范式有啥必要的联系。（2021-05-10）
 
-』——已完成
+』—— 已完成
 
 我们可以想象一下在安全和便利的多态支持出现之前，软件是什么样子的。下面有一个典型的调用树的例子，main 函数调用了一些高层函数，这些高层函数又调用了一些中层函数，这些中层函数又继续调用了一些底层函数。在这里，源代码层面的依赖不可避免地要跟随程序的控制流（详见图 5.1）。
 
@@ -388,7 +388,7 @@ Obviously, this approach sounds absurd. Over time, the number of transactions wo
 
 This is the idea behind event sourcing. 2 Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time. Of course, we can take shortcuts. For example, we can compute and save the state every midnight. Then, when the state information is required, we need compute only the transactions since midnight.
 
-2『时间溯源，做一张术语卡片。』——已完成
+2『时间溯源，做一张术语卡片。』—— 已完成
 
 Now consider the data storage required for this scheme: We would need a lot of it. Realistically, offline data storage has been growing so fast that we now consider trillions of bytes to be small — so we have a lot of it.
 
@@ -428,7 +428,7 @@ Martin has authored and edited many books, including The Clean Coder, Clean Code
 
 Every change to an abstract interface corresponds to a change to its concrete implementations. Conversely, changes to concrete implementations do not always, or even usually, require changes to the interfaces that they implement. Therefore interfaces are less volatile than implementations.
 
-1-2『第一次通透的明白，接口比实现更稳定，自例证做一张金句卡片。（2021-05-12）』—— 已完成
+1-2『第一次通透的明白，接口比实现更稳定，此例证做一张金句卡片。（2021-05-12）』—— 已完成
 
 我们每次修改抽象接口的时候，一定也会去修改对应的具体实现。但反过来，当我们修改具体实现时，却很少需要去修改相应的抽象接口。所以我们可以认为接口比实现更稳定。
 
@@ -444,11 +444,17 @@ Note that the flow of control crosses the curved line in the opposite direction 
 
 ### 0501. 任意卡 —— 单一职责原则 SRP 定义的演化
 
+提炼：
+
+A module should be responsible to one, and only one, actor.
+
+信息源自「0701 SRP: The Single Responsibility Principle」
+
 Of all the SOLID principles, the Single Responsibility Principle (SRP) might be the least well understood. That's likely because it has a particularly inappropriate name. It is too easy for programmers to hear the name and then assume that it means that every module should do just one thing.
 
 Make no mistake, there is a principle like that. A function should do one, and only one, thing. We use that principle when we are refactoring large functions into smaller functions; we use it at the lowest levels. But it is not one of the SOLID principles — it is not the SRP.
 
-Historically, the SRP has been described this way: 
+Historically, the SRP has been described this way:
 
 A module should have one, and only one, reason to change.
 
@@ -462,7 +468,7 @@ A module should be responsible to one, and only one, actor.
 
 Now, what do we mean by the word「module」? The simplest definition is just a source file. Most of the time that definition works fine. Some languages and development environments, though, don't use source files to contain their code. In those cases a module is just a cohesive set of functions and data structures.
 
-2『 SRP 定义的演化，做一张任意卡片。』——已完成
+2『 SRP 定义的演化，做一张任意卡片。』—— 已完成
 
 That word「cohesive」implies the SRP. Cohesion is the force that binds together the code responsible to a single actor. Perhaps the best way to understand this principle is by looking at the symptoms of violating it.
 
@@ -498,7 +504,7 @@ SRP 是 SOLID 五大设计原则中最容易被误解的一个。也许是名字
 
 观点：无论是微观世界的代码，还是宏观层面的架构，无论是三种程范式还是微服务架构，它们都在解决一个问题 一一 分离控制和逻辑。所谓控制就是对程序流转的与业务逻辑无关的代码或系统的控制（如多线程、异步、服务发现、部署、弹性伸等），所谓逻辑则是实实在在的业务逻辑，是解决用户问题逻辑。控制和逻辑构成了整体的件复杂度，有效地分离控制和逻辑会让你的系统得到最大的简化。
 
-2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』——已完成
+2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』—— 已完成
 
 问题：如果你要成为一名架构师，你需要明确地区分几组词语（如何区分它们正是留给你的问题），否则你不可能成为一名合格的工程师或架构师。这几组词语是简单 VS 简陋、平衡 VS 妥协、迭代 VS 半成品。如果你不能很清楚地定义出其中的区別，那么你将很难做出正确的决定，也就不可能成为优秀的工程师或架构师。
 
