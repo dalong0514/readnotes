@@ -1,3 +1,21 @@
+## 0501. Inheritance
+
+In this chapter
+
+5.1 Classes, Superclasses, and Subclasses
+
+5.2 Object: The Cosmic Superclass
+
+5.3 Generic Array Lists
+
+5.4 Object Wrappers and Autoboxing
+
+5.5 Methods with a Variable Number of Parameters
+
+5.6 Enumeration Classes
+
+5.7 Reflection
+
 5.8 Design Hints for Inheritance
 
 Chapter 4 introduced you to classes and objects. In this chapter, you will learn about inheritance, another fundamental concept of object-oriented programming. The idea behind inheritance is that you can create new classes that are built on existing classes. When you inherit from an existing class, you reuse (or inherit) its methods, and you can add new methods and fields to adapt your new class to new situations. This technique is essential in Java programming.
@@ -4627,18 +4645,3 @@ Don't overuse reflection.
 The reflection mechanism lets you write programs with amazing generality, by detecting fields and methods at runtime. This capability can be extremely useful for systems programming, but it is usually not appropriate in applications. Reflection is fragile—with it, the compiler cannot help you find programming errors. Any errors are found at runtime and result in exceptions.
 
 You have now seen how Java supports the fundamentals of object-oriented programming: classes, inheritance, and polymorphism. In the next chapter, we will tackle two advanced topics that are very important for using Java effectively: interfaces and lambda expressions.
-
-Chapter 6
-
-Interfaces, Lambda Expressions, and Inner Classes
-
-In this chapter
-
-6.1 Interfaces
-
-6.2 Lambda Expressions
-
-6.3 Inner Classes
-
-6.4 Service Loaders
-

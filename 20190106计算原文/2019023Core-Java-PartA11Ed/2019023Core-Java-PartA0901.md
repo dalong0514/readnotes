@@ -1,3 +1,19 @@
+## 0901. Collections
+
+In this chapter
+
+9.1 The Java Collections Framework
+
+9.2 Interfaces in the Collections Framework
+
+9.3 Concrete Collections
+
+9.4 Maps
+
+9.5 Views and Wrappers
+
+9.6 Algorithms
+
 9.7 Legacy Collections
 
 The data structures that you choose can make a big difference when you try to implement methods in a natural style or are concerned with performance. Do you need to search quickly through thousands (or even millions) of sorted items? Do you need to rapidly insert and remove elements in the middle of an ordered sequence? Do you need to establish associations between keys and values?
@@ -3687,18 +3703,3 @@ Click here to view code image
 50 }
 
 This completes our tour through the Java collections framework. As you have seen, the Java library offers a wide variety of collection classes for your programming needs. In the next chapter, you will learn how to write graphical user interfaces.
-
-Chapter 10
-
-Graphical User Interface Programming
-
-In this chapter
-
-10.1 A History of Java User Interface Toolkits
-
-10.2 Displaying Frames
-
-10.3 Displaying Information in a Component
-
-10.4 Event Handling
-

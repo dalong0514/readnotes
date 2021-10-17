@@ -1,3 +1,23 @@
+## 0801. Generic Programming
+
+In this chapter
+
+8.1 Why Generic Programming?
+
+8.2 Defining a Simple Generic Class
+
+8.3 Generic Methods
+
+8.4 Bounds for Type Variables
+
+8.5 Generic Code and the Virtual Machine
+
+8.6 Restrictions and Limitations
+
+8.7 Inheritance Rules for Generic Types
+
+8.8 Wildcard Types
+
 8.9 Reflection and Generics
 
 Generic classes and methods have type parameters. This allows them to describe precisely what should happen when they are instantiated with specific types. Prior to generic classes, programmers had to use the Object for writing code that works with multiple types. This was both cumbersome and unsafe.
@@ -2747,22 +2767,3 @@ gets the generic component type with which this array type was declared.
 You now know how to use generic classes and how to program your own generic classes and methods if the need arises. Just as importantly, you know how to decipher the generic type declarations that you may encounter in the API documentation and in error messages. For an exhaustive discussion of everything there is to know about Java generics, turn to Angelika Langer's excellent list of frequently (and not so frequently) asked questions at http://angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html.
 
 In the next chapter, you will see how the Java collections framework puts generics to work.
-
-Chapter 9
-
-Collections
-
-In this chapter
-
-9.1 The Java Collections Framework
-
-9.2 Interfaces in the Collections Framework
-
-9.3 Concrete Collections
-
-9.4 Maps
-
-9.5 Views and Wrappers
-
-9.6 Algorithms
-

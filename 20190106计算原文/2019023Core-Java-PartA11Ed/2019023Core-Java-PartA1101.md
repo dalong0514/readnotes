@@ -1,3 +1,19 @@
+## 1101. User Interface Components with Swing
+
+In this chapter
+
+11.1 Swing and the Model-View-Controller Design Pattern
+
+11.2 Introduction to Layout Management
+
+11.3 Text Input
+
+11.4 Choice Components
+
+11.5 Menus
+
+11.6 Sophisticated Layout Management
+
 11.7 Dialog Boxes
 
 The previous chapter was written primarily to show you how to use the event model in Java. In the process, you took the first steps toward learning how to build a graphical user interface. This chapter shows you the most important tools you'll need to build more full-featured GUIs.
@@ -5007,24 +5023,3 @@ Boolean isTraversable(File f)
 returns Boolean.TRUE if f is a directory that the user can open. This method might return Boolean.FALSE if a directory is conceptually a compound document. Like all FileView methods, this method can return null to signify that the file chooser should consult the default view instead.
 
 This ends our discussion of Swing programming. Turn to Volume II for more advanced Swing components and sophisticated graphics techniques.
-
-Chapter 12
-
-Concurrency
-
-In this chapter
-
-12.1 What Are Threads?
-
-12.2 Thread States
-
-12.3 Thread Properties
-
-12.4 Synchronization
-
-12.5 Thread-Safe Collections
-
-12.6 Tasks and Thread Pools
-
-12.7 Asynchronous Computations
-

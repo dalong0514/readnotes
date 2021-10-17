@@ -1,3 +1,17 @@
+## 0701. Exceptions, Assertions, and Logging
+
+In this chapter
+
+7.1 Dealing with Errors
+
+7.2 Catching Exceptions
+
+7.3 Tips for Using Exceptions
+
+7.4 Using Assertions
+
+7.5 Logging
+
 7.6 Debugging Tips
 
 In a perfect world, users would never enter data in the wrong form, files they choose to open would always exist, and code would never have bugs. So far, we have mostly presented code as if we lived in this kind of perfect world. It is now time to turn to the mechanisms the Java programming language has for dealing with the real world of bad data and buggy code.
@@ -3043,26 +3057,3 @@ Java Mission Control is a professional-level profiling and diagnostics tool that
 See https://docs.oracle.com/javacomponents/index.html for more information about these tools.
 
 This chapter introduced you to exception handling and logging. You also saw useful hints for testing and debugging. The next two chapters cover generic programming and its most important application: the Java collections framework.
-
-Chapter 8
-
-Generic Programming
-
-In this chapter
-
-8.1 Why Generic Programming?
-
-8.2 Defining a Simple Generic Class
-
-8.3 Generic Methods
-
-8.4 Bounds for Type Variables
-
-8.5 Generic Code and the Virtual Machine
-
-8.6 Restrictions and Limitations
-
-8.7 Inheritance Rules for Generic Types
-
-8.8 Wildcard Types
-

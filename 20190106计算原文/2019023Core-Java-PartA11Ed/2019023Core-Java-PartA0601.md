@@ -1,3 +1,15 @@
+## 0601. Interfaces, Lambda Expressions, and Inner Classes
+
+In this chapter
+
+6.1 Interfaces
+
+6.2 Lambda Expressions
+
+6.3 Inner Classes
+
+6.4 Service Loaders
+
 6.5 Proxies
 
 You have now learned about classes and inheritance, the key concepts of object-oriented programming in Java. This chapter shows you several advanced techniques that are commonly used. Despite their less obvious nature, you will need to master them to complete your Java tool chest.
@@ -3999,20 +4011,3 @@ static boolean isProxyClass(Class<?> cl)
 returns true if cl is a proxy class.
 
 This ends our final chapter on the object-oriented features of the Java programming language. Interfaces, lambda expressions, and inner classes are concepts that you will encounter frequently, whereas cloning, service loaders, and proxies are advanced techniques that are of interest mainly to library designers and tool builders, not application programmers. You are now ready to learn how to deal with exceptional situations in your programs in Chapter 7.
-
-Chapter 7
-
-Exceptions, Assertions, and Logging
-
-In this chapter
-
-7.1 Dealing with Errors
-
-7.2 Catching Exceptions
-
-7.3 Tips for Using Exceptions
-
-7.4 Using Assertions
-
-7.5 Logging
-

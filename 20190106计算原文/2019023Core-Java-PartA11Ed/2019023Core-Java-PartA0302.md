@@ -1100,21 +1100,21 @@ System.out.println(a[i]);
 
 Java has a powerful looping construct that allows you to loop through each element in an array (or any other collection of elements) without having to fuss with index values.
 
-The enhanced for loop
+The enhanced for loop:
 
-Click here to view code image
-
+```java
 for (variable : collection) statement
+```
 
 sets the given variable to each element of the collection and then executes the statement (which, of course, may be a block). The collection expression must be an array or an object of a class that implements the Iterable interface, such as ArrayList. We discuss array lists in Chapter 5 and the Iterable interface in Chapter 9.
 
 For example,
 
-Click here to view code image
-
+```java
 for (int element : a)
 
 System.out.println(element);
+```
 
 prints each element of the array a on a separate line.
 
@@ -1122,25 +1122,23 @@ You should read this loop as「for each element in a」. The designers of the Ja
 
 Of course, you could achieve the same effect with a traditional for loop:
 
-Click here to view code image
-
+```java
 for (int i = 0; i < a.length; i++)
 
 System.out.println(a[i]);
+```
 
 However, the「for each」loop is more concise and less error-prone, as you don't have to worry about those pesky start and end index values.
 
-Note
-
-The loop variable of the「for each」loop traverses the elements of the array, not the index values.
+Note: The loop variable of the「for each」loop traverses the elements of the array, not the index values.
 
 The「for each」loop is a pleasant improvement over the traditional loop if you need to process all elements in a collection. However, there are still plenty of opportunities to use the traditional for loop. For example, you might not want to traverse the entire collection, or you may need the index value inside the loop.
 
 Tip: There is an even easier way to print all values of an array, using the toString method of the Arrays class. The call Arrays.toString(a) returns a string containing the array elements, enclosed in brackets and separated by commas, such as "[2, 3, 5, 7, 11, 13]". To print the array, simply call
 
-Click here to view code image
-
+```java
 System.out.println(Arrays.toString(a));
+```
 
 3.10.3 for each 循环
 
@@ -1158,49 +1156,51 @@ Java 有一种功能很强的循环结构，可以用来依次处理数组中的
 
 注释：for each 循环语句的循环变量将会遍历数组中的每个元素，而不需要使用下标值。如果需要处理一个集合中的所有元素，for each 循环语句对传统循环语句所进行的改进更是叫人称赞不已。然而，在很多场合下，还是需要使用传统的 for 循环。例如，如果不希望遍历集合中的每个元素，或者在循环内部需要使用下标值等。
 
-提示：有个更加简单的方式打印数组中的所有值，即利用 Arrays 类的 toString 方法。调用 Arrays.toString（a），返回一个包含数组元素的字符串，这些元素被放置在括号内，并用逗号分隔，例如，「[2，3，5，7，11，13]」。要想打印数组，可以调用
+提示：有个更加简单的方式打印数组中的所有值，即利用 Arrays 类的 toString 方法。调用 Arrays.toString(a)，返回一个包含数组元素的字符串，这些元素被放置在括号内，并用逗号分隔，例如，"[2，3，5，7，11，13]"。要想打印数组，可以调用
 
 #### 3.10.4 Array Copying
 
 You can copy one array variable into another, but then both variables refer to the same array:
 
-Click here to view code image
-
+```java
 int[] luckyNumbers = smallPrimes;
 
 luckyNumbers[5] = 12; // now smallPrimes[5] is also 12
+```
 
 Figure 3.14 shows the result. If you actually want to copy all values of one array into a new array, use the copyOf method in the Arrays class:
 
 Figure 3.14 Copying an array variable
 
-Click here to view code image
-
+```java
 int[] copiedLuckyNumbers = Arrays.copyOf(luckyNumbers, luckyNumbers.length);
+```
 
 The second parameter is the length of the new array. A common use of this method is to increase the size of an array:
 
-Click here to view code image
-
+```java
 luckyNumbers = Arrays.copyOf(luckyNumbers, 2 * luckyNumbers.length);
+```
 
 The additional elements are filled with 0 if the array contains numbers, false if the array contains boolean values. Conversely, if the length is less than the length of the original array, only the initial values are copied.
 
-C++ Note
+C++ Note: A Java array is quite different from a C++ array on the stack. It is, however, essentially the same as a pointer to an array allocated on the heap. That is,
 
-A Java array is quite different from a C++ array on the stack. It is, however, essentially the same as a pointer to an array allocated on the heap. That is,
-
-Click here to view code image
-
+```java
 int[] a = new int[100]; // Java
+```
 
 is not the same as
 
+```java
 int a[100]; // C++
+```
 
 but rather
 
+```java
 int* a = new int[100]; // C++
+```
 
 In Java, the [] operator is predefined to perform bounds checking. Furthermore, there is no pointer arithmetic—you can't increment a to point to the next element in the array.
 
@@ -1208,7 +1208,9 @@ In Java, the [] operator is predefined to perform bounds checking. Furthermore, 
 
 在 Java 中，允许将一个数组变量拷贝给另一个数组变量。这时，两个变量将引用同一个数组：
 
-图 3-14 显示了拷贝的结果。如果希望将一个数组的所有值拷贝到一个新的数组中去，就要使用 Arrays 类的 copyOf 方法： 图 3-14 拷贝一个数组变量
+图 3-14 显示了拷贝的结果。如果希望将一个数组的所有值拷贝到一个新的数组中去，就要使用 Arrays 类的 copyOf 方法：
+
+图 3-14 拷贝一个数组变量
 
 第 2 个参数是新数组的长度。这个方法通常用来增加数组的大小：
 
@@ -1216,7 +1218,9 @@ In Java, the [] operator is predefined to perform bounds checking. Furthermore, 
 
 C++ 注释：Java 数组与 C++ 数组在堆栈上有很大不同，但基本上与分配在堆（heap）上的数组指针一样。也就是说，
 
-不同于 而等同于
+不同于：
+
+而等同于：
 
 Java 中的 [] 运算符被预定义为检查数组边界，而且没有指针运算，即不能通过 a 加 1 得到数组的下一个元素。
 
@@ -1226,85 +1230,76 @@ You have already seen one example of a Java array repeated quite a few times. Ev
 
 For example, consider this program:
 
-Click here to view code image
-
+```java
 public class Message
-
 {
-
-public static void main(String[] args)
-
-{
-
-if (args.length == 0 || args[0].equals("-h"))
-
-System.out.print("Hello,");
-
-else if (args[0].equals("-g"))
-
-System.out.print("Goodbye,");
-
-// print the other command-line arguments
-
-for (int i = 1; i < args.length; i++)
-
-System.out.print(" " + args[i]);
-
-System.out.println("!");
-
+    public static void main(String[] args)
+    {
+        if (args.length == 0 || args[0].equals("-h"))
+            System.out.print("Hello,");
+        else if (args[0].equals("-g"))
+            System.out.print("Goodbye,");
+        // print the other command-line arguments
+        for (int i = 1; i < args.length; i++)
+            System.out.print(" " + args[i]);
+        System.out.println("!");
+    }
 }
-
-}
+```
 
 If the program is called as
 
-Click here to view code image
-
+```
 java Message -g cruel world
+```
 
 then the args array has the following contents:
 
-Click here to view code image
-
+```
 args[0]: "-g"
 
 args[1]: "cruel"
 
 args[2]: "world"
+```
 
-The program prints the message
-
-Click here to view code image
+The program prints the message:
 
 Goodbye, cruel world!
 
-C++ Note
+C++ Note: In the main method of a Java program, the name of the program is not stored in the args array. For example, when you start up a program as:
 
-In the main method of a Java program, the name of the program is not stored in the args array. For example, when you start up a program as
-
-Click here to view code image
-
+```
 java Message -h world
+```
 
 from the command line, then args[0] will be "-h" and not "Message" or "java".
 
-3.10.6 Array Sorting
+3.10.5 命令行参数
+
+前面已经看到多个使用 Java 数组的示例。每一个 Java 应用程序都有一个带 String arg[] 参数的 main 方法。这个参数表明 main 方法将接收一个字符串数组，也就是命令行参数。例如，看一看下面这个程序：
+
+如果使用下面这种形式运行这个程序：
+
+args 数组将包含下列内容：
+
+这个程序将显示下列信息：
+
+C++ 注释：在 Java 应用程序的 main 方法中，程序名并没有存储在 args 数组中。例如，当使用下列命令运行程序时 args[0] 是「-h」，而不是「Message」或「java」。
+
+#### 3.10.6 Array Sorting
 
 To sort an array of numbers, you can use one of the sort methods in the Arrays class:
 
-Click here to view code image
-
+```java
 int[] a = new int[10000];
-
 . . .
-
 Arrays.sort(a)
+```
 
 This method uses a tuned version of the QuickSort algorithm that is claimed to be very efficient on most data sets. The Arrays class provides several other convenience methods for arrays that are included in the API notes at the end of this section.
 
 The program in Listing 3.7 puts arrays to work. This program draws a random combination of numbers for a lottery game. For example, if you play a「choose 6 numbers from 49」lottery, the program might print this:
-
-Click here to view code image
 
 Bet the following combination. It'll make you rich!
 
@@ -1322,147 +1317,98 @@ Bet the following combination. It'll make you rich!
 
 To select such a random set of numbers, we first fill an array numbers with the values 1, 2, . . ., n:
 
-Click here to view code image
-
+```java
 int[] numbers = new int[n];
-
 for (int i = 0; i < numbers.length; i++)
-
-numbers[i] = i + 1;
+    numbers[i] = i + 1;
+```
 
 A second array holds the numbers to be drawn:
 
-Click here to view code image
-
+```java
 int[] result = new int[k];
+```
 
 Now we draw k numbers. The Math.random method returns a random floating-point number that is between 0 (inclusive) and 1 (exclusive). By multiplying the result with n, we obtain a random number between 0 and n – 1.
 
-Click here to view code image
-
+```java
 int r = (int) (Math.random() * n);
+```
 
 We set the ith result to be the number at that index. Initially, that is just r + 1, but as you'll see presently, the contents of the numbers array are changed after each draw.
 
-Click here to view code image
-
+```java
 result[i] = numbers[r];
+```
 
 Now we must be sure never to draw that number again—all lottery numbers must be distinct. Therefore, we overwrite numbers[r] with the last number in the array and reduce n by 1.
 
-Click here to view code image
-
+```java
 numbers[r] = numbers[n - 1];
-
 n--;
+```
 
 The point is that in each draw we pick an index, not the actual value. The index points into an array that contains the values that have not yet been drawn.
 
 After drawing k lottery numbers, we sort the result array for a more pleasing output:
 
-Click here to view code image
-
+```java
 Arrays.sort(result);
-
 for (int r : result)
-
-System.out.println(r);
+    System.out.println(r);
+```
 
 Listing 3.7 LotteryDrawing/LotteryDrawing.java
 
-Click here to view code image
+```java
+import java.util.*;
 
-1 import java.util.*;
+/**
+* This program demonstrates array manipulation.
+* @version 1.20 2004-02-10
+* @author Cay Horstmann
+*/
 
-2
+public class LotteryDrawing
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
 
-3 /**
+        System.out.print("How many numbers do you need to draw? ");
+        int k = in.nextInt();
 
-4 * This program demonstrates array manipulation.
+        System.out.print("What is the highest number you can draw? ");
 
-5 * @version 1.20 2004-02-10
+        int n = in.nextInt();
 
-6 * @author Cay Horstmann
+        // fill an array with numbers 1 2 3 . . . n
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++)
+            numbers[i] = i + 1;
 
-7 */
+        // draw k numbers and put them into a second array
+        int[] result = new int[k];
+        for (int i = 0; i < result.length; i++)
+        {
+            // make a random index between 0 and n - 1
+            int r = (int) (Math.random() * n);
+            // pick the element at the random location
+            result[i] = numbers[r];
 
-8 public class LotteryDrawing
+            // move the last element into the random location
+            numbers[r] = numbers[n - 1];
+            n--;
+        }
 
-9 {
-
-10 public static void main(String[] args)
-
-11 {
-
-12 Scanner in = new Scanner(System.in);
-
-13
-
-14 System.out.print("How many numbers do you need to draw? ");
-
-15 int k = in.nextInt();
-
-16
-
-17 System.out.print("What is the highest number you can draw? ");
-
-18 int n = in.nextInt();
-
-19
-
-20 // fill an array with numbers 1 2 3 . . . n
-
-21 int[] numbers = new int[n];
-
-22 for (int i = 0; i < numbers.length; i++)
-
-23 numbers[i] = i + 1;
-
-24
-
-25 // draw k numbers and put them into a second array
-
-26 int[] result = new int[k];
-
-27 for (int i = 0; i < result.length; i++)
-
-28 {
-
-29 // make a random index between 0 and n - 1
-
-30 int r = (int) (Math.random() * n);
-
-31
-
-32 // pick the element at the random location
-
-33 result[i] = numbers[r];
-
-34
-
-35 // move the last element into the random location
-
-36 numbers[r] = numbers[n - 1];
-
-37 n--;
-
-38 }
-
-39
-
-40 // print the sorted array
-
-41 Arrays.sort(result);
-
-42 System.out.println("Bet the following combination. It'll make you rich!");
-
-43 for (int r : result)
-
-44 System.out.println(r);
-
-45 }
-
-46 }
+        // print the sorted array
+        Arrays.sort(result);
+        System.out.println("Bet the following combination. It'll make you rich!");
+        for (int r : result)
+            System.out.println(r);
+    }
+}
+```
 
 java.util.Arrays 1.2
 
@@ -1494,19 +1440,79 @@ static boolean equals(xxx[] a, xxx[] b)
 
 returns true if the arrays have the same length and if the elements at corresponding indexes match.
 
-3.10.5 命令行参数
+3.10.6 数组排序
 
-前面已经看到多个使用 Java 数组的示例。每一个 Java 应用程序都有一个带 String arg [] 参数的 main 方法。这个参数表明 main 方法将接收一个字符串数组，也就是命令行参数。例如，看一看下面这个程序：
+要想对数值型数组进行排序，可以使用 Arrays 类中的 sort 方法：
 
-如果使用下面这种形式运行这个程序：
+这个方法使用了优化的快速排序算法。快速排序算法对于大多数数据集合来说都是效率比较高的。Arrays 类还提供了几个使用很便捷的方法，在稍后的 API 注释中将介绍它们。
 
-args 数组将包含下列内容：
+程序清单 3-7 中的程序用到了数组，它产生一个抽彩游戏中的随机数值组合。假如抽彩是从 49 个数值中抽取 6 个，那么程序可能的输出结果为：
 
-这个程序将显示下列信息：
+要想选择这样一个随机的数值集合，就要首先将数值 1, 2, …, n 存入数组 numbers 中：
 
-C++ 注释：在 Java 应用程序的 main 方法中，程序名并没有存储在 args 数组中。例如，当使用下列命令运行程序时
+而用第二个数组存放抽取出来的数值：
 
-args [0] 是「-h」，而不是「Message」或「java」。
+现在，就可以开始抽取 k 个数值了。Math.random 方法将返回一个 0 到 1 之间（包含 0、不包含 1）的随机浮点数。用 n 乘以这个浮点数，就可以得到从 0 到 n-1 之间的一个随机数。
+
+下面将 result 的第 i 个元素设置为 numbers [r] 存放的数值，最初是 r+1。但正如所看到的，numbers 数组的内容在每一次抽取之后都会发生变化。现在，必须确保不会再次抽取到那个数值，因为所有抽彩的数值必须不相同。因此，这里用数组中的最后一个数值改写 number [r]，并将 n 减 1。
+
+关键在于每次抽取的都是下标，而不是实际的值。下标指向包含尚未抽取过的数组元素。在抽取了 k 个数值之后，就可以对 result 数组进行排序了，这样可以让输出效果更加清晰：
+
+程序清单 3-7 LotteryDrawing/LotteryDrawing.java
+
+ava.util.Arrays 1.2
+
+static String toString（type [] a）5.0
+
+返回包含 a 中数据元素的字符串，这些数据元素被放在括号内，并用逗号分隔。
+
+参数：a　
+
+类型为 int、long、short、char、byte、boolean、float 或 double 的数组。
+
+static type copyOf（type[]a，int length）6
+
+static type copyOfRange（type [] a，int start，int end）6
+
+返回与 a 类型相同的一个数组，其长度为 length 或者 end-start，数组元素为 a 的值。
+
+参数：a　
+
+类型为 int、long、short、char、byte、boolean、float 或 double 的数组。
+
+start 起始下标（包含这个值）。end　终止下标（不包含这个值）。这个值可能大于 a.length。在这种情况下，结果为 0 或 false。length　拷贝的数据元素长度。如果 length 值大于 a.length，结果为 0 或 false；否则，数组中只有前面 length 个数据元素的拷贝值。
+
+static void sort（type [] a）采用优化的快速排序算法对数组进行排序。
+
+参数：a　
+
+类型为 int、long、short、char、byte、boolean、float 或 double 的数组。
+
+static int binarySearch（type [] a，type v）
+
+static int binarySearch（type [] a，int start，int end，type v）6
+
+采用二分搜索算法查找值 v。如果查找成功，则返回相应的下标值；否则，返回一个负数值 r。-r-1 是为保持 a 有序 v 应插入的位置。
+
+参数：a　
+
+类型为 int、long、short、char、byte、boolean、float 或 double 的有序数组。
+
+start 起始下标（包含这个值）。end 终止下标（不包含这个值）。v 同 a 的数据元素类型相同的值。
+
+static void fill（type [] a，type v）将数组的所有数据元素值设置为 v。
+
+参数：a　
+
+类型为 int、long、short、char、byte、boolean、float 或 double 的数组。
+
+v 与 a 数据元素类型相同的一个值。
+
+static boolean equals（type [] a，type [] b）如果两个数组大小相同，并且下标相同的元素都对应相等，返回 true。
+
+参数：a、b　
+
+类型为 int、long、short、char、byte、boolean、float 或 double 的两个数组。
 
 #### 3.10.7 Multidimensional Arrays
 
@@ -1520,213 +1526,137 @@ You can store this information in a two-dimensional array (matrix), which we cal
 
 Declaring a two-dimensional array in Java is simple enough. For example:
 
+```java
 double[][] balances;
+```
 
 You cannot use the array until you initialize it. In this case, you can do the initialization as follows:
 
-Click here to view code image
-
+```java
 balances = new double[NYEARS][NRATES];
+```
 
 In other cases, if you know the array elements, you can use a shorthand notation for initializing a multidimensional array without a call to new. For example:
 
-Click here to view code image
-
+```java
 int[][] magicSquare =
-
-{
-
-{16, 3, 2, 13},
-
-{5, 10, 11, 8},
-
-{9, 6, 7, 12},
-
-{4, 15, 14, 1}
-
-};
+        {
+                {16, 3, 2, 13},
+                {5, 10, 11, 8},
+                {9, 6, 7, 12},
+                {4, 15, 14, 1}
+        };
+```
 
 Once the array is initialized, you can access individual elements by supplying two pairs of brackets—for example, balances[i][j].
 
 The example program stores a one-dimensional array interest of interest rates and a two-dimensional array balances of account balances, one for each year and interest rate. We initialize the first row of the array with the initial balance:
 
-Click here to view code image
-
+```java
 for (int j = 0; j < balances[0].length; j++)
-
-balances[0][j] = 10000;
+    balances[0][j] = 10000;
+```
 
 Then we compute the other rows, as follows:
 
-Click here to view code image
+```java
+for (int i = 1; i < args.length; i++)
+    System.out.print(" " + args[i]);
+System.out.println("!");
 
 for (int i = 1; i < balances.length; i++)
-
 {
-
-for (int j = 0; j < balances[i].length; j++)
-
-{
-
-double oldBalance = balances[i - 1][j];
-
-double interest = . . .;
-
-balances[i][j] = oldBalance + interest;
-
+    for (int j = 0; j < balances[i].length; j++)
+    {
+        double oldBalance = balances[i - 1][j];
+        double interest = . . .;
+        balances[i][j] = oldBalance + interest;
+    }
 }
-
-}
+```
 
 Listing 3.8 shows the full program.
 
 Note: A「for each」loop does not automatically loop through all elements in a two-dimensional array. Instead, it loops through the rows, which are themselves one-dimensional arrays. To visit all elements of a two-dimensional array a, nest two loops, like this:
 
-Click here to view code image
-
+```java
 for (double[] row : a)
-
 for (double value : row)
-
 do something with value
+```
 
-Tip
-
-To print out a quick-and-dirty list of the elements of a two-dimensional array, call
-
-Click here to view code image
+Tip: To print out a quick-and-dirty list of the elements of a two-dimensional array, call
 
 System.out.println(Arrays.deepToString(a));
 
 The output is formatted like this:
 
-Click here to view code image
-
 [[16, 3, 2, 13], [5, 10, 11, 8], [9, 6, 7, 12], [4, 15, 14, 1]]
 
 Listing 3.8 CompoundInterest/CompoundInterest.java
 
-Click here to view code image
+```java
+/**
+* This program shows how to store tabular data in a 2D array.
+* @version 1.40 2004-02-10
+* @author Cay Horstmann
+*/
 
-1 /**
+public class CompoundInterest
+{
+    public static void main(String[] args)
+    {
+        final double STARTRATE = 10;
+        final int NRATES = 6;
+        final int NYEARS = 10;
 
-2 * This program shows how to store tabular data in a 2D array.
+        // set interest rates to 10 . . . 15%
+        double[] interestRate = new double[NRATES];
+        for (int j = 0; j < interestRate.length; j++)
+            interestRate[j] = (STARTRATE + j) / 100.0;
+        double[][] balances = new double[NYEARS][NRATES];
+        // set initial balances to 10000
+        for (int j = 0; j < balances[0].length; j++)
+            balances[0][j] = 10000;
+        // compute interest for future years
+        for (int i = 1; i < balances.length; i++)
+        {
+            for (int j = 0; j < balances[i].length; j++)
+            {
+                // get last year's balances from previous row
+                double oldBalance = balances[i - 1][j];
+                // compute interest
+                double interest = oldBalance * interestRate[j];
+                // compute this year's balances
+                balances[i][j] = oldBalance + interest;
+            }
+        }
 
-3 * @version 1.40 2004-02-10
+        // print one row of interest rates
+        for (int j = 0; j < interestRate.length; j++)
+            System.out.printf("%9.0f%%", 100 * interestRate[j]);
 
-4 * @author Cay Horstmann
+        System.out.println();
+        // print balance table
+        for (double[] row : balances)
 
-5 */
-
-6 public class CompoundInterest
-
-7 {
-
-8 public static void main(String[] args)
-
-9 {
-
-10 final double STARTRATE = 10;
-
-11 final int NRATES = 6;
-
-12 final int NYEARS = 10;
-
-13
-
-14 // set interest rates to 10 . . . 15%
-
-15 double[] interestRate = new double[NRATES];
-
-16 for (int j = 0; j < interestRate.length; j++)
-
-17 interestRate[j] = (STARTRATE + j) / 100.0;
-
-18
-
-19 double[][] balances = new double[NYEARS][NRATES];
-
-20
-
-21 // set initial balances to 10000
-
-22 for (int j = 0; j < balances[0].length; j++)
-
-23 balances[0][j] = 10000;
-
-24
-
-25 // compute interest for future years
-
-26 for (int i = 1; i < balances.length; i++)
-
-27 {
-
-28 for (int j = 0; j < balances[i].length; j++)
-
-29 {
-
-30 // get last year's balances from previous row
-
-31 double oldBalance = balances[i - 1][j];
-
-32
-
-33 // compute interest
-
-34 double interest = oldBalance * interestRate[j];
-
-35
-
-36 // compute this year's balances
-
-37 balances[i][j] = oldBalance + interest;
-
-38 }
-
-39 }
-
-40
-
-41 // print one row of interest rates
-
-42 for (int j = 0; j < interestRate.length; j++)
-
-43 System.out.printf("%9.0f%%", 100 * interestRate[j]);
-
-44
-
-45 System.out.println();
-
-46
-
-47 // print balance table
-
-48 for (double[] row : balances)
-
-49 {
-
-50 // print table row
-
-51 for (double b : row)
-
-52 System.out.printf("%10.2f", b);
-
-53
-
-54 System.out.println();
-
-55 }
-
-56 }
-
-57 }
+        {
+            // print table row
+            for (double b : row)
+                System.out.printf("%10.2f", b);
+            System.out.println();
+        }
+    }
+}
+```
 
 3.10.7 多维数组
 
 多维数组将使用多个下标访问数组元素，它适用于表示表格或更加复杂的排列形式。这一节的内容可以先跳过，等到需要使用这种存储机制时再返回来学习。
 
-假设需要建立一个数值表，用来显示在不同利率下投资 $10，000 会增长多少，利息每年兑现，而且又被用于投资（见表 3-8）。表 3-8 不同利率下的投资增长情况
+假设需要建立一个数值表，用来显示在不同利率下投资 $10，000 会增长多少，利息每年兑现，而且又被用于投资（见表 3-8）。
+
+表 3-8 不同利率下的投资增长情况
 
 可以使用一个二维数组（也称为矩阵）存储这些信息。这个数组被命名为 balances。在 Java 中，声明一个二维数组相当简单。例如：
 
@@ -1738,7 +1668,9 @@ Click here to view code image
 
 然后，按照下列方式计算其他行：
 
-程序清单 3-8 给出了完整的程序。注释：for each 循环语句不能自动处理二维数组的每一个元素。它是按照行，也就是一维数组处理的。要想访问二维数组 a 的所有元素，需要使用两个嵌套的循环，如下所示：
+程序清单 3-8 给出了完整的程序。
+
+注释：for each 循环语句不能自动处理二维数组的每一个元素。它是按照行，也就是一维数组处理的。要想访问二维数组 a 的所有元素，需要使用两个嵌套的循环，如下所示：
 
 提示：要想快速地打印一个二维数组的数据元素列表，可以调用： 输出格式为：
 
@@ -1756,13 +1688,11 @@ The expression balances[i] refers to the ith subarray—that is, the ith row of 
 
 Since rows of arrays are individually accessible, you can actually swap them!
 
-Click here to view code image
-
+```java
 double[] temp = balances[i];
-
 balances[i] = balances[i + 1];
-
 balances[i + 1] = temp;
+```
 
 It is also easy to make「ragged」arrays—that is, arrays in which different rows have different lengths. Here is the standard example. Let us make an array in which the element at row i and column j equals the number of possible outcomes of a「choose j numbers from i numbers」lottery.
 
@@ -1784,167 +1714,116 @@ Click here to view code image
 
 As j can never be larger than i, the matrix is triangular. The ith row has i + 1 elements. (We allow choosing 0 elements; there is one way to make such a choice.) To build this ragged array, first allocate the array holding the rows:
 
-Click here to view code image
-
+```java
 int[][] odds = new int[NMAX + 1][];
+```
 
 Next, allocate the rows:
 
-Click here to view code image
-
+```java
 for (int n = 0; n <= NMAX; n++)
-
-odds[n] = new int[n + 1];
+    odds[n] = new int[n + 1];
+```
 
 Now that the array is allocated, we can access the elements in the normal way, provided we do not overstep the bounds:
 
-Click here to view code image
-
+```java
 for (int n = 0; n < odds.length; n++)
-
 for (int k = 0; k < odds[n].length; k++)
-
 {
-
-// compute lotteryOdds
-
-. . .
-
-odds[n][k] = lotteryOdds;
-
+    // compute lotteryOdds
+    . . .
+    odds[n][k] = lotteryOdds;
 }
+```
 
 Listing 3.9 gives the complete program.
 
-C++ Note
+C++ Note: In C++, the Java declaration
 
-In C++, the Java declaration
-
-Click here to view code image
-
+```java
 double[][] balances = new double[10][6]; // Java
+```
 
 is not the same as
 
-Click here to view code image
-
+```java
 double balances[10][6]; // C++
+```
 
 or even
 
-Click here to view code image
-
+```java
 double (*balances)[6] = new double[10][6]; // C++
+```
 
 Instead, an array of ten pointers is allocated:
 
-Click here to view code image
-
+```java
 double** balances = new double*[10]; // C++
+```
 
 Then, each element in the pointer array is filled with an array of six numbers:
 
-Click here to view code image
-
+```java
 for (i = 0; i < 10; i++)
-
-balances[i] = new double[6];
+    balances[i] = new double[6];
+```
 
 Mercifully, this loop is automatic when you ask for a new double[10][6]. When you want ragged arrays, you allocate the row arrays separately.
 
 Listing 3.9 LotteryArray/LotteryArray.java
 
-Click here to view code image
+```java
+/**
+* This program demonstrates a triangular array.
+* @version 1.20 2004-02-10
+* @author Cay Horstmann
+*/
 
-1 /**
-
-2 * This program demonstrates a triangular array.
-
-3 * @version 1.20 2004-02-10
-
-4 * @author Cay Horstmann
-
-5 */
-
-6 public class LotteryArray
-
-7 {
-
-8 public static void main(String[] args)
-
-9 {
-
-10 final int NMAX = 10;
-
-11
-
-12 // allocate triangular array
-
-13 int[][] odds = new int[NMAX + 1][];
-
-14 for (int n = 0; n <= NMAX; n++)
-
-15 odds[n] = new int[n + 1];
-
-16
-
-17 // fill triangular array
-
-18 for (int n = 0; n < odds.length; n++)
-
-19 for (int k = 0; k < odds[n].length; k++)
-
-20 {
-
-21 /*
-
-22 * compute binomial coefficient n*(n-1)*(n-2)*...*(n-k+1)/(1*2*3*...*k)
-
-23 */
-
-24 int lotteryOdds = 1;
-
-25 for (int i = 1; i <= k; i++)
-
-26 lotteryOdds = lotteryOdds * (n - i + 1) / i;
-
-27
-
-28 odds[n][k] = lotteryOdds;
-
-29 }
-
-30
-
-31 // print triangular array
-
-32 for (int[] row : odds)
-
-33 {
-
-34 for (int odd : row)
-
-35 System.out.printf("%4d", odd);
-
-36 System.out.println();
-
-37 }
-
-38 }
-
-39 }
+public class LotteryArray
+{
+    public static void main(String[] args)
+    {
+        final int NMAX = 10;
+        // allocate triangular array
+        int[][] odds = new int[NMAX + 1][];
+        for (int n = 0; n <= NMAX; n++)
+            odds[n] = new int[n + 1];
+        // fill triangular array
+        for (int n = 0; n < odds.length; n++)
+            for (int k = 0; k < odds[n].length; k++)
+            {
+                /*
+                 * compute binomial coefficient n*(n-1)*(n-2)*...*(n-k+1)/(1*2*3*...*k)
+                 */
+                int lotteryOdds = 1;
+                for (int i = 1; i <= k; i++)
+                    lotteryOdds = lotteryOdds * (n - i + 1) / i;
+                odds[n][k] = lotteryOdds;
+            }
+        // print triangular array
+        for (int[] row : odds)
+        {
+            for (int odd : row)
+                System.out.printf("%4d", odd);
+            System.out.println();
+        }
+    }
+}
+```
 
 You have now seen the fundamental programming structures of the Java language. The next chapter covers object-oriented programming in Java.
 
 3.10.8 不规则数组
 
-到目前为止，读者所看到的数组与其他程序设计语言中提供的数组没有多大区别。但实际存在着一些细微的差异，而这正是 Java 的优势所在：Java 实际上没有多维数组，只有一维数组。多维数组被解释为「数组的数组。」
+到目前为止，读者所看到的数组与其他程序设计语言中提供的数组没有多大区别。但实际存在着一些细微的差异，而这正是 Java 的优势所在：Java 实际上没有多维数组，只有一维数组。多维数组被解释为「数组的数组」。
 
 例如，在前面的示例中，balances 数组实际上是一个包含 10 个元素的数组，而每个元素又是一个由 6 个浮点数组成的数组（请参看图 3-15）。
 
 图 3-15 一个二维数组
 
-表达式 balances [i] 引用第 i 个子数组，也就是二维表的第 i 行。它本身也是一个数组，balances [i][j] 引用这个数组的第 j 项。由于可以单独地存取数组的某一行，所以可以让两行交换。
+表达式 balances[i] 引用第 i 个子数组，也就是二维表的第 i 行。它本身也是一个数组，balances[i][j] 引用这个数组的第 j 项。由于可以单独地存取数组的某一行，所以可以让两行交换。
 
 还可以方便地构造一个「不规则」数组，即数组的每一行有不同的长度。下面是一个典型的示例。在这个示例中，创建一个数组，第 i 行第 j 列将存放「从 i 个数值中抽取 j 个数值」产生的结果。
 
@@ -1954,50 +1833,20 @@ You have now seen the fundamental programming structures of the Java language. T
 
 在分配了数组之后，假定没有超出边界，就可以采用通常的方式访问其中的元素了。
 
-程序清单 3-9 给出了完整的程序。C++ 注释：在 C++ 中，Java 声明 不同于
+程序清单 3-9 给出了完整的程序。C++ 注释：在 C++ 中，Java 声明：
 
-也不同于
+不同于：
 
-也不同于
+也不同于：
 
-而是分配了一个包含 10 个指针的数组： 然后，指针数组的每一个元素被填充了一个包含 6 个数字的数组：
+也不同于：
 
-庆幸的是，当创建 new double [10][6] 时，这个循环将自动地执行。当需要不规则的数组时，只能单独地创建行数组。
+而是分配了一个包含 10 个指针的数组：
+
+然后，指针数组的每一个元素被填充了一个包含 6 个数字的数组：
+
+庆幸的是，当创建 new double[10][6] 时，这个循环将自动地执行。当需要不规则的数组时，只能单独地创建行数组。
 
 程序清单 3-9 LotteryArray/LotteryArray.java
 
 现在，已经看到了 Java 语言的基本程序结构，下一章将介绍 Java 中的面向对象的程序设计。
-
-3.10.9 数组排序
-
-要想对数值型数组进行排序，可以使用 Arrays 类中的 sort 方法：
-
-这个方法使用了优化的快速排序算法。快速排序算法对于大多数数据集合来说都是效率比较高的。Arrays 类还提供了几个使用很便捷的方法，在稍后的 API 注释中将介绍它们。
-
-程序清单 3-7 中的程序用到了数组，它产生一个抽彩游戏中的随机数值组合。假如抽彩是从 49 个数值中抽取 6 个，那么程序可能的输出结果为：
-
-要想选择这样一个随机的数值集合，就要首先将数值 1，2，…，n 存入数组 numbers 中：
-
-而用第二个数组存放抽取出来的数值：
-
-现在，就可以开始抽取 k 个数值了。Math.random 方法将返回一个 0 到 1 之间（包含 0、不包含 1）的随机浮点数。用 n 乘以这个浮点数，就可以得到从 0 到 n-1 之间的一个随机数。
-
-下面将 result 的第 i 个元素设置为 numbers [r] 存放的数值，最初是 r+1。但正如所看到的，numbers 数组的内容在每一次抽取之后都会发生变化。现在，必须确保不会再次抽取到那个数值，因为所有抽彩的数值必须不相同。因此，这里用数组中的最后一个数值改写 number [r]，并将 n 减 1。
-
-关键在于每次抽取的都是下标，而不是实际的值。下标指向包含尚未抽取过的数组元素。在抽取了 k 个数值之后，就可以对 result 数组进行排序了，这样可以让输出效果更加清晰：
-
-程序清单 3-7 LotteryDrawing/LotteryDrawing.java
-
-ava.util.Arrays 1.2
-
-·static String toString（type [] a）5.0 返回包含 a 中数据元素的字符串，这些数据元素被放在括号内，并用逗号分隔。参数：a　类型为 int、long、short、char、byte、boolean、float 或 double 的数组。
-
-·static type copyOf（type[]a，int length）6
-
-·static type copyOfRange（type [] a，int start，int end）6 返回与 a 类型相同的一个数组，其长度为 length 或者 end-start，数组元素为 a 的值。参数：a　类型为 int、long、short、char、byte、boolean、float 或 double 的数组。start　起始下标（包含这个值）。end　终止下标（不包含这个值）。这个值可能大于 a.length。在这种情况下，结果为 0 或 false。length　拷贝的数据元素长度。如果 length 值大于 a.length，结果为 0 或 false；否则，数组中只有前面 length 个数据元素的拷贝值。
-
-·static void sort（type [] a）采用优化的快速排序算法对数组进行排序。
-
-参数：a　类型为 int、long、short、char、byte、boolean、float 或 double 的数组。·static int binarySearch（type [] a，type v）·static int binarySearch（type [] a，int start，int end，type v）6 采用二分搜索算法查找值 v。如果查找成功，则返回相应的下标值；否则，返回一个负数值 r。-r-1 是为保持 a 有序 v 应插入的位置。参数：a　类型为 int、long、short、char、byte、boolean、float 或 double 的有序数组。start　起始下标（包含这个值）。end　终止下标（不包含这个值）。v　同 a 的数据元素类型相同的值。·static void fill（type [] a，type v）将数组的所有数据元素值设置为 v。
-
-参数：a　类型为 int、long、short、char、byte、boolean、float 或 double 的数组。v　与 a 数据元素类型相同的一个值。·static boolean equals（type [] a，type [] b）如果两个数组大小相同，并且下标相同的元素都对应相等，返回 true。参数：a、b　类型为 int、long、short、char、byte、boolean、float 或 double 的两个数组。

@@ -1,3 +1,21 @@
+## 1201. Concurrency
+
+In this chapter
+
+12.1 What Are Threads?
+
+12.2 Thread States
+
+12.3 Thread Properties
+
+12.4 Synchronization
+
+12.5 Thread-Safe Collections
+
+12.6 Tasks and Thread Pools
+
+12.7 Asynchronous Computations
+
 12.8 Processes
 
 You are probably familiar with multitasking—your operating system's ability to have more than one program working at what seems like the same time. For example, you can print while editing or downloading your email. Nowadays, you are likely to have a computer with more than one CPU, but the number of concurrently executing processes is not limited by the number of CPUs. The operating system assigns CPU time slices to each process, giving the impression of parallel activity.
@@ -5603,4 +5621,3 @@ Optional<Instant> startInstant()
 Optional<Instant> totalCpuDuration()
 
 Optional<String> user()
-

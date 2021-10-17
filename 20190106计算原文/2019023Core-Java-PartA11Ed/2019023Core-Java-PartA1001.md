@@ -1,3 +1,15 @@
+## 1001. Graphical User Interface Programming
+
+In this chapter
+
+10.1 A History of Java User Interface Toolkits
+
+10.2 Displaying Frames
+
+10.3 Displaying Information in a Component
+
+10.4 Event Handling
+
 10.5 The Preferences API
 
 Java was born at a time when most computer users interacted with graphical desktop applications. Nowadays, browser-based and mobile applications are far more common, but there are still times when it is useful to provide a desktop application. In this and the following chapter, we discuss the basics of user interface programming with the Swing toolkit. If, on the other hand, you intend to use Java for server-side programming only and are not interested in writing GUI programs, you can safely skip these two chapters.
@@ -3241,22 +3253,3 @@ void importPreferences(InputStream in)
 imports the preferences contained in the specified stream.
 
 This concludes our introduction into graphical user interface programming. The next chapter shows you how to work with the most common Swing components.
-
-Chapter 11
-
-User Interface Components with Swing
-
-In this chapter
-
-11.1 Swing and the Model-View-Controller Design Pattern
-
-11.2 Introduction to Layout Management
-
-11.3 Text Input
-
-11.4 Choice Components
-
-11.5 Menus
-
-11.6 Sophisticated Layout Management
-
