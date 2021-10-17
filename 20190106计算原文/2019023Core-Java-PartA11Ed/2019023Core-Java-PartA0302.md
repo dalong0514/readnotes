@@ -543,59 +543,49 @@ Caution: It is possible for multiple alternatives to be triggered. If you forget
 
 If you like the switch statement better than we do, consider compiling your code with the -Xlint:fallthrough option, like this:
 
+```
 javac -Xlint:fallthrough Test.java
+```
 
 Then the compiler will issue a warning whenever an alternative does not end with a break statement.
 
 If you actually want to use the fallthrough behavior, tag the surrounding method with the annotation @SuppressWarnings("fallthrough"). Then no warnings will be generated for that method. (An annotation is a mechanism for supplying information to the compiler or a tool that processes Java source or class files. We discuss annotations in detail in Chapter 8 of Volume II.)
 
-A case label can be
+A case label can be:
 
-A constant expression of type char, byte, short, or int
+1 A constant expression of type char, byte, short, or int.
 
-An enumerated constant
+2 An enumerated constant.
 
-Starting with Java 7, a string literal
+3 Starting with Java 7, a string literal.
 
 For example,
 
-Click here to view code image
-
+```java
 String input = . . .;
 
 switch (input.toLowerCase())
-
 {
-
-case "yes": // OK since Java 7
-
-. . .
-
-break;
-
-. . .
-
+    case "yes": // OK since Java 7
+        . . .
+    break;
+        . . .
 }
+```
 
-When you use the switch statement with enumerated constants, you need not supply the name of the enumeration in each label—it is deduced from the
+When you use the switch statement with enumerated constants, you need not supply the name of the enumeration in each label—it is deduced from the:
 
-Click here to view code image
-
+```java
 Size sz = . . .;
 
 switch (sz)
-
 {
-
-case SMALL: // no need to use Size.SMALL
-
-. . .
-
-break;
-
-. . .
-
+    case SMALL: // no need to use Size.SMALL
+        . . .
+    break;
+        . . .
 }
+```
 
 3.8.5 多重选择：switch 语句
 
@@ -607,17 +597,132 @@ break;
 
 switch 语句将从与选项值相匹配的 case 标签处开始执行直到遇到 break 语句，或者执行到 switch 语句的结束处为止。如果没有相匹配的 case 标签，而有 default 子句，就执行这个子句。
 
-警告：有可能触发多个 case 分支。如果在 case 分支语句的末尾没有 break 语句，那么就会接着执行下一个 case 分支语句。这种情况相当危险，常常会引发错误。为此，我们在程序中从不使用 switch 语句。如果你比我们更喜欢 switch 语句，编译代码时可以考虑加上 - Xlint：fallthrough 选项，如下所示：
+警告：有可能触发多个 case 分支。如果在 case 分支语句的末尾没有 break 语句，那么就会接着执行下一个 case 分支语句。这种情况相当危险，常常会引发错误。为此，我们在程序中从不使用 switch 语句。如果你比我们更喜欢 switch 语句，编译代码时可以考虑加上 -Xlint:fallthrough 选项，如下所示：
 
-这样一来，如果某个分支最后缺少一个 break 语句，编译器就会给出一个警告消息。如果你确实正是想使用这种「直通式」（fallthrough）行为，可以为其外围方法加一个标注 @SuppressWarnings（"fallthrough"）。这样就不会对这个方法生成警告了。（标注是为编译器或处理 Java 源文件或类文件的工具提供信息的一种机制。我们将在卷 Ⅱ 的第 8 章详细讨论标注。）case 标签可以是：
+这样一来，如果某个分支最后缺少一个 break 语句，编译器就会给出一个警告消息。如果你确实正是想使用这种「直通式」（fallthrough）行为，可以为其外围方法加一个标注 @SuppressWarnings（"fallthrough"）。这样就不会对这个方法生成警告了。（标注是为编译器或处理 Java 源文件或类文件的工具提供信息的一种机制。我们将在卷 Ⅱ 的第 8 章详细讨论标注。
 
-·类型为 char、byte、short 或 int 的常量表达式。
+case 标签可以是：
 
-·枚举常量。
+1、类型为 char、byte、short 或 int 的常量表达式。
 
-·从 Java SE 7 开始，case 标签还可以是字符串字面量。例如：
+2、枚举常量。
+
+/3、从 Java SE 7 开始，case 标签还可以是字符串字面量。例如：
 
 当在 switch 语句中使用枚举常量时，不必在每个标签中指明枚举名，可以由 switch 的表达式值确定。例如：
+
+#### 3.8.6 Statements That Break Control Flow
+
+Although the designers of Java kept goto as a reserved word, they decided not to include it in the language. In general, goto statements are considered poor style. Some programmers feel the anti-goto forces have gone too far (see, for example, the famous article of Donald Knuth called「Structured Programming with goto statements」). They argue that unrestricted use of goto is error-prone but that an occasional jump out of a loop is beneficial. The Java designers agreed and even added a new statement, the labeled break, to support this programming style.
+
+Let us first look at the unlabeled break statement. The same break statement that you use to exit a switch can also be used to break out of a loop. For example:
+
+```java
+while (years <= 100)
+{
+    balance += payment;
+    double interest = balance * interestRate / 100;
+    balance += interest;
+    if (balance >= goal) break;
+    years++;
+}
+```
+
+Now the loop is exited if either years > 100 occurs at the top of the loop or balance >= goal occurs in the middle of the loop. Of course, you could have computed the same value for years without a break, like this:
+
+```java
+while (years <= 100 && balance < goal)
+{
+    balance += payment;
+    double interest = balance * interestRate / 100;
+    balance += interest;
+    if (balance < goal)
+        years++;
+}
+```
+
+But note that the test balance < goal is repeated twice in this version. To avoid this repeated test, some programmers prefer the break statement.
+
+Unlike C++, Java also offers a labeled break statement that lets you break out of multiple nested loops. Occasionally something weird happens inside a deeply nested loop. In that case, you may want to break completely out of all the nested loops. It is inconvenient to program that simply by adding extra conditions to the various loop tests.
+
+Here's an example that shows the break statement at work. Notice that the label must precede the outermost loop out of which you want to break. It also must be followed by a colon.
+
+```java
+Scanner in = new Scanner(System.in);
+int n;
+read_data:
+while (. . .) // this loop statement is tagged with the label
+{
+    . . .
+    for (. . .) // this inner loop is not labeled
+    {
+        System.out.print("Enter a number >= 0: ");
+        n = in.nextInt();
+        if (n < 0) // should never happen—can't go on
+            break read_data;
+        // break out of read_data loop
+        . . .
+    }
+}
+// this statement is executed immediately after the labeled break
+if (n < 0) // check for bad situation
+{
+    // deal with bad situation
+}
+else
+{
+    // carry out normal processing
+}
+```
+
+If there is a bad input, the labeled break moves past the end of the labeled block. As with any use of the break statement, you then need to test whether the loop exited normally or as a result of a break.
+
+Note: Curiously, you can apply a label to any statement, even an if statement or a block statement, like this:
+
+```java
+label:
+{
+    . . .
+    if (condition) break label; // exits block
+    . . .
+}
+// jumps here when the break statement executes
+```
+
+Thus, if you are lusting after a goto but you can place a block that ends just before the place to which you want to jump, you can use a break statement! Naturally, we don't recommend this approach. Note, however, that you can only jump out of a block, never into a block.
+
+Finally, there is a continue statement that, like the break statement, breaks the regular flow of control. The continue statement transfers control to the header of the innermost enclosing loop. Here is an example:
+
+```java
+Scanner in = new Scanner(System.in);
+while (sum < goal)
+{
+    System.out.print("Enter a number: ");
+    n = in.nextInt();
+    if (n < 0) continue;
+    sum += n; // not executed if n < 0
+}
+```
+
+If n < 0, then the continue statement jumps immediately to the loop header, skipping the remainder of the current iteration.
+
+If the continue statement is used in a for loop, it jumps to the「update」part of the for loop. For example:
+
+```java
+for (count = 1; count <= 100; count++)
+{
+    System.out.print("Enter a number, -1 to quit: ");
+    n = in.nextInt();
+    if (n < 0) continue;
+    sum += n; // not executed if n < 0
+}
+```
+
+If n < 0, then the continue statement jumps to the count++ statement.
+
+There is also a labeled form of the continue statement that jumps to the header of the loop with the matching label.
+
+Tip: Many programmers find the break and continue statements confusing. These statements are entirely optional—you can always express the same logic without them. In this book, we never use break or continue.
 
 3.8.6 中断控制流程语句
 
@@ -633,7 +738,9 @@ switch 语句将从与选项值相匹配的 case 标签处开始执行直到遇�
 
 如果输入有误，通过执行带标签的 break 跳转到带标签的语句块末尾。对于任何使用 break 语句的代码都需要检测循环是正常结束，还是由 break 跳出。
 
-注释：事实上，可以将标签应用到任何语句中，甚至可以应用到 if 语句或者块语句中，如下所示： 因此，如果希望使用一条 goto 语句，并将一个标签放在想要跳到的语句块之前，就可以使用 break 语句！当然，并不提倡使用这种方式。另外需要注意，只能跳出语句块，而不能跳入语句块。最后，还有一个 continue 语句。与 break 语句一样，它将中断正常的控制流程。continue 语句将控制转移到最内层循环的首部。例如：
+注释：事实上，可以将标签应用到任何语句中，甚至可以应用到 if 语句或者块语句中，如下所示：
+
+因此，如果希望使用一条 goto 语句，并将一个标签放在想要跳到的语句块之前，就可以使用 break 语句！当然，并不提倡使用这种方式。另外需要注意，只能跳出语句块，而不能跳入语句块。最后，还有一个 continue 语句。与 break 语句一样，它将中断正常的控制流程。continue 语句将控制转移到最内层循环的首部。例如：
 
 如果 n<0，则 continue 语句越过了当前循环体的剩余部分，立刻跳到循环首部。如果将 continue 语句用于 for 循环中，就可以跳到 for 循环的「更新」部分。例如，下面这个循环：
 
@@ -642,180 +749,6 @@ switch 语句将从与选项值相匹配的 case 标签处开始执行直到遇�
 如果 n<0，则 continue 语句跳到 count++ 语句。还有一种带标签的 continue 语句，将跳到与标签匹配的循环首部。
 
 提示：许多程序员容易混淆 break 和 continue 语句。这些语句完全是可选的，即不使用它们也可以表达同样的逻辑含义。在本书中，将不使用 break 和 continue。
-
-#### 3.8.6 Statements That Break Control Flow
-
-Although the designers of Java kept goto as a reserved word, they decided not to include it in the language. In general, goto statements are considered poor style. Some programmers feel the anti-goto forces have gone too far (see, for example, the famous article of Donald Knuth called「Structured Programming with goto statements」). They argue that unrestricted use of goto is error-prone but that an occasional jump out of a loop is beneficial. The Java designers agreed and even added a new statement, the labeled break, to support this programming style.
-
-Let us first look at the unlabeled break statement. The same break statement that you use to exit a switch can also be used to break out of a loop. For example:
-
-Click here to view code image
-
-while (years <= 100)
-
-{
-
-balance += payment;
-
-double interest = balance * interestRate / 100;
-
-balance += interest;
-
-if (balance >= goal) break;
-
-years++;
-
-}
-
-Now the loop is exited if either years > 100 occurs at the top of the loop or balance >= goal occurs in the middle of the loop. Of course, you could have computed the same value for years without a break, like this:
-
-Click here to view code image
-
-while (years <= 100 && balance < goal)
-
-{
-
-balance += payment;
-
-double interest = balance * interestRate / 100;
-
-balance += interest;
-
-if (balance < goal)
-
-years++;
-
-}
-
-But note that the test balance < goal is repeated twice in this version. To avoid this repeated test, some programmers prefer the break statement.
-
-Unlike C++, Java also offers a labeled break statement that lets you break out of multiple nested loops. Occasionally something weird happens inside a deeply nested loop. In that case, you may want to break completely out of all the nested loops. It is inconvenient to program that simply by adding extra conditions to the various loop tests.
-
-Here's an example that shows the break statement at work. Notice that the label must precede the outermost loop out of which you want to break. It also must be followed by a colon.
-
-Click here to view code image
-
-Scanner in = new Scanner(System.in);
-
-int n;
-
-read_data:
-
-while (. . .) // this loop statement is tagged with the label
-
-{
-
-. . .
-
-for (. . .) // this inner loop is not labeled
-
-{
-
-System.out.print("Enter a number >= 0: ");
-
-n = in.nextInt();
-
-if (n < 0) // should never happen—can't go on
-
-break read_data;
-
-// break out of read_data loop
-
-. . .
-
-}
-
-}
-
-// this statement is executed immediately after the labeled break
-
-if (n < 0) // check for bad situation
-
-{
-
-// deal with bad situation
-
-}
-
-else
-
-{
-
-// carry out normal processing
-
-}
-
-If there is a bad input, the labeled break moves past the end of the labeled block. As with any use of the break statement, you then need to test whether the loop exited normally or as a result of a break.
-
-Note
-
-Curiously, you can apply a label to any statement, even an if statement or a block statement, like this:
-
-Click here to view code image
-
-label:
-
-{
-
-. . .
-
-if (condition) break label; // exits block
-
-. . .
-
-}
-
-// jumps here when the break statement executes
-
-Thus, if you are lusting after a goto but you can place a block that ends just before the place to which you want to jump, you can use a break statement! Naturally, we don't recommend this approach. Note, however, that you can only jump out of a block, never into a block.
-
-Finally, there is a continue statement that, like the break statement, breaks the regular flow of control. The continue statement transfers control to the header of the innermost enclosing loop. Here is an example:
-
-Click here to view code image
-
-Scanner in = new Scanner(System.in);
-
-while (sum < goal)
-
-{
-
-System.out.print("Enter a number: ");
-
-n = in.nextInt();
-
-if (n < 0) continue;
-
-sum += n; // not executed if n < 0
-
-}
-
-If n < 0, then the continue statement jumps immediately to the loop header, skipping the remainder of the current iteration.
-
-If the continue statement is used in a for loop, it jumps to the「update」part of the for loop. For example:
-
-Click here to view code image
-
-for (count = 1; count <= 100; count++)
-
-{
-
-System.out.print("Enter a number, -1 to quit: ");
-
-n = in.nextInt();
-
-if (n < 0) continue;
-
-sum += n; // not executed if n < 0
-
-}
-
-If n < 0, then the continue statement jumps to the count++ statement.
-
-There is also a labeled form of the continue statement that jumps to the header of the loop with the matching label.
-
-Tip
-
-Many programmers find the break and continue statements confusing. These statements are entirely optional—you can always express the same logic without them. In this book, we never use break or continue.
 
 ### 3.9 Big Numbers
 
@@ -845,9 +778,7 @@ BigInteger c = a.add(b); // c = a + b
 
 BigInteger d = c.multiply(b.add(BigInteger.valueOf(2))); // d = c * (b + 2)
 
-C++ Note
-
-Unlike C++, Java has no programmable operator overloading. There was no way for the programmers of the BigInteger class to redefine the + and * operators to give the add and multiply operations of the BigInteger classes. The language designers did overload the + operator to denote concatenation of strings. They chose not to overload other operators, and they did not give Java programmers the opportunity to overload operators in their own classes.
+C++ Note: Unlike C++, Java has no programmable operator overloading. There was no way for the programmers of the BigInteger class to redefine the + and * operators to give the add and multiply operations of the BigInteger classes. The language designers did overload the + operator to denote concatenation of strings. They chose not to overload other operators, and they did not give Java programmers the opportunity to overload operators in their own classes.
 
 Listing 3.6 shows a modification of the lottery odds program of Listing 3.5, updated to work with big numbers. For example, if you are invited to participate in a lottery in which you need to pick 60 numbers out of a possible 490 numbers, you can use this program to tell you your odds of winning. They are 1 in 716395843461995557415116222540092933411717612789263493493351013459481104668848. Good luck!
 
@@ -867,73 +798,36 @@ lotteryOdds
 
 Listing 3.6 BigIntegerTest/BigIntegerTest.java
 
-Click here to view code image
+```java
+import java.math.*;
+import java.util.*;
 
-1 import java.math.*;
+/**
+ * This program uses big numbers to compute the odds of winning the grand prize in a lottery.
+ * @version 1.20 2004-02-10
+ * @author Cay Horstmann
+ */
 
-2 import java.util.*;
-
-3
-
-4 /**
-
-5 * This program uses big numbers to compute the odds of winning the grand prize in a lottery.
-
-6 * @version 1.20 2004-02-10
-
-7 * @author Cay Horstmann
-
-8 */
-
-9 public class BigIntegerTest
-
-10 {
-
-11 public static void main(String[] args)
-
-12 {
-
-13 Scanner in = new Scanner(System.in);
-
-14
-
-15 System.out.print("How many numbers do you need to draw? ");
-
-16 int k = in.nextInt();
-
-17
-
-18 System.out.print("What is the highest number you can draw? ");
-
-19 int n = in.nextInt();
-
-20
-
-21 /*
-
-22 * compute binomial coefficient n*(n-1)*(n-2)*...*(n-k+1)/(1*2*3*...*k)
-
-23 */
-
-24
-
-25 BigInteger lotteryOdds = BigInteger.valueOf(1);
-
-26
-
-27 for (int i = 1; i <= k; i++)
-
-28 lotteryOdds = lotteryOdds.multiply(BigInteger.valueOf(n - i + 1)).divide(
-
-29 BigInteger.valueOf(i));
-
-30
-
-31 System.out.println("Your odds are 1 in " + lotteryOdds + ". Good luck!");
-
-32 }
-
-33 }
+public class BigIntegerTest
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("How many numbers do you need to draw? ");
+        int k = in.nextInt();
+        System.out.print("What is the highest number you can draw? ");
+        int n = in.nextInt();
+        /*
+         * compute binomial coefficient n*(n-1)*(n-2)*...*(n-k+1)/(1*2*3*...*k)
+         */
+        BigInteger lotteryOdds = BigInteger.valueOf(1);
+        for (int i = 1; i <= k; i++)
+            lotteryOdds = lotteryOdds.multiply(BigInteger.valueOf(n - i + 1)).divide(
+                    BigInteger.valueOf(i));
+        System.out.println("Your odds are 1 in " + lotteryOdds + ". Good luck!");
+    }
+}
+```
 
 java.math.BigInteger 1.1
 
@@ -989,7 +883,9 @@ returns a big decimal whose value equals x or x / 10scale.
 
 如果基本的整数和浮点数精度不能够满足需求，那么可以使用 java.math 包中的两个很有用的类：BigInteger 和 BigDecimal。这两个类可以处理包含任意长度数字序列的数值。BigInteger 类实现了任意精度的整数运算，BigDecimal 实现了任意精度的浮点数运算。
 
-使用静态的 valueOf 方法可以将普通的数值转换为大数值： 遗憾的是，不能使用人们熟悉的算术运算符（如：+ 和 *）处理大数值。而需要使用大数值类中的 add 和 multiply 方法。
+使用静态的 valueOf 方法可以将普通的数值转换为大数值：
+
+遗憾的是，不能使用人们熟悉的算术运算符（如：+ 和 *）处理大数值。而需要使用大数值类中的 add 和 multiply 方法。
 
 C++ 注释：与 C++ 不同，Java 没有提供运算符重载功能。程序员无法重定义 + 和 * 运算符，使其应用于 BigInteger 类的 add 和 multiply 运算。Java 语言的设计者确实为字符串的连接重载了 + 运算符，但没有重载其他的运算符，也没有给 Java 程序员在自己的类中重载运算符的机会。
 
@@ -1001,41 +897,39 @@ C++ 注释：与 C++ 不同，Java 没有提供运算符重载功能。程序员
 
 API java.math.BigInteger 1.1
 
-·BigInteger add（BigInteger other）
+BigInteger add(BigInteger other)
 
-·BigInteger subtract（BigInteger other）
+BigInteger subtract(BigInteger other)
 
-·BigInteger multiply（BigInteger other）
+BigInteger multiply(BigInteger other)
 
-·BigInteger divide（BigInteger other）
+BigInteger divide(BigInteger other)
 
-·BigInteger mod（BigInteger other）
+BigInteger mod(BigInteger other)
 
 返回这个大整数和另一个大整数 other 的和、差、积、商以及余数。
 
-·int compareTo（BigInteger other）如果这个大整数与另一个大整数 other 相等，返回 0；如果这个大整数小于另一个大整数 other，返回负数；否则，返回正数。
+int compareTo(BigInteger other) 如果这个大整数与另一个大整数 other 相等，返回 0；如果这个大整数小于另一个大整数 other，返回负数；否则，返回正数。
 
-·static BigInteger valueOf（long x）返回值等于 x 的大整数。
-
-返回值等于 x 的大整数。
+static BigInteger valueOf(long x) 返回值等于 x 的大整数。
 
 java.math.BigInteger 1.1
 
-·BigDecimal add（BigDecimal other）
+BigDecimal add(BigDecimal other)
 
-·BigDecimal subtract（BigDecimal other）
+BigDecimal subtract(BigDecimal other)
 
-·BigDecimal multiply（BigDecimal other）
+BigDecimal multiply(BigDecimal other)
 
-·BigDecimal divide（BigDecimal other，RoundingMode mode）5.0
+BigDecimal divide(BigDecimal other，RoundingMode mode) 5.0
 
 返回这个大实数与另一个大实数 other 的和、差、积、商。要想计算商，必须给出舍入方式（rounding mode）。RoundingMode.HALF_UP 是在学校中学习的四舍五入方式（即，数值 0 到 4 舍去，数值 5 到 9 进位）。它适用于常规的计算。有关其他的舍入方式请参看 API 文档。
 
-·int compareTo（BigDecimal other）如果这个大实数与另一个大实数相等，返回 0；如果这个大实数小于另一个大实数，返回负数；否则，返回正数。
+int compareTo(BigDecimal other) 如果这个大实数与另一个大实数相等，返回 0；如果这个大实数小于另一个大实数，返回负数；否则，返回正数。
 
-·static BigDecimal valueOf（long x）
+static BigDecimal valueOf(long x)
 
-·static BigDecimal valueOf（long x，int scale）
+static BigDecimal valueOf(long x，int scale)
 
 返回值为 x 或 x/10scale 的一个大实数。
 
@@ -1049,13 +943,15 @@ An array is a data structure that stores a collection of values of the same type
 
 Declare an array variable by specifying the array type—which is the element type followed by []—and the array variable name. For example, here is the declaration of an array a of integers:
 
+```java
 int[] a;
+```
 
 However, this statement only declares the variable a. It does not yet initialize a with an actual array. Use the new operator to create the array.
 
-Click here to view code image
-
+```java
 int[] a = new int[100]; // or var a = new int[100];
+```
 
 This statement declares and initializes an array of 100 integers.
 
@@ -1063,136 +959,142 @@ The array length need not be a constant: new int[n] creates an array of length n
 
 Once you create an array, you cannot change its length (although you can, of course, change an individual array element). If you frequently need to expand the length of arrays while your program is running, you should use array lists, which are covered in Chapter 5.
 
-Note
+Note: You can define an array variable either as
 
-You can define an array variable either as
-
+```java
 int[] a;
+```
 
 or as
 
+```java
 int a[];
+```
 
 Most Java programmers prefer the former style because it neatly separates the type int[] (integer array) from the variable name.
 
 Java has a shortcut for creating an array object and supplying initial values:
 
-Click here to view code image
-
+```java
 int[] smallPrimes = { 2, 3, 5, 7, 11, 13 };
+```
 
 Notice that you do not use new with this syntax, and you don't specify the length.
 
 A comma after the last value is allowed, which can be convenient for an array to which you keep adding values over time:
 
-Click here to view code image
-
+```java
 String[] authors = {
-
-"James Gosling",
-
-"Bill Joy",
-
-"Guy Steele",
-
-// add more names here and put a comma after each name
-
+        "James Gosling",
+        "Bill Joy",
+        "Guy Steele",
+        // add more names here and put a comma after each name
 };
+```
 
 You can declare an anonymous array:
 
-Click here to view code image
-
+```
 new int[] { 17, 19, 23, 29, 31, 37 }
+```
 
 This expression allocates a new array and fills it with the values inside the braces. It counts the number of initial values and sets the array size accordingly. You can use this syntax to reinitialize an array without creating a new variable. For example,
 
-Click here to view code image
-
+```java
 smallPrimes = new int[] { 17, 19, 23, 29, 31, 37 };
+```
 
 is shorthand for
 
-Click here to view code image
-
+```java
 int[] anonymous = { 17, 19, 23, 29, 31, 37 };
-
 smallPrimes = anonymous;
+```
 
-Note
+Note: It is legal to have arrays of length 0. Such an array can be useful if you write a method that computes an array result and the result happens to be empty. Construct an array of length 0 as:
 
-It is legal to have arrays of length 0. Such an array can be useful if you write a method that computes an array result and the result happens to be empty. Construct an array of length 0 as
-
+```java
 new elementType[0]
+```
 
 or
 
+```java
 new elementType[] {}
+```
 
 Note that an array of length 0 is not the same as null.
-
-
-3.10 数组
-
-数组是一种数据结构，用来存储同一类型值的集合。通过一个整型下标可以访问数组中的每一个值。例如，如果 a 是一个整型数组，a [i] 就是数组中下标为 i 的整数。
-
-在声明数组变量时，需要指出数组类型（数据元素类型紧跟 []）和数组变量的名字。下面声明了整型数组 a：
-
-不过，这条语句只声明了变量 a，并没有将 a 初始化为一个真正的数组。应该使用 new 运算符创建数组。
-
-这条语句创建了一个可以存储 100 个整数的数组。数组长度不要求是常量：new int [n] 会创建一个长度为 n 的数组。
-
-注释：可以使用下面两种形式声明数组
-
-或
-
-大多数 Java 应用程序员喜欢使用第一种风格，因为它将类型 int []（整型数组）与变量名分开了。这个数组的下标从 0~99（不是 1~100）。一旦创建了数组，就可以给数组元素赋值。例如，使用一个循环：
-
-创建一个数字数组时，所有元素都初始化为 0。boolean 数组的元素会初始化为 false。对象数组的元素则初始化为一个特殊值 null，这表示这些元素（还）未存放任何对象。初学者对此可能有些不解。例如，
-
-会创建一个包含 10 个字符串的数组，所有字符串都为 null。如果希望这个数组包含空串，可以为元素指定空串：
-
-警告：如果创建了一个 100 个元素的数组，并且试图访问元素 a [100]（或任何在 0~99 之外的下标），程序就会引发「array index out of bounds」异常而终止执行。
-
-要想获得数组中的元素个数，可以使用 array.length。例如，
-
-一旦创建了数组，就不能再改变它的大小（尽管可以改变每一个数组元素）。如果经常需要在运行过程中扩展数组的大小，就应该使用另一种数据结构 —— 数组列表（array list）有关数组列表的详细内容请参看第 5 章。
 
 #### 3.10.2 Accessing Array Elements
 
 The array elements are numbered from 0 to 99 (and not 1 to 100). Once the array is created, you can fill the elements in an array, for example, by using a loop:
 
-Click here to view code image
-
+```java
 int[] a = new int[100];
-
 for (int i = 0; i < 100; i++)
-
-a[i] = i; // fills the array with numbers 0 to 99
+    a[i] = i; // fills the array with numbers 0 to 99
+```
 
 When you create an array of numbers, all elements are initialized with zero. Arrays of boolean are initialized with false. Arrays of objects are initialized with the special value null, which indicates that they do not (yet) hold any objects. This can be surprising for beginners. For example,
 
-Click here to view code image
-
+```java
 String[] names = new String[10];
+```
 
 creates an array of ten strings, all of which are null. If you want the array to hold empty strings, you must supply them:
 
-Click here to view code image
-
+```java
 for (int i = 0; i < 10; i++) names[i] = "";
+```
 
-Caution
-
-If you construct an array with 100 elements and then try to access the element a[100] (or any other index outside the range from 0 to 99), an「array index out of bounds」exception will occur.
+Caution: If you construct an array with 100 elements and then try to access the element a[100] (or any other index outside the range from 0 to 99), an「array index out of bounds」exception will occur.
 
 To find the number of elements of an array, use array.length. For example:
 
-Click here to view code image
-
+```java
 for (int i = 0; i < a.length; i++)
-
 System.out.println(a[i]);
+```
+
+3.10 数组
+
+数组是一种数据结构，用来存储同一类型值的集合。通过一个整型下标可以访问数组中的每一个值。例如，如果 a 是一个整型数组，a[i] 就是数组中下标为 i 的整数。
+
+在声明数组变量时，需要指出数组类型（数据元素类型紧跟 []）和数组变量的名字。下面声明了整型数组 a：
+
+不过，这条语句只声明了变量 a，并没有将 a 初始化为一个真正的数组。应该使用 new 运算符创建数组。
+
+这条语句创建了一个可以存储 100 个整数的数组。数组长度不要求是常量：new int[n] 会创建一个长度为 n 的数组。
+
+注释：可以使用下面两种形式声明数组
+
+或：
+
+大多数 Java 应用程序员喜欢使用第一种风格，因为它将类型 int[]（整型数组）与变量名分开了。这个数组的下标从 0~99（不是 1~100）。一旦创建了数组，就可以给数组元素赋值。例如，使用一个循环：
+
+创建一个数字数组时，所有元素都初始化为 0。boolean 数组的元素会初始化为 false。对象数组的元素则初始化为一个特殊值 null，这表示这些元素（还）未存放任何对象。初学者对此可能有些不解。例如，
+
+会创建一个包含 10 个字符串的数组，所有字符串都为 null。如果希望这个数组包含空串，可以为元素指定空串：
+
+警告：如果创建了一个 100 个元素的数组，并且试图访问元素 a[100]（或任何在 0~99 之外的下标），程序就会引发「array index out of bounds」异常而终止执行。
+
+要想获得数组中的元素个数，可以使用 array.length。例如，
+
+一旦创建了数组，就不能再改变它的大小（尽管可以改变每一个数组元素）。如果经常需要在运行过程中扩展数组的大小，就应该使用另一种数据结构 —— 数组列表（array list）有关数组列表的详细内容请参看第 5 章。
+
+3.10.1 数组初始化以及匿名数组
+
+在 Java 中，提供了一种创建数组对象并同时赋予初始值的简化书写形式。下面是一个例子：
+
+请注意，在使用这种语句时，不需要调用 new。甚至还可以初始化一个匿名的数组：
+
+这种表示法将创建一个新数组并利用括号中提供的值进行初始化，数组的大小就是初始值的个数。使用这种语法形式可以在不创建新变量的情况下重新初始化一个数组。例如：
+
+这是下列语句的简写形式：
+
+注释：在 Java 中，允许数组长度为 0。在编写一个结果为数组的方法时，如果碰巧结果为空，则这种语法形式就显得非常有用。此时可以创建一个长度为 0 的数组：
+
+注意，数组长度为 0 与 null 不同。
 
 #### 3.10.3 The「for each」Loop
 
@@ -1234,15 +1136,13 @@ The loop variable of the「for each」loop traverses the elements of the array, 
 
 The「for each」loop is a pleasant improvement over the traditional loop if you need to process all elements in a collection. However, there are still plenty of opportunities to use the traditional for loop. For example, you might not want to traverse the entire collection, or you may need the index value inside the loop.
 
-Tip
-
-There is an even easier way to print all values of an array, using the toString method of the Arrays class. The call Arrays.toString(a) returns a string containing the array elements, enclosed in brackets and separated by commas, such as "[2, 3, 5, 7, 11, 13]". To print the array, simply call
+Tip: There is an even easier way to print all values of an array, using the toString method of the Arrays class. The call Arrays.toString(a) returns a string containing the array elements, enclosed in brackets and separated by commas, such as "[2, 3, 5, 7, 11, 13]". To print the array, simply call
 
 Click here to view code image
 
 System.out.println(Arrays.toString(a));
 
-3.10.1 for each 循环
+3.10.3 for each 循环
 
 Java 有一种功能很强的循环结构，可以用来依次处理数组中的每个元素（其他类型的元素集合亦可）而不必为指定下标值而分心。
 
@@ -1259,18 +1159,6 @@ Java 有一种功能很强的循环结构，可以用来依次处理数组中的
 注释：for each 循环语句的循环变量将会遍历数组中的每个元素，而不需要使用下标值。如果需要处理一个集合中的所有元素，for each 循环语句对传统循环语句所进行的改进更是叫人称赞不已。然而，在很多场合下，还是需要使用传统的 for 循环。例如，如果不希望遍历集合中的每个元素，或者在循环内部需要使用下标值等。
 
 提示：有个更加简单的方式打印数组中的所有值，即利用 Arrays 类的 toString 方法。调用 Arrays.toString（a），返回一个包含数组元素的字符串，这些元素被放置在括号内，并用逗号分隔，例如，「[2，3，5，7，11，13]」。要想打印数组，可以调用
-
-3.10.2 数组初始化以及匿名数组
-
-在 Java 中，提供了一种创建数组对象并同时赋予初始值的简化书写形式。下面是一个例子：
-
-请注意，在使用这种语句时，不需要调用 new。甚至还可以初始化一个匿名的数组：
-
-这种表示法将创建一个新数组并利用括号中提供的值进行初始化，数组的大小就是初始值的个数。使用这种语法形式可以在不创建新变量的情况下重新初始化一个数组。例如： 这是下列语句的简写形式：
-
-注释：在 Java 中，允许数组长度为 0。在编写一个结果为数组的方法时，如果碰巧结果为空，则这种语法形式就显得非常有用。此时可以创建一个长度为 0 的数组：
-
-注意，数组长度为 0 与 null 不同。
 
 #### 3.10.4 Array Copying
 
@@ -1316,7 +1204,7 @@ int* a = new int[100]; // C++
 
 In Java, the [] operator is predefined to perform bounds checking. Furthermore, there is no pointer arithmetic—you can't increment a to point to the next element in the array.
 
-3.10.3 数组拷贝
+3.10.4 数组拷贝
 
 在 Java 中，允许将一个数组变量拷贝给另一个数组变量。这时，两个变量将引用同一个数组：
 
@@ -1606,7 +1494,7 @@ static boolean equals(xxx[] a, xxx[] b)
 
 returns true if the arrays have the same length and if the elements at corresponding indexes match.
 
-3.10.4 命令行参数
+3.10.5 命令行参数
 
 前面已经看到多个使用 Java 数组的示例。每一个 Java 应用程序都有一个带 String arg [] 参数的 main 方法。这个参数表明 main 方法将接收一个字符串数组，也就是命令行参数。例如，看一看下面这个程序：
 
@@ -1627,138 +1515,6 @@ Multidimensional arrays use more than one index to access array elements. They a
 Suppose you want to make a table of numbers that shows how much an investment of $10,000 will grow under different interest rate scenarios in which interest is paid annually and reinvested (Table 3.8).
 
 Table 3.8 Growth of an Investment at Different Interest Rates
-
-10%
-
-11%
-
-12%
-
-13%
-
-14%
-
-15%
-
-10,000.00
-
-10,000.00
-
-10,000.00
-
-10,000.00
-
-10,000.00
-
-10,000.00
-
-11,000.00
-
-11,100.00
-
-11,200.00
-
-11,300.00
-
-11,400.00
-
-11,500.00
-
-12,100.00
-
-12,321.00
-
-12,544.00
-
-12,769.00
-
-12,996.00
-
-13,225.00
-
-13,310.00
-
-13,676.31
-
-14,049.28
-
-14,428.97
-
-14,815.44
-
-15,208.75
-
-14,641.00
-
-15,180.70
-
-15,735.19
-
-16,304.74
-
-16,889.60
-
-17,490.06
-
-16,105.10
-
-16,850.58
-
-17,623.42
-
-18,424.35
-
-19,254.15
-
-20,113.57
-
-17,715.61
-
-18,704.15
-
-19,738.23
-
-20,819.52
-
-21,949.73
-
-23,130.61
-
-19,487.17
-
-20,761.60
-
-22,106.81
-
-23,526.05
-
-25,022.69
-
-26,600.20
-
-21,435.89
-
-23,045.38
-
-24,759.63
-
-26,584.44
-
-28,525.86
-
-30,590.23
-
-23,579.48
-
-25,580.37
-
-27,730.79
-
-30,040.42
-
-32,519.49
-
-35,178.76
 
 You can store this information in a two-dimensional array (matrix), which we call balances.
 
@@ -1824,9 +1580,7 @@ balances[i][j] = oldBalance + interest;
 
 Listing 3.8 shows the full program.
 
-Note
-
-A「for each」loop does not automatically loop through all elements in a two-dimensional array. Instead, it loops through the rows, which are themselves one-dimensional arrays. To visit all elements of a two-dimensional array a, nest two loops, like this:
+Note: A「for each」loop does not automatically loop through all elements in a two-dimensional array. Instead, it loops through the rows, which are themselves one-dimensional arrays. To visit all elements of a two-dimensional array a, nest two loops, like this:
 
 Click here to view code image
 
@@ -1968,7 +1722,7 @@ Click here to view code image
 
 57 }
 
-3.10.6 多维数组
+3.10.7 多维数组
 
 多维数组将使用多个下标访问数组元素，它适用于表示表格或更加复杂的排列形式。这一节的内容可以先跳过，等到需要使用这种存储机制时再返回来学习。
 
@@ -1989,38 +1743,6 @@ Click here to view code image
 提示：要想快速地打印一个二维数组的数据元素列表，可以调用： 输出格式为：
 
 程序清单 3-8 CompoundInterest/CompoundInterest.java
-
-3.10.7 不规则数组
-
-到目前为止，读者所看到的数组与其他程序设计语言中提供的数组没有多大区别。但实际存在着一些细微的差异，而这正是 Java 的优势所在：Java 实际上没有多维数组，只有一维数组。多维数组被解释为「数组的数组。」
-
-例如，在前面的示例中，balances 数组实际上是一个包含 10 个元素的数组，而每个元素又是一个由 6 个浮点数组成的数组（请参看图 3-15）。
-
-图 3-15 一个二维数组
-
-表达式 balances [i] 引用第 i 个子数组，也就是二维表的第 i 行。它本身也是一个数组，balances [i][j] 引用这个数组的第 j 项。由于可以单独地存取数组的某一行，所以可以让两行交换。
-
-还可以方便地构造一个「不规则」数组，即数组的每一行有不同的长度。下面是一个典型的示例。在这个示例中，创建一个数组，第 i 行第 j 列将存放「从 i 个数值中抽取 j 个数值」产生的结果。
-
-由于 j 不可能大于 i，所以矩阵是三角形的。第 i 行有 i+1 个元素（允许抽取 0 个元素，也是一种选择）。要想创建一个不规则的数组，首先需要分配一个具有所含行数的数组。
-
-接下来，分配这些行。
-
-在分配了数组之后，假定没有超出边界，就可以采用通常的方式访问其中的元素了。
-
-程序清单 3-9 给出了完整的程序。C++ 注释：在 C++ 中，Java 声明 不同于
-
-也不同于
-
-也不同于
-
-而是分配了一个包含 10 个指针的数组： 然后，指针数组的每一个元素被填充了一个包含 6 个数字的数组：
-
-庆幸的是，当创建 new double [10][6] 时，这个循环将自动地执行。当需要不规则的数组时，只能单独地创建行数组。
-
-程序清单 3-9 LotteryArray/LotteryArray.java
-
-现在，已经看到了 Java 语言的基本程序结构，下一章将介绍 Java 中的面向对象的程序设计。
 
 #### 3.10.8 Ragged Arrays
 
@@ -2214,7 +1936,39 @@ Click here to view code image
 
 You have now seen the fundamental programming structures of the Java language. The next chapter covers object-oriented programming in Java.
 
-3.10.5 数组排序
+3.10.8 不规则数组
+
+到目前为止，读者所看到的数组与其他程序设计语言中提供的数组没有多大区别。但实际存在着一些细微的差异，而这正是 Java 的优势所在：Java 实际上没有多维数组，只有一维数组。多维数组被解释为「数组的数组。」
+
+例如，在前面的示例中，balances 数组实际上是一个包含 10 个元素的数组，而每个元素又是一个由 6 个浮点数组成的数组（请参看图 3-15）。
+
+图 3-15 一个二维数组
+
+表达式 balances [i] 引用第 i 个子数组，也就是二维表的第 i 行。它本身也是一个数组，balances [i][j] 引用这个数组的第 j 项。由于可以单独地存取数组的某一行，所以可以让两行交换。
+
+还可以方便地构造一个「不规则」数组，即数组的每一行有不同的长度。下面是一个典型的示例。在这个示例中，创建一个数组，第 i 行第 j 列将存放「从 i 个数值中抽取 j 个数值」产生的结果。
+
+由于 j 不可能大于 i，所以矩阵是三角形的。第 i 行有 i+1 个元素（允许抽取 0 个元素，也是一种选择）。要想创建一个不规则的数组，首先需要分配一个具有所含行数的数组。
+
+接下来，分配这些行。
+
+在分配了数组之后，假定没有超出边界，就可以采用通常的方式访问其中的元素了。
+
+程序清单 3-9 给出了完整的程序。C++ 注释：在 C++ 中，Java 声明 不同于
+
+也不同于
+
+也不同于
+
+而是分配了一个包含 10 个指针的数组： 然后，指针数组的每一个元素被填充了一个包含 6 个数字的数组：
+
+庆幸的是，当创建 new double [10][6] 时，这个循环将自动地执行。当需要不规则的数组时，只能单独地创建行数组。
+
+程序清单 3-9 LotteryArray/LotteryArray.java
+
+现在，已经看到了 Java 语言的基本程序结构，下一章将介绍 Java 中的面向对象的程序设计。
+
+3.10.9 数组排序
 
 要想对数值型数组进行排序，可以使用 Arrays 类中的 sort 方法：
 
