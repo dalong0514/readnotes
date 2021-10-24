@@ -1,4 +1,4 @@
-## 0401 Hardware Is Ephemeral
+## 0401. Hardware Is Ephemeral
 
 · · · in which I show that hardware is soft, a transient expression of ideas, and those ideas are more durable than the hardware itself. And in which I trace the layered paradigms that make possible digital machines made with billions of transistors.
 

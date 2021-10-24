@@ -4,11 +4,11 @@
 
 0201 发明自然法则
 
-在本章，我将阐述模型是被发明的，而不是被发现的；工程师和科学家以互补的却又几乎相反的方式使用模型；所有模型都是错的，但有些是有用的；模型的使用可以通过建立未知知识的背景、强制提升专业化程度以及要求人类吸收新的范式，来减缓或促进技术的进步。
+在本章，我将阐述：1）模型是被发明的，而不是被发现的；2）工程师和科学家以互补的却又几乎相反的方式使用模型；3）所有模型都是错的，但有些是有用的；4）模型的使用可以通过建立未知知识的背景、强制提升专业化程度以及要求人类吸收新的范式，来减缓或促进技术的进步。
 
 ### 2.1 The Unknown Knowns
 
-Drawn by its provocative title, I recently read Inventing Nature , a wonderful book by Andrea Wulf (Wulf, 2015). Wulf's book tells the story of Alexander von Humboldt (1769–1859), a remarkable Prussian about whom I had previously known nothing except that Humboldt county and Humboldt Redwoods State Park in California, along with numerous other places and things, had been named after him. Wulf boldly states,「Humboldt gave us our concept of nature itself.」Easing somewhat my embarrassment at my ignorance, she goes on,「The irony is that Humboldt's views have become so self-evident that we have largely forgotten the man behind them.」Further easing my embarrassment, Sandra Nichols (2006), in an article titled「Why was Humboldt forgotten in the United States?」reassures me that I am not alone. Nichols postulates many reasons for our collective amnesia, but to me the most poignant is「shifts in scholarship,」where「the search for a comprehensive view of science was soon set aside in favor of specialization.」In Germany, Humboldt and his brother Wilhelm have most definitely not been forgotten. The Humboldt University of Berlin is named after the two of them, and the brother, Wilhelm, is credited with establishing the「Humboldtian model of higher education,」which integrates teaching in the arts and sciences with research. This is a defining principle of all top universities today.
+Drawn by its provocative title, I recently read Inventing Nature, a wonderful book by Andrea Wulf (Wulf, 2015). Wulf's book tells the story of Alexander von Humboldt (1769–1859), a remarkable Prussian about whom I had previously known nothing except that Humboldt county and Humboldt Redwoods State Park in California, along with numerous other places and things, had been named after him. Wulf boldly states,「Humboldt gave us our concept of nature itself.」Easing somewhat my embarrassment at my ignorance, she goes on,「The irony is that Humboldt's views have become so self-evident that we have largely forgotten the man behind them.」Further easing my embarrassment, Sandra Nichols (2006), in an article titled「Why was Humboldt forgotten in the United States?」reassures me that I am not alone. Nichols postulates many reasons for our collective amnesia, but to me the most poignant is「shifts in scholarship,」where「the search for a comprehensive view of science was soon set aside in favor of specialization.」In Germany, Humboldt and his brother Wilhelm have most definitely not been forgotten. The Humboldt University of Berlin is named after the two of them, and the brother, Wilhelm, is credited with establishing the「Humboldtian model of higher education,」which integrates teaching in the arts and sciences with research. This is a defining principle of all top universities today.
 
 In her claim that Alexander von Humboldt「invented nature,」Wulf shows us that scientific truths can come into existence and then become part of the human psyche, background knowledge that we accept with such tenacity that we no longer think of them as scientific truths. They just are. Wulf summarizes Humboldt's breakthrough:
 
@@ -68,7 +68,7 @@ Every engineered design is similarly a model, which can be as simple as a protot
 
 2.1 未知的已知
 
-受其颇具煽动性的标题吸引，我最近读了安德烈娅·武尔夫所著的《发明自然》一书（武尔夫，2015）。武尔夫在书中讲述了有关亚历山大·冯·洪堡（1769 —1859）的故事。洪堡是一位杰出的普鲁士人，之前除了听说过用他的名字命名的加利福尼亚州洪堡县和洪堡红杉州立公园以及其他许多地方和东西之外，我对他就知之甚少了。武尔夫大胆地评论说：「洪堡给了我们关于自然本身的概念。」她的评论缓解了我因自己的无知而产生的尴尬，她接着说：「颇具讽刺意味的是，洪堡的观点已经如此不言自明，以至我们基本上已经忘了提出这些观点的这个人。」在一篇题为「为什么洪堡在美国被遗忘？」的文章中，桑德拉·尼科尔斯（2006）的观点进一步消除了我的尴尬，让我再次确信自己其实并不孤单，还有其他人和我的想法一样。尼科尔斯为我们的集体健忘症假定了很多原因。但是，对我来说，最令人感到心酸的是「学术上的转变」，即「对科学的全面观点的研究很快就被搁置一边，转而支持专业化」。在德国，洪堡和他的哥哥威廉肯定没有被遗忘。柏林洪堡大学是以他们两人的名字命名的。他的哥哥威廉被誉为「洪堡式高等教育模式」的创立者，该模式将文理学科中的教学与研究结合起来。这是当今所有顶尖大学的基本原则。
+受其颇具煽动性的标题吸引，我最近读了安德烈娅·武尔夫所著的《发明自然》一书（武尔夫，2015）。武尔夫在书中讲述了有关亚历山大·冯·洪堡（1769-1859）的故事。洪堡是一位杰出的普鲁士人，之前除了听说过用他的名字命名的加利福尼亚州洪堡县和洪堡红杉州立公园以及其他许多地方和东西之外，我对他就知之甚少了。武尔夫大胆地评论说：「洪堡给了我们关于自然本身的概念。」她的评论缓解了我因自己的无知而产生的尴尬，她接着说：「颇具讽刺意味的是，洪堡的观点已经如此不言自明，以至我们基本上已经忘了提出这些观点的这个人。」在一篇题为「为什么洪堡在美国被遗忘？」的文章中，桑德拉·尼科尔斯（2006）的观点进一步消除了我的尴尬，让我再次确信自己其实并不孤单，还有其他人和我的想法一样。尼科尔斯为我们的集体健忘症假定了很多原因。但是，对我来说，最令人感到心酸的是「学术上的转变」，即「对科学的全面观点的研究很快就被搁置一边，转而支持专业化」。在德国，洪堡和他的哥哥威廉肯定没有被遗忘。柏林洪堡大学是以他们两人的名字命名的。他的哥哥威廉被誉为「洪堡式高等教育模式」的创立者，该模式将文理学科中的教学与研究结合起来。这是当今所有顶尖大学的基本原则。
 
 武尔夫声称亚历山大·冯·洪堡「发明了自然」，她向我们表明，科学真理可以存在，然后成为人类精神的一部分。我们如此坚定地接受了这些背景知识，以至我们不再将它们视为科学真理。然而，它们就是科学真理。武尔夫用下面这段话总结了洪堡的成就：
 
@@ -88,9 +88,7 @@ Every engineered design is similarly a model, which can be as simple as a protot
 
 我们的未知的已知导致我们的思想产生了许多偏见。托马斯·库恩在他 1964 年出版的《科学革命的结构》一书中，打破了普遍流行的「积累式发展」（库恩，1962）科学观。库恩认为，一门科学学科是建立在「范式」的基础之上的，而非建立在已经发现的关于世界的事实积累之上。这是一种概念性框架，实践者常常在不知不觉中使用它来解释观察到的现象，并发展各种理论。库恩认为，这些范式使我们对科学的理解必然带有主观性。
 
-观察和经验可以而且一定会大幅限制可接受科学信念的发展范围，否则就不会有科学。但它们无法单独决定这种信念的某一特定主体。一个明显的任意性因素，混合了个人和历史的偶然性
-
-，常常成为一个特定科学群体在特定时期所崇尚的信念的形成要素。
+观察和经验可以而且一定会大幅限制可接受科学信念的发展范围，否则就不会有科学。但它们无法单独决定这种信念的某一特定主体。一个明显的任意性因素，混合了个人和历史的偶然性，常常成为一个特定科学群体在特定时期所崇尚的信念的形成要素。
 
 库恩所说的「任意性因素」往往是以未知的已知这种形式存在的。一种范式被如此广泛地接受，并获得强烈的支持，以至接受它的主体不再能体会到它的存在，这些主体认为范式即真理。正如康德所言，我们在世界上所感知到的秩序是由我们的头脑塑造的，我们的头脑为我们提供了感知世界的歪曲的透镜。我们把秩序强加给自然，而不是反之。
 
@@ -114,6 +112,8 @@ Every engineered design is similarly a model, which can be as simple as a protot
 
 一个新的科学真理并不是通过说服对手并让他们看到真理之光而获得胜利的，而是因为它的对手最终会死去，而熟悉它的新一代人会成长起来。
 
+1-2-3『上面的这段话，在 N 多个地方看到过，新范式的胜利是因为坚守老范式的那些科学家最终死去了。做一张任意卡片。（2021-10-24）』—— 已完成
+
 同样的事情也发生在技术范式上。让我们来看看有多少现代科技让老化的大脑根本无法领悟。我们的孩子当然能够很快接受老年人无法理解的技术真理。事实上，我认为当今技术进步的步伐更多地受到人类无法吸收新范式的限制，而非技术本身存在的任何限制。
 
 库恩对那些曾经持有的范式被后来更好的范式取代的科学家说出了以下的慷慨之词：
@@ -134,29 +134,19 @@ Every engineered design is similarly a model, which can be as simple as a protot
 
 Merriam-Webster's online dictionary has no fewer than 14 definitions of the word「model.」Only a few of these are relevant to how models are used in science and engineering:
 
-4.
+4 a usually miniature representation of something; also: a pattern of something to be made
 
-a usually miniature representation of something; also: a pattern of something to be made
-
-5.
-
-an example for imitation or emulation
+5 an example for imitation or emulation
 
 · · ·
 
-7.
-
-archetype
+7 archetype
 
 · · ·
 
-11.
+11 a description or analogy used to help visualize something (as an atom) that cannot be directly observed
 
-a description or analogy used to help visualize something (as an atom) that cannot be directly observed
-
-12.
-
-a system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs; also: a computer simulation based on such a system.
+12 a system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs; also: a computer simulation based on such a system.
 
 The first of these definitions is a concrete model, a material object in the physical world, whereas the last two are abstract models, where any material realization, for example, as ink on paper, is incidental. The two in the middle could be either concrete or abstract. Both abstract and concrete models help humans grasp concepts. Both kinds of models are created by humans. Models, therefore, can serve as a way for humans to record and communicate concepts.
 
@@ -166,9 +156,7 @@ The notion of a concrete model connects naturally to another of Merriam-Webster'
 
 Platonic Forms, according to Plato, exist independent of humans, as disembodied truths. A Platonic sphere is perfect. The physical world provides no such sphere. It does not and cannot exist as a physical object. Any physical embodiment of a sphere will be made of some material composed of atoms and molecules. No matter how smoothly polished it is, the surface of the sphere will not match the Platonic concept, but rather will have dents and undulations and a fuzziness imposed by the quantum mechanical impossibility of pinning down the location or boundary of the electrons that make up the atoms. Where and what is the surface? Without a surface, we cannot talk about a surface area, but a Platonic sphere should have a surface that is exactly equal to 4 πr 2 , where r is the radius. But the notion of surface has no rigorous basis in physics at the atomic scale.
 
-Figure 2.2
-
-Plato and Aristotle in a detail of The School of Athens, a fresco by Raffaello Sanzio da Urbino (Raphael) in the Vatican. Aristotle is on the right, gesturing toward the earth, indicating that knowledge arises from the study of things, whereas Plato, on the left, gestures toward the heavens, indicating that knowledge is discovery of Forms that exist in an ideal, disembodied world, independent of humans.
+Figure 2.2 Plato and Aristotle in a detail of The School of Athens, a fresco by Raffaello Sanzio da Urbino (Raphael) in the Vatican. Aristotle is on the right, gesturing toward the earth, indicating that knowledge arises from the study of things, whereas Plato, on the left, gestures toward the heavens, indicating that knowledge is discovery of Forms that exist in an ideal, disembodied world, independent of humans.
 
 So in what sense does the Platonic sphere exist independent of humans? It does not exist in the physical world. We can construct a mathematical model of a sphere, but this is still a human construction not a disembodied truth. For example, we can give a mathematical model of a sphere as follows. A sphere with radius r centered at coordinates (0, 0, 0) in a Cartesian coordinate system is the set of points ( x , y , z ) that satisfy
 
@@ -204,9 +192,7 @@ He turned to carbon and experimented with some cotton threads, different kinds o
 
 This is an Aristotelian approach to solving a problem: experiment with materials and infer their properties from observation. The problem he was trying to solve was how to use electricity to generate light. As a side effect of this engineering work, he did some science, discovering a property of the natural world. Specifically, he found that a naturally occurring metal, platinum, when heated in air, changes its structure.
 
-Figure 2.6
-
-Prototype from Thomas Edison's shop of an incandescent lightbulb with a carbon filament. [Image by Terren - Edison Light Bulb, licensed under the Creative Commons Attribution 2.0 Generic license. Lightened by the author. Original from Wikimedia Commons.]
+Figure 2.6 Prototype from Thomas Edison's shop of an incandescent lightbulb with a carbon filament. [Image by Terren - Edison Light Bulb, licensed under the Creative Commons Attribution 2.0 Generic license. Lightened by the author. Original from Wikimedia Commons.]
 
 Bamboo filament lightbulbs went into production in 1882 and about six years later were supplanted with tungsten filament bulbs. Both of these styles require operating in a vacuum, otherwise the filament will burn, melt, or otherwise quickly degrade. Edison's discovery that heated metals degrade in air and do not degrade in a vacuum, a scientific fact, became central to the development of a practical lightbulb, an engineering invention.
 
@@ -242,19 +228,22 @@ Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the
 
 韦氏在线词典对「模型」一词至少有 14 种定义。其中只有少数与模型在科学和工程中的应用有关：
 
-4. 通常是某个事物的缩影，也就是要制作的某个事物的模式；
+4 通常是某个事物的缩影，也就是要制作的某个事物的模式；
 
-5. 模仿或仿制的例子；
-
-……
-
-7. 原型；
+5 模仿或仿制的例子；
 
 ……
 
-11. 一种描述或类比，用来帮助将无法直接观察到的事物（如原子）形象化；
+7 原型；
 
-12. 一个由假设、数据和推论组成的系统，其被表示为一个实体或事态的数学描述；也是基于这种系统的计算机模拟。
+……
+
+11 一种描述或类比，用来帮助将无法直接观察到的事物（如原子）形象化；
+
+12 一个由假设、数据和推论组成的系统，其被表示为一个实体或事态的数学描述；也是基于这种系统的计算机模拟。
+
+
+
 
 第一个定义是一个具体的模型，是物理世界中的一个物质对象。而最后两个是抽象的模型，就后两者而言，诸如纸上的墨水等任何物质实现都是偶然的。而中间的其他两个则可以是具体的模型，也可以是抽象的模型。抽象模型和具体模型都有助于人类掌握概念。这两种模型都是人类创造的。因此，模型可以作为人类记录和交流概念的一种方式。
 
@@ -270,9 +259,7 @@ Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the
 
 柏拉图认为，柏拉图型相作为无形的真理独立于人类而存在。柏拉图式的球体是理想的，但是，我们在物理世界中找不到这种理想的球体。它不是也不可能作为一个物理对象而存在。球体的任何物理形式都将是一些由原子和分子构成的物质组成的。无论它被打磨得多么光滑，球体的表面都不会符合柏拉图式的理想球体概念，任何球体表面都会有波动不平的痕迹，以及由于构成原子的电子的位置或边界所具有的量子力学的不可确定性造成的模糊性。表面到底在哪里？表面是什么？如果没有一个表面，我们就不能谈论表面积的问题，但是一个柏拉图式的球体应该有一个正好等于 4πr2 的表面积，其中 r 是球的半径。然而，在原子的尺度上，表面的概念并没有严格的物理学基础。
 
-那么柏拉图式的球体在何种意义上独立于人类而存在呢？结论是它并不存在于物理世界之中。我们可以建立一个球体的数学模型，但是，它仍然是一个人类的构造，而不是无形的真理。例如，我们可以给出一个球体的数学模型。在笛卡儿的坐标系中，以坐标（0，0，0）为圆心、r
-
-为半径的球体是满足如下条件的点（x，y，z）的集合。
+那么柏拉图式的球体在何种意义上独立于人类而存在呢？结论是它并不存在于物理世界之中。我们可以建立一个球体的数学模型，但是，它仍然是一个人类的构造，而不是无形的真理。例如，我们可以给出一个球体的数学模型。在笛卡儿的坐标系中，以坐标（0，0，0）为圆心、r 为半径的球体是满足如下条件的点（x，y，z）的集合。
 
 毫无疑问，这样一个柏拉图式的模型一点儿都不令人着迷。
 
@@ -332,9 +319,7 @@ i=v/R
 
 所以，把阻值 R 固定为常数是行不通的。我们必须让它随时间的变化而变化。但在此时，我们会遇到一个难题。如果阻值 R 是一个根据经验确定的值，那么欧姆定律就变成了一个恒真的命题！也就是说，每个电路都是如此。在任何瞬间，电阻都等于电压除以电流：
 
-R
-
-=v/i
+R = v/i
 
 （512）
 
