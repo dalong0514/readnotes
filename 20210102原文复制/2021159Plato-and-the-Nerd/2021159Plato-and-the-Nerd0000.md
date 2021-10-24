@@ -20,7 +20,7 @@ This book is dedicated to my muse, Rhonda Righter, with thanks for many dinnerti
 
 ## Preface
 
-What This Book Is About
+### 01. What This Book Is About
 
 When I was young, my father wanted me to become a lawyer or get an MBA and take over the family business. Engineers were the people who worked for him. The brightest young minds, at least those of white Anglo-Saxon stock in the United States, went to law school, business school, or medical school. Today, engineering schools are much harder to get into, but that was not true when I was going to college. Yes, my father was profoundly disappointed in me when I double majored in Computer Science and what Yale called「Engineering and Applied Science.」I made it worse when I went to MIT for graduate school in engineering and then went to work as an engineer at Bell Labs, and worse still when I went to Berkeley for a PhD and then became a professor. This book is perhaps my last-ditch attempt to justify those decisions.
 
@@ -54,7 +54,47 @@ But more fundamentally, the title puts into opposition the notion that knowledge
 
 I hope that through this book, I can change the public discourse so young people are more inclined to consider a career in engineering, and not just because of the job prospects. I am convinced that engineering is fundamentally a creative discipline, and the technical drudgery that prejudices many people is no more drudgery than found in any other creative discipline. Yes, hard work is required, but as a reward for that hard work, you can change the world.
 
-Overview of the Chapters
+前言
+
+主要内容
+
+当我年轻的时候，我的父亲想让我将来成为一名律师，或者获得工商管理学硕士学位并接管家族企业，而工程师是那些正在为他干活的人。最聪明的年轻人，至少是那些美国盎格鲁 - 撒克逊白人的后裔，读的是法学院、商学院或医学院。和过去相比，现在要考入工程学院的难度很大，在我读大学的时候情况却并非如此。当我主修耶鲁大学的「计算机科学」和「工程与应用科学」双学士学位的时候，父亲对我感到非常失望。继而我去麻省理工学院攻读工程硕士学位，然后成为贝尔试验室的一名工程师，最后又去伯克利大学攻读博士学位，并成为一名大学教授。我的一次次决定让我的父亲愈感失望。这本书也许是我为那些决定进行辩护的最后一次尝试吧。
+
+当我开始写作本书时，我实际上并不清楚我的读者受众都会有谁。但随着本书的完成，我确信本书是以有人文社科底蕴的技术专家或者懂技术的人文主义者为读者对象的。我不确定这样的人能有多少，但我深信肯定会有一些。我希望你就是其中的一员。
+
+本书试图解释为什么创造技术的过程，即我们称为工程的过程，是一个非常有创造性的过程，并希望向读者解释为什么这个学科变得如此火热和有竞争力，以至能够让一些极客从最聪明的年轻人当中脱颖而出。本书将向读者介绍技术文化、技术的力量与局限性以及技术的真正力量等，是如何通过与人类的伙伴关系发挥出来的。我倾向于把这本书视为一种受欢迎的技术哲学读物，但我怀疑它是否会受到读者的欢迎，而且我也不确定我是否具备撰写一部哲学类图书的水平。但是，我唯一可以保证的是，这是一本关于技术和创造技术的工程师的著作。即便如此，本书也无法做到包罗万象，仅限于我最了解的技术部分，特别是数字和信息技术革命。
+
+本书讨论的不是如何以技术为媒介来释放艺术性和创造性。如果读者想要了解这方面的内容，那么我推荐阅读维吉尼亚·赫弗南于 2016 年出版的《魔法与迷失》（Magic and Loss
+
+）一书。赫弗南声称「互联网是现实主义艺术大规模协同工作的产物」，但她所指的主要是互联网的内容。在我的书中，我认为互联网技术本身，以及支撑它的所有数字技术，都是一项大规模协同的创造性工作，即使其并非艺术性工作。
+
+数字技术作为后来出现的一种富有创造力的媒介，有着巨大的潜力，并且远远超过迄今为止其他技术领域所取得的成就。在本书的第一部分，我将详尽地解释为什么这项技术具有如此彻底的变革力和释放性。我研究了工程师是如何创造性地使用模型和抽象来构建人工世界，并给予我们难以置信的能力。例如，将迄今为止人类出版过的所有图书全部装入口袋的能力。
+
+但这并不意味着数字技术就没有它的局限性。为了从正反两方面阐释数字技术的发展，我在本书的第二部分试图反驳一些所谓思想领袖对数字技术和计算的狂热痴迷。在计算机技术巨大潜力的驱动下，这种狂热导致了一些不合理的信念。这些信念甚至断言，物理世界中的一切实际上都是一种计算，其在本质上与现代计算机的运算过程是完全相同的。一切事物，包括诸如人类认知等复杂现象以及诸如星体等我们所不熟悉的事物，都不过是在数字数据上运行的软件。
+
+我认为，支撑这些结论的证据是薄弱的，大自然仅将自身局限于符合当今数字计算概念的过程的可能性相当渺茫。我将证明，这一数字假说并不能得到实证验证，因此也就永远不能被解释为一种科学理论。由于其可能性非常渺茫，证据极弱，而且假设又是不可验证的，所以得出的结论不过是一些无根据的猜想罢了。我在这里的论点可能会给我带来一些麻烦，因为我正逆流而行，与大多数人的观点相左。
+
+的确，我的观点与当前的许多观点都不同，我认为人工智能在计算机上复制人类认知功能的目标是一种误导，其是不大可能获得成功的，并且还在很大程度上低估了计算机科学的潜能。相反，我认为，技术正在与人类共同进化，正在拓展我们的认知和自身能力，所有这些也使得我们能够培育、发展和传播技术。我们已经看到，人类与机器之间存在的互补性正在促进人类与机器共生、共同进化。
+
+然而，本书的大部分内容都与现实情况相吻合，比如，技术的巨大潜力将改善我们的生活，这是人类对技术发展所持有的乐观态度。除了强调技术已对人类生活产生的积极影响，我在本书中要表达的主要观点之一在于，工程学是一门极具创造性和智识性的学科，它同艺术和自然科学一样是有趣和有价值的。在技术不那么成熟的领域中，创造性的贡献更多地体现了创造者的个性、审美和特质。在更为成熟的领域，这些工作可能会变得极为技术化，且令非专业人士觉得有些晦涩难懂。然而，我们必须承认，这种情形在所有学科中都会出现，所以不足为奇。
+
+与科学一样，工程学是建立在被广泛认可的范式之上的，是指导行动的思想框架。工程学与科学相似，用托马斯·库恩（1962）的话来说，工程学的发展也会不时地为范式的转换所打断。然而，与科学不同的是，工程学中范式的转换是频繁的，甚至是变革式的。事实上，我认为，在我们目前的文化中，技术进步的速度主要是受到人类无法理解新范式的制约，而并非技术自身发展的限制。我希望本书能够清楚地阐释其中的原因。
+
+与艺术一样，工程学领域的发展也会受到文化、语言和思想交叉萌发的制约。也和艺术一样，工程学的成功或失败往往决定于无形和不可解释的力量，比如时尚和文化。就这一点而言，工程学的发展几乎和艺术是相同的。仍然像艺术一样，一个新的发现可能会让诸多读者感到惊讶不已。今天用来设计新的手工艺品和系统的创意媒体，尤其是数字媒体，其广泛的用途和丰富的表现力真是令人惊讶。在我看来，数字媒体的多功能性和强大的表现力足以解释为什么该领域对优秀的年轻人具有这么大的吸引力。这种巨大的吸引力甚至超过了高收入就业前景所具有的吸引力。
+
+工程学是一个很宽广的领域，它从供水系统到社交网络软件，包罗万象。任何人，包括我自己在内，对工程学诸多子学科的理解都还是比较肤浅的。因此，本书的观点主要基于我在电子、电气工程和计算机科学方面的有限经验。这些观点适用于数字和信息技术，也可能适用于其他技术，如桥梁以及化工厂等等。尽管如此，根据我的经验，数字技术已经渗透到几乎所有的工程学科中。例如，现代化的工厂大部分是由计算机控制和管理的，从而也就成为信息物理系统（CPS）的实例。本书的第 6 章对该内容进行了详细的阐述。这类系统无疑受到我在本书中所指出的数字技术的潜力、多变性和局限性的制约。
+
+我首先假定读者是没有任何特定技术背景的。但在本书的某些章节中，我也的确是较为深入地讨论了一些我所关注的技术主题。但是，我向读者保证，每一个这样的讨论都不会过度深入。当然，我也希望我所略掉的这些技术细节不会严重破坏我所要传递的信息。但凡遇到这样的技术主题，请读者保持耐心并坚持下去。请相信，类似这种技术呆子式的头脑风暴会很快过去的。
+
+我的确假设您是一位了解计算机技术的读者。在据理力争之后，我在本书中只保留了 12 个方程。实际上，要理解这些并非复杂的方程，高中水平的数学和科学知识就足够了，即使不能完全理解，读者也能从中获取应有的信息。我的出版商用这个理由反驳我，说如果这是真的，我就应该将其全部删除。但是我更希望予以保留，我坚信，现在了解计算技术的读者比以前会更多。我已经向出版商保证，算上我的朋友和家人，本书几十册的销量还是可以保证的。
+
+本书书名的灵感来自纳西姆·尼古拉斯·塔勒布精彩的著作《黑天鹅》。塔勒布给书的序言的一个部分取名为「柏拉图与愚人」。塔勒布把「柏拉图主义」形容为「将现实切割为清晰形状的愿望」。塔勒布哀叹随后的专业化发展趋势，并指出这种专业化使我们对那些不寻常的事件视而不见，他将不寻常的事件称为「黑天鹅」。围绕塔勒布的思想，本书的一个主题会阐明技术学科也容易受到过度专业化的影响；每个专业都在不知不觉地采用某些范式，这些范式将这个专业转化为一种缓慢发展的文化，其结果是阻碍了而不是促进了技术的创新。
+
+此外，本书的书名从根本上反对这样的认知，即技术是由独立于人类的柏拉图式的理想构成的，并且技术是由人类发现的。这一观点刚好与认为人类创造而不是发现知识和技术的观念背道而驰。书名中的技术呆子象征着一种主观甚至是奇特的创造性力量，而不是客观真理的一个发现者。
+
+我希望本书可以改变公众对工程学的某些偏见，进而鼓励年轻人更倾向于选择工程学方面的职业，而不只是根据某种工作的前景来进行规划。我确信，工程学从根本上说是一门创造性的学科，而让许多人产生偏见的技术苦差事并不比任何其他创造性学科中的工作更为辛苦和乏味。是的，努力工作是我们必需坚持的职业操守，但是，你在工程学上的努力付出是一定会有回报的，那就是，你可以改变这个世界。
+
+### 02. Overview of the Chapters
 
 Some readers like to be told what they will be told before they are told it. Putting aside the problematic self-referentiality, for those readers, I provide here a brief overview of the book. But honestly, I recommend skipping this and going directly to chapter 1 . The story told in this book cannot be accurately summarized in a few paragraphs, and any such summary will necessarily make the book seem more dense than it is. Nevertheless, for those who really need it, here is my summary.
 
@@ -96,53 +136,13 @@ In the final chapter, I tie things together by examining the epistemic role that
 
 The most expressive modeling paradigms are capable of self-reference, which enables them to build their own scaffolding but also makes them necessarily incomplete. This incompleteness is fundamentally what enables creativity and ensures that what we can accomplish with technology is limitless. So what holds us back? In this final chapter, I consider both the obstacles to progress and the threats that technology, when misapplied, can have on society.
 
-Acknowledgments
+### 03. Acknowledgments
 
 The author gratefully acknowledges contributions and helpful suggestions from Christopher Brooks, Malik Ghallab, Thomas Henzinger, Madeline Johnson, Hokeun Kim, Gil Lederman, Marten Lohstroh, Dave Messerschmitt, Mehrdad Niknami, Rodion Rathbone, Rhonda Righter, Bernhard Rumpe, Naresh Shanbhag, Joseph Sifakis, Marjan Sirjani, Kimball Strong, David J. Stump, and Eli Yablonovitch. I would also like to thank three anonymous reviewers commissioned by the publisher who were extremely helpful. Several of these people disagreed with major points that I make in the book, and they thereby helped me to understand where my arguments needed to be strengthened or reworked. All remaining errors and opinions that I have stubbornly stuck to are entirely my own, not those of these contributors.
 
 Most especially, however, I would like to thank two very special people who played a major role in the development of this book. The first is Heather Levien, who, unlike me, really knows how to write and without whom this book would be a disorganized pile of random ideas. The second is my mom, Kitty Fassett, a professional musician with an aversion for mathematics but a true intellectual and also a great writer. Without her help, this book would be unreadable to nonspecialists. She was my guinea pig, telling me each place where a nonspecialist might get lost.
 
 I also thank the staff at MIT Press and Heather Jefferson for her superb copy editing. In addition, I thank the many unwitting contributors who have offered their thoughts through largely anonymous media such as Wikipedia and the contributors who have generously posted images online that I can (and have) reused because of their choice of creative commons licenses.
-
-前言
-
-主要内容
-
-当我年轻的时候，我的父亲想让我将来成为一名律师，或者获得工商管理学硕士学位并接管家族企业，而工程师是那些正在为他干活的人。最聪明的年轻人，至少是那些美国盎格鲁 - 撒克逊白人的后裔，读的是法学院、商学院或医学院。和过去相比，现在要考入工程学院的难度很大，在我读大学的时候情况却并非如此。当我主修耶鲁大学的「计算机科学」和「工程与应用科学」双学士学位的时候，父亲对我感到非常失望。继而我去麻省理工学院攻读工程硕士学位，然后成为贝尔试验室的一名工程师，最后又去伯克利大学攻读博士学位，并成为一名大学教授。我的一次次决定让我的父亲愈感失望。这本书也许是我为那些决定进行辩护的最后一次尝试吧。
-
-当我开始写作本书时，我实际上并不清楚我的读者受众都会有谁。但随着本书的完成，我确信本书是以有人文社科底蕴的技术专家或者懂技术的人文主义者为读者对象的。我不确定这样的人能有多少，但我深信肯定会有一些。我希望你就是其中的一员。
-
-本书试图解释为什么创造技术的过程，即我们称为工程的过程，是一个非常有创造性的过程，并希望向读者解释为什么这个学科变得如此火热和有竞争力，以至能够让一些极客从最聪明的年轻人当中脱颖而出。本书将向读者介绍技术文化、技术的力量与局限性以及技术的真正力量等，是如何通过与人类的伙伴关系发挥出来的。我倾向于把这本书视为一种受欢迎的技术哲学读物，但我怀疑它是否会受到读者的欢迎，而且我也不确定我是否具备撰写一部哲学类图书的水平。但是，我唯一可以保证的是，这是一本关于技术和创造技术的工程师的著作。即便如此，本书也无法做到包罗万象，仅限于我最了解的技术部分，特别是数字和信息技术革命。
-
-本书讨论的不是如何以技术为媒介来释放艺术性和创造性。如果读者想要了解这方面的内容，那么我推荐阅读维吉尼亚·赫弗南于 2016 年出版的《魔法与迷失》（Magic and Loss
-
-）一书。赫弗南声称「互联网是现实主义艺术大规模协同工作的产物」，但她所指的主要是互联网的内容。在我的书中，我认为互联网技术本身，以及支撑它的所有数字技术，都是一项大规模协同的创造性工作，即使其并非艺术性工作。
-
-数字技术作为后来出现的一种富有创造力的媒介，有着巨大的潜力，并且远远超过迄今为止其他技术领域所取得的成就。在本书的第一部分，我将详尽地解释为什么这项技术具有如此彻底的变革力和释放性。我研究了工程师是如何创造性地使用模型和抽象来构建人工世界，并给予我们难以置信的能力。例如，将迄今为止人类出版过的所有图书全部装入口袋的能力。
-
-但这并不意味着数字技术就没有它的局限性。为了从正反两方面阐释数字技术的发展，我在本书的第二部分试图反驳一些所谓思想领袖对数字技术和计算的狂热痴迷。在计算机技术巨大潜力的驱动下，这种狂热导致了一些不合理的信念。这些信念甚至断言，物理世界中的一切实际上都是一种计算，其在本质上与现代计算机的运算过程是完全相同的。一切事物，包括诸如人类认知等复杂现象以及诸如星体等我们所不熟悉的事物，都不过是在数字数据上运行的软件。
-
-我认为，支撑这些结论的证据是薄弱的，大自然仅将自身局限于符合当今数字计算概念的过程的可能性相当渺茫。我将证明，这一数字假说并不能得到实证验证，因此也就永远不能被解释为一种科学理论。由于其可能性非常渺茫，证据极弱，而且假设又是不可验证的，所以得出的结论不过是一些无根据的猜想罢了。我在这里的论点可能会给我带来一些麻烦，因为我正逆流而行，与大多数人的观点相左。
-
-的确，我的观点与当前的许多观点都不同，我认为人工智能在计算机上复制人类认知功能的目标是一种误导，其是不大可能获得成功的，并且还在很大程度上低估了计算机科学的潜能。相反，我认为，技术正在与人类共同进化，正在拓展我们的认知和自身能力，所有这些也使得我们能够培育、发展和传播技术。我们已经看到，人类与机器之间存在的互补性正在促进人类与机器共生、共同进化。
-
-然而，本书的大部分内容都与现实情况相吻合，比如，技术的巨大潜力将改善我们的生活，这是人类对技术发展所持有的乐观态度。除了强调技术已对人类生活产生的积极影响，我在本书中要表达的主要观点之一在于，工程学是一门极具创造性和智识性的学科，它同艺术和自然科学一样是有趣和有价值的。在技术不那么成熟的领域中，创造性的贡献更多地体现了创造者的个性、审美和特质。在更为成熟的领域，这些工作可能会变得极为技术化，且令非专业人士觉得有些晦涩难懂。然而，我们必须承认，这种情形在所有学科中都会出现，所以不足为奇。
-
-与科学一样，工程学是建立在被广泛认可的范式之上的，是指导行动的思想框架。工程学与科学相似，用托马斯·库恩（1962）的话来说，工程学的发展也会不时地为范式的转换所打断。然而，与科学不同的是，工程学中范式的转换是频繁的，甚至是变革式的。事实上，我认为，在我们目前的文化中，技术进步的速度主要是受到人类无法理解新范式的制约，而并非技术自身发展的限制。我希望本书能够清楚地阐释其中的原因。
-
-与艺术一样，工程学领域的发展也会受到文化、语言和思想交叉萌发的制约。也和艺术一样，工程学的成功或失败往往决定于无形和不可解释的力量，比如时尚和文化。就这一点而言，工程学的发展几乎和艺术是相同的。仍然像艺术一样，一个新的发现可能会让诸多读者感到惊讶不已。今天用来设计新的手工艺品和系统的创意媒体，尤其是数字媒体，其广泛的用途和丰富的表现力真是令人惊讶。在我看来，数字媒体的多功能性和强大的表现力足以解释为什么该领域对优秀的年轻人具有这么大的吸引力。这种巨大的吸引力甚至超过了高收入就业前景所具有的吸引力。
-
-工程学是一个很宽广的领域，它从供水系统到社交网络软件，包罗万象。任何人，包括我自己在内，对工程学诸多子学科的理解都还是比较肤浅的。因此，本书的观点主要基于我在电子、电气工程和计算机科学方面的有限经验。这些观点适用于数字和信息技术，也可能适用于其他技术，如桥梁以及化工厂等等。尽管如此，根据我的经验，数字技术已经渗透到几乎所有的工程学科中。例如，现代化的工厂大部分是由计算机控制和管理的，从而也就成为信息物理系统（CPS）的实例。本书的第 6 章对该内容进行了详细的阐述。这类系统无疑受到我在本书中所指出的数字技术的潜力、多变性和局限性的制约。
-
-我首先假定读者是没有任何特定技术背景的。但在本书的某些章节中，我也的确是较为深入地讨论了一些我所关注的技术主题。但是，我向读者保证，每一个这样的讨论都不会过度深入。当然，我也希望我所略掉的这些技术细节不会严重破坏我所要传递的信息。但凡遇到这样的技术主题，请读者保持耐心并坚持下去。请相信，类似这种技术呆子式的头脑风暴会很快过去的。
-
-我的确假设您是一位了解计算机技术的读者。在据理力争之后，我在本书中只保留了 12 个方程。实际上，要理解这些并非复杂的方程，高中水平的数学和科学知识就足够了，即使不能完全理解，读者也能从中获取应有的信息。我的出版商用这个理由反驳我，说如果这是真的，我就应该将其全部删除。但是我更希望予以保留，我坚信，现在了解计算技术的读者比以前会更多。我已经向出版商保证，算上我的朋友和家人，本书几十册的销量还是可以保证的。
-
-本书书名的灵感来自纳西姆·尼古拉斯·塔勒布精彩的著作《黑天鹅》。塔勒布给书的序言的一个部分取名为「柏拉图与愚人」。塔勒布把「柏拉图主义」形容为「将现实切割为清晰形状的愿望」。塔勒布哀叹随后的专业化发展趋势，并指出这种专业化使我们对那些不寻常的事件视而不见，他将不寻常的事件称为「黑天鹅」。围绕塔勒布的思想，本书的一个主题会阐明技术学科也容易受到过度专业化的影响；每个专业都在不知不觉地采用某些范式，这些范式将这个专业转化为一种缓慢发展的文化，其结果是阻碍了而不是促进了技术的创新。
-
-此外，本书的书名从根本上反对这样的认知，即技术是由独立于人类的柏拉图式的理想构成的，并且技术是由人类发现的。这一观点刚好与认为人类创造而不是发现知识和技术的观念背道而驰。书名中的技术呆子象征着一种主观甚至是奇特的创造性力量，而不是客观真理的一个发现者。
-
-我希望本书可以改变公众对工程学的某些偏见，进而鼓励年轻人更倾向于选择工程学方面的职业，而不只是根据某种工作的前景来进行规划。我确信，工程学从根本上说是一门创造性的学科，而让许多人产生偏见的技术苦差事并不比任何其他创造性学科中的工作更为辛苦和乏味。是的，努力工作是我们必需坚持的职业操守，但是，你在工程学上的努力付出是一定会有回报的，那就是，你可以改变这个世界。
 
 内容概述
 
