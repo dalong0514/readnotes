@@ -2,6 +2,72 @@
 
 ## 卡片
 
+### 0001. 反常识卡 —— 硬件既是硬的也是软的
+
+常识：硬件，如晶体管，是物理的实体对象，硬的，怎么会是软的呢。
+
+反常识：硬件既是硬的也是软的。
+
+信息源自「Hardware Is Ephemeral」
+
+Steven Connor, professor of modern literature and theory at Birkbeck, University of London, credits the French philosopher Michel Serres, now a Professor of French at Stanford, with developing a subtle and beautiful theory of「the hard and the soft.」Serres' thesis, according to Connor, is woven throughout his prolific writings, many of which have not been translated into English. Connor comments that it is difficult to quote Serres, so I will quote Connor instead:
+
+[T] he contrast between the hard and the soft refers to this distinction between the domain of nature, the object of attention of what we call the「hard sciences,」and the domain of culture. The hard means the given, as opposed to the made. It means the physical, as opposed to the conceptual. It means hardware as opposed to software. It means object as opposed to idea, form as opposed to information, world as opposed to word. (Connor, 2009)
+
+Connor finds allusions in Serres' writings to an astonishing array of oppositions between hard and soft, including body and language, science and humanities, things and signs, physical and conceptual, object and idea, form and information, physics and language, a stone and a ghost, motors and information theory, the manual and the digital, sound and meaning, bridge and hyphen, energy and information, flesh and word, the real and the virtual, forces and codes, solids and geometry, objective and subjective, war and religion, a book and a story, or sound and music.
+
+But Serres does not succumb to Platonicity, requiring a sharp delineation between the hard and the soft. Quite the contrary. According to Connor,
+
+Serres's principal effort is to allow his reader to grasp [the] intermixture [of the hard and the soft.] … The hard can always evaporate into the soft, the soft calcify into the hard. (Connor, 2009)
+
+In Serres' own words (translated from the French by Connor),
+
+Hard things display a soft side; material, of course, they engram and programme themselves like software. There is software [logiciel] in the hardware [matériel]. (Serres, 2003, p. 73)
+
+We then find the more subtle oppositions between the hard and the soft, such as wax and wax, nature and nature, ropes and ropes, or mathematics and mathematics. Each of these, depending on its role and use, can be either hard or soft.「Hardness in softness and softness in hardness,」according to Serres.
+
+Following Serres, the three-word summary of this chapter would need to be「hardware and hardware.」Hardware is both hard and soft. I will argue that for an engineer who works with digital technology, hardware is merely an ephemeral expression of an idea, lasting longer than a spoken word, which vanishes from the room in a few milliseconds, but still ephemeral, in the grand scheme. The ideas articulated by the hardware, in contrast, although undoubtably mutating and evolving, can last a long time indeed. These ideas are expressed using layers of paradigms that shape and constrain the ideas in ways that even the designer of the hardware is not aware of.
+
+In the rest of this chapter, I outline the layers of modeling used specifically for computer hardware. With apologies to the reader, I confess that the rest of this chapter is a bit of a nerd storm. If you are an impatient reader, or you have no interest in hardware, and you are willing to grant my basic thesis, then please feel free to skip reading the rest of this chapter.
+
+My basic thesis is that the hardware of modern computers is far too complex to design directly. Layers of abstraction are essential, and except for the bottom layer, semiconductor physics, none of these layers is given to us by nature. They are all human constructions, paradigms in Kuhn's sense that frame our thinking about hardware design.
+
+Moreover, I claim that these paradigms, despite having no physical form, are more durable than the hardware. Paradigm shifts are difficult for humans. They can also be quite costly because changes in technology paradigms can mean significant retooling. Software that supports design, such as hardware description languages and their compilers, may have to be redesigned with significant paradigm shifts. Even manufacturing plants may have to change.
+
+Nevertheless, the layering of paradigms makes paradigm shifts easier than they would otherwise be. The design of a microprocessor, for example, often does not need to change when moving to a new semiconductor technology. The emphasis of this chapter is on how this layering of paradigms enables creativity and technological advances. In chapter 6 , I will explain how technological advances trigger paradigm shifts.
+
+If you persist in reading this chapter, my primary goal is to show a reader with little or no prior exposure to electronics how the basic operations of an application such as Wikipedia are realized by transistors operating as switches. This explanation cannot be given all at once. It has to be built up in layers. Otherwise, the complexity is simply too much for the human brain. But starting from an abstraction of a single transistor as a switch, we quickly get to abstractions that when realized in a chip require thousands, millions, and billions of transistors. My goal is to show how these layered abstractions enable such scaling up.
+
+史蒂文·康纳是伦敦大学伯克贝克学院现代文学和理论专业的教授，他认为斯坦福大学的法语教授、法国哲学家米歇尔·塞尔创立了一套精妙而漂亮的「硬和软」的理论。据康纳所说，塞尔的论题贯穿于他的多部作品之中，其中许多作品尚未被翻译成英文。康纳评论说，要引用塞尔的原文是有点儿难度的，所以我在这里就引用了康纳的一段文字：
+
+「硬」和「软」的对比指的是自然领域和文化领域的区别，自然领域是我们所说的「硬科学」关注的对象。硬指的是给予的，而不是制造的。它指的是物质上的，而不是概念上的。它指的是硬件而不是软件。它指的是对象而不是想法，是形式而不是信息，是物理世界而不是文字。（康纳，2009）
+
+康纳在塞尔的著作中发现了一系列令人吃惊的硬和软的经典对立情形，包括身体与语言、科学与人文、事物与符号、物理的与概念的、对象与想法、形式与信息、物理与语言、石头与鬼魂、发动机与信息论、手册与数字、声音与意义、桥梁与连字符、能量与信息、肉体与文字、真实与虚拟、力量与代码、立方体与几何学、客观与主观、战争与宗教、一本书与一个故事以及声音与音乐等等。
+
+然而，塞尔并未屈从于柏拉图主义，那需要在硬和软之间有一个清晰的界限。恰恰相反，康纳表示：
+
+塞尔的主要成就是，允许他的读者领悟（硬和软）是可以相互转换的…… 硬的总是能蒸发成软的，而软的也常常可以钙化为硬的。（康纳，2009 年）
+
+塞尔在自己的著作中提道（康纳翻译自法语）：
+
+硬的东西常常显示出软的一面；当然，材料本身就像软件一样可以被记忆和编程。硬件（法语 matériel）中有软件（法语 logiciel）。（塞尔，2003:73）
+
+然后，我们又在硬和软之间发现了更为微妙的对立关系，例如，蜡和蜡、自然和自然、绳子和绳子，或者数学和数学。根据作用和用途的不同，上述例子中的每一方既可以是硬的，也可以是软的。按照塞尔的观点，「硬中有软，软中有硬」。
+
+在塞尔的观点之后，我想简要地概括一下本章的内容 ——「硬件和硬件」，意思是硬件既是硬的也是软的。我要说的是，对于一个从事数字技术工作的工程师来说，硬件仅仅是一种思想的短暂表达，它的持续时间也许只稍稍长过一个几毫秒内就会从房间里消失的口语表达词语，但在宏大的计划中仍然是短暂的。相比之下，硬件所表达的思想，尽管总是处在不断的变化和演变之中，但确实可以持续很长的时间。这些思想是通过分层的范式来表达的。这些范式以设计者都不知道的方式形成和约束着这些思想。
+
+2『硬件既是硬的也是软的，做一张反常识卡片。（2021-10-24）』—— 已完成
+
+在本章的其余部分，我将概要阐述专门用于计算机硬件的建模层。感到抱歉的是，我承认本章后续内容会像一场技术呆子的头脑风暴。如果你是个急性子或者对硬件不感兴趣，并且同意我的基本论点，那么请直接跳过这部分内容。
+
+我的基本论点是，现代计算机的硬件过于复杂，根本无法直接进行设计。因此，抽象层是必不可少的，除了最低层的半导体物理层之外，所有其他的层都不是大自然赋予我们的。它们都是人类构建的，是库恩所指意义上构建我们对硬件设计的思路的范式。
+
+此外，我还想表明，尽管这些范式没有物理形式，却比硬件本身的生命力更持久。范式的转换对人类来说是一件十分困难的事情。它们也可能会有很高的代价，因为技术范式的转换可能意味着重大的重组。用以支持设计的软件，例如硬件描述语言及其编译器，可能必须被重新设计并进行重大的范式转换，甚至就连制造工厂也可能不得不进行改变。
+
+尽管如此，范式的分层使得范式的转换比其他情况下的转换要更容易。例如，微处理器的设计在转向一种新的半导体技术时，通常不需要进行改变。本章的重点在于这种范式的分层是如何激发创造力和推动技术进步的。在第 6 章，我将进一步解释技术进步是如何引发范式转换的。
+
+如果你坚持阅读本章的内容，那么我可以先告诉你我的主要目标是，向那些很少或根本没有接触过电子技术的读者展示诸如维基百科这样的一个应用程序是如何以晶体管为开关实现基本操作的。关于这个过程的解释不可能一下子就给出来，它必须是分层的。否则，人类大脑就要应对过于复杂的事物了。但是，从把单个晶体管抽象为一个开关开始，我们很快就得到了在芯片中实现时需要的成千上万、数百万和数十亿个晶体管的抽象。我的目标是向读者展示这些分层的抽象是如何实现这种扩展的。
+
 ### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
