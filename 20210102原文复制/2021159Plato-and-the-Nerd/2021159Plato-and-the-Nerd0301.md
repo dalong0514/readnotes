@@ -80,21 +80,19 @@ It is hard to imagine fitting 250 billion distinct human-made objects into the s
 
 As of 2017, nobody has made a chip with 250 billion transistors (yet), in part, because a chip includes many other things besides transistors, such as wires to connect the transistors. Also, each transistor needs some space around it to separate it from neighboring transistors. So how many transistors can a chip have in practice?
 
-Intel makes a family of microprocessor chips that they call their Haswell line using 22-nm FinFETs. You may have such a chip in your computer. Figure 3.2 shows a portion of a silicon wafer containing several such chips. A「fab」is a high-tech factory that produces such wafers and then cuts them into individual chips and packages them for inclusion in a computer. Each chip in the figure occupies 1.77 centimeters squared, nearly twice as big as the square shown above, and has 1.4 billion transistors (Shimpi, 2013). This is far fewer than 250 billion, but it is still a large number. 1
+Intel makes a family of microprocessor chips that they call their Haswell line using 22-nm FinFETs. You may have such a chip in your computer. Figure 3.2 shows a portion of a silicon wafer containing several such chips. A「fab」is a high-tech factory that produces such wafers and then cuts them into individual chips and packages them for inclusion in a computer. Each chip in the figure occupies 1.77 centimeters squared, nearly twice as big as the square shown above, and has 1.4 billion transistors (Shimpi, 2013). This is far fewer than 250 billion, but it is still a large number. [1]
 
 Much writing about such technology, including what I've written above, has a breathless enthusiasm about the big numbers. But most of us actually have quite a bit of difficulty assigning any meaning to such numbers because they are so much bigger than anything we encounter in daily life. In fact, the point I want to make is that the human brain is incapable of comprehending any design that has 1.4 billion individual components, each with a potentially different function, despite the fact that the human brain has some 100 billion neurons, each of which does more than a transistor!
 
 Each transistor can function as an electronic switch. It has a control input that either turns the switch on or turns it off. It can turn on and off billions of times per second. Billions of transistors switching billions of times per second creates unimaginable potential complexity.
 
-Figure 3.2
-
-Photo of a silicon wafer with several Intel Haswell microprocessor chips. The pin on top is for scale. [Photo by Intel Free Press (Flickr: Haswell Chip), released under a CC BY 2.0 license, via Wikimedia Commons.]
+Figure 3.2 Photo of a silicon wafer with several Intel Haswell microprocessor chips. The pin on top is for scale. [Photo by Intel Free Press (Flickr: Haswell Chip), released under a CC BY 2.0 license, via Wikimedia Commons.]
 
 How can we design anything using this technology? Can we use Edison's prototype-and-test style of experimentation? Bokor, King, and Hu probably did some prototyping and testing before getting a single FinFET to work. Even so, it was much harder for them than for Edison simply because of the dimensions involved. It is extremely difficult to sculpt a physical structure 20 nm wide. You can't do this with a hammer and chisel. As a consequence, they would have had to make much more use of models than Edison did.
 
 But more to the point, if you want to design a system based on a silicon chip, would you start your design by assembling and interconnecting transistors? Consider, for example, the system I am using to write this book. I'm using a software package called that converts text that I type into a formatted book that can be distributed electronically or printed. Suppose I want to design such a system. Should I start with a bagful of transistors and start connecting them in various ways to see what they do? Most certainly not.
 
-is an interesting story. It provides me, a book author, with a paradigm for modeling a book. I construct a model of my book in a text editor that contains annotations such as \footnote{Footnote contents} to create a footnote, such as this one. 2 I then run a program to convert the text model into a PDF file, another model of pages to be printed. was created by Leslie Lamport in the early 1980s, when he was at SRI International. Lamport is an astonishingly prolific and influential computer scientist who received the 2013 Turing Award, sometimes called the Nobel Prize of computer science, for his work on distributed software systems. stands for「Lamport's 」and is built on top of , designed in the late 1970s by Donald Knuth from Stanford University, another Turing Award winner. Knuth is most well known for his monumental multi-volume work The Art of Computer Programming , an encyclopedic compendium of algorithms and principles of programming. Vikram Chandra, in his wonderful book about the aesthetics of software, Geek Sublime , said,
+is an interesting story. It provides me, a book author, with a paradigm for modeling a book. I construct a model of my book in a text editor that contains annotations such as \footnote{Footnote contents} to create a footnote, such as this one. [2] I then run a program to convert the text model into a PDF file, another model of pages to be printed. was created by Leslie Lamport in the early 1980s, when he was at SRI International. Lamport is an astonishingly prolific and influential computer scientist who received the 2013 Turing Award, sometimes called the Nobel Prize of computer science, for his work on distributed software systems. stands for「Lamport's 」and is built on top of , designed in the late 1970s by Donald Knuth from Stanford University, another Turing Award winner. Knuth is most well known for his monumental multi-volume work The Art of Computer Programming , an encyclopedic compendium of algorithms and principles of programming. Vikram Chandra, in his wonderful book about the aesthetics of software, Geek Sublime , said,
 
 If ever there was a person who fluently spoke the native idiom of machines, it is Knuth, computing's great living sage. (Chandra, 2014)
 
@@ -103,6 +101,10 @@ In an article called「Literate Programming,」Knuth argued that software is a l
 Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do. (Knuth, 1984, emphasis in the original)
 
 Knuth created TeX over about 10 years starting in the late 1970s because he found the typography of phototypesetting systems of the day ugly. Today, thousands of people have contributed to and , primarily through a system of packages that support an astonishing variety of document preparation needs. It is a thriving, open-source community where nearly all software is free. Almost as if in homage to Knuth, the code gets read and improved by others. The typography that TeX produces, in my opinion, is better than any commercial word processor that I have encountered. In chapter 5 , I will have much more to say about the human expressiveness of software.
+
+[1] The particular chip shown in figure 3.2 is a「quad-core + GPU」version of the Haswell product, meaning that each chip actually contains five computers, four「cores」that execute your programs and one「graphics processing unit」that manages the rendering of graphics and text on a screen. The GPU is also a computer, albeit a rather specialized one. If you squint at the figure, you can see the dies for each chip, the rectangular repeating pattern. Within each die, you can see four identical patterns; these are the four cores. The GPU is above the four cores. The rest of the chip is probably mostly memory. As of this writing (August 2016), the largest Haswell chip has 5.56 billion transistors, is about 6.6 centimeters squared, and has 18 cores.
+
+[2] Footnote contents
 
 3.2 简化的复杂性
 
@@ -192,11 +194,11 @@ Searle argues that such relationships are impossible not just difficult. His rea
 
 So the concept of money must be more than a neurophysiological effect, Searle claims.
 
-[T]here can't be any systematic connections between the physical and the social or mental properties of the phenomenon. (Searle, 1984, p. 78)
+[T] here can't be any systematic connections between the physical and the social or mental properties of the phenomenon. (Searle, 1984, p. 78)
 
 The same argument seems to apply to effects that are quite unlike the sociological concept of money, such as face recognition. We recognize our mother's face in a black-and-white picture of her taken before we were born, for example, despite enormous differences in the physical structure of the face and the material nature of a black-and-white photo versus a real face. It seems that Searle would have to conclude that this too is not a neurophysiological effect. But I suspect it is. The human brain has evolved to categorize visual stimuli into discrete bins despite huge variability in the stimulus.
 
-I'm an engineer, not a philosopher, and not a neuroscientist. I can't credibly reject or defend Searle's argument, but frankly I don't need it to reach essentially the same conclusion. I am perfectly willing to accept that nobody will ever establish any meaningful connection between the physical stimulus to the visual system and the sociological concept of money. Even if we could construct the layers of epiphenomena, 3 their relationships would be so complex, or there would be so many layers, that nothing meaningful could ever arise from their connections. The phenomena at the higher levels are emergent phenomena , in that they comprise the lower level phenomena but have their own identity and properties. In later chapters, I will examine the fundamental limits of modeling that make such connections improbable even if the concept of money really is a neurophysiological effect.
+I'm an engineer, not a philosopher, and not a neuroscientist. I can't credibly reject or defend Searle's argument, but frankly I don't need it to reach essentially the same conclusion. I am perfectly willing to accept that nobody will ever establish any meaningful connection between the physical stimulus to the visual system and the sociological concept of money. Even if we could construct the layers of epiphenomena, [3] their relationships would be so complex, or there would be so many layers, that nothing meaningful could ever arise from their connections. The phenomena at the higher levels are emergent phenomena , in that they comprise the lower level phenomena but have their own identity and properties. In later chapters, I will examine the fundamental limits of modeling that make such connections improbable even if the concept of money really is a neurophysiological effect.
 
 But perhaps more interesting, even for some phenomena where we know exactly how to explain how they arise from physical effects, it is not useful to do so. In chapter 5 , I argue that, although software is ultimately electrons sloshing around in silicon, there are so many layers of modeling between the physics and the software that the connection to the physical is practically meaningless.
 
@@ -207,6 +209,8 @@ Engineers have an advantage over scientists when dealing with layers of models. 
 Consider synthetic biology, which is concerned with designing artificial biological systems. This field is less focused on explaining naturally occurring systems and more focused on leveraging natural biological pathways to synthesize new systems. In synthetic biology, researchers have embraced layered abstractions to great effect. Endy (2005), for example, argues for using predefined functional modules to create biological systems. Indeed, an engineering discipline such as synthetic biology can more readily use layered abstractions because the models need only to model the systems being created. The bioengineers choose the systems to be modeled, and they choose them in part because they can model them. To be effective, scientific models need to model the systems given to us by nature, which are much more numerous. And we can't choose those. They are given.
 
 In the next two chapters, I will elaborate on the layers in figure 3.3 , with an emphasis on understanding how they came about and with the goal of showing that the specific design of such layers is the creative work of humans, not a collection of God-given facts. But first I would like to spend a little time thinking about how to decide which layer to focus on for any given task.
+
+[3] An epiphenomenon is a phenomenon that can be completely explained in terms of more fundamental phenomena.
 
 3.3 模型的传递性
 
@@ -313,11 +317,3 @@ In chapter 5 , I focus on software technologies. Here, I point out that software
 在下一章，我将重点介绍硬件技术。我认为，硬件的生命力并没有该硬件的模型那么持久。尽管没有物质的形式，但是模型和它们所基于的范式比它们所建模的事物具有更持久的生命力。我之所以关注数字技术，是因为当我们从物理层（硅芯片）开始向上时，我们很快就会得到极具表现力的媒介，其可以实现极其复杂的模型。这些媒介的表现力释放了人类的创造力，并促成了像维基百科这样的变革性技术的出现。
 
 在第 5 章，我将聚焦于软件技术。在这里，我需要指出，软件对构建它的范式进行编码。这种自我支撑能激发真正的创新力，并创造出那些能够对人类文化产生深远影响的真正的创新产品。在后面的章节，我将阐释软件的局限性。进一步创新的大门依然敞开着。
-
-__________
-
-1 The particular chip shown in figure 3.2 is a「quad-core + GPU」version of the Haswell product, meaning that each chip actually contains five computers, four「cores」that execute your programs and one「graphics processing unit」that manages the rendering of graphics and text on a screen. The GPU is also a computer, albeit a rather specialized one. If you squint at the figure, you can see the dies for each chip, the rectangular repeating pattern. Within each die, you can see four identical patterns; these are the four cores. The GPU is above the four cores. The rest of the chip is probably mostly memory. As of this writing (August 2016), the largest Haswell chip has 5.56 billion transistors, is about 6.6 centimeters squared, and has 18 cores.
-
-2 Footnote contents
-
-3 An epiphenomenon is a phenomenon that can be completely explained in terms of more fundamental phenomena.

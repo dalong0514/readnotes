@@ -14,9 +14,7 @@ The bit patterns that constitute a program are called machine code . They are me
 
 A modern computer program will typically consist of hundreds or thousands of「modules」or「packages,」each of which consists of dozens or hundreds of「classes,」each of which has dozens or hundreds of「methods,」each of which has dozens or hundreds of lines of code. The lines of code are written in a programming language that is translated by a compiler into machine code (often indirectly, first translating into another language, then another language, then to machine code). These layers of design are essential to being able to form any sort of understanding of the behavior of the program.
 
-Way back in 1972, Edsger Dijkstra, a Dutch computer scientist, then a mathematics professor at the Eindhoven University of Technology in The Netherlands, described software as a「hierarchical system,」which he defined by analogy,
-
-We understand walls in terms of bricks, bricks in terms of crystals, crystals in terms of molecules, etc. (Dijkstra, 1972)
+Way back in 1972, Edsger Dijkstra, a Dutch computer scientist, then a mathematics professor at the Eindhoven University of Technology in The Netherlands, described software as a「hierarchical system,」which he defined by analogy, We understand walls in terms of bricks, bricks in terms of crystals, crystals in terms of molecules, etc. (Dijkstra, 1972)
 
 He then observed that the number of levels in such hierarchical abstractions is small unless the「ratio between the largest and the smallest grain」is large. The number of molecules in a wall is very large, and yet Dijkstra gives us only four layers.
 
@@ -110,9 +108,7 @@ Despite the enormous differences in cost and scale, Brooks' basic idea of an ISA
 
 The x86 ISA grew over time, but it grew in a「backward compatible」way, meaning that an Intel 80186, 80286, 80386, 80486, and many other microprocessors could all execute programs that were written for the 8086. The Haswell processors shown in figure 3.2 are also x86 processors.
 
-Figure 5.1
-
-Original IBM Personal Computer, model 5150. [Image licensed under CC BY-SA 3.0 by Ruben de Rijcke. From https://commons.wikimedia.org/w/index.php?curid=9561543 .]
+Figure 5.1 Original IBM Personal Computer, model 5150. [Image licensed under CC BY-SA 3.0 by Ruben de Rijcke. From https://commons.wikimedia.org/w/index.php?curid=9561543 .]
 
 The astonishing persistence of the x86 ISA is a real testament to the power of Brooks' idea. Ironically, the hardware becomes transient, disposable after a few years, and the software endures for decades. Even the word「endure」underscores the irony because this word originates from the old French usage, where「dure」means「hard,」and to build a「durable」building, one builds it out of hard material such as stone. Yet in computing, software endures much better than hardware.
 
@@ -120,13 +116,13 @@ Let me illustrate how an ISA abstracts the hardware. Suppose, for example, that 
 
 Figure 5.2 shows a small segment of a program for an x86 machine. In the figure, each box represents an instruction. The machine executes the instructions one after the other, from top to bottom. The grey boxes represent arbitrary, unspecified instructions. Two specific instructions are shown. The first is
 
-cmp      eax, ebx
+```
+cmp eax, ebx
+```
 
 This instruction compares the contents of two registers named「eax」and「ebx.」These two registers contain 32-bit numbers; prior to executing this instruction, the program has presumably loaded these registers to contain the numbers representing the characters we are searching for. For example, the characters「Plat」can be loaded into a 32-bit register, assuming that each character is encoded with 8 bits.
 
-Figure 5.2
-
-Small fragment of x86 assembly code.
+Figure 5.2 Small fragment of x86 assembly code.
 
 The previous instruction is written in assembly language, a textual specification that has to be translated into machine code. The machine code for this instruction is
 
@@ -138,13 +134,17 @@ If I may digress briefly, I would like to comment on the culture of programmers.
 
 The other instruction explicitly shown in figure 5.2 is
 
-je       label
+```
+je label
+```
 
 The mnemonic「je」stands for「jump if equal,」and the argument「label」tells the assembler where in the program to jump to if the registers compared by the previous instruction are equal.
 
 There are aspects of this design that seem quite arbitrary, besides the cosmetic choice of mnemonics. For example, why did the designers of the x86 instruction set choose to first compare and then jump in two separate instructions? Why didn't they combine these into a single instruction, such as
 
-je       eax, ebx, label
+```
+je eax, ebx, label
+```
 
 They could have done this, but it would have complicated the hardware design because now a single instruction needs to encode four things: the「jump if equal」command, the two registers to compare, and the destination address. The engineering problem that the designers of the x86 architecture were solving straddled two levels of abstraction: the hardware design at the digital machine level, as in figure 4.6 , and the instruction set that would be used to specify programs. The phenomenon of assembly language and the lower level phenomenon of the computer hardware affect each other with bidirectional causality.
 
@@ -232,15 +232,13 @@ Figure 5.3 shows a single Fortran statement on a punched card. In the 1950s and 
 
 Z(1) = Y + W(1)
 
-Figure 5.3
-
-Punched card containing one Fortran statement. [Image licensed under CC BY-SA 2.5 by Arnold Reinhold, via Wikimedia Commons. From https://commons.wikimedia.org/wiki/File:FortranCardPROJ039.agr.jpg .]
+Figure 5.3 Punched card containing one Fortran statement. [Image licensed under CC BY-SA 2.5 by Arnold Reinhold, via Wikimedia Commons. From https://commons.wikimedia.org/wiki/File:FortranCardPROJ039.agr.jpg .]
 
 Here, Y refers to a value that has presumably been previously assigned, perhaps using a Fortran statement such as
 
 Y = 42
 
-Z(1) and W(1) refer to the first values in arrays named Z and W . 1 Writing code this way removes the accidental complexity of having to decide where in memory these variables are to be located, choosing registers to temporarily store the values, giving instructions for loading the values from memory into registers, and finally giving the instruction to perform the add. The latter style is what would be required in assembly code.
+Z(1) and W(1) refer to the first values in arrays named Z and W. [1] Writing code this way removes the accidental complexity of having to decide where in memory these variables are to be located, choosing registers to temporarily store the values, giving instructions for loading the values from memory into registers, and finally giving the instruction to perform the add. The latter style is what would be required in assembly code.
 
 A Fortran program is translated into assembly code (or directly into machine code) by a compiler. The compiler is responsible for deciding which registers are used for what and where in memory values are stored. Designing good compilers is quite an art, with many opportunities for optimization and experimentation.
 
@@ -260,7 +258,7 @@ x = 1;
 
 x = 42;
 
-means to first assign the value 1 to variable x and then to change the value of the variable x to 42. 2 In a declarative language, these two statements are contradictory and will be rejected by a compiler. In a declarative language, the = operator has a different meaning. A statement x = 1 does not assign a value to a variable at a particular point in a procedure but rather declares that the symbol x   means 1, not at a point in a procedure but always. The order in which such statements are given is irrelevant. In a declarative language, the two statements above are contradictory because x can't mean 1 and also mean 42. Their declarative style is distinctly different from the procedural, step-by-step style of imperative programs. It is perhaps ironic that despite claiming that software constitutes a「procedural epistemology」and「the study of the structure of knowledge from an imperative point of view,」Abelson and Sussman's book uses throughout a dialect of Lisp, a functional language originally developed by John McCarthy in the 1950s. Although a Lisp program tells a computer what to do (and hence is imperative in the broader sense of the word), it is a declarative language at its core.
+means to first assign the value 1 to variable x and then to change the value of the variable x to 42. [2] In a declarative language, these two statements are contradictory and will be rejected by a compiler. In a declarative language, the = operator has a different meaning. A statement x = 1 does not assign a value to a variable at a particular point in a procedure but rather declares that the symbol x means 1, not at a point in a procedure but always. The order in which such statements are given is irrelevant. In a declarative language, the two statements above are contradictory because x can't mean 1 and also mean 42. Their declarative style is distinctly different from the procedural, step-by-step style of imperative programs. It is perhaps ironic that despite claiming that software constitutes a「procedural epistemology」and「the study of the structure of knowledge from an imperative point of view,」Abelson and Sussman's book uses throughout a dialect of Lisp, a functional language originally developed by John McCarthy in the 1950s. Although a Lisp program tells a computer what to do (and hence is imperative in the broader sense of the word), it is a declarative language at its core.
 
 Purely functional languages have been less successful than imperative languages, having only a small but devoted following. As Kuhn says,
 
@@ -282,9 +280,7 @@ The use of recursive acronyms was popularized by Richard Stallman with GNU, whic
 
 Richard Stallman ( figure 5.4 ) is one of the most influential individuals today in the world of software. Stallman is responsible for a great deal of software that is used worldwide for many purposes. He is also one of the most interesting characters in the story of software. Stallman's GNU project was, in part, a revolt against corporate America. He has spent much of his effort in recent years campaigning against all sorts of encumbrances on software, including software patents, digital rights management, software license agreements, nondisclosure agreements, activation keys, copy restriction, and binary executables that do not include the source code.
 
-Figure 5.4
-
-Richard Stallman in Vietnam. [Copyright by Richard Stallman, released under「CC-ND,」 https://stallman.org/photos/ .]
+Figure 5.4 Richard Stallman in Vietnam. [Copyright by Richard Stallman, released under「CC-ND,」 https://stallman.org/photos/ .]
 
 In 1985, Stallman launched the Free Software Foundation, which is committed to freeing software. Note my odd use of words; I didn't say it was committed to「free software,」which could be easily misunderstood as software that does not cost money. The cost of the software is irrelevant; Stallman uses「free」as in「freedom.」In fact, I'm convinced that Stallman anthropomorphizes software, and that his commitment is to freeing the software so the software can go wherever it likes and do whatever it likes, rather than freeing the humans that use software. The latter model, which is better represented by the Berkeley open-source software movement, allows humans to do whatever they like with open-source software. Stallman's model, however, constrains the humans to ensure that they never enslave the software. The copyright notice on GNU software, called the GNU General Public License (GPL), specifically requires that any uses and modifications of GPL'd software preserve the same open rights as the original. This style of copyright is sometimes called a「copyleft」presumably because of seemingly left-leaning politics compared with the right-wing corporate-dominated copyright.
 
@@ -336,11 +332,19 @@ COBOL and APL represent extremes in an exploration of programming paradigms. COB
 
 Many more languages are in the graveyard, including Algol, Pascal, PL/I, SNOBOL, Smalltalk, and Prolog. Each of these has interesting ideas and an interesting story. Algol introduced many features present in most modern imperative programming languages, including Java, C, C++, and C#. Pascal introduced the idea of compiling first into a virtual machine language (called byte code) and then executing that program in a program that simulates the virtual machine. This is a centerpiece of the widely used Java language today. SNOBOL, developed at Bell Labs by David Farber, Ralph Griswold, and Ivan Polonsky in the 1960s, introduced high-level manipulation of text, including parsing and pattern matching, a centerpiece of the widely used JavaScript language today, among others. Smalltalk was one of the earliest object-oriented languages, providing a way of structuring programs that is widely used today. Prolog is a「logic programming」language that elegantly expresses rule-based queries over structured data.
 
-Figure 5.5
-
-Rear Admiral Grace Hopper, 1906-1992. Hopper was an early proponent of portable programming languages and pioneered a style of programming where programs read more like English-language sentences than like mathematical expressions. [Image courtesy of the United States Navy.]
+Figure 5.5 Rear Admiral Grace Hopper, 1906-1992. Hopper was an early proponent of portable programming languages and pioneered a style of programming where programs read more like English-language sentences than like mathematical expressions. [Image courtesy of the United States Navy.]
 
 Each of these languages encodes a paradigm, a way of thinking about computation. These languages did not die the way Kuhn's scientific paradigms die. No crisis was created by anomalous observations that exposed discrepancies between the paradigm and the natural world. Rather, these languages either mutated into new species of languages (as in ALGOL and Pascal) or progressed toward extinction in a Darwinian competition of survival of the fittest or the most promiscuous (as in APL and COBOL).
+
+[1] Fortran makes extensive use of arrays as a way to manage memory. For example, an array W with four integers might be declared and then initialized with the statements
+
+INTEGER, DIMENSION(4) :: W
+
+W = (/ 42, 43, 44, 45 /)
+
+After these statements are executed, the value of W(1) is the integer 42, the value of W(2) is the integer 43, and so on.
+
+[2] Among computer scientists, the number 42 is popular to use in examples because of Douglas Adams' Hitchhiker's Guide to the Galaxy , a 1978 BBC radio comedy series that later became a「trilogy」of five books. In that story, a special computer called Deep Thought is built to answer the「ultimate question of life, the universe, and everything.」The computer takes 7.5 million years to compute and check the answer, which turns out to be 42. The computer reports that the answer seems meaningless because the beings who programmed it never actually knew what the question was.
 
 5.3 编程语言
 
@@ -390,11 +394,9 @@ Fortran 程序经由编译器转换为汇编代码（或直接转换为机器码
 
 与命令式语言不同，函数式语言采用数学的声明式风格。例如，如下是命令式语言中的两条语句：
 
-x=1
+x = 1
 
-x=
-
-42
+x = 42
 
 其意味着，首先将值 1 赋给变量 x，然后将变量 x 的值更改为 42。在声明式语言里，这两条语句是矛盾的，并会被编译器拒绝。在声明式语言里，操作符「=」具有不同的含义。语句 x=1 不会在程序中的特定点给变量赋值，而是声明符号 x 表示 1，不是在某个点，而是始终。这与所给定的这种语句顺序是无关的。在声明式语言里，上述两个语句是矛盾的，因为 x 的值不能既表示 1，又表示 42。显然，它们的声明式风格与命令式程序的过程式、逐步式风格有着明显的不同。带有些许讽刺意味的是，尽管阿贝尔森和萨斯曼声称软件构成了一种「程序认识论」以及「从命令式的角度研究知识的结构」，但他们的书自始至终都在使用一种 Lisp 方言，这是一种最初由约翰·麦卡锡在 20 世纪 50 年代开发的函数式语言。虽然 Lisp 程序告诉计算机要做什么（因此从广义上理解也是命令式的），但它本质上是一种声明式语言。
 
@@ -444,9 +446,7 @@ x=
 
 x
 
-[x
-
-← 5?10]
+[x← 5?10]
 
 APL 是一种编程语言（A Programming Language）的首字母缩略词，这一语言是肯尼思·艾弗森在 20 世纪 60 年代末开发的。1979 年，艾弗森因这项工作获得了图灵奖。在耶鲁大学，整个计算机机房都配备了带有特殊键盘的终端，可以输入上述程序中的字符，如和←。
 
@@ -508,7 +508,7 @@ Smalltalk 是最早的面向对象的语言之一，它提供了一种当今广�
 
 Today, the word「operating system」means, to most people, one of three things: Apple's OS X, Microsoft's Windows, or Linux. Linux was originally developed in the early 1990s by Linus Torvalds, a Finnish (and later American) software engineer. Linux has become one of the most successful open-source software projects ever, with thousands of contributors and widespread adoption. Linux, like OS X, is based on the Unix operating system originally developed in the 1970s at Bell Labs by Ken Thompson and Dennis Ritchie, with contributions from many others. These three systems, OS X, Windows, and Linux, are the survivors of promiscuous evolution and competition over decades. Today, we should add iOS from Apple and Android from Google, operating systems designed specifically for smartphones and tablet computers.
 
-I could write a great deal about operating systems, but instead I would just like to focus on how an operating system encodes one or more paradigms. A key feature of all these operating systems is the file system. In the hardware of a computer, various forms of memory store sequences of bytes, where each byte is a sequence of eight bits. The laptop computer on which I am writing this book has 16 gigabytes of volatile memory (memory that forgets its contents when you turn off the power) and one terabyte of nonvolatile memory. 3 The nonvolatile memory is sometimes called the「hard disk,」although these days it is more likely to be implemented using a type of semiconductor memory called a flash memory rather than the older spinning magnetic disk memory. As far as the hardware is concerned, the contents of the hard disk is just a sequence of a trillion bytes. The hardware can retrieve or update any single byte.
+I could write a great deal about operating systems, but instead I would just like to focus on how an operating system encodes one or more paradigms. A key feature of all these operating systems is the file system. In the hardware of a computer, various forms of memory store sequences of bytes, where each byte is a sequence of eight bits. The laptop computer on which I am writing this book has 16 gigabytes of volatile memory (memory that forgets its contents when you turn off the power) and one terabyte of nonvolatile memory. [3] The nonvolatile memory is sometimes called the「hard disk,」although these days it is more likely to be implemented using a type of semiconductor memory called a flash memory rather than the older spinning magnetic disk memory. As far as the hardware is concerned, the contents of the hard disk is just a sequence of a trillion bytes. The hardware can retrieve or update any single byte.
 
 But a list of a trillion bytes, by itself, is not a useful way to organize information. Early operating system designers, such as Thompson and Ritchie, built into the operating system a way of encoding onto these disks a notion of a「file.」A file is a subset of the eight trillion bytes that forms a logical unit, and a file system supports assigning a name to the file and organizing files into hierarchical directories, which are also named. With the advent of graphical user interfaces, these directories acquired the metaphor of a「folder,」even though, for physical-world folders, folders that contain folders are rather awkward.
 
@@ -517,6 +517,8 @@ My key observation is that nothing in the computer hardware provides the notion 
 The software that realizes the file system is quite clever. It does not even require that the contents of a file be contiguous in memory; the bytes of a file may be scattered all over the disk. The operating system software keeps track of which bytes belong to which file and what directory the file is logically contained in.
 
 Once you have a file system to work with, you no longer need to worry about how your data is stored on a disk. You access the file as a single conceptual unit.
+
+[3] Sixteen gigabytes is about 16 billion bytes, and a terabyte is about one trillion bytes.
 
 5.4 操作系统
 
@@ -558,7 +560,7 @@ $("#target").text("Hello World");
 
 });
 
-If you are fluent in the JavaScript language but unfamiliar with the jQuery module and the modules provided by today's browsers, then this program is completely unreadable. It makes as much sense as the following does to someone fluent in English 4 :
+If you are fluent in the JavaScript language but unfamiliar with the jQuery module and the modules provided by today's browsers, then this program is completely unreadable. It makes as much sense as the following does to someone fluent in English: [4]
 
 Twas brillig, and the slithy toves
 
@@ -626,7 +628,9 @@ But even at that time, Kuhn says, these competing paradigms shared a common meta
 
 All their numerous concepts of electricity had something in common— they were partially derived from one or another version of the mechanico-corpuscular philosophy that guided all scientific research of the day. (Kuhn, 1962, p. 14)
 
-The languages used in web technology today, PHP, JavaScript, jQuery, CSS, and HTML, all have a common「mechanico-corpuscular」core, specifically the Turing-Church notion of computation, considered in chapter 8 .
+The languages used in web technology today, PHP, JavaScript, jQuery, CSS, and HTML, all have a common「mechanico-corpuscular」core, specifically the Turing-Church notion of computation, considered in chapter 8.
+
+[4] From Through the Looking-Glass, and What Alice Found There , a novel by Lewis Carroll, 1871.
 
 5.5 库、语言和方言
 
@@ -809,19 +813,3 @@ Hadoop 形成了设计多服务器应用程序的模式和工具的生态系统�
 「我们扫描所有这些书，并不是让人们去阅读。」一位工程师在午餐后对我说，「我们扫描它们是为了让人工智能来阅读的。」（戴森，2012:312）
 
 为什么止步于书籍？谷歌公司是不会仅仅满足于扫描图书的。2006 年，谷歌公司以 16 亿美元的巨资收购了 YouTube。如我们所知，YouTube 是一个视频分享网站，它提供了关于世界的海量数据。2014 年，YouTube 声称平均每分钟会有时长 300 小时的新视频上传到其网站。虽然从视频和图像中提取有用信息的技术落后于从文本中提取信息的技术，但我们可以肯定，该类技术将会得到改进。机器将开始做彩色的梦。随着在线获取传感器数据，例如来自联网汽车、恒温器以及整个物联网世界的数据技术的发展，机器还将学到什么呢？我将在下一章讨论这个问题。
-
-__________
-
-1 Fortran makes extensive use of arrays as a way to manage memory. For example, an array W with four integers might be declared and then initialized with the statements
-
-INTEGER, DIMENSION(4) :: W
-
-W = (/ 42, 43, 44, 45 /)
-
-After these statements are executed, the value of W(1) is the integer 42, the value of W(2) is the integer 43, and so on.
-
-2 Among computer scientists, the number 42 is popular to use in examples because of Douglas Adams' Hitchhiker's Guide to the Galaxy , a 1978 BBC radio comedy series that later became a「trilogy」of five books. In that story, a special computer called Deep Thought is built to answer the「ultimate question of life, the universe, and everything.」The computer takes 7.5 million years to compute and check the answer, which turns out to be 42. The computer reports that the answer seems meaningless because the beings who programmed it never actually knew what the question was.
-
-3 Sixteen gigabytes is about 16 billion bytes, and a terabyte is about one trillion bytes.
-
-4 From Through the Looking-Glass, and What Alice Found There , a novel by Lewis Carroll, 1871.

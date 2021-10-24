@@ -10,7 +10,7 @@
 
 Steven Connor, professor of modern literature and theory at Birkbeck, University of London, credits the French philosopher Michel Serres, now a Professor of French at Stanford, with developing a subtle and beautiful theory of「the hard and the soft.」Serres' thesis, according to Connor, is woven throughout his prolific writings, many of which have not been translated into English. Connor comments that it is difficult to quote Serres, so I will quote Connor instead:
 
-[T]he contrast between the hard and the soft refers to this distinction between the domain of nature, the object of attention of what we call the「hard sciences,」and the domain of culture. The hard means the given, as opposed to the made. It means the physical, as opposed to the conceptual. It means hardware as opposed to software. It means object as opposed to idea, form as opposed to information, world as opposed to word. (Connor, 2009)
+[T] he contrast between the hard and the soft refers to this distinction between the domain of nature, the object of attention of what we call the「hard sciences,」and the domain of culture. The hard means the given, as opposed to the made. It means the physical, as opposed to the conceptual. It means hardware as opposed to software. It means object as opposed to idea, form as opposed to information, world as opposed to word. (Connor, 2009)
 
 Connor finds allusions in Serres' writings to an astonishing array of oppositions between hard and soft, including body and language, science and humanities, things and signs, physical and conceptual, object and idea, form and information, physics and language, a stone and a ghost, motors and information theory, the manual and the digital, sound and meaning, bridge and hyphen, energy and information, flesh and word, the real and the virtual, forces and codes, solids and geometry, objective and subjective, war and religion, a book and a story, or sound and music.
 
@@ -20,7 +20,7 @@ Serres's principal effort is to allow his reader to grasp [the] intermixture [of
 
 In Serres' own words (translated from the French by Connor),
 
-Hard things display a soft side; material, of course, they engram and programme themselves like software. There is software [ logiciel ] in the hardware [ matériel ]. (Serres, 2003, p. 73)
+Hard things display a soft side; material, of course, they engram and programme themselves like software. There is software [logiciel] in the hardware [matériel]. (Serres, 2003, p. 73)
 
 We then find the more subtle oppositions between the hard and the soft, such as wax and wax, nature and nature, ropes and ropes, or mathematics and mathematics. Each of these, depending on its role and use, can be either hard or soft.「Hardness in softness and softness in hardness,」according to Serres.
 
@@ -82,17 +82,19 @@ A chip designer can, in principle, design structures like those in figure 3.1 by
 
 The layout in figure 4.1 specifies only four transistors. Figure 4.2 shows a die that contains four instances of a similar design to that shown in figure 4.1 . That chip has only 16 transistors. The large pads around the periphery of the chip are provided so that wires can be soldered to the chip and connected to metal pins on the exterior of the packaged chip, shown on the right in the figure.
 
-In the late 1970s, Carver Mead of Caltech and Lynn Conway, 1 then at Xerox PARC, wrote a textbook called Introduction to VLSI System Design 2 that revolutionized the field by introducing the use of scalable「design rules.」Their approach is now universally called the Mead-Conway approach to circuit design.
+In the late 1970s, Carver Mead of Caltech and Lynn Conway, [1] then at Xerox PARC, wrote a textbook called Introduction to VLSI System Design [2] that revolutionized the field by introducing the use of scalable「design rules.」Their approach is now universally called the Mead-Conway approach to circuit design.
 
 The design rules define standard layout patterns according to a variable parameter called λ (the Greek letter lambda), which is the minimum distance between features in a layout. The 22-nm Intel process used to fabricate the Haswell chips shown in figure 3.2 , for example, has λ = 22 × 10 −9 meters. With these design rules, chip designers can reuse layouts over and over again, greatly simplifying the design process, even as the feature sizes in chips keep declining.
 
-Figure 4.2
-
-Die photo (left) and packaged product photo (right) of an NXP 74AHC00, which contains four 2-input CMOS NAND gates. [Die photo by Mikhail Svarichevsky of ZeptoBars, licensed under Creative Commons Attribution 3.0 Unported License.]
+Figure 4.2 Die photo (left) and packaged product photo (right) of an NXP 74AHC00, which contains four 2-input CMOS NAND gates. [Die photo by Mikhail Svarichevsky of ZeptoBars, licensed under Creative Commons Attribution 3.0 Unported License.]
 
 Mead and Conway triggered a paradigm shift, and as with most paradigm shifts, they met with some resistance. Diehard circuit designers insisted that they could design better chips without the constraints imposed by the Mead-Conway approach. They refused to accept this「freedom from choice.」Such designers have almost entirely vanished. Today, you may find them in corners of the industry designing specialized chips or performing research on fabrication technologies.
 
 The use of design rules enables a separation between the chip designers and semiconductor physicists. The physicists can specify the design rules, and software can synthesize the masks. This separation also enabled new business models, where chips are fabricated by「silicon foundries,」companies such as TSMC (for Taiwan Semiconductor Manufacturing Company) or GLOBALFOUNDRIES, that just need to publish their design rules to their customers. Because of the Mead-Conway approach, system design companies can be「fabless,」not needing to invest the multiple billions of dollars that it takes to open a fab to make chips. Instead, they contract with the silicon foundries to make their chips.
+
+[1] To emphasize that paradigms are invented by humans, and sometimes interesting humans, I feel compelled to point out that before working at Xerox Parc, Lynn Conway had been fired by IBM in 1968 after announcing her intention to transition from a male to a female gender role. I cannot even begin to imagine the courage this must have required at that time. She has since become a vocal advocate for transgender rights.
+
+[2] The term Very Large Scale Integration (VLSI) started to come into use in the 1970s when chips began to have thousands of transistors. The term is still used for chips with billions of transistors.
 
 4.2 半导体
 
@@ -158,9 +160,7 @@ This switch model of a transistor is an approximation but a particularly useful 
 
 The digital switch model for a transistor provides a paradigm that we can use to build circuits that perform logic functions. Figure 4.3 shows a circuit diagram for an inverter , which converts a high voltage into a low one and, conversely, a low voltage into a high one. If a high voltage represents a digit 1 and a low voltage represents a digit 0, then an inverter converts 1 to 0 and 0 to 1. This is called a「logic gate」because it realizes a simple logical operation: negation.
 
-Figure 4.3
-
-Circuit diagram for an inverter logic gate (left). When the input voltage is high (3 volts), the lower transistor is on (center). When the input voltage is low (0 volts), the upper transistor is on (right).
+Figure 4.3 Circuit diagram for an inverter logic gate (left). When the input voltage is high (3 volts), the lower transistor is on (center). When the input voltage is low (0 volts), the upper transistor is on (right).
 
 The circuit is easy to understand even if you have never studied electrical circuits before. The two shaded boxes represent complementary FETs. The top transistor, the one with an extra circle, complements the lower one. In this circuit, the gates of the two transistors are connected together, so when one is off, the other is on.
 
@@ -184,9 +184,7 @@ An implementation of a NAND gate is shown in figure 4.4 ; if you now understand 
 
 An OR gate produces output 1 if any input is 1, rather than if all inputs are 1, as in an AND gate. An XOR (exclusive OR) gate with two inputs produces 1 if exactly one of the inputs is 1 and the other is 0. In other words, XOR determines whether the inputs differ. I will spare you the implementations of these and even their symbols.
 
-Figure 4.4
-
-Circuit diagram for a NAND logic gate and its logic symbol. When both inputs A and B are high, the output is low. Otherwise, the output is high.
+Figure 4.4 Circuit diagram for a NAND logic gate and its logic symbol. When both inputs A and B are high, the output is low. Otherwise, the output is high.
 
 So far, we have three levels of abstraction toward our goal of a Wikipedia system: We have the physical object out of which we will build the system, transistors such as those in figure 3.1 , with design rules that free us from having to give detailed geometries for each device; circuit diagrams as in figure 4.3 that abstract transistors as switches; and gates like that at the right in figure 4.3 that abstract the circuit as a logic function. Each of these layers has its own paradigm, with its own lexicon and symbology. But we are still nowhere near being able to build Wikipedia. Let's keep going. I promise we will get there!
 
@@ -208,17 +206,7 @@ So far, we have three levels of abstraction toward our goal of a Wikipedia syste
 
 反相器也被称为非门，因为它可以被看作实现了逻辑否定。如果数字 1 表示「真」，数字 0 表示「假」，那么非门会将真转换为假，反之亦然。当使用这样的符号时，我们将不再明确地给出供电电压（指连接到顶部和底部端子）。这些都是隐含的。
 
-开关电路和逻辑间的联系显然是由克劳德·香农首先完全建立起来的。香农是一位电气工程师，他将以信息论之父出现在第 7 章。1938 年，22 岁的香农是麻省理工学院一名硕士生。他写的一篇硕士论文，很可能是有史以来最有影响力的硕士论文（香农，1938）。在这篇论文中，他给出了电子开关可以通过多种方式的连接来实现任何符号逻辑功能的结论。例如，人们可以用电子开关表示这样的命题，「如果 y
-
-为真且 z
-
-为假，或者，如果 y
-
-为假且 z
-
-为真，则 x
-
-为真」。香农表明，这种逻辑命题可以用英国数学家乔治·布尔在 19 世纪创建的逻辑代数来设计、分析和优化。从那时起，这种电路就被称为布尔逻辑电路了。香农在撰写他的硕士论文时，电子开关是用机械继电器或真空管来实现的，晶体管在那时还没有被发现。尽管晶体管 20 世纪 20 年代就被发明了（见第 1 章），但它并没有被人们广泛地认识或使用。
+开关电路和逻辑间的联系显然是由克劳德·香农首先完全建立起来的。香农是一位电气工程师，他将以信息论之父出现在第 7 章。1938 年，22 岁的香农是麻省理工学院一名硕士生。他写的一篇硕士论文，很可能是有史以来最有影响力的硕士论文（香农，1938）。在这篇论文中，他给出了电子开关可以通过多种方式的连接来实现任何符号逻辑功能的结论。例如，人们可以用电子开关表示这样的命题，「如果 y 为真且 z 为假，或者，如果 y 为假且 z 为真，则 x 为真」。香农表明，这种逻辑命题可以用英国数学家乔治·布尔在 19 世纪创建的逻辑代数来设计、分析和优化。从那时起，这种电路就被称为布尔逻辑电路了。香农在撰写他的硕士论文时，电子开关是用机械继电器或真空管来实现的，晶体管在那时还没有被发现。尽管晶体管 20 世纪 20 年代就被发明了（见第 1 章），但它并没有被人们广泛地认识或使用。
 
 另外，还有一些其他有用的布尔逻辑门。例如，一个与门可能有两个输入和一个输出。与门以如下的这个符号表示：
 
@@ -236,11 +224,9 @@ So far, we have three levels of abstraction toward our goal of a Wikipedia syste
 
 Figure 4.5 shows a logic diagram with 67 logic gates (abstracting roughly 400 transistors that are needed to realize these gates). Some of the gates are inverters like the one in figure 4.3 , and the rest are other gates representing logical AND, OR, NAND, NOR, and XOR functions. You need not study this diagram, but rather let's use it to get a sense of this level of abstraction toward the design of Wikipedia.
 
-This diagram specifies the design of an arithmetic logic unit (ALU), an important part of any microprocessor. The inputs to this ALU are four-bit binary numbers. They come into the ALU on lines labeled A 0 · · · A 3 and B 0 · · · B 3 at the top. Each input wire carries one bit. 3 There are various outputs at the bottom, including, for example, one output wire labeled A = B . This output tells us whether the two four-bit inputs are equal. Hence, one of the functions performed by an ALU is to compare two numbers for equality. This ALU can also add and subtract two binary numbers, among other functions. In his master's thesis, Shannon showed a simpler but similar adder circuit and showed that each output from such a circuit could be expressed using Boole's symbolic logic algebra.
+This diagram specifies the design of an arithmetic logic unit (ALU), an important part of any microprocessor. The inputs to this ALU are four-bit binary numbers. They come into the ALU on lines labeled A 0 · · · A 3 and B 0 · · · B 3 at the top. Each input wire carries one bit. [3] There are various outputs at the bottom, including, for example, one output wire labeled A = B . This output tells us whether the two four-bit inputs are equal. Hence, one of the functions performed by an ALU is to compare two numbers for equality. This ALU can also add and subtract two binary numbers, among other functions. In his master's thesis, Shannon showed a simpler but similar adder circuit and showed that each output from such a circuit could be expressed using Boole's symbolic logic algebra.
 
-Figure 4.5
-
-Logic diagram for four-bit ALU (Arithmetic Logic Unit). [Image licensed under CC BY-SA 3.0 by Poil, via WikiMedia Commons. From https://commons.wikimedia.org/w/index.php?curid=168473 .]
+Figure 4.5 Logic diagram for four-bit ALU (Arithmetic Logic Unit). [Image licensed under CC BY-SA 3.0 by Poil, via WikiMedia Commons. From https://commons.wikimedia.org/w/index.php?curid=168473 .]
 
 In a Wikipedia search, each character that I type in a search box to look up a topic is represented by a number, typically an 8- or 16-bit number, not a 4-bit number, so we will need a bigger ALU. But the bigger ALU follows the same principles as this 4-bit ALU, and its logic diagram would be far more intimidating.
 
@@ -252,21 +238,13 @@ A typical microprocessor today has a much more complicated ALU than this. Today'
 
 Note that when a logic diagram like that in figure 4.5 is first created by an engineer, although it is a model, no physical realization exists of which it is a model. This underscores the point made in chapter 2 that the model serves a different purpose than a typical scientific model. It can't be true that the value of the model lies in how well it matches the physical system that it models because that physical system does not yet exist. The value of the model does depend, however, on our ability to construct a physical system whose behavior will match the model. Indeed, the magic of digital technology is that we know how to construct circuits that can match the logic of the model figure 4.5 with almost perfect fidelity, performing the specified operations a billion times per second for years!
 
+3 Shannon credits John Tukey, a mathematician at Princeton and Bell Labs, for the word「bit,」a shortening of「binary digit」(Shannon, 1948).
+
 4.5 逻辑图
 
 图 4.5 给出了一个有 67 个逻辑门的逻辑图（要实现这些逻辑门的功能大约需要 400 个晶体管）。其中一些逻辑门是图 4.3 所示的反相器，其余的是代表与、或、与非、或非和异或函数的逻辑门。读者并不需要花时间研究这个图，但是，我们可以利用它来了解维基百科设计中的抽象层次。
 
-该图给定了算术逻辑单元的设计。如我们所知，算术逻辑单元是任何微处理器的重要组成部分。这个算术逻辑单元的输入是 4 位二进制数。它们进入顶部标记为 A
-
-0…A
-
-3 和 B
-
-0…B
-
-3 的输入线。每条输入线携带一个比特。底部有一些不同的输出，例如，有一根标记为 A=B
-
-的输出线。这条输出线告诉我们这两个输入的 4 位数是否相等。因此，算术逻辑单元执行的功能之一是比较两个数是否相等。这个算术逻辑单元还有加减两个二进制数以及其他一些功能。在他的硕士论文中，香农展示了一种简单但相似的加法器电路，并指出，这样一个电路的每个输出都可以用布尔的符号逻辑代数来表示。
+该图给定了算术逻辑单元的设计。如我们所知，算术逻辑单元是任何微处理器的重要组成部分。这个算术逻辑单元的输入是 4 位二进制数。它们进入顶部标记为 A0…A3 和 B0…B3 的输入线。每条输入线携带一个比特。底部有一些不同的输出，例如，有一根标记为 A=B 的输出线。这条输出线告诉我们这两个输入的 4 位数是否相等。因此，算术逻辑单元执行的功能之一是比较两个数是否相等。这个算术逻辑单元还有加减两个二进制数以及其他一些功能。在他的硕士论文中，香农展示了一种简单但相似的加法器电路，并指出，这样一个电路的每个输出都可以用布尔的符号逻辑代数来表示。
 
 图 4.5 四位算术逻辑单元（ALU）的逻辑图。（该图为 CC BY-SA 3.0 授权图片，由帕奥通过维基共享资源网站发布。图片网址为 https://commons.wikimedia.org/w/index.php?curid=168473。）
 
@@ -288,13 +266,11 @@ An ALU can be further abstracted into a single component, as it is in figure 4.6
 
 Figure 4.6 represents the heart of a microprocessor, its central processing unit (CPU). It shows, left to right, four stages of the execution of a sequence of instructions that comprise a computer program. At the very left, the components in the diagram fetch instructions from the「instruction memory,」where the program is stored (in the form of binary numbers). The decode stage immediately to the right uses logic gates to figure out how to control various parts of the CPU, including the ALU, so that it performs the function demanded by an instruction. For example, if an instruction wants to add two numbers, then the decoder will construct the control input for the ALU to perform addition. The third stage, labeled「execute,」uses the ALU to perform the function demanded by the program. The fourth stage, labeled「memory,」stores the result of the instruction in memory or uses the result of an instruction as an address for data to fetch from memory.
 
-Figure 4.6
-
-Digital machine model of the main pipeline of simple microprocessor (after Patterson and Hennessy, 1996).
+Figure 4.6 Digital machine model of the main pipeline of simple microprocessor (after Patterson and Hennessy, 1996).
 
 Figure 4.6 is not a logic diagram. There are no logic gates. Each box represents a component that is realized with many logic gates. The「wires」in this diagram are not simple wires either. The two「wires」into the ALU, for example, represent not one wire, but 32- or 64 wires, depending on whether this is a 32- or 64-bit ALU.
 
-A key idea in the design shown in figure 4.6 is the separation of a memory that stores the program from the logic circuits that execute the program. Earlier computers might have been programmed by actually rewiring the logic circuits, for example, using patch panels with cables and plugs. An architecture with a program memory separated from an ALU, almost universal in computers today, is called a von Neumann architecture, after the Hungarian-American mathematician and computer scientist John von Neumann. Von Neumann first described this style of architecture in an incomplete report titled First Draft of a Report on the EDVAC , dated June 30, 1945. Von Neumann had been working on the Manhattan Project, developing the mathematical models for atomic bombs, and was consulting with a project run by the University of Pennsylvania to design a computer called EDVAC (for Electronic Discrete Variable Automatic Computer). The EDVAC was made with vacuum tubes and used a binary (base 2) representation for numbers, unlike its predecessor the ENIAC, which used a decimal (base 10) representation. Although von Neumann is listed as the only author on the report, it appears that many others from Penn had contributed significantly to this design, so referring to this architecture as a von Neumann architecture may once again reflect our need for heroes more than it accurately represents history. 4
+A key idea in the design shown in figure 4.6 is the separation of a memory that stores the program from the logic circuits that execute the program. Earlier computers might have been programmed by actually rewiring the logic circuits, for example, using patch panels with cables and plugs. An architecture with a program memory separated from an ALU, almost universal in computers today, is called a von Neumann architecture, after the Hungarian-American mathematician and computer scientist John von Neumann. Von Neumann first described this style of architecture in an incomplete report titled First Draft of a Report on the EDVAC , dated June 30, 1945. Von Neumann had been working on the Manhattan Project, developing the mathematical models for atomic bombs, and was consulting with a project run by the University of Pennsylvania to design a computer called EDVAC (for Electronic Discrete Variable Automatic Computer). The EDVAC was made with vacuum tubes and used a binary (base 2) representation for numbers, unlike its predecessor the ENIAC, which used a decimal (base 10) representation. Although von Neumann is listed as the only author on the report, it appears that many others from Penn had contributed significantly to this design, so referring to this architecture as a von Neumann architecture may once again reflect our need for heroes more than it accurately represents history. [4]
 
 Today, digital designers often assemble designs using hardware components such as ALUs that are reasonably standardized. The ALU shown in figure 4.5 is in fact a standard design called a 74181. Dating back to the 1970s, a series of standard component designs were produced by various manufacturers as a series called the 7400 series, and the four-bit ALU in figure 4.5 was a member of that series. Today, semiconductor manufacturers and computer-aided design (CAD) software provide libraries of standard cells that designers can use to assemble designs. More complex cells are often called simply IP, for intellectual property, and are sold as commodities to designers to use as components in designs.
 
@@ -309,6 +285,8 @@ We now have four levels of abstraction, but we still don't have a word processor
 Notice that all four levels of abstraction have existed essentially in their current form for decades. But it would be hard to find any physical piece of such hardware that is several decades old, except in a museum. The abstractions are more durable than the hardware.
 
 The layering of the abstractions is essential to technological progress. When King, Bokor, and Hu introduced the FinFET in 2001, and when it went into production in 2014, the only effect on the other layers is that now they had more transistors to work with. No paradigm change was needed at the upper levels because a FinFET, like previous transistors, makes a pretty good switch. It's just smaller and faster, and it uses less power. This creates opportunities at the upper levels, and as I will explain in chapter 6 , these opportunities can in fact trigger a crisis that will result in a paradigm shift. But such a「crisis of opportunity」does not demand a change at the upper levels. It just enables one.
+
+4 For a wonderful chronicle of von Neumann's pioneering contributions to computation, see George Dyson's 2012 book, Turing's Cathedral (Dyson, 2012).
 
 4.6 数字机器
 
@@ -337,13 +315,3 @@ The layering of the abstractions is essential to technological progress. When Ki
 请注意，从本质上说，所有 4 个抽象层次都以其当前形式存在了几十年。但是，除非在博物馆里，否则读者很难找到几十年前的硬件实物。然而，抽象的生命力比硬件更持久。
 
 这些抽象的分层对技术的进步至关重要。在当金智杰、博科尔和胡正明三位于 2001 年推出鳍式场效应晶体管，以及这种晶体管在 2014 年实际投入生产时，对其他层造成的唯一影响只是它们现在有了更多的晶体管可供使用。不需要改变上层的范式，因为一个鳍式场效应晶体管就像以前的晶体管一样也可作为一个相当好的开关，只是体积更小，速度更快，耗电也更少了。这为上面的那些层创造了机会。正如我将在第 6 章解释的，实际上，这些机会可以引发一场危机，并导致范式的转换。但这种「机会危机」并不要求上面的那些层做出改变，它只是激活了一个而已。
-
-__________
-
-1 To emphasize that paradigms are invented by humans, and sometimes interesting humans, I feel compelled to point out that before working at Xerox Parc, Lynn Conway had been fired by IBM in 1968 after announcing her intention to transition from a male to a female gender role. I cannot even begin to imagine the courage this must have required at that time. She has since become a vocal advocate for transgender rights.
-
-2 The term Very Large Scale Integration (VLSI) started to come into use in the 1970s when chips began to have thousands of transistors. The term is still used for chips with billions of transistors.
-
-3 Shannon credits John Tukey, a mathematician at Princeton and Bell Labs, for the word「bit,」a shortening of「binary digit」(Shannon, 1948).
-
-4 For a wonderful chronicle of von Neumann's pioneering contributions to computation, see George Dyson's 2012 book, Turing's Cathedral (Dyson, 2012).
