@@ -58,6 +58,8 @@ The Pompidou Center in Paris exposes the building's mechanical functions for aes
 
 工艺指的是人类创造以前不存在的人工制品的技能。但是，常态工程的工艺与创新有着明显的不同。一个出色的网页会让用户产生互动的乐趣，但它并不一定具有创新性，而且几乎肯定不构成一项发明，这与常态科学并不追求新奇性的道理是一样的：
 
+2『这里看到了对工艺的定义，跟自己的本行业相关了，做一张术语卡片。（2021-10-24）』—— 已完成
+
 常态科学不以新奇的事实或理论为目标。而且，当取得成功的时候，也根本找不出任何新奇的东西。（库恩，1962：52）
 
 工艺、美学对工程任务能否成功的影响与创新一样大，甚至是更大。苹果手机成功的一个主要因素无疑是其充满美学的外观设计，这都要归功于乔纳森·伊夫。令人感到惊讶的是，苹果公司居然设法为这一设计申请了专利，并将其标榜为一项发明。该专利包含一个声明，全文是「如图所示和描述的便携式显示装置的外观设计」（赤名等人，2012）。在我看来，这是一个令人讨厌的声明，它有悖于任何关于发明的合理概念。美国专利和商标局应该为批准该项专利的行为感到羞愧。
@@ -82,7 +84,7 @@ In scientific revolutions, according to Kuhn, new paradigms typically replace ol
 
 In section 3.2 , Complexity Simplified , I pointed out that one source of complexity is a large number of parts. Even simple parts with simple functions, such as transistors acting as switches, when there are enough of them, enable enormously complex functionality. Digital technology, rooted in these transistors, has been an enormous source of complexity-driven paradigm shifts for several decades.
 
-In 1965, Gordon Moore, cofounder of Intel, 1 famously predicted that the number of components (transistors, resistors, diodes, and capacitors) in an integrated circuit would double every year for at least the next ten years. In 1975, he revised the forecast rate to double approximately every two years. This prediction, widely known as「Moore's law,」has been a guiding principle for the semiconductor industry ever since.
+In 1965, Gordon Moore, cofounder of Intel, [1] famously predicted that the number of components (transistors, resistors, diodes, and capacitors) in an integrated circuit would double every year for at least the next ten years. In 1975, he revised the forecast rate to double approximately every two years. This prediction, widely known as「Moore's law,」has been a guiding principle for the semiconductor industry ever since.
 
 In practice, until around 2015, Moore's prediction held steady. The Intel 8080 was a single-chip microcomputer introduced in 1974 with approximately 4,400 transistors. According to Moore's law, therefore, a single-chip microcomputer in 2014 should contain 4,400 × 2 (2014−1974)/2 ≈ 4,610,000,000 transistors, which is remarkably close to the 5.56 billion transistors on the Intel Xeon Haswell-E5, introduced in 2014. Although the demise of Moore's law has been predicted many times, most industry observers seem to agree that as of 2015, it has finally significantly slowed.
 
@@ -108,7 +110,7 @@ When I worked at Bell Labs in the early 1980s, a large project called AIS/Net 10
 
 But these interconnections exposed many incompatibilities between the computer systems, particularly computer systems from different vendors. These systems had been designed to work in isolation. The binary bit patterns used to represent numbers and text, for example, were different. The order in which bits were arranged in memory differed. The protocols and speeds used to communicate differed. These differences meant that one computer often could not directly communicate with another, and even if it could, it would not interpret the bit patterns produced by the other correctly. In effect, each computer operated within its own paradigm, and the paradigms were incommensurable.
 
-As computers became networked, these incompatibilities triggered a crisis. AIS/Net 1000 aimed to solve this problem by performing translations within the network, permitting the disparate paradigms to persist. When one computer sends a message to another, the message would be automatically translated during transport. Nobody would have to change how they did things, and AT&T would sell the glue that enabled interoperability. This was to be the Babel fish of networks. 2
+As computers became networked, these incompatibilities triggered a crisis. AIS/Net 1000 aimed to solve this problem by performing translations within the network, permitting the disparate paradigms to persist. When one computer sends a message to another, the message would be automatically translated during transport. Nobody would have to change how they did things, and AT&T would sell the glue that enabled interoperability. This was to be the Babel fish of networks. [2]
 
 The project failed. AT&T wrote off more than $1 billion of development effort. It turns out that few customers were actually willing to pay for this service. Instead, the paradigms saw a Darwinian consolidation. Competing species were unable to coexist within the same ecosystem of networked computers.
 
@@ -118,9 +120,7 @@ Kuhn talks about paradigms being incommensurable. In the OSI model, the terms「
 
 Calling the layers of the OSI model「paradigms」is perhaps a bit odd because they differ significantly from Kuhn's scientific paradigms. Like Kuhn's paradigms, they do provide a mental model for humans to understand how a system operates. For example, it is a different mental model to visualize one computer sending an image, a photograph, to another, versus visualizing one computer sending a stream of one million bits. But unlike Kuhn's paradigms, for these layers to work, their definition must be made absolutely precise. A misinterpretation of a single bit among one million bits may render an image unreadable. Kuhn's paradigms are much more robust; they can tolerate a certain amount of creative misunderstanding, which can sometimes form the engine for innovation or even paradigm shifts.
 
-Figure 6.3
-
-The OSI model for communication between computers.
+Figure 6.3 The OSI model for communication between computers.
 
 It is not easy to make the OSI model layers precise. For computers on the Internet to reliably communicate, they all need to agree on precise meanings at every layer, down to the interpretations of each individual bit. The process of building the standards that codify this agreement can be a messy, political, and bureaucratic morass of conflicting national and business interests.
 
@@ -194,6 +194,10 @@ It simply would not be possible to make such a fundamental change without the se
 
 Similarly, the layers of digital technology in figure 3.3 provide separation of concerns that permits independent simultaneous evolution at all levels. For example, the shift to using FinFETs for transistors had no effect on the design of instruction set architectures, except perhaps to offer opportunities through added capability. I examine this question of opportunity next.
 
+[1] Moore was one of the「traitorous eight」who left the Shockley Semiconductor Laboratory to found Fairchild Semiconductor and start Silicon Valley.
+
+[2] Douglas Adams described the Babel fish in The Hitchhiker's Guide to the Galaxy . According to Adams,「The Babel fish is small, yellow, leech-like, and probably the oddest thing in the universe. It feeds on brain wave energy, absorbing all unconscious frequencies and then excreting telepathically a matrix formed from the conscious frequencies and nerve signals picked up from the speech centres of the brain, the practical upshot of which is that if you stick one in your ear, you can instantly understand anything said to you in any form of language: the speech you hear decodes the brain wave matrix.」
+
 6.2 危机与失败
 
 库恩认为，科学革命只有在旧范式下的异常情况积累到一定程度后才会发生，而且只有在出现新范式取代旧范式的时候才会发生。但是，这些并不是推动技术范式转换的驱动力。
@@ -208,9 +212,7 @@ Similarly, the layers of digital technology in figure 3.3 provide separation of 
 
 实际上，直到 2015 年左右，摩尔的预测一直保持稳定。英特尔 8080 是 1974 年推出的一款单片计算机（简称单片机），有大约 4 400 个晶体管。因此，根据摩尔定律，2014 年生产的一台单片机应该包含如下数量的晶体管：
 
-4 400×2(2014-1974)/2
-
-≈ 4 610 000 000
+400×2$^{(2014-1974)/2}$ ≈ 4 610 000 000
 
 这个数值与 2014 年推出的英特尔 Xeon Haswell-E5 处理器上的 55.6 亿个晶体管的数量非常接近。尽管许多人都预言了摩尔定律的消亡，但是，大多数行业观察人士似乎都认为，直到 2015 年，摩尔定律所预测的增长速度才显著放缓。
 
@@ -222,9 +224,7 @@ Similarly, the layers of digital technology in figure 3.3 provide separation of 
 
 摩尔定律只适用于基于单个硅芯片的单个计算机。今天，我们看到通过网络互连的计算设备的数量在急剧增长。大约在 1980 年，3Com 公司的联合创始人之一、以太网（以太网是当今使用最广泛的有线网络技术）的共同发明人罗伯特·梅特卡夫就提出了一个现在被称为梅特卡夫定律的推定。该定律认为，网络的价值与网络上兼容的通信设备的数量平方成正比。例如，如果单台设备的价值为 1 美元，那么一个连接 10 台设备的网络的价值就是：
 
-1 美元 × 102
-
-=100 美元
+1 美元 × 10^2 = 100 美元
 
 以此类推，一个拥有 100 台设备的网络价值将会是 1 万美元，而一个有 1 000 台设备的网络价值为 100 万美元。现在我想让你计算一下梅特卡夫对今天的互联网估值，今天的互联网有大约 60 亿台连接的设备。
 
@@ -248,33 +248,19 @@ OSI 是一个分层的建模范式，如图 6.3 所示。与图 3.3 所示的各
 
 把 OSI 模型的各个层称为「范式」也许令人感到奇怪，因为它们与库恩所说的科学范式有很大的不同。就像库恩提到的范式一样，它们也确实为人类理解系统如何运行提供了一个心智模型。例如，想象一台计算机向另一台计算机发送一幅图像（照片），是与想象一台计算机发送 100 万比特的数据流不同的心智模型。但与库恩的范式不同，要使这些层发挥作用，就必然要对它们进行绝对精确的定义。如果这 100 万比特中的一个被误读，那么也许会导致图像变得不可读。然而，库恩的范式要更具鲁棒性，它们能够容忍一定程度的创造性误读，这有时会形成创新的引擎，甚至会引起范式的转换。
 
-7. 应用层
+7 应用层：应用程序直接使用的网络服务。
 
-应用程序直接使用的网络服务
+6 表示层：将比特模式解释为文本、图像、数字等。
 
-6. 表示层
+5 会话层：将多个来回的数据父换视为一个单兀。
 
-将比特模式解释为文本、图像、数字等
+4 传输层：数据段的可靠传输。
 
-5. 会话层
+3 网络层：在一个多结点网络对比特构成的数据包进行路由。
 
-将多个来回的数据父换视为一个单兀
+2 数据链路层：在两个结点之间传输一个比特帧。
 
-4. 传输层
-
-数据段的可靠传输
-
-3. 网络层
-
-在一个多结点网络对比特构成的数据包进行路由
-
-2. 数据链路层
-
-在两个结点之间传输一个比特帧
-
-1. 物理层
-
-有线或无线的比特流
+1 物理层：有线或无线的比特流。
 
 图 6.3 用于计算机间通信的 OSI 模型。
 
@@ -344,9 +330,7 @@ AIS/Net 1000 项目、联邦航空管理局的 AAS 项目以及美国陆军的 F
 
 新版本 IPv6 改变了很多基本的东西，包括用于识别互联网中结点的地址。事实证明，IPv4 只能提供 40 亿个不同的地址。考虑到现在互联网上已经有 60 亿台设备，这显然会引发问题。因为在不产生歧义的情况下，重用地址需要相当聪明的方法。IPv6 中，地址数目将会增加到如下数量：
 
-2128
-
-=340 282 366 920 938 463 463 374 607 431 768 211 456。
+2128 = 340 282 366 920 938 463 463 374 607 431 768 211 456。
 
 如果没有 OSI 模型提供的分离式设计，就不可能做出这样的根本性改变。例如，这一变化对通过互联网传输图像的 JPEG 编码没有产生任何影响。
 
@@ -472,9 +456,7 @@ In view of the failure of most computer science innovations of the last 40 years
 
 Figure 6.4 shows a prototype of an Airbus A350, their newest model. Airbus calls this prototype an「iron wing.」The prototype includes all parts of an A350 except the airframe, cabin, and engines. This is why it doesn't look like an airplane. It is the guts without the skeleton or skin. The wiring is all exactly the same length as on the real aircraft. The hydraulic tubes are bent as on the real aircraft to get around the (missing) airframe structure. When running tests using this prototype, the same generators that are driven by the engines on the real aircraft are driven by artificial engines so that the prototype runs on its own power. This prototype is obviously much more complicated than Edison's lightbulbs, but it is exactly the same sort of concrete prototype.
 
-Figure 6.4
-
-An Airbus「iron wing」prototype of an A350.
+Figure 6.4 An Airbus「iron wing」prototype of an A350.
 
 Aircraft manufacturers are not alone in facing this problem. Modern cars are mostly「drive-by-wire」today, where the driver commands (pushing on the accelerator and brakes and turning the steering wheel) are mediated by a computer before going to the wheels or engine. Automotive designers face the same problems but with far fewer regulatory constraints. Their problems are only going to get worse as automation increases (lane keeping, automated accident prevention, and fully automated driving).
 
@@ -571,9 +553,3 @@ CPS 一词有时会与「赛博安全」（cybersecurity，也译为网络空间
 第二个例子是我们课题组的 PTIDES 项目，也是在 2015 年完成的。该项目使用图 6.3 所示的 OSI 模型，解决了跨网络的分布式软件问题。但是，该项目修改了范式，以显式地控制定时。具体细节不再赘述。
 
 尽管相关研究已在实验室里取得了一定的进展，但信息物理系统中的复杂性危机仍然存在，而数据科学的机遇危机也依然存在。在后续的章节中，我将进一步探究我们能够在多大程度上推进模型的分层。我们今天所掌握的所有技术都有其局限性，了解这些局限性对于全面理解技术革命至关重要，因为这些局限性也蕴含了创新的机会。
-
-__________
-
-1 Moore was one of the「traitorous eight」who left the Shockley Semiconductor Laboratory to found Fairchild Semiconductor and start Silicon Valley.
-
-2 Douglas Adams described the Babel fish in The Hitchhiker's Guide to the Galaxy . According to Adams,「The Babel fish is small, yellow, leech-like, and probably the oddest thing in the universe. It feeds on brain wave energy, absorbing all unconscious frequencies and then excreting telepathically a matrix formed from the conscious frequencies and nerve signals picked up from the speech centres of the brain, the practical upshot of which is that if you stick one in your ear, you can instantly understand anything said to you in any form of language: the speech you hear decodes the brain wave matrix.」

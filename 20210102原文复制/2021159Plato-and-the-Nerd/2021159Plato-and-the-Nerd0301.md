@@ -1,8 +1,8 @@
-Models of Models of Models of Models of Things
+## 0301. Models of Models of Models of Models of Things
 
 · · · in which I argue that in engineering, models are stacked many layers deep, with the design of each layer affecting the designs both above and below it; and that the engineering use of models enables creativity because the layering of models distances designers from the physical constraints of the realization. Digital technology, particularly, has, in effect, mostly removed any meaningful physical constraints from a broad class of engineered systems. Innovation, therefore, is less limited by the physics of the technology than it is by our human imagination and ability to assimilate new paradigms.
 
-3.1 Technological Tapestries
+### 3.1 Technological Tapestries
 
 Consider the engineer's question,「Can I make a thing for this model?」Suppose that the answer is「yes」for a broad class of models. For example, technology today gives us the ability to make networks of electrically controlled switches, where closing one switch can cause another switch to open or close. A semiconductor chip is such a network, where the switches are realized as transistors and the network consists of wires that connect the transistors. The medium in which such a network is crafted is the silicon and metal of semiconductors, a physical medium.
 
@@ -24,7 +24,7 @@ Educators all too often belie the personality of the technology. They present te
 
 I will defer many details to the next two chapters, where I attempt to capture the paradigms and cultures that have manifested in hardware and software technology. In this chapter, I keep a high-level view.
 
-3.2 Complexity Simplified
+### 3.2 Complexity Simplified
 
 Engineering of simple systems, like Edison's lightbulb, can be carried out with a prototype-and-test approach. But this approach breaks down as systems get more complex. With more complex systems, the use of models becomes much more important.
 
@@ -42,9 +42,7 @@ The innovation in this transistor is its structure, which is more vertical than 
 
 I would like to emphasize the dimensions indicated in the figure. The「fin」on the FinFET is 20 nanometers wide. There are one billion nanometers in a meter, so this is quite small indeed.
 
-Figure 3.1
-
-Prototype of a modern transistor. [Courtesy of Tsu-Jae King-Liu.]
+Figure 3.1 Prototype of a modern transistor. [Courtesy of Tsu-Jae King-Liu.]
 
 Consider the implications of being able to realize a transistor that is so small. A modest sized silicon chip is about one centimeter squared. How many 20-nm squares fit in one centimeter squared? Shall I pause for you to do the calculation?
 
@@ -80,7 +78,7 @@ Let us change our traditional attitude to the construction of programs: Instead 
 
 Knuth created TeX over about 10 years starting in the late 1970s because he found the typography of phototypesetting systems of the day ugly. Today, thousands of people have contributed to and , primarily through a system of packages that support an astonishing variety of document preparation needs. It is a thriving, open-source community where nearly all software is free. Almost as if in homage to Knuth, the code gets read and improved by others. The typography that TeX produces, in my opinion, is better than any commercial word processor that I have encountered. In chapter 5 , I will have much more to say about the human expressiveness of software.
 
-3.3 Transitivity of Models
+### 3.3 Transitivity of Models
 
 A word processing system, such as the one I'm using to write this book, runs on a microprocessor like that in figure 3.2 , which uses transistors based on the prototype in figure 3.1 . Many levels of modeling exist between the physics of silicon and the word processor. Even more layers can be found between the physics and a system like Wikipedia. Like a pencil, no individual person knows how to make such a system. The fact that such systems exist, however, is a direct consequence of human ingenuity and creativity. Each layer of modeling allows individuals to contribute to the design without knowledge of or concern for how the layers of modeling they are using came about and without knowledge of how the layers of modeling they are creating will be used by other designers.
 
@@ -88,9 +86,7 @@ A few of the layers involved in the construction of a system such as Wikipedia a
 
 Occasionally, one encounters the use of such layers of abstraction in science. But compared with engineering, it is relatively rare, and depth of the layering is much more shallow. Scientists wish to construct models of physical reality, and models of models of physical reality become more suspect simply because they are further from the physical reality.
 
-Figure 3.3
-
-Layers of paradigms.
+Figure 3.3 Layers of paradigms.
 
 An example from science where layering of models has been successful is the gas laws developed at the end of the eighteenth century. These laws relate pressure, temperature, volume, and mass of a gas, including Boyle's law, Charles' law, Gay-Lussac's law, and Avogadro's law. These models describe phenomena that are ultimately due to the motion of large numbers of molecules in a gas, but they do not describe the phenomena in terms of the individual molecules. For example, Boyle's law states that at a fixed temperature, the pressure of a gas is inversely proportional to the volume it occupies. So, for example, if you reduce the volume (compress the gas), then pressure will increase. These are useful models of models, where the lower level model is of randomly moving molecules colliding with one another and with the surface of the enclosure.
 
@@ -98,9 +94,7 @@ In biology, arguably the most complex of the natural sciences, some researchers 
 
 I believe this limitation is quite fundamental. Science cannot benefit as much as engineering from the layering of modeling paradigms. The root of the reason, which I explore more fully in the subsequent chapters, is that engineers build systems to match models rather than models to match systems.
 
-Figure 3.4
-
-Layers of abstraction proposed by Fisher et al. (2011) for synthetic biology.
+Figure 3.4 Layers of abstraction proposed by Fisher et al. (2011) for synthetic biology.
 
 Even without layering, many phenomena in our physical world (maybe even most phenomena) defy scientific modeling. John Searle has written extensively about the inability of scientific models to address cognitive and social phenomena, for example, even though those phenomena are clearly physical. Recall his claim that「the methods of the natural sciences have not given the kind of payoff in the study of human behavior that they have in physics and chemistry」(Searle, 1984, p. 71). His explanation, to my understanding, is a form of failure of transitivity of models. As an illustrative example, he looks at our inability to predict wars and revolutions in terms of lower level physical phenomena:
 
@@ -132,7 +126,7 @@ Consider synthetic biology, which is concerned with designing artificial biologi
 
 In the next two chapters, I will elaborate on the layers in figure 3.3 , with an emphasis on understanding how they came about and with the goal of showing that the specific design of such layers is the creative work of humans, not a collection of God-given facts. But first I would like to spend a little time thinking about how to decide which layer to focus on for any given task.
 
-3.4 Reductionism
+### 3.4 Reductionism
 
 At the lowest level, a word processor and Wikipedia are electrons sloshing around in silicon and metal, and the programs that make up Wikipedia are models of models of models of · · · models of electrons sloshing around in silicon and metal. It is tempting to fall into a reductionist trap and say that Wikipedia is「nothing but」electrons sloshing around in silicon, but this would grossly misrepresent reality.
 
@@ -165,6 +159,3 @@ __________
 2 Footnote contents
 
 3 An epiphenomenon is a phenomenon that can be completely explained in terms of more fundamental phenomena.
-
-4
-

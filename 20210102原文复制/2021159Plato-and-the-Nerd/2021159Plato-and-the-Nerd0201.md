@@ -1,8 +1,8 @@
-Inventing Laws of Nature
+## 0201. Inventing Laws of Nature
 
 · · · in which I argue that models are invented, not discovered; that engineers and scientists use models in complementary, almost opposite ways; that all models are wrong, but some are useful; and that the use of models can slow as well as advance technological progress by establishing a backdrop of unknown knowns, by forcing increased specialization, and by requiring humans to assimilate new paradigms.
 
-2.1 The Unknown Knowns
+### 2.1 The Unknown Knowns
 
 Drawn by its provocative title, I recently read Inventing Nature , a wonderful book by Andrea Wulf (Wulf, 2015). Wulf's book tells the story of Alexander von Humboldt (1769–1859), a remarkable Prussian about whom I had previously known nothing except that Humboldt county and Humboldt Redwoods State Park in California, along with numerous other places and things, had been named after him. Wulf boldly states,「Humboldt gave us our concept of nature itself.」Easing somewhat my embarrassment at my ignorance, she goes on,「The irony is that Humboldt's views have become so self-evident that we have largely forgotten the man behind them.」Further easing my embarrassment, Sandra Nichols (2006), in an article titled「Why was Humboldt forgotten in the United States?」reassures me that I am not alone. Nichols postulates many reasons for our collective amnesia, but to me the most poignant is「shifts in scholarship,」where「the search for a comprehensive view of science was soon set aside in favor of specialization.」In Germany, Humboldt and his brother Wilhelm have most definitely not been forgotten. The Humboldt University of Berlin is named after the two of them, and the brother, Wilhelm, is credited with establishing the「Humboldtian model of higher education,」which integrates teaching in the arts and sciences with research. This is a defining principle of all top universities today.
 
@@ -40,9 +40,7 @@ In our modern technological world, our lives are governed by paradigms that are 
 
 I was once telling my wife that a colleague at Berkeley, Miki Lustig, was leading a charge to teach many students, staff, and faculty at Berkeley about amateur radio, and to help them prepare to take the test to become licensed to operate amateur radios. My wife asked me why one would want to operate an amateur radio. The question had never occurred to me, and off the cuff, the best answer I could come up with was,「So they can communicate with anyone around the world.」She asked me,「Why don't they just send email?」I saw a collision of paradigms, less momentous than the collision of two black holes, but nevertheless notable. Being able to communicate instantaneously with anyone around the world has become a background fact, an unknown known, a part of the technological paradigm through which we understand and manage our daily lives.
 
-Figure 2.1
-
-Dilbert, an iconic nerd, in a cartoon by Scott Adams. [DILBERT c 1995 Scott Adams. Used by permission of UNIVERSAL UCLICK. All rights reserved.]
+Figure 2.1 Dilbert, an iconic nerd, in a cartoon by Scott Adams. [DILBERT c 1995 Scott Adams. Used by permission of UNIVERSAL UCLICK. All rights reserved.]
 
 Paradigms change. Kuhn's scientific paradigms change relatively infrequently, and the changes can be quite disruptive to a scientific community. In The Structure of Scientific Revolutions , Kuhn quotes Max Planck:
 
@@ -64,7 +62,7 @@ Science, technology, and engineering are all built on models. Models are artifac
 
 Every engineered design is similarly a model, which can be as simple as a prototype of a physical shape or as complex as a million lines of code. Each such model has a meaning, a semantics , only within some modeling paradigm. And the modeling paradigm is all too often an unknown known, never articulated or consciously chosen. I will attempt now to break the logjam that is created by failing to recognize these unknown knowns.
 
-2.2 Models of Nature
+### 2.2 Models of Nature
 
 Merriam-Webster's online dictionary has no fewer than 14 definitions of the word「model.」Only a few of these are relevant to how models are used in science and engineering:
 
@@ -108,13 +106,9 @@ So in what sense does the Platonic sphere exist independent of humans? It does n
 
 It is no accident that there is nothing sexy about such a Platonic model.
 
-Figure 2.3
+Figure 2.3 A model of a horse being printed by a 3D printer. [Photo by Ben Zhang, courtesy of the photographer.]
 
-A model of a horse being printed by a 3D printer. [Photo by Ben Zhang, courtesy of the photographer.]
-
-Figure 2.4
-
-Aspirational self-portrait of the author.
+Figure 2.4 Aspirational self-portrait of the author.
 
 The mathematical model of equation (2048) is a human construction, given in the language of algebra and the Cartesian three-dimensional model of space. It can be viewed as an imperfect (i.e., wrong) model of things in the physical world that resemble spheres. Those things in the physical world can be viewed as models of a mental concept of a sphere, as can the equation. But nowhere is there any direct evidence of a human-independent existence of the Platonic Ideal sphere. The mathematical model is not a Platonic Form, but rather at best a model of a Platonic Form, existing within a modeling paradigm (algebra and Cartesian space). There are many other ways to model a sphere mathematically, and as I will discuss in chapter 9 , every such way has limitations. So even an abstract model is a shadow on the wall. Even if it is just a shadow on the wall, it will be more faithful to a Platonic Form of a sphere than any physical model could be. It may be the best representation accessible to us of the Platonic Ideal.
 
@@ -128,9 +122,7 @@ The STL file for the horse being printed in figure 2.3 is much more complicated 
 
 Models are expressed in some physical medium. The concrete model of a horse in figure 2.3 is a three-dimensional printed plastic prototype. The physical medium is plastic as assembled by a 3D printer. An abstract model of the same design might be a mathematical formula describing its shape, like equation (2048), or an STL file such as that in figure 2.5 . This abstract model can be sent to a 3D printer to produce the concrete model. Abstract models also have physical form in the sense that equation (2048) is ink on a page (or pixels on a screen) and an STL file is aligned magnetic iron molecules on a disk or electric charges in a computer memory, but their physical form is incidental. When an abstract model is converted from one physical form to another, for example, into your mental state when you read equation (2048), or when you copy an STL file from one computer to another, we do not end up with two models. It is still just one model, albeit in two or more physical representations. The ontology of an abstract model is independent of its physical embodiment.
 
-Figure 2.5
-
-Three-dimensional shape specified in STL.
+Figure 2.5 Three-dimensional shape specified in STL.
 
 Concrete models are exemplars in physical form of a class, whereas abstract models are abstractions of a class. The possibilities for expressive media are much richer for abstract models than for concrete models because they are less constrained by the physical world. STL, in fact, can specify shapes that cannot exist in the physical world, with overlapping facets or facets that do not share edges. Modeling languages are abstract not concrete. They yield more readily to human creativity. Moreover, they invite invention, and even paradigm shifts. A well-chosen modeling language enables elegant expression of complex designs.
 
@@ -176,11 +168,9 @@ In fact, no physical object is a resistor. Because no physical object obeys Ohm'
 
 As a consequence, Ohm's law is either trivial or wrong. I see no choice but to conclude that Ohm's law is a human-constructed model, not a fundamental truth about nature. It did not exist as a fundamental truth before Georg Ohm because no physical object in the world obeys it. To the extent that it is a fundamental truth, it is so because we declare it to be so. We define a「resistor」to be a physical object whose behavior is reasonably closely modeled by Ohm's equation, and we define the resistance to be the ratio of voltage across that object to current through that object. An ideal resistor, which does not exist in nature, does not in fact exist at all except in the human mind. Ohm's law was invented, not discovered.
 
-Figure 2.7
+Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the photographer.]
 
-Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the photographer.]
-
-2.3 Models Are Wrong
+### 2.3 Models Are Wrong
 
 Modeling is central to every scientific and engineering enterprise. Solomon Wolf Golomb (1932–2016), who has written eloquently about the use of models in science and engineering, emphasizes understanding the distinction between a model and thing being modeled. He famously stated,「You will never strike oil by drilling through the map」(Golomb, 1971). A map is a model. The territory is the thing being modeled. You should drill through the territory, not the map.
 
@@ -255,6 +245,3 @@ __________
 7 One henry is actually a very large inductance, but it makes the math simpler and therefore will damage my readership less than a more reasonable choice of, say, one millihenry.
 
 8 Most household circuits in the United States have fuses that trip, interrupting the current, when the current exceeds 15 or 20 amps, so this scenario would not play out this way in your house. Also, the voltage supplied in a household circuit is much larger, typically 170 volts at its peak in the United States (see Lee and Varaiya [2011] sidebar on page 11 for an explanation of household electric power). Hence, during the time that the voltage is 170 volts, the current will increase at a rate of 170 amps per second, which means it will reach 15 amps in 11 milliseconds. At this point, it will trip the fuse, leaving you in the dark. So the bulb would operate for only 11 milliseconds.
-
-3
-
