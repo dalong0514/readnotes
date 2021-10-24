@@ -84,8 +84,6 @@ But more fundamentally, the title puts into opposition the notion that knowledge
 
 I hope that through this book, I can change the public discourse so young people are more inclined to consider a career in engineering, and not just because of the job prospects. I am convinced that engineering is fundamentally a creative discipline, and the technical drudgery that prejudices many people is no more drudgery than found in any other creative discipline. Yes, hard work is required, but as a reward for that hard work, you can change the world.
 
-前言
-
 主要内容
 
 当我年轻的时候，我的父亲想让我将来成为一名律师，或者获得工商管理学硕士学位并接管家族企业，而工程师是那些正在为他干活的人。最聪明的年轻人，至少是那些美国盎格鲁 - 撒克逊白人的后裔，读的是法学院、商学院或医学院。和过去相比，现在要考入工程学院的难度很大，在我读大学的时候情况却并非如此。当我主修耶鲁大学的「计算机科学」和「工程与应用科学」双学士学位的时候，父亲对我感到非常失望。继而我去麻省理工学院攻读工程硕士学位，然后成为贝尔试验室的一名工程师，最后又去伯克利大学攻读博士学位，并成为一名大学教授。我的一次次决定让我的父亲愈感失望。这本书也许是我为那些决定进行辩护的最后一次尝试吧。
@@ -94,9 +92,7 @@ I hope that through this book, I can change the public discourse so young people
 
 本书试图解释为什么创造技术的过程，即我们称为工程的过程，是一个非常有创造性的过程，并希望向读者解释为什么这个学科变得如此火热和有竞争力，以至能够让一些极客从最聪明的年轻人当中脱颖而出。本书将向读者介绍技术文化、技术的力量与局限性以及技术的真正力量等，是如何通过与人类的伙伴关系发挥出来的。我倾向于把这本书视为一种受欢迎的技术哲学读物，但我怀疑它是否会受到读者的欢迎，而且我也不确定我是否具备撰写一部哲学类图书的水平。但是，我唯一可以保证的是，这是一本关于技术和创造技术的工程师的著作。即便如此，本书也无法做到包罗万象，仅限于我最了解的技术部分，特别是数字和信息技术革命。
 
-本书讨论的不是如何以技术为媒介来释放艺术性和创造性。如果读者想要了解这方面的内容，那么我推荐阅读维吉尼亚·赫弗南于 2016 年出版的《魔法与迷失》（Magic and Loss
-
-）一书。赫弗南声称「互联网是现实主义艺术大规模协同工作的产物」，但她所指的主要是互联网的内容。在我的书中，我认为互联网技术本身，以及支撑它的所有数字技术，都是一项大规模协同的创造性工作，即使其并非艺术性工作。
+本书讨论的不是如何以技术为媒介来释放艺术性和创造性。如果读者想要了解这方面的内容，那么我推荐阅读维吉尼亚·赫弗南于 2016 年出版的《魔法与迷失》（Magic and Loss）一书。赫弗南声称「互联网是现实主义艺术大规模协同工作的产物」，但她所指的主要是互联网的内容。在我的书中，我认为互联网技术本身，以及支撑它的所有数字技术，都是一项大规模协同的创造性工作，即使其并非艺术性工作。
 
 数字技术作为后来出现的一种富有创造力的媒介，有着巨大的潜力，并且远远超过迄今为止其他技术领域所取得的成就。在本书的第一部分，我将详尽地解释为什么这项技术具有如此彻底的变革力和释放性。我研究了工程师是如何创造性地使用模型和抽象来构建人工世界，并给予我们难以置信的能力。例如，将迄今为止人类出版过的所有图书全部装入口袋的能力。
 
@@ -166,14 +162,6 @@ In the final chapter, I tie things together by examining the epistemic role that
 
 The most expressive modeling paradigms are capable of self-reference, which enables them to build their own scaffolding but also makes them necessarily incomplete. This incompleteness is fundamentally what enables creativity and ensures that what we can accomplish with technology is limitless. So what holds us back? In this final chapter, I consider both the obstacles to progress and the threats that technology, when misapplied, can have on society.
 
-### 03. Acknowledgments
-
-The author gratefully acknowledges contributions and helpful suggestions from Christopher Brooks, Malik Ghallab, Thomas Henzinger, Madeline Johnson, Hokeun Kim, Gil Lederman, Marten Lohstroh, Dave Messerschmitt, Mehrdad Niknami, Rodion Rathbone, Rhonda Righter, Bernhard Rumpe, Naresh Shanbhag, Joseph Sifakis, Marjan Sirjani, Kimball Strong, David J. Stump, and Eli Yablonovitch. I would also like to thank three anonymous reviewers commissioned by the publisher who were extremely helpful. Several of these people disagreed with major points that I make in the book, and they thereby helped me to understand where my arguments needed to be strengthened or reworked. All remaining errors and opinions that I have stubbornly stuck to are entirely my own, not those of these contributors.
-
-Most especially, however, I would like to thank two very special people who played a major role in the development of this book. The first is Heather Levien, who, unlike me, really knows how to write and without whom this book would be a disorganized pile of random ideas. The second is my mom, Kitty Fassett, a professional musician with an aversion for mathematics but a true intellectual and also a great writer. Without her help, this book would be unreadable to nonspecialists. She was my guinea pig, telling me each place where a nonspecialist might get lost.
-
-I also thank the staff at MIT Press and Heather Jefferson for her superb copy editing. In addition, I thank the many unwitting contributors who have offered their thoughts through largely anonymous media such as Wikipedia and the contributors who have generously posted images online that I can (and have) reused because of their choice of creative commons licenses.
-
 内容概述
 
 有些读者喜欢在读一本书之前去了解书的大致内容。抛开有问题的自指性，对于这样的读者，我在这里特地给出了本书的简要概述。但是，坦率地说，我建议读者跳过这部分内容，直接从第 1 章开始阅读。因为本书所要讲述的内容是无法用几个段落来准确概括的。任何类似的内容摘要都必然会使本书看起来比它实际的内容更为晦涩难懂。然而，对于那些真的需要内容提要的读者而言，以下便是我对本书内容的简要总结。
@@ -202,7 +190,7 @@ I also thank the staff at MIT Press and Heather Jefferson for her superb copy ed
 
 这一部分内容是从第 7 章开始的，在本章，我分析了信息的概念 —— 信息是什么，以及如何测量信息。在这一章，我介绍了克劳德·香农的信息测量方法，并指出通常无法用数字化的方式表达他的信息概念。我定义了一个比现在用软件和计算机所能实现的用途更为宽泛的「信息处理机」。
 
-在第 8 章我会解释软件功能的局限性。。我认为，信息处理函数的数量远远大于可能的计算机程序的数量。在这一章，我介绍了艾伦·图灵的不可判定性研究结果，该结果表明存在一些有用的但当今计算机上的软件所不能实现的信息处理函数。但这并不意味着，一个函数如果不能通过软件实现，它就不能通过其他任何机器来实现。
+在第 8 章我会解释软件功能的局限性。我认为，信息处理函数的数量远远大于可能的计算机程序的数量。在这一章，我介绍了艾伦·图灵的不可判定性研究结果，该结果表明存在一些有用的但当今计算机上的软件所不能实现的信息处理函数。但这并不意味着，一个函数如果不能通过软件实现，它就不能通过其他任何机器来实现。
 
 我希望大家不要被这种热情冲昏头脑，不要对软件已经取得的成就感到惊讶，也不要预言诸如认知和理解等自然现象在软件中是可以实现的。在这里，我不得不面对被一些人称为「数字物理学」的信念，即物理世界在某种程度上就是软件或相当于软件。我认为，作为理解物理世界的一种方式，这种想法不太可能是正确或有用的，至少在更极端的方式下如此，而且我认为这一论题是不可证伪的，因此也就是不科学的。
 
@@ -215,3 +203,11 @@ I also thank the staff at MIT Press and Heather Jefferson for her superb copy ed
 在最后一章，我通过分析模型在技术中的认知作用，以及模型与它们最终建模的物理系统之间的关系，将所有这一切都联系在一起。我运用了本书前面内容中的论点：至少在数字技术中，模型和物理现实之间存在着许多抽象层，两者之间的联系的确变得非常脆弱。但是，如第 5 章所述，软件范式所具有的自支撑能力允许这些模型独立存在，允许它们几乎但并非完全独立于物理现实。我认为，这不会导致笛卡儿的身心二元论，但它确实强调了以极大的决心和约束坚持将地图与地域进行区分的必要性。尽管模型存在于物理世界之中，但最好将其视为与物理世界相分离的现实。
 
 最具表现力的建模范式能够自我参照，这使得它们能够不断地构建支撑自身的「脚手架」，但同时必然使得它们是不完备的。从根本上讲，正是这种不完备性激发了创造力，并确保我们能够运用技术完成的事情是无限的。那么到底是什么因素阻碍了我们呢？在本章，我既分析了进步过程中存在的障碍，同时也指出技术应用不当可能给社会带来的威胁。
+
+### 03. Acknowledgments
+
+The author gratefully acknowledges contributions and helpful suggestions from Christopher Brooks, Malik Ghallab, Thomas Henzinger, Madeline Johnson, Hokeun Kim, Gil Lederman, Marten Lohstroh, Dave Messerschmitt, Mehrdad Niknami, Rodion Rathbone, Rhonda Righter, Bernhard Rumpe, Naresh Shanbhag, Joseph Sifakis, Marjan Sirjani, Kimball Strong, David J. Stump, and Eli Yablonovitch. I would also like to thank three anonymous reviewers commissioned by the publisher who were extremely helpful. Several of these people disagreed with major points that I make in the book, and they thereby helped me to understand where my arguments needed to be strengthened or reworked. All remaining errors and opinions that I have stubbornly stuck to are entirely my own, not those of these contributors.
+
+Most especially, however, I would like to thank two very special people who played a major role in the development of this book. The first is Heather Levien, who, unlike me, really knows how to write and without whom this book would be a disorganized pile of random ideas. The second is my mom, Kitty Fassett, a professional musician with an aversion for mathematics but a true intellectual and also a great writer. Without her help, this book would be unreadable to nonspecialists. She was my guinea pig, telling me each place where a nonspecialist might get lost.
+
+I also thank the staff at MIT Press and Heather Jefferson for her superb copy editing. In addition, I thank the many unwitting contributors who have offered their thoughts through largely anonymous media such as Wikipedia and the contributors who have generously posted images online that I can (and have) reused because of their choice of creative commons licenses.
