@@ -1,3 +1,9 @@
+## 记忆时间
+
+## 目录
+
+0101 Shadows on the Wall
+
 ## 0101. Shadows on the Wall
 
 · · · in which I examine the very idea of「facts」and「truths,」showing that: collective wisdom about them can be better than individual wisdom; a narrative about facts can be more interesting than the facts themselves; facts and truths may be invented or even designed, not just discovered; facts and truths may be wrong; and it can cost billions to show that facts are true. And, oh yes, nerds are misunderstood, and science and engineering get confused.
