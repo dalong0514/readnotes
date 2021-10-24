@@ -214,15 +214,19 @@ So it won't work to fix the resistance R to be constant. We have to let it vary 
 
 which is just a rearrangement of equation (1024). Every electrical circuit with nonzero voltage and current trivially satisfies Ohm's law by simply using R as defined in equation (512) as the definition of the resistance. This defines the resistance at time t to be whatever value makes Ohm's law true! Surely Georg Ohm did not get a basic electrical unit named after him for discovering a tautology. So this cannot be the right interpretation.
 
-One resolution of this conundrum is that the notion of a resistor is a Platonic Ideal Form. A resistor is a device that at all times satisfies equations (1024) and (512) with a constant resistance R . But there is no such device in the physical world. At a minimum, every known material has a resistance that depends on temperature. Moreover, most every known material heats up as current flows through it. 1
+One resolution of this conundrum is that the notion of a resistor is a Platonic Ideal Form. A resistor is a device that at all times satisfies equations (1024) and (512) with a constant resistance R . But there is no such device in the physical world. At a minimum, every known material has a resistance that depends on temperature. Moreover, most every known material heats up as current flows through it. [1]
 
-Besides temperature, other physical effects, specifically inductance and capacitance , ensure that physical materials do not exactly obey Ohm's law with a constant R . These effects introduce memory and dynamics in the system. For example, inductance is the tendency for current that is flowing to keep flowing, even if the voltage drops to zero. A material with nonzero inductance will take some time to adjust the current to a new voltage. During that time, it will not satisfy Ohm's law with the same fixed constant R . All materials, in practice, have some nonzero inductance, even if small. 2
+Besides temperature, other physical effects, specifically inductance and capacitance , ensure that physical materials do not exactly obey Ohm's law with a constant R . These effects introduce memory and dynamics in the system. For example, inductance is the tendency for current that is flowing to keep flowing, even if the voltage drops to zero. A material with nonzero inductance will take some time to adjust the current to a new voltage. During that time, it will not satisfy Ohm's law with the same fixed constant R . All materials, in practice, have some nonzero inductance, even if small. [2]
 
 In fact, no physical object is a resistor. Because no physical object obeys Ohm's law, how can we take this to be a law of nature? Plato's allegory of the cave states that human perception is limited to shadows of reality, but it appears that physical objects are but shadows of the Platonic Ideal Form of a resistor. This Platonic Form is not only inaccessible to humans, it is also inaccessible to nature!
 
 As a consequence, Ohm's law is either trivial or wrong. I see no choice but to conclude that Ohm's law is a human-constructed model, not a fundamental truth about nature. It did not exist as a fundamental truth before Georg Ohm because no physical object in the world obeys it. To the extent that it is a fundamental truth, it is so because we declare it to be so. We define a「resistor」to be a physical object whose behavior is reasonably closely modeled by Ohm's equation, and we define the resistance to be the ratio of voltage across that object to current through that object. An ideal resistor, which does not exist in nature, does not in fact exist at all except in the human mind. Ohm's law was invented, not discovered.
 
 Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the photographer.]
+
+[1] An exception occurs when some materials, called superconductors , are cooled below a critical threshold where they enter a superconductive state, where the resistance becomes exactly zero. But the temperatures required are extremely cold. In 1987, Georg Bednorz and K. Alex Müller got the Nobel Prize in Physics for discovering a「high temperature superconductor.」Their ceramic compound exhibited superconductivity at the「high」temperature of −243.15 degrees Celsius or −405.67 degrees Fahrenheit. As of this writing, the highest temperature at which superconductivity has been observed is about −70° C (−94° F ), still extremely cold, and even then only at extremely high pressures. No practical lightbulb could be expected to work only at such temperatures and pressures.
+
+[2] An imperfect analogy might help the reader if the reader has not studied electricity. An electric current can be visualized as water flowing down a sluice or channel that is tilted. The degree of tilt is analogous to the voltage. The rate of water flow is analogous to the current. A smaller channel will have a higher resistance than a larger channel (the smaller channel lets through less water for a given tilt). Inductance is analogous to the tendency of water that is flowing to keep flowing (it has inertia). If water is flowing down a tilted sluice and you suddenly flatten the sluice, removing the tilt, the water will not instantly stop flowing. This analogy is imperfect for several reasons. Electric current does not have inertia, or at least not much, and inductance is a property of the channel not the current. But it nevertheless provides a nice visual analogy that can be used to get the basic idea.
 
 2.2 大自然的模型
 
@@ -242,12 +246,11 @@ Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the
 
 12 一个由假设、数据和推论组成的系统，其被表示为一个实体或事态的数学描述；也是基于这种系统的计算机模拟。
 
-
-
-
 第一个定义是一个具体的模型，是物理世界中的一个物质对象。而最后两个是抽象的模型，就后两者而言，诸如纸上的墨水等任何物质实现都是偶然的。而中间的其他两个则可以是具体的模型，也可以是抽象的模型。抽象模型和具体模型都有助于人类掌握概念。这两种模型都是人类创造的。因此，模型可以作为人类记录和交流概念的一种方式。
 
 对于亚里士多德来说，关于世界的概念来自特定事物的共同属性（见图 2.2）。特定的事物可以作为符合这个概念的一系列事物的模型，也可以作为这个概念本身的模型。例如，马的概念是通过观察几匹马得出的一种概括性概念。一个外形为马的塑料雕像，如图 2.3 所示，就可以作为马的具体模型。请读者注意，模型本身并不需要是一匹真实的马。一个具体的模型是一个能够捕捉被建模事物的某些本质的实际存在。
+
+1-2-3『此时又想到了斯科特的《模型思维》，视频课也收集好了。这本书一定要研读完。（2021-10-24）』—— 未完成
 
 一个有关具体模型的概念与《韦氏大词典》中的另一个定义联系在一起，即「受雇去展示衣服或其他商品的人」，如图 2.4 所示海报中的模型。这个模型大概是被用来展示某个品牌的香水的，然而，有趣的是，海报所宣传的商品「古龙水」并没有出现在海报中。相反，这个模型被用来代表一个「魅力男子」的经典形象（当然，我指的是海报上的那个人，而不是镜子中反射出来的那个人）。该模型（一个人）被用作一个代表魅力男子形象的模型（原型）。这样一个模型的目的是通过唤起某些人「自己喷了古龙水会变得多么有魅力」的遐想，而将古龙水卖给这些人（也许就是镜子里的这个人）。
 
@@ -259,7 +262,7 @@ Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the
 
 柏拉图认为，柏拉图型相作为无形的真理独立于人类而存在。柏拉图式的球体是理想的，但是，我们在物理世界中找不到这种理想的球体。它不是也不可能作为一个物理对象而存在。球体的任何物理形式都将是一些由原子和分子构成的物质组成的。无论它被打磨得多么光滑，球体的表面都不会符合柏拉图式的理想球体概念，任何球体表面都会有波动不平的痕迹，以及由于构成原子的电子的位置或边界所具有的量子力学的不可确定性造成的模糊性。表面到底在哪里？表面是什么？如果没有一个表面，我们就不能谈论表面积的问题，但是一个柏拉图式的球体应该有一个正好等于 4πr2 的表面积，其中 r 是球的半径。然而，在原子的尺度上，表面的概念并没有严格的物理学基础。
 
-那么柏拉图式的球体在何种意义上独立于人类而存在呢？结论是它并不存在于物理世界之中。我们可以建立一个球体的数学模型，但是，它仍然是一个人类的构造，而不是无形的真理。例如，我们可以给出一个球体的数学模型。在笛卡儿的坐标系中，以坐标（0，0，0）为圆心、r 为半径的球体是满足如下条件的点（x，y，z）的集合。
+那么柏拉图式的球体在何种意义上独立于人类而存在呢？结论是它并不存在于物理世界之中。我们可以建立一个球体的数学模型，但是，它仍然是一个人类的构造，而不是无形的真理。例如，我们可以给出一个球体的数学模型。在笛卡儿的坐标系中，以坐标 (0, 0, 0) 为圆心、r 为半径的球体是满足如下条件的点 (x, y, z) 的集合。
 
 毫无疑问，这样一个柏拉图式的模型一点儿都不令人着迷。
 
@@ -295,19 +298,13 @@ Figure 2.7 Drilling through a map. [Photo by Rusi Mchedlishvili, courtesy of the
 
 竹丝灯泡于 1882 年投入生产，大约 6 年后被钨丝灯泡取代。这两种类型的灯丝都需要在真空中工作，否则灯丝会燃烧、熔化或迅速降解。爱迪生发现加热的金属在空气中会降解，在真空中则不会，这一科学事实是一项工程发明，并成为开发实用灯泡的核心支撑。
 
-除了物理原型，托马斯·爱迪生还使用了白炽灯泡工作过程中涉及的抽象模型。具体来说，他使用了欧姆定律。该定律由乔治·西蒙·欧姆在 1827 年首次发表。欧姆定律把通过电阻的电流 i
+除了物理原型，托马斯·爱迪生还使用了白炽灯泡工作过程中涉及的抽象模型。具体来说，他使用了欧姆定律。该定律由乔治·西蒙·欧姆在 1827 年首次发表。欧姆定律把通过电阻的电流 i 与电阻器两端的电压 v 联系起来。
 
-与电阻器两端的电压 v 联系起来。
-
-i=v/R
-
-（1 024）
+i = v/R（1 024）
 
 其中的比例常数 R 为阻值。阻值的单位是欧姆，这样命名是为了纪念乔治·欧姆。阻值是用来制作电阻器的材料及电阻器几何形状的一种性质。灯泡的灯丝是电阻，在爱迪生的时代，灯丝的阻值是靠经验推算出来的。
 
-因为阻值的存在，所以灯丝可以被加热，而正是因为灯丝被加热，它也才会发光。金属铂容易导电，这意味着它的阻值很低。诸如竹纤维等碳基材料则具有高得多的阻值，因此，在固定的电压 v
-
-下，流经铂丝的电流要比流经竹丝的电流大得多。因此，金属铂除了成本很高，低阻值也是它的一个缺点。为了应对低电阻产生的高电流，爱迪生将不得不使用更粗的铜线向灯泡供电，从而推高了系统成本。
+因为阻值的存在，所以灯丝可以被加热，而正是因为灯丝被加热，它也才会发光。金属铂容易导电，这意味着它的阻值很低。诸如竹纤维等碳基材料则具有高得多的阻值，因此，在固定的电压 v 下，流经铂丝的电流要比流经竹丝的电流大得多。因此，金属铂除了成本很高，低阻值也是它的一个缺点。为了应对低电阻产生的高电流，爱迪生将不得不使用更粗的铜线向灯泡供电，从而推高了系统成本。
 
 欧姆定律是一个抽象模型。与图 2.6 中所示的模型不同，该模型没有任何物理特性。尽管如此，它仍然代表了「事物的本质」。然而，如果我们以一种真正的亚里士多德的方式来解释的话，该定律就很可能是欧姆从观察和测量中得出的，而不是从基本真理中得出的。
 
@@ -319,23 +316,13 @@ i=v/R
 
 所以，把阻值 R 固定为常数是行不通的。我们必须让它随时间的变化而变化。但在此时，我们会遇到一个难题。如果阻值 R 是一个根据经验确定的值，那么欧姆定律就变成了一个恒真的命题！也就是说，每个电路都是如此。在任何瞬间，电阻都等于电压除以电流：
 
-R = v/i
+R = v/i（512）
 
-（512）
+这不过是方程（1 024）的另一种形式。通过简单地将方程（512）中的 R 作为阻值的定义，每一个非零电压和非零电流的电路就都应满足欧姆定律。这就将 t 时刻的阻值定义为使得欧姆定律成立的任何值！当然，乔治·欧姆并没有因为发现了一个恒真命题而获得一个以他的名字命名的基本电子元件。所以，这不可能是正确的解释。
 
-这不过是方程（1 024）的另一种形式。通过简单地将方程（512）中的 R
+解决这个难题的一个办法在于，将电阻的概念作为一种柏拉图式的理想型相。电阻是一个在任何时候都能满足方程（1 024）和（512）且具有恒定阻值 R 的器件。但是在物理世界里没有这样的器件。至少，每一种已知材料的阻值都会受到温度变化的影响。此外，大多数已知的材料都会在电流流过时发热。除温度以外的其他物理效应，特别是电感和电容，都会确保物理材料不可能完全以常数 R 来遵守欧姆定律。这些效应在系统中带入了记忆和动力学。例如，即使电压降到零，电感也是电流持续流动的趋势。非零电感的材料需要一些时间才能将电流调整到新的电压。在此期间，它不能以同样规定不变的常数 R 来满足欧姆定律。
 
-作为阻值的定义，每一个非零电压和非零电流的电路就都应满足欧姆定律。这就将 t
-
-时刻的阻值定义为使得欧姆定律成立的任何值！当然，乔治·欧姆并没有因为发现了一个恒真命题而获得一个以他的名字命名的基本电子元件。所以，这不可能是正确的解释。
-
-解决这个难题的一个办法在于，将电阻的概念作为一种柏拉图式的理想型相。电阻是一个在任何时候都能满足方程（1 024）和（512）且具有恒定阻值 R
-
-的器件。但是在物理世界里没有这样的器件。至少，每一种已知材料的阻值都会受到温度变化的影响。此外，大多数已知的材料都会在电流流过时发热。除温度以外的其他物理效应，特别是电感和电容，都会确保物理材料不可能完全以常数 R
-
-来遵守欧姆定律。这些效应在系统中带入了记忆和动力学。例如，即使电压降到零，电感也是电流持续流动的趋势。非零电感的材料需要一些时间才能将电流调整到新的电压。在此期间，它不能以同样规定不变的常数 R
-
-来满足欧姆定律。实际上，所有材料都带有非零的电感，即使很小。事实上，没有任何物理对象是电阻，因为没有任何物理对象可以遵循欧姆定律，那么我们又怎么能把欧姆定律当作一条自然法则呢？在柏拉图的关于洞穴的寓言中，人类的感知局限于现实的影子，但物理对象似乎只是电阻的柏拉图式理想型相的影子。这种柏拉图式的型相是人类无法接触的，也是大自然无法接触的！
+实际上，所有材料都带有非零的电感，即使很小。事实上，没有任何物理对象是电阻，因为没有任何物理对象可以遵循欧姆定律，那么我们又怎么能把欧姆定律当作一条自然法则呢？在柏拉图的关于洞穴的寓言中，人类的感知局限于现实的影子，但物理对象似乎只是电阻的柏拉图式理想型相的影子。这种柏拉图式的型相是人类无法接触的，也是大自然无法接触的！
 
 因此，欧姆定律要么是微不足道的，要么就是错误的。我不得不得出这样的结论 —— 欧姆定律是一个人类构建的模型，而不是关于自然的基本真理。在乔治·欧姆提出欧姆定律之前，它并不作为一个基本存在，因为世界上没有任何物理对象遵守它。在某种程度上，它之所以能够成为一个真理，是因为我们宣称它是真理。我们将「电阻」定义为一个物理对象，其行为与欧姆定律的方程所建模的行为非常接近，我们将阻值定义为该对象两端的电压与通过该对象的电流的比值。除了在人的头脑中，自然界中并不存在一个理想的电阻。因此，欧姆定律是被发明的，不是被发现的。
 
@@ -343,7 +330,7 @@ R = v/i
 
 Modeling is central to every scientific and engineering enterprise. Solomon Wolf Golomb (1932–2016), who has written eloquently about the use of models in science and engineering, emphasizes understanding the distinction between a model and thing being modeled. He famously stated,「You will never strike oil by drilling through the map」(Golomb, 1971). A map is a model. The territory is the thing being modeled. You should drill through the territory, not the map.
 
-For both scientists and engineers, the「thing being modeled」is typically an object, process, or system in the physical world. 3 Let us call the thing being modeled the target of the model. The fidelity of a model is the degree to which it emulates the target.
+For both scientists and engineers, the「thing being modeled」is typically an object, process, or system in the physical world. [3] Let us call the thing being modeled the target of the model. The fidelity of a model is the degree to which it emulates the target.
 
 When the target is a physical object, process, or system, the model fidelity is never perfect. Box and Draper (1987) state,「essentially, all models are wrong, but some are useful.」The model in figure 2.4 is not useful (at least not to me). Ohm's law, in contrast, is quite useful. It models certain physical devices, such as Edison's lightbulb filaments. Although it models them imperfectly, Edison used this model to understand that a bamboo filament was a better choice than a platinum filament in a lightbulb.
 
@@ -351,7 +338,7 @@ A useful model has to have a purpose, and the fidelity of the model needs to be 
 
 Note that a model may be「useful」in ways that are not practical or mercenary. Merriam-Webster defines「useful」as「helping to do or achieve something.」That「something」may be further intellectual inquiry or pure science. That is, a model may be useful because it explains or predicts a phenomenon even if there is no practical application for that phenomenon. Einstein's model of gravitational waves is useful because, among other things, it suggests a way to observe the collision of black holes, as done by LIGO, even if we have no practical use for colliding black holes.
 
-When using models, it is important to apply them only within their regime of applicability, which is limited for all models. Ohm's law, by itself, will not be applicable to a resistor that has melted. Gravitational waves are not useful when studying the interactions of subatomic particles. 4
+When using models, it is important to apply them only within their regime of applicability, which is limited for all models. Ohm's law, by itself, will not be applicable to a resistor that has melted. Gravitational waves are not useful when studying the interactions of subatomic particles. [4]
 
 Models are generally more useful when their fidelity is higher. So how do we get good model fidelity? We have two different mechanisms available to us. We can either choose (or invent) a model that is faithful to the target, or we can choose (or invent) a target that is faithful to the model. The former is the essence of what a scientist does. The latter is the essence of what an engineer does. Both require assuming that the target is operating within some regime of applicability of the model.
 
@@ -359,13 +346,11 @@ Edison was a quintessential engineer of his time. In selecting a lightbulb filam
 
 As I pointed out before, inductance is the tendency for current that is flowing to keep flowing, even if the voltage drops to zero. An inductor is a device that resists changes in current, as opposed to a resistor, which simply resists current. By analogy, a resistor is like a lazy person and an inductor is like a stubborn person. It takes more effort to get a lazy person to work for you and to keep him working, whereas once a stubborn person is working at something, that person will keep working at it (like me with this book). A person may be both lazy and stubborn, just as a physical device may have both resistance and inductance.
 
-In one of the simpler forms of Faraday's law, the current i and voltage v of an inductor are related by 5
+In one of the simpler forms of Faraday's law, the current i and voltage v of an inductor are related by [5]
 
-where the constant L is called the inductance . 6 This equation states that the voltage v ( t ) at time t is proportional to the rate of change of current i at time t , where the proportionality constant is L . This means that if the current changes rapidly, the voltage is high. Vice versa, if the voltage is high, the current changes rapidly.
+where the constant L is called the inductance. [6] This equation states that the voltage v ( t ) at time t is proportional to the rate of change of current i at time t , where the proportionality constant is L . This means that if the current changes rapidly, the voltage is high. Vice versa, if the voltage is high, the current changes rapidly.
 
-According to Wikipedia,
-
-Electromagnetic induction was discovered independently by Michael Faraday in 1831 and Joseph Henry in 1832. Faraday was the first to publish the results of his experiments. (Retrieved March 15, 2016)
+According to Wikipedia, Electromagnetic induction was discovered independently by Michael Faraday in 1831 and Joseph Henry in 1832. Faraday was the first to publish the results of his experiments. (Retrieved March 15, 2016)
 
 We might be tempted to change「discovered」to「invented」on the Wikipedia page, but that would not be quite right. The word「discovered」is correct for induction but not for equation (256). Equation (256) is an invention. It is an idealized model, and just like Ohm's law, no physical object perfectly obeys it (with constant L ). As a model, therefore, it is wrong, but it is extremely useful.
 
@@ -375,17 +360,15 @@ Kuhn (1962) takes a stand on the relationship between discovery and invention, s
 
 Discoveries never occur at an instant in time and are rarely properly attributable to an individual. The messiness with the discovery of the transistor effect, leading to a Nobel Prize, years after the transistor had been patented as an invention, underscores this point.
 
-Let me illustrate how Edison might have used the model of inductance in equation (256). Suppose that he had chosen as a lightbulb filament an inductor like those in figure 2.8 . The first problem he would have run into is that these filaments would not have generated any light. But this would only be the start of his problems. Suppose for simplicity that L = 1 henry. 7 Suppose that we now apply a constant voltage of one volt to the lightbulb. By equation (256), the rate of change of current becomes
+Let me illustrate how Edison might have used the model of inductance in equation (256). Suppose that he had chosen as a lightbulb filament an inductor like those in figure 2.8 . The first problem he would have run into is that these filaments would not have generated any light. But this would only be the start of his problems. Suppose for simplicity that L = 1 henry. [7] Suppose that we now apply a constant voltage of one volt to the lightbulb. By equation (256), the rate of change of current becomes
 
-This has units of amps per second. It means that for every second that passes, the current increases by one amp. If the current is initially zero when we turn on the lightbulb, then after 10 seconds, the current will be 10 amps. After one minute, the current will be 60 amps. After one hour, the current will be 3,600 amps. After a few days, the house will have burned down, the transformer on the power pole outside the house will have blown up, and the electric bill will have become more than the cost of a college education. Edison would not have been able to sell us more than one such lightbulb. 8
+This has units of amps per second. It means that for every second that passes, the current increases by one amp. If the current is initially zero when we turn on the lightbulb, then after 10 seconds, the current will be 10 amps. After one minute, the current will be 60 amps. After one hour, the current will be 3,600 amps. After a few days, the house will have burned down, the transformer on the power pole outside the house will have blown up, and the electric bill will have become more than the cost of a college education. Edison would not have been able to sell us more than one such lightbulb. [8]
 
 I have already concluded that both Ohm's law and Faraday's law are wrong, in the sense that no physical object obeys either law exactly. But a bamboo fiber in a vacuum bulb comes pretty close to obeying Ohm's law, and a coil of copper around an iron core, as on the left in figure 2.8 , comes pretty close to obeying Faraday's law. However, in both cases, the model is wrong.
 
 Edison was an engineer, but he also made contributions to science, and he relied heavily on experimentation, as many scientists do. To a scientist, the value of a model lies in how well its properties match those of a target, typically an object found in nature. The value of Ohm's and Faraday's laws lies in how well they describe the properties of some object under study. But to an engineer such as Edison, the value of an object, say a bamboo fiber, lies in how well its properties match a model, in this case, Ohm's law. Edison understood enough about electricity to know that an inductive filament would be of no use. Instead, he knew that he needed a filament for which Ohm's law was a faithful model (and that also generated light), and he went about the task of finding a filament (a target) for that model.
 
-Figure 2.8
-
-A few mostly hand-made inductors. [Image by「me,」licensed under CC BY-SA 3.0. Original available at: https://commons.wikimedia.org/w/index.php?curid=1534586 .]
+Figure 2.8 A few mostly hand-made inductors. [Image by「me,」licensed under CC BY-SA 3.0. Original available at: https://commons.wikimedia.org/w/index.php?curid=1534586 .]
 
 According to Popper's philosophy of science, a scientific model, a「theory,」must be falsifiable to be scientific. Under this principle, Ohm's and Faraday's laws are either unscientific or false. If the laws are tautologies, then they are not falsifiable, and if not, then no physical object obeys them, so they are false. Ohm's and Faraday's laws are useful not true .
 
@@ -397,9 +380,21 @@ In both cases, the models are wrong. In engineering, a model is useful if we can
 
 Models are human constructions. Modeling paradigms are also human constructions. Therefore, both are subject to creativity. They are invented not discovered. Because an engineer constructs models for things that do not yet exist, there is much more room for creativity than for a scientist, at least one focusing on the sciences of the natural, who is stuck crafting models for things that already exist. Moreover, I claim that digital technology has smashed open the possibilities for what could exist, so the room for creativity is vast indeed. I examine how digital technology does this in the next chapter.
 
+3 The「thing being modeled」can also be another model. I will examine that issue later in chapter 3 .
+
+4 Penrose (1989) speculates that gravitational waves may in fact be implicated in certain subatomic quantum mechanical phenomena, but as of this writing, there is no experimental corroboration for this thesis and no wide support among physicists.
+
+5 Messerschmitt's law (see footnote on page 2) probably becomes overly conservative when the equation uses calculus, as this one does. I suspect that this equation will drop my readership by more than half, but I will nevertheless stick to the numbering scheme previously established.
+
+6 The units of the inductance L are called「henries」after Joseph Henry. It is customary to use the symbol L for inductance.
+
+7 One henry is actually a very large inductance, but it makes the math simpler and therefore will damage my readership less than a more reasonable choice of, say, one millihenry.
+
+8 Most household circuits in the United States have fuses that trip, interrupting the current, when the current exceeds 15 or 20 amps, so this scenario would not play out this way in your house. Also, the voltage supplied in a household circuit is much larger, typically 170 volts at its peak in the United States (see Lee and Varaiya [2011] sidebar on page 11 for an explanation of household electric power). Hence, during the time that the voltage is 170 volts, the current will increase at a rate of 170 amps per second, which means it will reach 15 amps in 11 milliseconds. At this point, it will trip the fuse, leaving you in the dark. So the bulb would operate for only 11 milliseconds.
+
 2.3 模型是错误的
 
-建模是每一项科学和工程工作的核心。所罗门·沃尔夫·格伦布（1932 —2016）曾撰写过关于在科学和工程中应用模型的一篇精彩文章，他强调理解模型和正在被建模的事物之间的区别特别重要。他有一句名言：「通过在地图上钻孔，你永远不会找到石油。」（格伦布，1971）地图就是模型，而土地是被建模的对象。显而易见，你应该在土地上钻井，而不是在地图上（如图 2.7 所示）。
+建模是每一项科学和工程工作的核心。所罗门·沃尔夫·格伦布（1932-2016）曾撰写过关于在科学和工程中应用模型的一篇精彩文章，他强调理解模型和正在被建模的事物之间的区别特别重要。他有一句名言：「通过在地图上钻孔，你永远不会找到石油。」（格伦布，1971）地图就是模型，而土地是被建模的对象。显而易见，你应该在土地上钻井，而不是在地图上（如图 2.7 所示）。
 
 对于科学家和工程师来说，「被建模的事物」通常是物理世界中的一个对象、过程或系统。让我们把被建模的事物称为模型的目标物。模型的保真度就是它模仿目标物的接近程度。
 
@@ -425,9 +420,7 @@ Models are human constructions. Modeling paradigms are also human constructions.
 
 电磁感应是由迈克尔·法拉第在 1831 年以及约瑟夫·亨利在 1832 年分别独立发现的。法拉第是第一个公布这个实验结果的人。（2016 年 3 月 15 日检索）
 
-我们可能会试图把维基百科页面上的「发现」改为「发明」，但这并不完全正确。「发现」一词用于电磁感应是正确的，但不适用于方程（256）。方程（256）是一项发明，就像欧姆定律一样。这个方程也是一个理想化的模型，没有物理对象能够完全遵循它（L
-
-为常数）。因此，作为一个模型而言其是错误的，但又是非常有用的。
+我们可能会试图把维基百科页面上的「发现」改为「发明」，但这并不完全正确。「发现」一词用于电磁感应是正确的，但不适用于方程（256）。方程（256）是一项发明，就像欧姆定律一样。这个方程也是一个理想化的模型，没有物理对象能够完全遵循它（L 为常数）。因此，作为一个模型而言其是错误的，但又是非常有用的。
 
 库恩（1962）就发现和发明之间的关系阐明了自己的观点，他认为「发现和发明是分不开的，因为解释发现的理论必须出现，才能使这个发现真正出现」。正在流动的电流趋向于保持流动（感应系数），以及某些装置（电感）会呈现这一特性的发现，与方程（256）中所表示的模型不可分割地联系在一起。从某种意义上说，必须理解这一模型的某种形式才能认识这一发现。库恩说，发现和发明之间的这种联系，也使得人们很难准确地确定一个发现是谁在什么时候发现的：
 
@@ -435,9 +428,7 @@ Models are human constructions. Modeling paradigms are also human constructions.
 
 发现从来不会在瞬间发生，也很少能完全归因于某个人。晶体管效应的发现获得了诺贝尔奖，这一发现的混乱情况在晶体管作为一项发明而获得专利的数年后更为显著。
 
-让我来解释一下爱迪生可能是如何使用方程（256）中的电感模型的。假设他选择了如图 2.8 所示的电感作为灯泡的灯丝。他遇到的第一个问题就是这种灯丝不会产生任何光。但这只是问题的开始。为了简单起见，假设 L
-
-=1 亨利，并假设我们现在给灯泡施加 1 伏特的恒定电压，那么根据方程（256），电流的变化率为：
+让我来解释一下爱迪生可能是如何使用方程（256）中的电感模型的。假设他选择了如图 2.8 所示的电感作为灯泡的灯丝。他遇到的第一个问题就是这种灯丝不会产生任何光。但这只是问题的开始。为了简单起见，假设 L=1 亨利，并假设我们现在给灯泡施加 1 伏特的恒定电压，那么根据方程（256），电流的变化率为：
 
 它的单位是每秒的安培数。这意味着每经过一秒，电流就会增加 1 安培。如果我们接通灯泡时的最初电流为零，那么 10 秒之后，电流将变为 10 安培；1 分钟以后，电流将达到 60 安培；1 小时后，电流将达到 3 600 安培；过不了几天，整栋房子就会被烧毁，房子外面电线杆上的变压器也会爆炸，而电费也将会超过读大学的学费。这样，爱迪生卖给我们的灯泡就不可能超过一个。我已经得出结论 —— 欧姆定律和法拉第定律都是错误的，因为没有任何物理对象能够完全遵守这两条定律。但是，真空灯泡中的竹纤维非常接近遵守欧姆定律，而铁芯周围的铜线圈（如图 2.8 所示）则非常接近遵守法拉第定律。然而，即便是在这两种情况下，模型也是错误的。
 
@@ -454,21 +445,3 @@ Models are human constructions. Modeling paradigms are also human constructions.
 但是，很遗憾，在这两种情形下模型都会是错的。在工程中，如果我们能够找到一个高度符合于模型的实现，那么该模型就是有用的。在科学中，如果一个模型高度符合于大自然给我们的一个目标物，那么这个模型是有用的。科学家常常会问这样的问题：「我能为这个东西构造一个模型吗？」工程师则会问：「我可以为这个模型做点儿什么吗？」
 
 模型是由人类所构造的，建模的范式也是由人类构造的。因此，二者都受制于人类的创造力。它们都是被发明的，而不是被发现的。因为工程师会为尚不存在的事物构造模型，所以和专注于自然科学的科学家相比，他们的创造力空间更大。原因在于，科学家常常被困于为已经存在的事物构造模型。此外，我认为数字技术已经为一切的可能存在打开了可能性，创造力的空间确实是巨大的。我将在下一章分析数字技术是如何做到这一点的。
-
-__________
-
-1 An exception occurs when some materials, called superconductors , are cooled below a critical threshold where they enter a superconductive state, where the resistance becomes exactly zero. But the temperatures required are extremely cold. In 1987, Georg Bednorz and K. Alex Müller got the Nobel Prize in Physics for discovering a「high temperature superconductor.」Their ceramic compound exhibited superconductivity at the「high」temperature of −243.15 degrees Celsius or −405.67 degrees Fahrenheit. As of this writing, the highest temperature at which superconductivity has been observed is about −70° C (−94° F ), still extremely cold, and even then only at extremely high pressures. No practical lightbulb could be expected to work only at such temperatures and pressures.
-
-2 An imperfect analogy might help the reader if the reader has not studied electricity. An electric current can be visualized as water flowing down a sluice or channel that is tilted. The degree of tilt is analogous to the voltage. The rate of water flow is analogous to the current. A smaller channel will have a higher resistance than a larger channel (the smaller channel lets through less water for a given tilt). Inductance is analogous to the tendency of water that is flowing to keep flowing (it has inertia). If water is flowing down a tilted sluice and you suddenly flatten the sluice, removing the tilt, the water will not instantly stop flowing. This analogy is imperfect for several reasons. Electric current does not have inertia, or at least not much, and inductance is a property of the channel not the current. But it nevertheless provides a nice visual analogy that can be used to get the basic idea.
-
-3 The「thing being modeled」can also be another model. I will examine that issue later in chapter 3 .
-
-4 Penrose (1989) speculates that gravitational waves may in fact be implicated in certain subatomic quantum mechanical phenomena, but as of this writing, there is no experimental corroboration for this thesis and no wide support among physicists.
-
-5 Messerschmitt's law (see footnote on page 2) probably becomes overly conservative when the equation uses calculus, as this one does. I suspect that this equation will drop my readership by more than half, but I will nevertheless stick to the numbering scheme previously established.
-
-6 The units of the inductance L are called「henries」after Joseph Henry. It is customary to use the symbol L for inductance.
-
-7 One henry is actually a very large inductance, but it makes the math simpler and therefore will damage my readership less than a more reasonable choice of, say, one millihenry.
-
-8 Most household circuits in the United States have fuses that trip, interrupting the current, when the current exceeds 15 or 20 amps, so this scenario would not play out this way in your house. Also, the voltage supplied in a household circuit is much larger, typically 170 volts at its peak in the United States (see Lee and Varaiya [2011] sidebar on page 11 for an explanation of household electric power). Hence, during the time that the voltage is 170 volts, the current will increase at a rate of 170 amps per second, which means it will reach 15 amps in 11 milliseconds. At this point, it will trip the fuse, leaving you in the dark. So the bulb would operate for only 11 milliseconds.
