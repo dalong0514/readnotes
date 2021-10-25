@@ -68,9 +68,29 @@ If you persist in reading this chapter, my primary goal is to show a reader with
 
 如果你坚持阅读本章的内容，那么我可以先告诉你我的主要目标是，向那些很少或根本没有接触过电子技术的读者展示诸如维基百科这样的一个应用程序是如何以晶体管为开关实现基本操作的。关于这个过程的解释不可能一下子就给出来，它必须是分层的。否则，人类大脑就要应对过于复杂的事物了。但是，从把单个晶体管抽象为一个开关开始，我们很快就得到了在芯片中实现时需要的成千上万、数百万和数十亿个晶体管的抽象。我的目标是向读者展示这些分层的抽象是如何实现这种扩展的。
 
-### 0101. 主题卡 ——
+### 0101. 主题卡 —— 技术发展的本质是建立在人类构造的模型之上
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+信息源自「0501 Software Endures」
+
+Following Brooks, I would argue that the essential difficulties in writing this book center on how to weave an accessible story around highly technical topics. The technology I have at my disposal has probably removed nearly all of the accidental complexities around this task. I have a QWERTY keyboard, and I can touch type quite fast. I have excellent, free, open-source word processing software ( ).
+
+When I can't recall what exactly it is that Fred Brooks said in his silver bullet paper, I just go to Google and search for「silver bullet,」and I quickly have the paper right in front of me. The only remaining difficulties are the essential ones that follow from the possibly quite controversial cases that I'm trying to make, including the one here, that technology development is a fundamentally creative human activity driven by culture and aesthetics and built on models that are human fabrications much more than discovered natural laws. Only the difficulty of making this case makes writing this book difficult.
+
+The engineered systems that help me, my laptop computer, , Wikipedia, and Google, are human constructions of astonishing complexity. The engineers responsible for them relied on tools that also removed many of the accidental complexities, enabling them to focus on the essential complexities. Jimmy Wales and Larry Sanger, who created Wikipedia, did not write their programs in binary or even assembly language. In fact, they used several additional layers of models.
+
+The next layer above ISAs and assembly language is the programming language. In late 1953, John W. Backus at IBM started a project to develop an easier language for expressing programs, particularly those extensively using mathematical expressions. The result of this project was Fortran, a language that endures to this day, with the latest update to the language occurring in 2008.
+
+除了布鲁克斯所说的复杂性，我认为撰写本书的主要困难在于如何围绕非常技术化的主题来编织一个读者易理解的故事。我所掌握的技术可能已经消除了围绕这项任务的几乎所有的偶然复杂性。我有一个 QWERTY 键盘（全键盘），而且我打字相当快。
+
+我还有优秀、免费且开源的文字处理软件（LATEX）。
+
+当我记不起布鲁克斯在他的《银弹》论文中到底说了什么时，我就会去谷歌搜索「银弹」，很快这篇论文就呈现在我面前了。剩下的唯一困难就是一些本质性的困难了。这些困难来自我试图提出的一些可能颇有争议的问题，包括这里所说的一个问题，技术发展本质上是一种由文化和美学驱动的创造性的人类活动，它建立在人类构造的模型之上，而非被发现的自然法则的模型之上。仅是提出这个问题的困难就已经使得本书的写作变得非常有难度了。
+
+1-2『上面的观点贯穿整本书：技术发展的本质是建立在人类构造的模型之上而非建立在人类发现的自然法则模型之上的。做一张主题卡片。（2021-10-25）』—— 已完成
+
+帮助我写这本书的工程系统包括我的笔记本电脑、LATEX 排版软件、维基百科和谷歌，它们都是人类构建的复杂得惊人的系统。负责这些系统的工程师依赖于同样消除了许多偶然复杂性的那些工具，从而使他们能够专注于本质复杂性。创建维基百科的吉米·威尔士和拉里·桑格并没有用二进制甚至汇编语言编写他们的程序。事实上，他们使用了另外几个模型层。
+
+指令集体系架构和汇编语言之上的一层是编程语言。1953 年年末，在 IBM 工作的约翰·W. 巴克斯启动了一个项目，开发了一种更简单的语言来表达程序，特别是那些广泛使用数学表达式的程序。这个项目的结果是产生了 Fortran 语言，它是一种一直沿用至今的语言。它的最新版本出现于 2008 年。
 
 ### 0201. 术语卡 —— 工艺
 
