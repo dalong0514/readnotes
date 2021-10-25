@@ -504,7 +504,9 @@ x86 指令集体系架构惊人的生命力强有力地证明了布鲁克斯的�
 
 图 5.2 给出了 x86 计算机程序中的一个小片段。在图中，每个框代表一条指令。机器从上到下依次执行这些指令。灰色框表示任意的、未指定的指令。图中给出两个具体指令，其中的第一条是：
 
+```
 cmp eax, ebx
+```
 
 该指令比较两个寄存器「eax」和「ebx」的内容。这两个寄存器中存放了 32 位数；在执行这条指令之前，程序大概已经加载了这些寄存器，以包含表示我们正在搜索的字符的数字。例如，可以将字符串「Plat」加载到 32 位寄存器中，假设每个字符都采用 8 位编码。
 
@@ -522,13 +524,17 @@ cmp eax, ebx
 
 图 5.2 中明确给出的另一条指令是：
 
+```
 j e label
+```
 
 助记符「je」表示「如果相等就跳转」，参数「label」告诉汇编器，如果前一条指令所比较的寄存器是相等的，则程序要跳转到程序的哪个位置。
 
 除了这种注重形式的助记符选择，这种设计还有一些方面看起来相当随意。例如，为什么 x86 指令集的设计者会选择在两条指令中进行先比较再跳转的操作呢？为什么他们不把这两步合并成一条指令呢？例如下面的指令：
 
+```
 j e eax, ebx, label
+```
 
 他们本来可以这样做，但是这会使硬件设计变得复杂，因为现在一条指令需要编码 4 种东西：「jump if equal」（如果相等就跳转）命令、要比较的两个寄存器以及目标地址。x86 架构的设计者要解决的工程问题跨着两个抽象层：数字机器层的硬件设计（如图 4.6 所示）和用于设计程序的指令集。汇编语言现象和计算机硬件底层现象受双向因果关系支配而相互影响。
 
@@ -694,11 +700,15 @@ After these statements are executed, the value of W(1) is the integer 42, the va
 
 图 5.3 给出了打孔卡片上的一个 Fortran 语句。在 20 世纪 50 年代和 60 年代，打孔卡片既是一种存储介质（一叠卡片记录一个程序），也是一种数据输入机制。图中的这张卡片揭示了 Fortran 语言的一个关键性创新 —— 使用符号变量名而不是内存地址来指代程序要操作的数字量。具体来说，卡片上的 Fortran 语句是：
 
-Z(1)=Y+W(1)
+```
+Z(1) = Y + W(1)
+```
 
 在这里，Y 指的是一个之前可能已经被赋值的值，可能使用了如下的 Fortran 语句：
 
-Y=42
+```
+Y = 42
+```
 
 图 5.3 包含一个 Fortran 语句的打孔卡片。（阿诺德·雷因霍尔德通过维基共享资源供图，并获得 CC BY-SA 2.5 授权。图片来自 https://commons.wikimedia.org/wiki/File：FortranCardPROJ039.agr.jpg。）
 
@@ -722,9 +732,11 @@ Fortran 程序经由编译器转换为汇编代码（或直接转换为机器码
 
 与命令式语言不同，函数式语言采用数学的声明式风格。例如，如下是命令式语言中的两条语句：
 
+```
 x = 1
 
 x = 42
+```
 
 其意味着，首先将值 1 赋给变量 x，然后将变量 x 的值更改为 42。在声明式语言里，这两条语句是矛盾的，并会被编译器拒绝。在声明式语言里，操作符「=」具有不同的含义。语句 x=1 不会在程序中的特定点给变量赋值，而是声明符号 x 表示 1，不是在某个点，而是始终。这与所给定的这种语句顺序是无关的。在声明式语言里，上述两个语句是矛盾的，因为 x 的值不能既表示 1，又表示 42。显然，它们的声明式风格与命令式程序的过程式、逐步式风格有着明显的不同。带有些许讽刺意味的是，尽管阿贝尔森和萨斯曼声称软件构成了一种「程序认识论」以及「从命令式的角度研究知识的结构」，但他们的书自始至终都在使用一种 Lisp 方言，这是一种最初由约翰·麦卡锡在 20 世纪 50 年代开发的函数式语言。虽然 Lisp 程序告诉计算机要做什么（因此从广义上理解也是命令式的），但它本质上是一种声明式语言。
 
@@ -814,13 +826,7 @@ x
 
 已被淘汰的 COBOL（common business-oriented language，面向商业的通用语言）语言采用了与 APL 截然相反的方法。COBOL 是在 1959 年格蕾丝·霍珀（见图 5.5）早期开发的语言基础上设计出来的。霍珀是可移植高级编程语言的早期支持者，这意味着这些编程语言可以被编译到各种机器上执行，甚至是具有不同指令集体系架构的机器上。
 
-COBOL 的语法更像英语而非数学，因为它倾向于用单词代替符号运算符。例如，与 APL 赋值语句 x
-
-← y
-
-不同，在 COBOL 中，你可以写成「MOVE yTO x
-
-」。多年来，COBOL 被广泛应用于银行等商业领域。但现在很少有新的程序是用 COBOL 编写的。
+COBOL 的语法更像英语而非数学，因为它倾向于用单词代替符号运算符。例如，与 APL 赋值语句 x ← y 不同，在 COBOL 中，你可以写成「MOVE yTO x」。多年来，COBOL 被广泛应用于银行等商业领域。但现在很少有新的程序是用 COBOL 编写的。
 
 图 5.5 格蕾丝·霍珀（1906—1992），美国前海军少将。霍珀是可移植编程语言的早期支持者，她开创的一种编程风格，使程序读起来更像英语句子而不是数学表达式。（该图片由美国海军提供。）
 
@@ -882,11 +888,13 @@ One widely used JavaScript module for creating sophisticated web pages is jQuery
 
 The JavaScript language, unlike most other programming languages, allows variable names to begin with the dollar sign character, $. The jQuery module defines a single global variable that it calls simply $. That is, the name of the variable is a single character, the dollar sign. This variable gets widely used in programs. To those unfamiliar with this idiom, the program looks cryptic, as a text written in the cyrillic alphabet looks to an English speaker. But the dialect is much richer than implied by just this idiom. Consider the following short JavaScript program:
 
+```
 $(document).ready(function(){
 
 $("#target").text("Hello World");
 
 });
+```
 
 If you are fluent in the JavaScript language but unfamiliar with the jQuery module and the modules provided by today's browsers, then this program is completely unreadable. It makes as much sense as the following does to someone fluent in English: [4]
 
@@ -902,6 +910,7 @@ Figure 5.6
 
 Web page using three languages and one dialect to specify.
 
+```
 <!DOCTYPE html>
 
 <html>
@@ -913,16 +922,19 @@ Web page using three languages and one dialect to specify.
 </body>
 
 </html>
+```
 
 Notice the idiosyncratic use of symbols < , > , and / , which were borrowed by Berners-Lee from a documentation format being used internally at CERN at the time.
 
 HTML is universally used today to specify the contents of web pages, along with yet another language called CSS, for Cascading Style Sheets, first proposed in 1994 by Håkon Wium Lie, who was working with Berners-Lee at CERN. To use the previous JavaScript program, HTML is used to define the web page layout, and CSS is used to define the styles used to render the page. For example, if we include the following CSS code:
 
+```
 #target {
 
 color: red;
 
 }
+```
 
 then the text「Hello World」will be rendered in red. Notice that the syntax of CSS is quite different from HTML, which is quite different from JavaScript.
 
@@ -980,6 +992,7 @@ JavaScript 与 PHP 不同，它被设计成在浏览器中运行，而不是在�
 
 与其他大多数编程语言不同，JavaScript 语言允许变量名以美元符号 $ 开头。jQuery 模块定义了一个简单称为 $ 的全局变量。也就是说，该变量的名称是单个字符，即美元符号。这个变量在程序中被广泛使用。对于那些不熟悉这个习语的人来说，这个程序看上去很神秘，就像一个说英语的人见到用西里尔字母写的文本一样。但方言比这个习语所蕴含的内容要丰富得多。我们来看看以下这个简短的 JavaScript 程序：
 
+```
 $(document).ready(function(){
 
 $("#target").text("Hel
@@ -987,6 +1000,7 @@ $("#target").text("Hel
 l
 
 o World");    });
+```
 
 如果你精通 JavaScript 语言，但一点儿也不熟悉 jQuery 模块以及当今浏览器所提供的模块，那么你是完全读不懂这个程序的。那种感觉就像某个精通英语的人读到了下面这段话一样：
 
@@ -1000,6 +1014,7 @@ o World");    });
 
 图 5.6 使用三种语言和一种方言规定的网页。
 
+```
 <!DOCTYPE html>
 
 <html>  <body>   <div id="tar
@@ -1007,16 +1022,19 @@ o World");    });
 g
 
 et"></div>  </body>  </html>
+```
 
 注意符号 <、> 和 / 的特殊用法，这些符号是伯纳斯·李从当时欧洲核子研究组织内部使用的文档格式中借用来的。
 
 今天，HTML 普遍用于描述网页的内容，另外还有一种被称为 CSS 的语言，用于制作样式层叠表（Cascading Style Sheets）。该语言是 1994 年由哈肯·维姆莱首次提出的，他当时与伯纳斯·李一起在欧洲核子研究组织工作。为了使用如前所述的 JavaScript 语言，得先使用 HTML 定义网页的布局，CSS 则用于定义该页面的样式。例如，如果我们包含以下 CSS 代码：
 
+```
 #target {
 
 color:
 
 red;   }
+```
 
 那么文本「Hello world」将显示为红色。请注意，CSS 的语法与 HTML 的非常不同，后者与 JavaScript 的语法也有很大的不同。
 
@@ -1124,11 +1142,7 @@ Hadoop 形成了设计多服务器应用程序的模式和工具的生态系统�
 
 让我们来考虑一下到底会涉及多少数据。首先，数据量在不断增加。当然，网络上的内容不断增长，但更有趣（且更令人不安，就像奥威尔的哥哥那样）的是，搜索引擎将会关注你的一举一动，并使用与你之前搜索过的内容、你当前所在位置的关联性，甚至你的偏好的学习模型来改善搜索结果（同时，提高向你推送和你有关的广告的可能性）。当你在网上阅读和购物时，你的一举一动都被记录下来。这些被收集的数据会被输入将要被组织在一起做梦的机器中。
 
-虽然很难得到确切的数据，但 2016 年的一些评估表明，谷歌可能存储了艾字节级的数据。1 艾字节是 1018
-
-字节或
-
-1 000 000 000 000 000 000。
+虽然很难得到确切的数据，但 2016 年的一些评估表明，谷歌可能存储了艾字节级的数据。1 艾字节是 1018 字节或 1 000 000 000 000 000 000。
 
 这是规模巨大的数据，而且很可能所有的数据都可被用来构建世界的模型，例如，使用第 11 章提到的机器学习技术。
 
