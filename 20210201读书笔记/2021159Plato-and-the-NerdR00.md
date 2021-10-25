@@ -116,9 +116,39 @@ The next layer above ISAs and assembly language is the programming language. In 
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 数据信息卡 ——
+### 0501. 数据信息卡 —— 各种「淘汰」编程语言的特色
 
-### 0601. 任意卡 ——
+信息源自「0501 Software Endures」
+
+A graveyard language that takes the opposite approach is COBOL, after「common business-oriented language.」COBOL was designed in 1959 based on an earlier language developed by Grace Hopper, shown in figure 5.5 . Hopper was an early proponent of high-level programming languages that were portable, meaning that they could be compiled to execute on a variety of machines, even machines with different instruction set architectures.
+
+COBOL was intended to have a syntax more like English than like mathematics, so it tends to replace symbol operators with words. For example, instead of the APL assignment statement x ← y, in COBOL you would say MOVE y TO x . For many years, COBOL was widely used for business applications such as banking, but today few new programs are written in COBOL.
+
+COBOL and APL represent extremes in an exploration of programming paradigms. COBOL is verbose, using English-language words, with the idea that programs would be more readable by business people. APL is concise, cryptic, and requiring special keyboards. Both succumbed to the Darwinian competition of paradigms, dinosaurs that were once successful but are now largely extinct.
+
+Many more languages are in the graveyard, including Algol, Pascal, PL/I, SNOBOL, Smalltalk, and Prolog. Each of these has interesting ideas and an interesting story. Algol introduced many features present in most modern imperative programming languages, including Java, C, C++, and C#. Pascal introduced the idea of compiling first into a virtual machine language (called byte code) and then executing that program in a program that simulates the virtual machine. This is a centerpiece of the widely used Java language today. SNOBOL, developed at Bell Labs by David Farber, Ralph Griswold, and Ivan Polonsky in the 1960s, introduced high-level manipulation of text, including parsing and pattern matching, a centerpiece of the widely used JavaScript language today, among others. Smalltalk was one of the earliest object-oriented languages, providing a way of structuring programs that is widely used today. Prolog is a「logic programming」language that elegantly expresses rule-based queries over structured data.
+
+Figure 5.5 Rear Admiral Grace Hopper, 1906-1992. Hopper was an early proponent of portable programming languages and pioneered a style of programming where programs read more like English-language sentences than like mathematical expressions. [Image courtesy of the United States Navy.]
+
+Each of these languages encodes a paradigm, a way of thinking about computation. These languages did not die the way Kuhn's scientific paradigms die. No crisis was created by anomalous observations that exposed discrepancies between the paradigm and the natural world. Rather, these languages either mutated into new species of languages (as in ALGOL and Pascal) or progressed toward extinction in a Darwinian competition of survival of the fittest or the most promiscuous (as in APL and COBOL).
+
+已被淘汰的 COBOL（common business-oriented language，面向商业的通用语言）语言采用了与 APL 截然相反的方法。COBOL 是在 1959 年格蕾丝·霍珀（见图 5.5）早期开发的语言基础上设计出来的。霍珀是可移植高级编程语言的早期支持者，这意味着这些编程语言可以被编译到各种机器上执行，甚至是具有不同指令集体系架构的机器上。
+
+COBOL 的语法更像英语而非数学，因为它倾向于用单词代替符号运算符。例如，与 APL 赋值语句 x ← y 不同，在 COBOL 中，你可以写成「MOVE y TO x」。多年来，COBOL 被广泛应用于银行等商业领域。但现在很少有新的程序是用 COBOL 编写的。
+
+图 5.5 格蕾丝·霍珀（1906—1992），美国前海军少将。霍珀是可移植编程语言的早期支持者，她开创的一种编程风格，使程序读起来更像英语句子而不是数学表达式。（该图片由美国海军提供。）
+
+COBOL 和 APL 代表了探索编程范式的两个极端。COBOL 是冗长的，它使用英语单词编写程序，其思想是使得这种程序更易于被商业人士阅读。APL 则简洁、隐秘且需要特殊的键盘。当然，它们都屈从于达尔文式的范式竞争。正如恐龙这一曾经生机勃勃的物种，现在已经全部灭绝了。
+
+还有许多已经被淘汰的语言，包括 Algol、Pascal、PL/I、SNOBOL、Smalltalk 和 Prolog。它们中的每一个都包含了有趣的想法和奇妙的故事。Algol 引入了包括 Java、C、C++ 和 C# 等大多数现代命令式编程语言中的许多特性。Pascal 引入了这样一种思想：首先将一个程序编译成虚拟机语言（它们被称为字节码），然后在模拟该虚拟机的程序中执行这个程序。这是当今广泛使用的 Java 语言的精髓。SNOBOL 是由大卫·法伯、拉尔夫·格里斯沃尔德和伊万·波隆斯基于 20 世纪 60 年代在贝尔实验室开发的。SNOBOL 引入了对文本的高级操作机制，包括解析和模式匹配等，而这正是当今广泛使用的 JavaScript 语言的核心。
+
+Smalltalk 是最早的面向对象的语言之一，它提供了一种当今广泛运用的结构化程序设计方法。Prolog 是一种「逻辑编程」语言，它可以优雅地表达结构化数据中的基于规则的查询。
+
+2『各种「淘汰」编程语言的特色，做做一张信息数据卡片。（2021-10-25）』—— 已完成
+
+这些语言中的每一种都编码了一种范式 —— 一种关于计算的思维方式。这些语言范式并没有像库恩所说的科学范式那样消亡了。那些暴露了范式与自然界之间差异的反常的观察并没有造成危机。相反，这些语言要么变异成新的语言物种（如 Algol 和 Pascal 语言），要么在适者生存与混杂式达尔文竞争中渐渐走向灭绝（如 APL 和 COBOL）。
+
+### 0601. 任意卡 —— 新范式的胜利是因为坚守老范式的那些科学家最终死去了
 
 信息源自「0201 Inventing Laws of Nature」
 
