@@ -1,134 +1,383 @@
-Final Thoughts
+## Bibliography
 
-· · · in which I tie it all together, analyze what is holding back technology advancement, and suggest some areas where holding back might not be a bad idea.
+Abbott, B. P., R. Abbott, T. D. Abbott, M. R. Abernathy, F. Acernese, K. Ackley, C. Adams, T. Adams, P. Addesso, R. X. Adhikari, V. B. Adya, C. Affeldt, M. Agathos, K. Agatsuma, N. Aggarwal, O. D. Aguiar, L. Aiello, A. Ain, P. Ajith, B. Allen, A. Allocca, P. A. Altin, S. B. Anderson, W. G. Anderson, K. Arai, M. A. Arain, M. C. Araya, C. C. Arceneaux, J. S. Areeda, N. Arnaud, K. G. Arun, S. Ascenzi, G. Ashton, M. Ast, S. M. Aston, P. Astone, P. Aufmuth, C. Aulbert, S. Babak, P. Bacon, M. K. M. Bader, P. T. Baker, F. Baldaccini, G. Ballardin, S. W. Ballmer, J. C. Barayoga, S. E. Barclay, B. C. Barish, D. Barker, F. Barone, B. Barr, L. Barsotti, M. Barsuglia, D. Barta, J. Bartlett, M. A. Barton, I. Bartos, R. Bassiri, A. Basti, J. C. Batch, C. Baune, V. Bavigadda, M. Bazzan, B. Behnke, M. Bejger, C. Belczynski, A. S. Bell, C. J. Bell, B. K. Berger, J. Bergman, G. Bergmann, C. P. L. Berry, D. Bersanetti, A. Bertolini, J. Betzwieser, S. Bhagwat, R. Bhandare, I. A. Bilenko, G. Billingsley, J. Birch, R. Birney, O. Birnholtz, S. Biscans, A. Bisht, M. Bitossi, C. Biwer, M. A. Bizouard, J. K. Blackburn, C. D. Blair, D. G. Blair, R. M. Blair, S. Bloemen, O. Bock, T. P. Bodiya, M. Boer, G. Bogaert, C. Bogan, A. Bohe, P. Bojtos, C. Bond, F. Bondu, R. Bonnand, B. A. Boom, R. Bork, V. Boschi, S. Bose, Y. Bouffanais, A. Bozzi, C. Bradaschia, P. R. Brady, V. B. Braginsky, M. Branchesi, J. E. Brau, T. Briant, A. Brillet, M. Brinkmann, V. Brisson, P. Brockill, A. F. Brooks, D. A. Brown, D. D. Brown, N. M. Brown, C. C. Buchanan, A. Buikema, T. Bulik, H. J. Bulten, A. Buonanno, D. Buskulic, C. Buy, R. L. Byer, M. Cabero, L. Cadonati, G. Cagnoli, C. Cahillane, J. C. Bustillo, T. Callister, E. Calloni, J. B. Camp, K. C. Cannon, J. Cao, C. D. Capano, E. Capocasa, F. Carbognani, S. Caride, J. C. Diaz, C. Casentini, S. Caudill, M. Cavaglià, F. Cavalier, R. Cavalieri, G. Cella, C. B. Cepeda, L. C. Baiardi, G. Cerretani, E. Cesarini, R. Chakraborty, T. Chalermsongsak, S. J. Chamberlin, M. Chan, S. Chao, P. Charlton, E. Chassande-Mottin, H. Y. Chen, Y. Chen, C. Cheng, A. Chincarini, A. Chiummo, H. S. Cho, M. Cho, J. H. Chow, N. Christensen, Q. Chu, S. Chua, S. Chung, G. Ciani, F. Clara, J. A. Clark, F. Cleva, E. Coccia, P.-F. Cohadon, A. Colla, C. G. Collette, L. Cominsky, M. Constancio, A. Conte, L. Conti, D. Cook, T. R. Corbitt, N. Cornish, A. Corsi, S. Cortese, C. A. Costa, M. W. Coughlin, S. B. Coughlin, J.-P. Coulon, S. T. Countryman, P. Couvares, E. E. Cowan, D. M. Coward, M. J. Cowart, D. C. Coyne, R. Coyne, K. Craig, J. D. E. Creighton, T. D. Creighton, J. Cripe, S. G. Crowder, A. M. Cruise, A. Cumming, L. Cunningham, E. Cuoco, T. D. Canton, S. L. Danilishin, S. D'Antonio, K. Danzmann, N. S. Darman, C. F. Da Silva Costa, V. Dattilo, I. Dave, H. P. Daveloza, M. Davier, G. S. Davies, E. J. Daw, R. Day, S. De, D. DeBra, G. Debreczeni, J. Degallaix, M. De Laurentis, S. Deléglise, W. Del Pozzo, T. Denker, T. Dent, H. Dereli, V. Dergachev, R. T. DeRosa, R. De Rosa, R. DeSalvo, S. Dhurandhar, M. C. Díaz, L. Di Fiore, M. Di Giovanni, A. Di Lieto, S. Di Pace, I. Di Palma, A. Di Virgilio, G. Dojcinoski, V. Dolique, F. Donovan, K. L. Dooley, S. Doravari, R. Douglas, T. P. Downes, M. Drago, R. W. P. Drever, J. C. Driggers, Z. Du, M. Ducrot, S. E. Dwyer, T. B. Edo, M. C. Edwards, A. Effler, H.-B. Eggenstein, P. Ehrens, J. Eichholz, S. S. Eikenberry, W. Engels, R. C. Essick, T. Etzel, M. Evans, T. M. Evans, R. Everett, M. Factourovich, V. Fafone, H. Fair, S. Fairhurst, X. Fan, Q. Fang, S. Farinon, B. Farr, W. M. Farr, M. Favata, M. Fays, H. Fehrmann, M. M. Fejer, D. Feldbaum, I. Ferrante, E. C. Ferreira, F. Ferrini, F. Fidecaro, L. S. Finn, I. Fiori, D. Fiorucci, R. P. Fisher, R. Flaminio, M. Fletcher, H. Fong, J.-D. Fournier, S. Franco, S. Frasca, F. Frasconi, M. Frede, Z. Frei, A. Freise, R. Frey, V. Frey, T. T. Fricke, P. Fritschel, V. V. Frolov, P. Fulda, M. Fyffe, H. A. G. Gabbard, J. R. Gair, L. Gammaitoni, S. G. Gaonkar, F. Garufi, A. Gatto, G. Gaur, N. Gehrels, G. Gemme, B. Gendre, E. Genin, A. Gennai, J. George, L. Gergely, V. Germain, A. Ghosh, A. Ghosh, S. Ghosh, J. A. Giaime, K. D. Giardina, A. Giazotto, K. Gill, A. Glaefke, J. R. Gleason, E. Goetz, R. Goetz, L. Gondan, G. González, J. M. G. Castro, A. Gopakumar, N. A. Gordon, M. L. Gorodetsky, S. E. Gossan, M. Gosselin, R. Gouaty, C. Graef, P. B. Graff, M. Granata, A. Grant, S. Gras, C. Gray, G. Greco, A. C. Green, R. J. S. Greenhalgh, P. Groot, H. Grote, S. Grunewald, G. M. Guidi, X. Guo, A. Gupta, M. K. Gupta, K. E. Gushwa, E. K. Gustafson, R. Gustafson, J. J. Hacker, B. R. Hall, E. D. Hall, G. Hammond, M. Haney, M. M. Hanke, J. Hanks, C. Hanna, M. D. Hannam, J. Hanson, T. Hardwick, J. Harms, G. M. Harry, I. W. Harry, M. J. Hart, M. T. Hartman, C.-J. Haster, K. Haughian, J. Healy, J. Heefner, A. Heidmann, M. C. Heintze, G. Heinzel, H. Heitmann, P. Hello, G. Hemming, M. Hendry, I. S. Heng, J. Hennig, A. W. Heptonstall, M. Heurs, S. Hild, D. Hoak, K. A. Hodge, D. Hofman, S. E. Hollitt, K. Holt, D. E. Holz, P. Hopkins, D. J. Hosken, J. Hough, E. A. Houston, E. J. Howell, Y. M. Hu, S. Huang, E. A. Huerta, D. Huet, B. Hughey, S. Husa, S. H. Huttner, T. Huynh-Dinh, A. Idrisy, N. Indik, D. R. Ingram, R. Inta, H. N. Isa, J.-M. Isac, M. Isi, G. Islas, T. Isogai, B. R. Iyer, K. Izumi, M. B. Jacobson, T. Jacqmin, H. Jang, K. Jani, P. Jaranowski, S. Jawahar, F. Jiménez-Forteza, W. W. Johnson, N. K. Johnson-McDaniel, D. I. Jones, R. Jones, R. J. G. Jonker, L. Ju, K. Haris, C. V. Kalaghatgi, V. Kalogera, S. Kandhasamy, G. Kang, J. B. Kanner, S. Karki, M. Kasprzack, E. Katsavounidis, W. Katzman, S. Kaufer, T. Kaur, K. Kawabe, F. Kawazoe, F. Kéfélian, M. S. Kehl, D. Keitel, D. B. Kelley, W. Kells, R. Kennedy, D. G. Keppel, J. S. Key, A. Khalaidovski, F. Y. Khalili, I. Khan, S. Khan, Z. Khan, E. A. Khazanov, N. Kijbunchoo, C. Kim, J. Kim, K. Kim, N.-G. Kim, N. Kim, Y.-M. Kim, E. J. King, P. J. King, D. L. Kinzel, J. S. Kissel, L. Kleybolte, S. Klimenko, S. M. Koehlenbeck, K. Kokeyama, S. Koley, V. Kondrashov, A. Kontos, S. Koranda, M. Korobko, W. Z. Korth, I. Kowalska, D. B. Kozak, V. Kringel, B. Krishnan, A. Królak, C. Krueger, G. Kuehn, P. Kumar, R. Kumar, L. Kuo, A. Kutynia, P. Kwee, B. D. Lackey, M. Landry, J. Lange, B. Lantz, P. D. Lasky, A. Lazzarini, C. Lazzaro, P. Leaci, S. Leavey, E. O. Lebigot, C. H. Lee, H. K. Lee, H. M. Lee, K. Lee, A. Lenon, M. Leonardi, J. R. Leong, N. Leroy, N. Letendre, Y. Levin, B. M. Levine, T. G. F. Li, A. Libson, T. B. Littenberg, N. A. Lockerbie, J. Logue, A. L. Lombardi, L. T. London, J. E. Lord, M. Lorenzini, V. Loriette, M. Lormand, G. Losurdo, J. D. Lough, C. O. Lousto, G. Lovelace, H. Lück, A. P. Lundgren, J. Luo, R. Lynch, Y. Ma, T. MacDonald, B. Machenschalk, M. MacInnis, D. M. Macleod, F. Magaña Sandoval, R. M. Magee, M. Mageswaran, E. Majorana, I. Maksimovic, V. Malvezzi, N. Man, I. Mandel, V. Mandic, V. Mangano, G. L. Mansell, M. Manske, M. Mantovani, F. Marchesoni, F. Marion, S. Márka, Z. Márka, A. S. Markosyan, E. Maros, F. Martelli, L. Martellini, I. W. Martin, R. M. Martin, D. V. Martynov, J. N. Marx, K. Mason, A. Masserot, T. J. Massinger, M. Masso-Reid, F. Matichard, L. Matone, N. Mavalvala, N. Mazumder, G. Mazzolo, R. McCarthy, D. E. McClelland, S. McCormick, S. C. McGuire, G. McIntyre, J. McIver, D. J. McManus, S. T. McWilliams, D. Meacher, G. D. Meadors, J. Meidam, A. Melatos, G. Mendell, D. Mendoza-Gandara, R. A. Mercer, E. Merilh, M. Merzougui, S. Meshkov, C. Messenger, C. Messick, P. M. Meyers, F. Mezzani, H. Miao, C. Michel, H. Middleton, E. E. Mikhailov, L. Milano, J. Miller, M. Millhouse, Y. Minenkov, J. Ming, S. Mirshekari, C. Mishra, S. Mitra, V. P. Mitrofanov, G. Mitselmakher, R. Mittleman, A. Moggi, M. Mohan, S. R. P. Mohapatra, M. Montani, B. C. Moore, C. J. Moore, D. Moraru, G. Moreno, S. R. Morriss, K. Mossavi, B. Mours, C. M. Mow-Lowry, C. L. Mueller, G. Mueller, A. W. Muir, A. Mukherjee, D. Mukherjee, S. Mukherjee, N. Mukund, A. Mullavey, J. Munch, D. J. Murphy, P. G. Murray, A. Mytidis, I. Nardecchia, L. Naticchioni, R. K. Nayak, V. Necula, K. Nedkova, G. Nelemans, M. Neri, A. Neunzert, G. Newton, T. T. Nguyen, A. B. Nielsen, S. Nissanke, A. Nitz, F. Nocera, D. Nolting, M. E. N. Normandin, L. K. Nuttall, J. Oberling, E. Ochsner, J. O'Dell, E. Oelker, G. H. Ogin, J. J. Oh, S. H. Oh, F. Ohme, M. Oliver, P. Oppermann, R. J. Oram, B. O'Reilly, R. O'Shaughnessy, C. D. Ott, D. J. Ottaway, R. S. Ottens, H. Overmier, B. J. Owen, A. Pai, S. A. Pai, J. R. Palamos, O. Palashov, C. Palomba, A. Pal-Singh, H. Pan, Y. Pan, C. Pankow, F. Pannarale, B. C. Pant, F. Paoletti, A. Paoli, M. A. Papa, H. R. Paris, W. Parker, D. Pascucci, A. Pasqualetti, R. Passaquieti, D. Passuello, B. Patricelli, Z. Patrick, B. L. Pearlstone, M. Pedraza, R. Pedurand, L. Pekowsky, A. Pele, S. Penn, A. Perreca, H. P. Pfeiffer, M. Phelps, O. Piccinni, M. Pichot, M. Pickenpack, F. Piergiovanni, V. Pierro, G. Pillant, L. Pinard, I. M. Pinto, M. Pitkin, J. H. Poeld, R. Poggiani, P. Popolizio, A. Post, J. Powell, J. Prasad, V. Predoi, S. S. Premachandra, T. Prestegard, L. R. Price, M. Prijatelj, M. Principe, S. Privitera, R. Prix, G. A. Prodi, L. Prokhorov, O. Puncken, M. Punturo, P. Puppo, M. Pürrer, H. Qi, J. Qin, V. Quetschke, E. A. Quintero, R. Quitzow-James, F. J. Raab, D. S. Rabeling, H. Radkins, P. Raffai, S. Raja, M. Rakhmanov, C. R. Ramet, P. Rapagnani, V. Raymond, M. Razzano, V. Re, J. Read, C. M. Reed, T. Regimbau, L. Rei, S. Reid, D. H. Reitze, H. Rew, S. D. Reyes, F. Ricci, K. Riles, N. A. Robertson, R. Robie, F. Robinet, A. Rocchi, L. Rolland, J. G. Rollins, V. J. Roma, J. D. Romano, R. Romano, G. Romanov, J. H. Romie, D. Rosińska, S. Rowan, A. Rüdiger, P. Ruggi, K. Ryan, S. Sachdev, T. Sadecki, L. Sadeghian, L. Salconi, M. Saleem, F. Salemi, A. Samajdar, L. Sammut, L. M. Sampson, E. J. Sanchez, V. Sandberg, B. Sandeen, G. H. Sanders, J. R. Sanders, B. Sassolas, B. S. Sathyaprakash, P. R. Saulson, O. Sauter, R. L. Savage, A. Sawadsky, P. Schale, R. Schilling, J. Schmidt, P. Schmidt, R. Schnabel, R. M. S. Schofield, A. Schönbeck, E. Schreiber, D. Schuette, B. F. Schutz, J. Scott, S. M. Scott, D. Sellers, A. S. Sengupta, D. Sentenac, V. Sequino, A. Sergeev, G. Serna, Y. Setyawati, A. Sevigny, D. A. Shaddock, T. Shaffer, S. Shah, M. S. Shahriar, M. Shaltev, Z. Shao, B. Shapiro, P. Shawhan, A. Sheperd, D. H. Shoemaker, D. M. Shoemaker, K. Siellez, X. Siemens, D. Sigg, A. D. Silva, D. Simakov, A. Singer, L. P. Singer, A. Singh, R. Singh, A. Singhal, A. M. Sintes, B. J. J. Slagmolen, J. R. Smith, M. R. Smith, N. D. Smith, R. J. E. Smith, E. J. Son, B. Sorazu, F. Sorrentino, T. Souradeep, A. K. Srivastava, A. Staley, M. Steinke, J. Steinlechner, S. Steinlechner, D. Steinmeyer, B. C. Stephens, S. P. Stevenson, R. Stone, K. A. Strain, N. Straniero, G. Stratta, N. A. Strauss, S. Strigin, R. Sturani, A. L. Stuver, T. Z. Summer-scales, L. Sun, P. J. Sutton, B. L. Swinkels, M. J. Szczepańczyk, M. Tacca, D. Talukder, D. B. Tanner, M. Tápai, S. P. Tarabrin, A. Taracchini, R. Taylor, T. Theeg, M. P. Thirugnanasambandam, E. G. Thomas, M. Thomas, P. Thomas, K. A. Thorne, K. S. Thorne, E. Thrane, S. Tiwari, V. Tiwari, K. V. Tokmakov, C. Tomlinson, M. Tonelli, C. V. Torres, C. I. Torrie, D. Töyrä, F. Travasso, G. Traylor, D. Trifirò, M. C. Tringali, L. Trozzo, M. Tse, M. Turconi, D. Tuyenbayev, D. Ugolini, C. S. Unnikrishnan, A. L. Urban, S. A. Usman, H. Vahlbruch, G. Vajente, G. Valdes, M. Vallisneri, N. van Bakel, M. van Beuzekom, J. F. J. van den Brand, C. Van Den Broeck, D. C. Vander-Hyde, L. van der Schaaf, J. V. van Heijningen, A. A. van Veggel, M. Vardaro, S. Vass, M. Vasúth, R. Vaulin, A. Vecchio, G. Vedovato, J. Veitch, P. J. Veitch, K. Venkateswara, D. Verkindt, F. Vetrano, A. Viceré, S. Vinciguerra, D. J. Vine, J.-Y. Vinet, S. Vitale, T. Vo, H. Vocca, C. Vorvick, D. Voss, W. D. Vousden, S. P. Vyatchanin, A. R. Wade, L. E. Wade, M. Wade, S. J. Waldman, M. Walker, L. Wallace, S. Walsh, G. Wang, H. Wang, M. Wang, X. Wang, Y. Wang, H. Ward, R. L. Ward, J. Warner, M. Was, B. Weaver, L.-W. Wei, M. Weinert, A. J. Weinstein, R. Weiss, T. Welborn, L. Wen, P. Weßels, T. Westphal, K. Wette, J. T. Whelan, S. E. Whitcomb, D. J. White, B. F. Whiting, K. Wiesner, C. Wilkinson, P. A. Willems, L. Williams, R. D. Williams, A. R. Williamson, J. L. Willis, B. Willke, M. H. Wimmer, L. Winkelmann, W. Winkler, C. C. Wipf, A. G. Wiseman, H. Wittel, G. Woan, J. Worden, J. L. Wright, G. Wu, J. Yablon, I. Yakushin, W. Yam, H. Yamamoto, C. C. Yancey, M. J. Yap, H. Yu, M. Yvert, A. Zadro˙zny, L. Zangrando, M. Zanolin, J.-P. Zendri, M. Zevin, F. Zhang, L. Zhang, M. Zhang, Y. Zhang, C. Zhao, M. Zhou, Z. Zhou, X. J. Zhu, M. E. Zucker, S. E. Zuraw, and J. Zweizig, 2016: Observation of gravitational waves from a binary black hole merger. Phys. Rev. Lett. , 116 . doi:10.1103/PhysRevLett.116.061102 .
 
-12.1 Dualism
+Abelson, H. and G. J. Sussman, 1996: Structure and Interpretation of Computer Programs. MIT Press,
 
-The few readers who have gotten this far (thank you!) are probably wondering how I have avoided mentioning Descartes'dualism, the mind-body separation. I've built a whole story about how layers of modeling result in a divorce between software and the physics on which it runs. Software is a model, and I've repeatedly cautioned against confusing the model with the thing being modeled, the map with the territory. A map is a model, and the territory is the physical world being modeled. Isn't my stance the Cartesian dualism all over again, where I've just replaced「mind」with「model」?
+Cambridge, MA, 2nd ed.
 
-A model is physical, in both its physical form as in a paper map and in its mental form, our human conception of a map. Mental states exist in a physical brain. Take away or damage the brain, and the mental states vanish. So even the mental form is physical. Some philosophers call this point of view「physicalism.」It holds that all phenomena in the world, including mental states, arise from physical processes. I caution the reader, however, against assuming that this means we can explain all physical phenomena. We can't, but even without being able to explain it, everything is physical, and no fundamental mind-body dualism exists.
+Akana, J., D. J. Coster, D. D. Iuliis, E. Hankey, R. P. Howarth, J. P. Ive, S. Jobs, D. R. Kerr, S. Nishibori,
 
-To a scientist, the inability to explain the physical world is profoundly disconcerting. It undermines the positivist agenda. To「explain」a physical phenomenon, according to the positivist philosophy of science, is to construct a (preferably formal or mathematical) model of that phenomenon, a「theory.」Following Popper, the theory must be falsifiable by experiment. But Gödel has shown that any formal system capable of self-reference 1 will be either incomplete or inconsistent ( chapter 9 ). Hawking points out that any explanation of physical phenomena takes the form of mental states that live in the very physical world that they explain. Thus, any theory that explains all physical phenomena must be capable of self-reference and hence will be either incomplete or inconsistent. Hawking argues that all the models we have of the physical world today are both incomplete and inconsistent.
+M. D. Rohrbach, P. Russell-Clarke, C. J. Stringer, E. A. Whang, and R. Zorkendorfer, 2012: Portable
 
-Reinforcing Hawking and Gödel, Wolpert uses a similar self-embedding to conclude that predicting the future is impossible even in a deterministic world ( chapter 10 ). Even basic mathematics becomes suspect. Popper struggled with reconciling the truth of mathematical equations with his falsifiability criterion for science ( chapter 1 ). Consider the equation 1 + 1 = 2. Can any imaginable experiment falsify this equation? If not, then according to Popper's theory, the equation is not a scientific theory.
+display device. US Patent D670,286. Available from: https://www.google.com/patents/
 
-Tarski elaborated Gödel's incompleteness to show that no formal system capable of self-reference can define its own notion of truth ( chapter 9 ). If you combine this result with the premise that the physical world can be modeled formally, the essential positivist agenda, then there can be no notion of truth in the world. Positivism collapses into a steaming pile of negativism.
+USD670286.
 
-But I am an engineer not a scientist. I work in Simon's「sciences of the artificial」( chapter 1 ). I am glad some scientists are trying to model the natural world in great detail, but that is their agenda not mine. In my world, self-reference is a source of power not a source of weakness. For example, we can use software to build simulation models of semiconductor physics to improve the design of the transistors that ultimately run the software.
+Arvind, L. Bic, and T. Ungerer, 1991: Evolution of data-flow computers. In Gaudiot, J.-L. and L. Bic,
 
-I don't need to explain everything in the physical world. In fact, quite the contrary. My agenda is to create things that have never before existed in the physical world. You have to admit that it would be hard to explain things that don't yet exist. I simply don't buy the Platonic extreme which assumes that all those things already exist in some separate reality and are just waiting to be discovered ( chapter 1 ).
+eds., Advanced Topics in Data-Flow Computing, Prentice-Hall, Upper Saddle River, NJ.
 
-The self-scaffolding that arises when there are many layers of separation from the physical reality, as there are in digital technology ( chapters 4 and 5 ), gives us no small measure of freedom to create. As humans, thinking machines, we can pretend that we operate in an artificial world of models, separate from physics, use our imagination, and invent clever artifacts and even whole new paradigms. Such new paradigms layer further abstractions on top of the existing ones ( chapter 6 ), furthering the illusion of model-body separation and enabling yet more creativity. Even if those abstractions have limitations, as the notion of computation does ( chapter 8 ), there are far fewer limitations to the semantics that we, as humans, can associate with these abstractions ( chapter 9 ). This bootstrapping of models and the endless possibilities for their meanings are fundamentally powerful and rely on self-reference. Arguably, the very incompleteness of self-referential systems is what enables creativity. It ensures that we will never be finished.
+Barry, J. R., E. A. Lee, and D. G. Messerschmitt, 2004: Digital Communication. Springer Science +
 
-Once we recognize that technology is fundamentally a creative enterprise and a partnership between man and machine, then the personalities and idiosyncrasies of the creators of any particular technology become important. We must not treat technologies as dry Platonic facts that have always existed in some other world, waiting to be discovered. Instead, they are cultural, dynamic ideas, subject to fashion, politics, and human foibles. To me, this makes technology much more interesting.
+Business Media, LLC, New York, 3rd ed.
 
-As cultural artifacts, technologies evolve through collective mutation, through design and invention, more than through discovery. Discovery implies an event, the Aha! moment where some preexisting fact becomes known to an individual. The discoverer may be much heralded for a contribution to humanity, but the presumption is that the discoverer as an individual is irrelevant to the fact that has been discovered. Invention and design are not like that. They are less likely to be discrete events, Aha! moments, and they are more likely to come about, like many cultural forces, through the contributions of a large number of people.
+Bekenstein, J. D., 1973: Black holes and entropy. Physical Review D, 7(8), 2333–2346. doi:10.1103/
 
-To be effective, large numbers of people building collective wisdom must operate within a common mental framework, a「paradigm」to use the word of Thomas Kuhn. Kuhn's paradigms provide the conceptual framework for scientific thought, and Kuhn's theory is that science progresses more through paradigm shifts than through accretion of knowledge. As with science, in technology, common paradigms enable collective development of technologies and interoperability of technologies. Also as with science, paradigm shifts disrupt the equilibria. Accretion of knowledge, normal engineering, coexists with technology revolution, paradigm shift, a process of punctuated equilibrium, to use a term from evolutionary biology.
+PhysRevD.7.2333.
 
-However, differences in the role of paradigms in science versus engineering do exist. Paradigm shifts are relatively rare in science, for example, Newton's mechanics, Einstein's theory of relativity, and quantum theory. In technology, however, paradigm shifts are relatively frequent. Consider, for example, the richness of styles of programming languages ( chapter 5 ) and their radically different perspectives on computation. Each constitutes a paradigm, and acceptance of that paradigm is necessary to build technologies using those languages.
+Bickle, J., 2016: Multiple realizability. The Stanford Encyclopedia of Philosophy, Spring 2016 Edition,
 
-Of course, a programming language reflects a relatively small paradigm that adheres to a bigger, more durable paradigm. The notion of computation, as developed by Turing, Church, von Neumann, and others during the twentieth century, constitutes a paradigm that persists over time scales more comparable to scientific paradigms. Paradigm shifts coexist with more stable paradigms, a process enabled by the deep layering of paradigms, where one is built on another. There is much less such layering in science, resulting in less frequent and more disruptive paradigm shifts. To be effective, technologists must accept disruption, and to be innovative, technologists must embrace and even seek disruption.
+Edward N. Zalta (ed).
 
-Because of the layering of paradigms, perhaps ironically, the stability of a paradigm at one layer can facilitate change at another layer. For example, because instruction set architectures have changed little in 40 years, they provide a stable platform that decouples the astonishing advances in the underlying semiconductor technology from the creative invention of new programming languages. The relatively stable intermediate layer enables rapid progress in both the layer below and the layer above by insulating these layers from one another.
+Binder, P.-M., 2008: Theories of almost everything. Nature, 455(7215), 884–885. doi:10.1038/
 
-Scientific paradigms get institutionalized through textbooks, courses, conferences, and a common culture. So do technology paradigms, but in addition, the technology may encode its own paradigms. We particularly see this in software, where, for example, compilers, which translate programs written in a programming language into machine code, can be written in the very languages they compile. This self-scaffolding of paradigms is part of what enables a deep layering because paradigms become precise enough to be built on with confidence.
+455884a.
 
-Digital technologies, layered from the semiconductor physics of transistors up through the sociotechnical phenomenon of Wikipedia and to the「collective, metazoan organism」of a server farm, have been particularly disruptive and powerful for several intertwined reasons. Their discrete and algorithmic nature makes deterministic models ( chapter 10 ) practical and useful. The fact that we can make transistors that switch discretely, on and off, abstracting the messy sloshing of electrons that underlies the physics, enables deterministic, formal, mathematical models with powerful analytical properties and repeatable behaviors. The fact that we can put billions of these transistors into tiny spaces and switch them on and off billions of times per second enables the construction of enormously complex behaviors out of what is ultimately trivially simple, on or off.
+Blum, L., M. Shub, and S. Smale, 1989: On a theory of computation and complexity over the real
 
-The power of digital technologies has created an enthusiasm about them that has spilled over into the world of physics and neuroscience, where legions of serious scholars are convinced that the universe and everything in it, including human cognition, is a Turing computation. But the set of all Turing computations is a tiny set, albeit an infinite one ( chapter 8 ). The sum total of all the things we can do with software is countable, and countable sets are the smallest of all infinite sets that we know about ( chapter 9 ). If we are to accept that nature has for some reason constrained itself to operate only in this smallest of all infinite sets, then we should insist, with great determination, on evidence. The evidence is not there, and we don't even know what sorts of experiments would supply that evidence ( chapter 11 ).
+numbers: NP-completeness, recursive functions and universal machines. Bulletin (New Series) of the
 
-Although digital technologies are severely limited compared with what is likely possible in the physical world (unless we accept digital physics), they are nevertheless exceedingly powerful, particularly when combined with the human notion of semantics ( chapter 9 ). In fact, I claim that there are much more serious obstacles to overcome than the intrinsic incompleteness of these models. I examine these obstacles in the next section.
+American Mathematical Society, 21(1).
 
-12.2 Obstacles
+Box, G. E. P. and N. R. Draper, 1987: Empirical Model-Building and Response Surfaces. Wiley Series in
 
-The most serious obstacle to overcome is that, despite its amazing capabilities, the human brain is really quite limited. The fact is, we cannot remember as much as computers can. We cannot read as fast. We cannot perform calculations as fast, and we make many more errors. Nevertheless, in partnership with computers and networks, we can do amazing things, such as carry around in our pockets nearly everything humans have ever published.
+Probability and Statistics, Wiley, Hoboken, NJ.
 
-Digital technology gives humans an astonishingly rich medium for creativity, rich enough that we are nowhere near saturating what can be done with today's technology, never mind tomorrow's. Creativity comes at its own rate, however, slowed again by our brain's propensity to be dominated by our unknown knowns ( chapter 2 ). We resist new paradigms, even as the technology makes possible a firehose of new paradigms ( chapter 6 ).
+Britcher, R. N., 1999: The Limits of Software: People, Projects, and Perspectives. Addison-Wesley,
 
-In digital technology, every layer of abstraction except the lowest, semiconductor physics, is a human invention. By the time we get through several layers of abstraction for hardware and then software, we are so many orders of magnitude removed from the physics that physics becomes almost irrelevant ( chapter 3 ). We enter the world of models, human-constructed abstractions. Software becomes more like mathematics and less like natural science, subject only to its own rules. To be sure, we need useful rules, but we need not insist that they not be self-referential. In fact, they must be self-referential to be expressive, as Gödel showed.
+Reading, MA.
 
-All of the modeling paradigms that humans have invented so far have limitations. Software can only perform「effective computation,」to use Turing's phrase, a tiny subset of the processes that are possible in the physical world ( chapter 8 ). Digital technology exists within only the smallest of the infinite sets identified by Cantor ( chapter 9 ). We can go beyond software and build machines that form a cyberphysical partnership, leveraging the strengths of each ( chapter 6 ). Partnering computers with other physical machines enables us to overcome other human limitations, such as our limited ability to communicate. We write with 10 slow fingers, and we speak using a mere 10 kilohertz of audio bandwidth. Physical machines have no such limitations. Think of the partnerships among artists, computers, digital displays, and the human visual system when you watch a computer-generated movie such as Avatar . These partnerships achieve a degree of human-to-human communication never before possible.
+Brooks, F. P., 1975: The Mythical Man-Month: Essays on Software Engineering. Addison-Wesley,
 
-We will never be able overcome one killer limitation by ourselves: models are useful to humans only if humans can understand them. Although our brains are truly remarkable machines, they have enormous difficulty with models of even modest complexity and sophistication. There are no doubt models in this book that even the most learned reader will have some difficulty with because the span of specializations that I talk about is so vast. Yet what I talk about in this book barely scratches the surface. The models actually used by specialists in any of the areas I touch on are vastly more sophisticated and cognitively challenging than my oversimplifications might lead you to believe.
+Reading, MA.
 
-Specialization is necessary to enable sophisticated modeling because of our brains' limitations, but it comes at a cost. Kuhn observes that the「paraphernalia of specialization」(specialized journals, professional societies, technical conferences, academic departments, curricula) acquire a prestige of their own and create an inertia against new paradigms (Kuhn, 1962, p. 19). Thus, specialization creates resistance to change.
+—, 1987: No silver bullet — essence and accidents of software engineering. Computer, 20(4), 10–19.
 
-Because our brains can only fit so much, specialization leads to fragmentation, where insights in one specialty become inaccessible to the others. It can be quite difficult for scientists and engineers to work across specialties. Wulf, writing about Alexander von Humboldt, points out that Humboldt's integrative, cross-disciplinary approach to science went out of fashion ( chapter 2 ), leading to Humboldt being largely forgotten by the scientific community. She observes that「this growing specialization provided a tunnel vision that focused in on ever greater detail, but ignored the global view that would later become Humboldt's hallmark」(Wulf, 2015, p. 22).
+doi:10.1109/MC.1987.1663532.
 
-With this tunnel vision, specialists know more and more about less and less, until they eventually know everything about nothing. Then they become professors, and the courses they teach become barriers, weeding out unsuspecting undergraduates who simply aren't prepared for the sophistication of the specialty. The professors love their specialty, they want to teach it, and they cannot see that it is esoteric; the arcane and complex analytical methods they have developed are neither easily learned nor easily applied to practical problems. Their discipline fragments into further specialties, and each professor loses the big picture. None is qualified to teach the big picture, and anyway, his or her colleagues would consider any such big picture to be「Mickey Mouse,」too easy and unsophisticated to be worthy of their time.
+Bush, V., 1945: As we may think. ACM SIGPC Notes, 1(4), 36–44, reprinted from The Atlantic Monthly,
 
-The fragmentation created by specialization is particularly damaging in view of the degree to which technology shapes and pervades our culture. Every person on the planet, regardless of his or her own intellectual predilections, is affected by technology. Yet many intellectuals discount the value of understanding technology. I do not see how a true humanist today can understand society without understanding technology. It seems to me that studying contemporary culture without technology is like studying literature without language. Yet that seems to be what many people do.
+1945. doi:10.1145/1113634.1113638.
 
-My own alma mater, Yale University, a paragon of the arts and sciences, is a case in point. In 1992, a few years after I graduated with a double major in Computer Science and what they called「Engineering and Applied Science,」Provost Frank Turner suddenly proposed to eliminate almost all of engineering at Yale.「Applied science」was, to Turner, an intellectual afterthought, not nearly as important as science itself. In his view, applying science was all that engineering did. The closure of engineering didn't happen, but it was dramatic at the time and created quite a firestorm among some of the alumni. Turner was a「historian of the ideas that shaped Western civilization,」according to a Yale News memorial published in 2010. Today, I don't see how you could possibly study the ideas that shape Western civilization without studying technology.
+Chaitin, G., 2005: Meta Math! — The Quest for Omega. Vintage Books, New York.
 
-Yet technology is not easy to understand. We have probably all had the experience of feeling dumb when we can't figure out something about our computer or home network, and some wizard in India explains to us how to fix the problem. We feel as if we should have known what the wizard knows or should have been able to figure it out. Yet the wizard's knowledge is not about fundamental facts about the world. It is about the language and culture of a specific, idiosyncratic technology. In a pluralistic world, we can't all understand all the languages and cultures that exist. Each specialization has its own parochial gurus.
+Chandra, V., 2014: Geek Sublime — The Beauty of Code, the Code of Beauty. Graywolf Press,
 
-Specialization gets further amplified by the publish or perish mentality of academia. The most highly regarded publishable results in academic journals are the ones that solve long-standing open problems. In a more specialized field, it is much clearer what the open problems are. The open problems are harder to solve, so you get more respect for solving them. And only a long-standing specialty can have long-standing open problems. In interdisciplinary work and in work in an immature field, by contrast, often the real innovation comes from formulating a problem that has not been previously recognized. However, if the newly formulated problem turns out to be easy to solve, then any academic paper describing the solution will likely be rejected under peer review because the solution is「obvious.」
+Minneapolis, MN.
 
-Even technology can slow innovation. Software has the rather remarkable property that it tends to encode its own paradigms ( chapter 5 ). When a new software paradigm emerges, it inevitably comes with a suite of languages and tools that quickly accumulate sufficient mass and complexity to become immovable. These make the paradigm durable but sometimes too durable.
+Choi, Y.-K., N. Lindert, P. Xuan, S. Tang, D. Ha, E. Anderson, T.-J. King, J. Bokor, and C. Hu, 2001:
 
-On May 25, 2016, the U.S. General Accounting Office released a report stating that more than 70% of the U.S. government's information technology budget is spent on「operations of maintenance」rather than「development, modernization, and enhancement.」This amounts to about $65 billion per year, much of which is spent on outdated languages and hardware, some as much as 50 years old. The report cites U.S. Department of Defense use of 8-inch floppy disks and U.S. Treasury Department use of assembly code. Hardware, languages, and tools become an impediment to innovation because change is difficult.
+Sub-20nm CMOS FinFET technologies. IEEE International Electron Devices Meeting (IEDM) Technical
 
-Of course, all disciplines resist change. Kuhn says,「Normal science, for example, often suppresses fundamental novelties because they are necessarily subversive of its basic commitments」(Kuhn, 1962, p. 5). When the「basic commitments」become codified in a suite of million-line computer programs, the inertia can become even harder to overcome.
+Digest, 421–424. Available from: http://koasas.kaist.ac.kr/handle/10203/573.
 
-It is not just the technologists resisting change but also consumers of technology. Humans become used to a means of interaction with machines, and change can become impossible. For example, the brake and accelerator pedals on cars were designed at a time when these controls had direct mechanical and hydraulic couplings with the brakes and throttle. People learned to drive using these controls. Today, the pedals send commands to a computer, which mediates the commands, possibly changing them before passing them on to the brakes and throttle. For example, the computer may apply different amounts of braking to each wheel to improve stability and prevent skidding. In an electric car, instead of a single throttle, each wheel may have its own electric motor, and the computer may individually control these motors. If humans were to control each wheel with direct mechanical linkages, then the car would have to have eight pedals, four for the brakes and four for the accelerators, and only an octopus could drive.
+Cone, E., 2002: The ugly history of tool development at the FAA. Baseline (Blog). Available from:
 
-Car manufacturers could have invented entirely new ways for humans to command the car, for example, using a joystick rather than a steering wheel, but such changes would be resisted by the customers. Humans learned to drive with the old style of controls, and unlearning something is often harder than learning something new. Consequently, car manufacturers today have to work pretty hard to design the pedals so that they feel as if they are connected directly to mechanical and hydraulic actuators. The pedals even push back the way a hydraulic control would, but it is likely that a computer rather than an oil-filled cylinder is determining how much to push back.
+http://www.baselinemag.com/c/a/Projects-Processes/The-Ugly-Historyof-Tool-Development-at-the-FAA.
 
-A prevalent but misleading view is that human-computer interfaces should be「intuitive.」There is nothing intuitive about the pedals in a car. There is nothing intuitive about interacting with a computer. All of the interaction mechanisms we use today are learned. I am reminded of an episode of the TV series,「Star Trek,」where the crew of the Enterprise travels back in time to the late 1980s. The engineer, Scotty, needs to use a vintage 1980s computer to solve a problem. So he starts talking to the computer:「Computer. Computer. Computer !」The computer, of course, does not respond. One of the vintage 1980s engineers picks up a mouse and hands it to Scotty, saying,「You have to use this.」Scotty, looking embarrassed, says,「Oh yes, of course.」He picks up the mouse and begins speaking into it as if it were a microphone:「Computer. Computer. Computer !」The computer mouse was a brilliant invention, and we have assimilated that paradigm, but there is nothing intuitive about it.
+Connor, S., 2009: Michel Serres: The hard and the soft. Report, transcript of a talk given at the Centre for
 
-Unfortunately, the way we teach technology tends to ignore the inventive nature of technology. I use「we」here to refer to myself and my colleagues, professors at universities and institutes of technology. We teach technology as if it were a collection of facts and truths, Platonic Ideals that exist timeless and independent of humans, waiting to be discovered. A consequence of this style of teaching is that we reinforce the philosophy that values discovery over invention and invention over design ( chapter 1 ).
+Modern Studies, University of York. Available from: http://stevenconnor.com/hardsoft/
 
-If what discoverers discover has already existed in the Platonic Good, then the discoverers should not be important as individuals. The discoverers' personalities and predilections cannot possibly have any influence on the nature of the facts and truths they discover. Kuhn observes that this tendency to disconnect ideas from their originators is「ingrained in the ideology of the scientific profession,」and he quotes Alfred North Whitehead, saying,「A science that hesitates to forget its founders is lost」(Kuhn, 1962, p. 138). If all worthwhile facts and truths are already out there, waiting to be discovered, then the most valuable contribution an individual can make is simply to bring into light some fact or truth that was previously in darkness.
+hardsoft.pdf.
 
-When talking about technology rather than science, I couldn't disagree more with Whitehead. Almost all「facts and truths」about technology are actually human inventions. As it stands today, technology reflects a chaotic Darwinian evolution of sometimes quirky and idiosyncratic ideas. Understanding the origin of these ideas is essential to being able to think critically about them, and thinking critically about the ideas is essential to technology revolutions.
+Daugman, J. G., 2001: Brain metaphor and brain theory. In Bechtel, W. P., P. Mandik, J. Mundale, and
 
-The fact that we value invention over design can also present an obstacle to creativity. The emphasis on novelty over quality, where「new is better than good,」is an academic rathole. No respected academic journal would have published a paper describing the iPhone because every element of the technology already existed in other products. Yet the iPhone was a momentous contribution to humanity, whereas the vast majority of what is published in academic journals is not.
+R. S. Stufflebeam, eds., Philosophy and the Neurosciences: A Reader, Blackwell, Oxford.
 
-Creative people capable of such contributions may be repelled by technology, perceiving the discipline of engineering as a trade, requiring professional training on well-understood techniques, applying methods known in science, and tweaking and optimizing existing designs ( chapter 1 ). Indeed, much of engineering is「normal engineering」( chapter 6 ), just as much of science is what Kuhn calls「normal science.」Yet most of engineering is quite far from the drudgery that this view implies because it involves creating things that have never before existed. In fact, engineers tend to use their own technology to automate the drudgery, for example, using compilers to translate programs into machine code ( chapter 5 ). I hope I have convinced the reader that engineering is indeed an intellectual and a creative discipline.
+Davis, M., 2006: Why there is no such discipline as hypercomputation. Mathematics and Computation,
 
-Creativity is enabled by the richness of possibilities offered by so many layers of modeling and so many modeling paradigms, but this same richness can overwhelm. It is difficult for humans to comprehend the alternatives, so instead they latch onto those paradigms nearest at hand. By definition, paradigms frame our thinking. Yet in framing our thinking, they also constrain our thinking, limiting our choices. With digital technology, this「freedom from choice,」as Sangiovanni-Vincentelli calls it, is essential to designing anything that uses billions of transistors that can switch on and off billions of times per second. Any given individual will have assimilated only a few of the relevant paradigms and will resist straying from these. The resulting fragmentation of the engineering community limits communication between engineers and reinforces sects and their parochial thinking.
+178, 2–7. doi:10.1016/j.amc.2005.09.066.
 
-It may seem that a reasonable counterforce to this fragmentation is the development of international standards. These can lead to a community coalescing around a common language, principle, or approach. Yet there are costs. One is that the making of international standards is a messy, political, and possibly even corrupt process ( chapter 6 ). Such flawed processes do not usually lead to good technical decisions, particularly when the standard concerns relatively immature technologies.
+Deutsch, D., 2011: The Beginning of Infinity — Explanations that Transform the World. Viking, New
 
-Standards can also suppress competition among ideas. The U.S. Department of Defense, for example, in an effort to promote standards, for many years forced contractors and researchers to use the Ada programming language, the VHDL hardware description language, and the Microsoft Windows operating system. Ironically, this was occurring while the U.S. Department of Commerce was suing Microsoft for monopolistic practices. In the 1990s, I was involved in a DARPA research project that had the goal of improving the way high-performance signal processing hardware and software was designed, but DARPA required the participants in the project to use VHDL, a particular language for specifying hardware design. However, a language frames the thinking of the designers, so this mandate limited the possible alternatives for innovation. It ruled out one of the key avenues toward innovation in digital technologies, namely, the development of new languages.
+York.
 
-Despite many efforts to standardize, digital technology remains a rich and dynamic ecosystem of competing alternative paradigms. In no small part, this is because a given target system or device may have many useful models. For example, a microprocessor chip may be modeled as a three-dimensional geometry of doped silicon, as a computer program specifying software for the chip to run, or anything in between (semiconductor physics, logic gates, instruction set architecture, etc.). These models are all abstractions of the same chip and its function, and they serve different purposes. Which model to use depends on the goal.
+—, 2012: Creative blocks — the very laws of physics imply that artificial intelligence must be possible.
 
-Every model is constructed within some modeling paradigm that is typically codified by languages and tools. The languages provide a syntax by which the model is specified (how it is written down or otherwise rendered in physical form) and the semantics (what a given rendition means). The choice of modeling framework has profound consequences. For example, a language for describing three-dimensional shapes is not well suited for modeling the dynamics of a circuit (how the voltages and currents change over time).
+What's holding us up? Aeon (online magazine). Available from: https://aeon.co/essays/howclose-are-we-to-creating-artificial-intelligence.
 
-Models have many uses, and their intended use should frame the choice of modeling paradigm. They can be used for humans to share ideas asynchronously, like documents. In this case, they need to be simple and use a notation that has been agreed on. Models can be used for specification of a design, in which case simplicity may not be as important as completeness. A computer program that omits a few lines in the name of simplicity will likely not be a useful program. Models can be used for analysis of designs, in which case the formal and mathematical properties of the modeling language can be a dominant concern. Informal languages admit too many possible interpretations to be useful for analysis, even if they are useful for human-to-human communication.
+Dijkstra, E. W., 1972: The humble programmer. Communications of the ACM, 15(2), 859–866.
 
-However, humans don't typically choose paradigms. Paradigms are assimilated slowly, often subconsciously, or are drummed in by educators who are likely too specialized to know the alternatives. As a consequence, engineers typically build models using the paradigms they know regardless of whether these are the right choices. This may explain why so many projects fail ( chapter 6 ).
+Dyson, G., 2012: Turing's Cathedral — The Origins of the Digial Universe. Pantheon Books, New York.
 
-A key challenge is that complex systems, such as the Airbus A350 ( chapter 6 ), have many conflicting modeling requirements. Models need to be combined in ways that their modeling paradigms do not admit easily. A model such as the iron wing prototype of the Airbus A350 ( figure 6.4 ) is able to combine many different aspects of the system in a single model. However, such a model is extremely expensive to construct. If we had better modeling languages and paradigms, then no such physical model would be necessary. A「virtual prototype,」which is a reasonably complete model constructed entirely in software, would (likely) be much less expensive. Virtual prototypes are used routinely today for billion-transistor silicon chips, where they work extremely well. Yet for complex cyberphysical systems such as the A350, it is difficult to build enough confidence using virtual prototypes alone.
+Earman, J., 1986: A Primer on Determinism, vol. 32 of The University of Ontario Series in Philosophy
 
-I remind the reader that models are used differently by engineers and scientists ( chapter 2 ). For an engineer, the things being modeled are expected to imitate the model, whereas for scientists, it is the other way around. Engineers also use models in the scientific way, and scientists use models in the engineering way, but because these uses differ, it is important to understand how a model is being used. A logic gate is almost certainly going to be a poor model of a piece of silicon found in nature, for example, sand on a beach. Yet it is an exceptionally good model for a piece of silicon coming out of an Intel fab.
+of Science. D. Reidel Publishing Company, Dordrecht, Holland.
 
-12.3 Autonomy and Intelligence
+Endy, D., 2005: Foundations for engineering biology. Nature, 438(7067), 449–453.
 
-Today, some of the most exciting and scary technology developments involve autonomy and intelligence. Both of these terms anthropomorphize computers, a seriously questionable practice ( chapter 9 ). Autonomy refers to the ability that a system has to make decisions without human direction. Intelligence refers to the ability that a system has to exhibit human-like reactions that appear to leverage common knowledge about the world. In both cases, these are not binary properties that are either present or not in systems. Instead, if they are present at all, they are only present in degrees.
+Field, E. H. and K. R. Milner, 2008: Forecasting California's earthquakes — what can we expect in the
 
-Consider self-driving cars, which exist already and will likely be widely available in some form soon. For self-driving cars, full autonomy is not even remotely desirable. Full autonomy would mean that the car accepts no direction at all from humans. You would not even be able to tell it where you want to go. It would simply go where it likes. I don't think a fully autonomous car will sell very well.
+next 30 years? U.S. Geological Survey, USGS Fact Sheet 2008-3027, from the 2007 Working Group on
 
-How about no autonomy? A car with no autonomy would require you to turn a crank to turn it on. Today, you press a button or turn a key, and a computer tells an electric starter motor to turn the crank for you. This is partial autonomy. It accepts a command from you, an expression of your desires (to turn on the car), and it takes over from there, performing the sequence of actions necessary to turn on the car. Today, that does not even necessarily turn on the engine. A modern braking system is similar, where a computer intervenes to coordinate the braking on the four wheels in a way that no human could do, even if we had four brake pedals.
+California Earthquake Probabilities. Available from: http://pubs.usgs.gov/fs/2008/3027/.
 
-A few days ago, I saw a flatbed truck go by carrying a nice relatively new car whose front end was completely smashed. This car was not a self-driving model, so almost certainly a human was at fault. My reaction surprised even me. I thought to myself,「That car should be ashamed of itself.」Clearly, I was anthropomorphizing the car, but the sentiment was valid. If my thinking had been more rational, I would have said to myself,「The designers of that car should be ashamed of themselves.」Today, there really is no excuse for putting cars on the road that will happily crash into the back end of the car in front of them. They should not do this, no matter what their human is telling them to do. We have the technology to solve that problem at a reasonable cost, particularly if we consider the cost of not doing it (e.g., insurance, health, and lives).
+Fisher, J., N. Piterman, and M. Y. Vardi, 2011: The only way is up. In Butler, M. and W. Schulte, eds.,
 
-A car that refuses to crash is a good example of partial autonomy. The fact is, humans are not very good drivers. They get distracted easily, they get sleepy, they get drunk, and they get old. We have the technology to make much better drivers if we simply give the cars more autonomy.
+Formal Methods (FM), Springer-Verlag, vol. LNCS 6664, pp. 3–11.
 
-Yet such a change is not without difficulties. There are ethical questions, for example. How should we program a computer to react when an accident is inevitable? Suppose that the choice is between killing a pedestrian and protecting the passenger or hitting a truck and killing the passenger. It will not do to say that we should program the computer to react as a human would because we don't know how to do that. Whatever software we write for self-driving cars, that software will have hidden in it the outcome of that quandary. Even the software engineers will likely not know what that outcome is.
+Ford, M., 2015: Rise of the Robots — Technology and the Threat of a Jobless Future. Basic Books, New
 
-Consider the goal that Travis Kalanick, CEO of Uber, announced in 2015 to eventually replace their contractor drivers with self-driving cars. There are of course the perennial questions about the impact that such automation has on employment. These questions are difficult, because history has shown that increased automation does not necessarily result in fewer people employed. 2 Consider another possible outcome of such automation. Today, the most effective way to deliver an improvised explosive device (IED) for a terrorist attack is in a car with a suicide bomber. Driverless Uber will eliminate the need for a suicide.
+York.
 
-Let's consider an even more difficult question. It is well known that the United States uses unmanned drones as weapons systems, using them, for example, to kill known adversaries. These systems are partially autonomous. At a minimum, they can autonomously navigate to a waypoint circumventing terrain and obstacles. Do they make the decision to launch a lethal weapon autonomously? As far as we know (much of this is hidden behind the veil of classified information), today these decisions are still being made by humans. The humans assess the information obtained from the sensors and actively make the kill decision. Yet we have the technology to give these systems more autonomy.
+Franz´en, T., 2005: G¨odel's Theorem: An Incomplete Guide to Its Use and Abuse. A K Peters Ltd.,
 
-My colleague at Berkeley Stuart Russell, a noted research leader in artificial intelligence and robotics, has been leading a campaign for an international treaty that would ban such lethal autonomous weapons systems, called LAWS. 3 It is an extremely difficult question how governments and society should react to these technical possibilities, but Russell makes a strong case for such a treaty.
+Wellesley, MA.
 
-Let's turn our attention to intelligence. First, let me point out that anthropomorphizing computers is not only unjustified by the technology ( chapter 9 ) but is also unreasonable. It is simply not true that we want our machines to exhibit human-like behavior. I really do not want to have to argue with my car about getting to school on time. It's hard enough to have that argument with my daughter.
+Freiberger, M., 2014: The limits of information. +plus Magazine, Retrieved May 24, 2016. Available
 
-Consider a Google search of the web. Does Google attempt to give human-like answers? Not really, thankfully. Instead, Google finds answers written by humans that are likely to be helpful. Try asking Google,「What is the meaning of life?」When I did this just now (May 29, 2016), the first hit on the list of possibly helpful pages is a link to a wonderful Wikipedia page on the subject. That page even includes a discussion of the answer「42」to this question (see footnote on page 84 ). Google is brokering for me the collective intelligence of humans. In my opinion, this does not in any way replace human intelligence. Quite the contrary, it augments human intelligence. I'm quite sure it makes me smarter because I have a really poor memory, and it improves the ability of humans to communicate with one another by democratizing publication. Everyone has a voice.
+from: https://plus.maths.org/content/bekenstein.
 
-If we accept digital physics and the universality of software, which I don't ( chapter 8 ), then in principle we should be able to make computers that will make decisions at least as well as humans, for example, the kill decisions of LAWS. Digital physics implies that computers can be endowed with the same sense of identity, self-awareness, accountability, and feelings as a human because all of these things must be digitally replicable. But why would we want to delegate such decisions to computers that emulate humans? We have seven billion human brains on the planet as it is. Isn't that enough? We should instead be focusing on the ways in which technology complements human capabilities. Humans can keep seven numbers in short-term memory. The smartphone in your pocket can keep billions. Some decisions can be made better by computers, not by replicating human processes, but by exploiting their ability to evaluate millions or even billions of alternatives.
+Gamma, E., R. Helm, R. Johnson, and J. Vlissides, 1994: Design Patterns: Elements of Reusable ObjectOriented Software. Addison Wesley, Reading, MA.
 
+Golomb, S. W., 1967: Shift Register Sequences. Aegean Park Press, Laguna Hills, CA.
+
+—, 1971: Mathematical models: Uses and limitations. IEEE Transactions on Reliability, R-20(3), 130–
+
+131. doi:10.1109/TR.1971.5216113.
+
+Harris, S., 2012: Free Will. Free Press, New York.
+
+Hartley, R. V. L., 1928: Transmission of information. Bell System Technical Journal, 7(3), 535–563.
+
+doi:10.1002/j.1538-7305.1928.tb01236.x.
+
+Hawking, S., 2002: G¨odel and the end of the universe. Stephen Hawking Public Lectures. Available from:
+
+http://www.hawking.org.uk/godel-and-the-end-of-physics.html.
+
+Heffernan, V., 2016: Magic and Loss — The Internet as Art. Simon & Schuster, New York.
+
+Heitin, L., 2015: When did science education become STEM? Education Week Blogs. Available from:
+
+http://blogs.edweek.org/edweek/curriculum/2015/04/when_did_science_
+
+education_become_STEM.html.
+
+Hennessy, J. L. and D. A. Patterson, 1990: Computer Architecture: A Quantitative Approach. Morgan
+
+Kaufmann, Burlington, MA.
+
+Hoefer, C., 2016: Causal determinism. The Stanford Encyclopedia of Philosophy, Spring 2016
+
+Edition. Available from: http://plato.stanford.edu/archives/spr2016/entries/
+
+determinism-causal/.
+
+Hofstadter, D., 1979: G¨odel, Escher and Bach: An Eternal Golden Braid. Basic Books, New York.
+
+Horgan, J., 1992: Claude E. Shannon [profile]. IEEE Spectrum, 29(4), 72–75. doi:10.1109/MSPEC.
+
+1992.672257.
+
+—, 2016: Is the gravitational-wave claim true? And was it worth the cost? Scientific American, CrossCheck Column. Available from: http://blogs.scientificamerican.com/cross-check/
+
+is-the-gravitational-wave-claim-true-and-was-it-worth-the-cost/.
+
+IBM, 1968: System/360 model 25. IBM Archives, retrieved March 20, 2016. Available from: https:
+
+//www-03.ibm.com/ibm/history/exhibits/mainframe/mainframe_PP2025.html.
+
+Klaw, S., 1968: The New Brahmins — Scientific Life in America. William Morrow & Company, New
+
+York.
+
+Kline, M., 1980: Mathematics — The Loss of Certainty. Oxford University Press, Oxford, England.
+
+Knuth, D. E., 1984: Literate programming. The Computer Journal, 27(2), 97–111. doi:10.1093/
+
+comjnl/27.2.97.
+
+Kuhn, T. S., 1962: The Structure of Scientific Revolutions.. University of Chicago Press, Chicago, IL.
+
+Lakatos, I., 1970: Falsification and the methodology of scientific research programs. In Lakatos, I. and
+
+A. Musgrave, eds., Criticism and the Growth of Knowledge, Cambridge University Press, Proceedings of
+
+the International Colloquium in the Philosophy of Science, London, 1965.
+
+Laplace, P.-S., 1901: A Philosophical Essay on Probabilities. John Wiley and Sons, Hoboken, NJ,
+
+translated from the sixth French edition by F. W. Truscott and F. L. Emory.
+
+Lee, E. A., 2016: Fundamental limits of cyber-physical systems modeling. ACM Transactions on CyberPhysical Systems, 1(1), 26. doi:10.1145/2912149.
+
+Lee, E. A. and P. Varaiya, 2011: Structure and Interpretation of Signals and Systems. LeeVaraiya.org,
+
+2nd ed. Available from: http://LeeVaraiya.org.
+
+Lerdorf, R., 2003: PHP. Interview in IT Conversations, Behind the Mic Series. Available from: https:
+
+//web.archive.org/web/20130728125152/http://itc.conversationsnetwork.
+
+org/shows/detail58.html.
+
+Leuf, B. and W. Cunningham, 2001: The Wiki Way — Quick Collaboration on the Web. Addison Wesley,
+
+Reading, MA.
+
+Lilienfeld, J. E., 1930: Method and apparatus for controlling electric currents. U.S. Patent 1,745,175.
+
+Available from: https://www.google.com/patents/US1745175.
+
+Lloyd, S., 2006: Programming the Universe—A Quantum Computer Scientist Takes On the Cosmos.
+
+Alfred A. Knopf, New York.
+
+Lorenz, E. N., 1963: Deterministic nonperiodic flow. Journal of the Atmospheric Sciences, 20, 130–141.
+
+Macilwain, C., 2010: Scientists vs engineers: this time it's financial. Nature, 467(885). doi:10.1038/
+
+467885a.
+
+Moskowitz, E., 2016: The chirp that proved Einstein right. Boston Globe, May 15, 2016.
+
+NASA, 2016: Spinoff. Report, NASA Technology Transfer Program. Available from: http://
+
+spinoff.nasa.gov.
+
+Nichols, S., 2006: Why was Humboldt forgotten in the United States? Geographical Review, 96(3),
+
+399–415, Humboldt in the Americas, published by the American Geographical Society. Available from:
+
+http://www.jstor.org/stable/30034515.
+
+Overbye, D., 2016: Gravitational waves detected, confirming Einstein's theory. New York Times.
+
+Available from: http://nyti.ms/1SKjTJ5.
+
+Pappas, S., 2016: How big is the internet, really? Live Science. Available from: http://www.
+
+livescience.com/54094-how-big-is-the-internet.html.
+
+Patterson, D. A. and J. L. Hennessy, 1996: Computer Architecture: A Quantitative Approach. Morgan
+
+Kaufmann, Burlington, MA, 2nd ed.
+
+Penrose, R., 1989: The Emperor's New Mind—Concerning Computers, Minds and the Laws of Physics.
+
+Oxford University Press, Oxford.
+
+Pernin, C. G., E. Axelband, J. A. Drezner, B. B. Dille, J. Gordon IV, B. J. Held, K. S. McMahon, W. L.
+
+Perry, C. Rizzi, A. R. Shah, P. A. Wilson, and J. M. Sollinge, 2012: Lessons from the Army's Future
+
+Combat Systems program. Report, RAND Corporation. Available from: http://www.rand.org/
+
+content/dam/rand/pubs/monographs/2012/RAND_MG1206.pdf.
+
+Piccinini, G., 2007: Computational modelling vs. computational explanation: Is everything a Turing
+
+machine, and does it matter to the philosophy of mind? Australasian Journal of Philosophy, 85(1), 93–
+
+115. doi:10.1080/00048400601176494.
+
+Popper, K., 1959: The Logic of Scientific Discovery. Hutchinson & Co., Taylor & Francis edition, 2005,
+
+London and New York.
+
+Raatikainen, P., 2015: G¨odel's incompleteness theorems. The Stanford Encyclopedia of Philosophy,
+
+Spring 2015 edition, Edward N. Zalta, Editor. Available from: http://plato.stanford.edu/
+
+archives/spr2015/entries/goedel-incompleteness/.
+
+Read, L. E., 1958: I pencil: My family tree as told to Leonard E. Reed. The Freeman, republished in
+
+1999 by Irvington-on-Hudson, New York: Foundation for Economic Education, Inc. Available from:
+
+http://oll.libertyfund.org/titles/112.
+
+Redford, J., 2012: The physics of God and the quantum gravity theory of everything. Social Science
+
+Research Network (SSRN). doi:10.2139/ssrn.1974708.
+
+Rheingold, H., 2000: Tools for Thought—The History and Future of Mind-Expanding Technology. MIT
+
+Press, Cambridge, MA, first published in 1985 by Simon & Schuster/Prentice Hall.
+
+Rozmanith, A. I. and N. Berinson, 1993: Remote query communication system. U.S. Patent 5,253,341.
+
+Available from: https://www.google.com/patents/US5253341.
+
+Rumsfeld, D. H., 2002: DoD news briefing: Secretary Rumsfeld and Gen. Myers. News Transcript,
+
+U.S. Department of Defense. Available from: http://archive.defense.gov/Transcripts/
+
+Transcript.aspx?TranscriptID=2636.
+
+Saint, N., 2010: Google press conference at the San Francisco Museum of Modern Art. Available from:
+
+http://www.businessinsider.com/google-search-event-live-2010-9.
+
+Sangiovanni-Vincentelli, A., 2007: Quo vadis, SLD? Reasoning about the trends and challenges of system
+
+level design. Proceedings of IEEE, 95(3), 467–506. doi:10.1109/JPROC.2006.890107.
+
+Searle, J., 1984: Minds, Brains and Science. Harvard University Press, Cambridge, MA.
+
+Serres, M., 2001: Hominescence. Le Pommier, Paris.
+
+—, 2003: L'Incandescent. Le Pommier, Paris.
+
+Shannon, C. E., 1940: A symbolic analysis of relay and switching circuits. Report, Massachusetts
+
+Institute of Technology. Dept. of Electrical Engineering, Thesis (M.S.). Available from: http://hdl.
+
+handle.net/1721.1/11173.
+
+—, 1948: A mathematical theory of communication. ACM SIGMOBILE Mobile Computing and
+
+Communications Review, 5(1), 3–55, Reprinted in 2001 with corrections from the Bell System Technical
+
+Journal, 1948. doi:10.1145/584091.584093.
+
+Shimpi, A. L., 2013: The Haswell review: Intel core i7-4770K & i5-4670K tested. AnandTech, Retrieved
+
+March 18, 2016. Available from: http://www.anandtech.com/show/7003/the-haswellreview-intel-core-i74770k-i54560k-tested/6.
+
+Simon, H. A., 1996: The Sciences of the Artificial. MIT Press, Cambridge, MA, 3rd ed.
+
+Smolin, L., 2006: Trouble with Physics: The Rise of String Theory, the Fall of a Science, and What Comes
+
+Next. Houghton Mifflin Company, Boston and New York.
+
+Smullyan, R. M., 1992: Satan, Cantor & Infinity—Mind-Boggling Puzzles. Alfred A. Knopf, New York.
+
+Taleb, N. N., 2010: The Black Swan. Random House, New York.
+
+The Edison Papers Project, 2016: The Thomas Edison papers. Rutgers University, retrieved March 10,
+
+2016. Available from: http://edison.rutgers.edu/.
+
+Wegner, P., 1997: Why interaction is more powerful than algorithms. Communications of the ACM, 40(5),
+
+80–91. doi:10.1145/253769.253801.
+
+Weizenbaum, J., 1966: ELIZA — a computer program for the study of natural language communication
+
+between man and machine. Communications of the ACM, 9(1), 36–45. doi:10.1145/365153.
+
+365168.
+
+Wheeler, J. A., 1986: Hermann Weyl and the unity of knowledge. American Scientist, 74, 366–375.
+
+Available from: http://www.weylmann.com/wheeler.pdf.
+
+Wiener, N., 1948: Cybernetics: Or Control and Communication in the Animal and the Machine. Librairie
+
+Hermann & Cie, Paris, and MIT Press, Cambridge, MA.
+
+Wolfram, S., 2002: A New Kind of Science. Wolfram Media, Inc., Champaign, IL.
+
+Wolpert, D. H., 2008: Physical limits of inference. Physica, 237(9), 1257–1281. doi:10.1016/j.
+
+physd.2008.03.040.
+
+Wulf, A., 2015: The Invention of Nature: Alexander von Humboldt's New World. Alfred A. Knopf, New York.
+
+ˇZiˇzek, S., 2004: What Rumsfeld doesn't know that he knows about Abu Ghraib. In These Times, blog.
+
+Available from: http://www.lacan.com/zizekrumsfeld.htm.
