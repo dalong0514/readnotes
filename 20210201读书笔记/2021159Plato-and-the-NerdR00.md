@@ -168,6 +168,24 @@ Smalltalk 是最早的面向对象的语言之一，它提供了一种当今广�
 
 我们应该同样慷慨地对待那些生活在过时的技术范式时代的人，而不应把他们当作卢德派分子或恐龙。我会对我的孩子们说：「别担心，有一天你也会变成恐龙的。」
 
+### 0602. 任意卡 —— JavaScript、jQuery 和 CSS 在网页生成中各自的作用
+
+信息源自「0501 Software Endures」
+
+The web page of figure 5.6 is constructed using three distinct languages, JavaScript, HTML, and CSS, and one dialect, jQuery, each idiosyncratic and designed largely by a single creative individual. This is perhaps not as culturally rich and diverse as, say, Jerusalem, but it is most certainly not just dispassionate, objective, soul-less technology. It has every element of human subjectivity and invention pervading it. And millions of people today use this particular combination of technologies to design sophisticated web pages.
+
+Of course, we could create a web page like that in figure 5.6 using HTML alone, but there are good reasons for using this combination of technologies. Using JavaScript enables the web page to dynamically update the contents of the page, making it interact with the user. Using CSS separates visual presentation design elements from logical structure and functionality, modularizing the design better. Using jQuery mitigates the accidental complexity associated with the fact that web pages can take a long time (relative to computer speeds) to load from a server and provides convenient access to elements of the page.
+
+Although these languages and dialects each originated with a single individual, all are now thriving open-source communities with hundreds of contributors. They have evolved into a form of collective wisdom, like Wikipedia, rather than individual wisdom, like the Encyclopedia Britannica.
+
+图 5.6 所示的网页是由三种不同的语言（JavaScript、HTML 和 CSS）以及另外一种方言 jQuery 构建的。每一种语言都非常独特，主要由一个有创造力的人设计。也许它不像耶路撒冷那般具有丰富多样的文化，但也绝不只是一种冷静、客观、无灵魂的技术。它有着人类的主体性并充满了创造性。今天，数以百万计的人使用这种特殊的技术组合来设计复杂的网页。
+
+当然，我们可以单独使用 HTML 创建一个如图 5.6 所示的网页页面，但是也有充分的理由使用这种技术组合。使用 JavaScript 语言可以使网页动态地更新页面内容，使其能够与用户进行交互。使用 CSS 能够将视觉上的设计元素从逻辑结构和功能中分离出来，这也会使设计实现更好的模块化。由于从服务器加载网页可能需要很长的时间（与计算机的运行速度有关），所以使用 jQuery 语言可以减少这个长时间过程所带来的偶然复杂性，并提供对页面元素的便捷访问。
+
+2『 JavaScript、jQuery 和 CSS 在网页生成中各自的作用，做一张任意卡片。（2021-10-26）』—— 已完成
+
+虽然这些语言和方言最初都源于个人，但它们有成千上万的贡献者，这使得它们今天能够在开源社区中蓬勃发展。它们已经演变成一种集体智慧的形式，就像维基百科，而不是像《不列颠百科全书》那样的个体智慧。
+
 ## 推荐序
 
 科学技术是人类文明进步的产物，是人类社会的重要构成，其源自人类的生产创造和社会文化，又对人类社会发展产生持久而深远的影响。自以天文学、物理学为代表的近代科学技术诞生以来，科学技术在近几个世纪里持续加速发展，传统领域不断突破、科技创新方兴未艾，人类社会已经迈入一个科技大繁荣的新时代。放眼国际，科技创新与发展水平现已成为衡量发达国家综合国力与核心竞争力的重要方面，提升科技实力也已成为建设世界强国的核心战略。
