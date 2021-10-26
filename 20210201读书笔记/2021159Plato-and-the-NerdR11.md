@@ -4,9 +4,21 @@
 
 0101 Shadows on the Wall
 
+· · · in which I examine the very idea of「facts」and「truths,」showing that: collective wisdom about them can be better than individual wisdom; a narrative about facts can be more interesting than the facts themselves; facts and truths may be invented or even designed, not just discovered; facts and truths may be wrong; and it can cost billions to show that facts are true. And, oh yes, nerds are misunderstood, and science and engineering get confused.
+
+在本章，我讨论了「事实」和「真理」的概念，并将阐明：1）关于事实和真理的集体智慧可能比个体智慧更好；2）关于事实的叙述可能比事实本身更加有趣；3）事实和真理可能是被发明甚至是被设计出来的，而不仅仅是被发现的；4）事实和真理可能是错误的；而且要证明事实的真实性，很可能会花费数十亿美元的巨资。哦，是的，技术呆子被人们严重误解了，科学和工程也被混淆在一起。
+
 0201 Inventing Laws of Nature
 
+· · · in which I argue that models are invented, not discovered; that engineers and scientists use models in complementary, almost opposite ways; that all models are wrong, but some are useful; and that the use of models can slow as well as advance technological progress by establishing a backdrop of unknown knowns, by forcing increased specialization, and by requiring humans to assimilate new paradigms.
+
+在本章，我将阐述：1）模型是被发明的，而不是被发现的；2）工程师和科学家以互补的却又几乎相反的方式使用模型；3）所有模型都是错的，但有些是有用的；4）模型的使用可以通过建立未知知识的背景、强制提升专业化程度以及要求人类吸收新的范式，来减缓或促进技术的进步。
+
 0301 Models of Models of Models of Models of Things
+
+· · · in which I argue that in engineering, models are stacked many layers deep, with the design of each layer affecting the designs both above and below it; and that the engineering use of models enables creativity because the layering of models distances designers from the physical constraints of the realization. Digital technology, particularly, has, in effect, mostly removed any meaningful physical constraints from a broad class of engineered systems. Innovation, therefore, is less limited by the physics of the technology than it is by our human imagination and ability to assimilate new paradigms.
+
+我认为：1）工程中的模型是深度层叠的，并且每一层的设计都会影响上、下相邻两层的设计；2）而且模型的工程运用能激活创造性，这是因为模型的分层使设计者能够摆脱现实的物理约束。实际上，特别是数字技术已经在很大程度上消除了一大类工程系统中任何有意义的物理约束。因此，可以说，人类的想象力和吸收新范式的能力是限制创新的因素，而不是技术本身的因素。
 
 ## 0101. Shadows on the Wall
 
@@ -14,7 +26,7 @@
 
 0101 墙上的影子
 
-在本章，我讨论了「事实」和「真理」的概念，并将阐明：关于事实和真理的集体智慧可能比个体智慧更好；关于事实的叙述可能比事实本身更加有趣；事实和真理可能是被发明甚至是被设计出来的，而不仅仅是被发现的；事实和真理可能是错误的；而且要证明事实的真实性，很可能会花费数十亿美元的巨资。哦，是的，技术呆子被人们严重误解了，科学和工程也被混淆在一起。
+在本章，我讨论了「事实」和「真理」的概念，并将阐明：1）关于事实和真理的集体智慧可能比个体智慧更好；2）关于事实的叙述可能比事实本身更加有趣；3）事实和真理可能是被发明甚至是被设计出来的，而不仅仅是被发现的；4）事实和真理可能是错误的；而且要证明事实的真实性，很可能会花费数十亿美元的巨资。哦，是的，技术呆子被人们严重误解了，科学和工程也被混淆在一起。
 
 ### 1.1 Nerds
 
