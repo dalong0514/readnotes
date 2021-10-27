@@ -671,5 +671,3 @@ __________
 8 By Messerschmitt's law (see footnote on page 14 ), it doesn't matter what I write from here on. I am now truly feeling free.
 
 9 http://www.masswerk.at/elizabot/
-
-12
