@@ -66,7 +66,7 @@ But wait, I'm sure that Rheingold would object now that my dishwasher is not an 
 
 The first question we have to answer, the one I focus on in the rest of this chapter, is, what is information? Merriam-Webster has several definitions, but to me the most relevant to software is:
 
-2. b: the attribute inherent in and communicated by one of two or more alternative sequences or arrangements of something (as nucleotides in DNA or binary digits in a computer program) that produce specific effects.
+2 b: the attribute inherent in and communicated by one of two or more alternative sequences or arrangements of something (as nucleotides in DNA or binary digits in a computer program) that produce specific effects.
 
 The key in this definition is「one of two or more alternative sequences or arrangements.」Information is the resolution of alternatives. When there are two alternatives, for example, a transistor can be on or off or a coin can yield heads or tails,「information」is the determination of one of the alternatives.
 
@@ -74,7 +74,7 @@ With a little thought, I hope you can see that this is consistent with an intuit
 
 Merriam-Webster also gives the following definition:
 
-2. d: a quantitative measure of the content of information; specifically: a numerical quantity that measures the uncertainty in the outcome of an experiment to be performed.
+2 d: a quantitative measure of the content of information; specifically: a numerical quantity that measures the uncertainty in the outcome of an experiment to be performed.
 
 Measuring information is a relatively recent development, usually credited to Claude Shannon. In 1948, while working at the storied Bell Labs, Shannon published a paper called「A Mathematical Theory of Communication」in the Bell System Technical Journal . This paper launched the field of information theory (Shannon, 1948). In this paper, Shannon used probability theory (about which I will say more in chapter 11 ) to come up with a measure of the amount of information contained in a sequence of bits and the amount of information that can be conveyed over an imperfect communication channel. Solomon Golomb, who was hugely influential in subsequent development of coding and information theory, and to whom I owe the「drilling through the map」metaphor, remarked that Shannon's influence cannot be overstated:「It's like saying how much influence the inventor of the alphabet has had on literature」(Horgan, 1992).
 
@@ -102,7 +102,7 @@ These are all difficult questions. Even when the number of alternative arrangeme
 
 我们要回答第一个问题，也就是我要在本章剩余部分重点关注的一个问题 —— 什么是信息。《韦氏大词典》给出了好几个定义，但对我来说，下面这个与软件最为相关：
 
-2. b：由产生特定效果的事物（如 DNA 中的核苷酸或计算机程序中的二进制数）的两个或多个可选序列或选项之一所固有以及表示的属性。
+2 b：由产生特定效果的事物（如 DNA 中的核苷酸或计算机程序中的二进制数）的两个或多个可选序列或选项之一所固有以及表示的属性。
 
 这个定义的关键是「两个或多个可选序列或选项中的一个」。信息是对一组可选项进行选定的解决方案。当有两种选择的时候，例如，晶体管可以导通或截至，或者硬币可以是正面或背面朝上，而「信息」是对其中一种选项的确定。
 
@@ -110,7 +110,7 @@ These are all difficult questions. Even when the number of alternative arrangeme
 
 《韦氏大词典》还给出以下定义：
 
-2.d：是对信息量的定量度量；具体而言，是度量待进行实验的结果中不确定性的一个数字量。
+2 d：是对信息量的定量度量；具体而言，是度量待进行实验的结果中不确定性的一个数字量。
 
 度量信息是一个相对较新的发展领域，通常被认为是由克劳德·香农率先创建的。1948 年，香农在著名的贝尔实验室工作时，在《贝尔系统技术期刊》上发表了一篇名为「通信的数学理论」的论文。这篇论文开创了信息论的研究领域（香农，1948）。在论文中，香农基于概率论（我将在第 11 章更详细地介绍这个理论）提出了一种测度方法，其可以度量一个比特序列中所包含的信息量以及在非理想通信信道上能够传输的信息量。所罗门·格伦布对编码和信息论后来的发展有着巨大影响，我也感谢他「在地图上钻孔」的隐喻。格伦布评论说，香农的影响巨大，怎么强调也不为过，「就好比字母表的发明者对文学产生的巨大影响一样」（霍根，1992）。
 
@@ -156,7 +156,7 @@ Suppose that we toss two coins simultaneously and observe TH. What is the inform
 
 The logarithm base 2 was used by Shannon so that the information measure would be in units of bits. If you use the natural logarithm instead, then the information measure has units of「nats.」If you use base 10, then it has units of decimal digits. In all cases, however, it measures information.
 
-You might ask why there is the annoying minus sign everywhere. There are two reasons. One is that probabilities are always less than one, 1 and the logarithm of a number less than one is negative. We would prefer a positive number to quantify information, and the minus sign gives us that. The second and more important reason is that the quantity of information should increase as the event gets more rare. Without the minus sign, it would decrease, and the relationship between information and rarity would be backward.
+You might ask why there is the annoying minus sign everywhere. There are two reasons. One is that probabilities are always less than one, [1] and the logarithm of a number less than one is negative. We would prefer a positive number to quantify information, and the minus sign gives us that. The second and more important reason is that the quantity of information should increase as the event gets more rare. Without the minus sign, it would decrease, and the relationship between information and rarity would be backward.
 
 If on average 1 in 10 coin tosses yields tails, then Shannon said that the average information in a single coin toss is
 
@@ -172,7 +172,7 @@ Specifically, Boltzmann and his contemporaries modeled the degree of randomness 
 
 where M is the number of possible states of the microscopic system (a collection of gas molecules) that are consistent with the observed macroscopic properties of the system (like the temperature and pressure of the gas). The constant k is a scaling constant called the Boltzmann constant. If each of the M states is equally likely, then the probability of each state is 1 /M , and this becomes − k log(1/ M ), which is similar to Shannon's entropy.
 
-At least two significant differences can be found between Boltzmann's entropy and Shannon's. One is the constant multiplier k , which simply changes the units with which we are expressing entropy. Shannon used bits as his units, 2 whereas Boltzmann used joules per degree kelvin (energy per temperature). Because temperature is actually energy, Boltzmann's entropy is dimensionless. Dimensionless quantities do not generally measure something in the physical world, but they can be useful when making comparisons. Boltzmann's entropy allows us to compare the entropy in two scenarios, and the second law of thermodynamics is all about comparing entropies. Entropy at one point in time is higher than entropy at an earlier time. The law assigns little meaning to the actual numbers, only to their relative magnitudes. An exception is that when the entropy is zero, there is a distinct physical meaning. For the entropy to be zero, we need M = 1, which means that there is only one possible state. For an ideal gas, this occurs exactly at a temperature called absolute zero, approximately −460° F or −273° C, where all motion stops.
+At least two significant differences can be found between Boltzmann's entropy and Shannon's. One is the constant multiplier k , which simply changes the units with which we are expressing entropy. Shannon used bits as his units, [2] whereas Boltzmann used joules per degree kelvin (energy per temperature). Because temperature is actually energy, Boltzmann's entropy is dimensionless. Dimensionless quantities do not generally measure something in the physical world, but they can be useful when making comparisons. Boltzmann's entropy allows us to compare the entropy in two scenarios, and the second law of thermodynamics is all about comparing entropies. Entropy at one point in time is higher than entropy at an earlier time. The law assigns little meaning to the actual numbers, only to their relative magnitudes. An exception is that when the entropy is zero, there is a distinct physical meaning. For the entropy to be zero, we need M = 1, which means that there is only one possible state. For an ideal gas, this occurs exactly at a temperature called absolute zero, approximately −460° F or −273° C, where all motion stops.
 
 A second difference between Boltzmann's entropy and Shannon's concerns the notion of the「number of possible states.」In Shannon's model, this notion is well defined because the very notion of the number of possible states is part of the model. When considering a coin toss, Shannon did not consider the unlikely possibility that the coin would land on its edge in the mud, yielding neither heads nor tails. Instead, the「coin toss」is just a physical metaphor for a model where there are exactly two possible outcomes. The notion of probabilities for these outcomes, a notion I consider in more depth in chapter 11 , is also part of the model and hence is well defined.
 
@@ -183,6 +183,10 @@ But sticking to Shannon's self-contained and well-defined notion of entropy, whi
 Shannon's quantification of information content and his choice to express this quantification in bits had an enormous impact on communication theory, computer science, and even philosophy. But it is easy to forget that the theory I've described here applies much more readily to scenarios where the alternative arrangements are finite and distinct. What happens if the alternative arrangements offer an infinite number of possibilities? For example, what if the position of each molecule in Boltzmann's gas can be any point in a volume of space? This set of alternative arrangements is not finite. A direct adaptation of Shannon's entropy to scenarios with a continuous range of possible outcomes has to be interpreted more carefully. I do that in the next section.
 
 I apologize in advance that the next section is a bit more technical. The short story, should you wish to skip to the next chapter, is that information cannot always be represented as binary data. Hence, there is a notion of information that is out of reach for computers.
+
+[1] Probabilities are less than one because we can say「one out of ten coin tosses comes up tails」(probability 1 / 10 = 0.1), but we would not say「eleven out of ten coin tosses comes up tails」(probability 11 / 10 = 1.1).
+
+[2] In fact, the standard term for Shannon's units is shannons, in his honor, but many people continue to use bits.
 
 7.3 度量信息
 
@@ -206,25 +210,13 @@ HH HT HH HH HH TH HH HH HH HH
 
 然而，我们所采用的编码可能并不总是有效的。例如，假设我们得到了一组 20 个背面全部朝上的序列，那么，采用之前的编码方案将需要 30 比特，而不是直接编码时所需的 20 比特，因为每个 TT 对将由 111 这三个比特进行编码。当然，出现这种情况的可能性比较小，但仍然是有可能的。我将在第 11 章讨论概率的问题。利用概率，我们就可以估计出这种情况会有多么不可能。如果掷硬币的结果都是独立的（这些结果互不影响），并且平均每掷 10 次就有 1 次背面朝上，那么连续出现 20 次背面朝上的概率是 10-20
 
-。在第 11 章，我将继续讨论这到底意味着什么。然而，对于这个例子来说，它只是意味着，如果你重复掷 20 枚硬币 1020
-
-次（100 乘以百万的三次方，即 1 亿兆次或 1 垓次）的实验，那么平均来说，你可以预期连续出现一组 20 个背面朝上。这样的结果确实非常罕见。事实上，我们也可以用概率来证明，大多数结果需要的比特数都小于 20。当然，我不会把你带入一场技术呆子的头脑风暴。
+。在第 11 章，我将继续讨论这到底意味着什么。然而，对于这个例子来说，它只是意味着，如果你重复掷 20 枚硬币 1020 次（100 乘以百万的三次方，即 1 亿兆次或 1 垓次）的实验，那么平均来说，你可以预期连续出现一组 20 个背面朝上。这样的结果确实非常罕见。事实上，我们也可以用概率来证明，大多数结果需要的比特数都小于 20。当然，我不会把你带入一场技术呆子的头脑风暴。
 
 基于哈特利（1928）早期的工作，香农利用这一观察得出一个通过观察掷一次硬币所传递的信息量的量化度量方法。根据香农的说法，如果这枚非均匀的硬币正面朝上，那么当我们观察到这个事实时，我们得到了 - log 2 (0.9)≈0.15 比特的信息。这里，0.9 是硬币正面朝上的概率，表示每掷 10 次平均就会有 9 次正面朝上。因为正面朝上的可能性远远大于背面朝上，所以我们可以用这一点衡量我们的惊讶程度，或者我们学到的东西，或者简单地说，就是我们获得的信息。当我们看到正面朝上时，我们得到 0.15 比特的信息，远远少于 1 比特。但是，我们并不感到惊讶。我们在观察背面朝上的结果时得到的信息是 - log2 (0.1)≈3.32 比特，其中 0.1 是硬币背面朝上的概率。当我们看到背面朝上时，我们会更加惊讶。因此，看到硬币背面朝上所传递的信息是 3.32 比特，比看到正面朝上时的 0.15 比特信息要更多。
 
 相反，如果硬币是均匀的，那么 T（背面朝上）的概率会是 0.5。这意味着，平均来说，掷硬币的所有结果中会有一半是背面朝上。此时，观察 T 的香农信息是 - log2 (0.5)=1 比特的信息。因此，对于一枚均匀的硬币而言，每次掷硬币都能给我们 1 比特的信息。这比看到非均匀硬币的结果 H 更令人惊讶，而比看到其出现结果 T 更不令人惊讶。
 
-那为什么要用对数来表示呢？这看起来似乎有些随意，就好像是从帽子里拽出的一只兔子。但是，对数有一个很好的性质，对于任意两个数字 a
-
-和 b
-
-来说，log2 (ab
-
-)=log2(a
-
-)+ log2(b
-
-)。对数的这个性质可以把乘法变成加法。假设掷硬币的一个结果对是 TH，即先是背面朝上，再是正面朝上。这样的结果中包含了多少信息呢？一起来看一下，我们从 T 的结果中得到 3.32 比特，从 H 的结果中得到 0.15 比特，所以这个结果对大概传递了两者之和或者 3.47 比特的信息。当你收到一系列不相关的消息时，其所传递的信息是每条消息的和（我们假设每次掷硬币对下一次掷硬币的结果没有影响）。
+那为什么要用对数来表示呢？这看起来似乎有些随意，就好像是从帽子里拽出的一只兔子。但是，对数有一个很好的性质，对于任意两个数字 a 和 b 来说，log2(ab)=log2(a)+ log2(b)。对数的这个性质可以把乘法变成加法。假设掷硬币的一个结果对是 TH，即先是背面朝上，再是正面朝上。这样的结果中包含了多少信息呢？一起来看一下，我们从 T 的结果中得到 3.32 比特，从 H 的结果中得到 0.15 比特，所以这个结果对大概传递了两者之和或者 3.47 比特的信息。当你收到一系列不相关的消息时，其所传递的信息是每条消息的和（我们假设每次掷硬币对下一次掷硬币的结果没有影响）。
 
 假设我们同时掷两枚硬币，观察到的结果是 TH。那其中的信息量是多少呢？要应用香农的理论，我们就需要确定 TH 的概率。如果掷硬币是独立的（一个不影响另一个），则 TH 的概率是 T 的概率和 H 的概率的乘积，或者 0.1×0.9=0.09。这个概率略小于 0.1，表明每掷两枚硬币 10 次，我们看到的 TH 的次数略小于 1。由此，通过观察 TH 所传递的香农信息就为 - log2 (0.09)≈3.47。由于对数可以将乘积转化为和，这就等于每次掷硬币得到的信息之和，即 - log2 (0.1×0.9)=-log2 (0.1)-log 2 (0.9)。这就是香农使用对数的原因。它使同时掷两枚相同硬币的信息量与连续两次掷同一枚硬币的信息量相同。
 
@@ -234,7 +226,7 @@ HH HT HH HH HH TH HH HH HH HH
 
 如果平均每掷 10 次硬币就会有 1 次背面朝上，那么香农认为，每次掷硬币的平均信息量是如下数值：
 
-- 0.9 log2 (0.9) - 0.1 log2 (0.1) ≈ 0.47（比特）（64）
+-0.9log2(0.9) - 0.1log2(0.1) ≈ 0.47（比特）（64）
 
 方程（64）就是这两个信息量的平均值，是它们概率的加权值，因此，它就是投掷一次硬币的平均信息。这意味着，每掷一次硬币平均传递的信息是 0.47 比特，而不是 1 比特。因此，从理论上讲，我们能够提出一种编码，它将代表掷硬币 20 次且其平均只有 20×0.47=9.38 比特的信息。香农证明，事实上，我们不能做得更好了，所以每掷 20 次硬币，其信息的极限是 9.38 比特。一般来说，没有比这更好的编码方案了，所以掷 20 次非均匀硬币的平均信息量是 9.38 比特。
 
@@ -246,25 +238,11 @@ HH HT HH HH HH TH HH HH HH HH
 
 具体而言，玻尔兹曼和他的同辈学者将宏观系统（例如气体的体积）中的随机程度（熵）建模为如下的公式：
 
-S=k
+S=klog(M)（32）
 
-log(M
+公式中，M 是微观系统（气体分子的集合）的可能状态数，其与观察到的宏观系统属性（如气体的温度和压力）一致。常数 k 是一个比例常数，被称为玻尔兹曼常数。如果 M
 
-)（32）
-
-公式中，M
-
-是微观系统（气体分子的集合）的可能状态数，其与观察到的宏观系统属性（如气体的温度和压力）一致。常数 k
-
-是一个比例常数，被称为玻尔兹曼常数。如果 M
-
-种状态中每一个的可能性都是相同的，那么每种状态的概率就都是 1/M
-
-，此时公式可以变成 - k
-
-log（1/M
-
-），和香农的熵相似。
+种状态中每一个的可能性都是相同的，那么每种状态的概率就都是 1/M，此时公式可以变成 - klog（1/M），和香农的熵相似。
 
 玻尔兹曼的熵和香农的熵至少有两个显著的区别。一个是常数系数 k
 
@@ -288,7 +266,7 @@ Equation (64) gives the entropy of a random experiment (an unfair coin toss) tha
 
 A fair coin, in contrast, has an entropy with value 1, so on average one bit is needed to encode each outcome. In this case, no clever coding is needed because we can just encode heads with 1 and tails with 0. Every coin toss yields one bit of information.
 
-Formula (64) is a sum of two quantities, each of the form − p log 2 ( p ), where p is the probability of one of the two outcomes, and the negative of the logarithm quantifies the amount of information in that outcome. The more rare the outcome, the more information it carries. It is easy to generalize this idea to a random experiment with more than two possible outcomes, such as the toss of a pair of dice. The sum in (64) will simply have one term of the form − p log 2 ( p ) for each possible outcome with probability p .
+Formula (64) is a sum of two quantities, each of the form − p log 2 ( p ), where p is the probability of one of the two outcomes, and the negative of the logarithm quantifies the amount of information in that outcome. The more rare the outcome, the more information it carries. It is easy to generalize this idea to a random experiment with more than two possible outcomes, such as the toss of a pair of dice. The sum in (64) will simply have one term of the form − p log 2 ( p ) for each possible outcome with probability p.
 
 But what if we have a random experiment that can have an infinite number of possible outcomes? Suppose, for example, that some variable is equally likely to have any real-numbered value between − a and a for some positive real number a . What is the entropy of this random experiment, and how many bits are required to encode an outcome?
 
@@ -336,7 +314,7 @@ But Shannon's truly remarkable observation was that a noisy observation of a con
 
 But this does not imply that the physical world can be encoded with binary digits. That would be confusing the map for the territory. It may be true that a physical system can be encoded with bits, although I personally doubt it (see section 8.4 on digital physics in the next chapter), but it is not finite entropy that makes it true. Continuous entropy is finite even though its continuous variable cannot be encoded with a finite number of bits.
 
-Shannon's result that a noisy measurement reveals a finite number of bits of information is known as the「channel capacity theorem.」Shannon was considering communication problems, where a quantity known at one point in space is to be conveyed via an imperfect communication channel to another point in space. One of his central results is that any channel that adds noise can only convey a finite amount of information, measured in bits, for each observation of the output of the channel. The output of the channel is a noisy observation of the input to the channel. 3
+Shannon's result that a noisy measurement reveals a finite number of bits of information is known as the「channel capacity theorem.」Shannon was considering communication problems, where a quantity known at one point in space is to be conveyed via an imperfect communication channel to another point in space. One of his central results is that any channel that adds noise can only convey a finite amount of information, measured in bits, for each observation of the output of the channel. The output of the channel is a noisy observation of the input to the channel. [3]
 
 So how much information is conveyed by a noisy measurement? Consider the experiment X with probability density function as shown in figure 7.1 and entropy H ( X ) as given in equation (16). Let Y represent a noisy measurement of X . Let x represent a particular outcome of experiment X and y represent a particular measurement of that outcome. Because the measurement is noisy, it is likely that y is close to x but not exactly equal to x . The measurement y tells us something about an outcome x but not everything. So how much does it tell us?
 
@@ -369,6 +347,8 @@ As I argued in chapter 2 , in an engineering use of models, we seek physical rea
 In chapter 11 , I will examine the meaning of probability, which underlies Shannon's notion of information. Fundamentally, probability is a measure of uncertainty, the lack of information. The entropy in a system quantifies exactly how much information we lack about the system. Put another way, entropy quantifies how much information can potentially be gained by observing the system. But there are two distinct and incomparable measures, discrete and continuous entropy. Only discrete entropy measures information in bits.
 
 In the next chapter, we will look at machines whose sole purpose is to process digital information. I will argue that even if we restrict our attention to the digital world, leaving out my dishwasher, software is still limited. It cannot perform most information-processing functions.
+
+[3] Any text on digital communication will cover this topic of channel capacity, including one that I coauthored (Barry et al., 2004, p. 123).
 
 7.4 连续信息
 
@@ -841,13 +821,3 @@ H
 在第 11 章，我将研究概率的意义，它是香农所指信息概念的基础。从根本上讲，概率是衡量不确定性，即信息的缺乏程度的一种度量。系统中的熵精确地量化了我们缺少多少关于系统的信息。换句话说，熵量化了通过观测系统可能潜在地获得的信息量。但是，这里存在着两种截然不同、无法比拟的度量，即离散熵和连续熵。只有离散熵可以用比特来度量信息。
 
 在下一章中，我们将研究那些以处理数字信息为唯一目标的机器。我想说的是，即使我们把全部的焦点都限定于数字世界，不考虑我的洗碗机，软件仍然有其局限性。软件不能执行大多数的信息处理功能。
-
-__________
-
-1 Probabilities are less than one because we can say「one out of ten coin tosses comes up tails」(probability 1 / 10 = 0.1), but we would not say「eleven out of ten coin tosses comes up tails」(probability 11 / 10 = 1.1).
-
-2 In fact, the standard term for Shannon's units is shannons, in his honor, but many people continue to use bits.
-
-3 Any text on digital communication will cover this topic of channel capacity, including one that I coauthored (Barry et al., 2004, p. 123).
-
-8
