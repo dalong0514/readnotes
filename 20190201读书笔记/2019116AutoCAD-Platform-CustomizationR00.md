@@ -19,27 +19,27 @@ value. The value argument represents any valid atom; an AutoLISP expression, a v
 The type function returns a symbol that can be used to determine if the value returned by a function or assigned to a variable is the type of data you are expecting. The following AutoLISP expressions define a custom function named IsString, which uses the type function to determine whether a value is of the string data type:
 
 ```c
-(defun IsString (val / ) 
-  (if (= (type val) 'STR) T nil) 
+(defun IsString (val / )
+  (if (= (type val) 'STR) T nil)
 )
 ```
 
 You can use the IsString function by entering it at the AutoCAD Command prompt or loading it as part of an AutoLISP (LSP) file. When the function is executed, it will return T if the value it is passed is a string data type or nil for all other data types. The following shows several examples of the IsString function along with the values they return:
 
 ```c
-(IsString "2") 
-// out 
-T 
-
-(IsString 2) 
+(IsString "2")
 // out
-nil 
+T
 
-(IsString PAUSE) 
+(IsString 2)
 // out
-T 
+nil
 
-(IsString PI) 
+(IsString PAUSE)
+// out
+T
+
+(IsString PI)
 // out
 nil
 ```
@@ -57,9 +57,9 @@ For some objects it's easier to determine which properties are required; for exa
 For example, if you drew a circle with a center point of 5,6.5,0 and a radius of 2.0, the entity data list that is returned might look like this:
 
 ```c
-((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") 
- (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") 
- (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE")
+ (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity")
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle")
  (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
 ```
 
@@ -83,11 +83,15 @@ Once you have the entity data list that describes the object you want to create,
 
 The entlist argument represents the entity data list of the object to be created, and it is an optional argument. The list must contain all required dotted pairs to define the object and its properties. The following examples show how to create an entity data list with the list and cons functions, and then use the resulting list to create an object with the enmake function:
 
-1-2『这里捡到金子了，教你如何获取用 entmake 函数新建一个实体对象需要哪些必要 `entity data list`。1）在 CAD 图纸里用普通命令画一个实体，或插入一个块实体。2）用命令 `(entget (entlast))` 查看刚刚生成的实体所包含的 `entity data list`。3）扣除掉 DXF group codes 为 -1、5 和 300 的这三个自动生成的数据。4）扣除一些可选数据。5）使用 entmake 函数创建。
+1-2『
+
+这里捡到金子了，教你如何获取用 entmake 函数新建一个实体对象需要哪些必要 `entity data list`。1）在 CAD 图纸里用普通命令画一个实体，或插入一个块实体。2）用命令 `(entget (entlast))` 查看刚刚生成的实体所包含的 `entity data list`。3）扣除掉 DXF group codes 为 -1、5 和 300 的这三个自动生成的数据。4）扣除一些可选数据。5）使用 entmake 函数创建。
 
 先用半成品（command 实现）的命令，自动就生成一个块。然后再用 entlast 命令获取其数据信息。（2020-10-30）
 
-做一张主题卡片。』—— 已完成
+做一张主题卡片。
+
+』—— 已完成
 
 ### 0103. 主题卡 —— 修改实体数据的 2 种方法
 
@@ -111,14 +115,14 @@ XData that has been previously attached to an object can be queried and modified
 For example, the following code returns the entity data list and XData list attached to an object with the application name of MyApp. If there is no XData list associated with the application name MyApp, only the entity data list for the object is returned.
 
 ```c
-; Return the entity data list and xdata list 
+; Return the entity data list and xdata list
 (entget (entlast) '("MyApp"))
 ```
 
 Using an asterisk instead of an actual application name returns the XData lists for all applications attached to an object, as shown here:
 
 ```c
-; Return the entity data list and xdata list 
+; Return the entity data list and xdata list
 (entget (entlast) '("*"))
 ```
 
@@ -135,15 +139,15 @@ This exercise shows how to override the color assigned to dimension and extensio
 The following example removes the XData list associated with an application named ACAD from a dimension, which removes all overrides assigned to the dimension:
 
 ```c
-(defun c:RemoveDimOverride (/ entityName entityData) 
-  (setq entityName (car (entsel "\nSelect dimension to remove overrides: "))) 
-  (setq entityData (entget entityName '("ACAD"))) 
-  (if (/= (assoc -3 entityData) nil) 
-    (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData)) 
-  ) 
-  (entmod entityData) 
-  (entupd entityName) 
-  (princ) 
+(defun c:RemoveDimOverride (/ entityName entityData)
+  (setq entityName (car (entsel "\nSelect dimension to remove overrides: ")))
+  (setq entityData (entget entityName '("ACAD")))
+  (if (/= (assoc -3 entityData) nil)
+    (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData))
+  )
+  (entmod entityData)
+  (entupd entityName)
+  (princ)
 )
 ```
 
@@ -156,17 +160,17 @@ In AutoLISP you can define a special function named `s::startup`. This function 
 Here is an example of the `s::startup` function:
 
 ```c
-(defun s::startup ( / old_attreq) 
-  (setvar "osmode" 39) ; END, MID, CEN, and INT 
-  (setvar "pickfirst" 1) 
-  ; Create layer for title block 
-  (command "._-layer" "_m" "titleblk" "_c" "7" "" "") 
-  ; Insert title block at 0,0 
-  (setq old_attreq (getvar "attreq")) 
-  (setvar "attreq" 0) 
-  (command "._insert" "tb-c_size" "0,0" "1" "1" "0") 
-  (setvar "attreq" old_attreq) 
-  ; zoom to extents 
+(defun s::startup ( / old_attreq)
+  (setvar "osmode" 39) ; END, MID, CEN, and INT
+  (setvar "pickfirst" 1)
+  ; Create layer for title block
+  (command "._-layer" "_m" "titleblk" "_c" "7" "" "")
+  ; Insert title block at 0,0
+  (setq old_attreq (getvar "attreq"))
+  (setvar "attreq" 0)
+  (command "._insert" "tb-c_size" "0,0" "1" "1" "0")
+  (setvar "attreq" old_attreq)
+  ; zoom to extents
   (command "._zoom" "_e")
 )
 ```
@@ -176,7 +180,7 @@ Here is an example of the `s::startup` function:
 这里绝逼意外的挖了一个大宝藏：定位放大到一个特定的实体对象的坐标位置上。做一张主题卡片。（2021-03-02）
 
 ```c
-(defun c:foo (/ ss) 
+(defun c:foo (/ ss)
   (setq ss (ssget))
   (command "._zoom" "_o" ss "")
 )
@@ -214,7 +218,7 @@ The Drafting Settings dialog box is displayed with the Object Snap tab current. 
 
 3 In the Drafting Settings dialog box, change which object snaps are current and click OK.
 
-4 At the Command prompt, enter: 
+4 At the Command prompt, enter:
 
 ```c
 (getvar "osmode")
@@ -250,22 +254,22 @@ The following is an example PackageContents.xml file that defines the contents o
 
 ```
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE component PUBLIC "-//JWS//DTD WileyML 20110801 Vers 3Gv2.0//EN" "Wileyml3gv20-flat.dtd">
-  <Components Description="All OSs"> 
-    <RuntimeRequirements OS="Win32|Win64|Mac" SeriesMin="R19.0" Platform="AutoCAD*" SupportPath="./Contents/" /> 
-    <ComponentEntry Description="Main LSP file" AppName="DrawPlateMain" Version="1.0" ModuleName="./Contents/DrawPlate.lsp"> </ComponentEntry> 
-    <ComponentEntry Description="Utility LSP file" AppName="UtilityFunctions" Version="1.0" ModuleName="./Contents/Utility.lsp"> </ComponentEntry> 
-  </Components> 
+  <Components Description="All OSs">
+    <RuntimeRequirements OS="Win32|Win64|Mac" SeriesMin="R19.0" Platform="AutoCAD*" SupportPath="./Contents/" />
+    <ComponentEntry Description="Main LSP file" AppName="DrawPlateMain" Version="1.0" ModuleName="./Contents/DrawPlate.lsp"> </ComponentEntry>
+    <ComponentEntry Description="Utility LSP file" AppName="UtilityFunctions" Version="1.0" ModuleName="./Contents/Utility.lsp"> </ComponentEntry>
+  </Components>
 </ApplicationPackage>
 ```
 
 The folder structure of the bundle that the PackageContents.xml file refers to looks like this:
 
 ```
-DrawPlate.bundle 
-  PackageContents.xml 
-  Contents 
-    DrawPlate.lsp 
-    DrawPlate.htm 
+DrawPlate.bundle
+  PackageContents.xml
+  Contents
+    DrawPlate.lsp
+    DrawPlate.htm
     Utility.lsp
 ```
 
@@ -318,10 +322,10 @@ NOTE 22.5: The vla-object data type isn't compatible with the ename data type. Y
 In the previous section, you learned how to get the object that represents the active document. The next example shows how to get the ModelSpace or PaperSpace object based on the active space. You can determine the correct active space by using the ActiveSpace property of the current document.
 
 ```c
-; Get a reference to the current space in AutoCAD 
-(if (= (vla-get-activespace curDoc) acModelSpace) 
-  (setq space (vla-get-modelspace curDoc)) 
-  (setq space (vla-get-paperspace curDoc)) 
+; Get a reference to the current space in AutoCAD
+(if (= (vla-get-activespace curDoc) acModelSpace)
+  (setq space (vla-get-modelspace curDoc))
+  (setq space (vla-get-paperspace curDoc))
 )
 ```
 
@@ -337,21 +341,21 @@ In the previous section, you learned how to get the object that represents the a
 ;; Insert Block into mode or Layout
 (defun InsertBlockByScaleUtils (insPt blockName layerName propertyDictList scale / acadObj curDoc insertionPnt modelSpace blockRefObj blockAttributes)
   (setq acadObj (vlax-get-acad-object))
-  (setq curDoc (vla-get-activedocument acadObj)) 
+  (setq curDoc (vla-get-activedocument acadObj))
   (setq insertionPnt (vlax-3d-point insPt))
   ; Get a reference to the current space in AutoCAD - refactored at 2021-08-15
-  (if (= (vla-get-activespace curDoc) acModelSpace) 
-    (setq modelSpace (vla-get-ModelSpace curDoc)) 
-    (setq modelSpace (vla-get-PaperSpace curDoc)) 
+  (if (= (vla-get-activespace curDoc) acModelSpace)
+    (setq modelSpace (vla-get-ModelSpace curDoc))
+    (setq modelSpace (vla-get-PaperSpace curDoc))
   )
   (setq blockRefObj (vla-InsertBlock modelSpace insertionPnt blockName scale scale scale 0))
   (vlax-put-property blockRefObj 'Layer layerName)
   (setq blockAttributes (vlax-variant-value (vla-GetAttributes blockRefObj)))
-  (mapcar '(lambda (x) 
+  (mapcar '(lambda (x)
             (vla-put-TextString (vlax-safearray-get-element blockAttributes (car x)) (cdr x))
-          ) 
+          )
     propertyDictList
-  ) 
+  )
   (princ)
 )
 ```
@@ -402,7 +406,7 @@ NOTE: On Windows only, you can use the AutoLISP `vla-delete` function after load
   ;; This example removes all unused named references from the database
   (setq acadObj (vlax-get-acad-object))
   (setq doc (vla-get-ActiveDocument acadObj))
-  (vla-PurgeAll doc) 
+  (vla-PurgeAll doc)
 )
 ```
 
@@ -419,24 +423,24 @@ In these steps, you create a custom function named `roomlabel_createblkdef` that
 2 In the text editor area of the roomlabel.lsp file, type the following:
 
 ```c
-; Creates the block definition roomlabel 
-(defun RoomLabel_CreateBlkDef ( / ) 
-  (setvar "clayer" "0") 
-  ; Start block definition 
-  (entmake (list (cons 0 "BLOCK") (cons 2 "roomlabel") 
-                 (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
-  ; Create the rectangle for around the block attribute 
-  (createrectangle (list 0.0 0.0 0.0) (list 36.0 0.0 0.0) (list 36.0 18.0 0.0) (list 0.0 18.0 0.0)) 
-  ; Add the attribute definition 
-  (entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") 
-                 (cons 8 "Plan_RoomLabel_Anno") (cons 100 "AcDbText") 
-                 (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") 
-                 (cons 7 "Standard") (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) 
-                 (cons 100 "AcDbAttributeDefinition") (cons 280 0) 
-                 (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))) 
-  ; End block definition 
-  (entmake (list (cons 0 "ENDBLK"))) 
-  (princ) 
+; Creates the block definition roomlabel
+(defun RoomLabel_CreateBlkDef ( / )
+  (setvar "clayer" "0")
+  ; Start block definition
+  (entmake (list (cons 0 "BLOCK") (cons 2 "roomlabel")
+                 (cons 10 (list 18.0 9.0 0.0)) (cons 70 2)))
+  ; Create the rectangle for around the block attribute
+  (createrectangle (list 0.0 0.0 0.0) (list 36.0 0.0 0.0) (list 36.0 18.0 0.0) (list 0.0 18.0 0.0))
+  ; Add the attribute definition
+  (entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity")
+                 (cons 8 "Plan_RoomLabel_Anno") (cons 100 "AcDbText")
+                 (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000")
+                 (cons 7 "Standard") (cons 72 1) (cons 11 (list 18.0 9.0 0.0))
+                 (cons 100 "AcDbAttributeDefinition") (cons 280 0)
+                 (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1)))
+  ; End block definition
+  (entmake (list (cons 0 "ENDBLK")))
+  (princ)
 )
 ```
 
@@ -514,11 +518,11 @@ Table 16.8 XData-related DXF group codes
 The following AutoLISP statements were used to create the previous XData list:
 
 ```c
-(setq appName "MyApp") 
-(regapp "MyApp") 
-(setq xdataList 
-  (list -3 (list appName 
-                 (cons 1000 "My custom application") 
+(setq appName "MyApp")
+(regapp "MyApp")
+(setq xdataList
+  (list -3 (list appName
+                 (cons 1000 "My custom application")
                  (cons 1070 (fix (getvar "cdate")))))
 )
 ```
@@ -530,16 +534,16 @@ Once an XData list has been defined, it can be appended to an entity data list r
 1 At the AutoCAD Command prompt, type the following and press Enter to register the MyApp application:
 
 ```c
-(setq appName "MyApp") 
+(setq appName "MyApp")
 (regapp appName)
 ```
 
-2 Type the following and press Enter to assign the XData list to the xdataList variable: 
+2 Type the following and press Enter to assign the XData list to the xdataList variable:
 
 ```c
-(setq xdataList 
-  (list -3 (list appName 
-                 (cons 1000 "My custom application") 
+(setq xdataList
+  (list -3 (list appName
+                 (cons 1000 "My custom application")
                  (cons 1070 (fix (getvar "cdate")))))
 )
 ```
@@ -550,16 +554,16 @@ The XData list assigned to the xdataList variable is as follows:
 (-3 ("MyApp" (1000. "My custom application") (1070. 20140302)))
 ```
 
-3 Type the following and press Enter to create a new circle: 
+3 Type the following and press Enter to create a new circle:
 
 ```c
-(entmake (list (cons 0 "CIRCLE") (cons 10 (list 2 2 0)) (cons 40 1))) 
+(entmake (list (cons 0 "CIRCLE") (cons 10 (list 2 2 0)) (cons 40 1)))
 (setq circ (entlast))
 ```
 
 A circle with the center point of 2,2 is created with a radius of 1, and the entity name of the new circle is assigned to the circ variable.
 
-4 Type the following and press Enter to get the entity data list of the circle and assign it to the entData variable: 
+4 Type the following and press Enter to get the entity data list of the circle and assign it to the entData variable:
 
 ```c
 (setq entityData (entget circ))
@@ -571,7 +575,7 @@ The entity data list of the circle should be similar to the following:
 ((-1. <Entity name: 7ff722905e90>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1E1") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0))
 ```
 
-5 Type the following and press Enter to append the lists in the entityData and xdataList variables: 
+5 Type the following and press Enter to append the lists in the entityData and xdataList variables:
 
 ```c
 (setq entityData (append entityData (list xdataList)))
@@ -583,10 +587,10 @@ The resulting list is assigned to the entityData variable and should look simila
 ((-1. <Entity name: 7ff722905e50>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1DD")(100. "AcDbEntity") (67. 0) (410. "Model") (8. "0")(100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0)(-3 ("MyApp" (1000. "Drill_Hole") (1070. 20140302))))
 ```
 
-6 Type the following and press Enter to commit the changes to the circle and update the circle's display: 
+6 Type the following and press Enter to commit the changes to the circle and update the circle's display:
 
 ```c
-(entmod entityData) 
+(entmod entityData)
 (entupd circ)
 ```
 
@@ -615,23 +619,23 @@ Since attributes must be added to a block reference, it is possible to have a bl
 The following code adds a block definition named RoomNum (see Figure 16.4) to a drawing that has a single attribute with the tag ROOM#:
 
 ```c
-; Creates the block definition RoomNum 
-(entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
+; Creates the block definition RoomNum
+(entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2)))
 
-; Creates the rectangle for around the block attribute 
-(entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") 
-  (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0)) 
+; Creates the rectangle for around the block attribute
+(entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline")
+  (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0))
   (cons 10 (list 36.0 18.0 0.0)) (cons 10 (list 0.0 18.0 0.0)))
-) 
+)
 
-; Adds the attribute definition 
-(entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText") 
-  (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") 
-  (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") 
+; Adds the attribute definition
+(entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText")
+  (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard")
+  (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition")
   (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))
-) 
+)
 
-; Ends block definition 
+; Ends block definition
 (entmake (list (cons 0 "ENDBLK")))
 ```
 
@@ -642,16 +646,16 @@ Figure 16.4 RoomNum block reference inserted with AutoLISP
 Once the block definition is created, you can then use the following code to add a block reference to a drawing based on a block named RoomNum:
 
 ```c
-; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 
-(entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) 
+; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5
+(entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0)))
 
-; Creates an attribute reference with the tag ROOM# and adds it to the block 
-(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
-  (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+; Creates an attribute reference with the tag ROOM# and adds it to the block
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0)
+  (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0)
   (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
-) 
+)
 
-; Adds the end marker for the block reference 
+; Adds the end marker for the block reference
 (entmake ' ((0. "SEQEND") (100. "AcDbEntity")))
 ```
 
@@ -698,31 +702,31 @@ Listing 13.1 is a custom function that mimics the use of inline variable expansi
 Listing 13.1: The ExpandVariable function
 
 ```c
-; Custom implementation of expanding variables in AutoLISP 
-; To use: 
-; 1. Define a variable with the setq function. 
-; 2. Add the variable name with % symbols on both sides of the variable name. 
-; For example, the variable named *program* would appear as %*program*% in the string. 
-; 3. Use the function on the string that contains the variable. 
-(defun expandvariableUtils (string / start_pos next_pos var2expand expand_var) 
-  (while (wcmatch string "*%*%*") 
-         (progn 
-          (setq start_pos (1+ (vl-string-search "%" string))) 
-          (setq next_pos (vl-string-search "%" string start_pos)) 
-          (setq var2expand (substr string start_pos (- (+ next_pos 2) start_pos))) 
-          (setq expand_var (vl-princ-to-string (eval (read (vl-string-trim "%" var2expand))))) 
-          (if (/= expand_var nil) 
-            (setq string (vl-string-subst expand_var var2expand string)) 
-          ) 
-         ) 
-  ) 
-  string 
-) 
+; Custom implementation of expanding variables in AutoLISP
+; To use:
+; 1. Define a variable with the setq function.
+; 2. Add the variable name with % symbols on both sides of the variable name.
+; For example, the variable named *program* would appear as %*program*% in the string.
+; 3. Use the function on the string that contains the variable.
+(defun expandvariableUtils (string / start_pos next_pos var2expand expand_var)
+  (while (wcmatch string "*%*%*")
+         (progn
+          (setq start_pos (1+ (vl-string-search "%" string)))
+          (setq next_pos (vl-string-search "%" string start_pos))
+          (setq var2expand (substr string start_pos (- (+ next_pos 2) start_pos)))
+          (setq expand_var (vl-princ-to-string (eval (read (vl-string-trim "%" var2expand)))))
+          (if (/= expand_var nil)
+            (setq string (vl-string-subst expand_var var2expand string))
+          )
+         )
+  )
+  string
+)
 
-; Define a global variable and string to expand 
-(setq *program* (getvar "PROGRAM") str2expand "PI=%PI% Program=%*program*%" ) 
-; Execute the custom function to expand the variables defined in the string 
-(expandvariable str2expand) 
+; Define a global variable and string to expand
+(setq *program* (getvar "PROGRAM") str2expand "PI=%PI% Program=%*program*%" )
+; Execute the custom function to expand the variables defined in the string
+(expandvariable str2expand)
 "PI=3.14159 Program=acad"
 ```
 
@@ -748,7 +752,7 @@ In general, there are three concepts you need to understand about working with A
 
 Collections are objects that can be queried and modified using properties and methods, but they are also containers that hold similar objects. A collection fundamentally is similar to a symbol table; you can work with a symbol table and add new objects to it, but you can't create a new symbol table. All the collections that you need in order to work with AutoCAD objects are defined as part of the AutoCAD ActiveX API. For example, a Layers collection contains all of the Layer objects in a drawing, and a Documents collection contains all the open drawings (or Document objects) in the current AutoCAD session. You can get an object from a collection using the Item method, add a new object to a collection using the Add method, and remove an object from a collection using the Delete method.
 
-1-2『这里的 Collections 概念很重要的，而且获取到两个关键数据集：图层的 Collections、CAD 当前打开的图纸的 Collections。Collections 做一张术语卡片。（2021-03-06）』—— 已完成
+1-2『这里的 Collections 概念很重要的，而且获取到两个关键数据集：1）图层的 Collections，2）CAD 当前打开的图纸的 Collections。Collections 做一张术语卡片。（2021-03-06）』—— 已完成
 
 If you want to step through a collection and perform a set of statements on each object, you can use the `vlax-for` AutoLISP function, which is similar to the `foreach` function. The following shows the syntax of the vlax-for function:
 
@@ -823,11 +827,11 @@ Once you have the entity name of the named object dictionary, use the entget fun
 Here's an example of an entity data list for a named object dictionary:
 
 ```c
-((-1. <Entity name: 7ff6646038c0>) (0. "DICTIONARY") (330. <Entity name: 0>) 
-(5. "C") (100. "AcDbDictionary") (280. 0) (281. 1) 
-(3. "ACAD_COLOR") (350. <Entity name: 7ff664603c30>) 
-(3. "ACAD_GROUP") (350. <Entity name: 7ff6646038d0>) 
-(3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>) 
+((-1. <Entity name: 7ff6646038c0>) (0. "DICTIONARY") (330. <Entity name: 0>)
+(5. "C") (100. "AcDbDictionary") (280. 0) (281. 1)
+(3. "ACAD_COLOR") (350. <Entity name: 7ff664603c30>)
+(3. "ACAD_GROUP") (350. <Entity name: 7ff6646038d0>)
+(3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>)
 (3. "ACAD_MATERIAL") (350. <Entity name: 7ff664603c20>))
 ```
 
@@ -896,28 +900,29 @@ TIP: Although custom AutoLISP functions that have the C: prefix aren't recognize
 2『自定义命令变为内置命令的实现手段，做一张任意卡片。』—— 已完成
 
 ### 0305. 任意卡 —— 函数以 princ 结尾的真正用途
+
 ```c
-; Safely divides two numbers 
-; Checks to make sure that one or both of the numbers are not zero 
-; (/s 0 2) 
-(defun /s (num1 num2 / quotient) 
-  (setq quotient 0) 
-  (if (and 
-        (not (zerop num1)) 
-        (not (zerop num2)) 
-      ) 
+; Safely divides two numbers
+; Checks to make sure that one or both of the numbers are not zero
+; (/s 0 2)
+(defun /s (num1 num2 / quotient)
+  (setq quotient 0)
+  (if (and
+        (not (zerop num1))
+        (not (zerop num2))
+      )
       (/ num1 num2)
       0
   )
-) 
+)
 
-(/s 0 3) 
+(/s 0 3)
 0
-(/s 3 0) 
+(/s 3 0)
 0
-(/s 2 3) 
-0 
-(/s 2.0 3) 
+(/s 2 3)
+0
+(/s 2.0 3)
 0.666667
 ```
 
@@ -974,12 +979,12 @@ Once you have modified a list, use the `end_list` function. The `end_list` ends 
 The following code shows how to replace and assign a list of two values to a `popup_list` tile with the key of `list_layers`. The `list_layers` key refers to the Layer To Place Object On `popup_list` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
 ```c
-; Clear and replace the list of the popup_list 
-(start_list "list_layers" 2) 
-; Add two items that represent the layers to allow 
-(add_list "A-Door") 
-(add_list "A-Window") 
-; End list modification 
+; Clear and replace the list of the popup_list
+(start_list "list_layers" 2)
+; Add two items that represent the layers to allow
+(add_list "A-Door")
+(add_list "A-Window")
+; End list modification
 (end_list)
 ```
 
@@ -1028,11 +1033,11 @@ AutoLISP provides two different techniques that can be used to select an individ
 The entlast function returns the entity name of the last graphical object added to a drawing and doesn't require any arguments. This function can be helpful in getting the entity name for a new object created with the entmake function.
 
 ```c
-; Create an arc with a center point of -1,1, radius of 1.5, 
-; a start angle of 315, and end angle of 135 
-(entmake '((0. "ARC")(10 -1.0 1.0 0.0)(40. 1.5)(50. 5.49779)(51. 2.35619))) 
-((0. "ARC") (10 -1.0 1.0 0.0) (40. 1.41421) (50. 5.49779) (51. 2.35619)) 
-(setq entityName (entlast)) 
+; Create an arc with a center point of -1,1, radius of 1.5,
+; a start angle of 315, and end angle of 135
+(entmake '((0. "ARC")(10 -1.0 1.0 0.0)(40. 1.5)(50. 5.49779)(51. 2.35619)))
+((0. "ARC") (10 -1.0 1.0 0.0) (40. 1.41421) (50. 5.49779) (51. 2.35619))
+(setq entityName (entlast))
 <Entity name: 7ff72292cc10>
 ```
 
@@ -1047,29 +1052,29 @@ The ename argument is optional and represents the entity name of an object. The 
 The following example code uses the entnext function to step through and list the type of each object in the current drawing:
 
 ```c
-; Lists the DXF group code 0 value for each object in the drawing 
-(defun c:listobjects ( / ) 
-  (prompt "\nObjects in this drawing:") 
-  (setq entityName (entnext)) 
-  (while entityName 
-    (prompt (strcat "\n" (cdr (assoc 0 (entget entityName))))) 
-    (setq entityName (entnext entityName)) 
-  ) 
-  (princ) 
+; Lists the DXF group code 0 value for each object in the drawing
+(defun c:listobjects ( / )
+  (prompt "\nObjects in this drawing:")
+  (setq entityName (entnext))
+  (while entityName
+    (prompt (strcat "\n" (cdr (assoc 0 (entget entityName)))))
+    (setq entityName (entnext entityName))
+  )
+  (princ)
 )
 
-Objects in this drawing: 
-CIRCLE 
-DIMENSION 
-DIMENSION 
-INSERT 
-ATTRIB 
-SEQEND 
-CIRCLE 
-VIEWPORT 
-VIEWPORT 
-CIRCLE 
-DIMENSION 
+Objects in this drawing:
+CIRCLE
+DIMENSION
+DIMENSION
+INSERT
+ATTRIB
+SEQEND
+CIRCLE
+VIEWPORT
+VIEWPORT
+CIRCLE
+DIMENSION
 ARC
 ```
 
@@ -1084,7 +1089,7 @@ Internally each standard AutoCAD command is assigned a new version number when a
 The following example uses version 1 of the color command:
 
 ```c
-(initcommandversion 1) 
+(initcommandversion 1)
 (command "._color")
 ```
 
@@ -1101,13 +1106,13 @@ Version 1 of the color command displays options at the Command prompt; version 2
 自己在 CAD 里跑了下上面的源码，没问题，第一次知道多行注释可以这么写（`|`），很不错！这里还有一个很意外的收获，如何判断是否有某一个图层。那么同样的，应该可以判断某个块是否存在。待验证。做一张任意卡片。（2021-03-02）—— 已完成
 
 ```c
-(defun createlayer (name color / ) 
-  ; Check to see if the layer exists before creating/modifying it 
-  (if (= (tblsearch "layer" name) nil) 
-    (command "._-layer" "_m" name "_c" color "" "") 
-    (setvar "clayer" name) 
-  ) 
-) 
+(defun createlayer (name color / )
+  ; Check to see if the layer exists before creating/modifying it
+  (if (= (tblsearch "layer" name) nil)
+    (command "._-layer" "_m" name "_c" color "" "")
+    (setvar "clayer" name)
+  )
+)
 ```
 
 [tblsearch (AutoLISP)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-2AEB84A6-E3D0-4DD9-A29C-54D4099ED925)
@@ -1141,7 +1146,7 @@ Now that the drawings have been fixed, you output the revised drawings with minu
 ```c
 (entmod (subst newValue oldValue entityData))
 
-; Update the object’s entity data list 
+; Update the object’s entity data list
 (entmod entityData)
 ; Refresh the object on-screen
 (entupd entityName)
