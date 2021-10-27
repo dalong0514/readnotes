@@ -4,7 +4,7 @@
 
 0801 软件的局限性
 
-在本章，我会阐释软件不能做什么，并说明信息处理功能的数量远远大于可能的计算机程序的数量；此外，我还解释了丘奇 — 图灵论题，它表明有一些有用的信息处理功能是软件无法实现的。但这并不是说，一个功能如果不能通过软件实现，它就不能由任何机器来实现。在这里，我将不得不面对「数字物理学」的范式，它认为物理世界本身在某种程度上就是软件或等价于软件。
+在本章，我会阐释：1）软件不能做什么，并说明信息处理功能的数量远远大于可能的计算机程序的数量；2）此外，我还解释了丘奇-图灵论题，它表明有一些有用的信息处理功能是软件无法实现的。但这并不是说，一个功能如果不能通过软件实现，它就不能由任何机器来实现。在这里，我将不得不面对「数字物理学」的范式，它认为物理世界本身在某种程度上就是软件或等价于软件。
 
 ### 8.1 Universal Machines?
 
@@ -18,7 +18,7 @@ There is, however, a potential caveat that I am forced to confront. Since the de
 
 For now, let's put aside the question of whether the physical world is digital and just consider information-processing functions where the inputs are binary numbers and the outputs are binary numbers. In fact, let's consider an even smaller set of functions, those whose input is a finite binary number and whose output is just a single zero or one rather than a sequence of zeros and ones. Such functions are called「decision functions」because for each particular input, say 010101, the function will say either YES (1) or NO (0). The function makes a decision.
 
-In the 1930s, the young English computer scientist Alan Turing defined the set of「effectively computable」functions to be those decision functions that can be computed algorithmically (in a step-by-step fashion) using a machine that is now called a Turing machine. 1 In principle, a Turing machine is realizable by a modern computer that has a sufficient amount of memory. Independently of Turing, in 1936, Alonzo Church, an American mathematician, came up with a different model than the Turing machine that yields exactly the same set of effectively computable functions. The fact that two different models result in the same set of effectively computable functions suggests that there is something special about this particular set of functions.
+In the 1930s, the young English computer scientist Alan Turing defined the set of「effectively computable」functions to be those decision functions that can be computed algorithmically (in a step-by-step fashion) using a machine that is now called a Turing machine. [1] In principle, a Turing machine is realizable by a modern computer that has a sufficient amount of memory. Independently of Turing, in 1936, Alonzo Church, an American mathematician, came up with a different model than the Turing machine that yields exactly the same set of effectively computable functions. The fact that two different models result in the same set of effectively computable functions suggests that there is something special about this particular set of functions.
 
 There are many possible Turing machines, each of which may compute a different decision function. In Turing's formulation, each such machine can be encoded by a finite sequence of bits, much the way machine code encodes a computer program as a finite sequence of bits (see chapter 5 ). For example, the sequence 000111 might represent a Turing machine that computes a particular decision function. Turing showed that there is a「universal Turing machine,」a Turing machine that can implement any other Turing machine. For example, if 000111 encodes a Turing machine, and we would like to know what decision that machine makes for the input 010101, then we can concatenate the bits specifying the machine code and the input to get 000111010101. Providing that combined bit pattern as the input to a universal Turing machine yields the answer that the machine 000111 would have given. So the bit pattern 000111 encodes the program, and the universal Turing machine is the computer that executes the program. So a「universal」Turing machine is simply a programmable Turing machine where the program can encode any other Turing machine.
 
@@ -30,7 +30,7 @@ The question remains whether a modern computer can do more than compute effectiv
 
 A universal Turing machine implements algorithms , step-by-step processes, where each step changes the state of the machine discretely. The word「algorithm」comes from the name of the Persian mathematician, astronomer, and geographer, Muhammad ibn Musa al-Khwarizmi (780—850), who was instrumental in the spread of the arabic system of numerals that we all use today. An algorithm is a step-by-step calculation procedure, a recipe. The notion of an algorithm is central to computer science, but it is important to recognize that an algorithm is a model of what a machine does. In a modern computer, what is really happening is electrons sloshing around.
 
-The notion of a step, a discrete operation that takes a calculation toward its conclusion, is an abstraction. Most processes in the physical world do not proceed in a sequence of discrete steps. 2 Even a human walking, from which we get the concept of「steps,」is not actually discrete because each step evolves as continuous motions that begin with leaning forward and lifting a leg. But the digital machine abstraction considered in chapter 4 abstracts the underlying continuous physical processes in semiconductors as a discrete sequence of steps. An algorithm is an abstraction that ignores the messy continuous-world details of the computer. In this abstraction, a step does not take time, and there is no notion of being halfway through a step. A step occurs atomically , meaning indivisibly and instantaneously.
+The notion of a step, a discrete operation that takes a calculation toward its conclusion, is an abstraction. Most processes in the physical world do not proceed in a sequence of discrete steps. [2] Even a human walking, from which we get the concept of「steps,」is not actually discrete because each step evolves as continuous motions that begin with leaning forward and lifting a leg. But the digital machine abstraction considered in chapter 4 abstracts the underlying continuous physical processes in semiconductors as a discrete sequence of steps. An algorithm is an abstraction that ignores the messy continuous-world details of the computer. In this abstraction, a step does not take time, and there is no notion of being halfway through a step. A step occurs atomically , meaning indivisibly and instantaneously.
 
 A second important feature of an algorithm is that it reaches a conclusion. That is, it halts, giving a final answer. The purpose for an algorithm is to determine that answer. An algorithm that realizes a decision function must halt, giving the answer 0 or 1. If it does not halt, then it does not realize the decision function.
 
@@ -40,11 +40,17 @@ An operating system implements interactive behavior, which is quite different fr
 
 Nevertheless, if an interactive program is interacting with the physical world (i.e., the program is part of a cyberphysical system; see chapter 6 ), then the timing of the actions of the program will affect the overall behavior of the system. Such a program is clearly not a Turing computation because Turing's model includes no notion of time. The timing of the program's actions must be considered part of its「output」because the timing affects the behavior of the system. But Turing's model includes no notion of time, so the behavior is not expressible within his model. For such interactive programs, Wegner was clearly correct that they are not algorithmic.
 
-An interactive program may be interacting with another interactive program. These two programs may even be executing on the same machine if the machine is capable of multitasking, 3 as most modern computers are. Such a pair of programs is said to be concurrent . Again, the timing of actions may affect the overall behavior, so Turing's model requires some extension to include such systems.
+An interactive program may be interacting with another interactive program. These two programs may even be executing on the same machine if the machine is capable of multitasking, [3] as most modern computers are. Such a pair of programs is said to be concurrent . Again, the timing of actions may affect the overall behavior, so Turing's model requires some extension to include such systems.
 
 Robin Milner, who appeared in chapter 5 as the author of the ML programming language, in his Turing Award lecture in 1975, observed that concurrent programs cannot be modeled simply as functions from inputs to outputs, as (halting) Turing machines can be. Their chunks can be modeled as such functions but not their overall behavior.
 
 So Wegner and Milner argue that modern computers can do things that a universal Turing machine cannot do, at least when a program is viewed holistically. Their arguments continue to be debated, but even if you accept them, modern computers, even if you endow them with unbounded memory, are still not universal machines. They still cannot do many things. In fact, I will show that there are vastly more things that a computer cannot do than things a computer can do. The reason is quite simple: the number of possible computer programs is much smaller than the number of things we might want to do. This is true even if we limit ourselves to implementing decision functions and much more obviously true if we consider functions where timing matters. Even in the limited case of decision functions, there are vastly more decision functions that neither a computer nor a Turing machine can compute than decision functions they can compute. Decision functions that cannot be realized by software on a computer are said to be「undecidable.」
+
+[1] Later, like Claude Shannon, Alan Turing worked on cryptography during World War II. Turing played a central role in intercepting German communications that were encrypted using a machine called the Enigma. Turing led a troubled life, including being prosecuted for homosexual acts in 1952, which were illegal in the United Kingdom at the time. In 1954, he took his own life at age 41. In his few short years, however, he transformed the landscape of computing. The highest honor in computer science, the Turing Award, is named after him.
+
+[2] If you accept a strong form of digital physics (see section 8.4 ), then every process in the physical world does, in fact, proceed in a sequence of discrete steps. But for most purposes, at the macroscale at which we interact with the physical world, this does not provide a useful model of physical processes.
+
+[3] Multitasking means that the computer executes several programs at once rather than completing one program before executing the next one. Without multitasking, a computer could only ever execute at most one nonhalting program. The word「multitasking」has even spread into the vernacular to refer to humans simultaneously handling more than one task.
 
 8.1 通用机器？
 
@@ -164,7 +170,7 @@ Because B and I can be concatenated into a single input bit sequence, H is a dec
 
 Because B and I are both sequences of bits, if H exists, then we should certainly be able to evaluate H ( BB ), and it should return 0 if B halts with input B , and 1 otherwise. Now recall that every program is encoded as a bit sequence, and every bit sequence is in the list of bit sequences 0, 1, 00, 01, 10, 11, 000, · · · . The list must contain every program that, given input BB for any valid program B , halts and returns 0 or 1. Let's call the first such program on the list F 1 , the second one F 2 , and so on. We can now show that H must be different from every one of these F n programs, and hence H cannot be a program that halts and returns 0 or 1 for every input BB . It cannot solve the halting problem.
 
-For each F n on the list, we construct a new program T n , a rather annoying program like the contrarian program C shown earlier. It uses F n as a subprogram, but it does not itself implement an effectively computable function. It fails to halt for some inputs. Specifically, given a valid program B , the first thing T n does is evaluate F n ( BB ). By assumption, F n ( BB ) always halts and returns 0 or 1. If F n ( BB ) returns 1, then T n ( P ) returns 0. Otherwise, and here is where T n gets annoying, T n loops forever and never returns anything. It fails to halt. In pseudocode, 4   T n looks like this:
+For each F n on the list, we construct a new program T n , a rather annoying program like the contrarian program C shown earlier. It uses F n as a subprogram, but it does not itself implement an effectively computable function. It fails to halt for some inputs. Specifically, given a valid program B , the first thing T n does is evaluate F n ( BB ). By assumption, F n ( BB ) always halts and returns 0 or 1. If F n ( BB ) returns 1, then T n ( P ) returns 0. Otherwise, and here is where T n gets annoying, T n loops forever and never returns anything. It fails to halt. In pseudocode, [4]   T n looks like this:
 
 if   ( F n ( BB ) == 1) {
 
@@ -222,6 +228,8 @@ I am a teacher. I know quite a lot about a few things. I think what I know is「
 
 So I believe there is plenty of room for doubt that a universal Turing machine is a universal information-processing machine. This is probably a minority opinion today, and I will try to defend it better in the next section. The root of my doubt lies in the mathematical notion of cardinality of infinite sets. The fact is that the set of all computer programs is a small infinite set. In fact, the size of this set is equal to the size of the smallest infinite sets that mathematicians know about. Much bigger infinite sets exist. To assume that all the machines we can make are limited to this smallest of infinite sets, I have to assume digital physics. To assume that all machines that nature can make (or has made) are also so limited, I have to reject the existence of anything continuous in nature. This requires accepting one of the stronger forms of digital physics. I will now try to explain just how unlikely this limitation is by examining the notion of cardinality. I will then directly confront the idea of digital physics in section 8.4 . In chapter 11 , I will explain why it is that when some hypothesis is unlikely to be true, we must demand much stronger evidence before accepting the hypothesis than if the hypothesis is a priori likely to be true.
 
+[4] Programmers use「pseudocode」to refer to a sketch of a program that is not written in any particular programming language. Its purpose is to communicate intent to other humans.
+
 8.2 不可判定性
 
 我们回顾一下，一个决策函数以有限的二进制整数（如 010101）作为输入，并产生一个二进制结果 0 或 1。我可以向你证明，即使可以拥有无限的内存，也没有一台计算机能够实现所有的决策函数。因为只要有足够的内存，现代计算机就可以做图灵机能做的任何事情，所以，图灵的通用机器也无法实现所有的决策函数。
@@ -260,413 +268,55 @@ So I believe there is plenty of room for doubt that a universal Turing machine i
 
 让我们把这些程序称为「决策程序」。每个决策程序都在列表上。显然，每个决策程序都实现了一个决策函数，但并不是每个决策函数都会有这样一个程序。
 
-让我们将列表上的第一个决策程序称为 P
+让我们将列表上的第一个决策程序称为 P1 ，第二个称为 P2，以此类推。现在我们可以为每个决策程序分配 Pn 形式的名称，其中 n为整数。这些程序中的每一个都会为前面列表中的每个输入生成一个决策。例如，程序 P1 可能产生以下输出：
 
-1
+P1(0)=0
 
-，第二个称为 P
+P1(1)=0
 
-2
+P1(00)=1
 
-，以此类推。现在我们可以为每个决策程序分配 P
-
-n 形式的名称，其中 n
-
-为整数。这些程序中的每一个都会为前面列表中的每个输入生成一个决策。例如，程序 P
-
-1
-
-可能产生以下输出：
-
-P
-
-1
-
-(0)=0
-
-P
-
-1
-
-(1)=0
-
-P
-
-1
-
-(00)=1
-
-P
-
-1
-
-(01)=1
+P1(01)=1
 
 …
 
 现在，我可以找到一个没有被任何决策程序实现的决策函数。这是一个反向函数（contrarian function），所以我称它为 C。决策函数 C 为每个输入产生以下决策：
 
-C
+C(0)=¬P1(0)
 
-(0)=¬P
+C(1)=¬P2(10)
 
-1
+C(00)=¬P3(00)
 
-(0)
+C(01)=¬P4(01)
 
-C
+…
 
-(1)=¬P
+其中符号 ¬ 是逻辑否定。它将 0 转换为 1，反之亦然，就像第 4 章中的非门。由此，如果 P1(0)=0，那么 ¬P1(0)=1。
 
-2
+这个函数是反向的，因为对于每个可能的输入，它所产生的结果都与决策程序的结果相反。现在请读者们注意，C 与每一个决策程序都是不同的。它不同于 P1，因为输入为 0 时它的输出与 P1 不同，输入为 00 时它的输出与 P2 不同，以此类推。因此，决策函数 C 不是由任何计算机程序实现的。由此我们可以得出，并不是所有的决策函数都可以由我们拥有无限内存的计算机来实现。好了，我们的证明到此结束。
 
-(10)
+请注意，C 类似于计算机可以实现的函数，因为它的输入是一个比特序列，输出是一个比特。这让人感觉似乎计算机应该能够实现函数 C，但是我刚刚证明了它不能。
 
-C
+「可有效计算」函数正是由列表中的那些决策程序 Pn 实现的决策函数。对于任何现代计算机来说，无论其特定的机器码结构如何，可有效计算函数的集合都是相同的，这是一个非常值得注意的事实。任何能够实现所有有效计算函数的计算机都是图灵完备的。任何现代计算机，如果我们把它们扩展到拥有无限内存的话，它们就都是图灵完备的。决策函数 C 不是一个可有效计算函数，换言之，C 是不可判定的。没有任何计算机程序可以做出 C 所做的决策。
 
-(00)=¬P
+你可能会提出不同的观点，认为 C 不是一个有用的决策函数。它不过是一个有趣的例外，一个学术探讨而已。但是，我可以提出两条反驳意见。首先，我将在下一节做出说明，像 C 这样的函数要比可有效计算函数多得多；其次，许多有用的决策函数已知是不可判定的。图灵给出一个例子，图灵的有用函数将图灵机的二进制编码与输入字符串连在一起，如果图灵机停机，就返回 0，否则，返回 1。一台不停机的图灵机会永远执行，而不会给出最终的答案。图灵的这个有用函数解决了所谓停机问题，其告诉我们一个程序是否会因为一个特定的输入终止。这显然是非常有用的。图灵证明了这个函数是不可判定的。
 
-3
+要证明停机问题是不可判定的，实际上非常容易。如果你还有耐心的话，我想再进行一场简短的技术呆子头脑风暴，该证明如同之前所示的，是另一个对角化的论点。首先，假设我们有一个名为 H 的计算机程序，它可以解决停机问题。如果 H 存在，那么它会有两个输入：程序的二进制编码 B 和程序输入的二进制编码 I。
 
-(00)
+H 要做的是，如果输入为 I 时 B 会终止，返回 0，否则返回 1。它必须在有限的步骤之后返回这些值。我们不能永远地等待 H ，如果是这样的话，H 的答案就是没有用的。
 
-C
+因为 B 和 I 可以连接成一个输入比特序列，所以 H 是一个决策程序。我们将连在一起的输入记为 BI，并用 H（BI）表示「在输入 BI 上执行程序 H」。为了让 H 能够真正解决停机问题，它对任何输入都必须能够自己终止。给定任何输入 BI（或者至少是 B 为一个有效程序的任何输入 BI），它必须返回 0 或 1。
 
-(01)=¬P
+因为 B 和 I 都是比特序列，如果程序 H 存在，那么我们肯定能够计算 H（BB）。如果输入 B 以后 B 终止了，那么 H（BB）应该返回 0，否则返回 1。现在我们回顾一下之前的内容，每个程序都被编码为一个比特序列，每个比特序列都在比特序列 0,00,01,10,11,000,… 的列表中。列表必须包含每一个程序，对任何有效程序 B 输入 BB 时，该程序将终止，并返回 0 或 1。我们将列表上的第一个这样的程序称为 F1，第二个称为 F2，以此类推。我们现在可以证明，H 必须不同于所有这些 Fn 程序中的任何一个，因此 H 就不可能是对于每个输入 BB 都会终止并返回 0 或 1 的一个程序。因此，我们还是不能解决停机问题。
 
-4
+对于列表中的每个 Fn，我们构造了一个新的程序 Tn，就像前面给出的反向程序 C 一样，这是一个非常烦人的程序。它将 Fn 作为一个子程序，但它本身并没有实现一个有效可计算的函数。对于某些输入，这个程序不能终止。具体来说，给定一个有效的程序 B，Tn 要做的第一件事就是计算 Fn（BB）。根据假设，Fn（BB）程序总是能够终止并返回 0 或 1。如果 Fn（BB）返回 1，则 Tn（P）返回 0。否则，Tn 就会永远循环且不返回任何结果，这也是 Tn 让人恼火的地方。它不会终止。Tn 的伪代码看上去是这样的：
 
-(01) …
+现在我们可以证明，列表中的 Fn 都是不能解决停机问题的程序，换言之，对于每一个 n=1,2,…，Fn 实现的函数与 H 实现的函数是不同的。为此，假设我们在 Tn 自己的二进制编码上进行 Tn 计算，也就是说，我们计算 Tn（Tn），它能终止吗？如果可以，那么 H（TnTn）应该返回 0，否则它应该返回 1。那么，Fn（TnTn）会返回什么呢？我们还不知道，因为 Fn 只是实现了一个可有效计算函数的任意程序。但是，我们的确知道 Fn（TnTn）会终止并返回某种结果。
 
-其中符号 ¬ 是逻辑否定。它将 0 转换为 1，反之亦然，就像第 4 章中的非门。由此，如果 P
+假设 Fn（TnTn）返回 1，之后 Tn 终止并返回 0，由此，H（TnTn）=0。在这种情况下，Fn 和 H 是不同的，它们返回不同的值。相反，假设 Fn（TnTn）返回 0，那么 Tn 不会终止，所以 H（TnTn）=1。所以，我重申一遍，Fn 不同于 H。
 
-1
-
-(0)=0，那么 ¬P
-
-1
-
-(0)=1。
-
-这个函数是反向的，因为对于每个可能的输入，它所产生的结果都与决策程序的结果相反。现在请读者们注意，C
-
-与每一个决策程序都是不同的。它不同于 P
-
-1
-
-，因为输入为 0 时它的输出与 P
-
-1
-
-不同，输入为 00 时它的输出与 P
-
-2
-
-不同，以此类推。因此，决策函数 C
-
-不是由任何计算机程序实现的。由此我们可以得出，并不是所有的决策函数都可以由我们拥有无限内存的计算机来实现。好了，我们的证明到此结束。
-
-请注意，C
-
-类似于计算机可以实现的函数，因为它的输入是一个比特序列，输出是一个比特。这让人感觉似乎计算机应该能够实现函数 C
-
-，但是我刚刚证明了它不能。
-
-「可有效计算」函数正是由列表中的那些决策程序 P
-
-n 实现的决策函数。对于任何现代计算机来说，无论其特定的机器码结构如何，可有效计算函数的集合都是相同的，这是一个非常值得注意的事实。任何能够实现所有有效计算函数的计算机都是图灵完备的。任何现代计算机，如果我们把它们扩展到拥有无限内存的话，它们就都是图灵完备的。决策函数 C
-
-不是一个可有效计算函数，换言之，C
-
-是不可判定的。没有任何计算机程序可以做出 C
-
-所做的决策。
-
-你可能会提出不同的观点，认为 C
-
-不是一个有用的决策函数。它不过是一个有趣的例外，一个学术探讨而已。但是，我可以提出两条反驳意见。首先，我将在下一节做出说明，像 C
-
-这样的函数要比可有效计算函数多得多；其次，许多有用的决策函数已知是不可判定的。图灵给出一个例子，图灵的有用函数将图灵机的二进制编码与输入字符串连在一起，如果图灵机停机，就返回 0，否则，返回 1。一台不停机的图灵机会永远执行，而不会给出最终的答案。图灵的这个有用函数解决了所谓停机问题，其告诉我们一个程序是否会因为一个特定的输入终止。这显然是非常有用的。图灵证明了这个函数是不可判定的。
-
-要证明停机问题是不可判定的，实际上非常容易。如果你还有耐心的话，我想再进行一场简短的技术呆子头脑风暴，该证明如同之前所示的，是另一个对角化的论点。首先，假设我们有一个名为 H
-
-的计算机程序，它可以解决停机问题。如果 H
-
-存在，那么它会有两个输入：程序的二进制编码 B
-
-和程序输入的二进制编码 I
-
-。H
-
-要做的是，如果输入为 I
-
-时 B
-
-会终止，返回 0，否则返回 1。它必须在有限的步骤之后返回这些值。我们不能永远地等待 H
-
-，如果是这样的话，H
-
-的答案就是没有用的。
-
-因为 B
-
-和 I
-
-可以连接成一个输入比特序列，所以 H
-
-是一个决策程序。我们将连在一起的输入记为 BI
-
-，并用 H
-
-（BI
-
-）表示「在输入 BI
-
-上执行程序 H
-
-」。为了让 H
-
-能够真正解决停机问题，它对任何输入都必须能够自己终止。给定任何输入 BI
-
-（或者至少是 B
-
-为一个有效程序的任何输入 BI
-
-），它必须返回 0 或 1。
-
-因为 B
-
-和 I
-
-都是比特序列，如果程序 H
-
-存在，那么我们肯定能够计算 H
-
-（BB
-
-）。如果输入 B
-
-以后 B
-
-终止了，那么 H
-
-（BB
-
-）应该返回 0，否则返回 1。现在我们回顾一下之前的内容，每个程序都被编码为一个比特序列，每个比特序列都在比特序列 0,00,01,10,11,000,… 的列表中。列表必须包含每一个程序，对任何有效程序 B
-
-输入 BB
-
-时，该程序将终止，并返回 0 或 1。我们将列表上的第一个这样的程序称为 F
-
-1，第二个称为 F
-
-2，以此类推。我们现在可以证明，H
-
-必须不同于所有这些 F
-
-n
-
-程序中的任何一个，因此 H
-
-就不可能是对于每个输入 BB
-
-都会终止并返回 0 或 1 的一个程序。因此，我们还是不能解决停机问题。
-
-对于列表中的每个 F
-
-n
-
-，我们构造了一个新的程序 T
-
-n
-
-，就像前面给出的反向程序 C
-
-一样，这是一个非常烦人的程序。它将 F
-
-n
-
-作为一个子程序，但它本身并没有实现一个有效可计算的函数。对于某些输入，这个程序不能终止。具体来说，给定一个有效的程序 B
-
-，T
-
-n
-
-要做的第一件事就是计算 F
-
-n
-
-（BB
-
-）。根据假设，F
-
-n
-
-（BB
-
-）程序总是能够终止并返回 0 或 1。如果 F
-
-n
-
-（BB
-
-）返回 1，则 T
-
-n
-
-（ P
-
-）返回 0。否则，T
-
-n
-
-就会永远循环且不返回任何结果，这也是 T
-
-n
-
-让人恼火的地方。它不会终止。T
-
-n
-
-的伪代码看上去是这样的：
-
-if (F
-
-n
-
-(BB
-
-)==1) {  return
-
-0  }else
-
-{
-
-loop forever
-
-}
-
-现在我们可以证明，列表中的 F
-
-n
-
-都是不能解决停机问题的程序，换言之，对于每一个 n
-
-=1,2,…，F
-
-n
-
-实现的函数与 H
-
-实现的函数是不同的。为此，假设我们在 T
-
-n
-
-自己的二进制编码上进行 T
-
-n
-
-计算，也就是说，我们计算 T
-
-n
-
-（T
-
-n
-
-），它能终止吗？如果可以，那么 H
-
-（T
-
-n
-
-Tn）应该返回 0，否则它应该返回 1。那么，F
-
-n
-
-（T
-
-n
-
-Tn）会返回什么呢？我们还不知道，因为 F
-
-n
-
-只是实现了一个可有效计算函数的任意程序。但是，我们的确知道 F
-
-n
-
-（T
-
-n
-
-Tn）会终止并返回某种结果。
-
-假设 F
-
-n
-
-（T
-
-n
-
-Tn）返回 1，之后 T
-
-n
-
-终止并返回 0，由此，H
-
-（T
-
-n
-
-Tn）=0。在这种情况下，F
-
-n
-
-和 H
-
-是不同的，它们返回不同的值。相反，假设 F
-
-n
-
-（T
-
-n
-
-Tn）返回 0，那么 T
-
-n
-
-不会终止，所以 H
-
-（T
-
-n
-
-Tn）=1。所以，我重申一遍，F
-
-n
-
-不同于 H
-
-。
-
-因为对于所有的 n
-
-，H
-
-与 F
-
-n
-
-都不相同，所以 H
-
-并不在对于任何输入 BB
-
-都能返回 0 或 1 的程序列表之中。因此，H
-
-不可能是一个解决停机问题的程序。哇，我们躲过了另一场技术呆子的头脑风暴。
+因为对于所有的 n，H 与 Fn 都不相同，所以 H 并不在对于任何输入 BB 都能返回 0 或 1 的程序列表之中。因此，H 不可能是一个解决停机问题的程序。哇，我们躲过了另一场技术呆子的头脑风暴。
 
 停机问题的不可判定性导致的一个直接后果就是，在任何编程语言中都会存在一些有效的程序，而我们不能仅通过查看程序就知道程序要做什么。我们也无法判断程序是否会终止，并给出最终的答案。
 
@@ -674,45 +324,19 @@ n
 
 本书的一个基本主题是 —— 我们必须在头脑中坚持把地图和地域这两个概念区分开。对物理世界或计算机所做事情的「解释」都不过是一张地图。地图是一个模型，计算机程序是其自身执行的一个模型。图灵向我们展示了这个模型永远不能完全解释它所建模的事物。程序不能完全解释它自己的执行，因为你不能仅仅通过查看程序就知道它要做什么。世界就是它本来的样子，然而，我们所构建的每一个模型、每一种解释、每一张地图，以及每一个程序都是人类的发明，它们不同于它们所建模的事物。所有地图的集合也是不完整的，因为物理世界的某些属性无法被映射出来。
 
-我所说的一切都不应被解读为要破坏模型或地图的价值。但这仍然留下一个悬而未决的问题 —— 程序作为模型是否能够描述所有的过程，即使我们现在知道它们不能解释所有的过程。问题在于，我们假设的拥有无限内存的计算机是否就是通用机器。如果你定义的「计算」精确地指那些可有效计算的决策函数，我们那些拥有无限内存的计算机就可以实现所有的「计算」。但是，这个论点就变成了一个循环。我们已经把「通用」定义为「它做它所做的一切」。这就是丘奇 - 图灵论题只能被称为论题而非定理的原因。该论题简单地说明，可有效计算函数是我们可以用一台（理想的）计算机计算的函数。这一论题并没有说不存在可以实现函数 C
+我所说的一切都不应被解读为要破坏模型或地图的价值。但这仍然留下一个悬而未决的问题 —— 程序作为模型是否能够描述所有的过程，即使我们现在知道它们不能解释所有的过程。问题在于，我们假设的拥有无限内存的计算机是否就是通用机器。如果你定义的「计算」精确地指那些可有效计算的决策函数，我们那些拥有无限内存的计算机就可以实现所有的「计算」。但是，这个论点就变成了一个循环。我们已经把「通用」定义为「它做它所做的一切」。这就是丘奇 - 图灵论题只能被称为论题而非定理的原因。该论题简单地说明，可有效计算函数是我们可以用一台（理想的）计算机计算的函数。这一论题并没有说不存在可以实现函数 C 的机器。我们需要说明的是，正如在第 4 章和第 5 章中数字技术所定义的那样，一台计算机只能实现一个小的决策函数子集。
 
-的机器。我们需要说明的是，正如在第 4 章和第 5 章中数字技术所定义的那样，一台计算机只能实现一个小的决策函数子集。
-
-是否存在一台能够实现类似 C
-
-这样的函数的机器，这成了一个令人惊讶的争议性话题。后来，出现了一个关注所谓「超计算」或「超图灵计算」的群体，「超计算」或「超图灵计算」旨在研究（大多是假设的）计算非可有效计算函数的机器。例如，布卢姆等（1989）描述了一台与普通计算机相似的假想机器，只不过它操作的是实数而非上述数字数据。但是，它的执行仍然是算法式的，由此，也就从图灵机中延续了许多相同的问题和答案，例如一个程序是否会终止的问题。
+是否存在一台能够实现类似 C 这样的函数的机器，这成了一个令人惊讶的争议性话题。后来，出现了一个关注所谓「超计算」或「超图灵计算」的群体，「超计算」或「超图灵计算」旨在研究（大多是假设的）计算非可有效计算函数的机器。例如，布卢姆等（1989）描述了一台与普通计算机相似的假想机器，只不过它操作的是实数而非上述数字数据。但是，它的执行仍然是算法式的，由此，也就从图灵机中延续了许多相同的问题和答案，例如一个程序是否会终止的问题。
 
 马丁·戴维斯是一位美国数学家，他的博士论文导师是阿隆佐·丘奇。马丁非正式地揭示过超计算的思想，但是，那很可能只是一次纯粹的理论尝试（戴维斯，2006）。然而，即使是他的论点，也是在有限比特序列上的算法式操作框架中建立起来的。例如，他忽略了定时的问题，并假定计算与定时是不相关的，以及输入和输出是离散的。例如，他观察到，任何产生非图灵可计算的无限自然数序列（可以编码为有限比特序列）的机器，「无论其运行多长时间，我们只会看到有限数量的输出」（戴维斯，2006）。这假设呈现给观察者的输出是自然数（是离散的）的列表（是离散的）。这是表示计算结果的唯一方法吗？如果这是计算机呈现结果的方式，那么其他机器呢？我的洗碗机就不会以一个数字列表的方式给出计算结果。
 
-最终，我认为，有关没有机器能够实现类似于 C
-
-的函数的任何结论都是一种具有信念的行动，我将在下一章更加坚定地捍卫这一立场。就像许多具有信念的行动一样，这需要忽略反对它的证据。很明显，计算机并不是通用机器，因为它们不能做我的洗碗机能做的事情。当然，我的洗碗机虽然不是一台信息处理机，但它是一台机器。事实上，它是一个信息物理系统，因为它包括了一台与机械液压系统协同工作的计算机。用一个数字列表显示干净盘子的洗碗机并不会卖得更好，效果才是主要的。但实际上，即使是第 2 章提及的由欧姆定律和法拉第定律建模的电阻和电感，也不可能通过计算机来实现，因为它们操作的不是二进制数据，也不是以算法的方式运作。
+最终，我认为，有关没有机器能够实现类似于 C 的函数的任何结论都是一种具有信念的行动，我将在下一章更加坚定地捍卫这一立场。就像许多具有信念的行动一样，这需要忽略反对它的证据。很明显，计算机并不是通用机器，因为它们不能做我的洗碗机能做的事情。当然，我的洗碗机虽然不是一台信息处理机，但它是一台机器。事实上，它是一个信息物理系统，因为它包括了一台与机械液压系统协同工作的计算机。用一个数字列表显示干净盘子的洗碗机并不会卖得更好，效果才是主要的。但实际上，即使是第 2 章提及的由欧姆定律和法拉第定律建模的电阻和电感，也不可能通过计算机来实现，因为它们操作的不是二进制数据，也不是以算法的方式运作。
 
 尽管如此，除了莱因戈尔德和戴维斯，还有许多人认同这一通用计算的信念。事实上，这现在是一个十分强大的信念，并且拥有众多的追随者。图灵和其他许多人都推测，甚至是人类的大脑以及人类的认知，也可以通过通用图灵机来实现。正如我将会在下一章说明的，我不能证明这个猜想是错误的，但我认为这是极其不可能的。只有在一种强大的数字物理学形式成立时，这种通用计算的信念才会成立，即使这样，它也不会产生有用的模型。
 
-实际上，图灵自己描述了一台可以实现函数 C
+实际上，图灵自己描述了一台可以实现函数 C 的假想机器。他将其称为「预言机」（也译为谕示机），并假设是无法实现的。这里，我可以简单地解释一下。假设它有无限的内存，从技术角度讲，这个假设比我们为通用图灵机建立的无边界内存的假设要更为强大，因为「无边界」内存意味着我们拥有我们需要的所有内存，而「无限的」意味着我们实际上可以存储无限的比特列表。即使如此，这台新机器也被证明不是图灵机。
 
-的假想机器。他将其称为「预言机」（也译为谕示机），并假设是无法实现的。这里，我可以简单地解释一下。假设它有无限的内存，从技术角度讲，这个假设比我们为通用图灵机建立的无边界内存的假设要更为强大，因为「无边界」内存意味着我们拥有我们需要的所有内存，而「无限的」意味着我们实际上可以存储无限的比特列表。即使如此，这台新机器也被证明不是图灵机。
-
-假设该无限的内存中最初包含一个由函数 C
-
-对每个输入所生成的所有输出的表。这个内存就像一个神谕，知晓一切。也就是说，表中的第一个条目为 1 个比特，它的值为 ¬P
-
-1
-
-(0)，给出了 C
-
-（0）；第二项的值为 ¬P
-
-2
-
-(00)，给出了 C
-
-（00），以此类推。现在，给定任何输入，如 010101，机器只需要沿着表查找与该输入匹配的条目，并生成相应的输出 C
-
-（010101）即可。对于任何输入，这个过程都可以在有限的步骤内完成，所以这台机器最终总会产生一个输出，它实现了决策函数 C
-
-。事实上，只要提供一个不同的初始表，这个假想的机器就可以实现所有的决策函数，因此它比通用图灵机要更为「通用」。
+假设该无限的内存中最初包含一个由函数 C 对每个输入所生成的所有输出的表。这个内存就像一个神谕，知晓一切。也就是说，表中的第一个条目为 1 个比特，它的值为 ¬P1(0)，给出了 C（0）；第二项的值为 ¬P2(00)，给出了 C（00），以此类推。现在，给定任何输入，如 010101，机器只需要沿着表查找与该输入匹配的条目，并生成相应的输出 C（010101）即可。对于任何输入，这个过程都可以在有限的步骤内完成，所以这台机器最终总会产生一个输出，它实现了决策函数 C。事实上，只要提供一个不同的初始表，这个假想的机器就可以实现所有的决策函数，因此它比通用图灵机要更为「通用」。
 
 之前我已经阐明，但在这里还需要重申一下，图灵从未期望「通用图灵机」中的「通用」一词是指这些机器可以做任何事情。图灵的机器是通用的，因为定义了它所计算的函数的程序是机器输入的一部分。相比之下，非通用图灵机是不可编程的，它只计算一个函数，并且该函数是被内置到机器中的。所以图灵的「通用」意味着机器可以被编程用来计算任何的可有效计算函数。如果将「通用」解释为无所不能，就大错特错了。
 
@@ -720,11 +344,7 @@ n
 
 要得出不可能存在这样一台机器的结论，我就必须假设，从物理上不可能构建一个能够「记住」任何无限比特序列的事物。是这样吗？只有接受数字物理学，我才能得出这是不可能的这一结论。
 
-假设我想要记住 π
-
-这个数字。在二进制编码中，这需要无数的比特。假设我可以切割一根钢条，使它的长度正好是 π
-
-米。1799 年，一根白金杆被放置在巴黎的国家档案馆中，多年来，它已成为一米这一长度单位的标准定义。因此，可以这么说，用杆的长度来记忆一个值并不是遥不可及的事情。我刚刚不就建立了一个存储无限信息比特的内存吗？
+假设我想要记住 π 这个数字。在二进制编码中，这需要无数的比特。假设我可以切割一根钢条，使它的长度正好是 π 米。1799 年，一根白金杆被放置在巴黎的国家档案馆中，多年来，它已成为一米这一长度单位的标准定义。因此，可以这么说，用杆的长度来记忆一个值并不是遥不可及的事情。我刚刚不就建立了一个存储无限信息比特的内存吗？
 
 当然，这个内存会让我遇到一些实际的物理问题。金属杆的长度会随温度的变化（显然，以及重力波的通过）而发生改变。我需要一个「一米」表示什么的清晰和精确规格来解释杆的长度为「π
 
@@ -734,9 +354,7 @@ n
 
 这种信息并不以比特的形式来表示。那么比特用在哪里呢？换言之，计算机中的比特在哪里？信息概念的一个关键前提是，信息的存储形式并不重要。这就是为什么信息可以被传递和复制。尽管信息的物理形式在接收者那里是明显不同的，但传递和复制信息的想法取决于这样一种假设，即接收者与发出者拥有相同的信息。现代计算机的存储器以电荷或磁能的方式存储比特，利用第 4 章的技术将那些无序的物理现象抽象为清晰的数字模型。
 
-当信息从一台计算机传送到另一台计算机时，信息的存储形式可能会发生改变，例如从电荷变成磁极化。在设计计算机存储器时，工程师无须假设底层的物理过程是离散的。那么，是我用金属杆存储数字 π
-
-的方法出了什么问题吗？什么问题都没有。如果我坚持其形式就是一个比特列表，那么我已经假定了这样一个结论 —— 这样的信息存储是不可能的。
+当信息从一台计算机传送到另一台计算机时，信息的存储形式可能会发生改变，例如从电荷变成磁极化。在设计计算机存储器时，工程师无须假设底层的物理过程是离散的。那么，是我用金属杆存储数字 π 的方法出了什么问题吗？什么问题都没有。如果我坚持其形式就是一个比特列表，那么我已经假定了这样一个结论 —— 这样的信息存储是不可能的。
 
 一位敏锐的读者可以利用许多悬而未决的问题来挑战我的立场。例如，如果你要求让某物被认为是「信息」，那么我们必须能够传递或复制它。这样，我们就得面对一个根本性的问题。香农的信道容量定理，即方程（4）告诉我们，如果在传输或复制信息的信道中存在任何噪声，那么只有有限比特数量的信息能够通过。基于这个观察，你可以将「信息」定义为仅包括可以用有限比特来表示的事物。这要求不能使用连续熵（第 7.4 节）作为信息的度量。
 
@@ -746,7 +364,7 @@ n
 
 ### 8.3 Cardinality
 
-A mathematician uses the term「cardinality」for the size of a set. 5 A set with two items, for example, has cardinality two. This rather trivial concept becomes interesting only when we consider sets that have an infinite number of items, such as the set of all computer programs.
+A mathematician uses the term「cardinality」for the size of a set. [5] A set with two items, for example, has cardinality two. This rather trivial concept becomes interesting only when we consider sets that have an infinite number of items, such as the set of all computer programs.
 
 In the previous section, I showed that there is at least one decision function that is not implementable by any computer program. Using Cantor's results, we can show more strongly that an infinite number of decision functions are not realizable by any computer program. Even more strongly, we can show that vastly more decision functions cannot be realized than decision functions that can be realized by a computer program.
 
@@ -754,7 +372,7 @@ This result depends on Cantor's observation that not all infinite sets have the 
 
 There are clearly a lot of them, an infinite number, in fact, as indicated by the ellipsis「· · · ,」which can be read「and so on.」This set is called the set of「natural numbers」presumably because someone thought that negative and fractional numbers were somehow unnatural.
 
-Consider now the set of all「real numbers,」commonly given the symbol ℝ . 6 This set includes all the elements of ℕ but also many more numbers. It includes negative numbers, fractions, and irrational numbers (numbers such as π that cannot be represented using fractions). Clearly ℝ is a bigger set than ℕ . But how much bigger?
+Consider now the set of all「real numbers,」commonly given the symbol ℝ. [6] This set includes all the elements of ℕ but also many more numbers. It includes negative numbers, fractions, and irrational numbers (numbers such as π that cannot be represented using fractions). Clearly ℝ is a bigger set than ℕ . But how much bigger?
 
 First, we need to be clear on what we mean by the size of an infinite set. In Cantor's notion of the sizes of infinite sets, two infinite sets A and B are said to have the same size if we can define a one-to-one correspondence between the elements of the sets. A one-to-one correspondence means that for every element of A , we can assign a unique element of B to be its partner. For example, consider the set ℕ and another set = {−1, −2, −3, · · · }. We can establish a one-to-one correspondence as follows:
 
@@ -806,13 +424,21 @@ If you now follow the arrows in the table, you can see how to「count」the rati
 
 A square array like the table above, if it is finite, is equal in size to the square of the number of rows and columns. Ignoring the ellipsis · · · in the table above, there are three rows and three columns, for a total of nine entries, the square of three. Letting the table grow, which is what is implied by the ellipsis, the size of the table will become n 2 , where n is the number of rows and columns. As the table grows to infinity, the number of rows and columns will become ℵ 0 , suggesting that the size of the table should be . However, because the entries in the table are countable, . Thus, intuitively, the size of ℝ and the size of the set of decision functions is larger than the square of ℵ 0 . Put another way, an uncountable set is not only bigger than two infinite sets with size ℵ 0 combined, but it is bigger than the combination of a countably infinite number of countably infinite sets! In fact, it's bigger than any finite power of ℵ 0 . Hence, the set of decision functions really is vastly bigger than ℵ 0 , and there are even bigger sets that are vastly bigger than the set of decision functions.
 
-An obvious question arises: is there any set whose size lies between ℵ 0 and the set of decision functions? Mathematicians usually assume that no such set exists. This hypothesis is called the「continuum hypothesis.」It is unproven and in fact cannot be proven. It must be assumed. In 1939, the Austrian-American mathematician Kurt Gödel proved that the continuum hypothesis cannot be disproved using the accepted axioms of set theory. 7 In 1963, the American mathematician Paul Cohen proved that the continuum hypothesis also cannot be proved from these same axioms. The continuum hypothesis is therefore independent of the axioms of set theory. But regardless of whether we assume the continuum hypothesis, it remains true that any uncountable set has vastly more elements than any countable set.
+An obvious question arises: is there any set whose size lies between ℵ 0 and the set of decision functions? Mathematicians usually assume that no such set exists. This hypothesis is called the「continuum hypothesis.」It is unproven and in fact cannot be proven. It must be assumed. In 1939, the Austrian-American mathematician Kurt Gödel proved that the continuum hypothesis cannot be disproved using the accepted axioms of set theory. [7] In 1963, the American mathematician Paul Cohen proved that the continuum hypothesis also cannot be proved from these same axioms. The continuum hypothesis is therefore independent of the axioms of set theory. But regardless of whether we assume the continuum hypothesis, it remains true that any uncountable set has vastly more elements than any countable set.
 
 The proof I gave above that computers cannot solve all decision functions offered just one counterexample, a single decision function C that could not be implemented by any program. The same argument proves that no countable set of programs can realize all decision functions. So this shows that the size of the set of decision functions is strictly larger than the set of programs. The set of decision functions is uncountable and therefore vastly larger than the set of decision functions that can be computed by any computer.
 
-Turing's result, that decision functions exist that are not effectively computable, is one of several results emerging around the same time that crushed the optimism of the previous century. 8 In the face of such results, particularly when viewed through the lens of cardinality, I have to conclude that it is extremely improbable that every interesting information-processing machine is somehow a piece of software. To believe something so improbable in the face of such weak evidence requires a great deal of faith. In chapter 11 , I will show how to systematically use evidence to update our beliefs (using Bayesian reasoning) and why an improbable hypothesis demands stronger evidence.
+Turing's result, that decision functions exist that are not effectively computable, is one of several results emerging around the same time that crushed the optimism of the previous century. [8] In the face of such results, particularly when viewed through the lens of cardinality, I have to conclude that it is extremely improbable that every interesting information-processing machine is somehow a piece of software. To believe something so improbable in the face of such weak evidence requires a great deal of faith. In chapter 11 , I will show how to systematically use evidence to update our beliefs (using Bayesian reasoning) and why an improbable hypothesis demands stronger evidence.
 
 Fortunately, engineers are not limited to working with software. As described in chapter 6 , cyberphysical systems form a partnership between software and other nonsoftware physical systems. These combined machines offer a vast and largely unexplored landscape for creative designers and inventors. Even more interesting, the partnership between computers and humans has vastly more potential than either alone, as I will argue in the next chapter.
+
+[5] I recommend the wonderfully readable book on this subject by Raymond Smullyan called Satan, Cantor & Infinity (Smullyan, 1992). I first learned from this book that Cantor was trying to show that all infinite sets have the same size when he discovered that they did not.
+
+[6] Although the concept of real numbers is quite old, appearing in the ancient Greek work of Archimedes and Eudoxus, who was a student of Plato's, the modern formalization of the concept is relatively recent, dating to the nineteenth-century work of Weierstrass and Dedekind. It is actually quite a subtle concept. According to Penrose (1989),「to the ancient Greeks, and to Eudoxos in particular, ‘real' numbers were things to be extracted from the geometry of physical space. Now we prefer to think of the real numbers as logically more primitive than geometry.」
+
+[7] Specifically, using the axioms of Zermelo-Fraenkel set theory, from which much of mathematics can be derived.
+
+[8] For a wonderful account of this optimism and its downfall, see Kline (1980).
 
 8.3 势
 
@@ -822,21 +448,9 @@ Fortunately, engineers are not limited to working with software. As described in
 
 这个结果主要依赖于康托尔的观察 —— 并非所有无限集合的大小都是相同的。我们用直观的方法表达他的观点，考虑所有的非负整数集合，N={0,1,2,3,…}。符号 N 是这些整数的无限集合的缩写。很明显，这个集合里的整数有很多，实际上是无穷多的。正如集合里的省略号所表示的，其可被读作「等等」。这个集合被称为「自然数」集合，大概是因为有人认为负数和分数有些不太自然吧。
 
-现在我们来考虑所有「实数」的集合，通常它的符号记为 R。这个集合包含 N 的所有元素，但也包含更多的数字。它包括负数、分数和无理数（指不能用分数表示的数字，如 π
+现在我们来考虑所有「实数」的集合，通常它的符号记为 R。这个集合包含 N 的所有元素，但也包含更多的数字。它包括负数、分数和无理数（指不能用分数表示的数字，如 π）。显然，R 是一个比 N 更大的集合。但它到底大了多少呢？
 
-）。显然，R 是一个比 N 更大的集合。但它到底大了多少呢？
-
-首先，我们需要弄清楚无限集合的大小是什么意思。在康托尔关于无限集合大小的概念中，如果我们可以在 A
-
-和 B
-
-两个无限集合的元素之间定义一个一一对应的关系，则称这两个无限集合 A
-
-和 B
-
-具有相同的大小。一一对应的关系意味着，对于 A
-
-中的每一个元素，我们可以在 B 中指定一个唯一的元素作为它的对应伙伴。例如，考虑集合 N 和另一个集合 M={-1，-2，-3，…}。我们可以建立起一个一一对应的关系，如下所示：
+首先，我们需要弄清楚无限集合的大小是什么意思。在康托尔关于无限集合大小的概念中，如果我们可以在 A 和 B 两个无限集合的元素之间定义一个一一对应的关系，则称这两个无限集合 A 和 B 具有相同的大小。一一对应的关系意味着，对于 A 中的每一个元素，我们可以在 B 中指定一个唯一的元素作为它的对应伙伴。例如，考虑集合 N 和另一个集合 M={-1，-2，-3，…}。我们可以建立起一个一一对应的关系，如下所示：
 
 一个集合的每一个元素在另一个集合中都有唯一的伙伴。康托尔的观点认为，如果是这样的话，我们就可以宣称这两个集合具有相同的大小。
 
@@ -844,41 +458,21 @@ Fortunately, engineers are not limited to working with software. As described in
 
 尽管第二个集合省略了第一个集合的一半元素，但这两个集合的每个元素都一一对应，因此这两个集合有相同的大小。这种奇异性是无限集合的一个性质。它们的大小与它们自己的许多子集相同。
 
-康托尔用符号ℵ0
+康托尔用符号 ℵ0 表示集合 N 的大小，其中ℵ是希伯来字母表的第一个字母 aleph。下标 0 表示这是已知的最小无限集的大小。数学家将 ℵ0 读为「alephnull」。
 
-表示集合 N 的大小，其中ℵ是希伯来字母表的第一个字母 aleph。下标 0 表示这是已知的最小无限集的大小。数学家将ℵ0
+有趣的是，许多集合大小都为 ℵ0，包括自然数 N、整数，甚至有理数。上一节列出的二进制序列的集合，我们称为 B={0, 1, 00, 01,10, 11, 000, …}，其大小也为 ℵ0。希望你能明白如何在这个集合和 N 之间建立一个一一对应关系。
 
-读为「alephnull」。
+一个大小为 ℵ0 的集合被称为「可数无限集合」，因为它与计数数字 {1, 2, 3, 4, …} 的集合是一一对应的。因此，我们可以对集合里的元素进行「计数」，当然，我们最终会因为它的无限规模而厌倦这样做。
 
-有趣的是，许多集合大小都为ℵ0
+对于任何大小为 ℵ0 的集合，该集合的每个无限子集合的大小也为 ℵ0。因此，所有计算机程序集合的大小都是 ℵ0。这是因为每个计算机程序都在集合 B 中，而这样的程序可能是无限的。
 
-，包括自然数 N、整数，甚至有理数。上一节列出的二进制序列的集合，我们称为 B={0, 1, 00, 01,10, 11, 000, …}，其大小也为ℵ0
-
-。希望你能明白如何在这个集合和 N 之间建立一个一一对应关系。
-
-一个大小为ℵ0
-
-的集合被称为「可数无限集合」，因为它与计数数字 {1, 2, 3, 4, …} 的集合是一一对应的。因此，我们可以对集合里的元素进行「计数」，当然，我们最终会因为它的无限规模而厌倦这样做。
-
-对于任何大小为ℵ0
-
-的集合，该集合的每个无限子集合的大小也为ℵ0
-
-。因此，所有计算机程序集合的大小都是ℵ0
-
-。这是因为每个计算机程序都在集合 B 中，而这样的程序可能是无限的。
-
-现在事情变得越来越有趣了。我在上一节借鉴了康托尔的对角化方法，他指出存在无数个比ℵ0
-
-大得多的集合。康托尔还特别证明了实数集合 R 与自然数集合 N 之间不存在一一对应关系。他使用了一个对角参数，类似于我在上一节中所使用的。数学家都说，集合合 R 是「不可数的」。此外，还有更大的无限集合，比如将实数映射到实数的函数集合。
+现在事情变得越来越有趣了。我在上一节借鉴了康托尔的对角化方法，他指出存在无数个比 ℵ0 大得多的集合。康托尔还特别证明了实数集合 R 与自然数集合 N 之间不存在一一对应关系。他使用了一个对角参数，类似于我在上一节中所使用的。数学家都说，集合合 R 是「不可数的」。此外，还有更大的无限集合，比如将实数映射到实数的函数集合。
 
 除了 R，还有许多不可数的集合。实际上，上一节讨论的决策函数集合也是不可数的，它的大小和 R 一样。为了证明这一点，我们可以在实数集合和决策函数集合之间建立起一一对应关系。
 
 与集合 N 一样，集合 R 的真子集可能与 R 具有相同的大小。例如，与 0 到 1 之间的实数集合的大小就是相同的。
 
-一个不可数集合严格大于大小为ℵ0
-
-的集合。由这一结果可知，并不是所有的决策函数都可以由计算机程序来实现，尽管决策函数只涉及二进制数。因为决策函数的集合是不可数的，而计算机程序的集合是可数的，所以后者要小得多。如果决策函数比可判定的函数多，计算机就不是通用的信息处理机。
+一个不可数集合严格大于大小为 ℵ0 的集合。由这一结果可知，并不是所有的决策函数都可以由计算机程序来实现，尽管决策函数只涉及二进制数。因为决策函数的集合是不可数的，而计算机程序的集合是可数的，所以后者要小得多。如果决策函数比可判定的函数多，计算机就不是通用的信息处理机。
 
 现在请大家注意，计算机程序也不能实现任何处理实数的机器。因此，如果我们想要将计算机看作通用的信息处理机，那么，我们必须从我们的「信息」概念中排除实数。这一处理方式实在太过激进了，可以说几乎违背离了数学、科学以及工程领域的所有传统。我们不能轻率地接受这一处理方式。
 
@@ -898,21 +492,7 @@ Fortunately, engineers are not limited to working with software. As described in
 
 的两倍以上。但它甚至比那还要大得多。
 
-实际上，有理数集合也是可数无限的集合。有理数 r
-
-是可以写成两个整数 n
-
-和 d
-
-（例如，n
-
-/d
-
-）之比的任何数。为了更容易找到这种对应关系，我们将 n
-
-和 d
-
-限定为正数。然后我们可以构造一个包含所有可能的有理数的表，如下所示：
+实际上，有理数集合也是可数无限的集合。有理数 r 是可以写成两个整数 n 和 d（例如，n/d）之比的任何数。为了更容易找到这种对应关系，我们将 n 和 d 限定为正数。然后我们可以构造一个包含所有可能的有理数的表，如下所示：
 
 此处的省略号指的是在水平、垂直方向上一直延续这个模式。这个表包含了比有理数更多的条目，因为有一些是冗余的。例如，对角线元素，1/1、2/2、3/3 等等，都表示相同的有理数 1。但是，每个正有理数都会在这张表中的某个地方。
 
@@ -920,41 +500,13 @@ Fortunately, engineers are not limited to working with software. As described in
 
 如果你现在沿着表中箭头的路径进行观察，就可以看到如何对有理数进行「计数」，并按照定义良好的顺序命中每个有理数。沿着箭头的路径并在前进的过程中消除任何冗余，就可以在所有正有理数集合和集合 N 之间建立起元素的一一对应关系。从左上角开始，将 1/1 与自然数 0 进行关联。沿着第一个箭头，将 2/1 与自然数 1 关联起来。沿着第二个箭头，将 1/2 与自然数 2 相关联。继续下去，我们就可以把每个正有理数和一个唯一的自然数关联起来。然后，用我们证明集合 Z 是可数的相同方法，我们就可以证明所有有理数的集合，包括正的和负的，也都是可数的。
 
-一个与上面的表类似的正方形阵列，如果它是有限的，那么它的大小等于行数或列数的平方。如果我们忽略上表中省略号省略的部分，表中有 3 行 3 列，共有 9 个条目，是 3 列的平方。让这张表不断增长，也就是省略号所表示的，表的大小将变成 n
+一个与上面的表类似的正方形阵列，如果它是有限的，那么它的大小等于行数或列数的平方。如果我们忽略上表中省略号省略的部分，表中有 3 行 3 列，共有 9 个条目，是 3 列的平方。让这张表不断增长，也就是省略号所表示的，表的大小将变成 n2，其中 n 是行数和列数。当表增长到无穷大时，行数和列数将变成 ℵ0，这意味着表的大小应该是 ℵ20。
 
-2
+但是，由于表中的条目是可数的，所以 ℵ20=ℵ0。因此，直观地看，集合 R 的大小和决策函数集合的大小都大于 ℵ0 的平方。换句话说，一个不可数集合不仅大于两个大小为 ℵ0 的无限集合的总和，而且大于一个可数无限数量的可数无限集合的组合！事实上，它比 ℵ0 的任何有限次幂都要大。因此，决策函数的集合实际上远远大于 ℵ0，而且存在比决策函数集合大得多的更大集合。
 
-，其中 n
+一个显而易见的问题出现了：是否存在一个大小介于 ℵ0 和决策函数集合之间的集合呢？数学家通常假设不存在这样的集合。这个假设被称为「连续统假设」，它是未经证明的，事实上也无法被证明。它必须是被假设的。1939 年，奥地利裔美国数学家库尔特·哥德尔证明了连续统假说不能用集合论中的公理来证伪。1963 年，美国数学家保罗·寇恩证明，连续统假说也不能以这些公理加以证明。因此，连续统假说与集合论公理无关。但不管我们是否假设连续统假说，任何不可数集合都比任何可数集合拥有更多的元素，这是一个不争的事实。
 
-是行数和列数。当表增长到无穷大时，行数和列数将变成ℵ0
-
-，这意味着表的大小应该是ℵ2
-
-0
-
-。但是，由于表中的条目是可数的，所以ℵ2
-
-0
-
-=ℵ0
-
-。因此，直观地看，集合 R 的大小和决策函数集合的大小都大于ℵ0
-
-的平方。换句话说，一个不可数集合不仅大于两个大小为ℵ0
-
-的无限集合的总和，而且大于一个可数无限数量的可数无限集合的组合！事实上，它比ℵ0
-
-的任何有限次幂都要大。因此，决策函数的集合实际上远远大于ℵ0
-
-，而且存在比决策函数集合大得多的更大集合。
-
-一个显而易见的问题出现了：是否存在一个大小介于ℵ0
-
-和决策函数集合之间的集合呢？数学家通常假设不存在这样的集合。这个假设被称为「连续统假设」，它是未经证明的，事实上也无法被证明。它必须是被假设的。1939 年，奥地利裔美国数学家库尔特·哥德尔证明了连续统假说不能用集合论中的公理来证伪。1963 年，美国数学家保罗·寇恩证明，连续统假说也不能以这些公理加以证明。因此，连续统假说与集合论公理无关。但不管我们是否假设连续统假说，任何不可数集合都比任何可数集合拥有更多的元素，这是一个不争的事实。
-
-我在上面给出的关于计算机不能解决所有决策函数的证明只是给出一个反例，一个不能被任何程序实现的决策函数 C
-
-。同样的论据证明，没有一个可数的机器集合能够实现所有的决策函数。这表明，决策函数集合的大小严格大于任何可数集合。决策函数集合是不可数的，因此远大于可被任何计算机计算的决策函数集合。
+我在上面给出的关于计算机不能解决所有决策函数的证明只是给出一个反例，一个不能被任何程序实现的决策函数 C。同样的论据证明，没有一个可数的机器集合能够实现所有的决策函数。这表明，决策函数集合的大小严格大于任何可数集合。决策函数集合是不可数的，因此远大于可被任何计算机计算的决策函数集合。
 
 图灵的结论 —— 存在无法有效计算的决策函数，是几个同时出现的研究结论之一，这些结论粉碎了前一个世纪的乐观情绪。面对这样的结果，尤其是从势的角度来看，我不得不得出结论，从某种程度上讲，每台有趣的信息处理机都不可能是一种软件。然而，面对如此微弱的证据，我们需要极大的信心才能相信这样的结论。
 
@@ -988,7 +540,7 @@ In a still stronger form, digital physics assumes that the physical world is ess
 
 In the strongest form that I have seen, digital physics asserts that the physical world is a simulation carried out by a computer.
 
-In my opinion, these philosophies are confusing the map with the territory. Are they talking about models of reality or about reality? 9
+In my opinion, these philosophies are confusing the map with the territory. Are they talking about models of reality or about reality? [9]
 
 A supporter of at least the weaker forms of digital physics was the Mexico-born Israeli-American theoretical physicist Jacob Bekenstein, who was a professor at the Ben-Gurion University and then the Hebrew University in Israel until his unexpected death in 2015. Bekenstein and his colleagues developed what is now called the「Bekenstein bound,」an upper limit on the entropy that can be contained within a given finite volume of space that has a finite amount of energy (see Freiberger [2014] for a short readable summary). If we assume that the form of entropy that Bekenstein considered is discrete entropy, explained in the previous chapter, then the Bekenstein bound shows that the amount of information, measured in bits, that can be stored in a given volume of space is limited. Equivalently, the bound shows that anything occupying a given volume of space can be completely described, down to the quantum level, with a finite number of bits. I will call this the「digital interpretation of Bekenstein's bound.」Under this interpretation, the first form of digital physics listed previously follows immediately. An alternative nondigital interpretation of the Bekenstein bound using continuous entropy appears to be consistent with Bekenstein's original formulation (Bekenstein, 1973), but this is not the interpretation adopted by most physicists today.
 
@@ -1056,6 +608,8 @@ Piccinini, like me, defends this idea using the notion of cardinality. There jus
 
 Digital physics cannot be disproved, assuming all measurements have noise, so this issue may never be resolved. It will probably always remain a matter of faith. My faith is that nature is more likely to be richer in possibilities than poorer. The tiny cardinality of a digital universe just seems too small to me.
 
+[9] The existence of a reality independent of humans is not a universally accepted truth. Philosophers call this assumption「realism,」and for the purposes of this argument, it is a position I will adopt.
+
 8.4 数字物理学？
 
 数字物理学假定，自然界中不存在也不可能存在一组可能性的连续范围，任何系统（包括整个宇宙在内）所拥有的可能状态总数是有限的，并且物理系统在本质上等同于软件。从库恩的观点来看，数字物理学是一种范式转换。我希望我自己不是那些为了让这种范式得到普遍接受而必须最终死去的反对者之一。
@@ -1076,29 +630,19 @@ Digital physics cannot be disproved, assuming all measurements have noise, so th
 
 数字物理学有好几个变体，其中的一些有些奇怪。如下所述，以从弱到强的顺序给出了这些变体。
 
-1. 在其最弱的形式中（最小假设），数字物理学断言，自然界中任何具有有限能量和体积的系统的可能状态数都是有限的。如果是这样的话，那么任何该类系统的状态都可以用有限数量的比特进行完全编码。
+1、在其最弱的形式中（最小假设），数字物理学断言，自然界中任何具有有限能量和体积的系统的可能状态数都是有限的。如果是这样的话，那么任何该类系统的状态都可以用有限数量的比特进行完全编码。
 
-2. 在一种稍强一些的形式中，数字物理学断言，物理世界本质上是信息化的。每一个过程都是一次信息转换，世界上的每一个实体物本质上都是一束信息。其进一步断言，信息可以用比特来度量。
+2、在一种稍强一些的形式中，数字物理学断言，物理世界本质上是信息化的。每一个过程都是一次信息转换，世界上的每一个实体物本质上都是一束信息。其进一步断言，信息可以用比特来度量。
 
-3. 在一种强大的形式中，数字物理学假设每个物理过程在本质上都是一个计算，原则上可以用软件来表示。这就要求这些过程在本质上是算法式的，以逐步运算的方式进行处理。
+3、在一种强大的形式中，数字物理学假设每个物理过程在本质上都是一个计算，原则上可以用软件来表示。这就要求这些过程在本质上是算法式的，以逐步运算的方式进行处理。
 
-4. 在一个更强的形式中，数字物理学假设物理世界本质上就是一台计算机。
+4、在一个更强的形式中，数字物理学假设物理世界本质上就是一台计算机。
 
-5. 在我所见过的最强大的形式中，数字物理学断言物理世界是由计算机进行的模拟。
+5、在我所见过的最强大的形式中，数字物理学断言物理世界是由计算机进行的模拟。
 
 在我看来，上述这些观点都把地图和地域混为一谈了。它们谈论的是现实的模型还是现实本身呢？墨西哥以色列裔美国理论物理学家雅各布·贝肯斯坦至少是上述第二种数字物理学观点的支持者。他曾是以色列本·古里安大学和希伯来大学的教授，直到 2015 年意外去世。贝肯斯坦和他的同事提出了现在被称为「贝肯斯坦上限」的概念，这是在具有有限能量的有限体积空间内所能包含的熵的上限［参见弗赖伯格（2014）简短易读的摘要］。如果我们假设贝肯斯坦所考虑的熵的形式是离散熵（在前一章已做解释），那么贝肯斯坦上限表明，在给定体积的空间中，可以存储的以比特为单位的信息量是有限的。换言之，这个上限表明，任何占据给定空间的事物都可以用有限的比特数进行完全描述，直到量子级别。我将这称为「对贝肯斯坦上限的数字化解释」。根据这一解释，之前列出的第一种数字物理学形式就会随之成立。另一种基于连续熵对贝肯斯坦上限的非数字化解释似乎与贝肯斯坦最初的公式相一致（贝肯斯坦，1973），但这并非今天大多数物理学家普遍采用的解释。
 
-那么，在这个数字化的解释下，在一个给定的空间里我们到底能存储多少比特呢？詹姆斯·雷德福德声称，现代物理学证实了上帝的存在。他在 2012 年发表的一篇论文中利用贝肯斯坦上限来计算编码一个人所需要的比特数（雷德福德，2012:126）。他的结论是，编码一个成年男性需要 2×1045
-
-比特。我的笔记本电脑硬盘可以储存 1T 字节，或者 1012
-
-字节或大约 1013
-
-字节。因此，我需要 1032
-
-台这样的笔记本电脑才能储存下这么多的比特。下面这串数字就是 1032
-
-：
+那么，在这个数字化的解释下，在一个给定的空间里我们到底能存储多少比特呢？詹姆斯·雷德福德声称，现代物理学证实了上帝的存在。他在 2012 年发表的一篇论文中利用贝肯斯坦上限来计算编码一个人所需要的比特数（雷德福德，2012:126）。他的结论是，编码一个成年男性需要 2×1045 比特。我的笔记本电脑硬盘可以储存 1T 字节，或者 1012 字节或大约 1013 字节。因此，我需要 1032 台这样的笔记本电脑才能储存下这么多的比特。下面这串数字就是 1032：
 
 100 000 000 000 000 000 000 000 000 000 000
 
@@ -1106,41 +650,19 @@ Digital physics cannot be disproved, assuming all measurements have noise, so th
 
 尽管对贝肯斯坦上限的数字化解释似乎在当前的物理学家中得到了广泛的认可，但是我仍然对其持严重怀疑的态度，这是一个公认的少数人的立场。我并不怀疑贝肯斯坦的结论，即一个空间内的熵是受限制的和有限的，我所怀疑的是，贝肯斯坦的熵是离散熵，因此，其代表了可以用比特进行编码的信息。贝肯斯坦的论据似乎与 7.4 节使用连续熵的论据同样有效。然而，对连续熵的数字化解释是错误的。尽管系统中的连续熵确实可以对信息量进行量化，但它并不能告诉我们究竟需要多少比特才能编码该系统。如果我们使用连续熵，系统就不能以有限的比特进行编码。然而，这个系统是有信息的，而且它的信息量可以和其他系统的量进行比较。
 
-路德维希·玻尔兹曼和他同时代的人用宏观系统定义热力学的熵，例如气体的体积，并用公式 k
-
-log(M
-
-)［方程（32）］进行计算。通常的解释是：在观察由气体中单个分子所组成的微观系统的宏观状态（体积、压力、质量和温度）时，该微观系统所处的状态数就是 M
-
-。比例常数 k
-
-被称作玻尔兹曼常数，它只是改变了我们用来度量熵的单位。这一解释假定处于这 M
-
-个状态之一的可能性是相同的，并且这种状态的数量是有限的。为了将其解释为等同于离散熵中的一组比特，我们必须假定分子只有 M
-
-个有限数量的可能状态。这种假设是数字物理学的一种形式。因此，要将热力学熵解释为以比特度量的信息，我们就必须首先假设数字物理学是正确的。然后，再用贝肯斯坦上限证明数字物理学是一个逻辑错误。也许还有其他理由可以解释系统的状态数是有限的，但是绝不可能包括熵是有限的这个理由。
+路德维希·玻尔兹曼和他同时代的人用宏观系统定义热力学的熵，例如气体的体积，并用公式 klog(M)［方程（32）］进行计算。通常的解释是：在观察由气体中单个分子所组成的微观系统的宏观状态（体积、压力、质量和温度）时，该微观系统所处的状态数就是 M。比例常数 k 被称作玻尔兹曼常数，它只是改变了我们用来度量熵的单位。这一解释假定处于这 M 个状态之一的可能性是相同的，并且这种状态的数量是有限的。为了将其解释为等同于离散熵中的一组比特，我们必须假定分子只有 M 个有限数量的可能状态。这种假设是数字物理学的一种形式。因此，要将热力学熵解释为以比特度量的信息，我们就必须首先假设数字物理学是正确的。然后，再用贝肯斯坦上限证明数字物理学是一个逻辑错误。也许还有其他理由可以解释系统的状态数是有限的，但是绝不可能包括熵是有限的这个理由。
 
 这里的错误很微妙，但也很重要。玻尔兹曼不可能知道微系统有多少可能的状态与所观察到的宏观状态一致。玻尔兹曼希望通过分子的位置和速度（或动量）模拟分子的状态。在玻尔兹曼的时代，这些都是连续的随机量，所以熵应该被更恰当地解释为连续熵。今天，可能的状态数被认为是由量子力学决定的，而量子力学在玻尔兹曼的时代还没有发展形成。另外一种解释是，M
 
-是相对自由度的代名词。在量子力学出现之前，经典热力学常用一个与给定气体体积中的分子数成正比的数来代替 M
-
-。在这种情况下，熵的值具有一个任意的偏移量，然而，只要对任意两个熵使用相同的偏移量，对两个熵的比较仍然有效。但此时，熵的绝对值失去了任何物理意义。
+是相对自由度的代名词。在量子力学出现之前，经典热力学常用一个与给定气体体积中的分子数成正比的数来代替 M。在这种情况下，熵的值具有一个任意的偏移量，然而，只要对任意两个熵使用相同的偏移量，对两个熵的比较仍然有效。但此时，熵的绝对值失去了任何物理意义。
 
 在玻尔兹曼之后，物理学家一直对计算熵的公式进行改进，考虑了更多的基础物理学知识，包括量子力学效应，从而获得了更直接的物理意义。其中一个例子就是 20 世纪早期推导出的萨克尔 — 泰特洛德方程，用以计算理想气体中的熵。该方程同时具有经典力学和量子力学的特性。这里，我就不再过多解释了，如果读者对此感兴趣，可以去维基百科查阅相关资料。然而，这个方程必须是对连续熵的测量，而非离散熵。这是因为，该方程并没有限定熵一定是正值，而且当气温达到绝对零度时，该方程将熵的值设定为负无穷大。物理学家也许会告诉你，这个方程在低温下就失效了，原因在于，用于推导这个公式的近似值不再是精确的。这也许是对的，但如果这是一个连续熵，那么将它理解为在任意温度状态下的信息的比特数就是错误的。这一情形凸显了明确讨论的熵是离散熵还是连续熵所面临的困难。这两种熵是不可比较的。
 
-实际上，如果一个物理系统具有无限多与观测相一致的可能状态，且这些状态的概率密度函数是已知的，那么我们为这个系统定义一个连续熵，而且它的值确实具有物理意义，如 7.4 节所述。就像离散熵一样，这种熵可以量化信息量，但是信息不能编码为比特。正如要编码一个实数（即便这个数是有限的）一样，这也会需要无限数量的比特。进一步来说，假如概率密度函数是均匀的，如图 7.1 所示，那么连续熵的表达形式就一定是 k
-
-log2(M
-
-)，其中 M
-
-是概率密度函数所具有的高度。因此，即使状态数不是有限的，只要所有的状态的可能性相同，玻尔兹曼公式就是适用的。
+实际上，如果一个物理系统具有无限多与观测相一致的可能状态，且这些状态的概率密度函数是已知的，那么我们为这个系统定义一个连续熵，而且它的值确实具有物理意义，如 7.4 节所述。就像离散熵一样，这种熵可以量化信息量，但是信息不能编码为比特。正如要编码一个实数（即便这个数是有限的）一样，这也会需要无限数量的比特。进一步来说，假如概率密度函数是均匀的，如图 7.1 所示，那么连续熵的表达形式就一定是 klog2(M)，其中 M 是概率密度函数所具有的高度。因此，即使状态数不是有限的，只要所有的状态的可能性相同，玻尔兹曼公式就是适用的。
 
 熵是热力学第二定律的核心概念，其表明熵在任何系统中都将增大（或者至少不会减少）。所以，热力学第二定律是有关于比较熵的定律，而非有关其绝对值的定律，由此，无论我们是否将熵解释为比特方式的信息度量，它都不会受影响。如果我们不知道这些状态的概率密度函数，那么该定律甚至不会受任意偏移的影响。热力学第二定律适用于连续熵和离散熵两种情况。为了对熵给出一个数字化的解释，也为了能用比特度量熵，我们需要假设一个分子的可能状态数是有限的，我还需要假定数字物理学是有效的。
 
-太多的物理学家似乎都认为「熵」这个词自然就是指离散熵。麻省理工学院机械工程和物理学教授塞思·劳埃德在他 2006 年出版的《编程宇宙》（Programming the Universe
-
-）一书中，就重复了这个做法。其中有如下一段关于第二定律的文字：
+太多的物理学家似乎都认为「熵」这个词自然就是指离散熵。麻省理工学院机械工程和物理学教授塞思·劳埃德在他 2006 年出版的《编程宇宙》（Programming the Universe）一书中，就重复了这个做法。其中有如下一段关于第二定律的文字：
 
 热力学第二定律表明，每个物理系统包含一定数量比特的信息 —— 其中包括不可见的信息（或熵）以及可见的信息 —— 而且，处理和转换这些信息的物理动力学并不会减少总的比特数。（劳埃德，2006）
 
@@ -1187,26 +709,3 @@ log2(M
 像我一样，皮奇尼尼使用势的概念为这个观点进行辩护。他的结论是，没有足够多的可能的计算去涵盖物理世界的丰富性。
 
 数字物理学不能被推翻，且假设所有的测量都是有噪声的，那么这个问题就可能是永远无法解决的。这可能永远都是一个信念问题。我的信念是，大自然更有可能在各种可能性中变得丰富而不是贫乏。在我看来，数字宇宙那微小的势值实在是太小了。
-
-
-__________
-
-1 Later, like Claude Shannon, Alan Turing worked on cryptography during World War II. Turing played a central role in intercepting German communications that were encrypted using a machine called the Enigma. Turing led a troubled life, including being prosecuted for homosexual acts in 1952, which were illegal in the United Kingdom at the time. In 1954, he took his own life at age 41. In his few short years, however, he transformed the landscape of computing. The highest honor in computer science, the Turing Award, is named after him.
-
-2 If you accept a strong form of digital physics (see section 8.4 ), then every process in the physical world does, in fact, proceed in a sequence of discrete steps. But for most purposes, at the macroscale at which we interact with the physical world, this does not provide a useful model of physical processes.
-
-3 Multitasking means that the computer executes several programs at once rather than completing one program before executing the next one. Without multitasking, a computer could only ever execute at most one nonhalting program. The word「multitasking」has even spread into the vernacular to refer to humans simultaneously handling more than one task.
-
-4 Programmers use「pseudocode」to refer to a sketch of a program that is not written in any particular programming language. Its purpose is to communicate intent to other humans.
-
-5 I recommend the wonderfully readable book on this subject by Raymond Smullyan called Satan, Cantor & Infinity (Smullyan, 1992). I first learned from this book that Cantor was trying to show that all infinite sets have the same size when he discovered that they did not.
-
-6 Although the concept of real numbers is quite old, appearing in the ancient Greek work of Archimedes and Eudoxus, who was a student of Plato's, the modern formalization of the concept is relatively recent, dating to the nineteenth-century work of Weierstrass and Dedekind. It is actually quite a subtle concept. According to Penrose (1989),「to the ancient Greeks, and to Eudoxos in particular, ‘real' numbers were things to be extracted from the geometry of physical space. Now we prefer to think of the real numbers as logically more primitive than geometry.」
-
-7 Specifically, using the axioms of Zermelo-Fraenkel set theory, from which much of mathematics can be derived.
-
-8 For a wonderful account of this optimism and its downfall, see Kline (1980).
-
-9 The existence of a reality independent of humans is not a universally accepted truth. Philosophers call this assumption「realism,」and for the purposes of this argument, it is a position I will adopt.
-
-9
