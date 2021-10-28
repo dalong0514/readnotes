@@ -20,7 +20,7 @@ You can display the CUI Editor using one of the following methods: 1) On the rib
 
 When the CUI Editor is displayed, notice that there are two tabs. Each tab is divided into areas called panes. The two tabs in the CUI Editor and their purpose are as follows:
 
-Customize Tab. Use the Customize tab to create, modify, and organize the user-interface elements that come with AutoCAD or those that you create. You will also use this tab to create workspaces that allow you to control when and where specific user-interface elements are displayed. This tab is divided into three panes: 
+Customize Tab. Use the Customize tab to create, modify, and organize the user-interface elements that come with AutoCAD or those that you create. You will also use this tab to create workspaces that allow you to control when and where specific user-interface elements are displayed. This tab is divided into three panes:
 
 1 Customizations In Pane. Here you will find a listing of the CUIx files that are currently loaded and the user-interface elements that they contain. When a user-interface element is expanded, you see each of the items that make up that particular element, such as the buttons on a ribbon panel or the items on a pull-down menu. When you select a user-interface element, command, or control in this pane, its properties can be changed in the Dynamic pane.
 
@@ -58,7 +58,7 @@ An example of a command macro using the same input as the previous example might
 ^C^C._circle;\_d;0.125;
 ```
 
-As you can see, I used five special characters in the example macro that were not present as part of the original input entered at the command prompt: `^ `(caret), `.` (period), `_` (underscore), `;` (semicolon), and `\` (backslash). 
+As you can see, I used five special characters in the example macro that were not present as part of the original input entered at the command prompt: `^ `(caret), `.` (period), `_` (underscore), `;` (semicolon), and `\` (backslash).
 
 Table 5.1 explains the significance of each macro component.
 
@@ -79,75 +79,58 @@ TIP: To learn about other special and control characters that can be used in a c
 
 Table 5.2 Special characters that can be used in macros
 
-```
-Special Character Description
-
-^C Equivalent to pressing Esc.
-
-; Equivalent to pressing Enter.
-
-[blank space] Equivalent to pressing Enter or spacebar based on the expected input of the current prompt.
-
-\ Allows the user to provide input.
-
-. Instructs AutoCAD to use the command's standard definition even when a command might have been undefined with the undefine command.
-
-_ Instructs AutoCAD to use the global command name or option value instead of the local name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release.
-
-* Repeats the AutoCAD command after the asterisk character until the user cancels the command.
-
-Example macro from the Point, Multiple Point command in the acad.cuix file:
-
-*^C^C_point
-
-$M= Indicates the start of a DIESEL expression.
-
-Example expression from the UCS Icon, On command in the acad.cuix file:
-
-$M=$(if,$(and,$(getvar,ucsicon),1),^C^C_ucsicon _off,^C^C_ucsicon _on)
-```
+| Special Character |  Description |
+| --- | --- | --- |
+| ^C | Equivalent to pressing Esc. |
+| ; | Equivalent to pressing Enter. |
+| [blank space] | Equivalent to pressing Enter or spacebar based on the expected input of the current prompt. |
+| \ | Allows the user to provide input. |
+| . | Instructs AutoCAD to use the command's standard definition even when a command might have been undefined with the undefine command. |
+| _ | Instructs AutoCAD to use the global command name or option value instead of the local name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release. |
+| * | Repeats the AutoCAD command after the asterisk character until the user cancels the command. Example macro from the Point, Multiple Point command in the acad.cuix file: *^C^C_point |
+| $M= | Indicates the start of a DIESEL expression. Example expression from the UCS Icon, On command in the acad.cuix file: $M=$(if,$(and,$(getvar,ucsicon),1),^C^C_ucsicon _off,^C^C_ucsicon _on) |
 
 When combining multiple commands into a single menu macro, you will want to first step through the sequence at the command prompt. Doing this can help you identify which commands, options, and values you want to use. The following example demonstrates the commands and options you might use to create and set as current a layer named Notes and then draw a multiline text object:
 
-At the command prompt, type -layer and press Enter.
+1 At the command prompt, type -layer and press Enter.
 
-At the Enter an option prompt, type m and press Enter.
+2 At the Enter an option prompt, type m and press Enter.
 
-At the Enter name for new layer (becomes the current layer) <0>: prompt, type Notes and press Enter.
+3 At the Enter name for new layer (becomes the current layer) <0>: prompt, type Notes and press Enter.
 
-At the Ente0r an option prompt, type c and press Enter.
+4 At the Ente0r an option prompt, type c and press Enter.
 
-At the New color [Truecolor/COlorbook]: prompt, type 8 and press Enter.
+5 At the New color [Truecolor/COlorbook]: prompt, type 8 and press Enter.
 
-At the Enter name list of layer(s) for color 8 <Notes>: prompt, press Enter.
+6 At the Enter name list of layer(s) for color 8 <Notes>: prompt, press Enter.
 
-At the Enter an option prompt, press Enter.
+7 At the Enter an option prompt, press Enter.
 
-At the command prompt, type -mtext and press Enter.
+8 At the command prompt, type -mtext and press Enter.
 
-At the Specify first corner: prompt, specify a point in the drawing area.
+9 At the Specify first corner: prompt, specify a point in the drawing area.
 
-At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type j and press Enter.
+10 At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type j and press Enter.
 
-At the Enter justification [TL/TC/TR/ML/MC/MR/BL/BC/BR] <TL>: prompt, type tl and press Enter.
+11 At the Enter justification [TL/TC/TR/ML/MC/MR/BL/BC/BR] <TL>: prompt, type tl and press Enter.
 
-At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type h and press Enter.
+12 At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type h and press Enter.
 
-At the Specify height <0.2000>: prompt, type 0.25 and press Enter.
+13 At the Specify height <0.2000>: prompt, type 0.25 and press Enter.
 
-At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type r and press Enter.
+14 At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type r and press Enter.
 
-At the Specify rotation angle <0>: prompt, type 0 and press Enter.
+15 At the Specify rotation angle <0>: prompt, type 0 and press Enter.
 
-At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type w and press Enter.
+16 At the Specify opposite corner or [Height/Justify/Line spacing/Rotation/Style/Width/Columns]: prompt, type w and press Enter.
 
-At the Specify width: prompt, type 7.5 and press Enter.
+17 At the Specify width: prompt, type 7.5 and press Enter.
 
-At the MText: prompt, type NOTE: ADA requires a minimum turn radius of and press Enter.
+18 At the MText: prompt, type NOTE: ADA requires a minimum turn radius of and press Enter.
 
-At the MText: prompt, type 60" (1525mm) for wheelchairs. and press Enter.
+19 At the MText: prompt, type 60" (1525mm) for wheelchairs. and press Enter.
 
-Press Enter again to end the mtext command and leave the command-line window open.
+20 Press Enter again to end the mtext command and leave the command-line window open.
 
 What's That Hyphen? As I discussed earlier, commands that display dialog boxes or palettes should be avoided in macros when you want to use specific values. Adding a leading hyphen to many commands that normally display a dialog box or palette starts an alternate command that displays a series of prompts instead. For example, use -layer instead of layer when you want to create a layer from a command macro, or -insert instead of insert to insert a block. See Chapter 8,「Automating Repetitive Tasks,」for a listing of alternative commands and system variables that allow you to avoid opening dialog boxes and palettes.
 
@@ -181,14 +164,12 @@ In the File Name text box, type mynotemacro.txt and click Save.
 
 Do not close Notepad; you will use the macro you just created in the next section, when you create a command for use in the user interface.
 
-TIP
-
-Add the text ._ (period underscore) in front of each command name and an _ (underscore) in front of the values that represent an option name. This ensures that your macro works correctly if a command is undefined or the command macro is used on a non-English AutoCAD release.
+TIP: Add the text ._ (period underscore) in front of each command name and an _ (underscore) in front of the values that represent an option name. This ensures that your macro works correctly if a command is undefined or the command macro is used on a non-English AutoCAD release.
 
 Here's how the macro you just created would look after prefixing commands with ._ and options with _:
 
 ```c
-^C^C._-layer;_m;Notes;_c;8;;;._-mtext;\_j;_tl;_h;0.25;_r;0;_w;7.5; 
+^C^C._-layer;_m;Notes;_c;8;;;._-mtext;\_j;_tl;_h;0.25;_r;0;_w;7.5;
 ```
 NOTE: ADA requires a minimum turn radius of;60" (1525mm) for wheelchairs.;;
 
@@ -201,14 +182,11 @@ Before you can use your macro, you first need to learn how to create a new comma
 
 The following example explains how to create a command for the macro that you created in the previous section in a current CUIx file. If you did not complete the steps for the previous example, you can open the NoteMacro.txt exercise file that is available for download from www.sybex.com/go/autocadcustomization. If you did complete the previous example but closed Notepad, launch Notepad and open the file MyNoteMacro.txt from the MyCustomFiles subfolder under the Documents (or My Documents) folder, or the location you used.
 
-
 On the ribbon, click Manage tab Customization panel User Interface (or at the command prompt, type cui and press Enter).
 
 In the CUI Editor, from the Command List pane select Create A New Command.
 
-NOTE
-
-When you create a new command, it is added to the customization (CUIx) file that is selected from the drop-down list at the top of the Customizations In pane. If you want to add a command to a partial customization file, make sure it is selected before creating the command. I discuss the types of customization files later in this chapter in the「Working with Customization Files」section.
+NOTE: When you create a new command, it is added to the customization (CUIx) file that is selected from the drop-down list at the top of the Customizations In pane. If you want to add a command to a partial customization file, make sure it is selected before creating the command. I discuss the types of customization files later in this chapter in the「Working with Customization Files」section.
 
 In the Properties pane (see Figure 5.3), type Wheelchair Note in the Name field. The Name field is used to identify the command in the Command List pane and is part of the tooltip (shown in Figure 5.12, later in this chapter) that is displayed when the cursor hovers over the command in the user interface.
 
@@ -222,12 +200,9 @@ Optionally in the Command Display Name field, enter -LAYER, TEXT. The text enter
 
 Optionally, click in the Tags field and then click the ellipsis […] button. In the Tag Editor, click in the Tags text box and enter Wheelchair,Note. Click OK.
 
-NOTE
-
-Tags make it easier to locate a command without looking for it in the user interface. You can search for a command that is assigned a tag using the Search field of the Application menu; the Search field is accessed by clicking the Application button located near the upper-left corner of the AutoCAD application window.
+NOTE: Tags make it easier to locate a command without looking for it in the user interface. You can search for a command that is assigned a tag using the Search field of the Application menu; the Search field is accessed by clicking the Application button located near the upper-left corner of the AutoCAD application window.
 
 Click Apply to save the changes you made to the properties of the new command (see Figure 5.4).
-
 
 Figure 5.3 Defining the properties of a command
 
@@ -243,47 +218,43 @@ While using images with your commands is optional, you should consider adding an
 
 Here are the basic requirements your images need to meet:
 
-```
-Small images should be 16×16 pixels in size.
+1 Small images should be 16×16 pixels in size.
 
-Large images should be 32×32 pixels in size.
+2 Large images should be 32×32 pixels in size.
 
-Images need to be in the BMP file format.
-```
+3 Images need to be in the BMP file format.
 
 If an image is created using the Button Editor inside the CUI Editor, that image is saved as part of the CUIx file. You can export an image file if you want to edit the image outside of AutoCAD. You also can import into a CUIx file images that you created or edited outside of AutoCAD and then assign those images to a command. An alternative to importing images into the CUIx file is to create a resource DLL file that has the same name as the CUIx file being loaded into AutoCAD. This method is more common with third-party utilities that use CUIx files for their user-interface elements.
 
 The following example explains how to create a custom image for the Wheelchair Note command you created in the previous section:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the CUI Editor, from the Command List pane select the Wheelchair Note command.
+2 In the CUI Editor, from the Command List pane select the Wheelchair Note command.
 
-Under the Button Image pane, select one of the images from the Image list. It does not matter which image you select unless there is an image that is similar to the image you want to create. If there is a similar image, select it.
+3 Under the Button Image pane, select one of the images from the Image list. It does not matter which image you select unless there is an image that is similar to the image you want to create. If there is a similar image, select it.
 
-Under the Apply To section, select Both.
+4 Under the Apply To section, select Both.
 
-Click Edit.
+5 Click Edit.
 
-In the Button Editor (see Figure 5.5), click Clear.
+6 In the Button Editor (see Figure 5.5), click Clear.
 
-Click the Grid check box to display a grid of pixel squares over the image canvas.
+7 Click the Grid check box to display a grid of pixel squares over the image canvas.
 
-Click the Pencil drawing tool located above the image canvas to edit the image.
+8 Click the Pencil drawing tool located above the image canvas to edit the image.
 
-Click one of the color swatches from the left side or click More to display the Select Color dialog box. If you click More, choose a color that is different from the standard colors.
+9 Click one of the color swatches from the left side or click More to display the Select Color dialog box. If you click More, choose a color that is different from the standard colors.
 
-Click (or drag over) the image canvas to create your image. Draw an image that you feel conveys the idea of a Wheelchair Note. Figure 5.6 shows an example of an image that I created. It can be found in the files available for download from this book's web page; the file is named WheelchairNote.bmp.
+10 Click (or drag over) the image canvas to create your image. Draw an image that you feel conveys the idea of a Wheelchair Note. Figure 5.6 shows an example of an image that I created. It can be found in the files available for download from this book's web page; the file is named WheelchairNote.bmp.
 
-After you have created your image, click Save.
+11 After you have created your image, click Save.
 
-In the Save Image dialog box, in the Image Name text box enter WheelchairNote. Click OK.
+12 In the Save Image dialog box, in the Image Name text box enter WheelchairNote. Click OK.
 
-Click Close to return to the main dialog of the CUI Editor. The image you created should now be assigned to both the Small Image and Large Image fields of the command.
+13 Click Close to return to the main dialog of the CUI Editor. The image you created should now be assigned to both the Small Image and Large Image fields of the command.
 
-Click Apply to save the changes to the command.
-```
+14 Click Apply to save the changes to the command.
 
 Figure 5.5 Creating a custom image
 
@@ -291,31 +262,27 @@ Figure 5.6 Example custom image
 
 If you have an externally saved file that you want to use for a command, you can do the following:
 
-```
-In the CUI Editor, from the Command List pane select the command that you want to assign a button image to.
+1 In the CUI Editor, from the Command List pane select the command that you want to assign a button image to.
 
-In the Button Image pane, right-click the Image list, and then click Import Image.
+2 In the Button Image pane, right-click the Image list, and then click Import Image.
 
-In the Open dialog box, browse to and select the image to import. Click Open.
+3 In the Open dialog box, browse to and select the image to import. Click Open.
 
-In the Apply To section, select Both.
+4 In the Apply To section, select Both.
 
-Scroll to the bottom of the Image list and select the image you just imported. The image you selected should now be assigned to both the Small Image and Large Image fields of the command.
+5 Scroll to the bottom of the Image list and select the image you just imported. The image you selected should now be assigned to both the Small Image and Large Image fields of the command.
 
-Click Apply to save the changes to the command.
-```
+6 Click Apply to save the changes to the command.
 
 As I mentioned earlier, the images used for your commands are stored in the CUIx file. You can manage the images stored in a CUIx file using the CUI Editor - Image Manager (see Figure 5.7). Click the Image Manager button in the Customizations In pane to display the CUI Editor - Image Manager. Here you can perform the following tasks:
 
-```
-View the images and their sizes
+1 View the images and their sizes
 
-Import externally stored BMP files
+2 Import externally stored BMP files
 
-Export selected images in the CUIx file and save them as individual BMP files
+3 Export selected images in the CUIx file and save them as individual BMP files
 
-Remove the images that you are not currently using
-```
+4 Remove the images that you are not currently using
 
 Figure 5.7 Managing images in the loaded CUIx files
 
@@ -324,7 +291,6 @@ Figure 5.7 Managing images in the loaded CUIx files
 Out of the box, the AutoCAD user interface is designed for everyone, but not to accommodate the needs of any specific industry or any one single company's workflow. Many of the common user-interface elements in the AutoCAD application window can be customized, and you should take the time to customize them to get the most out of AutoCAD. You can add new elements that execute command macros and custom applications you create, remove or hide those that you do not use, or reorganize those that you use frequently to make them easier to access. You use the CUI Editor to modify the elements defined in a CUIx file.
 
 The following elements of the user interface can be edited with the CUI Editor:
-
 
 Quick Access toolbar (QAT)
 
@@ -389,11 +355,9 @@ From the Command list, drag the Wheelchair Note command below the Ribbon Combo B
 
 Click Apply to save the changes.
 
-
 Figure 5.9 Adding a command to the QAT
 
 Now that the Wheelchair Note command has been added, let's add a separator and Layer controls to the QAT that we are customizing in this exercise:
-
 
 Use the command-list filter to access the Ribbon Control Elements. In the Command List pane, open the Filter The Command List By Category drop-down list and select Ribbon Control Elements (see Figure 5.10).
 
@@ -407,24 +371,21 @@ Right-click the Ribbon Combo Box - Workspace control under the QAT node and clic
 
 Click Apply to save the changes.
 
-
 Figure 5.10 Accessing the controls that can be placed on the QAT
 
 There will be times when you want to remove access to particular commands. The next steps in this exercise explain how to remove the SaveAs command from the QAT and how to test the customized QAT:
 
-```
-Right-click the SaveAs element under the QAT and click Remove. In the message box, click Yes to remove the element.
+1 Right-click the SaveAs element under the QAT and click Remove. In the message box, click Yes to remove the element.
 
-Click and drag the Layer List Combo Box above the Wheelchair Note command in the tree view to reorder it on the QAT.
+2 Click and drag the Layer List Combo Box above the Wheelchair Note command in the tree view to reorder it on the QAT.
 
-Click Apply to see the changes in the application window. The QAT and the elements under the QAT node in the CUI Editor should now look like Figure 5.11.
+3 Click Apply to see the changes in the application window. The QAT and the elements under the QAT node in the CUI Editor should now look like Figure 5.11.
 
-Click OK to save the changes to the CUIx file and return to the drawing window.
+4 Click OK to save the changes to the CUIx file and return to the drawing window.
 
-On the QAT, position the cursor over Wheelchair Note. Notice the contents of the tooltip, shown in Figure 5.12; you should see the information you entered when you created the command earlier in this exercise.
+5 On the QAT, position the cursor over Wheelchair Note. Notice the contents of the tooltip, shown in Figure 5.12; you should see the information you entered when you created the command earlier in this exercise.
 
-Click Wheelchair Note and specify a point in the drawing window. The layer Notes is created and set as current, and two single-line text objects are created with the note (see Figure 5.13).
-```
+6 Click Wheelchair Note and specify a point in the drawing window. The layer Notes is created and set as current, and two single-line text objects are created with the note (see Figure 5.13).
 
 NOTE: You can create drop-down menus on the QAT that allow you to group multiple commands, not controls, into a single button. To create a drop-down menu, right-click the node of the QAT to which you want to add a drop-down menu in the CUI Editor and click New Drop-Down. Then, add commands to it from the Command List pane just as you did when you added commands to the QAT itself.
 
@@ -440,17 +401,15 @@ While AutoCAD can display only a single QAT at a time, you could create your own
 
 These steps explain the overall process for creating a new QAT and displaying it within a workspace:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, right-click the Quick Access Toolbars node and select New Quick Access Toolbar.
+2 In the Customizations In pane of the CUI Editor, right-click the Quick Access Toolbars node and select New Quick Access Toolbar.
 
-Enter a name for the new QAT or press Enter to accept the default name.
+3 Enter a name for the new QAT or press Enter to accept the default name.
 
-Customize the QAT as needed using the techniques introduced in the「Customizing the Default QAT」section.
+4 Customize the QAT as needed using the techniques introduced in the「Customizing the Default QAT」section.
 
-Click OK to save the changes made. The new QAT must be added to a workspace before it can be displayed in the application window; see the「Organizing the User Interface with Workspaces」section later in this chapter for details on how to customize a workspace.
-```
+5 Click OK to save the changes made. The new QAT must be added to a workspace before it can be displayed in the application window; see the「Organizing the User Interface with Workspaces」section later in this chapter for details on how to customize a workspace.
 
 #### 5.3.4 Ribbon
 
@@ -480,57 +439,51 @@ Figure 5.15 Structure of the Home 2D - Draw panel
 
 The following example explains how to create a new panel named My Tools:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, expand the Ribbon node.
+2 In the Customizations In pane of the CUI Editor, expand the Ribbon node.
 
-Right-click the Panels node and select New Panel.
+3 Right-click the Panels node and select New Panel.
 
-In the in-place text editor, type My Tools for the name of the panel and press Enter.
+4 In the in-place text editor, type My Tools for the name of the panel and press Enter.
 
-Click Apply to save the new ribbon panel.
-```
+5 Click Apply to save the new ribbon panel.
 
 Now, let's add structure to organize commands and controls:
 
-```
-Right-click the My Tools panel and click New Row. The new row is added below <SLIDEOUT>, which is the element that separates the rows that are displayed by default and those that are displayed when the panel is expanded.
+1 Right-click the My Tools panel and click New Row. The new row is added below <SLIDEOUT>, which is the element that separates the rows that are displayed by default and those that are displayed when the panel is expanded.
 
-Right-click Row 1 under the My Tools panel node and click New Sub-Panel.
+2 Right-click Row 1 under the My Tools panel node and click New Sub-Panel.
 
-Right-click Sub-Panel 1 under the Row 1 node and click New Row.
+3 Right-click Sub-Panel 1 under the Row 1 node and click New Row.
 
-Under Sub-Panel 1, right-click the first row node and click New Drop-Down. Your ribbon panel should now look like Figure 5.16.
+4 Under Sub-Panel 1, right-click the first row node and click New Drop-Down. Your ribbon panel should now look like Figure 5.16.
 
-Select the New Drop-Down node under Row 1 of Sub-Panel 1, and in the Properties pane, click the Button Style field. Select SmallWithText from the drop-down list that appears. Once a command or drop-down menu is added to a ribbon panel, you can customize how it will look using the properties available in the Properties pane.
-```
+5 Select the New Drop-Down node under Row 1 of Sub-Panel 1, and in the Properties pane, click the Button Style field. Select SmallWithText from the drop-down list that appears. Once a command or drop-down menu is added to a ribbon panel, you can customize how it will look using the properties available in the Properties pane.
 
 Figure 5.16 Structure for the new My Tools panel
 
 The next steps explain how to add commands and controls to the rows of the ribbon panel:
 
-```
-In the Command List pane, click the Filter The Command List By Category drop-down list and select All Commands Only.
+1 In the Command List pane, click the Filter The Command List By Category drop-down list and select All Commands Only.
 
-Locate the Wheelchair Note command and add it to Row 1 under the My Tools panel. (Type Wheelchair in the Search Command List text box to make it easier to locate the command.) Click and drag the Wheelchair Note command to the My Tools panel. When the cursor is over Row 1, release the mouse button. Then, drag the command so it is placed above Sub-Panel 1 and under Row 1.
+2 Locate the Wheelchair Note command and add it to Row 1 under the My Tools panel. (Type Wheelchair in the Search Command List text box to make it easier to locate the command.) Click and drag the Wheelchair Note command to the My Tools panel. When the cursor is over Row 1, release the mouse button. Then, drag the command so it is placed above Sub-Panel 1 and under Row 1.
 
-Select the Wheelchair Note command under Row 1, and in the Properties pane, click the Button Style field. Select Large With Text (Vertical) from the drop-down list that appears. Once a command is added to a ribbon panel, you can customize how it will look using the new properties available in the Properties pane.
+3 Select the Wheelchair Note command under Row 1, and in the Properties pane, click the Button Style field. Select Large With Text (Vertical) from the drop-down list that appears. Once a command is added to a ribbon panel, you can customize how it will look using the new properties available in the Properties pane.
 
-In the Command List pane, locate and add the Multileader, Multileader Edit, and Multileader Edit Remove commands to the New Drop-Down node under Row 1 of Sub-Panel 1. Remember, you can use the Search Command List text box to filter the Command List pane.
+4 In the Command List pane, locate and add the Multileader, Multileader Edit, and Multileader Edit Remove commands to the New Drop-Down node under Row 1 of Sub-Panel 1. Remember, you can use the Search Command List text box to filter the Command List pane.
 
 TIP: You can press and hold the Ctrl key to select multiple commands. The order in which the commands are selected determines the order in which they are added to the panel.
 
-Add the Multileader Style Manager command to the Panel Dialog Box Launcher node under the My Tools panel.
+5 Add the Multileader Style Manager command to the Panel Dialog Box Launcher node under the My Tools panel.
 
-Add the other five multileader-related commands to Row 2 (located under the <SLIDEOUT> item).
+6 Add the other five multileader-related commands to Row 2 (located under the <SLIDEOUT> item).
 
-Click the Filter The Command List By Category drop-down list and select Ribbon Control Elements. Add the Ribbon Combo Box - Multileader Style control to Row 2 under Sub-Panel 1.
+7 lick the Filter The Command List By Category drop-down list and select Ribbon Control Elements. Add the Ribbon Combo Box - Multileader Style control to Row 2 under Sub-Panel 1.
 
-Add some of your favorite commands and controls that you use often to the ribbon panel, if you want.
+8 Add some of your favorite commands and controls that you use often to the ribbon panel, if you want.
 
-Click Apply to save the new panel. The new panel should appear in the CUI Editor, as shown in Figure 5.17.
-```
+9 Click Apply to save the new panel. The new panel should appear in the CUI Editor, as shown in Figure 5.17.
 
 Figure 5.17 The completed My Tools panel
 
@@ -552,23 +505,21 @@ Has a contextual condition been met?
 
 The following example explains how to create a new tab named Favorites and how to add several ribbon panels to the new tab:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, expand the Ribbon node.
+2 In the Customizations In pane of the CUI Editor, expand the Ribbon node.
 
-Right-click the Tabs node and select New Tab.
+3 Right-click the Tabs node and select New Tab.
 
-Using the in-place text editor, type My Favorites Tab for the name of the new tab and press Enter.
+4 Using the in-place text editor, type My Favorites Tab for the name of the new tab and press Enter.
 
-Select the My Favorites Tab from the Ribbon Tabs node, and in the Properties pane, change the value in the Display Name field to Favorites. The Display Name field controls the text that appears in the user interface as the tab label.
+5 Select the My Favorites Tab from the Ribbon Tabs node, and in the Properties pane, change the value in the Display Name field to Favorites. The Display Name field controls the text that appears in the user interface as the tab label.
 
-In the Customizations In pane, go to the Ribbon node and expand Panels. Select the My Tools node and right-click. Click Copy.
+6 In the Customizations In pane, go to the Ribbon node and expand Panels. Select the My Tools node and right-click. Click Copy.
 
-Under the Tabs node, select the Favorites node and right-click. Click Paste. A reference to the My Tools panel is added to the Favorites tab. Figure 5.18 shows what the Favorites tab should look like in the Customizations In pane, and the tab's settings in the Properties pane.
+7 Under the Tabs node, select the Favorites node and right-click. Click Paste. A reference to the My Tools panel is added to the Favorites tab. Figure 5.18 shows what the Favorites tab should look like in the Customizations In pane, and the tab's settings in the Properties pane.
 
-Click Apply to save the new tab. The new tab is not added to the ribbon until it has been added to a workspace or a contextual tab state.
-```
+8 Click Apply to save the new tab. The new tab is not added to the ribbon until it has been added to a workspace or a contextual tab state.
 
 Figure 5.18 Favorites tab with the My Tools panel
 
@@ -580,21 +531,19 @@ When you choose to add it to a workspace, you can control the location in which 
 
 Use the following steps to add the Favorites tab to the ribbon for the current workspace:
 
-```
-In the Customizations In pane, expand the Workspaces node and select the workspace that ends with the text (current).
+1 In the Customizations In pane, expand the Workspaces node and select the workspace that ends with the text (current).
 
-In the Workspace Controls pane, click Customize Workspace, as shown in Figure 5.19.
+2 In the Workspace Controls pane, click Customize Workspace, as shown in Figure 5.19.
 
-In the Customizations In pane, expand Ribbon Tabs and click My Favorites Tab (shown in Figure 5.20). The My Favorites Tab check box should be selected.
+3 In the Customizations In pane, expand Ribbon Tabs and click My Favorites Tab (shown in Figure 5.20). The My Favorites Tab check box should be selected.
 
-In the Workspace Contents pane, click Done.
+4 In the Workspace Contents pane, click Done.
 
-Expand the Ribbon Tabs node and drag Favorites above Home - 2D (shown in Figure 5.21).
+5 Expand the Ribbon Tabs node and drag Favorites above Home - 2D (shown in Figure 5.21).
 
-Click OK to save the changes and close the CUI Editor.
+6 Click OK to save the changes and close the CUI Editor.
 
-On the ribbon, click the Favorites tab (shown in Figure 5.22). Test the various parts of the ribbon panel; click the panel's title bar to expand the panel and display the dialog box launcher button.
-```
+7 On the ribbon, click the Favorites tab (shown in Figure 5.22). Test the various parts of the ribbon panel; click the panel's title bar to expand the panel and display the dialog box launcher button.
 
 Figure 5.19 Customizing the current workspace
 
@@ -608,27 +557,25 @@ Any ribbon tab can be added to a contextual tab, but typically the scope of the 
 
 The following example explains how to create a new ribbon tab that contains the Annotate - Text panel, and adds the new ribbon tab to the Text, Multiline Selected contextual tab state.
 
-```
-In the drawing window, use the mtext command to create a multiline text object. Now, select the text object. Notice that no contextual tab is displayed unless the multiline text object is being edited in the in-place text editor.
+1 In the drawing window, use the mtext command to create a multiline text object. Now, select the text object. Notice that no contextual tab is displayed unless the multiline text object is being edited in the in-place text editor.
 
-In the CUI Editor, create a new ribbon tab named Text Contextual tab.
+2 In the CUI Editor, create a new ribbon tab named Text Contextual tab.
 
-Select the Text Contextual tab from the Ribbon Tabs node, and then in the Properties pane, change the value of the Display Text field to Edit Text.
+3 Select the Text Contextual tab from the Ribbon Tabs node, and then in the Properties pane, change the value of the Display Text field to Edit Text.
 
-Click the Contextual Display type field, and select Full from the drop-down list. Full designates that the panels associated with the tab are displayed on their own tab, while Merged designates that the panels associated with the tab are displayed no matter which ribbon tab is current.
+4 Click the Contextual Display type field, and select Full from the drop-down list. Full designates that the panels associated with the tab are displayed on their own tab, while Merged designates that the panels associated with the tab are displayed no matter which ribbon tab is current.
 
-In the Customizations In pane, go to the Ribbon node and expand Panels. Select and then right-click the Annotate - Text panel. Click Copy.
+5 In the Customizations In pane, go to the Ribbon node and expand Panels. Select and then right-click the Annotate - Text panel. Click Copy.
 
-Under the Ribbon Tabs node, select the Text Contextual tab and right-click. Click Paste.
+6 Under the Ribbon Tabs node, select the Text Contextual tab and right-click. Click Paste.
 
-In the Customizations In pane, expand Ribbon Contextual Tab States.
+7 In the Customizations In pane, expand Ribbon Contextual Tab States.
 
-From the Ribbon Tabs node, drag the Text Contextual tab to the Text, Multiline Selected contextual tab state.
+8 From the Ribbon Tabs node, drag the Text Contextual tab to the Text, Multiline Selected contextual tab state.
 
-Click OK to save the changes and close the CUI Editor.
+9 Click OK to save the changes and close the CUI Editor.
 
-In the drawing window, select the multiline text object. The Edit Text tab is displayed with the Text panel, as shown in Figure 5.23. By default, tabs that are assigned to contextual tab states are added to the right side of the ribbon, but in Figure 5.23 the Edit Text tab was dragged to the left side directly in the application window.
-```
+10 In the drawing window, select the multiline text object. The Edit Text tab is displayed with the Text panel, as shown in Figure 5.23. By default, tabs that are assigned to contextual tab states are added to the right side of the ribbon, but in Figure 5.23 the Edit Text tab was dragged to the left side directly in the application window.
 
 Figure 5.23 The custom Edit Text tab displayed when the multiline text object was selected
 
@@ -644,25 +591,23 @@ As you have seen with other user-interface elements, workspaces are also used to
 
 The following explains how to create a new pull-down menu, add commands, and organize the commands with a separator and submenu:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, right-click the Menus node and select New Menu.
+2 In the Customizations In pane of the CUI Editor, right-click the Menus node and select New Menu.
 
-In the in-place text editor, type Favorites for the name of the new pull-down menu and press Enter.
+3 In the in-place text editor, type Favorites for the name of the new pull-down menu and press Enter.
 
-In the Command List pane, locate the Wheelchair Note command. (Type wheelchair in the Search Command List text box.) Click the command name and then drag the Wheelchair Note command to the Favorites pull-down menu under the Menus node in the Customizations In pane. When the cursor is over Favorites, release the mouse button.
+4 In the Command List pane, locate the Wheelchair Note command. (Type wheelchair in the Search Command List text box.) Click the command name and then drag the Wheelchair Note command to the Favorites pull-down menu under the Menus node in the Customizations In pane. When the cursor is over Favorites, release the mouse button.
 
-In the Customizations In pane, under the Menus node, right-click the Favorites pull-down menu and click New Sub-menu. In the in-place text editor, type Annotation Tools for the name of the new submenu and press Enter.
+5 In the Customizations In pane, under the Menus node, right-click the Favorites pull-down menu and click New Sub-menu. In the in-place text editor, type Annotation Tools for the name of the new submenu and press Enter.
 
-In the Command List pane, locate the Multiline Text and Single Line Text commands and drag them to the Annotation Tools submenu. (If you have difficulty finding the commands, type line text in the Search Command List text box.)
+6 In the Command List pane, locate the Multiline Text and Single Line Text commands and drag them to the Annotation Tools submenu. (If you have difficulty finding the commands, type line text in the Search Command List text box.)
 
-In the Customizations In pane, under the Menus node, right-click the Annotation Tools submenu under the Favorites pull-down menu and click Insert Separator.
+7 In the Customizations In pane, under the Menus node, right-click the Annotation Tools submenu under the Favorites pull-down menu and click Insert Separator.
 
-In the Command List pane, locate the Multileader command and drag it below the separator on the Annotation Tools submenu. (If you have difficulty finding the command, type multileader in the Search Command List text box.)
+8 In the Command List pane, locate the Multileader command and drag it below the separator on the Annotation Tools submenu. (If you have difficulty finding the command, type multileader in the Search Command List text box.)
 
-Click Apply to save the new pull-down menu. Figure 5.24 shows what the completed pull-down menu should look like under the Menus node.
-```
+9 Click Apply to save the new pull-down menu. Figure 5.24 shows what the completed pull-down menu should look like under the Menus node.
 
 Figure 5.24 Structure of the Favorites pull-down menu in the CUI Editor
 
@@ -670,21 +615,19 @@ While a new pull-down menu is added to all the workspaces currently defined in t
 
 Use the following steps to add the pull-down menu if it is not displayed in the current workspace. I will also show you how to change the menu's position.
 
-```
-In the Customizations In pane, expand the Workspaces node and select the workspace that ends with the text (current).
+1 In the Customizations In pane, expand the Workspaces node and select the workspace that ends with the text (current).
 
-In the Properties pane, click the Menu Bar field and select On from the drop-down list. Enabling this property ensures that the menu bar is displayed when the workspace is set as current; this sets the menubar system variable to a value of 1.
+2 In the Properties pane, click the Menu Bar field and select On from the drop-down list. Enabling this property ensures that the menu bar is displayed when the workspace is set as current; this sets the menubar system variable to a value of 1.
 
-In the Workspace Contents pane, click Customize Workspace.
+3 In the Workspace Contents pane, click Customize Workspace.
 
-In the Customizations In pane, expand Menus and click Favorites if it is not already checked.
+4 In the Customizations In pane, expand Menus and click Favorites if it is not already checked.
 
-In the Workspace Contents pane, expand the Menus node and drag Favorites above Window. Click Done.
+5 In the Workspace Contents pane, expand the Menus node and drag Favorites above Window. Click Done.
 
-Click OK to save the changes and close the CUI Editor.
+6 Click OK to save the changes and close the CUI Editor.
 
-On the menu bar, click Favorites. Test the various menu items and the subpanel pull-down menu. Figure 5.25 shows what the Favorites pull-down menu looks like on the menu bar.
-```
+7 On the menu bar, click Favorites. Test the various menu items and the subpanel pull-down menu. Figure 5.25 shows what the Favorites pull-down menu looks like on the menu bar.
 
 Figure 5.25 Favorites pull-down menu on the menu bar
 
@@ -696,19 +639,13 @@ NOTE: The shortcutmenu system variable controls the display of the shortcut menu
 
 Table 5.3 Customizable shortcut menus
 
-```
-Context Description
-
-Hot Grip Displayed when a grip has been selected and is ready for editing, and you right-click in the drawing area
-
-Object Snap Displayed when the Shift key is held and you right-click in the drawing area
-
-Default Mode Displayed when no command is active, an object is selected, grip editing is not active, and you right-click in the drawing area
-
-Command Mode Displayed when a command is active and you right-click in the drawing area
-
-Edit Mode Displayed when an object is selected and you right-click in the drawing area
-```
+| Context | Description |
+| --- | --- |
+| Hot Grip | Displayed when a grip has been selected and is ready for editing, and you right-click in the drawing area |
+| Object Snap | Displayed when the Shift key is held and you right-click in the drawing area |
+| Default Mode | Displayed when no command is active, an object is selected, grip editing is not active, and you right-click in the drawing area |
+| Command Mode | Displayed when a command is active and you right-click in the drawing area |
+| Edit Mode | Displayed when an object is selected and you right-click in the drawing area |
 
 Shortcut menus are customized with the CUI Editor using techniques that are nearly identical to those used for customizing pull-down menus. You add commands to the shortcut menu and use separators and submenus to organize related commands. Shortcut menus are not displayed as part of the main user interface, but are called on based on the current context. AutoCAD uses a special property value called an alias to determine which shortcut menu should be displayed. Each alias must be unique inside a customization (CUIx) file.
 
@@ -716,47 +653,35 @@ Table 5.4 lists the unique aliases and alias naming conventions that AutoCAD use
 
 Table 5.4 Aliases and alias naming conventions for shortcut menus
 
-```
-Alias Description
-
-GRIPS Hot Grip Cursor menu
-
-SNAP,POP0 Object Snap Cursor menu
-
-CMDEFAULT Default Mode menu
-
-CMCOMMAND Command Mode menu
-
-CMEDIT Edit Mode menu
-
-COMMAND_cmdname Command-specific menu; cmdname represents the name of the command that the shortcut menu should be associated with.
-
-OBJECT_objectname or
-
-OBJECTS_objectname Single or multiple selected objects menu; objectname represents the type of the object that the shortcut menu should be associated with.
-```
+| Alias | Description |
+| --- | --- |
+| GRIPS | Hot Grip Cursor menu |
+| SNAP,POP0 | Object Snap Cursor menu |
+| CMDEFAULT | Default Mode menu |
+| CMCOMMAND | Command Mode menu |
+| CMEDIT | Edit Mode menu |
+| COMMAND_cmdname | Command-specific menu; cmdname represents the name of the command that the shortcut menu should be associated with. |
+| OBJECT_objectname or OBJECTS_objectname | Single or multiple selected objects menu; objectname represents the type of the object that the shortcut menu should be associated with. |
 
 The next example explains how to create a new object shortcut menu that adds items to the Edit Mode menu when a line is selected:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane in the CUI Editor, right-click the Shortcut Menus node and select New Shortcut Menu.
+2 In the Customizations In pane in the CUI Editor, right-click the Shortcut Menus node and select New Shortcut Menu.
 
-In the in-place text editor, type Line Objects Menu for the name of the new shortcut menu and press Enter.
+3 In the in-place text editor, type Line Objects Menu for the name of the new shortcut menu and press Enter.
 
-Select the Line Objects Menu from the Shortcuts Menus node, and then go to the Properties pane and click the Aliases field. Click the ellipsis […] button to display the Aliases dialog box. Click after the alias in the text box and press Enter. Type OBJECTS_LINE and click OK. For information on defining command- and object-related shortcut menus, see the「Command Mode Shortcut Menus」and「Object Mode Shortcut Menus」sections later in this chapter.
+4 Select the Line Objects Menu from the Shortcuts Menus node, and then go to the Properties pane and click the Aliases field. Click the ellipsis […] button to display the Aliases dialog box. Click after the alias in the text box and press Enter. Type OBJECTS_LINE and click OK. For information on defining command- and object-related shortcut menus, see the「Command Mode Shortcut Menus」and「Object Mode Shortcut Menus」sections later in this chapter.
 
-In the Command List pane, locate the Stretch, Trim, and Extend commands and drag them to the Line Objects Menu item in the Shortcut Menus node.
+5 In the Command List pane, locate the Stretch, Trim, and Extend commands and drag them to the Line Objects Menu item in the Shortcut Menus node.
 
-Click OK to save the new shortcut menu.
+6 Click OK to save the new shortcut menu.
 
-In the drawing window, create a few lines.
+7 In the drawing window, create a few lines.
 
-Select the lines you create and right-click. The shortcut menu with the CMEDIT alias is displayed and the items in the Line Objects Menu shortcut menu are merged with it, as you can see in Figure 5.26.
+8 Select the lines you create and right-click. The shortcut menu with the CMEDIT alias is displayed and the items in the Line Objects Menu shortcut menu are merged with it, as you can see in Figure 5.26.
 
 Figure 5.26 Line Objects Menu in the drawing window
-```
 
 #### 5.3.11 Command Mode Shortcut Menus
 
@@ -776,19 +701,13 @@ TIP: If you are unsure what the DXF Code 0 value is for an object, place the obj
 
 Table 5.5 Special names used to identify types of block reference objects
 
-```
-Name Description
-
-ATTBLOCKREF Block reference containing attribute references
-
-ATTDYNBLOCKREF Dynamic block reference containing attribute references
-
-BLOCKREF Block reference without attribute references
-
-DYNBLOCKREF Dynamic block reference without attribute references
-
-XREF External drawing reference (xref)
-```
+| Name | Description |
+| --- | --- |
+| ATTBLOCKREF | Block reference containing attribute references |
+| ATTDYNBLOCKREF | Dynamic block reference containing attribute references |
+| BLOCKREF | Block reference without attribute references |
+| DYNBLOCKREF | Dynamic block reference without attribute references |
+| XREF | External drawing reference (xref) |
 
 #### 5.3.13 Toolbars
 
@@ -800,45 +719,41 @@ Workspaces are used to control the display of toolbars, as well as their positio
 
 The following example explains how to create a new toolbar and add an existing toolbar as a flyout:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, right-click the Toolbars node and select New Toolbar.
+2 In the Customizations In pane of the CUI Editor, right-click the Toolbars node and select New Toolbar.
 
-In the in-place text editor, type Favorites for the name of the new toolbar and press Enter.
+3 In the in-place text editor, type Favorites for the name of the new toolbar and press Enter.
 
-In the Command List pane, locate and add the Wheelchair Note command to the Favorites toolbar. (Type wheelchair in the Search Command List text box to make it easier to find the command.) Click and drag the Wheelchair Note command to the Favorites toolbar under the Toolbars node in the Customizations In pane. When the cursor is over Favorites, release the mouse button.
+4 In the Command List pane, locate and add the Wheelchair Note command to the Favorites toolbar. (Type wheelchair in the Search Command List text box to make it easier to find the command.) Click and drag the Wheelchair Note command to the Favorites toolbar under the Toolbars node in the Customizations In pane. When the cursor is over Favorites, release the mouse button.
 
-Locate and add the Multileader command below the Wheelchair command. (Type multileader in the Search Command List text box to make it easier to find the command.)
+5 Locate and add the Multileader command below the Wheelchair command. (Type multileader in the Search Command List text box to make it easier to find the command.)
 
-In the Customizations In pane, under the Toolbars node click and drag the Text toolbar between the Wheelchair and Multileader commands in the Favorites toolbar. This creates a flyout on the Favorites toolbar containing the commands of the Text toolbar. A toolbar can contain controls, but when used as a flyout, the controls are not displayed.
+6 In the Customizations In pane, under the Toolbars node click and drag the Text toolbar between the Wheelchair and Multileader commands in the Favorites toolbar. This creates a flyout on the Favorites toolbar containing the commands of the Text toolbar. A toolbar can contain controls, but when used as a flyout, the controls are not displayed.
 
-Click Apply to save the new toolbar. Figure 5.27 shows what the completed toolbar should look like under the Toolbars node.
-```
+7 Click Apply to save the new toolbar. Figure 5.27 shows what the completed toolbar should look like under the Toolbars node.
 
 Figure 5.27 Structure of the Favorites toolbar in the CUI Editor and how it appears in the user interface
 
 When a toolbar is created, it is added to all the workspaces currently defined in the customization (CUIx) file. Use the following steps to add the Favorites and Layers toolbars to the current workspace:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane, expand the Workspaces node and select the workspace that ends with the text (current).
+2 In the Customizations In pane, expand the Workspaces node and select the workspace that ends with the text (current).
 
-In the Workspace Contents pane, click Customize Workspace.
+3 In the Workspace Contents pane, click Customize Workspace.
 
-In the Customizations In pane, expand Toolbars and click Favorites if it is not already checked. Click Layers as well if it is not already checked.
+4 In the Customizations In pane, expand Toolbars and click Favorites if it is not already checked. Click Layers as well if it is not already checked.
 
-In the Workspace Controls pane, expand the Toolbars node and select Favorites.
+5 In the Workspace Controls pane, expand the Toolbars node and select Favorites.
 
-In the Properties pane, you can edit the Orientation, Location, and Rows properties of the toolbar. Click Done.
+6 In the Properties pane, you can edit the Orientation, Location, and Rows properties of the toolbar. Click Done.
 
 TIP: Rather than controlling the orientation and location of toolbars using the CUI Editor, you can drag and position toolbars in the application window. Once the toolbars are positioned, use the wssave command to save the changes to a workspace.
 
-Click OK to save the changes and close the CUI Editor.
+7 Click OK to save the changes and close the CUI Editor.
 
-Click the Wheelchair Note and Multileader to start the command macros. Click and hold the mouse button over the Text button in the middle of the toolbar that represents the Text toolbar you added in the previous exercise. Then drag the cursor on the flyout and release the mouse button when it is over the button of the macro to start.
-```
+8 Click the Wheelchair Note and Multileader to start the command macros. Click and hold the mouse button over the Text button in the middle of the toolbar that represents the Text toolbar you added in the previous exercise. Then drag the cursor on the flyout and release the mouse button when it is over the button of the macro to start.
 
 #### 5.3.14 Shortcut and Temporary Override Keys
 
@@ -848,18 +763,21 @@ Discovering Existing Shortcut and Temporary Override Keys
 
 The CUI Editor allows you to print or copy a list of all the shortcut and temporary override keys to your default printer or the Windows Clipboard. Both of these operations can be helpful to let users know which key combinations are available to them and can be performed by doing the following:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, select the Keyboard Shortcuts node.
+2 In the Customizations In pane of the CUI Editor, select the Keyboard Shortcuts node.
 
-In the Shortcut Keys pane, click the Type drop-down list and choose the type of keys you want to list: All keys
+3 In the Shortcut Keys pane, click the Type drop-down list and choose the type of keys you want to list:
+
+All keys
 
 Accelerator (shortcut) keys
 
 Temporary Override Keys
 
-Click the Status drop-down list and choose the status of the keys you want to list: All
+4 Click the Status drop-down list and choose the status of the keys you want to list:
+
+All
 
 Active
 
@@ -867,56 +785,55 @@ Inactive
 
 Unassigned
 
-Do one of the following: Click Copy To Clipboard to copy a tab-delimited list of all the keys currently displayed in the list.
+5 Do one of the following:
+
+Click Copy To Clipboard to copy a tab-delimited list of all the keys currently displayed in the list.
 
 Click Print to output a list of all the keys currently displayed in the list.
 
-Click OK to exit the CUI Editor.
+6 Click OK to exit the CUI Editor.
 
 Not all key combinations are included in the list. Those that are common Windows shortcut keys are not defined as part of a customization (CUIx) file. You can search the product's Help on the keywords shortcut keys reference and temporary keys reference to locate listings of both keyboard-shortcut types.
-```
 
 The following example explains how to create a shortcut key that starts the Wheelchair Note command created earlier in this chapter:
 
-```
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane of the CUI Editor, expand the Keyboard Shortcuts node.
+2 In the Customizations In pane of the CUI Editor, expand the Keyboard Shortcuts node.
 
-Go to the Command List pane, locate the Wheelchair Note command, and drag it to the Shortcut Keys node in the Customizations In pane. (If you have difficulty locating the command, type wheelchair in the Search Command List text box.)
+3 Go to the Command List pane, locate the Wheelchair Note command, and drag it to the Shortcut Keys node in the Customizations In pane. (If you have difficulty locating the command, type wheelchair in the Search Command List text box.)
 
-With the Wheelchair Note command highlighted under the Shortcut Keys node in the Properties pane, and click in the Key(s) field. Click the ellipsis […] button to display the Shortcut Keys dialog box. Click in the Press The New Shortcut Key text box, and then press and hold the Ctrl, Shift, and N keys. CTRL+SHIFT+N should now appear in the text box. Click OK.
+4 With the Wheelchair Note command highlighted under the Shortcut Keys node in the Properties pane, and click in the Key(s) field. Click the ellipsis […] button to display the Shortcut Keys dialog box. Click in the Press The New Shortcut Key text box, and then press and hold the Ctrl, Shift, and N keys. CTRL+SHIFT+N should now appear in the text box. Click OK.
 
-Click OK to save the changes and close the CUI Editor.
+5 Click OK to save the changes and close the CUI Editor.
 
-In the drawing window, press the key combination Ctrl+Shift+N.
+6 In the drawing window, press the key combination Ctrl+Shift+N.
 
-When prompted, specify a point in the drawing.
+7 When prompted, specify a point in the drawing.
 
 You can use these steps to create a new temporary override key that toggles the current setting of the osnapz system variable:
 
-Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-In the Customizations In pane, right-click the Keyboard Shortcuts node and click New Temporary Override.
+2 In the Customizations In pane, right-click the Keyboard Shortcuts node and click New Temporary Override.
 
-In the in-place text editor, type Object Snap Z Toggle as the name of the new temporary override and press Enter.
+3 In the in-place text editor, type Object Snap Z Toggle as the name of the new temporary override and press Enter.
 
-Select the Object Snap Z Toggle temporary override under the Temporary Override Keys node in the Properties pane, and click in the Key(s) field. Click the ellipsis […] button to display the Shortcut Keys dialog box. Click in the Press The New Shortcut Key text box, and then press and hold the Shift and F keys. SHIFT+F should now appear in the text box. Ctrl and Alt cannot be used when defining the key combination for a temporary override key. Click OK.
+4 Select the Object Snap Z Toggle temporary override under the Temporary Override Keys node in the Properties pane, and click in the Key(s) field. Click the ellipsis […] button to display the Shortcut Keys dialog box. Click in the Press The New Shortcut Key text box, and then press and hold the Shift and F keys. SHIFT+F should now appear in the text box. Ctrl and Alt cannot be used when defining the key combination for a temporary override key. Click OK.
 
-Click in the Macro 1 (Key Down) field and replace the default text by typing the following: ^P'_.osnapz $M=$(if,$(and,$(getvar,osnapz),1),0,1). The macro toggles the current value of the osnapz system variable when the key combination is held and then changes it again when the key combination is released.
+5 Click in the Macro 1 (Key Down) field and replace the default text by typing the following: ^P'_.osnapz $M=$(if,$(and,$(getvar,osnapz),1),0,1). The macro toggles the current value of the osnapz system variable when the key combination is held and then changes it again when the key combination is released.
 
-Click OK to save the changes and close the CUI Editor.
+6 Click OK to save the changes and close the CUI Editor.
 
-In the drawing window, draw a 3D box with the box command.
+7 In the drawing window, draw a 3D box with the box command.
 
-Enable the Endpoint running object snap.
+8 Enable the Endpoint running object snap.
 
-Start the line command and position the crosshairs close to the top corner of the 3D box. The Endpoint marker should appear. Click, and the line should start from that endpoint. Cancel the line command.
+9 Start the line command and position the crosshairs close to the top corner of the 3D box. The Endpoint marker should appear. Click, and the line should start from that endpoint. Cancel the line command.
 
-Start the line command again. This time press and hold the key combination Shift+F and position the crosshairs close to the top corner of the 3D box. The Endpoint object snap marker should appear on the work plane. If the toggle does not seem to work correctly, you might need to disable Dynamic UCS in order for the temporary override key to work properly.
+10 Start the line command again. This time press and hold the key combination Shift+F and position the crosshairs close to the top corner of the 3D box. The Endpoint object snap marker should appear on the work plane. If the toggle does not seem to work correctly, you might need to disable Dynamic UCS in order for the temporary override key to work properly.
 
 TIP: The tempoverride system variable needs to be set to a value of 1 in order to use temporary override keys.
-```
 
 #### 5.3.15 Double-Click Actions
 
@@ -926,41 +843,39 @@ When possible, a specific object-related editing command is started. For example
 
 The following explains how to create a double-click action for an RTEXT object that is created with the rtext command that is part of Express Tools:
 
-```
-On the ribbon, click Express Tools tab Text panel, click the panel's title bar, and then click Remote Text. You can also enter rtext at the command prompt and press Enter.
+1 On the ribbon, click Express Tools tab Text panel, click the panel's title bar, and then click Remote Text. You can also enter rtext at the command prompt and press Enter.
 
-At the Enter an option [Style/Height/Rotation/File/Diesel] <Diesel>: prompt, enter d and press Enter.
+2 At the Enter an option [Style/Height/Rotation/File/Diesel] <Diesel>: prompt, enter d and press Enter.
 
-In the Edit RText dialog box, type Filename: $(getvar,dwgname) and click OK.
+3 In the Edit RText dialog box, type Filename: $(getvar,dwgname) and click OK.
 
-At the Specify start point of RText: prompt, specify a point in the drawing window.
+4 At the Specify start point of RText: prompt, specify a point in the drawing window.
 
-At the Enter an option [Style/Height/Rotation/Edit]: prompt, press Enter to exit the command.
+5 At the Enter an option [Style/Height/Rotation/Edit]: prompt, press Enter to exit the command.
 
-Double-click the new remote text object; you should see the Properties palette displayed even though there is a command named rtedit that allows you to edit remote text.
+6 Double-click the new remote text object; you should see the Properties palette displayed even though there is a command named rtedit that allows you to edit remote text.
 
-At the command prompt, enter (cdr (assoc 0 (entget (car (entsel))))) and press Enter. Select the remote text object, and the text RTEXT is returned. RTEXT is the object name of a remote text object; this will be needed to create the double-click action.
+7 At the command prompt, enter (cdr (assoc 0 (entget (car (entsel))))) and press Enter. Select the remote text object, and the text RTEXT is returned. RTEXT is the object name of a remote text object; this will be needed to create the double-click action.
 
-On the ribbon, click Manage tab Customization panel User Interface.
+8 On the ribbon, click Manage tab Customization panel User Interface.
 
-In the CUI Editor, from the Command List pane select Create A New Command.
+9 In the CUI Editor, from the Command List pane select Create A New Command.
 
-In the Properties pane, type Remote Text Edit in the Name field.
+10 In the Properties pane, type Remote Text Edit in the Name field.
 
-In the Macro field, type ._rtedit;_e;. If you opened the Long String Editor, click OK.
+11 In the Macro field, type ._rtedit;_e;. If you opened the Long String Editor, click OK.
 
-In the Customizations In pane, right-click the Double Click Actions node and click New Double Click Action.
+12 In the Customizations In pane, right-click the Double Click Actions node and click New Double Click Action.
 
-In the in-place text editor, type Rtext for the name of the new double-click action and press Enter.
+13 In the in-place text editor, type Rtext for the name of the new double-click action and press Enter.
 
-Select the Rtext item under the Double Click Actions node; in the Properties pane, click in the Object Name field and type RTEXT.
+14 Select the Rtext item under the Double Click Actions node; in the Properties pane, click in the Object Name field and type RTEXT.
 
-In the Command List pane, locate the Remote Text Edit command and then add it to the new Rtext item under the Double Click Actions node. (Type remote text edit in the Search Command List text box.) Click and drag the Remote Text Edit command to the Rtext item under the Double Click Actions node. When the cursor is over the Rtext item, release the mouse button.
+15 In the Command List pane, locate the Remote Text Edit command and then add it to the new Rtext item under the Double Click Actions node. (Type remote text edit in the Search Command List text box.) Click and drag the Remote Text Edit command to the Rtext item under the Double Click Actions node. When the cursor is over the Rtext item, release the mouse button.
 
-Click OK to save the changes and close the CUI Editor.
+16 Click OK to save the changes and close the CUI Editor.
 
-Double-click the remote text object that you created in the first five steps. The Edit RText dialog box is displayed with the DIESEL expression that was added to the remote text object.
-```
+17 Double-click the remote text object that you created in the first five steps. The Edit RText dialog box is displayed with the DIESEL expression that was added to the remote text object.
 
 #### 5.3.16 Other Elements
 
@@ -1048,10 +963,10 @@ These steps explain how to create a new workspace based on the Drafting & Annota
 
 7 In the Customizations In pane, select the user-interface elements you want to display or deselect those you do not want displayed.
 
-8 In the Workspace Contents pane, do any or all of the following, and then click Done: 
-    
-Select the Quick Access Toolbar node and specify if you want to display the QAT above or below the ribbon. 
-    
+8 In the Workspace Contents pane, do any or all of the following, and then click Done:
+
+Select the Quick Access Toolbar node and specify if you want to display the QAT above or below the ribbon.
+
 Expand the Toolbars node and select the first toolbar. Change the settings in the Properties pane as needed. Do this for each toolbar that is under the Toolbars node.
 
 Expand the Menus node and drag to reorder the pull-down menus for the menu bar.
