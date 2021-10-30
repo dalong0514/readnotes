@@ -84,11 +84,11 @@ When you extend an existing class, the new class has all the properties and meth
 
 To work with OOP, you should be able to identify three key characteristics of objects:
 
-The object's behavior—what can you do with this object, or what methods can you apply to it?
+The object's behavior — what can you do with this object, or what methods can you apply to it?
 
-The object's state—how does the object react when you invoke those methods?
+The object's state — how does the object react when you invoke those methods?
 
-The object's identity—how is the object distinguished from others that may have the same behavior and state?
+The object's identity — how is the object distinguished from others that may have the same behavior and state?
 
 All objects that are instances of the same class share a family resemblance by supporting the same behavior. The behavior of an object is defined by the methods that you can call.
 
@@ -96,17 +96,17 @@ Next, each object stores information about what it currently looks like. This is
 
 However, the state of an object does not completely describe it, because each object has a distinct identity. For example, in an order processing system, two orders are distinct even if they request identical items. Notice that the individual objects that are instances of a class always differ in their identity and usually differ in their state.
 
-These key characteristics can influence each other. For example, the state of an object can influence its behavior. (If an order is「shipped」or「paid,」it may reject a method call that asks it to add or remove items. Conversely, if an order is「empty」—that is, no items have yet been ordered—it should not allow itself to be shipped.)
+These key characteristics can influence each other. For example, the state of an object can influence its behavior. (If an order is「shipped」or「paid,」it may reject a method call that asks it to add or remove items. Conversely, if an order is「empty」 — that is, no items have yet been ordered — it should not allow itself to be shipped.)
 
 4.1.2 对象
 
 要想使用 OOP，一定要清楚对象的三个主要特性：
 
-1、对象的行为（behavior）—— 可以对对象施加哪些操作，或可以对对象施加哪些方法？
+1、对象的行为（behavior） —  —  可以对对象施加哪些操作，或可以对对象施加哪些方法？
 
-2、对象的状态（state）—— 当施加那些方法时，对象如何响应？
+2、对象的状态（state） —  —  当施加那些方法时，对象如何响应？
 
-3、对象标识（identity）—— 如何辨别具有相同行为与状态的不同对象？
+3、对象标识（identity） —  —  如何辨别具有相同行为与状态的不同对象？
 
 同一个类的所有对象实例，由于支持相同的行为而具有家族式的相似性。对象的行为是用可调用的方法定义的。此外，每个对象都保存着描述当前特征的信息。这就是对象的状态。对象的状态可能会随着时间而发生改变，但这种改变不会是自发的。对象状态的改变必须通过调用方法实现（如果不经过方法调用就可以改变对象状态，只能说明封装性遭到了破坏）。但是，对象的状态并不能完全描述一个对象。每个对象都有一个唯一的身份（identity）。例如，在一个订单处理系统中，任何两个订单都存在着不同之处，即使所订购的货物完全相同也是如此。需要注意，作为一个类的实例，每个对象的标识永远是不同的，状态常常也存在着差异。
 
@@ -201,7 +201,7 @@ Figure 4.2 A class diagram
 
 ### 4.2 Using Predefined Classes
 
-You can't do anything in Java without classes, and you have already seen several classes at work. However, not all of these show off the typical features of object orientation. Take, for example, the Math class. You have seen that you can use methods of the Math class, such as Math.random, without needing to know how they are implemented—all you need to know is the name and parameters (if any). That's the point of encapsulation, and it will certainly be true of all classes. But the Math class only encapsulates functionality; it neither needs nor hides data. Since there is no data, you do not need to worry about making objects and initializing their instance fields—there aren't any!
+You can't do anything in Java without classes, and you have already seen several classes at work. However, not all of these show off the typical features of object orientation. Take, for example, the Math class. You have seen that you can use methods of the Math class, such as Math.random, without needing to know how they are implemented — all you need to know is the name and parameters (if any). That's the point of encapsulation, and it will certainly be true of all classes. But the Math class only encapsulates functionality; it neither needs nor hides data. Since there is no data, you do not need to worry about making objects and initializing their instance fields — there aren't any!
 
 In the next section, we will look at a more typical class, the Date class. You will see how to construct objects and call methods of this class.
 
@@ -215,7 +215,7 @@ To work with objects, you first construct them and specify their initial state. 
 
 In the Java programming language, you use constructors to construct new instances. A constructor is a special method whose purpose is to construct and initialize objects. Let us look at an example. The standard Java library contains a Date class. Its objects describe points in time, such as December 31, 1999, 23:59:59 GMT.
 
-Note: You may be wondering: Why use a class to represent dates rather than (as in some languages) a built-in type? For example, Visual Basic has a built-in date type, and programmers can specify dates in the format #6/1/1995#. On the surface, this sounds convenient—programmers can simply use the built-in date type without worrying about classes. But actually, how suitable is the Visual Basic design? In some locales, dates are specified as month/day/year, in others as day/month/year. Are the language designers really equipped to foresee these kinds of issues? If they do a poor job, the language becomes an unpleasant muddle, but unhappy programmers are powerless to do anything about it. With classes, the design task is offloaded to a library designer. If the class is not perfect, other programmers can easily write their own classes to enhance or replace the system classes. (To prove the point: The Java date library started out a bit muddled, and it has been redesigned twice.)
+Note: You may be wondering: Why use a class to represent dates rather than (as in some languages) a built-in type? For example, Visual Basic has a built-in date type, and programmers can specify dates in the format #6/1/1995#. On the surface, this sounds convenient — programmers can simply use the built-in date type without worrying about classes. But actually, how suitable is the Visual Basic design? In some locales, dates are specified as month/day/year, in others as day/month/year. Are the language designers really equipped to foresee these kinds of issues? If they do a poor job, the language becomes an unpleasant muddle, but unhappy programmers are powerless to do anything about it. With classes, the design task is offloaded to a library designer. If the class is not perfect, other programmers can easily write their own classes to enhance or replace the system classes. (To prove the point: The Java date library started out a bit muddled, and it has been redesigned twice.)
 
 Constructors always have the same name as the class name. Thus, the constructor for the Date class is called Date. To construct a Date object, combine the constructor with the new operator, as follows:
 
@@ -318,7 +318,7 @@ Once you make this association, everything falls into place. Of course, a Date* 
 Date* birthday = new Date(); // C++
 ```
 
-If you copy one variable to another, then both variables refer to the same date—they are pointers to the same object. The equivalent of the Java null reference is the C++ NULL pointer.
+If you copy one variable to another, then both variables refer to the same date — they are pointers to the same object. The equivalent of the Java null reference is the C++ NULL pointer.
 
 All Java objects live on the heap. When an object contains another object variable, it contains just a pointer to yet another heap object.
 
@@ -364,7 +364,7 @@ C++ 注释：很多人错误地认为 Java 对象变量与 C++ 的引用类似�
 
 #### 4.2.2 The LocalDate Class of the Java Library
 
-In the preceding examples, we used the Date class that is a part of the standard Java library. An instance of the Date class has a state—namely, a particular point in time.
+In the preceding examples, we used the Date class that is a part of the standard Java library. An instance of the Date class has a state — namely, a particular point in time.
 
 Although you don't need to know this when you use the Date class, the time is represented by the number of milliseconds (positive or negative) from a fixed point, the so-called epoch, which is 00:00:00 UTC, January 1, 1970. UTC is the Coordinated Universal Time, the scientific time standard which is, for practical purposes, the same as the more familiar GMT, or Greenwich Mean Time.
 
@@ -372,7 +372,7 @@ But as it turns out, the Date class is not very useful for manipulating the kind
 
 Note: Throughout human history, civilizations grappled with the design of calendars to attach names to dates and bring order to the solar and lunar cycles. For a fascinating explanation of calendars around the world, from the French Revolutionary calendar to the Mayan long count, see Calendrical Calculations by Nachum Dershowitz and Edward M. Reingold (Cambridge University Press, 3rd ed., 2007).
 
-The library designers decided to separate the concerns of keeping time and attaching names to points in time. Therefore, the standard Java library contains two separate classes: the Date class, which represents a point in time, and the LocalDate class, which expresses days in the familiar calendar notation. Java 8 introduced quite a few other classes for manipulating various aspects of date and time—see Chapter 6 of Volume II.
+The library designers decided to separate the concerns of keeping time and attaching names to points in time. Therefore, the standard Java library contains two separate classes: the Date class, which represents a point in time, and the LocalDate class, which expresses days in the familiar calendar notation. Java 8 introduced quite a few other classes for manipulating various aspects of date and time — see Chapter 6 of Volume II.
 
 Separating time measurement from calendars is good object-oriented design. In general, it is a good idea to use different classes to express different concepts.
 
@@ -468,7 +468,7 @@ month = someDay.get(Calendar.MONTH) + 1; // 09
 day = someDay.get(Calendar.DAY_OF_MONTH); // 26
 ```
 
-That's why we called the variable someDay and not newYearsEve—it no longer is new year's eve after calling the mutator method.
+That's why we called the variable someDay and not newYearsEve — it no longer is new year's eve after calling the mutator method.
 
 In contrast, methods that only access objects without modifying them are sometimes called accessor methods. For example, LocalDate.getYear and GregorianCalendar.get are accessor methods.
 
@@ -549,7 +549,7 @@ When do we stop? We don't know whether the month has 31, 30, 29, or 28 days. Ins
 
 Listing 4.1 shows the complete program.
 
-As you can see, the LocalDate class makes it possible to write a calendar program that takes care of complexities such as weekdays and the varying month lengths. You don't need to know how the LocalDate class computes months and weekdays. You just use the interface of the class—the methods such as plusDays and getDayOfWeek.
+As you can see, the LocalDate class makes it possible to write a calendar program that takes care of complexities such as weekdays and the varying month lengths. You don't need to know how the LocalDate class computes months and weekdays. You just use the interface of the class — the methods such as plusDays and getDayOfWeek.
 
 The point of this example program is to show you how you can use the interface of a class to carry out fairly sophisticated tasks without having to know the implementation details.
 
@@ -654,7 +654,7 @@ yields the date that is n days after or before this date.
 
 再来看上一节中的 plusDays 方法调用：这个调用之后 newYearsEve 会有什么变化？它会改为 1000 天之后的日期吗？事实上，并没有。plusDays 方法会生成一个新的 LocalDate 对象，然后把这个新对象赋给 aThousandDaysLater 变量。原来的对象不做任何改动。我们说 plusDays 方法没有更改调用这个方法的对象。（这类似于第 3 章中见过的 String 类的 toUpperCase 方法。在一个字符串上调用 toUpperCase 时，这个字符串仍保持不变，会返回一个将字符大写的新字符串。）Java 库的一个较早版本曾经有另一个类来处理日历，名为 GregorianCalendar。可以如下为这个类表示的一个日期增加 1000 天：
 
-与 LocalDate.plusDays 方法不同，GregorianCalendar.add 方法是一个更改器方法（mutator method）。调用这个方法后，someDay 对象的状态会改变。可以如下查看新状态：正是因为这个原因，我们将变量命名为 someDay 而不是 newYearsEve—— 调用这个更改器方法之后，它不再是新年前夜。相反，只访问对象而不修改对象的方法有时称为访问器方法（accessormethod）。例如，LocalDate.getYear 和 GregorianCalendar.get 就是访问器方法。C++ 注释：在 C++ 中，带有 const 后缀的方法是访问器方法；默认为更改器方法。但是，在 Java 语言中，访问器方法与更改器方法在语法上没有明显的区别。下面用一个应用 LocalDate 类的程序来结束本节内容的论述。这个程序将显示当前月的日历，其格式为：
+与 LocalDate.plusDays 方法不同，GregorianCalendar.add 方法是一个更改器方法（mutator method）。调用这个方法后，someDay 对象的状态会改变。可以如下查看新状态：正是因为这个原因，我们将变量命名为 someDay 而不是 newYearsEve —  —  调用这个更改器方法之后，它不再是新年前夜。相反，只访问对象而不修改对象的方法有时称为访问器方法（accessormethod）。例如，LocalDate.getYear 和 GregorianCalendar.get 就是访问器方法。C++ 注释：在 C++ 中，带有 const 后缀的方法是访问器方法；默认为更改器方法。但是，在 Java 语言中，访问器方法与更改器方法在语法上没有明显的区别。下面用一个应用 LocalDate 类的程序来结束本节内容的论述。这个程序将显示当前月的日历，其格式为：
 
 当前的日用一个 `*` 号标记。可以看到，这个程序需要解决如何计算某月份的天数以及一个给定日期相应是星期几。下面看一下这个程序的关键步骤。首先，构造了一个日历对象，并用当前的日期和时间进行初始化。下面获得当前的月和日。然后，将 date 设置为这个月的第一天，并得到这一天为星期几。变量 weekday 设置为 DayOfWeek 类型的对象。我们调用这个对象的 getValue 方法来得到星期几的一个数值。这会得到一个整数，这里遵循国际惯例，即周末是一周的末尾，星期一就返回 1，星期二返回 2，依此类推。星期日则返回 7。注意，日历的第一行是缩进的，使得月份的第一天指向相应的星期几。下面的代码会打印表头和第一行的缩进：现在我们来打印日历的主体。进入一个循环，其中 date 遍历一个月中的每一天。每次迭代时，打印日期值。如果 date 是当前日期，这个日期则用一个 * 标记。接下来，把 date 推进到下一天。如果到达新的一周的第一天，则换行打印：
 
@@ -987,7 +987,7 @@ private LocalDate hireDay;
 
 The private keyword makes sure that the only methods that can access these instance fields are the methods of the Employee class itself. No outside method can read or write to these fields.
 
-Note: You could use the public keyword with your instance fields, but it would be a very bad idea. Having public data fields would allow any part of the program to read and modify the instance fields, completely ruining encapsulation. Any method of any class can modify public fields—and, in our experience, some code will take advantage of that access privilege when you least expect it. We strongly recommend to make all your instance fields private.
+Note: You could use the public keyword with your instance fields, but it would be a very bad idea. Having public data fields would allow any part of the program to read and modify the instance fields, completely ruining encapsulation. Any method of any class can modify public fields — and, in our experience, some code will take advantage of that access privilege when you least expect it. We strongly recommend to make all your instance fields private.
 
 Finally, notice that two of the instance fields are themselves objects: The name and hireDay fields are references to String and LocalDate objects. This is quite usual: Classes will often contain instance fields of class type.
 
@@ -1013,7 +1013,7 @@ hireDay = LocalDate.of(year, month, day);
 
 }
 
-As you can see, the name of the constructor is the same as the name of the class. This constructor runs when you construct objects of the Employee class—giving the instance fields the initial state you want them to have.
+As you can see, the name of the constructor is the same as the name of the class. This constructor runs when you construct objects of the Employee class — giving the instance fields the initial state you want them to have.
 
 For example, when you create an instance of the Employee class with code like this:
 
@@ -1205,7 +1205,7 @@ number007.salary += raise;
 
 The raiseSalary method has two parameters. The first parameter, called the implicit parameter, is the object of type Employee that appears before the method name. The second parameter, the number inside the parentheses after the method name, is an explicit parameter. (Some people call the implicit parameter the target or receiver of the method call.)
 
-As you can see, the explicit parameters are explicitly listed in the method declaration—for example, double byPercent. The implicit parameter does not appear in the method declaration.
+As you can see, the explicit parameters are explicitly listed in the method declaration — for example, double byPercent. The implicit parameter does not appear in the method declaration.
 
 In every method, the keyword this refers to the implicit parameter. If you like, you can write the raiseSalary method as follows:
 
@@ -1435,7 +1435,7 @@ C++ has the same rule. A method can access the private features of any object of
 
 #### 4.3.10 Private Methods
 
-When implementing a class, we make all data fields private because public data are dangerous. But what about the methods? While most methods are public, private methods are useful in certain circumstances. Sometimes, you may wish to break up the code for a computation into separate helper methods. Typically, these helper methods should not be part of the public interface—they may be too close to the current implementation or require a special protocol or calling order. Such methods are best implemented as private.
+When implementing a class, we make all data fields private because public data are dangerous. But what about the methods? While most methods are public, private methods are useful in certain circumstances. Sometimes, you may wish to break up the code for a computation into separate helper methods. Typically, these helper methods should not be part of the public interface — they may be too close to the current implementation or require a special protocol or calling order. Such methods are best implemented as private.
 
 To implement a private method in Java, simply change the public keyword to private.
 
@@ -1447,7 +1447,7 @@ By making a method private, you are under no obligation to keep it available if 
 
 #### 4.3.11 Final Instance Fields
 
-You can define an instance field as final. Such a field must be initialized when the object is constructed. That is, you must guarantee that the field value has been set after the end of every constructor. Afterwards, the field may not be modified again. For example, the name field of the Employee class may be declared as final because it never changes after the object is constructed—there is no
+You can define an instance field as final. Such a field must be initialized when the object is constructed. That is, you must guarantee that the field value has been set after the end of every constructor. Afterwards, the field may not be modified again. For example, the name field of the Employee class may be declared as final because it never changes after the object is constructed — there is no
 
 
 
@@ -1616,7 +1616,7 @@ Math.pow(x, a)
 
 computes the power xa. It does not use any Math object to carry out its task. In other words, it has no implicit parameter.
 
-You can think of static methods as methods that don't have a this parameter. (In a nonstatic method, the this parameter refers to the implicit parameter of the method—see Section 4.3.7,「Implicit and Explicit Parameters,」on p. 150.)
+You can think of static methods as methods that don't have a this parameter. (In a nonstatic method, the this parameter refers to the implicit parameter of the method — see Section 4.3.7,「Implicit and Explicit Parameters,」on p. 150.)
 
 A static method of the Employee class cannot access the id instance field because it does not operate on an object. However, a static method can access a static field. Here is an example of such a static method:
 
@@ -1652,7 +1652,7 @@ C++ Note
 
 Static fields and methods have the same functionality in Java and C++. However, the syntax is slightly different. In C++, you use the :: operator to access a static field or method outside its scope, such as Math::PI.
 
-The term「static」has a curious history. At first, the keyword static was introduced in C to denote local variables that don't go away when a block is exited. In that context, the term「static」makes sense: The variable stays around and is still there when the block is entered again. Then static got a second meaning in C, to denote global variables and functions that cannot be accessed from other files. The keyword static was simply reused to avoid introducing a new keyword. Finally, C++ reused the keyword for a third, unrelated, interpretation—to denote variables and functions that belong to a class but not to any particular object of the class. That is the same meaning the keyword has in Java.
+The term「static」has a curious history. At first, the keyword static was introduced in C to denote local variables that don't go away when a block is exited. In that context, the term「static」makes sense: The variable stays around and is still there when the block is entered again. Then static got a second meaning in C, to denote global variables and functions that cannot be accessed from other files. The keyword static was simply reused to avoid introducing a new keyword. Finally, C++ reused the keyword for a third, unrelated, interpretation — to denote variables and functions that belong to a class but not to any particular object of the class. That is the same meaning the keyword has in Java.
 
 4.4.3 静态方法
 
@@ -2002,7 +2002,7 @@ However, this does not work. After the method call, the value of percent is stil
 
 x is initialized with a copy of the value of percent (that is, 10).
 
-x is tripled—it is now 30. But percent is still 10 (see Figure 4.6).
+x is tripled — it is now 30. But percent is still 10 (see Figure 4.6).
 
 Figure 4.6 Modifying a numeric parameter has no lasting effect.
 
@@ -2036,7 +2036,7 @@ tripleSalary(harry);
 
 then the following happens:
 
-x is initialized with a copy of the value of harry—that is, an object reference.
+x is initialized with a copy of the value of harry — that is, an object reference.
 
 The raiseSalary method is applied to that object reference. The Employee object to which both x and harry refer gets its salary raised by 200 percent.
 
@@ -2044,7 +2044,7 @@ The method ends, and the parameter variable x is no longer in use. Of course, th
 
 Figure 4.7 Modifying an object parameter has a lasting effect.
 
-As you have seen, it is easily possible—and in fact very common—to implement methods that change the state of an object parameter. The reason is simple. The method gets a copy of the object reference, and both the original and the copy refer to the same object.
+As you have seen, it is easily possible — and in fact very common — to implement methods that change the state of an object parameter. The reason is simple. The method gets a copy of the object reference, and both the original and the copy refer to the same object.
 
 Many programming languages (in particular, C++ and Pascal) have two mechanisms for parameter passing: call by value and call by reference. Some programmers (and unfortunately even some book authors) claim that Java uses call by reference for objects. That is false. As this is such a common misunderstanding, it is worth examining a counterexample in detail.
 
@@ -2376,7 +2376,7 @@ This capability is called overloading. Overloading occurs if several methods hav
 
 Note
 
-Java allows you to overload any method—not just constructor methods. Thus, to completely describe a method, you need to specify its name together with its parameter types. This is called the signature of the method. For example, the String class has four public methods called indexOf. They have signatures
+Java allows you to overload any method — not just constructor methods. Thus, to completely describe a method, you need to specify its name together with its parameter types. This is called the signature of the method. For example, the String class has four public methods called indexOf. They have signatures
 
 
 
@@ -2582,7 +2582,7 @@ salary = aSalary;
 
 That is quite neat. Any reader can immediately figure out the meaning of the parameters.
 
-Another commonly used trick relies on the fact that parameter variables shadow instance fields with the same name. For example, if you call a parameter salary, then salary refers to the parameter, not the instance field. But you can still access the instance field as this.salary. Recall that this denotes the implicit parameter—that is, the object being constructed. Here is an example:
+Another commonly used trick relies on the fact that parameter variables shadow instance fields with the same name. For example, if you call a parameter salary, then salary refers to the parameter, not the instance field. But you can still access the instance field as this.salary. Recall that this denotes the implicit parameter — that is, the object being constructed. Here is an example:
 
 
 
@@ -2624,7 +2624,7 @@ nextId++;
 
 When you call new Employee(60000), the Employee(double) constructor calls the Employee(String, double) constructor.
 
-Using the this keyword in this manner is useful—you only need to write common construction code once.
+Using the this keyword in this manner is useful — you only need to write common construction code once.
 
 C++ Note: The this reference in Java is identical to the this pointer in C++. However, in C++ it is not possible for one constructor to call another. If you want to factor out common initialization code in C++, you must write a separate method.
 
@@ -2694,7 +2694,7 @@ In this example, the id field is initialized in the object initialization block,
 
 This mechanism is never necessary and is not common. It is usually more straightforward to place the initialization code inside a constructor.
 
-Note: It is legal to set fields in initialization blocks even if they are only defined later in the class. However, to avoid circular definitions, it is not legal to read from fields that are only initialized later. The exact rules are spelled out in Section 8.3.2.3 of the Java Language Specification (http://docs.oracle.com/javase/specs). The rules are complex enough to baffle the compiler implementors—early versions of Java implemented them with subtle errors. Therefore, we suggest that you always place initialization blocks after the field definitions.
+Note: It is legal to set fields in initialization blocks even if they are only defined later in the class. However, to avoid circular definitions, it is not legal to read from fields that are only initialized later. The exact rules are spelled out in Section 8.3.2.3 of the Java Language Specification (http://docs.oracle.com/javase/specs). The rules are complex enough to baffle the compiler implementors — early versions of Java implemented them with subtle errors. Therefore, we suggest that you always place initialization blocks after the field definitions.
 
 With so many ways of initializing data fields, it can be quite confusing to give all possible pathways for the construction process. Here is what happens in detail when a constructor is called:
 
@@ -3212,7 +3212,7 @@ Let's look at a more realistic example, in which we don't use the unnamed packag
 
 └─ PayrollApp.class
 
-In this situation, you still must compile and run classes from the base directory—that is, the directory containing the com directory:
+In this situation, you still must compile and run classes from the base directory — that is, the directory containing the com directory:
 
 
 
@@ -3388,7 +3388,7 @@ Listing 4.7 PackageTest/com/horstmann/corejava/Employee.java
 
 You have already encountered the access modifiers public and private. Features tagged as public can be used by any class. Private features can be used only by the class that defines them. If you don't specify either public or private, the feature (that is, the class, method, or variable) can be accessed by all methods in the same package.
 
-Consider the program in Listing 4.2. The Employee class was not defined as a public class. Therefore, only the other classes (such as EmployeeTest) in the same package—the unnamed package in this case—can access it. For classes, this is a reasonable default. However, for variables, this was an unfortunate choice. Variables must explicitly be marked private, or they will default to having package access. This, of course, breaks encapsulation. The problem is that it is awfully easy to forget to type the private keyword. Here is an example from the Window class in the java.awt package, which is part of the source code supplied with the JDK:
+Consider the program in Listing 4.2. The Employee class was not defined as a public class. Therefore, only the other classes (such as EmployeeTest) in the same package — the unnamed package in this case — can access it. For classes, this is a reasonable default. However, for variables, this was an unfortunate choice. Variables must explicitly be marked private, or they will default to having package access. This, of course, breaks encapsulation. The problem is that it is awfully easy to forget to type the private keyword. Here is an example from the Window class in the java.awt package, which is part of the source code supplied with the JDK:
 
 
 
@@ -3402,7 +3402,7 @@ String warningString;
 
 }
 
-Note that the warningString variable is not private! That means the methods of all classes in the java.awt package can access this variable and set it to whatever they like (such as "Trust me!"). Actually, the only methods that access this variable are in the Window class, so it would have been entirely appropriate to make the variable private. Perhaps the programmer typed the code in a hurry and simply forgot the private modifier? Perhaps nobody cared? After more than twenty years, that variable is still not private. Not only that—new fields have been added to the class over time, and about half of them aren't private either.
+Note that the warningString variable is not private! That means the methods of all classes in the java.awt package can access this variable and set it to whatever they like (such as "Trust me!"). Actually, the only methods that access this variable are in the Window class, so it would have been entirely appropriate to make the variable private. Perhaps the programmer typed the code in a hurry and simply forgot the private modifier? Perhaps nobody cared? After more than twenty years, that variable is still not private. Not only that — new fields have been added to the class over time, and about half of them aren't private either.
 
 This can be a problem. By default, packages are not closed entities. That is, anyone can add more classes to a package. Of course, hostile or clueless programmers can then add code that modifies variables with package access. For example, in early versions of Java, it was an easy matter to smuggle another class into the java.awt package. Simply start out the class with
 
@@ -3436,9 +3436,9 @@ JAR files use the ZIP format to organize files and subdirectories. You can use a
 
 To share classes among programs, you need to do the following:
 
-Place your class files inside a directory—for example, /home/user/classdir. Note that this directory is the base directory for the package tree. If you add the class com.horstmann.corejava.Employee, then the Employee.class file must be located in the subdirectory /home/user/classdir/com/horstmann/corejava.
+Place your class files inside a directory — for example, /home/user/classdir. Note that this directory is the base directory for the package tree. If you add the class com.horstmann.corejava.Employee, then the Employee.class file must be located in the subdirectory /home/user/classdir/com/horstmann/corejava.
 
-Place any JAR files inside a directory—for example, /home/user/archives.
+Place any JAR files inside a directory — for example, /home/user/archives.
 
 Set the class path. The class path is the collection of all locations that can contain class files.
 
@@ -3484,7 +3484,7 @@ The Java API is always searched for classes; don't include it explicitly in the 
 
 Caution
 
-The javac compiler always looks for files in the current directory, but the java virtual machine launcher only looks into the current directory if the「.」directory is on the class path. If you have no class path set, it's not a problem—the default class path consists of the「.」directory. But if you have set the class path and forgot to include the「.」directory, your programs will compile without error, but they won't run.
+The javac compiler always looks for files in the current directory, but the java virtual machine launcher only looks into the current directory if the「.」directory is on the class path. If you have no class path set, it's not a problem — the default class path consists of the「.」directory. But if you have set the class path and forgot to include the「.」directory, your programs will compile without error, but they won't run.
 
 The class path lists all directories and archive files that are starting points for locating classes. Let's consider our sample class path:
 
@@ -3658,7 +3658,7 @@ You can package application programs and code libraries into JAR files. For exam
 
 In addition to class files, images, and other resources, each JAR file contains a manifest file that describes special features of the archive.
 
-The manifest file is called MANIFEST.MF and is located in a special META-INF sub-directory of the JAR file. The minimum legal manifest is quite boring—just
+The manifest file is called MANIFEST.MF and is located in a special META-INF sub-directory of the JAR file. The minimum legal manifest is quite boring — just
 
 Manifest-Version: 1.0
 
@@ -3702,7 +3702,7 @@ See https://docs.oracle.com/javase/10/docs/specs/jar/jar.html for more informati
 
 #### 4.8.3 Executable JAR Files
 
-You can use the e option of the jar command to specify the entry point of your program—the class that you would normally specify when invoking the java program launcher:
+You can use the e option of the jar command to specify the entry point of your program — the class that you would normally specify when invoking the java program launcher:
 
 
 
@@ -3734,7 +3734,7 @@ However, a Java program in a JAR file does not have the same feel as a native ap
 
 #### 4.8.4 Multi-Release JAR Files
 
-With the introduction of modules and strong encapsulation of packages, some previously accessible internal APIs are no longer available. For example, JavaFX 8 had an internal class com.sun.javafx.css.CssParser. If you used it to parse a style sheet, then you will find that your program no longer compiles. The remedy is simple—switch to javafx.css.CssParser, which is available in Java 9. But now you have a problem. You need to distribute different applications for Java 8 and Java 9 users, or you need to play tricks with class loading and reflection.
+With the introduction of modules and strong encapsulation of packages, some previously accessible internal APIs are no longer available. For example, JavaFX 8 had an internal class com.sun.javafx.css.CssParser. If you used it to parse a style sheet, then you will find that your program no longer compiles. The remedy is simple — switch to javafx.css.CssParser, which is available in Java 9. But now you have a problem. You need to distribute different applications for Java 8 and Java 9 users, or you need to play tricks with class loading and reflection.
 
 To solve problems such as this one, Java 9 introduces multi-release JARs that can contain class files for different Java releases.
 
@@ -3906,7 +3906,7 @@ Each /** . . . */ documentation comment contains free-form text followed by tags
 
 The first sentence of the free-form text should be a summary statement. The javadoc utility automatically generates summary pages that extract these sentences.
 
-In the free-form text, you can use HTML modifiers such as <em>. . .</em> for emphasis, <strong>. . .</strong> for strong emphasis, <ul>/<li> for bulleted lists, and <img . . ./> to include an image. To type monospaced code, use {@code . . . } instead of <code>. . .</code>—then you don't have to worry about escaping < characters inside the code.
+In the free-form text, you can use HTML modifiers such as <em>. . .</em> for emphasis, <strong>. . .</strong> for strong emphasis, <ul>/<li> for bulleted lists, and <img . . ./> to include an image. To type monospaced code, use {@code . . . } instead of <code>. . .</code> — then you don't have to worry about escaping < characters inside the code.
 
 Note
 
@@ -3916,7 +3916,7 @@ If your comments contain links to other files such as images (for example, diagr
 
 javadoc 实用程序（utility）从下面几个特性中抽取信息：·包·公有类与接口·公有的和受保护的构造器及方法·公有的和受保护的域在第 5 章中将介绍受保护特性，在第 6 章将介绍接口。应该为上面几部分编写注释。注释应该放置在所描述特性的前面。注释以 `/**` 开始，并以 */ 结束。每个 /**...*/ 文档注释在标记之后紧跟着自由格式文本（free-form text）。标记由 @开始，如 @author 或 @param。自由格式文本的第一句应该是一个概要性的句子。javadoc 实用程序自动地将这些句子抽取出来形成概要页。
 
-在自由格式文本中，可以使用 HTML 修饰符，例如，用于强调的 <em>...</em>、用于着重强调的 <strong>...</strong> 以及包含图像的 <img...> 等。不过，一定不要使用 <h1> 或 <hr>，因为它们会与文档的格式产生冲突。若要键入等宽代码，需使用 {@code...} 而不是 <code>...</code>—— 这样一来，就不用操心对代码中的 <字符转义了。注释：如果文档中有到其他文件的链接，例如，图像文件（用户界面的组件的图表或图像等），就应该将这些文件放到子目录 doc-files 中。javadoc 实用程序将从源目录拷贝这些目录及其中的文件到文档目录中。在链接中需要使用 doc-files 目录，例如：<img src=「doc-files/uml.png」alt=「UMLdiagram」>。
+在自由格式文本中，可以使用 HTML 修饰符，例如，用于强调的 <em>...</em>、用于着重强调的 <strong>...</strong> 以及包含图像的 <img...> 等。不过，一定不要使用 <h1> 或 <hr>，因为它们会与文档的格式产生冲突。若要键入等宽代码，需使用 {@code...} 而不是 <code>...</code> —  —  这样一来，就不用操心对代码中的 <字符转义了。注释：如果文档中有到其他文件的链接，例如，图像文件（用户界面的组件的图表或图像等），就应该将这些文件放到子目录 doc-files 中。javadoc 实用程序将从源目录拷贝这些目录及其中的文件到文档目录中。在链接中需要使用 doc-files 目录，例如：<img src=「doc-files/uml.png」alt=「UMLdiagram」>。
 
 #### 4.9.2 Class Comments
 
@@ -4018,7 +4018,7 @@ return raise;
 
 #### 4.9.4 Field Comments
 
-You only need to document public fields—generally that means static constants. For example:
+You only need to document public fields — generally that means static constants. For example:
 
 
 
@@ -4042,7 +4042,7 @@ The following tags can be used in class documentation comments:
 
 @author name
 
-This tag makes an「author」entry. You can have multiple @author tags, one for each author. Don't feel compelled to use this tag—your version control system does a more thorough job tracking authorship.
+This tag makes an「author」entry. You can have multiple @author tags, one for each author. Don't feel compelled to use this tag — your version control system does a more thorough job tracking authorship.
 
 @version text
 
@@ -4267,7 +4267,7 @@ A good convention is that a class name should be a noun (Order), or a noun prece
 
 Prefer immutable classes.
 
-The LocalDate class, and other classes from the java.time package, are immutable—no method can modify the state of an object. Instead of mutating objects, methods such as plusDays return new objects with the modified state.
+The LocalDate class, and other classes from the java.time package, are immutable — no method can modify the state of an object. Instead of mutating objects, methods such as plusDays return new objects with the modified state.
 
 The problem with mutation is that it can happen concurrently when multiple threads try to update an object at the same time. The results are unpredictable. When classes are immutable, it is safe to share their objects among multiple threads.
 
