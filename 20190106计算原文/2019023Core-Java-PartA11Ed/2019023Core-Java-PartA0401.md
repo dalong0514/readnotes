@@ -118,7 +118,7 @@ In a traditional procedural program, you start the process at the top, with the 
 
 A simple rule of thumb in identifying classes is to look for nouns in the problem analysis. Methods, on the other hand, correspond to verbs.
 
-For example, in an order-processing system, some of the nouns are
+For example, in an order-processing system, some of the nouns are:
 
 Item
 
@@ -144,7 +144,7 @@ Of course, the「noun and verb」is but a rule of thumb; only experience can hel
 
 #### 4.1.4 Relationships between Classes
 
-The most common relationships between classes are
+The most common relationships between classes are:
 
 Dependence (uses–a)
 
@@ -219,21 +219,29 @@ Note: You may be wondering: Why use a class to represent dates rather than (as i
 
 Constructors always have the same name as the class name. Thus, the constructor for the Date class is called Date. To construct a Date object, combine the constructor with the new operator, as follows:
 
+```java
 new Date()
+```
 
 This expression constructs a new object. The object is initialized to the current date and time.
 
 If you like, you can pass the object to a method:
 
+```java
 System.out.println(new Date());
+```
 
 Alternatively, you can apply a method to the object that you just constructed. One of the methods of the Date class is the toString method. That method yields a string representation of the date. Here is how you would apply the toString method to a newly constructed Date object:
 
+```java
 String s = new Date().toString();
+```
 
 In these two examples, the constructed object is used only once. Usually, you will want to hang on to the objects that you construct so that you can keep using them. Simply store the object in a variable:
 
+```java
 Date birthday = new Date();
+```
 
 Figure 4.3 shows the object variable birthday that refers to the newly constructed object.
 
@@ -241,23 +249,29 @@ Figure 4.3 Creating a new object
 
 There is an important difference between objects and object variables. For example, the statement
 
-Click here to view code image
-
+```java
 Date deadline; // deadline doesn't refer to any object
+```
 
 defines an object variable, deadline, that can refer to objects of type Date. It is important to realize that the variable deadline is not an object and, in fact, does not even refer to an object yet. You cannot use any Date methods on this variable at this time. The statement
 
+```java
 s = deadline.toString(); // not yet
+```
 
 would cause a compile-time error.
 
 You must first initialize the deadline variable. You have two choices. Of course, you can initialize the variable so that it refers to a newly constructed object:
 
+```java
 deadline = new Date();
+```
 
 Or you can set the variable to refer to an existing object:
 
+```java
 deadline = birthday;
+```
 
 Now both variables refer to the same object (see Figure 4.4).
 
@@ -267,37 +281,42 @@ It is important to realize that an object variable doesn't actually contain an o
 
 In Java, the value of any object variable is a reference to an object that is stored elsewhere. The return value of the new operator is also a reference. A statement such as
 
+```java
 Date deadline = new Date();
+```
 
 has two parts. The expression new Date() makes an object of type Date, and its value is a reference to that newly created object. That reference is then stored in the deadline variable.
 
 You can explicitly set an object variable to null to indicate that it currently refers to no object.
 
-Click here to view code image
-
+```java
 deadline = null;
 
 . . .
 
 if (deadline != null)
-
-System.out.println(deadline);
+		System.out.println(deadline);
+```
 
 We will discuss null in more detail in Section 4.3.6,「Working with null References,」on p. 148.
 
-C++ Note
+C++ Note: Some people mistakenly believe that Java object variables behave like C++ references. But in C++ there are no null references, and references cannot be assigned. You should think of Java object variables as analogous to object pointers in C++. For example,
 
-Some people mistakenly believe that Java object variables behave like C++ references. But in C++ there are no null references, and references cannot be assigned. You should think of Java object variables as analogous to object pointers in C++. For example,
-
+```java
 Date birthday; // Java
+```
 
 is really the same as
 
+```java
 Date* birthday; // C++
+```
 
 Once you make this association, everything falls into place. Of course, a Date* pointer isn't initialized until you initialize it with a call to new. The syntax is almost the same in C++ and Java.
 
+```java
 Date* birthday = new Date(); // C++
+```
 
 If you copy one variable to another, then both variables refer to the same date—they are pointers to the same object. The equivalent of the Java null reference is the C++ NULL pointer.
 
@@ -311,18 +330,35 @@ C++ makes quite an effort, with its support for copy constructors and assignment
 
 要想使用对象，就必须首先构造对象，并指定其初始状态。然后，对对象应用方法。在 Java 程序设计语言中，使用构造器（constructor）构造新实例。构造器是一种特殊的方法，用来构造并初始化对象。下面看一个例子。在标准 Java 库中包含一个 Date 类。它的对象将描述一个时间点，例如：「December 31，1999，23：59：59 GMT」。
 
+注释：你可能会感到奇怪：为什么用类描述时间，而不像其他语言那样用一个内置的（built-in）类型？例如，在 Visual Basic 中有一个内置的 date 类型，程序员可以采用 #6/1/1995# 格式指定日期。从表面上看，这似乎很方便，因为程序员使用内置的 date 类型，而不必为设计类而操心。但实际上，Visual Basic 这样设计的适应性如何呢？在有些地区日期表示为月 / 日 / 年，而另一些地区表示为日 / 月 / 年。语言设计者是否能够预见这些问题呢？如果没有处理好这类问题，语言就有可能陷入混乱，对此感到不满的程序员也会丧失使用这种语言的热情。如果使用类，这些设计任务就交给了类库的设计者。如果类设计的不完善，其他的操作员可以很容易地编写自己的类，以便增强或替代（replace）系统提供的类（作为这个问题的印证：Java 的日期类库有些混乱，已经重新设计了两次）。构造器的名字应该与类名相同。因此 Date 类的构造器名为 Date。要想构造一个 Date 对象，需要在构造器前面加上 new 操作符，如下所示：
 
+这个表达式构造了一个新对象。这个对象被初始化为当前的日期和时间。
 
+如果需要的话，也可以将这个对象传递给一个方法：
 
+或者，也可以将一个方法应用于刚刚创建的对象。Date 类中有一个 toString 方法。这个方法将返回日期的字符串描述。下面的语句可以说明如何将 toString 方法应用于新构造的 Date 对象上。在这两个例子中，构造的对象仅使用了一次。通常，希望构造的对象可以多次使用，因此，需要将对象存放在一个变量中：
 
+图 4-3 显示了引用新构造的对象变量 birthday。
 
-注释：你可能会感到奇怪：为什么用类描述时间，而不像其他语言那样用一个内置的（built-in）类型？例如，在 Visual Basic 中有一个内置的 date 类型，程序员可以采用 #6/1/1995# 格式指定日期。从表面上看，这似乎很方便，因为程序员使用内置的 date 类型，而不必为设计类而操心。但实际上，Visual Basic 这样设计的适应性如何呢？在有些地区日期表示为月 / 日 / 年，而另一些地区表示为日 / 月 / 年。语言设计者是否能够预见这些问题呢？如果没有处理好这类问题，语言就有可能陷入混乱，对此感到不满的程序员也会丧失使用这种语言的热情。如果使用类，这些设计任务就交给了类库的设计者。如果类设计的不完善，其他的操作员可以很容易地编写自己的类，以便增强或替代（replace）系统提供的类（作为这个问题的印证：Java 的日期类库有些混乱，已经重新设计了两次）。构造器的名字应该与类名相同。因此 Date 类的构造器名为 Date。要想构造一个 Date 对象，需要在构造器前面加上 new 操作符，如下所示：这个表达式构造了一个新对象。这个对象被初始化为当前的日期和时间。
+图 4-3 创建一个新对象
 
-如果需要的话，也可以将这个对象传递给一个方法：或者，也可以将一个方法应用于刚刚创建的对象。Date 类中有一个 toString 方法。这个方法将返回日期的字符串描述。下面的语句可以说明如何将 toString 方法应用于新构造的 Date 对象上。在这两个例子中，构造的对象仅使用了一次。通常，希望构造的对象可以多次使用，因此，需要将对象存放在一个变量中：图 4-3 显示了引用新构造的对象变量 birthday。图 4-3 创建一个新对象在对象与对象变量之间存在着一个重要的区别。例如，语句
+在对象与对象变量之间存在着一个重要的区别。例如，语句：
 
-定义了一个对象变量 deadline，它可以引用 Date 类型的对象。但是，一定要认识到：变量 deadline 不是一个对象，实际上也没有引用对象。此时，不能将任何 Date 方法应用于这个变量上。语句将产生编译错误。必须首先初始化变量 deadline，这里有两个选择。当然，可以用新构造的对象初始化这个变量：也让这个变量引用一个已存在的对象：现在，这两个变量引用同一个对象（请参见图 4-4）。图 4-4 引用同一个对象的对象变量一定要认识到：一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。在 Java 中，任何对象变量的值都是对存储在另外一个地方的一个对象的引用。new 操作符的返回值也是一个引用。下列语句：
+定义了一个对象变量 deadline，它可以引用 Date 类型的对象。但是，一定要认识到：变量 deadline 不是一个对象，实际上也没有引用对象。此时，不能将任何 Date 方法应用于这个变量上。语句：
 
-有两个部分。表达式 new Date（）构造了一个 Date 类型的对象，并且它的值是对新创建对象的引用。这个引用存储在变量 deadline 中。可以显式地将对象变量设置为 null，表明这个对象变量目前没有引用任何对象。如果将一个方法应用于一个值为 null 的对象上，那么就会产生运行时错误。局部变量不会自动地初始化为 null，而必须通过调用 new 或将它们设置为 null 进行初始化。C++ 注释：很多人错误地认为 Java 对象变量与 C++ 的引用类似。然而，在 C++ 中没有空引用，并且引用不能被赋值。可以将 Java 的对象变量看作 C++ 的对象指针。例如，实际上，等同于一旦理解了这一点，一切问题就迎刃而解了。当然，一个 Date * 指针只能通过调用 new 进行初始化。就这一点而言，C++ 与 Java 的语法几乎是一样的。如果把一个变量的值赋给另一个变量，两个变量就指向同一个日期，即它们是同一个对象的指针。在 Java 中的 null 引用对应 C++ 中的 NULL 指针。所有的 Java 对象都存储在堆中。当一个对象包含另一个对象变量时，这个变量依然包含着指向另一个堆对象的指针。
+将产生编译错误。必须首先初始化变量 deadline，这里有两个选择。当然，可以用新构造的对象初始化这个变量：
+
+也让这个变量引用一个已存在的对象：
+
+现在，这两个变量引用同一个对象（请参见图 4-4）。
+
+图 4-4 引用同一个对象的对象变量
+
+一定要认识到：一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。在 Java 中，任何对象变量的值都是对存储在另外一个地方的一个对象的引用。new 操作符的返回值也是一个引用。下列语句：
+
+有两个部分。表达式 new Date() 构造了一个 Date 类型的对象，并且它的值是对新创建对象的引用。这个引用存储在变量 deadline 中。可以显式地将对象变量设置为 null，表明这个对象变量目前没有引用任何对象。如果将一个方法应用于一个值为 null 的对象上，那么就会产生运行时错误。局部变量不会自动地初始化为 null，而必须通过调用 new 或将它们设置为 null 进行初始化
+
+C++ 注释：很多人错误地认为 Java 对象变量与 C++ 的引用类似。然而，在 C++ 中没有空引用，并且引用不能被赋值。可以将 Java 的对象变量看作 C++ 的对象指针。例如，实际上，等同于一旦理解了这一点，一切问题就迎刃而解了。当然，一个 `Date *` 指针只能通过调用 new 进行初始化。就这一点而言，C++ 与 Java 的语法几乎是一样的。如果把一个变量的值赋给另一个变量，两个变量就指向同一个日期，即它们是同一个对象的指针。在 Java 中的 null 引用对应 C++ 中的 NULL 指针。所有的 Java 对象都存储在堆中。当一个对象包含另一个对象变量时，这个变量依然包含着指向另一个堆对象的指针。
 
 所有的 Java 对象都存储在堆中。当一个对象包含另一个对象变量时，这个变量依然包含着指向另一个堆对象的指针。在 C++ 中，指针十分令人头疼，并常常导致程序错误。稍不小心就会创建一个错误的指针，或者造成内存溢出。在 Java 语言中，这些问题都不复存在。如果使用一个没有初始化的指针，运行系统将会产生一个运行时错误，而不是生成一个随机的结果。同时，不必担心内存管理问题，垃圾收集器将会处理相关的事宜。C++ 确实做了很大的努力，它通过拷贝型构造器和复制操作符来实现对象的自动拷贝。例如，一个链表（linked list）拷贝的结果将会得到一个新链表，其内容与原始链表相同，但却是一组独立的链接。这使得将同样的拷贝行为内置在类中成为可能。在 Java 中，必须使用 clone 方法获得对象的完整拷贝。
 
@@ -342,34 +378,37 @@ Separating time measurement from calendars is good object-oriented design. In ge
 
 You do not use a constructor to construct objects of the LocalDate class. Instead, use static factory methods that call constructors on your behalf. The expression
 
+```java
 LocalDate.now()
+```
 
 constructs a new object that represents the date at which the object was constructed.
 
 You can construct an object for a specific date by supplying year, month, and day:
 
+```java
 LocalDate.of(1999, 12, 31)
+```
 
 Of course, you will usually want to store the constructed object in an object variable:
 
-Click here to view code image
-
+```java
 LocalDate newYearsEve = LocalDate.of(1999, 12, 31);
+```
 
 Once you have a LocalDate object, you can find out the year, month, and day with the methods getYear, getMonthValue, and getDayOfMonth:
 
-Click here to view code image
-
+```java
 int year = newYearsEve.getYear(); // 1999
 
 int month = newYearsEve.getMonthValue(); // 12
 
 int day = newYearsEve.getDayOfMonth(); // 31
+```
 
 This may seem pointless because they are the very same values that you just used to construct the object. But sometimes, you have a date that has been computed, and then you will want to invoke those methods to find out more about it. For example, the plusDays method yields a new LocalDate that is a given number of days away from the object to which you apply it:
 
-Click here to view code image
-
+```java
 LocalDate aThousandDaysLater = newYearsEve.plusDays(1000);
 
 year = aThousandDaysLater.getYear(); // 2002
@@ -377,6 +416,7 @@ year = aThousandDaysLater.getYear(); // 2002
 month = aThousandDaysLater.getMonthValue(); // 09
 
 day = aThousandDaysLater.getDayOfMonth(); // 26
+```
 
 The LocalDate class has encapsulated instance fields to maintain the date to which it is set. Without looking at the source code, it is impossible to know the representation that the class uses internally. But, of course, the point of encapsulation is that this doesn't matter. What matters are the methods that a class exposes.
 
@@ -402,31 +442,31 @@ Tip: The JDK provides the jdeprscan tool for checking whether your code uses dep
 
 Have another look at the plusDays method call that you saw in the preceding section:
 
-Click here to view code image
-
+```java
 LocalDate aThousandDaysLater = newYearsEve.plusDays(1000);
+```
 
 What happens to newYearsEve after the call? Has it been changed to be a thousand days later? As it turns out, it has not. The plusDays method yields a new LocalDate object, which is then assigned to the aThousandDaysLater variable. The original object remains unchanged. We say that the plusDays method does not mutate the object on which it is invoked. (This is similar to the toUpperCase method of the String class that you saw in Chapter 3. When you call toUpperCase on a string, that string stays the same, and a new string with uppercase characters is returned.)
 
 An earlier version of the Java library had a different class for dealing with calendars, called GregorianCalendar. Here is how you add a thousand days to a date represented by that class:
 
-Click here to view code image
-
+```java
 GregorianCalendar someDay = new GregorianCalendar(1999, 11, 31);
 
 // odd feature of that class: month numbers go from 0 to 11
 
 someDay.add(Calendar.DAY_OF_MONTH, 1000);
+```
 
 Unlike the LocalDate.plusDays method, the GregorianCalendar.add method is a mutator method. After invoking it, the state of the someDay object has changed. Here is how you can find out the new state:
 
-Click here to view code image
-
+```java
 year = someDay.get(Calendar.YEAR); // 2002
 
 month = someDay.get(Calendar.MONTH) + 1; // 09
 
 day = someDay.get(Calendar.DAY_OF_MONTH); // 26
+```
 
 That's why we called the variable someDay and not newYearsEve—it no longer is new year's eve after calling the mutator method.
 
@@ -435,8 +475,6 @@ In contrast, methods that only access objects without modifying them are sometim
 C++ Note: In C++, the const suffix denotes accessor methods. A method that is not declared as const is assumed to be a mutator. However, in the Java programming language, no special syntax distinguishes accessors from mutators.
 
 We finish this section with a program that puts the LocalDate class to work. The program displays a calendar for the current month, like this:
-
-Click here to view code image
 
 Mon Tue Wed Thu Fri Sat Sun
 
@@ -456,65 +494,56 @@ The current day is marked with an asterisk (*). As you can see, the program need
 
 Let us go through the key steps of the program. First, we construct an object that is initialized with the current date.
 
-Click here to view code image
-
+```java
 LocalDate date = LocalDate.now();
+```
 
 We capture the current month and day.
 
-Click here to view code image
-
+```java
 int month = date.getMonthValue();
 
 int today = date.getDayOfMonth();
+```
 
 Then we set date to the first of the month and get the weekday of that date.
 
-Click here to view code image
-
+```java
 date = date.minusDays(today - 1); // set to start of month
 
 DayOfWeek weekday = date.getDayOfWeek();
 
 int value = weekday.getValue(); // 1 = Monday, . . . , 7 = Sunday
+```
 
 The variable weekday is set to an object of type DayOfWeek. We call the getValue method of that object to get a numerical value for the weekday. This yields an integer that follows the international convention where the weekend comes at the end of the week, returning 1 for Monday, 2 for Tuesday, and so on. Sunday has value 7.
 
 Note that the first line of the calendar is indented, so that the first day of the month falls on the appropriate weekday. Here is the code to print the header and the indentation for the first line:
 
-Click here to view code image
-
+```java
 System.out.println("Mon Tue Wed Thu Fri Sat Sun");
 
 for (int i = 1; i < value; i++)
-
-System.out.print(" ");
+    System.out.print(" ");
+```
 
 Now, we are ready to print the body of the calendar. We enter a loop in which date traverses the days of the month.
 
 In each iteration, we print the date value. If date is today, the date is marked with an *. Then, we advance date to the next day. When we reach the beginning of each new week, we print a new line:
 
-Click here to view code image
-
+```java
 while (date.getMonthValue() == month)
-
-{
-
-System.out.printf("%3d", date.getDayOfMonth());
-
-if (date.getDayOfMonth() == today)
-
-System.out.print("*");
-
-else
-
-System.out.print(" ");
-
-date = date.plusDays(1);
-
-if (date.getDayOfWeek().getValue() == 1) System.out.println();
-
-}
+	{
+		System.out.printf("%3d", date.getDayOfMonth());
+		if (date.getDayOfMonth() == today)
+			System.out.print("*");
+		else
+			System.out.print(" ");
+		date = date.plusDays(1);
+		if (date.getDayOfWeek().getValue() == 1)
+			System.out.println();
+	}
+```
 
 When do we stop? We don't know whether the month has 31, 30, 29, or 28 days. Instead, we keep iterating while date is still in the current month.
 
@@ -526,91 +555,86 @@ The point of this example program is to show you how you can use the interface o
 
 Listing 4.1 CalendarTest/CalendarTest.java
 
-Click here to view code image
+```java
+import java.time.*;
 
-1 import java.time.*;
+/**
+* @version 1.5 2015-05-08
+* @author Cay Horstmann
+*/
 
-2
+public class CalendarTest
 
-3 /**
+{
 
-4 * @version 1.5 2015-05-08
+	public static void main(String[] args)
 
-5 * @author Cay Horstmann
+	{
 
-6 */
+		LocalDate date = LocalDate.now();
 
-7 public class CalendarTest
+		int month = date.getMonthValue();
 
-8 {
+		int today = date.getDayOfMonth();
 
-9 public static void main(String[] args)
+		date = date.minusDays(today - 1); // set to start of month
 
-10 {
+		DayOfWeek weekday = date.getDayOfWeek();
 
-11 LocalDate date = LocalDate.now();
+		int value = weekday.getValue(); // 1 = Monday, . . . , 7 = Sunday
 
-12 int month = date.getMonthValue();
+		System.out.println("Mon Tue Wed Thu Fri Sat Sun");
 
-13 int today = date.getDayOfMonth();
+		for (int i = 1; i < value; i++)
 
-14
+			System.out.print(" ");
 
-15 date = date.minusDays(today - 1); // set to start of month
+		while (date.getMonthValue() == month)
 
-16 DayOfWeek weekday = date.getDayOfWeek();
+		{
 
-17 int value = weekday.getValue(); // 1 = Monday, . . . , 7 = Sunday
+			System.out.printf("%3d", date.getDayOfMonth());
 
-18
+			if (date.getDayOfMonth() == today)
 
-19 System.out.println("Mon Tue Wed Thu Fri Sat Sun");
+				System.out.print("*");
 
-20 for (int i = 1; i < value; i++)
+			else
 
-21 System.out.print(" ");
+				System.out.print(" ");
 
-22 while (date.getMonthValue() == month)
+			date = date.plusDays(1);
 
-23 {
+			if (date.getDayOfWeek().getValue() == 1) System.out.println();
 
-24 System.out.printf("%3d", date.getDayOfMonth());
+		}
 
-25 if (date.getDayOfMonth() == today)
+		if (date.getDayOfWeek().getValue() != 1) System.out.println();
 
-26 System.out.print("*");
-
-27 else
-
-28 System.out.print(" ");
-
-29 date = date.plusDays(1);
-
-30 if (date.getDayOfWeek().getValue() == 1) System.out.println();
-
-31 }
-
-32 if (date.getDayOfWeek().getValue() != 1) System.out.println();
-
-33 }
-
-34 }
+	}
+```
 
 java.time.LocalDate 8
 
+```java
 static LocalDate now()
+```
 
 constructs an object that represents the current date.
 
+```java
 static LocalDate of(int year, int month, int day)
+```
 
 constructs an object that represents the given date.
 
+```java
 int getYear()
 
 int getMonthValue()
 
 int getDayOfMonth()
+```
 
 gets the year, month, and day of this date.
 
@@ -618,9 +642,11 @@ DayOfWeek getDayOfWeek
 
 gets the weekday of this date as an instance of the DayOfWeek class. Call getValue to get a weekday between 1 (Monday) and 7 (Sunday).
 
+```java
 LocalDate plusDays(int n)
 
 LocalDate minusDays(int n)
+```
 
 yields the date that is n days after or before this date.
 
@@ -634,7 +660,13 @@ yields the date that is n days after or before this date.
 
 什么时候结束呢？我们不知道这个月有几天，是 31 天、30 天、29 天还是 28 天。实际上，只要 date 还在当月就要继续迭代。程序清单 4-1 给出了完整的程序。程序清单 4-1 CalendarTest/CalendarTest.java 可以看到，利用 LocalDate 类可以编写一个日历程序，能处理星期几以及各月天数不同等复杂问题。你并不需要知道 LocalDate 类如何计算月和星期几。只需要使用这个类的接口，如 plusDays 和 getDayOfWeek 等方法。这个示例程序的重点是向你展示如何使用一个类的接口来完成相当复杂的任务，而无需了解实现细节。
 
-java.time.LocalDate 8·static LocalTime now（）构造一个表示当前日期的对象。·static LocalTime of（int year，int month，int day）构造一个表示给定日期的对象。·int getYear（）·int getMonthValue（）·int getDayOfMonth（）得到当前日期的年、月和日。·DayOfWeek getDayOfWeek 得到当前日期是星期几，作为 DayOfWeek 类的一个实例返回。调用 getValue 来得到 1~7 之间的一个数，表示这是星期几，1 表示星期一，7 表示星期日。·LocalDate plusDays（int n）·LocalDate minusDays（int n）生成当前日期之后或之前 n 天的日期。
+java.time.LocalDate 8
+
+static LocalTime now() 构造一个表示当前日期的对象。
+
+static LocalTime of（int year，int month，int day）构造一个表示给定日期的对象。
+
+int getYear（）·int getMonthValue（）·int getDayOfMonth（）得到当前日期的年、月和日。·DayOfWeek getDayOfWeek 得到当前日期是星期几，作为 DayOfWeek 类的一个实例返回。调用 getValue 来得到 1~7 之间的一个数，表示这是星期几，1 表示星期一，7 表示星期日。·LocalDate plusDays（int n）·LocalDate minusDays（int n）生成当前日期之后或之前 n 天的日期。
 
 ### 4.3 Defining Your Own Classes
 
@@ -648,8 +680,7 @@ In Chapter 3, you started writing simple classes. However, all those classes had
 
 The simplest form for a class definition in Java is
 
-Click here to view code image
-
+```java
 class ClassName
 
 {
@@ -673,10 +704,11 @@ method2
 . . .
 
 }
+```
 
 Consider the following, very simplified, version of an Employee class that might be used by a business in writing a payroll system:
 
-Click here to view code image
+
 
 class Employee
 
@@ -724,7 +756,7 @@ We break down the implementation of this class, in some detail, in the sections 
 
 In the program, we construct an Employee array and fill it with three Employee objects:
 
-Click here to view code image
+
 
 Employee[] staff = new Employee[3];
 
@@ -736,7 +768,7 @@ staff[2] = new Employee("Tony Tester", . . .);
 
 Next, we use the raiseSalary method of the Employee class to raise each employee's salary by 5%:
 
-Click here to view code image
+
 
 for (Employee e : staff)
 
@@ -744,7 +776,7 @@ e.raiseSalary(5);
 
 Finally, we print out information about each employee, by calling the getName,
 
-Click here to view code image
+
 
 for (Employee e : staff)
 
@@ -768,7 +800,7 @@ The bytecode interpreter starts running the code in the main method in the Emplo
 
 Listing 4.2 EmployeeTest/EmployeeTest.java
 
-Click here to view code image
+
 
 1 import java.time.*;
 
@@ -929,7 +961,7 @@ Note: If you are familiar with the make facility of UNIX (or one of its Windows 
 
 In the sections that follow, we will dissect the Employee class. Let's start with the methods in this class. As you can see by examining the source code, this class has one constructor and four methods:
 
-Click here to view code image
+
 
 public Employee(String n, double s, int year, int month, int day)
 
@@ -945,7 +977,7 @@ All methods of this class are tagged as public. The keyword public means that an
 
 Next, notice the three instance fields that will hold the data manipulated inside an instance of the Employee class.
 
-Click here to view code image
+
 
 private String name;
 
@@ -967,7 +999,7 @@ Finally, notice that two of the instance fields are themselves objects: The name
 
 Let's look at the constructor listed in our Employee class.
 
-Click here to view code image
+
 
 public Employee(String n, double s, int year, int month, int day)
 
@@ -985,13 +1017,13 @@ As you can see, the name of the constructor is the same as the name of the class
 
 For example, when you create an instance of the Employee class with code like this:
 
-Click here to view code image
+
 
 new Employee("James Bond", 100000, 1950, 1, 1)
 
 you have set the instance fields as follows:
 
-Click here to view code image
+
 
 name = "James Bond";
 
@@ -1001,7 +1033,7 @@ hireDay = LocalDate.of(1950, 1, 1); // January 1, 1950
 
 There is an important difference between constructors and other methods. A constructor can only be called in conjunction with the new operator. You can't apply a constructor to an existing object to reset the instance fields. For example,
 
-Click here to view code image
+
 
 james.Employee("James Bond", 250000, 1950, 1, 1) // ERROR
 
@@ -1021,7 +1053,7 @@ A constructor is always called with the new operator.
 
 C++ Note: Constructors work the same way in Java as they do in C++. Keep in mind, however, that all Java objects are constructed on the heap and that a constructor must be combined with new. It is a common error of C++ programmers to forget the new operator:
 
-Click here to view code image
+
 
 Employee number007("James Bond", 100000, 1950, 1, 1); // C++, not Java
 
@@ -1031,7 +1063,7 @@ Caution
 
 Be careful not to introduce local variables with the same names as the instance fields. For example, the following constructor will not set the salary:
 
-Click here to view code image
+
 
 public Employee(String n, double s, . . .)
 
@@ -1057,13 +1089,13 @@ The constructor declares local variables name and salary. These variables are on
 
 As of Java 10, you can declare local variables with the var keyword instead of specifying their type, provided their type can be inferred from the initial value. For example, instead of declaring
 
-Click here to view code image
+
 
 Employee harry = new Employee("Harry Hacker", 50000, 1989, 10, 1);
 
 you simply write
 
-Click here to view code image
+
 
 var harry = new Employee("Harry Hacker", 50000, 1989, 10, 1);
 
@@ -1085,7 +1117,7 @@ This sounds like a convenient mechanism for dealing with special situations, suc
 
 If you apply a method to a null value, a NullPointerException occurs.
 
-Click here to view code image
+
 
 LocalDate birthday = null;
 
@@ -1099,13 +1131,13 @@ The hireDay field is guaranteed to be non-null because it is initialized with a 
 
 There are two solutions. The「permissive」approach is to turn a null argument into an appropriate non-null value:
 
-Click here to view code image
+
 
 if (n == null) name = "unknown"; else name = n;
 
 As of Java 9, the Objects class has a convenience method for this purpose:
 
-Click here to view code image
+
 
 public Employee(String n, double s, int year, int month, int day)
 
@@ -1119,7 +1151,7 @@ name = Objects.requireNonNullElse(n, "unknown");
 
 The「tough love」approach is to reject a null argument:
 
-Click here to view code image
+
 
 public Employee(String n, double s, int year, int month, int day)
 
@@ -1145,7 +1177,7 @@ Note: Whenever you accept an object reference as a construction parameter, ask y
 
 Methods operate on objects and access their instance fields. For example, the method
 
-Click here to view code image
+
 
 public void raiseSalary(double byPercent)
 
@@ -1159,13 +1191,13 @@ salary += raise;
 
 sets a new value for the salary instance field in the object on which this method is invoked. Consider the call
 
-Click here to view code image
+
 
 number007 .raiseSalary(5);
 
 The effect is to increase the value of the number007.salary field by 5%. More specifically, the call executes the following instructions:
 
-Click here to view code image
+
 
 double raise = number007.salary * 5 / 100;
 
@@ -1177,7 +1209,7 @@ As you can see, the explicit parameters are explicitly listed in the method decl
 
 In every method, the keyword this refers to the implicit parameter. If you like, you can write the raiseSalary method as follows:
 
-Click here to view code image
+
 
 public void raiseSalary(double byPercent)
 
@@ -1195,7 +1227,7 @@ C++ Note
 
 In C++, you generally define methods outside the class:
 
-Click here to view code image
+
 
 void Employee::raiseSalary(double byPercent) // C++, not Java
 
@@ -1207,7 +1239,7 @@ void Employee::raiseSalary(double byPercent) // C++, not Java
 
 If you define a method inside a class, then it is, automatically, an inline method.
 
-Click here to view code image
+
 
 class Employee
 
@@ -1225,7 +1257,7 @@ In Java, all methods are defined inside the class itself. This does not make the
 
 Finally, let's look more closely at the rather simple getName, getSalary, and getHireDay methods.
 
-Click here to view code image
+
 
 public String getName()
 
@@ -1287,7 +1319,7 @@ Caution
 
 Be careful not to write accessor methods that return references to mutable objects. In a previous edition of this book, we violated that rule in our Employee class in which the getHireDay method returned an object of class Date:
 
-Click here to view code image
+
 
 class Employee
 
@@ -1313,7 +1345,7 @@ Unlike the LocalDate class, which has no mutator methods, the Date class has a m
 
 The fact that Date objects are mutable breaks encapsulation! Consider the following rogue code:
 
-Click here to view code image
+
 
 Employee harry = . . .;
 
@@ -1331,7 +1363,7 @@ Figure 4.5 Returning a reference to a mutable data field
 
 If you need to return a reference to a mutable object, you should clone it first. A clone is an exact copy of an object stored in a new location. We discuss cloning in detail in Chapter 6. Here is the corrected code:
 
-Click here to view code image
+
 
 class Employee
 
@@ -1367,7 +1399,7 @@ As a rule of thumb, always use clone whenever you need to return a copy of a mut
 
 You know that a method can access the private data of the object on which it is invoked. What people often find surprising is that a method can access the private data of all objects of its class. For example, consider a method equals that compares two employees.
 
-Click here to view code image
+
 
 class Employee
 
@@ -1387,7 +1419,7 @@ return name.equals(other.name);
 
 A typical call is
 
-Click here to view code image
+
 
 if (harry.equals(boss)) . . .
 
@@ -1417,7 +1449,7 @@ By making a method private, you are under no obligation to keep it available if 
 
 You can define an instance field as final. Such a field must be initialized when the object is constructed. That is, you must guarantee that the field value has been set after the end of every constructor. Afterwards, the field may not be modified again. For example, the name field of the Employee class may be declared as final because it never changes after the object is constructed—there is no
 
-Click here to view code image
+
 
 class Employee
 
@@ -1433,19 +1465,19 @@ The final modifier is particularly useful for fields whose type is primitive or 
 
 For mutable classes, the final modifier can be confusing. For example, consider a field
 
-Click here to view code image
+
 
 private final StringBuilder evaluations;
 
 that is initialized in the Employee constructor as
 
-Click here to view code image
+
 
 evaluations = new StringBuilder();
 
 The final keyword merely means that the object reference stored in the evaluations variable will never again refer to a different StringBuilder object. But the object can be mutated:
 
-Click here to view code image
+
 
 public void giveGoldStar()
 
@@ -1471,7 +1503,7 @@ In all sample programs that you have seen, the main method is tagged with the st
 
 If you define a field as static, then there is only one such field per class. In contrast, each object has its own copy of nonstatic instance fields. For example, let's suppose we want to assign a unique identification number to each employee. We add an instance field id and a static field nextId to the Employee class:
 
-Click here to view code image
+
 
 class Employee
 
@@ -1493,7 +1525,7 @@ In some object-oriented programming languages, static fields are called class fi
 
 Let's implement a simple method:
 
-Click here to view code image
+
 
 public void setId()
 
@@ -1511,7 +1543,7 @@ harry.setId();
 
 Then, the id field of harry is set to the current value of the static field nextId, and the value of the static field is incremented:
 
-Click here to view code image
+
 
 harry.id = Employee.nextId;
 
@@ -1528,7 +1560,7 @@ Employee.nextId++;
 
 Static variables are quite rare. However, static constants are more common. For example, the Math class defines a static constant:
 
-Click here to view code image
+
 
 public class Math
 
@@ -1548,7 +1580,7 @@ If the keyword static had been omitted, then PI would have been an instance fiel
 
 Another static constant that you have used many times is System.out. It is declared in the System class as follows:
 
-Click here to view code image
+
 
 public class System
 
@@ -1564,7 +1596,7 @@ public static final PrintStream out = . . .;
 
 As we mentioned several times, it is never a good idea to have public fields, because everyone can modify them. However, public constants (that is, final fields) are fine. Since out has been declared as final, you cannot reassign another print stream to it:
 
-Click here to view code image
+
 
 System.out = new PrintStream(. . .); // ERROR--out is final
 
@@ -1588,7 +1620,7 @@ You can think of static methods as methods that don't have a this parameter. (In
 
 A static method of the Employee class cannot access the id instance field because it does not operate on an object. However, a static method can access a static field. Here is an example of such a static method:
 
-Click here to view code image
+
 
 public static int getNextId()
 
@@ -1600,7 +1632,7 @@ return nextId; // returns static field
 
 To call this method, you supply the name of the class:
 
-Click here to view code image
+
 
 int n = Employee.getNextId();
 
@@ -1634,7 +1666,7 @@ The term「static」has a curious history. At first, the keyword static was intr
 
 Here is another common use for static methods. Classes such as LocalDate and NumberFormat use static factory methods that construct objects. You have already seen the factory methods LocalDate.now and LocalDate.of. Here is how the NumberFormat class yields formatter objects for various styles:
 
-Click here to view code image
+
 
 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
 
@@ -1666,7 +1698,7 @@ Note that you can call static methods without having any objects. For example, y
 
 For the same reason, the main method is a static method.
 
-Click here to view code image
+
 
 public class Application
 
@@ -1690,7 +1722,7 @@ Tip
 
 Every class can have a main method. That is a handy trick for unit testing of classes. For example, you can add a main method to the Employee class:
 
-Click here to view code image
+
 
 class Employee
 
@@ -1750,7 +1782,7 @@ to execute both main methods.
 
 Listing 4.3 StaticTest/StaticTest.java
 
-Click here to view code image
+
 
 1 /**
 
@@ -1938,7 +1970,7 @@ The Java programming language always uses call by value. That means that the met
 
 For example, consider the following call:
 
-Click here to view code image
+
 
 double percent = 10;
 
@@ -1948,7 +1980,7 @@ No matter how the method is implemented, we know that after the method call, the
 
 Let us look a little more closely at this situation. Suppose a method tried to triple the value of a method parameter:
 
-Click here to view code image
+
 
 public static void tripleValue(double x) // doesn't work
 
@@ -1960,7 +1992,7 @@ x = 3 * x;
 
 Let's call this method:
 
-Click here to view code image
+
 
 double percent = 10;
 
@@ -1984,7 +2016,7 @@ Object references
 
 You have seen that it is impossible for a method to change a primitive type parameter. The situation is different for object parameters. You can easily implement a method that triples the salary of an employee:
 
-Click here to view code image
+
 
 public static void tripleSalary(Employee x) // works
 
@@ -1996,7 +2028,7 @@ x.raiseSalary(200);
 
 When you call
 
-Click here to view code image
+
 
 harry = new Employee(. . .);
 
@@ -2018,7 +2050,7 @@ Many programming languages (in particular, C++ and Pascal) have two mechanisms f
 
 Let's try to write a method that swaps two Employee objects:
 
-Click here to view code image
+
 
 public static void swap(Employee x, Employee y) // doesn't work
 
@@ -2034,7 +2066,7 @@ y = temp;
 
 If Java used call by reference for objects, this method would work:
 
-Click here to view code image
+
 
 var a = new Employee("Alice", . . .);
 
@@ -2046,7 +2078,7 @@ swap(a, b);
 
 However, the method does not actually change the object references that are stored in the variables a and b. The x and y parameters of the swap method are initialized with copies of these references. The method then proceeds to swap these copies.
 
-Click here to view code image
+
 
 // x refers to Alice, y to Bob
 
@@ -2074,7 +2106,7 @@ A method cannot make an object parameter refer to a new object.
 
 The program in Listing 4.4 demonstrates these facts. The program first tries to triple the value of a number parameter and does not succeed:
 
-Click here to view code image
+
 
 Testing tripleValue:
 
@@ -2086,7 +2118,7 @@ After: percent=10.0
 
 It then successfully triples the salary of an employee:
 
-Click here to view code image
+
 
 Testing tripleSalary:
 
@@ -2100,7 +2132,7 @@ After the method, the state of the object to which harry refers has changed. Thi
 
 Finally, the program demonstrates the failure of the swap method:
 
-Click here to view code image
+
 
 Testing swap:
 
@@ -2124,7 +2156,7 @@ C++ has both call by value and call by reference. You tag reference parameters w
 
 Listing 4.4 ParamTest/ParamTest.java
 
-Click here to view code image
+
 
 1 /**
 
@@ -2330,13 +2362,13 @@ You have seen how to write simple constructors that define the initial state of 
 
 Some classes have more than one constructor. For example, you can construct an empty StringBuilder object as
 
-Click here to view code image
+
 
 var messages = new StringBuilder();
 
 Alternatively, you can specify an initial string:
 
-Click here to view code image
+
 
 var todoList = new StringBuilder("To do:\n");
 
@@ -2346,7 +2378,7 @@ Note
 
 Java allows you to overload any method—not just constructor methods. Thus, to completely describe a method, you need to specify its name together with its parameter types. This is called the signature of the method. For example, the String class has four public methods called indexOf. They have signatures
 
-Click here to view code image
+
 
 indexOf(int)
 
@@ -2376,7 +2408,7 @@ For example, consider the Employee class. Suppose you don't specify how to initi
 
 However, that would not be a good idea. If anyone called the getName or getHireDay method, they would get a null reference that they probably don't expect:
 
-Click here to view code image
+
 
 LocalDate h = harry.getHireDay();
 
@@ -2390,7 +2422,7 @@ int year = h.getYear(); // throws exception if h is null
 
 Many classes contain a constructor with no arguments that creates an object whose state is set to an appropriate default. For example, here is a no-argument constructor for the Employee class:
 
-Click here to view code image
+
 
 public Employee()
 
@@ -2408,7 +2440,7 @@ If you write a class with no constructors whatsoever, then a no-argument constru
 
 If a class supplies at least one constructor but does not supply a no-argument constructor, it is illegal to construct objects without supplying arguments. For example, our original Employee class in Listing 4.2 provided a single constructor:
 
-Click here to view code image
+
 
 public Employee(String n, double s, int year, int month, int day)
 
@@ -2426,7 +2458,7 @@ new ClassName()
 
 then you must provide a no-argument constructor. Of course, if you are happy with the default values for all fields, you can simply supply
 
-Click here to view code image
+
 
 public ClassName()
 
@@ -2446,7 +2478,7 @@ By overloading the constructor methods in a class, you can build many ways to se
 
 You can simply assign a value to any field in the class definition. For example:
 
-Click here to view code image
+
 
 class Employee
 
@@ -2462,7 +2494,7 @@ This assignment is carried out before the constructor executes. This syntax is p
 
 The initialization value doesn't have to be a constant value. Here is an example in which a field is initialized with a method call. Consider an Employee class where each employee has an id field. You can initialize it as follows:
 
-Click here to view code image
+
 
 class Employee
 
@@ -2494,7 +2526,7 @@ C++ Note
 
 In C++, you cannot directly initialize instance fields of a class. All fields must be set in a constructor. However, C++ has a special initializer list syntax, such as
 
-Click here to view code image
+
 
 Employee::Employee(String n, double s, int y, int m, int d) // C++
 
@@ -2520,7 +2552,7 @@ When you write very trivial constructors (and you'll write a lot of them), it ca
 
 We have generally opted for single-letter parameter names:
 
-Click here to view code image
+
 
 public Employee(String n, double s)
 
@@ -2536,7 +2568,7 @@ However, the drawback is that you need to read the code to tell what the n and s
 
 Some programmers prefix each parameter with an「a」:
 
-Click here to view code image
+
 
 public Employee(String aName, double aSalary)
 
@@ -2552,7 +2584,7 @@ That is quite neat. Any reader can immediately figure out the meaning of the par
 
 Another commonly used trick relies on the fact that parameter variables shadow instance fields with the same name. For example, if you call a parameter salary, then salary refers to the parameter, not the instance field. But you can still access the instance field as this.salary. Recall that this denotes the implicit parameter—that is, the object being constructed. Here is an example:
 
-Click here to view code image
+
 
 public Employee(String name, double salary)
 
@@ -2576,7 +2608,7 @@ The keyword this refers to the implicit parameter of a method. However, this key
 
 If the first statement of a constructor has the form this(. . .), then the constructor calls another constructor of the same class. Here is a typical example:
 
-Click here to view code image
+
 
 public Employee(double s)
 
@@ -2610,7 +2642,7 @@ By assigning a value in the declaration
 
 There is a third mechanism in Java, called an initialization block. Class declarations can contain arbitrary blocks of code. These blocks are executed whenever an object of that class is constructed. For example:
 
-Click here to view code image
+
 
 class Employee
 
@@ -2680,7 +2712,7 @@ Naturally, it is always a good idea to organize your initialization code so that
 
 To initialize a static field, either supply an initial value or use a static initialization block. You have already seen the first mechanism:
 
-Click here to view code image
+
 
 private static int nextId = 1;
 
@@ -2688,7 +2720,7 @@ If the static fields of your class require complex initialization code, use a st
 
 Place the code inside a block and tag it with the keyword static. Here is an example. We want the employee ID numbers to start at a random integer less than 10,000.
 
-Click here to view code image
+
 
 // static initialization block
 
@@ -2708,7 +2740,7 @@ Note
 
 Amazingly enough, up to JDK 6, it was possible to write a「Hello, World」program in Java without ever writing a main method.
 
-Click here to view code image
+
 
 public class Hello
 
@@ -2742,7 +2774,7 @@ An instance field initialization
 
 Listing 4.5 ConstructorTest/ConstructorTest.java
 
-Click here to view code image
+
 
 1 import java.util.*;
 
@@ -2972,7 +3004,7 @@ A class can use all classes from its own package and all public classes from oth
 
 You can access the public classes in another package in two ways. The first is simply to use the fully qualified name; that is, the package name followed by the class name. For example:
 
-Click here to view code image
+
 
 java.time.LocalDate today = java.time.LocalDate.now();
 
@@ -2984,13 +3016,13 @@ import java.time.*;
 
 Then you can use
 
-Click here to view code image
+
 
 LocalDate today = LocalDate.now();
 
 without a package prefix. You can also import a specific class inside a package:
 
-Click here to view code image
+
 
 import java.time.LocalDate;
 
@@ -3000,7 +3032,7 @@ Tip
 
 In Eclipse, you can select the menu option Source → Organize Imports. Package statements such as import java.util.*; are automatically expanded into a list of specific imports such as
 
-Click here to view code image
+
 
 import java.util.ArrayList;
 
@@ -3012,7 +3044,7 @@ However, note that you can only use the * notation to import a single package. Y
 
 Most of the time, you just import the packages that you need, without worrying too much about them. The only time that you need to pay attention to packages is when you have a name conflict. For example, both the java.util and java.sql packages have a Date class. Suppose you write a program that imports both packages.
 
-Click here to view code image
+
 
 import java.util.*;
 
@@ -3020,13 +3052,13 @@ import java.sql.*;
 
 If you now use the Date class, you get a compile-time error:
 
-Click here to view code image
+
 
 Date today; // ERROR--java.util.Date or java.sql.Date?
 
 The compiler cannot figure out which Date class you want. You can solve this problem by adding a specific import statement:
 
-Click here to view code image
+
 
 import java.util.*;
 
@@ -3036,7 +3068,7 @@ import java.util.Date;
 
 What if you really need both Date classes? Then use the full package name with every class name:
 
-Click here to view code image
+
 
 var deadline = new java.util.Date();
 
@@ -3068,13 +3100,13 @@ A form of the import statement permits the importing of static methods and field
 
 For example, if you add the directive
 
-Click here to view code image
+
 
 import static java.lang.System.*;
 
 to the top of your source file, then you can use the static methods and fields of the System class without the class name prefix:
 
-Click here to view code image
+
 
 out.println("Goodbye, World!"); // i.e., System.out
 
@@ -3082,19 +3114,19 @@ exit(0); // i.e., System.exit
 
 You can also import a specific method or field:
 
-Click here to view code image
+
 
 import static java.lang.System.out;
 
 In practice, it seems doubtful that many programmers will want to abbreviate System.out or System.exit. The resulting code seems less clear. On the other hand,
 
-Click here to view code image
+
 
 sqrt(pow(x, 2) + pow(y, 2))
 
 seems much clearer than
 
-Click here to view code image
+
 
 Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))
 
@@ -3114,7 +3146,7 @@ import 语句不仅可以导入类，还增加了导入静态方法和静态域�
 
 To place classes inside a package, put the name of the package at the top of your source file, before the code that defines the classes in the package. For example, the file Employee.java in Listing 4.7 starts out like this:
 
-Click here to view code image
+
 
 package com.horstmann.corejava;
 
@@ -3132,7 +3164,7 @@ Place source files into a subdirectory that matches the full package name. For e
 
 The program in Listings 4.6 and 4.7 is distributed over two packages: The PackageTest class belongs to the unnamed package, and the Employee class belongs to the com.horstmann.corejava package. Therefore, the Employee.java file must be in a subdirectory com/horstmann/corejava. In other words, the directory structure is as follows:
 
-Click here to view code image
+
 
 . (base directory)
 
@@ -3152,7 +3184,7 @@ Click here to view code image
 
 To compile this program, simply change to the base directory and run the command
 
-Click here to view code image
+
 
 javac PackageTest.java
 
@@ -3160,7 +3192,7 @@ The compiler automatically finds the file com/horstmann/corejava/Employee.java a
 
 Let's look at a more realistic example, in which we don't use the unnamed package but have classes distributed over several packages (com.horstmann.corejava and com.mycompany).
 
-Click here to view code image
+
 
 . (base directory)
 
@@ -3182,7 +3214,7 @@ Click here to view code image
 
 In this situation, you still must compile and run classes from the base directory—that is, the directory containing the com directory:
 
-Click here to view code image
+
 
 javac com/mycompany/PayrollApp.java
 
@@ -3198,7 +3230,7 @@ Caution
 
 The compiler does not check the directory structure when it compiles source files. For example, suppose you have a source file that starts with the directive
 
-Click here to view code image
+
 
 package com.mycompany;
 
@@ -3206,7 +3238,7 @@ You can compile the file even if it is not contained in a subdirectory com/mycom
 
 Listing 4.6 PackageTest/PackageTest.java
 
-Click here to view code image
+
 
 1 import com.horstmann.corejava.*;
 
@@ -3258,7 +3290,7 @@ Click here to view code image
 
 Listing 4.7 PackageTest/com/horstmann/corejava/Employee.java
 
-Click here to view code image
+
 
 1 package com.horstmann.corejava;
 
@@ -3358,7 +3390,7 @@ You have already encountered the access modifiers public and private. Features t
 
 Consider the program in Listing 4.2. The Employee class was not defined as a public class. Therefore, only the other classes (such as EmployeeTest) in the same package—the unnamed package in this case—can access it. For classes, this is a reasonable default. However, for variables, this was an unfortunate choice. Variables must explicitly be marked private, or they will default to having package access. This, of course, breaks encapsulation. The problem is that it is awfully easy to forget to type the private keyword. Here is an example from the Window class in the java.awt package, which is part of the source code supplied with the JDK:
 
-Click here to view code image
+
 
 public class Window extends Container
 
@@ -3412,13 +3444,13 @@ Set the class path. The class path is the collection of all locations that can c
 
 In UNIX, the elements on the class path are separated by colons:
 
-Click here to view code image
+
 
 /home/user/classdir:.:/home/user/archives/archive.jar
 
 In Windows, they are separated by semicolons:
 
-Click here to view code image
+
 
 c:\classdir;.;c:\archives\archive.jar
 
@@ -3434,13 +3466,13 @@ The JAR file /home/user/archives/archive.jar or c:\archives\archive.jar.
 
 Starting with Java 6, you can specify a wildcard for a JAR file directory, like this:
 
-Click here to view code image
+
 
 /home/user/classdir:.:/home/user/archives/'*'
 
 or
 
-Click here to view code image
+
 
 c:\classdir;.;c:\archives\*
 
@@ -3456,7 +3488,7 @@ The javac compiler always looks for files in the current directory, but the java
 
 The class path lists all directories and archive files that are starting points for locating classes. Let's consider our sample class path:
 
-Click here to view code image
+
 
 /home/user/classdir:.:/home/user/archives/archive.jar
 
@@ -3470,7 +3502,7 @@ com/horstmann/corejava/Employee.class inside /home/user/archives/archive.jar
 
 The compiler has a harder time locating files than does the virtual machine. If you refer to a class without specifying its package, the compiler first needs to find out the package that contains the class. It consults all import directives as possible sources for the class. For example, suppose the source file contains directives
 
-Click here to view code image
+
 
 import java.util.*;
 
@@ -3484,13 +3516,13 @@ The compiler goes one step further. It looks at the source files to see if the s
 
 It is best to specify the class path with the option -classpath (or -cp or, as of Java 9, --class-path):
 
-Click here to view code image
+
 
 java -classpath /home/user/classdir:.:/home/user/archives/archive.jar MyProg
 
 or
 
-Click here to view code image
+
 
 java -classpath c:\classdir;.;c:\archives\archive.jar MyProg
 
@@ -3498,13 +3530,13 @@ The entire command must be typed onto a single line. It is a good idea to place 
 
 Using the -classpath option is the preferred approach for setting the class path. An alternate approach is the CLASSPATH environment variable. The details depend on your shell. With the Bourne Again shell (bash), use the command
 
-Click here to view code image
+
 
 export CLASSPATH=/home/user/classdir:.:/home/user/archives/archive.jar
 
 With the Windows shell, use
 
-Click here to view code image
+
 
 set CLASSPATH=c:\classdir;.;c:\archives\archive.jar
 
@@ -3544,19 +3576,19 @@ When you package your application, you want to give your users a single file, no
 
 Use the jar tool to make JAR files. (In the default JDK installation, it's in the jdk/bin directory.) The most common command to make a new JAR file uses the following syntax:
 
-Click here to view code image
+
 
 jar cvf jarFileName file1 file2 . . .
 
 For example:
 
-Click here to view code image
+
 
 jar cvf CalculatorClasses.jar *.class icon.gif
 
 In general, the jar command has the following format:
 
-Click here to view code image
+
 
 jar options file1 file2 . . .
 
@@ -3632,7 +3664,7 @@ Manifest-Version: 1.0
 
 Complex manifests can have many more entries. The manifest entries are grouped into sections. The first section in the manifest is called the main section. It applies to the whole JAR file. Subsequent entries can specify properties of named entities such as individual files, packages, or URLs. Those entries must begin with a Name entry. Sections are separated by blank lines. For example:
 
-Click here to view code image
+
 
 Manifest-Version: 1.0
 
@@ -3648,19 +3680,19 @@ lines describing this package
 
 To edit the manifest, place the lines that you want to add to the manifest into a text file. Then run
 
-Click here to view code image
+
 
 jar cfm jarFileName manifestFileName . . .
 
 For example, to make a new JAR file with a manifest, run
 
-Click here to view code image
+
 
 jar cfm MyArchive.jar manifest.mf com/mycompany/mypkg/*.class
 
 To update the manifest of an existing JAR file, place the additions into a text file and use a command such as
 
-Click here to view code image
+
 
 jar ufm MyArchive.jar manifest-additions.mf
 
@@ -3672,13 +3704,13 @@ See https://docs.oracle.com/javase/10/docs/specs/jar/jar.html for more informati
 
 You can use the e option of the jar command to specify the entry point of your program—the class that you would normally specify when invoking the java program launcher:
 
-Click here to view code image
+
 
 jar cvfe MyProgram.jar com.mycompany.mypkg.MainAppClass files to add
 
 Alternatively, you can specify the main class of your program in the manifest, including a statement of the form
 
-Click here to view code image
+
 
 Main-Class: com.mycompany.mypkg.MainAppClass
 
@@ -3708,7 +3740,7 @@ To solve problems such as this one, Java 9 introduces multi-release JARs that ca
 
 For backwards compatibility, the additional class files are placed in the META-INF/versions directory:
 
-Click here to view code image
+
 
 Application.class
 
@@ -3738,13 +3770,13 @@ Java 8 knows nothing about the META-INF/versions directory and will simply load 
 
 To add versioned class files, use the --release flag:
 
-Click here to view code image
+
 
 jar uf MyProgram.jar --release 9 Application.class
 
 To build a multi-release JAR file from scratch, use the -C option and switch to a different class file directory for each version:
 
-Click here to view code image
+
 
 jar cf MyProgram.jar -C bin/8 . --release 9 -C bin/9 Application.class
 
@@ -3762,13 +3794,13 @@ Note
 
 Tools such as javap are not retrofitted to handle multi-release JAR files. If you call
 
-Click here to view code image
+
 
 javap -classpath MyProgram.jar Application.class
 
 you get the base version of the class (which, after all, is supposed to have the same public API as the newer version). If you must look at the newer version, call
 
-Click here to view code image
+
 
 javap -classpath MyProgram.jar\!/META-INF/versions/9/Application.class
 
@@ -3776,7 +3808,7 @@ javap -classpath MyProgram.jar\!/META-INF/versions/9/Application.class
 
 The options of commands in the Java Development Kit have traditionally used single dashes followed by multiletter option names, such as
 
-Click here to view code image
+
 
 java -jar . . .
 
@@ -3798,13 +3830,13 @@ As of Java 9, you can use --version instead of -version and --class-path instead
 
 You can find the details in the JEP 293 enhancement request at http://openjdk.java.net/jeps/293. As part of this cleanup, the authors also propose to standardize option arguments. Arguments of options with -- and multiple letters are separated by whitespace or an = sign:
 
-Click here to view code image
+
 
 javac --class-path /home/user/classdir . . .
 
 or
 
-Click here to view code image
+
 
 javac --class-path=/home/user/classdir . . .
 
@@ -3822,7 +3854,7 @@ The latter doesn't currently work, and it also seems like a bad idea in general.
 
 Single-letter options without arguments can be grouped together:
 
-Click here to view code image
+
 
 jar -cvf MyProgram.jar -e mypackage.MyProgram */*.class
 
@@ -3832,13 +3864,13 @@ That doesn't currently work, and it is bound to lead to confusion. Suppose javac
 
 This has created a muddle that will hopefully get cleaned up over time. As much as we'd like to move away from the archaic jar options, it seems best to wait until the dust has settled. But if you want to be thoroughly modern, you can safely use the long options of the jar command:
 
-Click here to view code image
+
 
 jar --create --verbose --file jarFileName file1 file2 . . .
 
 Single-letter options also work if you don't group them:
 
-Click here to view code image
+
 
 jar -c -v -f jarFileName file1 file2 . . .
 
@@ -3892,7 +3924,7 @@ The class comment must be placed after any import statements, directly before th
 
 Here is an example of a class comment:
 
-Click here to view code image
+
 
 /**
 
@@ -3918,7 +3950,7 @@ Note
 
 There is no need to add an * in front of every line. For example, the following comment is equally valid:
 
-Click here to view code image
+
 
 /**
 
@@ -3956,7 +3988,7 @@ This tag adds a note that this method may throw an exception. Exceptions are the
 
 Here is an example of a method comment:
 
-Click here to view code image
+
 
 /**
 
@@ -3988,7 +4020,7 @@ return raise;
 
 You only need to document public fields—generally that means static constants. For example:
 
-Click here to view code image
+
 
 /**
 
@@ -4020,7 +4052,7 @@ You can use hyperlinks to other relevant parts of the javadoc documentation, or 
 
 The tag @see reference adds a hyperlink in the「see also」section. It can be used with both classes and methods. Here, reference can be one of the following:
 
-Click here to view code image
+
 
 package.class#feature label
 
@@ -4030,7 +4062,7 @@ package.class#feature label
 
 The first case is the most useful. You supply the name of a class, method, or variable, and javadoc inserts a hyperlink to the documentation. For example,
 
-Click here to view code image
+
 
 @see com.horstmann.corejava.Employee#raiseSalary(double)
 
@@ -4040,7 +4072,7 @@ Note that you must use a #, not a period, to separate the class from the method 
 
 If the @see tag is followed by a < character, then you need to specify a hyperlink. You can link to any URL you like. For example:
 
-Click here to view code image
+
 
 @see <a href="www.horstmann.com/corejava.html">The Core Java home page</a>
 
@@ -4091,19 +4123,19 @@ Change to the directory that contains the source files you want to document. If 
 
 Run the command
 
-Click here to view code image
+
 
 javadoc -d docDirectory nameOfPackage
 
 for a single package. Or, run
 
-Click here to view code image
+
 
 javadoc -d docDirectory nameOfPackage1 nameOfPackage2. . .
 
 to document multiple packages. If your files are in the unnamed package, run instead
 
-Click here to view code image
+
 
 javadoc -d docDirectory *.java
 
@@ -4111,7 +4143,7 @@ If you omit the -d docDirectory option, the HTML files are extracted to the curr
 
 The javadoc program can be fine-tuned by numerous command-line options. For example, you can use the -author and -version options to include the @author and @version tags in the documentation. (By default, they are omitted.) Another useful option is -link, to include hyperlinks to standard classes. For example, if you use the command
 
-Click here to view code image
+
 
 javadoc -link http://docs.oracle.com/javase/9/docs/api *.java
 
@@ -4147,7 +4179,7 @@ Don't use too many basic types in a class.
 
 The idea is to replace multiple related uses of basic types with other classes. This keeps your classes easier to understand and to change. For example, replace the following instance fields in a Customer class:
 
-Click here to view code image
+
 
 private String street;
 
@@ -4169,7 +4201,7 @@ This hint is, of course, vague:「too many」is obviously in the eye of the beho
 
 Here is an example of a bad design:
 
-Click here to view code image
+
 
 public class CardDeck // bad design
 
@@ -4193,7 +4225,7 @@ public void draw() { . . . }
 
 This class really implements two separate concepts: a deck of cards, with its shuffle and draw methods, and a card, with the methods to inspect its value and suit. It makes sense to introduce a Card class that represents an individual card. Now you have two classes, each with its own responsibilities:
 
-Click here to view code image
+
 
 public class CardDeck
 
