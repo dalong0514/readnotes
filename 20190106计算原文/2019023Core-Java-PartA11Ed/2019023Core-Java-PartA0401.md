@@ -102,11 +102,11 @@ These key characteristics can influence each other. For example, the state of an
 
 要想使用 OOP，一定要清楚对象的三个主要特性：
 
-1、对象的行为（behavior） —  —  可以对对象施加哪些操作，或可以对对象施加哪些方法？
+1、对象的行为（behavior） ——  可以对对象施加哪些操作，或可以对对象施加哪些方法？
 
-2、对象的状态（state） —  —  当施加那些方法时，对象如何响应？
+2、对象的状态（state） ——  当施加那些方法时，对象如何响应？
 
-3、对象标识（identity） —  —  如何辨别具有相同行为与状态的不同对象？
+3、对象标识（identity） ——  如何辨别具有相同行为与状态的不同对象？
 
 同一个类的所有对象实例，由于支持相同的行为而具有家族式的相似性。对象的行为是用可调用的方法定义的。此外，每个对象都保存着描述当前特征的信息。这就是对象的状态。对象的状态可能会随着时间而发生改变，但这种改变不会是自发的。对象状态的改变必须通过调用方法实现（如果不经过方法调用就可以改变对象状态，只能说明封装性遭到了破坏）。但是，对象的状态并不能完全描述一个对象。每个对象都有一个唯一的身份（identity）。例如，在一个订单处理系统中，任何两个订单都存在着不同之处，即使所订购的货物完全相同也是如此。需要注意，作为一个类的实例，每个对象的标识永远是不同的，状态常常也存在着差异。
 
@@ -666,11 +666,19 @@ yields the date that is n days after or before this date.
 
 再来看上一节中的 plusDays 方法调用：这个调用之后 newYearsEve 会有什么变化？它会改为 1000 天之后的日期吗？事实上，并没有。plusDays 方法会生成一个新的 LocalDate 对象，然后把这个新对象赋给 aThousandDaysLater 变量。原来的对象不做任何改动。我们说 plusDays 方法没有更改调用这个方法的对象。（这类似于第 3 章中见过的 String 类的 toUpperCase 方法。在一个字符串上调用 toUpperCase 时，这个字符串仍保持不变，会返回一个将字符大写的新字符串。）Java 库的一个较早版本曾经有另一个类来处理日历，名为 GregorianCalendar。可以如下为这个类表示的一个日期增加 1000 天：
 
-与 LocalDate.plusDays 方法不同，GregorianCalendar.add 方法是一个更改器方法（mutator method）。调用这个方法后，someDay 对象的状态会改变。可以如下查看新状态：正是因为这个原因，我们将变量命名为 someDay 而不是 newYearsEve —  —  调用这个更改器方法之后，它不再是新年前夜。相反，只访问对象而不修改对象的方法有时称为访问器方法（accessormethod）。例如，LocalDate.getYear 和 GregorianCalendar.get 就是访问器方法。C++ 注释：在 C++ 中，带有 const 后缀的方法是访问器方法；默认为更改器方法。但是，在 Java 语言中，访问器方法与更改器方法在语法上没有明显的区别。下面用一个应用 LocalDate 类的程序来结束本节内容的论述。这个程序将显示当前月的日历，其格式为：
+与 LocalDate.plusDays 方法不同，GregorianCalendar.add 方法是一个更改器方法（mutator method）。调用这个方法后，someDay 对象的状态会改变。可以如下查看新状态：
+
+正是因为这个原因，我们将变量命名为 someDay 而不是 newYearsEve ——  调用这个更改器方法之后，它不再是新年前夜。相反，只访问对象而不修改对象的方法有时称为访问器方法（accessormethod）。例如，LocalDate.getYear 和 GregorianCalendar.get 就是访问器方法。
+
+C++ 注释：在 C++ 中，带有 const 后缀的方法是访问器方法；默认为更改器方法。但是，在 Java 语言中，访问器方法与更改器方法在语法上没有明显的区别。下面用一个应用 LocalDate 类的程序来结束本节内容的论述。这个程序将显示当前月的日历，其格式为：
 
 当前的日用一个 `*` 号标记。可以看到，这个程序需要解决如何计算某月份的天数以及一个给定日期相应是星期几。下面看一下这个程序的关键步骤。首先，构造了一个日历对象，并用当前的日期和时间进行初始化。下面获得当前的月和日。然后，将 date 设置为这个月的第一天，并得到这一天为星期几。变量 weekday 设置为 DayOfWeek 类型的对象。我们调用这个对象的 getValue 方法来得到星期几的一个数值。这会得到一个整数，这里遵循国际惯例，即周末是一周的末尾，星期一就返回 1，星期二返回 2，依此类推。星期日则返回 7。注意，日历的第一行是缩进的，使得月份的第一天指向相应的星期几。下面的代码会打印表头和第一行的缩进：现在我们来打印日历的主体。进入一个循环，其中 date 遍历一个月中的每一天。每次迭代时，打印日期值。如果 date 是当前日期，这个日期则用一个 * 标记。接下来，把 date 推进到下一天。如果到达新的一周的第一天，则换行打印：
 
-什么时候结束呢？我们不知道这个月有几天，是 31 天、30 天、29 天还是 28 天。实际上，只要 date 还在当月就要继续迭代。程序清单 4-1 给出了完整的程序。程序清单 4-1 CalendarTest/CalendarTest.java 可以看到，利用 LocalDate 类可以编写一个日历程序，能处理星期几以及各月天数不同等复杂问题。你并不需要知道 LocalDate 类如何计算月和星期几。只需要使用这个类的接口，如 plusDays 和 getDayOfWeek 等方法。这个示例程序的重点是向你展示如何使用一个类的接口来完成相当复杂的任务，而无需了解实现细节。
+什么时候结束呢？我们不知道这个月有几天，是 31 天、30 天、29 天还是 28 天。实际上，只要 date 还在当月就要继续迭代。程序清单 4-1 给出了完整的程序。
+
+程序清单 4-1 CalendarTest/CalendarTest.java
+
+可以看到，利用 LocalDate 类可以编写一个日历程序，能处理星期几以及各月天数不同等复杂问题。你并不需要知道 LocalDate 类如何计算月和星期几。只需要使用这个类的接口，如 plusDays 和 getDayOfWeek 等方法。这个示例程序的重点是向你展示如何使用一个类的接口来完成相当复杂的任务，而无需了解实现细节。
 
 java.time.LocalDate 8
 
@@ -678,7 +686,21 @@ static LocalTime now() 构造一个表示当前日期的对象。
 
 static LocalTime of（int year，int month，int day）构造一个表示给定日期的对象。
 
-int getYear（）·int getMonthValue（）·int getDayOfMonth（）得到当前日期的年、月和日。·DayOfWeek getDayOfWeek 得到当前日期是星期几，作为 DayOfWeek 类的一个实例返回。调用 getValue 来得到 1~7 之间的一个数，表示这是星期几，1 表示星期一，7 表示星期日。·LocalDate plusDays（int n）·LocalDate minusDays（int n）生成当前日期之后或之前 n 天的日期。
+int getYear()
+
+int getMonthValue()
+
+int getDayOfMonth()
+
+得到当前日期的年、月和日。
+
+DayOfWeek getDayOfWeek 得到当前日期是星期几，作为 DayOfWeek 类的一个实例返回。调用 getValue 来得到 1-7 之间的一个数，表示这是星期几，1 表示星期一，7 表示星期日。
+
+LocalDate plusDays(int n)
+
+LocalDate minusDays(int n)
+
+生成当前日期之后或之前 n 天的日期。
 
 ### 4.3 Defining Your Own Classes
 
@@ -3928,7 +3950,7 @@ If your comments contain links to other files such as images (for example, diagr
 
 javadoc 实用程序（utility）从下面几个特性中抽取信息：·包·公有类与接口·公有的和受保护的构造器及方法·公有的和受保护的域在第 5 章中将介绍受保护特性，在第 6 章将介绍接口。应该为上面几部分编写注释。注释应该放置在所描述特性的前面。注释以 `/**` 开始，并以 */ 结束。每个 /**...*/ 文档注释在标记之后紧跟着自由格式文本（free-form text）。标记由 @开始，如 @author 或 @param。自由格式文本的第一句应该是一个概要性的句子。javadoc 实用程序自动地将这些句子抽取出来形成概要页。
 
-在自由格式文本中，可以使用 HTML 修饰符，例如，用于强调的 <em>...</em>、用于着重强调的 <strong>...</strong> 以及包含图像的 <img...> 等。不过，一定不要使用 <h1> 或 <hr>，因为它们会与文档的格式产生冲突。若要键入等宽代码，需使用 {@code...} 而不是 <code>...</code> —  —  这样一来，就不用操心对代码中的 <字符转义了。注释：如果文档中有到其他文件的链接，例如，图像文件（用户界面的组件的图表或图像等），就应该将这些文件放到子目录 doc-files 中。javadoc 实用程序将从源目录拷贝这些目录及其中的文件到文档目录中。在链接中需要使用 doc-files 目录，例如：<img src=「doc-files/uml.png」alt=「UMLdiagram」>。
+在自由格式文本中，可以使用 HTML 修饰符，例如，用于强调的 <em>...</em>、用于着重强调的 <strong>...</strong> 以及包含图像的 <img...> 等。不过，一定不要使用 <h1> 或 <hr>，因为它们会与文档的格式产生冲突。若要键入等宽代码，需使用 {@code...} 而不是 <code>...</code> ——  这样一来，就不用操心对代码中的 <字符转义了。注释：如果文档中有到其他文件的链接，例如，图像文件（用户界面的组件的图表或图像等），就应该将这些文件放到子目录 doc-files 中。javadoc 实用程序将从源目录拷贝这些目录及其中的文件到文档目录中。在链接中需要使用 doc-files 目录，例如：<img src=「doc-files/uml.png」alt=「UMLdiagram」>。
 
 #### 4.9.2 Class Comments
 
