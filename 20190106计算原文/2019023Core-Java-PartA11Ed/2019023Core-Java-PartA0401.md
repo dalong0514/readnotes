@@ -298,7 +298,7 @@ if (deadline != null)
 		System.out.println(deadline);
 ```
 
-We will discuss null in more detail in Section 4.3.6,「Working with null References,」on p. 148.
+We will discuss null in more detail in Section 4.3.6,「Working with null References,」on p.148.
 
 C++ Note: Some people mistakenly believe that Java object variables behave like C++ references. But in C++ there are no null references, and references cannot be assigned. You should think of Java object variables as analogous to object pointers in C++. For example,
 
@@ -384,6 +384,18 @@ LocalDate.now()
 
 constructs a new object that represents the date at which the object was constructed.
 
+1『
+
+```java
+import java.time.LocalDate;
+```
+
+开始要引用包的。在 IEDA 里直接用快捷键 alt+enter 可以生成引用语句。
+
+插曲：开始的时候把 LocalDate.now() 打错成小写的 localDate.now()，死活生成不了引用，还跑去 Google 查，也没解决。最后发现是字母打错小写的了，所以认识到 Java 里类都是大写开头的，这是常识。（2021-10-31）
+
+』
+
 You can construct an object for a specific date by supplying year, month, and day:
 
 ```java
@@ -424,13 +436,13 @@ Note: Actually, the Date class also has methods to get the day, month, and year,
 
 These methods were a part of the Date class before the library designers realized that it makes more sense to supply separate classes to deal with calendars. When an earlier set of calendar classes was introduced in Java 1.1, the Date methods were tagged as deprecated. You can still use them in your programs, but you will get unsightly compiler warnings if you do. It is a good idea to stay away from using deprecated methods because they may be removed in a future version of the library.
 
-Tip: The JDK provides the jdeprscan tool for checking whether your code uses deprecated features of the Java API. See https://docs.oracle.com/javase/9/tools/jdeprscan.htm for instructions.
+Tip: The JDK provides the jdeprscan tool for checking whether your code uses deprecated features of the Java API. See [jdeprscan](https://docs.oracle.com/javase/9/tools/jdeprscan.htm#JSWOR-GUID-2B7588B0-92DB-4A88-88D4-24D183660A62) for instructions.
 
 4.2.2 Java 类库中的 LocalDate 类
 
 在前面的例子中，已经使用了 Java 标准类库中的 Date 类。Date 类的实例有一个状态，即特定的时间点。
 
-尽管在使用 Date 类时不必知道这一点，但时间是用距离一个固定时间点的毫秒数（可正可负）表示的，这个点就是所谓的纪元（epoch），它是 UTC 时间 1970 年 1 月 1 日 00：00：00。UTC 是 Coordinated Universal Time 的缩写，与大家熟悉的 GMT（即 Greenwich Mean Time，格林威治时间）一样，是一种具有实践意义的科学标准时间。但是，Date 类所提供的日期处理并没有太大的用途。Java 类库的设计者认为：像「December 31，1999，23：59：59」这样的日期表示法只是阳历的固有习惯。这种特定的描述法遵循了世界上大多数地区使用的 Gregorian 阳历表示法。但是，同一时间点采用中国的农历表示和采用希伯来的阴历表示就很不一样，对于火星历来说就更不可想象了。
+尽管在使用 Date 类时不必知道这一点，但时间是用距离一个固定时间点的毫秒数（可正可负）表示的，这个点就是所谓的纪元（epoch），它是 UTC 时间 1970 年 1 月 1 日 00:00:00。UTC 是 Coordinated Universal Time 的缩写，与大家熟悉的 GMT（即 Greenwich Mean Time，格林威治时间）一样，是一种具有实践意义的科学标准时间。但是，Date 类所提供的日期处理并没有太大的用途。Java 类库的设计者认为：像「December 31，1999，23:59:59」这样的日期表示法只是阳历的固有习惯。这种特定的描述法遵循了世界上大多数地区使用的 Gregorian 阳历表示法。但是，同一时间点采用中国的农历表示和采用希伯来的阴历表示就很不一样，对于火星历来说就更不可想象了。
 
 注释：有史以来，人类的文明与历法的设计紧紧地相连，日历给日期命名、给太阳和月亮的周期排列次序。有关世界上各种日历的有趣解释，从法国革命的日历到玛雅人计算日期的方法等，请参看 Nachum Dershowitz 和 Edward M.Reingold 编写的《Calendrical Calculations》第 3 版（剑桥大学出版社，2007 年）。类库设计者决定将保存时间与给时间点命名分开。所以标准 Java 类库分别包含了两个类：一个是用来表示时间点的 Date 类；另一个是用来表示大家熟悉的日历表示法的 LocalDate 类。Java SE 8 引入了另外一些类来处理日期和时间的不同方面 —— 有关内容参见卷 Ⅱ 第 6 章。将时间与日历分开是一种很好的面向对象设计。通常，最好使用不同的类表示不同的概念。不要使用构造器来构造 LocalDate 类的对象。实际上，应当使用静态工厂方法（factory method）代表你调用构造器。下面的表达式会构造一个新对象，表示构造这个对象时的日期。可以提供年、月和日来构造对应一个特定日期的对象：
 
