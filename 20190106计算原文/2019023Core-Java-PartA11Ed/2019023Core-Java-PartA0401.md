@@ -490,18 +490,6 @@ We finish this section with a program that puts the LocalDate class to work. The
 
 Mon Tue Wed Thu Fri Sat Sun
 
-1
-
-2 3 4 5 6 7 8
-
-9 10 11 12 13 14 15
-
-16 17 18 19 20 21 22
-
-23 24 25 26* 27 28 29
-
-30
-
 The current day is marked with an asterisk (*). As you can see, the program needs to know how to compute the length of a month and the weekday of a given day.
 
 Let us go through the key steps of the program. First, we construct an object that is initialized with the current date.
@@ -576,77 +564,51 @@ import java.time.*;
 */
 
 public class CalendarTest
-
 {
 
 	public static void main(String[] args)
 
 	{
-
 		LocalDate date = LocalDate.now();
-
 		int month = date.getMonthValue();
-
 		int today = date.getDayOfMonth();
-
 		date = date.minusDays(today - 1); // set to start of month
 
 		DayOfWeek weekday = date.getDayOfWeek();
-
 		int value = weekday.getValue(); // 1 = Monday, . . . , 7 = Sunday
-
 		System.out.println("Mon Tue Wed Thu Fri Sat Sun");
 
 		for (int i = 1; i < value; i++)
-
 			System.out.print(" ");
-
 		while (date.getMonthValue() == month)
-
 		{
-
 			System.out.printf("%3d", date.getDayOfMonth());
-
 			if (date.getDayOfMonth() == today)
-
 				System.out.print("*");
-
 			else
-
 				System.out.print(" ");
-
 			date = date.plusDays(1);
-
 			if (date.getDayOfWeek().getValue() == 1) System.out.println();
-
 		}
-
 		if (date.getDayOfWeek().getValue() != 1) System.out.println();
-
 	}
 ```
 
 java.time.LocalDate 8
 
-```java
 static LocalDate now()
-```
 
 constructs an object that represents the current date.
 
-```java
 static LocalDate of(int year, int month, int day)
-```
 
 constructs an object that represents the given date.
 
-```java
 int getYear()
 
 int getMonthValue()
 
 int getDayOfMonth()
-```
 
 gets the year, month, and day of this date.
 
@@ -654,11 +616,9 @@ DayOfWeek getDayOfWeek
 
 gets the weekday of this date as an instance of the DayOfWeek class. Call getValue to get a weekday between 1 (Monday) and 7 (Sunday).
 
-```java
 LocalDate plusDays(int n)
 
 LocalDate minusDays(int n)
-```
 
 yields the date that is n days after or before this date.
 
@@ -789,8 +749,6 @@ return name;
 We break down the implementation of this class, in some detail, in the sections that follow. First, though, Listing 4.2 is a program that shows the Employee class in action.
 
 In the program, we construct an Employee array and fill it with three Employee objects:
-
-
 
 Employee[] staff = new Employee[3];
 
