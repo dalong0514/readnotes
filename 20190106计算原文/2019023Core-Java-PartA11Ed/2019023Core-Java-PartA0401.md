@@ -555,7 +555,7 @@ The point of this example program is to show you how you can use the interface o
 
 Listing 4.1 CalendarTest/CalendarTest.java
 
-```java
+```
 import java.time.*;
 
 /**
@@ -612,7 +612,9 @@ int getDayOfMonth()
 
 gets the year, month, and day of this date.
 
-DayOfWeek getDayOfWeek
+DayOfWeek
+
+getDayOfWeek
 
 gets the weekday of this date as an instance of the DayOfWeek class. Call getValue to get a weekday between 1 (Monday) and 7 (Sunday).
 
@@ -676,107 +678,72 @@ The simplest form for a class definition in Java is
 
 ```java
 class ClassName
-
 {
-
-field1
-
-field2
-
-. . .
-
-constructor1
-
-constructor2
-
-. . .
-
-method1
-
-method2
-
-. . .
-
+		field1
+		field2
+		. . .
+		constructor1
+		constructor2
+		. . .
+		method1
+		method2
+		. . .
 }
 ```
 
 Consider the following, very simplified, version of an Employee class that might be used by a business in writing a payroll system:
 
-
-
+```java
 class Employee
-
 {
+    // instance fields
+    private String name;
+    private double salary;
+    private LocalDate hireDay;
+    // constructor
+    public Employee(String n, double s, int year, int month, int day)
+    {
+        name = n;
+        salary = s;
+        hireDay = LocalDate.of(year, month, day);
+    }
 
-// instance fields
-
-private String name;
-
-private double salary;
-
-private LocalDate hireDay;
-
-// constructor
-
-public Employee(String n, double s, int year, int month, int day)
-
-{
-
-name = n;
-
-salary = s;
-
-hireDay = LocalDate.of(year, month, day);
-
+    // a method
+    public String getName()
+    {
+        return name;
+    }
+    // more methods
+    . . .
 }
-
-// a method
-
-public String getName()
-
-{
-
-return name;
-
-}
-
-// more methods
-
-. . .
-
-}
+```
 
 We break down the implementation of this class, in some detail, in the sections that follow. First, though, Listing 4.2 is a program that shows the Employee class in action.
 
 In the program, we construct an Employee array and fill it with three Employee objects:
 
+```java
 Employee[] staff = new Employee[3];
-
 staff[0] = new Employee("Carl Cracker", . . .);
-
 staff[1] = new Employee("Harry Hacker", . . .);
-
 staff[2] = new Employee("Tony Tester", . . .);
+```
 
 Next, we use the raiseSalary method of the Employee class to raise each employee's salary by 5%:
 
-
-
+```java
 for (Employee e : staff)
-
-e.raiseSalary(5);
+		e.raiseSalary(5);
+```
 
 Finally, we print out information about each employee, by calling the getName,
 
-
-
+```java
 for (Employee e : staff)
-
-System.out.println("name=" + e.getName()
-
-+ ",salary=" + e.getSalary()
-
-+ ",hireDay=" + e.getHireDay());
+		System.out.println("name=" + e.getName()
+				+ ",salary=" + e.getSalary()
+				+ ",hireDay=" + e.getHireDay());
+```
 
 Note that the example program consists of two classes: the Employee class and a class EmployeeTest with the public access specifier. The main method with the instructions that we just described is contained in the EmployeeTest class.
 
@@ -792,133 +759,63 @@ The bytecode interpreter starts running the code in the main method in the Emplo
 
 Listing 4.2 EmployeeTest/EmployeeTest.java
 
-
-
-1 import java.time.*;
-
-2
-
-3 /**
-
-4 * This program tests the Employee class.
-
-5 * @version 1.13 2018-04-10
-
-6 * @author Cay Horstmann
-
-7 */
-
-8 public class EmployeeTest
-
-9 {
-
-10 public static void main(String[] args)
-
-11 {
-
-12 // fill the staff array with three Employee objects
-
-13 Employee[] staff = new Employee[3];
-
-14
-
-15 staff[0] = new Employee("Carl Cracker", 75000, 1987, 12, 15);
-
-16 staff[1] = new Employee("Harry Hacker", 50000, 1989, 10, 1);
-
-17 staff[2] = new Employee("Tony Tester", 40000, 1990, 3, 15);
-
-18
-
-19 // raise everyone's salary by 5%
-
-20 for (Employee e : staff)
-
-21 e.raiseSalary(5);
-
-22
-
-23 // print out information about all Employee objects
-
-24 for (Employee e : staff)
-
-25 System.out.println("name=" + e.getName() + ",salary=" + e.getSalary() + ",hireDay="
-
-26 + e.getHireDay());
-
-27 }
-
-28 }
-
-29
-
-30 class Employee
-
-31 {
-
-32 private String name;
-
-33 private double salary;
-
-34 private LocalDate hireDay;
-
-35
-
-36 public Employee(String n, double s, int year, int month, int day)
-
-37 {
-
-38 name = n;
-
-39 salary = s;
-
-40 hireDay = LocalDate.of(year, month, day);
-
-41 }
-
-42
-
-43 public String getName()
-
-44 {
-
-45 return name;
-
-46 }
-
-47
-
-48 public double getSalary()
-
-49 {
-
-50 return salary;
-
-51 }
-
-52
-
-53 public LocalDate getHireDay()
-
-54 {
-
-55 return hireDay;
-
-56 }
-
-57
-
-58 public void raiseSalary(double byPercent)
-
-59 {
-
-60 double raise = salary * byPercent / 100;
-
-61 salary += raise;
-
-62 }
-
-63 }
+```java
+import java.time.*;
+
+/**
+ * This program tests the Employee class.
+ * @version 1.13 2018-04-10
+ * @author Cay Horstmann
+ */
+
+public class EmployeeTest
+{
+    public static void main(String[] args) {
+        // fill the staff array with three Employee objects
+        Employee[] staff = new Employee[3];
+        staff[0] = new Employee("Carl Cracker", 75000, 1987, 12, 15);
+        staff[1] = new Employee("Harry Hacker", 50000, 1989, 10, 1);
+        staff[2] = new Employee("Tony Tester", 40000, 1990, 3, 15);
+
+        // raise everyone's salary by 5%
+        for (Employee e : staff)
+            e.raiseSalary(5);
+        // print out information about all Employee objects
+        for (Employee e : staff)
+            System.out.println("name=" + e.getName() + ",salary=" + e.getSalary() + ",hireDay="
+                    + e.getHireDay());
+    }
+}
+
+class Employee {
+    private String name;
+    private double salary;
+    private LocalDate hireDay;
+
+    public Employee(String n, double s, int year, int month, int day) {
+        name = n;
+        salary = s;
+        hireDay = LocalDate.of(year, month, day);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public LocalDate getHireDay() {
+        return hireDay;
+    }
+
+    public void raiseSalary(double byPercent) {
+        double raise = salary * byPercent / 100;
+        salary += raise;
+    }
+}
+```
 
 4.3.1 Employee 类
 
@@ -927,7 +824,6 @@ Listing 4.2 EmployeeTest/EmployeeTest.java
 这里将这个类的实现细节分成以下几个部分，并分别在稍后的几节中给予介绍。下面先看看程序清单 4-2，这个程序显示了一个 Employee 类的实际使用。程序清单 4-2 EmployeeTest/EmployeeTest.java
 
 在这个程序中，构造了一个 Employee 数组，并填入了三个雇员对象：接下来，利用 Employee 类的 raiseSalary 方法将每个雇员的薪水提高 5%：最后，调用 getName 方法、getSalary 方法和 getHireDay 方法将每个雇员的信息打印出来：注意，在这个示例程序中包含两个类：Employee 类和带有 public 访问修饰符的 EmployeeTest 类。EmployeeTest 类包含了 main 方法，其中使用了前面介绍的指令。源文件名是 EmployeeTest.java，这是因为文件名必须与 public 类的名字相匹配。在一个源文件中，只能有一个公有类，但可以有任意数目的非公有类。接下来，当编译这段源代码的时候，编译器将在目录下创建两个类文件：EmployeeTest.class 和 Employee.class。将程序中包含 main 方法的类名提供给字节码解释器，以便启动这个程序：字节码解释器开始运行 EmployeeTest 类的 main 方法中的代码。在这段代码中，先后构造了三个新 Employee 对象，并显示它们的状态。
-
 
 #### 4.3.2 Use of Multiple Source Files
 
@@ -953,29 +849,23 @@ Note: If you are familiar with the make facility of UNIX (or one of its Windows 
 
 In the sections that follow, we will dissect the Employee class. Let's start with the methods in this class. As you can see by examining the source code, this class has one constructor and four methods:
 
-
-
+```java
 public Employee(String n, double s, int year, int month, int day)
-
 public String getName()
-
 public double getSalary()
-
 public LocalDate getHireDay()
-
 public void raiseSalary(double byPercent)
+```
 
 All methods of this class are tagged as public. The keyword public means that any method in any class can call the method. (The four possible access levels are covered in this and the next chapter.)
 
 Next, notice the three instance fields that will hold the data manipulated inside an instance of the Employee class.
 
-
-
+```java
 private String name;
-
 private double salary;
-
 private LocalDate hireDay;
+```
 
 The private keyword makes sure that the only methods that can access these instance fields are the methods of the Employee class itself. No outside method can read or write to these fields.
 
@@ -991,43 +881,35 @@ Finally, notice that two of the instance fields are themselves objects: The name
 
 Let's look at the constructor listed in our Employee class.
 
-
-
-public Employee(String n, double s, int year, int month, int day)
-
-{
-
-name = n;
-
-salary = s;
-
-hireDay = LocalDate.of(year, month, day);
-
+```java
+public Employee(String n, double s, int year, int month, int day) {
+		name = n;
+		salary = s;
+		hireDay = LocalDate.of(year, month, day);
 }
+```
 
 As you can see, the name of the constructor is the same as the name of the class. This constructor runs when you construct objects of the Employee class — giving the instance fields the initial state you want them to have.
 
 For example, when you create an instance of the Employee class with code like this:
 
-
-
+```
 new Employee("James Bond", 100000, 1950, 1, 1)
+```
 
 you have set the instance fields as follows:
 
-
-
+```java
 name = "James Bond";
-
 salary = 100000;
-
 hireDay = LocalDate.of(1950, 1, 1); // January 1, 1950
+```
 
 There is an important difference between constructors and other methods. A constructor can only be called in conjunction with the new operator. You can't apply a constructor to an existing object to reset the instance fields. For example,
 
-
-
+```java
 james.Employee("James Bond", 250000, 1950, 1, 1) // ERROR
+```
 
 is a compile-time error.
 
@@ -1045,29 +927,21 @@ A constructor is always called with the new operator.
 
 C++ Note: Constructors work the same way in Java as they do in C++. Keep in mind, however, that all Java objects are constructed on the heap and that a constructor must be combined with new. It is a common error of C++ programmers to forget the new operator:
 
-
-
+```java
 Employee number007("James Bond", 100000, 1950, 1, 1); // C++, not Java
+```
 
 That works in C++ but not in Java.
 
-Caution
+Caution: Be careful not to introduce local variables with the same names as the instance fields. For example, the following constructor will not set the salary:
 
-Be careful not to introduce local variables with the same names as the instance fields. For example, the following constructor will not set the salary:
-
-
-
-public Employee(String n, double s, . . .)
-
-{
-
-String name = n; // ERROR
-
-double salary = s; // ERROR
-
-. . .
-
+```java
+public Employee(String n, double s, . . .) {
+		String name = n; // ERROR
+		double salary = s; // ERROR
+		. . .
 }
+```
 
 The constructor declares local variables name and salary. These variables are only accessible inside the constructor. They shadow the instance fields with the same name. Some programmers accidentally write this kind of code when they type faster than they think, because their fingers are used to adding the data type. This is a nasty error that can be hard to track down. You just have to be careful in all of your methods to not use variable names that equal the names of instance fields.
 
@@ -1081,15 +955,15 @@ The constructor declares local variables name and salary. These variables are on
 
 As of Java 10, you can declare local variables with the var keyword instead of specifying their type, provided their type can be inferred from the initial value. For example, instead of declaring
 
-
-
+```java
 Employee harry = new Employee("Harry Hacker", 50000, 1989, 10, 1);
+```
 
 you simply write
 
-
-
+```java
 var harry = new Employee("Harry Hacker", 50000, 1989, 10, 1);
+```
 
 This is nice since it avoids the repetition of the type name Employee.
 
@@ -1109,11 +983,10 @@ This sounds like a convenient mechanism for dealing with special situations, suc
 
 If you apply a method to a null value, a NullPointerException occurs.
 
-
-
+```java
 LocalDate birthday = null;
-
 String s = birthday.toString(); // NullPointerException
+```
 
 This is a serious error, similar to an「index out of bounds」exception. If your program does not「catch」an exception, it is terminated. Normally, programs don't catch these kinds of exceptions but rely on programmers not to cause them in the first place.
 
@@ -1123,39 +996,29 @@ The hireDay field is guaranteed to be non-null because it is initialized with a 
 
 There are two solutions. The「permissive」approach is to turn a null argument into an appropriate non-null value:
 
-
-
-if (n == null) name = "unknown"; else name = n;
+```java
+if (n == null) name = "unknown";
+		else name = n;
+```
 
 As of Java 9, the Objects class has a convenience method for this purpose:
 
-
-
-public Employee(String n, double s, int year, int month, int day)
-
-{
-
-name = Objects.requireNonNullElse(n, "unknown");
-
-. . .
-
+```java
+public Employee(String n, double s, int year, int month, int day) {
+		name = Objects.requireNonNullElse(n, "unknown");
+		. . .
 }
+```
 
 The「tough love」approach is to reject a null argument:
 
-
-
-public Employee(String n, double s, int year, int month, int day)
-
-{
-
-Objects.requireNonNull(n, "The name cannot be null");
-
-name = n;
-
-. . .
-
+```java
+public Employee(String n, double s, int year, int month, int day) {
+		Objects.requireNonNull(n, "The name cannot be null");
+		name = n;
+		. . .
 }
+```
 
 If someone constructs an Employee object with a null name, then a NullPointerException occurs. At first glance, that may not seem a useful remedy. But there are two advantages:
 
@@ -1169,31 +1032,25 @@ Note: Whenever you accept an object reference as a construction parameter, ask y
 
 Methods operate on objects and access their instance fields. For example, the method
 
-
-
-public void raiseSalary(double byPercent)
-
-{
-
-double raise = salary * byPercent / 100;
-
-salary += raise;
-
+```java
+public void raiseSalary(double byPercent) {
+		double raise = salary * byPercent / 100;
+		salary += raise;
 }
+```
 
 sets a new value for the salary instance field in the object on which this method is invoked. Consider the call
 
-
-
+```java
 number007 .raiseSalary(5);
+```
 
 The effect is to increase the value of the number007.salary field by 5%. More specifically, the call executes the following instructions:
 
-
-
+```java
 double raise = number007.salary * 5 / 100;
-
 number007.salary += raise;
+```
 
 The raiseSalary method has two parameters. The first parameter, called the implicit parameter, is the object of type Employee that appears before the method name. The second parameter, the number inside the parentheses after the method name, is an explicit parameter. (Some people call the implicit parameter the target or receiver of the method call.)
 
@@ -1201,47 +1058,32 @@ As you can see, the explicit parameters are explicitly listed in the method decl
 
 In every method, the keyword this refers to the implicit parameter. If you like, you can write the raiseSalary method as follows:
 
-
-
-public void raiseSalary(double byPercent)
-
-{
-
-double raise = this.salary * byPercent / 100;
-
-this.salary += raise;
-
+```java
+public void raiseSalary(double byPercent) {
+		double raise = this.salary * byPercent / 100;
+		this.salary += raise;
 }
+```
 
 Some programmers prefer that style because it clearly distinguishes between instance fields and local variables.
 
-C++ Note
+C++ Note: In C++, you generally define methods outside the class:
 
-In C++, you generally define methods outside the class:
-
-
-
+```java
 void Employee::raiseSalary(double byPercent) // C++, not Java
-
 {
-
-. . .
-
+	. . .
 }
+```
 
 If you define a method inside a class, then it is, automatically, an inline method.
 
-
-
-class Employee
-
-{
-
-. . .
-
-int getName() { return name; } // inline in C++
-
+```java
+class Employee {
+		. . .
+		int getName() { return name; } // inline in C++
 }
+```
 
 In Java, all methods are defined inside the class itself. This does not make them inline. Finding opportunities for inline replacement is the job of the Java virtual machine. The just-in-time compiler watches for calls to methods that are short, commonly called, and not overridden, and optimizes them away.
 
@@ -1249,31 +1091,19 @@ In Java, all methods are defined inside the class itself. This does not make the
 
 Finally, let's look more closely at the rather simple getName, getSalary, and getHireDay methods.
 
-
-
-public String getName()
-
-{
-
+```java
+public String getName() {
 return name;
-
 }
 
-public double getSalary()
-
-{
-
+public double getSalary() {
 return salary;
-
 }
 
-public LocalDate getHireDay()
-
-{
-
+public LocalDate getHireDay() {
 return hireDay;
-
 }
+```
 
 These are obvious examples of accessor methods. As they simply return the values of instance fields, they are sometimes called field accessors.
 
@@ -1307,47 +1137,30 @@ This change is completely invisible to the remainder of the program.
 
 Of course, the accessor and mutator methods may need to do a lot of work to convert between the old and the new data representation. That leads us to our second benefit: Mutator methods can perform error checking, whereas code that simply assigns to a field may not go into the trouble. For example, a setSalary method might check that the salary is never less than 0.
 
-Caution
+Caution: Be careful not to write accessor methods that return references to mutable objects. In a previous edition of this book, we violated that rule in our Employee class in which the getHireDay method returned an object of class Date:
 
-Be careful not to write accessor methods that return references to mutable objects. In a previous edition of this book, we violated that rule in our Employee class in which the getHireDay method returned an object of class Date:
-
-
-
-class Employee
-
-{
-
-private Date hireDay;
-
-. . .
-
-public Date getHireDay()
-
-{
-
-return hireDay; // BAD
-
+```java
+class Employee {
+		private Date hireDay;
+		. . .
+		public Date getHireDay() {
+				return hireDay; // BAD
+		}
+		. . .
 }
-
-. . .
-
-}
+```
 
 Unlike the LocalDate class, which has no mutator methods, the Date class has a mutator method, setTime, where you can set the number of milliseconds.
 
 The fact that Date objects are mutable breaks encapsulation! Consider the following rogue code:
 
-
-
+```java
 Employee harry = . . .;
-
 Date d = harry.getHireDay();
-
 double tenYearsInMilliSeconds = 10 * 365.25 * 24 * 60 * 60 * 1000;
-
 d.setTime(d.getTime() - (long) tenYearsInMilliSeconds);
-
 // let's give Harry ten years of added seniority
+```
 
 The reason is subtle. Both d and harry.hireDay refer to the same object (see Figure 4.5). Applying mutator methods to d automatically changes the private state of the Employee object!
 
@@ -1355,25 +1168,15 @@ Figure 4.5 Returning a reference to a mutable data field
 
 If you need to return a reference to a mutable object, you should clone it first. A clone is an exact copy of an object stored in a new location. We discuss cloning in detail in Chapter 6. Here is the corrected code:
 
-
-
-class Employee
-
-{
-
-. . .
-
-public Date getHireDay()
-
-{
-
-return (Date) hireDay.clone(); // OK
-
+```java
+class Employee {
+	. . .
+	public Date getHireDay() {
+			return (Date) hireDay.clone(); // OK
+	}
+	. . .
 }
-
-. . .
-
-}
+```
 
 As a rule of thumb, always use clone whenever you need to return a copy of a mutable field.
 
@@ -1390,7 +1193,6 @@ As a rule of thumb, always use clone whenever you need to return a copy of a mut
 #### 4.3.9 Class-Based Access Privileges
 
 You know that a method can access the private data of the object on which it is invoked. What people often find surprising is that a method can access the private data of all objects of its class. For example, consider a method equals that compares two employees.
-
 
 
 class Employee
