@@ -1115,23 +1115,29 @@ The salary field is not read-only, but it can only be changed by the raiseSalary
 
 Sometimes, it happens that you want to get and set the value of an instance field. Then you need to supply three items:
 
+```java
 A private data field;
 
 A public field accessor method; and
 
 A public field mutator method.
+```
 
 This is a lot more tedious than supplying a single public data field, but there are considerable benefits.
 
 First, you can change the internal implementation without affecting any code other than the methods of the class. For example, if the storage of the name is changed to
 
+```java
 String firstName;
 
 String lastName;
+```
 
 then the getName method can be changed to return
 
+```java
 firstName + " " + lastName
+```
 
 This change is completely invisible to the remainder of the program.
 
@@ -1194,34 +1200,22 @@ As a rule of thumb, always use clone whenever you need to return a copy of a mut
 
 You know that a method can access the private data of the object on which it is invoked. What people often find surprising is that a method can access the private data of all objects of its class. For example, consider a method equals that compares two employees.
 
-
-class Employee
-
-{
-
-. . .
-
-public boolean equals(Employee other)
-
-{
-
-return name.equals(other.name);
-
+```java
+class Employee {
+		. . .
+		public boolean equals(Employee other) {
+				return name.equals(other.name);
+		}
 }
-
-}
+```
 
 A typical call is
-
-
 
 if (harry.equals(boss)) . . .
 
 This method accesses the private fields of harry, which is not surprising. It also accesses the private fields of boss. This is legal because boss is an object of type Employee, and a method of the Employee class is permitted to access the private fields of any object of type Employee.
 
-C++ Note
-
-C++ has the same rule. A method can access the private features of any object of its class, not just of the implicit parameter.
+C++ Note: C++ has the same rule. A method can access the private features of any object of its class, not just of the implicit parameter.
 
 4.3.7 基于类的访问权限
 
@@ -1243,43 +1237,34 @@ By making a method private, you are under no obligation to keep it available if 
 
 You can define an instance field as final. Such a field must be initialized when the object is constructed. That is, you must guarantee that the field value has been set after the end of every constructor. Afterwards, the field may not be modified again. For example, the name field of the Employee class may be declared as final because it never changes after the object is constructed — there is no
 
-
-
-class Employee
-
-{
-
-private final String name;
-
-. . .
-
+```java
+class Employee {
+		private final String name;
+		. . .
 }
+```
 
 The final modifier is particularly useful for fields whose type is primitive or an immutable class. (A class is immutable if none of its methods ever mutate its objects. For example, the String class is immutable.)
 
 For mutable classes, the final modifier can be confusing. For example, consider a field
 
-
-
+```java
 private final StringBuilder evaluations;
+```
 
 that is initialized in the Employee constructor as
 
-
-
+```java
 evaluations = new StringBuilder();
+```
 
 The final keyword merely means that the object reference stored in the evaluations variable will never again refer to a different StringBuilder object. But the object can be mutated:
 
-
-
-public void giveGoldStar()
-
-{
-
-evaluations.append(LocalDate.now() + ": Gold star!\n");
-
+```java
+public void giveGoldStar() {
+		evaluations.append(LocalDate.now() + ": Gold star!\n");
 }
+```
 
 4.3.9 final 实例域
 
@@ -1297,56 +1282,43 @@ In all sample programs that you have seen, the main method is tagged with the st
 
 If you define a field as static, then there is only one such field per class. In contrast, each object has its own copy of nonstatic instance fields. For example, let's suppose we want to assign a unique identification number to each employee. We add an instance field id and a static field nextId to the Employee class:
 
-
-
-class Employee
-
-{
-
-private static int nextId = 1;
-
-private int id;
-
-. . .
-
+```java
+class Employee {
+		private static int nextId = 1;
+		private int id;
+		. . .
 }
+```
 
 Every Employee object now has its own id field, but there is only one nextId field that is shared among all instances of the class. Let's put it another way. If there are 1,000 objects of the Employee class, then there are 1,000 instance fields id, one for each object. But there is a single static field nextId. Even if there are no Employee objects, the static field nextId is present. It belongs to the class, not to any individual object.
 
-Note
-
-In some object-oriented programming languages, static fields are called class fields. The term「static」is a meaningless holdover from C++.
+Note: In some object-oriented programming languages, static fields are called class fields. The term「static」is a meaningless holdover from C++.
 
 Let's implement a simple method:
 
-
-
-public void setId()
-
-{
-
-id = nextId;
-
-nextId++;
-
+```java
+public void setId() {
+		id = nextId;
+		nextId++;
 }
+```
 
 Suppose you set the employee identification number for harry:
 
+```java
 harry.setId();
+```
 
 Then, the id field of harry is set to the current value of the static field nextId, and the value of the static field is incremented:
 
-
-
+```java
 harry.id = Employee.nextId;
-
 Employee.nextId++;
+```
 
 4.4.1 静态域
 
 如果将域定义为 static，每个类中只有一个这样的域。而每一个对象对于所有的实例域却都有自己的一份拷贝。例如，假定需要给每一个雇员赋予唯一的标识码。这里给 Employee 类添加一个实例域 id 和一个静态域 nextId：现在，每一个雇员对象都有一个自己的 id 域，但这个类的所有实例将共享一个 nextId 域。换句话说，如果有 1000 个 Employee 类的对象，则有 1000 个实例域 id。但是，只有一个静态域 nextId。即使没有一个雇员对象，静态域 nextId 也存在。它属于类，而不属于任何独立的对象。注释：在绝大多数的面向对象程序设计语言中，静态域被称为类域。术语「static」只是沿用了 C++ 的叫法，并无实际意义。下面实现一个简单的方法：
-
 
 假定为 harry 设定雇员标识码：harry 的 id 域被设置为静态域 nextId 当前的值，并且静态域 nextId 的值加 1：
 
@@ -1354,19 +1326,13 @@ Employee.nextId++;
 
 Static variables are quite rare. However, static constants are more common. For example, the Math class defines a static constant:
 
-
-
-public class Math
-
-{
-
-. . .
-
-public static final double PI = 3.14159265358979323846;
-
-. . .
-
+```java
+public class Math {
+		. . .
+		public static final double PI = 3.14159265358979323846;
+		. . .
 }
+```
 
 You can access this constant in your programs as Math.PI.
 
@@ -1374,25 +1340,19 @@ If the keyword static had been omitted, then PI would have been an instance fiel
 
 Another static constant that you have used many times is System.out. It is declared in the System class as follows:
 
-
-
-public class System
-
-{
-
-. . .
-
-public static final PrintStream out = . . .;
-
-. . .
-
+```java
+public class System {
+		. . .
+		public static final PrintStream out = . . .;
+		. . .
 }
+```
 
 As we mentioned several times, it is never a good idea to have public fields, because everyone can modify them. However, public constants (that is, final fields) are fine. Since out has been declared as final, you cannot reassign another print stream to it:
 
-
-
+```java
 System.out = new PrintStream(. . .); // ERROR--out is final
+```
 
 Note: If you look at the System class, you will notice a method setOut that sets System.out to a different stream. You may wonder how that method can change the value of a final variable. However, the setOut method is a native method, not implemented in the Java programming language. Native methods can bypass the access control mechanisms of the Java language. This is a very unusual workaround that you should not emulate in your programs.
 
@@ -1406,7 +1366,9 @@ Note: If you look at the System class, you will notice a method setOut that sets
 
 Static methods are methods that do not operate on objects. For example, the pow method of the Math class is a static method. The expression
 
+```java
 Math.pow(x, a)
+```
 
 computes the power xa. It does not use any Math object to carry out its task. In other words, it has no implicit parameter.
 
@@ -1414,27 +1376,21 @@ You can think of static methods as methods that don't have a this parameter. (In
 
 A static method of the Employee class cannot access the id instance field because it does not operate on an object. However, a static method can access a static field. Here is an example of such a static method:
 
-
-
-public static int getNextId()
-
-{
-
-return nextId; // returns static field
-
+```java
+public static int getNextId() {
+	return nextId; // returns static field
 }
+```
 
 To call this method, you supply the name of the class:
 
-
-
-int n = Employee.getNextId();
+```java
+	int n = Employee.getNextId();
+```
 
 Could you have omitted the keyword static for this method? Yes, but then you would need to have an object reference of type Employee to invoke the method.
 
-Note
-
-It is legal to use an object to call a static method. For example, if harry is an Employee object, then you can call harry.getNextId() instead of Employee.getNextId(). However, we find that notation confusing. The getNextId method doesn't look at harry at all to compute the result. We recommend that you use class names, not objects, to invoke static methods.
+Note: It is legal to use an object to call a static method. For example, if harry is an Employee object, then you can call harry.getNextId() instead of Employee.getNextId(). However, we find that notation confusing. The getNextId method doesn't look at harry at all to compute the result. We recommend that you use class names, not objects, to invoke static methods.
 
 Use static methods in two situations:
 
@@ -1442,9 +1398,7 @@ When a method doesn't need to access the object state because all needed paramet
 
 When a method only needs to access static fields of the class (example: Employee.getNextId).
 
-C++ Note
-
-Static fields and methods have the same functionality in Java and C++. However, the syntax is slightly different. In C++, you use the :: operator to access a static field or method outside its scope, such as Math::PI.
+C++ Note: Static fields and methods have the same functionality in Java and C++. However, the syntax is slightly different. In C++, you use the :: operator to access a static field or method outside its scope, such as Math::PI.
 
 The term「static」has a curious history. At first, the keyword static was introduced in C to denote local variables that don't go away when a block is exited. In that context, the term「static」makes sense: The variable stays around and is still there when the block is entered again. Then static got a second meaning in C, to denote global variables and functions that cannot be accessed from other files. The keyword static was simply reused to avoid introducing a new keyword. Finally, C++ reused the keyword for a third, unrelated, interpretation — to denote variables and functions that belong to a class but not to any particular object of the class. That is the same meaning the keyword has in Java.
 
@@ -1460,17 +1414,14 @@ The term「static」has a curious history. At first, the keyword static was intr
 
 Here is another common use for static methods. Classes such as LocalDate and NumberFormat use static factory methods that construct objects. You have already seen the factory methods LocalDate.now and LocalDate.of. Here is how the NumberFormat class yields formatter objects for various styles:
 
-
-
+```java
 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-
 NumberFormat percentFormatter = NumberFormat.getPercentInstance();
 
 double x = 0.1;
-
 System.out.println(currencyFormatter.format(x)); // prints $0.10
-
 System.out.println(percentFormatter.format(x)); // prints 10%
+```
 
 Why doesn't the NumberFormat class use a constructor instead? There are two reasons:
 
@@ -1492,65 +1443,36 @@ Note that you can call static methods without having any objects. For example, y
 
 For the same reason, the main method is a static method.
 
-
-
-public class Application
-
-{
-
-public static void main(String[] args)
-
-{
-
-// construct objects here
-
-. . .
-
+```java
+public class Application {
+		public static void main(String[] args) {
+				// construct objects here
+				. . .
+		}
 }
-
-}
+```
 
 The main method does not operate on any objects. In fact, when a program starts, there aren't any objects yet. The static main method executes, and constructs the objects that the program needs.
 
-Tip
+Tip: Every class can have a main method. That is a handy trick for unit testing of classes. For example, you can add a main method to the Employee class:
 
-Every class can have a main method. That is a handy trick for unit testing of classes. For example, you can add a main method to the Employee class:
-
-
-
-class Employee
-
-{
-
-public Employee(String n, double s, int year, int month, int day)
-
-{
-
-name = n;
-
-salary = s;
-
-hireDay = LocalDate.of(year, month, day);
-
+```java
+class Employee {
+		public Employee(String n, double s, int year, int month, int day) {
+				name = n;
+				salary = s;
+				hireDay = LocalDate.of(year, month, day);
+		}
+		. . .
+		public static void main(String[] args) // unit test
+		{
+				var e = new Employee("Romeo", 50000, 2003, 3, 31);
+				e.raiseSalary(10);
+				System.out.println(e.getName() + " " + e.getSalary());
+		}
+		. . .
 }
-
-. . .
-
-public static void main(String[] args) // unit test
-
-{
-
-var e = new Employee("Romeo", 50000, 2003, 3, 31);
-
-e.raiseSalary(10);
-
-System.out.println(e.getName() + " " + e.getSalary());
-
-}
-
-. . .
-
-}
+```
 
 If you want to test the Employee class in isolation, simply execute
 
@@ -1575,7 +1497,6 @@ java StaticTest
 to execute both main methods.
 
 Listing 4.3 StaticTest/StaticTest.java
-
 
 
 1 /**
@@ -1763,7 +1684,6 @@ Let us review the computer science terms that describe how parameters can be pas
 The Java programming language always uses call by value. That means that the method gets a copy of all parameter values. In particular, the method cannot modify the contents of any parameter variables passed to it.
 
 For example, consider the following call:
-
 
 
 double percent = 10;
