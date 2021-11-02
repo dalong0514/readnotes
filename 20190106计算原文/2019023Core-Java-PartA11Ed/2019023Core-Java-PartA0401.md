@@ -1011,10 +1011,6 @@ From now on, we will use the var notation in those cases where the type is obvio
 
 Note that the var keyword can only be used with local variables inside methods. You must always declare the types of parameters and fields.
 
-4.3.5 隐式参数与显式参数方法用于操作对象以及存取它们的实例域。例如，方法：将调用这个方法的对象的 salary 实例域设置为新值。看看下面这个调用：它的结果将 number007.salary 域的值增加 5%。具体地说，这个调用将执行下列指令：raiseSalary 方法有两个参数。第一个参数称为隐式（implicit）参数，是出现在方法名前的 Employee 类对象。第二个参数位于方法名后面括号中的数值，这是一个显式（explicit）参数。（有些人把隐式参数称为方法调用的目标或接收者。）可以看到，显式参数是明显地列在方法声明中的，例如 double byPercent。隐式参数没有出现在方法声明中。在每一个方法中，关键字 this 表示隐式参数。如果需要的话，可以用下列方式编写 raiseSalary 方法：
-
-有些程序员更偏爱这样的风格，因为这样可以将实例域与局部变量明显地区分开来。C++ 注释：在 C++ 中，通常在类的外面定义方法：如果在类的内部定义方法，这个方法将自动地成为内联（inline）方法。在 Java 中，所有的方法都必须在类的内部定义，但并不表示它们是内联方法。是否将某个方法设置为内联方法是 Java 虚拟机的任务。即时编译器会监视调用那些简洁、经常被调用、没有被重载以及可优化的方法。
-
 #### 4.3.6 Working with null References
 
 In Section 4.2.1,「Objects and Object Variables,」on p. 132, you saw that an object variable holds a reference to an object, or the special value null to indicate the absence of an object.
@@ -1126,6 +1122,12 @@ class Employee {
 ```
 
 In Java, all methods are defined inside the class itself. This does not make them inline. Finding opportunities for inline replacement is the job of the Java virtual machine. The just-in-time compiler watches for calls to methods that are short, commonly called, and not overridden, and optimizes them away.
+
+4.3.5 隐式参数与显式参数
+
+方法用于操作对象以及存取它们的实例域。例如，方法：将调用这个方法的对象的 salary 实例域设置为新值。看看下面这个调用：它的结果将 number007.salary 域的值增加 5%。具体地说，这个调用将执行下列指令：raiseSalary 方法有两个参数。第一个参数称为隐式（implicit）参数，是出现在方法名前的 Employee 类对象。第二个参数位于方法名后面括号中的数值，这是一个显式（explicit）参数。（有些人把隐式参数称为方法调用的目标或接收者。）可以看到，显式参数是明显地列在方法声明中的，例如 double byPercent。隐式参数没有出现在方法声明中。在每一个方法中，关键字 this 表示隐式参数。如果需要的话，可以用下列方式编写 raiseSalary 方法：
+
+有些程序员更偏爱这样的风格，因为这样可以将实例域与局部变量明显地区分开来。C++ 注释：在 C++ 中，通常在类的外面定义方法：如果在类的内部定义方法，这个方法将自动地成为内联（inline）方法。在 Java 中，所有的方法都必须在类的内部定义，但并不表示它们是内联方法。是否将某个方法设置为内联方法是 Java 虚拟机的任务。即时编译器会监视调用那些简洁、经常被调用、没有被重载以及可优化的方法。
 
 #### 4.3.8 Benefits of Encapsulation
 
