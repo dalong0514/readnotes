@@ -749,11 +749,15 @@ Note that the example program consists of two classes: the Employee class and a 
 
 The name of the source file is EmployeeTest.java because the name of the file must match the name of the public class. You can only have one public class in a source file, but you can have any number of nonpublic classes.
 
+1『再次强调了 Java 的常识：1）公共类名必须源文件命名相同。2）一个源文件只能包含一个公有类。（2021-11-02）』
+
 Next, when you compile this source code, the compiler creates two class files in the directory: EmployeeTest.class and Employee.class.
 
 You then start the program by giving the bytecode interpreter the name of the class that contains the main method of your program:
 
+```
 java EmployeeTest
+```
 
 The bytecode interpreter starts running the code in the main method in the EmployeeTest class. This code in turn constructs three new Employee objects and shows you their state.
 
@@ -821,9 +825,17 @@ class Employee {
 
 在 Java 中，最简单的类定义形式为：下面看一个非常简单的 Employee 类。在编写薪金管理系统时可能会用到。
 
-这里将这个类的实现细节分成以下几个部分，并分别在稍后的几节中给予介绍。下面先看看程序清单 4-2，这个程序显示了一个 Employee 类的实际使用。程序清单 4-2 EmployeeTest/EmployeeTest.java
+这里将这个类的实现细节分成以下几个部分，并分别在稍后的几节中给予介绍。下面先看看程序清单 4-2，这个程序显示了一个 Employee 类的实际使用。
 
-在这个程序中，构造了一个 Employee 数组，并填入了三个雇员对象：接下来，利用 Employee 类的 raiseSalary 方法将每个雇员的薪水提高 5%：最后，调用 getName 方法、getSalary 方法和 getHireDay 方法将每个雇员的信息打印出来：注意，在这个示例程序中包含两个类：Employee 类和带有 public 访问修饰符的 EmployeeTest 类。EmployeeTest 类包含了 main 方法，其中使用了前面介绍的指令。源文件名是 EmployeeTest.java，这是因为文件名必须与 public 类的名字相匹配。在一个源文件中，只能有一个公有类，但可以有任意数目的非公有类。接下来，当编译这段源代码的时候，编译器将在目录下创建两个类文件：EmployeeTest.class 和 Employee.class。将程序中包含 main 方法的类名提供给字节码解释器，以便启动这个程序：字节码解释器开始运行 EmployeeTest 类的 main 方法中的代码。在这段代码中，先后构造了三个新 Employee 对象，并显示它们的状态。
+程序清单 4-2 EmployeeTest/EmployeeTest.java
+
+在这个程序中，构造了一个 Employee 数组，并填入了三个雇员对象：接下来，利用 Employee 类的 raiseSalary 方法将每个雇员的薪水提高 5%：
+
+最后，调用 getName 方法、getSalary 方法和 getHireDay 方法将每个雇员的信息打印出来：
+
+注意，在这个示例程序中包含两个类：Employee 类和带有 public 访问修饰符的 EmployeeTest 类。EmployeeTest 类包含了 main 方法，其中使用了前面介绍的指令。源文件名是 EmployeeTest.java，这是因为文件名必须与 public 类的名字相匹配。在一个源文件中，只能有一个公有类，但可以有任意数目的非公有类。接下来，当编译这段源代码的时候，编译器将在目录下创建两个类文件：EmployeeTest.class 和 Employee.class。将程序中包含 main 方法的类名提供给字节码解释器，以便启动这个程序：
+
+字节码解释器开始运行 EmployeeTest 类的 main 方法中的代码。在这段代码中，先后构造了三个新 Employee 对象，并显示它们的状态。
 
 #### 4.3.2 Use of Multiple Source Files
 
@@ -831,11 +843,15 @@ The program in Listing 4.2 has two classes in a single source file. Many program
 
 If you like this arrangement, you have two choices for compiling the program. You can invoke the Java compiler with a wildcard:
 
+```
 javac Employee*.java
+```
 
 Then, all source files matching the wildcard will be compiled into class files. Or, you can simply type
 
+```
 javac EmployeeTest.java
+```
 
 You may find it surprising that the second choice works even though the Employee.java file is never explicitly compiled. However, when the Java compiler sees the Employee class being used inside EmployeeTest.java, it will look for a file named Employee.class. If it does not find that file, it automatically searches for Employee.java and compiles it. Moreover, if the timestamp of the version of Employee.java that it finds is newer than that of the existing Employee.class file, the Java compiler will automatically recompile the file.
 
@@ -843,7 +859,13 @@ Note: If you are familiar with the make facility of UNIX (or one of its Windows 
 
 4.3.2 多个源文件的使用
 
-在程序清单 4-2 中，一个源文件包含了两个类。许多程序员习惯于将每一个类存在一个单独的源文件中。例如，将 Employee 类存放在文件 Employee.java 中，将 EmployeeTest 类存放在文件 EmployeeTest.java 中。如果喜欢这样组织文件，将可以有两种编译源程序的方法。一种是使用通配符调用 Java 编译器：于是，所有与通配符匹配的源文件都将被编译成类文件。或者键入下列命令：读者可能会感到惊讶，使用第二种方式，并没有显式地编译 Employee.java。然而，当 Java 编译器发现 EmployeeTest.java 使用了 Employee 类时会查找名为 Employee.class 的文件。如果没有找到这个文件，就会自动地搜索 Employee.java，然后，对它进行编译。更重要的是：如果 Employee.java 版本较已有的 Employee.class 文件版本新，Java 编译器就会自动地重新编译这个文件。注释：如果熟悉 UNIX 的「make」工具（或者是 Windows 中的「nmake」等工具），可以认为 Java 编译器内置了「make」功能。
+在程序清单 4-2 中，一个源文件包含了两个类。许多程序员习惯于将每一个类存在一个单独的源文件中。例如，将 Employee 类存放在文件 Employee.java 中，将 EmployeeTest 类存放在文件 EmployeeTest.java 中。如果喜欢这样组织文件，将可以有两种编译源程序的方法。一种是使用通配符调用 Java 编译器：
+
+于是，所有与通配符匹配的源文件都将被编译成类文件。或者键入下列命令：
+
+读者可能会感到惊讶，使用第二种方式，并没有显式地编译 Employee.java。然而，当 Java 编译器发现 EmployeeTest.java 使用了 Employee 类时会查找名为 Employee.class 的文件。如果没有找到这个文件，就会自动地搜索 Employee.java，然后，对它进行编译。更重要的是：如果 Employee.java 版本较已有的 Employee.class 文件版本新，Java 编译器就会自动地重新编译这个文件。
+
+注释：如果熟悉 UNIX 的「make」工具（或者是 Windows 中的「nmake」等工具），可以认为 Java 编译器内置了「make」功能。
 
 #### 4.3.3 Dissecting the Employee Class
 
@@ -875,7 +897,15 @@ Finally, notice that two of the instance fields are themselves objects: The name
 
 4.3.3 剖析 Employee 类
 
-下面对 Employee 类进行剖析。首先从这个类的方法开始。通过查看源代码会发现，这个类包含一个构造器和 4 个方法：这个类的所有方法都被标记为 public。关键字 public 意味着任何类的任何方法都可以调用这些方法（共有 4 种访问级别，将在本章稍后和下一章中介绍）。接下来，需要注意在 Employee 类的实例中有三个实例域用来存放将要操作的数据：关键字 private 确保只有 Employee 类自身的方法能够访问这些实例域，而其他类的方法不能够读写这些域。注释：可以用 public 标记实例域，但这是一种极为不提倡的做法。public 数据域允许程序中的任何方法对其进行读取和修改。这就完全破坏了封装。任何类的任何方法都可以修改 public 域，从我们的经验来看，某些代码将使用这种存取权限，而这并不我们所希望的，因此，这里强烈建议将实例域标记为 private。最后，请注意，有两个实例域本身就是对象：name 域是 String 类对象，hireDay 域是 LocalDate 类对象。这种情形十分常见：类通常包括类型属于某个类类型的实例域。
+下面对 Employee 类进行剖析。首先从这个类的方法开始。通过查看源代码会发现，这个类包含一个构造器和 4 个方法：
+
+这个类的所有方法都被标记为 public。关键字 public 意味着任何类的任何方法都可以调用这些方法（共有 4 种访问级别，将在本章稍后和下一章中介绍）。
+
+接下来，需要注意在 Employee 类的实例中有三个实例域用来存放将要操作的数据：
+
+关键字 private 确保只有 Employee 类自身的方法能够访问这些实例域，而其他类的方法不能够读写这些域。
+
+注释：可以用 public 标记实例域，但这是一种极为不提倡的做法。public 数据域允许程序中的任何方法对其进行读取和修改。这就完全破坏了封装。任何类的任何方法都可以修改 public 域，从我们的经验来看，某些代码将使用这种存取权限，而这并不我们所希望的，因此，这里强烈建议将实例域标记为 private。最后，请注意，有两个实例域本身就是对象：name 域是 String 类对象，hireDay 域是 LocalDate 类对象。这种情形十分常见：类通常包括类型属于某个类类型的实例域。
 
 #### 4.3.4 First Steps with Constructors
 
@@ -915,15 +945,15 @@ is a compile-time error.
 
 We will have more to say about constructors later in this chapter. For now, keep the following in mind:
 
-A constructor has the same name as the class.
+1 A constructor has the same name as the class.
 
-A class can have more than one constructor.
+2 A class can have more than one constructor.
 
-A constructor can take zero, one, or more parameters.
+3 A constructor can take zero, one, or more parameters.
 
-A constructor has no return value.
+4 A constructor has no return value.
 
-A constructor is always called with the new operator.
+5 A constructor is always called with the new operator.
 
 C++ Note: Constructors work the same way in Java as they do in C++. Keep in mind, however, that all Java objects are constructed on the heap and that a constructor must be combined with new. It is a common error of C++ programmers to forget the new operator:
 
@@ -947,9 +977,19 @@ The constructor declares local variables name and salary. These variables are on
 
 4.3.4 从构造器开始
 
-下面先看看 Employee 类的构造器：可以看到，构造器与类同名。在构造 Employee 类的对象时，构造器会运行，以便将实例域初始化为所希望的状态。例如，当使用下面这条代码创建 Employee 类实例时：将会把实例域设置为：构造器与其他的方法有一个重要的不同。构造器总是伴随着 new 操作符的执行被调用，而不能对一个已经存在的对象调用构造器来达到重新设置实例域的目的。例如，将产生编译错误。本章稍后还会更加详细地介绍有关构造器的内容。现在只需要记住：·构造器与类同名·每个类可以有一个以上的构造器·构造器可以有 0 个、1 个或多个参数·构造器没有返回值
+下面先看看 Employee 类的构造器：
 
-构造器总是伴随着 new 操作一起调用 C++ 注释：Java 构造器的工作方式与 C++ 一样。但是，要记住所有的 Java 对象都是在堆中构造的，构造器总是伴随着 new 操作符一起使用。C++ 程序员最易犯的错误就是忘记 new 操作符：这条语句在 C++ 中能够正常运行，但在 Java 中却不行。警告：请注意，不要在构造器中定义与实例域重名的局部变量。例如，下面的构造器将无法设置 salary。这个构造器声明了局部变量 name 和 salary。这些变量只能在构造器内部访问。这些变量屏蔽了同名的实例域。有些程序设计者（例如，本书的作者）常常不假思索地写出这类代码，因为他们已经习惯增加这类数据类型。这种错误很难被检查出来，因此，必须注意在所有的方法中不要命名与实例域同名的变量。
+可以看到，构造器与类同名。在构造 Employee 类的对象时，构造器会运行，以便将实例域初始化为所希望的状态。例如，当使用下面这条代码创建 Employee 类实例时：
+
+将会把实例域设置为：
+
+构造器与其他的方法有一个重要的不同。构造器总是伴随着 new 操作符的执行被调用，而不能对一个已经存在的对象调用构造器来达到重新设置实例域的目的。例如，
+
+将产生编译错误。本章稍后还会更加详细地介绍有关构造器的内容。现在只需要记住：1）构造器与类同名。2）每个类可以有一个以上的构造器。3）构造器可以有 0 个、1 个或多个参数。4）构造器没有返回值。5）构造器总是伴随着 new 操作一起调用。
+
+C++ 注释：Java 构造器的工作方式与 C++ 一样。但是，要记住所有的 Java 对象都是在堆中构造的，构造器总是伴随着 new 操作符一起使用。C++ 程序员最易犯的错误就是忘记 new 操作符：
+
+这条语句在 C++ 中能够正常运行，但在 Java 中却不行。警告：请注意，不要在构造器中定义与实例域重名的局部变量。例如，下面的构造器将无法设置 salary。这个构造器声明了局部变量 name 和 salary。这些变量只能在构造器内部访问。这些变量屏蔽了同名的实例域。有些程序设计者（例如，本书的作者）常常不假思索地写出这类代码，因为他们已经习惯增加这类数据类型。这种错误很难被检查出来，因此，必须注意在所有的方法中不要命名与实例域同名的变量。
 
 #### 4.3.5 Declaring Local Variables with var
 
@@ -3628,16 +3668,15 @@ If your comments contain links to other files such as images (for example, diagr
 
 4.9.1 注释的插入
 
-javadoc 实用程序（utility）从下面几个特性中抽取信息：·包·公有类与接口·公有的和受保护的构造器及方法·公有的和受保护的域在第 5 章中将介绍受保护特性，在第 6 章将介绍接口。应该为上面几部分编写注释。注释应该放置在所描述特性的前面。注释以 `/**` 开始，并以 */ 结束。每个 /**...*/ 文档注释在标记之后紧跟着自由格式文本（free-form text）。标记由 @开始，如 @author 或 @param。自由格式文本的第一句应该是一个概要性的句子。javadoc 实用程序自动地将这些句子抽取出来形成概要页。
+javadoc 实用程序（utility）从下面几个特性中抽取信息：·包·公有类与接口·公有的和受保护的构造器及方法·公有的和受保护的域在第 5 章中将介绍受保护特性，在第 6 章将介绍接口。应该为上面几部分编写注释。注释应该放置在所描述特性的前面。注释以 `/**` 开始，并以 `*/` 结束。每个 `/**...*/` 文档注释在标记之后紧跟着自由格式文本（free-form text）。标记由 @开始，如 @author 或 @param。自由格式文本的第一句应该是一个概要性的句子。javadoc 实用程序自动地将这些句子抽取出来形成概要页。
 
-在自由格式文本中，可以使用 HTML 修饰符，例如，用于强调的 <em>...</em>、用于着重强调的 <strong>...</strong> 以及包含图像的 <img...> 等。不过，一定不要使用 <h1> 或 <hr>，因为它们会与文档的格式产生冲突。若要键入等宽代码，需使用 {@code...} 而不是 <code>...</code> ——  这样一来，就不用操心对代码中的 <字符转义了。注释：如果文档中有到其他文件的链接，例如，图像文件（用户界面的组件的图表或图像等），就应该将这些文件放到子目录 doc-files 中。javadoc 实用程序将从源目录拷贝这些目录及其中的文件到文档目录中。在链接中需要使用 doc-files 目录，例如：<img src=「doc-files/uml.png」alt=「UMLdiagram」>。
+在自由格式文本中，可以使用 HTML 修饰符，例如，用于强调的 `<em>...</em>`、用于着重强调的 `<strong>...</strong>` 以及包含图像的 `<img...>` 等。不过，一定不要使用 `<h1>` 或 `<hr>`，因为它们会与文档的格式产生冲突。若要键入等宽代码，需使用 `{@code...}` 而不是 `<code>...</code>` ——  这样一来，就不用操心对代码中的 `<` 字符转义了。注释：如果文档中有到其他文件的链接，例如，图像文件（用户界面的组件的图表或图像等），就应该将这些文件放到子目录 doc-files 中。javadoc 实用程序将从源目录拷贝这些目录及其中的文件到文档目录中。在链接中需要使用 doc-files 目录，例如：`<img src="doc-files/uml.png" alt="UMLdiagram">`。
 
 #### 4.9.2 Class Comments
 
 The class comment must be placed after any import statements, directly before the class definition.
 
 Here is an example of a class comment:
-
 
 
 /**
