@@ -1,4 +1,4 @@
-# 0205. Requesting Input and Using Conditional and Looping Expressions
+## 0205. Requesting Input and Using Conditional and Looping Expressions
 
 Using static values in a custom AutoLISP® program can be helpful in automating tasks, but it also limits the functionality that can be introduced by custom AutoLISP programs. Using static values doesn't give the user the ability to specify a custom value, such as the insertion point of a block or which objects to modify. AutoLISP provides many functions that allow you to request input at the Command prompt or with controls in a dialog box. I cover working with dialog boxes in Chapter 23,「Implementing Dialog Boxes (Windows only).」
 
@@ -6,7 +6,7 @@ When requesting input from a user, you should verify the input provided from the
 
 In this chapter, you will learn to get input at the Command prompt and provide information back to the user in the form of messages. Additionally, you will learn to use conditional and looping expressions to perform actions based on the result of a test condition.
 
-## 5.1 Interacting with the User
+### 5.1 Interacting with the User
 
 You've learned that you can use the PAUSE predefined variable with the command function to allow the user to provide a value. PAUSE works great for providing a response to the current prompt of the active command, but it is also a limitation. Any value provided in response to PAUSE is passed directly to the command and can't be captured or manipulated by your AutoLISP program.
 
@@ -56,7 +56,7 @@ Type (setq strPt (polar base (+ ang (/ PI 2)) (/ wall_thickness 2))) and press E
 
 Type (setq endPt (polar strPt ang width)) and press Enter to calculate the endpoint of the line that will represent the class in the window.
 
-Type (command "._rectang" base "_r" (* (/ ang PI) 180) "_d" width wall_thickness endPt) and press Enter to draw the outline of the window in plan view.
+Type `(command "._rectang" base "_r" (* (/ ang PI) 180) "_d" width wall_thickness endPt)` and press Enter to draw the outline of the window in plan view.
 
 Type (command "._line" strPt endPt "") and press Enter to draw the line that represents the glass in the window.
 
@@ -364,7 +364,9 @@ Listing 15.2 shows a custom function that gets raw input from the keyboard and c
 
 Listing 15.2: PIN or search code input function
 
+```
 ; Function limits input to number, Backspace, Enter, and spacebar keys. ; Valid input is also masked with the use of the * (asterisk) character. (defun c:MyPINCode ( / number code ch) ; Display a prompt to the user since ; grread does not display a prompt (prompt "\nEnter number [backspace to clear]: ") ; Request input from the user (setq code (grread) number "") ; Check to see if the user pressed a key on the keyboard ; and continue requesting characters until Enter or spacebar is pressed, ; or a non-keypress occurs. (while (and (= 2 (car code)) (and (/= 13 (cadr code)) (/= 32 (cadr code)))) (if (and (>= (cadr code) 48) (<= (cadr code) 57)) (progn (setq ch (chr (cadr code))) (setq number (strcat number ch)) (princ "*") ) ) ; Enables the use of Backspace to clear the current ; value entered and the number of *s displayed at ; the command-line window. (if (= (cadr code) 8) (progn (repeat (strlen number) (princ (chr 8)) ) (setq number "") ) ) ;; Ask for more input if the user did not press Enter or Space (if (or (/= 13 (cadr code))(/= 32 (cadr code))) (setq code (grread)) ) ) ; Display the actual numbers entered (prompt (strcat "\nPIN entered was: " number)) (princ) )
+```
 
 I explain more about the prompt and princ functions in the next section, and I discuss the if and while functions along with comparison and logical grouping operators later in this chapter.
 
@@ -538,7 +540,7 @@ Setting Focus to the Graphics Window (Windows Only)
 
 Earlier releases of AutoCAD supported two different screens, two physical monitors: graphics and text. More recent releases use a modern user interface that has a graphics and a text window. The AutoLISP graphscr function collapses the history of the command-line window or hides the AutoCAD Text Window, which are expanded or shown with the textscr or textpage function. I discussed the textscr or textpage functions earlier in the「Expanding or Showing the Command-Line History」section. The graphscr function doesn't accept any arguments.
 
-## 5.2 Conditionalizing and Branching Expressions
+### 5.2 Conditionalizing and Branching Expressions
 
 The expressions that make up an AutoLISP program are executed sequentially; this is commonly known as a linear program. In a linear program, execution starts with the first expression and continues until the last expression is executed. Although expressions are executed in a linear order, AutoLISP programs can contain branches. Think of a branch as being no different than a fork in the road.
 
@@ -744,7 +746,9 @@ The following is an example of the if and progn functions that are used to draw 
 
 The following is an example of nested if and progn functions that allow the user to draw a circle or hexagon based on the keyword provided:
 
+```
 ; Prompts for a keyword, and then draws either a circle or hexagon ; on different layers based on a specified center point. (initget "Circle Hexagon") (if (setq kword (getkword "\nEnter object to create [Circle/Hexagon]: ")) (if (= kword "Circle") (progn (command "._layer" "_m" "Circles" "_c" "30" "" "") (command "._circle" PAUSE 1.5) ) (progn (command "._layer" "_m" "Hexagons" "_c" "150" "" "") (command "._polygon" "6" PAUSE "_i" 1.65) ) ) (prompt "\nNo option specified.") )
+```
 
 Testing Multiple Conditions
 
@@ -754,7 +758,9 @@ The test conditions of the cond function are evaluated one at a time in a top-do
 
 The following shows the syntax of the cond function:
 
+```
 (cond [(test_conditionN then_expressionN) … [(else_expressionN)]] )
+```
 
 Its arguments are as follows:
 
@@ -766,9 +772,11 @@ else_expressionN The else_expressionN argument represents the expressions to eva
 
 The following are examples of the cond function:
 
+```
 ; Gets the current value of the IMAGEFRAME system variable ; and returns a textual description of that value. (setq cur_imgfrm (getvar "imageframe")) (cond ((= cur_imgfrm 0)(prompt "\nImage frame not displayed or plotted.")) ((= cur_imgfrm 1)(prompt "\nImage frame displayed or plotted.")) ((= cur_imgfrm 2)(prompt "\nImage frame not plotted.")) ) ; Prompts the user for a keyword and if they press Enter ; without a value the nil value should be interpreted as Blue. (initget "Blue Green Red") (setq kword (getkword "\nEnter color option [Blue/Green/Red] <Blue>: ")) (cond ((or (= kword nil)(= kword "Blue"))(prompt "\nSelected Blue")) ((= kword "Red")(prompt "\nSelected Red")) ((= kword "Green")(prompt "\nSelected Green")) ) Enter color option [Blue/Green/Red] <Blue>: Press Enter without a value Selected Blue Enter color option [Blue/Green/Red] <Blue>: g Selected Green ; Prompts the user for a keyword or a numeric value (initget "A B C") (setq num (getreal "\nEnter a number or [A/B/C]: ")) (cond ((and (= (type num) 'REAL)(> num 0))(prompt "\nGreater than 0")) ((and (= (type num) 'REAL)(= num 0))(prompt "\nValue is 0")) ((and (= (type num) 'REAL)(< num 0))(prompt "\nLess than 0")) ((and (= (type num) 'REAL)(> num 0))(prompt "\nGreater than 0")) ((= num nil)(prompt "\nNo value or option provided")) (T (prompt "\nAn option was selected. ") (prompt (strcat "\nOption chosen: " (vl-princ-to-string num))) ) ) Enter a number or [A/B/C]: 1 Greater than 0 Enter a number or [A/B/C]: B An option was selected. Option chosen: B Enter a number or [A/B/C]: Press Enter without a value No value or option provided
+```
 
-## 5.3 Repeating and Looping Expressions
+### 5.3 Repeating and Looping Expressions
 
 Early in my career as a drafter, I learned one key fact about myself: I don't handle repetition well at all. This discovery is what led me to AutoCAD customization and eventually AutoLISP programming. AutoLISP—and most programming languages, for that matter—have no problem with repetition, as they support a concept known as loops. Loops allow for a set of expressions to be executed either a finite number of times or infinitely while a condition is met.
 
@@ -834,9 +842,11 @@ Figure 15.9 Custom animated progress message
 
 Listing 15.3: Animated progress message in the status bar (Windows only)
 
+```
 ; Initializes the variables and the status bar ; Usage: (progress-start) (defun progress-start ( / ) (setq *global-progress-value* nil *global-progress-increment* nil *global-progress-replace* nil) (grtext -1 "") (princ) ) (defun progress (prefixText / temp) (setq increment 10) ; Check to see if the global variable is initialized (if (= *global-progress-value* nil) (progn (setq *global-progress-value* prefixText *global-progress-increment* 0 *global-progress-replace* (list "_" "=")) (repeat 10 (setq *global-progress-value* (strcat *global-progress-value* "=")) ) ) ) ; Pause for 1/20 of a second to allow ; AutoCAD time to paint the application window (command "._delay" 50) ; Setup replacement character order (if (> *global-progress-increment* increment) (progn (setq *global-progress-replace* (reverse *global-progress-replace*) *global-progress-increment* 0) ) ) ; Display custom message in the status bar (grtext -1 (setq *global-progress-value* (vl-string-subst (nth 0 *global-progress-replace*) (nth 1 *global-progress-replace*) *global-progress-value*))) (setq *global-progress-increment* (1+ *global-progress-increment*)) (princ) ) ; Clear the global variable and the value posted to the status bar ; Usage: (progress-end) (defun progress-end ( / ) (setq *global-progress-value* nil *global-progress-increment* nil *global-progress-replace* nil) (grtext -1 "") (princ) ) (defun c:progress-test ( / count) (setvar "cmdecho" 0) (setq count 50) (progress-start) (while (> (setq count (1- count)) 0) (progress "Working: ") (princ) ) (progress-end) (setvar "cmdecho" 1) (princ) )
+```
 
-## 5.4 Exercise: Getting Input from the User to Draw the Plate
+### 5.4 Exercise: Getting Input from the User to Draw the Plate
 
 In this section, you will continue to build on the drawplate function that was originally introduced in Chapter 12. The key concepts I cover in this exercise are as follows:
 
@@ -860,7 +870,11 @@ Open the drawplate.lsp file by doing one of the following: On Windows, browse to
 
 On Mac OS, browse to and double-click the drawplate.lsp file to open it in TextEdit. If the file doesn't open, start TextEdit and click File Open. Browse to and select the drawplate.lsp file, and then click Open.
 
-In the text editor area, locate the drawplate function and insert the following code snippet (or modify the text in the file to match what is formatted in bold):; Draws a rectangular plate (defun c:drawplate ( / pt1 pt2 pt3 pt4 width height basePt insPt textValue) ; Create the layer named Plate or set it current (createlayer "Plate" 5) ; Define the width and height for the plate (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0)) (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75)) ; Get recently used values from the global variables (setq width *drawplate_width*) (setq height *drawplate_height*) ; Prompt the current values (prompt (strcat "\nCurrent width: " (rtos *drawplate_width* 2) " Current height: " (rtos *drawplate_height* 2))) ; Set up default keywords (initget "Width Height") ; Continue to ask for input until a point is provided (while (/= (type (setq basePt (getpoint "\nSpecify base point for plate or [Width/Height]: ")) ) 'LIST ) (cond ; Prompt for the width of the plate ((= basePt "Width") (setq width (getdist (strcat "\nSpecify the width of the plate <" (rtos *drawplate_width* 2) ">: "))) ; If nil is returned, use the previous value from the global variable (if (/= width nil)(setq *drawplate_width* width)) ) ; Prompt for the height of the plate ((= basePt "Height") (setq height (getdist (strcat "\nSpecify the height of the plate <" (rtos *drawplate_height* 2) ">: "))) ; If nil is returned, use the previous value from the global variable (if (/= height nil)(setq *drawplate_height* height)) ) ) ; Set up default keywords again (initget "Width Height") ) ; Set the coordinates to draw the rectangle (setq pt1 basePt ;| lower-left corner |; pt2 (list (+ (car basePt) width) (cadr basePt) 0) ;| lower-right corner |; pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0) ;| upper-right corner |; pt4 (list (car basePt) (+ (cadr basePt) height) 0) ;| upper-left corner |; ) ; Draw the rectangle (createrectangle pt1 pt2 pt3 pt4) ; Create the layer named Holes or set it as current (createlayer "Holes" 1) ; Draw the first circle (createcircle (polar pt1 (/ PI 4) 0.7071) 0.1875) ; Array the circle to create the other bolt holes (command "._-array" (entlast) "" "_r" 2 2 (- height 1) (- width 1)) ; Set the insertion point for the text label (setq insPt (getpoint "\nSpecify label insertion point: ")) ; Define the label to add (setq textValue (strcat "PLATE SIZE: " (vl-string-right-trim ".0" (rtos width 2 2)) "x" (vl-string-right-trim ".0" (rtos height 2 2)) ) ) ; Create label (createlayer "Label" 7) (createtext insPt "_c" 0.5 0.0 textValue) ; Save previous values to global variables (setq *drawplate_width* width) (setq *drawplate_height* height) ; Exit "quietly" (princ) )
+In the text editor area, locate the drawplate function and insert the following code snippet (or modify the text in the file to match what is formatted in bold):
+
+```
+; Draws a rectangular plate (defun c:drawplate ( / pt1 pt2 pt3 pt4 width height basePt insPt textValue) ; Create the layer named Plate or set it current (createlayer "Plate" 5) ; Define the width and height for the plate (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0)) (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75)) ; Get recently used values from the global variables (setq width *drawplate_width*) (setq height *drawplate_height*) ; Prompt the current values (prompt (strcat "\nCurrent width: " (rtos *drawplate_width* 2) " Current height: " (rtos *drawplate_height* 2))) ; Set up default keywords (initget "Width Height") ; Continue to ask for input until a point is provided (while (/= (type (setq basePt (getpoint "\nSpecify base point for plate or [Width/Height]: ")) ) 'LIST ) (cond ; Prompt for the width of the plate ((= basePt "Width") (setq width (getdist (strcat "\nSpecify the width of the plate <" (rtos *drawplate_width* 2) ">: "))) ; If nil is returned, use the previous value from the global variable (if (/= width nil)(setq *drawplate_width* width)) ) ; Prompt for the height of the plate ((= basePt "Height") (setq height (getdist (strcat "\nSpecify the height of the plate <" (rtos *drawplate_height* 2) ">: "))) ; If nil is returned, use the previous value from the global variable (if (/= height nil)(setq *drawplate_height* height)) ) ) ; Set up default keywords again (initget "Width Height") ) ; Set the coordinates to draw the rectangle (setq pt1 basePt ;| lower-left corner |; pt2 (list (+ (car basePt) width) (cadr basePt) 0) ;| lower-right corner |; pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0) ;| upper-right corner |; pt4 (list (car basePt) (+ (cadr basePt) height) 0) ;| upper-left corner |; ) ; Draw the rectangle (createrectangle pt1 pt2 pt3 pt4) ; Create the layer named Holes or set it as current (createlayer "Holes" 1) ; Draw the first circle (createcircle (polar pt1 (/ PI 4) 0.7071) 0.1875) ; Array the circle to create the other bolt holes (command "._-array" (entlast) "" "_r" 2 2 (- height 1) (- width 1)) ; Set the insertion point for the text label (setq insPt (getpoint "\nSpecify label insertion point: ")) ; Define the label to add (setq textValue (strcat "PLATE SIZE: " (vl-string-right-trim ".0" (rtos width 2 2)) "x" (vl-string-right-trim ".0" (rtos height 2 2)) ) ) ; Create label (createlayer "Label" 7) (createtext insPt "_c" 0.5 0.0 textValue) ; Save previous values to global variables (setq *drawplate_width* width) (setq *drawplate_height* height) ; Exit "quietly" (princ) )
+```
 
 Click File Save.
 
@@ -892,11 +906,11 @@ Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window. The cu
 
 At the Specify base point for the plate or [Width/Height]: prompt, type w and press Enter.
 
-At the Specify the width of the plate <5.0000>: prompt, type 3 and press Enter.
+At the Specify the width of the plate `<5.0000>`: prompt, type 3 and press Enter.
 
 At the Specify base point for the plate or [Width/Height]: prompt, type h and press Enter.
 
-At the Specify the height of the plate <2.7500>: prompt, type 4 and press Enter.
+At the Specify the height of the plate `<2.7500>`: prompt, type 4 and press Enter.
 
 At the Specify base point for the plate or [Width/Height]: prompt, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
 
