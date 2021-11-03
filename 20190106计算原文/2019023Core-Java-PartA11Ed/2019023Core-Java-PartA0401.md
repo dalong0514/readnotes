@@ -1058,9 +1058,9 @@ public Employee(String n, double s, int year, int month, int day) {
 
 If someone constructs an Employee object with a null name, then a NullPointerException occurs. At first glance, that may not seem a useful remedy. But there are two advantages:
 
-The exception report has a description of the problem.
+1 The exception report has a description of the problem.
 
-The exception report pinpoints the location of the problem. Otherwise, a NullPointerException would have occurred elsewhere, with no easy way of tracing it back to the faulty constructor argument.
+2 The exception report pinpoints the location of the problem. Otherwise, a NullPointerException would have occurred elsewhere, with no easy way of tracing it back to the faulty constructor argument.
 
 Note: Whenever you accept an object reference as a construction parameter, ask yourself whether you really intend to model values that can be present or absent. If not, the「tough love」approach is preferred.
 
@@ -1127,7 +1127,9 @@ In Java, all methods are defined inside the class itself. This does not make the
 
 方法用于操作对象以及存取它们的实例域。例如，方法：将调用这个方法的对象的 salary 实例域设置为新值。看看下面这个调用：它的结果将 number007.salary 域的值增加 5%。具体地说，这个调用将执行下列指令：raiseSalary 方法有两个参数。第一个参数称为隐式（implicit）参数，是出现在方法名前的 Employee 类对象。第二个参数位于方法名后面括号中的数值，这是一个显式（explicit）参数。（有些人把隐式参数称为方法调用的目标或接收者。）可以看到，显式参数是明显地列在方法声明中的，例如 double byPercent。隐式参数没有出现在方法声明中。在每一个方法中，关键字 this 表示隐式参数。如果需要的话，可以用下列方式编写 raiseSalary 方法：
 
-有些程序员更偏爱这样的风格，因为这样可以将实例域与局部变量明显地区分开来。C++ 注释：在 C++ 中，通常在类的外面定义方法：如果在类的内部定义方法，这个方法将自动地成为内联（inline）方法。在 Java 中，所有的方法都必须在类的内部定义，但并不表示它们是内联方法。是否将某个方法设置为内联方法是 Java 虚拟机的任务。即时编译器会监视调用那些简洁、经常被调用、没有被重载以及可优化的方法。
+有些程序员更偏爱这样的风格，因为这样可以将实例域与局部变量明显地区分开来。
+
+C++ 注释：在 C++ 中，通常在类的外面定义方法：如果在类的内部定义方法，这个方法将自动地成为内联（inline）方法。在 Java 中，所有的方法都必须在类的内部定义，但并不表示它们是内联方法。是否将某个方法设置为内联方法是 Java 虚拟机的任务。即时编译器会监视调用那些简洁、经常被调用、没有被重载以及可优化的方法。
 
 #### 4.3.8 Benefits of Encapsulation
 
