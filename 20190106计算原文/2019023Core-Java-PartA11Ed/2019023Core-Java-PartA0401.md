@@ -1145,15 +1145,15 @@ Finally, let's look more closely at the rather simple getName, getSalary, and ge
 
 ```java
 public String getName() {
-return name;
+		return name;
 }
 
 public double getSalary() {
-return salary;
+		return salary;
 }
 
 public LocalDate getHireDay() {
-return hireDay;
+		return hireDay;
 }
 ```
 
@@ -1167,13 +1167,11 @@ The salary field is not read-only, but it can only be changed by the raiseSalary
 
 Sometimes, it happens that you want to get and set the value of an instance field. Then you need to supply three items:
 
-```java
-A private data field;
+1 A private data field;
 
-A public field accessor method; and
+2 A public field accessor method; and
 
-A public field mutator method.
-```
+3 A public field mutator method.
 
 This is a lot more tedious than supplying a single public data field, but there are considerable benefits.
 
