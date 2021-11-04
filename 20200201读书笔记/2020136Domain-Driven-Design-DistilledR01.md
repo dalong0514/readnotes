@@ -1,5 +1,3 @@
-Copyright © 2016 Pearson Education, Inc.
-
 ## 记忆时间
 
 ## 0101. DDD for Me

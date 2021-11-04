@@ -2,13 +2,15 @@
 
 2020-06-06
 
-## 0301. Using Arrays
+## 目录
 
-### 逻辑脉络
+0301 Using Arrays
 
 数组的相关知识，包括数值索引数组、非数值索引数组、多维数组、如何遍历数组、数组排序、数组的常用函数。
 
-### 摘录及评论
+0401 String Manipulation and Regular Expressions
+
+## 0301. Using Arrays
 
 This chapter shows you how to use an important programming construct: arrays. The variables used in the previous chapters were scalar variables, which store a single value. An array is a variable that stores a set or sequence of values. One array can have many elements, and each element can hold a single value, such as text or numbers, or another array. An array containing other arrays is known as a multidimensional array.
 

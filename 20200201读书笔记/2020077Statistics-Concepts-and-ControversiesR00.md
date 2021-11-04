@@ -1,3 +1,5 @@
+## 记忆时间
+
 Statistics: Concepts and Controversies
 
 © 2020, 2017, 2014, 2009 by W. H. Freeman and Company, Tenth Edition
@@ -5,8 +7,6 @@ Statistics: Concepts and Controversies
 David S. Moore
 
 中文目前只有第 8 版（2020-11-21）
-
-## 记忆时间
 
 ## 卡片
 

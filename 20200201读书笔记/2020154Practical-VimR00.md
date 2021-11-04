@@ -352,5 +352,3 @@ If you’re accustomed to using a GUI-based text editor, then GVim (or MacVim on
 For the purposes of this book, it doesn’t matter whether you run Vim in the terminal or as GVim. We’ll focus on core commands that work just as well in either. We’ll learn how to do things the Vim way.
 
 传统上，Vim 在终端内运行，没有图形用户界面（GUI）。我们也可以说 Vim 具有 TUI，即文本用户界面。如果你每天有大量时间花在命令行上，你会感觉这很自然。如果你通常使用基于图形用户界面的文本编辑器，那么 GVim（或 OSX 上的 MacVim）可以给你提供一个通往 Vim 世界的有用桥梁（参见 `:h gui`）。GVim 支持更多的字体以及更多的语法高亮颜色，也可以使用鼠标。它也遵从某些操作系统的约定，例如，在 MacVim 中，可以用 `Cmd-X` 和 `Cmd-V` 与系统剪切板交互，也可以用 `Cmd-S` 保存文件，用 `Cmd-W` 关闭一个窗口。如果你能接受的话，可以用这些命令，不过你应该已意识到，还有更好的方法完成这些。对本书的目的而言，运行终端 Vim 还是 GVim 关系不大。我们将着重于介绍 Vim 的核心命令，这些功能在两者中都能很好地运行。我们要学习的重点是如何用 Vim 的方式来工作。
-
-

@@ -4,7 +4,6 @@ If you want your Vue.js single-page app to communicate with a Laravel backend, y
 
 1『不建议在首页获取数据信息。』
 
-
 3『
 
 [Pre-Render A Vue.js App (With Node Or Laravel) - Vue.js Developers](https://vuejsdevelopers.com/2017/04/01/vue-js-prerendering-node-laravel/)

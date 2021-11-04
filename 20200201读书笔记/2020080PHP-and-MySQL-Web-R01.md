@@ -1,20 +1,20 @@
-英文第 5 版的出版时间：2016 年 9 月
-
 ## 记忆时间
+
+英文第 5 版的出版时间：2016 年 9 月
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——\$\_POST、 \$\_GET 和 \$\_REQUEST
+### 0201. 术语卡 —— `$_POST`、 `$_GET` 和 `$_REQUEST`
 
 \$\_POST, \$\_GET, and \$\_REQUEST. One of the \$\_GET or \_POST arrays holds the details of all the form variables. Which array is used depends on whether the method used to submit the form was GET or POST, respectively. In addition, a combination of all data submitted via GET or POST is also available through \$_REQUEST.
 
 If the form was submitted via the POST method, the data entered in the tireqty box will be stored in \$\_POST['tireqty']. If the form was submitted via GET, the data will be in \$_GET['tireqty']. In either case, the data will also be available in \$\_REQUEST['tireqty']. These arrays are some of the superglobal arrays. We will revisit the superglobals when we discuss variable scope later in this chapter.
 
-### 0202. 术语卡——Variable Variables
+### 0202. 术语卡 —— Variable Variables
 
 Variable Variables. PHP provides one other type of variable: the variable variable. Variable variables enable you to change the name of a variable dynamically. As you can see, PHP allows a lot of freedom in this area. All languages enable you to change the value of a variable, but not many allow you to change the variable’s type, and even fewer allow you to change the variable’s name.  A variable variable works by using the value of one variable as the name of another. For example, you could set:
 
@@ -42,11 +42,11 @@ for ($i=1; $i <= $numnames; $i++) {
 
 By dynamically creating the names of the variables, you can access each of the fields in turn. 
 
-### 0203. 术语卡——RFCs
+### 0203. 术语卡 —— RFCs
 
 The fourth parameter can be used to send any additional valid email headers. Valid email headers are described in the document RFC822, which is available online if you want more details. (RFCs, or Requests for Comment, are the source of many Internet standards; we discuss them in Chapter 18「Using Network and Protocol Functions.」) 
 
-### 0204. 术语卡——conversion specification
+### 0204. 术语卡 —— conversion specification
 
 The %s in the format string is called a conversion specification. This one means「replace with a string.」In this case, it is replaced with \$total interpreted as a string. If the value stored in \$total was 12.4, both of these approaches would print it as 12.4. The advantage of printf() is that you can use a more useful conversion specification to specify that \$total is actually a floating-point number and that it should have two decimal places after the decimal point, as follows:
 
@@ -73,15 +73,11 @@ printf ("Total amount of order is %2\$.2f (with shipping %1\$.2f) ",
 
 Just add the argument position in the list directly after the % sign, followed by an escaped \$ symbol; in this example, 2\$ means「replace with the second argument in the list.」This method can also be used to repeat arguments. Two alternative versions of these functions are called vprintf() and vsprintf(). These  variants accept two parameters: the format string and an array of the arguments rather than a variable number of parameters.
 
-### 0301. 人名卡——Luke Welling
+### 0301. 人名卡 —— Luke Welling
 
 Luke Welling，本书的作者，PHP 以及 web 开发的大牛。
 
-### 0401. 金句卡——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
-
-### 0501. 任意卡——
+### 0401. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
 
@@ -1407,15 +1403,15 @@ So far, all the examples we have looked at use flat files. In Part II of this bo
 
 There are a number of problems in working with flat files: 
 
-1. When a file grows large, working with it can be very slow. 
+1 When a file grows large, working with it can be very slow. 
 
-2. Searching for a particular record or group of records in a flat file is difficult. If the records are in order, you can use some kind of binary search in conjunction with a fixed-width record to search on a key field. If you want to find patterns of information (for example, you want to find all the customers who live in Sometown), you would have to read in each record and check it individually.
+2 Searching for a particular record or group of records in a flat file is difficult. If the records are in order, you can use some kind of binary search in conjunction with a fixed-width record to search on a key field. If you want to find patterns of information (for example, you want to find all the customers who live in Sometown), you would have to read in each record and check it individually.
 
-3. Dealing with concurrent access can become problematic. You have seen how to lock files, but locking can cause the race condition we discussed earlier. It can also cause a bottleneck. With enough traffic on a site, a large group of users may be waiting for the file to be unlocked before they can place their order. If the wait is too long, people will go elsewhere to buy.
+3 Dealing with concurrent access can become problematic. You have seen how to lock files, but locking can cause the race condition we discussed earlier. It can also cause a bottleneck. With enough traffic on a site, a large group of users may be waiting for the file to be unlocked before they can place their order. If the wait is too long, people will go elsewhere to buy.
 
-4. All the file processing you have seen so far deals with a file using sequential processing; that is, you start from the beginning of the file and read through to the end. Inserting records into or deleting records from the middle of the file (random access) can be difficult because you end up reading the whole file into memory, making the changes, and writing the whole file out again. With a large data file, having to go through all these steps becomes a significant overhead.
+4 All the file processing you have seen so far deals with a file using sequential processing; that is, you start from the beginning of the file and read through to the end. Inserting records into or deleting records from the middle of the file (random access) can be difficult because you end up reading the whole file into memory, making the changes, and writing the whole file out again. With a large data file, having to go through all these steps becomes a significant overhead.
 
-5. Beyond the limits offered by file permissions, there is no easy way of enforcing different levels of access to data.
+5 Beyond the limits offered by file permissions, there is no easy way of enforcing different levels of access to data.
 
 #### 2.9.2 How RDBMSs Solve These Problems
 

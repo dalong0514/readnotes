@@ -2,39 +2,37 @@
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 反常识卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——CRUD
+### 0201. 术语卡 —— CRUD
 
 As mentioned earlier, HTTP verbs play a significant role in the intention of a request. The HTTP verb tells the server about how we, on the client side, intend to handle our data. How to handle data is often looked at from a CRUD perspective, which stands for: Create, Read, Update, Delete. As an example, imagine an application for a bookstore. The CRUD part here will be responsible for: Adding, Listing, Updating or Removing books from the bookstore.
 
-### 0202. 术语卡——conventions
+### 0202. 术语卡 —— conventions
 
 You see, it’s not the development of the API on the backend that takes time and causes pain. The pain is mostly felt when you have to work with the API on the frontend, or even worse when other people or companies are working with your API. Without strict conventions, you not only have to write documentation that shows what your API can do, but you also end up teaching how to use the API. This is where following a specification like the JSON:API specification shows its worth. How to use it is already documented and as long as you follow the specification, anybody who knows how to work with the JSON:API specification, knows how to work with your API. Of course, they won’t know what your API can do — you will still have to tell them that — but how to communicate with your server through your API, will never be a problem for them.
 
 Even better, when following the conventions of the JSON:API specification, you have a strict protocol that never changes from application to application. This means that you can extract the whole client-server communication part of your frontend application and reuse it from application to application. You won’t have to write the same tedious boilerplate code over and over again, and you can focus on building the functionality of your frontend app instead. The JSON:API specification even lists available implementations, which includes implementations made for a lot of languages like Javascript as well as frameworks like VueJS and React.
 
-### 0203. 术语卡——
-
-### 0301. 人名卡——
+### 0301. 人名卡 ——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡——anybody who knows how to work with the JSON:API specification, knows how to work with your API
+### 0401. 金句卡 —— anybody who knows how to work with the JSON:API specification, knows how to work with your API
 
-## 模板
+## 目录
 
-### 1. 逻辑脉络
+0101 Introduction
 
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+api 如同餐馆里的菜单。REST 里的 HTTP verbs 继承于 HTTP method，也就是那些常规的 status codes。
 
-### 2. 摘录及评论
+0201 The JSON:API specification
 
-## 总体
+JSON:API specification 在 api 里最重要了，即以 JSON 数据结构编写 API 的规范（a specification for building APIs in JSON）。JSON:API specification 还有一个视角：endpoint 的命名约定。
 
-### Prerequisites
+## Prerequisites
 
 Therefore, you will have to have a basic understanding of Laravel to keep up. We certainly recommend that you have tried writing an application in the framework before reading, and that you know what we talk about when we mention: Client, Server, Request, Response, Routes, Controllers, Eloquent or Models, Migrations, Factories, Authentication, Authorization, and Validation.
 
@@ -42,13 +40,7 @@ We will also be using Laravel Collections heavily, so an understanding of these 
 
 Also, we expect that you know the basics around PHP, especially the basics around PSR-4 namespacing, how to import classes from other namespaces and so forth. In many IDE’s and editors, all this functionality can be installed with a simple plugin or will already built into the IDE or editor.
 
-## 01. Introduction
-
-### 1. 逻辑脉络
-
-api 如同餐馆里的菜单。REST 里的 HTTP verbs 继承于 HTTP method，也就是那些常规的 status codes。
-
-### 2. 摘录及评论
+## 0101. Introduction
 
 We have looked at what an API is and how it can be seen as a menu at a restaurant, where users can see what you can order from the backend. We have taken a look at REST, how it builds on top of HTTP and thereby inherits all the abilities that HTTP already has. We have looked at HTTP verbs and how they play a significant role in the intention of a request. We have looked at the more common status codes and the ones we will cover in this book, how these are used to respond back to the client about how the request has been fulfilled or not. With this knowledge in mind, let’s dig a little deeper into APIs and how to plan your work before you sit down and write your API.
 
@@ -207,13 +199,7 @@ PUT /item/{id}
 
 504 Gateway Timeout. This status is used when the server is acting as a gateway and did not receive a response within a given period. As with the 502 status code, this is something you see with nginx, where you configure a timeout limit, in which a request should be fulfilled or else a timeout will be sent back to the client. This is used to prevent the server from working forever on a job that might not be solvable. This could, for instance, be an error in PHP, where something loops forever. We don’t want our users to wait forever and they want their data, so let’s use a time limit and move on.
 
-## 02. The JSON:API specification
-
-### 1. 逻辑脉络
-
-JSON:API specification 在 api 里最重要了，即以 JSON 数据结构编写 API 的规范（a specification for building APIs in JSON）。JSON:API specification 还有一个视角：endpoint 的命名约定。
-
-### 2. 摘录及评论
+## 0201. The JSON:API specification
 
 We’re at the end of this chapter and we have covered quite a lot. Not only did we introduce the case of Anna’s Bookstore, which we will use as a common ground to easily put things into perspective in the rest of this book. We also covered naming conventions for API endpoints, the JSON:API specification, and especially all of the important rules that are specified. We looked at how to structure our data or documents for both requests and responses, how to structure our primary data of a document, both when handling single resources and collections of resources.
 
@@ -1082,12 +1068,7 @@ How would it look if we had more than one error? Right out of the box, Laravel w
 
 As you can see, there’s an error for each field that did not pass the validation. Although the JSON:API specification states that you should give a more general status code when having multiple errors, in this case, it’s ok to give a 422 Unprocessable Entity status code.
 
-## 03. Planning
-
-### 1. 逻辑脉络
-
-
-### 2. 摘录及评论
+## 0301. Planning
 
 In this chapter we have been through a lot. First, we started the planning of our project. When developing an API, we no longer have to think about UI/UX and can focus more on our data. We began our planning phase by identifying our resources and the relationships between these resources. We saw how we can conveniently think of our resources like a mapping of our models and database table.
 
@@ -1098,24 +1079,3 @@ We learned a bit more about the included top-level member of our response docume
 Now that we have the basics covered and have been through the JSON:API specification, it’s time to talk about planning. For us, this is the most important part of a project. Whether it’s a small, medium or large project, it is always beneficial to do some planning ahead of time to identify possible problems and roadblocks you can steer around. For us, time equals money so we need to be as fast and efficient as possible.
 
 The same goes for APIs. The more you can plan out ahead of time, the more it benefits you later, when you actually have to implement the API. If you are making a public API, we especially recommend planning ahead and documenting your API as early as possible. In this way, you know everything about the data and what needs to be developed ahead of time, as well as getting a good grasp of where the more complex areas of your application lie. The planning tools and methods we will be going through in this chapter are those that we use when planning out our projects. These are the methods and tools we have picked out over time, that fit most of our projects.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

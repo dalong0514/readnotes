@@ -1,12 +1,16 @@
-Copyright © 2018
-
 ## 记忆时间
 
 2020-03-08
 
-## 提炼汇总
+## 目录
 
-4、如何用 scrapy 框架抓取一个没有 JS 的静态网页里指定的元素。
+0401 Using Scrapy
+
+如何用 scrapy 框架抓取一个没有 JS 的静态网页里指定的元素。
+
+0501 Handling JavaScript
+
+0601 Website Scraping in the Cloud
 
 ## 0401. Using Scrapy
 

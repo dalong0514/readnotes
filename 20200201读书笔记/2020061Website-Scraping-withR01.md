@@ -1,8 +1,8 @@
-Copyright © 2018
-
 ## 记忆时间
 
 2020-03-08
+
+Copyright © 2018
 
 ## 卡片
 
@@ -56,13 +56,19 @@ You can read this book from cover to cover if you want to learn the different ap
 
 2『本书的源码：[Apress/website-scraping-w-python: Source code for 'Website Scraping with Python' by Gabor Laszlo Hajba](https://github.com/Apress/website-scraping-w-python)，然后追源到出版社 Apress 的 GitHub 仓库：[Apress](https://github.com/Apress?utf8=%E2%9C%93&q=&type=&language=)，那么同理其他出版社在 GitHub 上应该也有源码仓库。已下载源码「2020061Website_Scraping_with_Python源码」。』
 
-## 提炼汇总
+## 目录
 
-1、网络爬虫的基本知识以及其准备工作。给了两个小案例，抓取网页里的子页地址以及地图地址。
+0101 Getting Started
 
-2 you've met the requirements, analyzed the website to scrape, and identified where in the HTML code the fields of interest lay. And you implemented a simple scraper, mostly with basic Python tools, which navigates through the website.
+网络爬虫的基本知识以及其准备工作。给了两个小案例，抓取网页里的子页地址以及地图地址。
 
-3 how to use Beautiful Soup and requests together, and you created your first full scraper application.
+0201 Enter the Requirements
+
+you've met the requirements, analyzed the website to scrape, and identified where in the HTML code the fields of interest lay. And you implemented a simple scraper, mostly with basic Python tools, which navigates through the website.
+
+0301 Using Beautiful Soup
+
+how to use Beautiful Soup and requests together, and you created your first full scraper application.
 
 ## 0101. Getting Started
 

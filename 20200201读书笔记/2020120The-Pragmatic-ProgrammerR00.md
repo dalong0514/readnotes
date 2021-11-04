@@ -1,6 +1,6 @@
-Copyright © 2020 Pearson Education, Inc. 2Ed
-
 ## 记忆时间
+
+Copyright © 2020 Pearson Education, Inc. 2Ed
 
 ## 卡片
 
