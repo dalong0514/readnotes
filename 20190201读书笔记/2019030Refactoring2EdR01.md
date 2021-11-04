@@ -1,5 +1,9 @@
 ## 记忆时间
 
+## 目录
+
+0101 Refactoring: A First Example Topics
+
 ## 0101. Refactoring: A First Example Topics
 
 How do I begin to talk about refactoring? The traditional way is by introducing the history of the subject, broad principles, and the like. When somebody does that at a conference, I get slightly sleepy. My mind starts wandering, with a low­-priority background process polling the speaker until they give an example. The examples wake me up because I can see what is going on. With principles, it is too easy to make broad generalizations—and too hard to figure out how to apply things. An example helps make things clear.

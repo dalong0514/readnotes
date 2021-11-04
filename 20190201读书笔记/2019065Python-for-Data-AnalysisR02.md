@@ -1,14 +1,24 @@
 ## 记忆时间
 
-## 提炼汇总
+## 目录
 
-3、清楚 python 的内建数据结构有哪些（list/dict/tuple/set）。虽然扩展库如 pandas 和 Numpy 使处理大数据集很方便，但它们是和 Python 的内置数据处理工具一同使用的。
+0201 Python 语法基础，IPython 和 Jupyter Notebooks
 
-4、NumPy 的核心是对数组（矩阵）的强大操作。
+0301 内建数据结构、函数及文件
 
-5、pandas 入门概念：基于 numpy 数组构建的；专门处理表格和混杂数据设计；Series 数据结构和 DataFrame 数据结构。
+清楚 python 的内建数据结构有哪些（list/dict/tuple/set）。虽然扩展库如 pandas 和 Numpy 使处理大数据集很方便，但它们是和 Python 的内置数据处理工具一同使用的。
 
-6、pandas 的数据输入与输出。
+0401 NumPy 基础：数组和矢量计算
+
+NumPy 的核心是对数组（矩阵）的强大操作。
+
+0501 pandas 入门
+
+pandas 入门概念：基于 numpy 数组构建的；专门处理表格和混杂数据设计；Series 数据结构和 DataFrame 数据结构。
+
+0601 数据加载、存储与文件格式
+
+pandas 的数据输入与输出。
 
 ## 0201. Python 语法基础，IPython 和 Jupyter Notebooks
 

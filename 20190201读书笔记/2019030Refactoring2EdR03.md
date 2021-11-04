@@ -1,5 +1,13 @@
 ## 记忆时间
 
+## 目录
+
+0301 Bad Smells in Code Topics
+
+0401 Building Tests Topics
+
+0501 Introducing the Catalog
+
 ## 0301. Bad Smells in Code Topics
 
 By now you have a good idea of how refactoring works. But just because you know how doesn’t mean you know when. Deciding when to start refactoring—and when to stop—is Settings just as important to refactoring as knowing how to operate the mechanics of it.
@@ -1097,25 +1105,25 @@ It is possible to write too many tests. One sign of that is when I spend more ti
 
 一个测试集是否足够好，最好的衡量标准其实是主观的，请你试问自己：如果有人在代码里引入了一个缺陷，你有多大的自信它能被测试集揪出来？这种信心难以被定量分析，盲目自信不应该被计算在内，但自测试代码的全部目标，就是要帮你获得此种信心。如果我重构完代码，看见全部变绿的测试就可以十分自信没有引入额外的 bug，这样，我就可以高兴地说，我已经有了一套足够好的测试。测试同样可能过犹不及。测试写得太多的一个征兆是，相比要改的代码，我在改动测试上花费了更多的时间 —— 并且我能感到测试就在拖慢我。不过尽管过度测试时有发生，相比测试不足的情况还是稀少得多。
 
-# 0501. Introducing the Catalog
+## 0501. Introducing the Catalog
 
 The rest of this book is a catalog of refactorings. This catalog started from my personal Tutorialsnotes that I made to remind myself how to do refactorings in a safe and efficient way. Since then, I’ve refined the catalog, and there’s more of it that comes from deliberate Offers exploration & Deals of some refactoring moves. It’s still something I use when I do a refactoring I haven’t done in a while.
 
 本书剩余的篇幅是一份重构的名录。最初这个名录只是我的个人笔记，我用它来提示自己如何以安全且高效的方式进行重构。然后我不断精炼这份名录，对一些重构的深入探索又引出了更多的重构手法。对于不太常用的重构手法，我还是会不断参阅这份名录。
 
-## 5.1 Format of The Refactorings
+### 5.1 Format of The Refactorings
 
 As I describe the refactorings in the catalog, I use a standard format. Each refactoring Support has five parts, as follows:
 
-1. Sign Out I begin with a name. The name is important to building a vocabulary of refactorings. This is the name I use elsewhere in the book. Refactorings often go by different names now, so I also list any aliases that seem to be common.
+1 Sign Out I begin with a name. The name is important to building a vocabulary of refactorings. This is the name I use elsewhere in the book. Refactorings often go by different names now, so I also list any aliases that seem to be common.
 
-2. I follow the name with a short sketch of the refactoring. This helps you find a refactoring more quickly.
+2 I follow the name with a short sketch of the refactoring. This helps you find a refactoring more quickly.
 
-3. The motivation describes why the refactoring should be done and describes circumstances in which it shouldn’t be done.
+3 The motivation describes why the refactoring should be done and describes circumstances in which it shouldn’t be done.
 
-4. The mechanics are a concise, step­by­step description of how to carry out the refactoring.
+4 The mechanics are a concise, step­by­step description of how to carry out the refactoring.
 
-5. The examples show a very simple use of the refactoring to illustrate how it works.
+5 The examples show a very simple use of the refactoring to illustrate how it works.
 
 介绍重构时，我采用一种标准格式。每个重构手法都有如下 5 个部分。
 
@@ -1155,7 +1163,7 @@ I use color to highlight changed code where it may be difficult to spot among co
 
 修改后的代码可能被埋没在未修改的代码中，难以一眼看出，所以我使用不同的颜色突出显示修改过的代码。但我并没有突出显示所有修改过的代码，因为一旦修改过的代码太多，全都突出显示反而不能突显重点。
 
-## 5.2 The Choice of Refactorings
+### 5.2 The Choice of Refactorings
 
 This is by no means a complete catalog of refactorings. It is, I hope, a collection of those most useful to have them written down. By “most useful” I mean those that are both commonly used and worthwhile to name and describe. I find something worthwhile to describe for a combination of reasons: Some have interesting mechanics which help general refactoring skills, some have a strong effect on improving the design of code.
 

@@ -1,5 +1,9 @@
 ## 记忆时间
 
+## 目录
+
+0601 A First Set of Refactorings
+
 ## 0601. A First Set of Refactorings
 
 I’m starting the catalog with a set of refactorings that I consider the most useful to learn Tutorials first.

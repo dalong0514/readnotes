@@ -1,5 +1,9 @@
 ## 记忆时间
 
+## 目录
+
+0201 Principles in Refactoring
+
 ## 0201. Principles in Refactoring
 
 The example in the previous chapter should have given you a decent feel of what refactoring is. Now you have that, it’s a good time to step back and talk about some of the broader principles in refactoring.
