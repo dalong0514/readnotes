@@ -1,5 +1,3 @@
-# 2019114Autolisp-Developers-GuideR02
-
 ## 记忆时间
 
 ## 附件1-CP401-1-Lisp-Advance-Yourself
