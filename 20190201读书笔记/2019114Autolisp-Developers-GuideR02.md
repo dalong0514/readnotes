@@ -31,13 +31,13 @@ With ARX, VBA, and now .Net (Dot Net), there's always a rumor flying around that
 This function takes a quoted function, and applies it to a list of arguments. This can be very useful for functions that require a list of arguments when you don't know how many there will be. If you know how many arguments or variables, it's typically not needed.
 
 ```c
-(+ 1 3)    ; We know there’s 2 numbers to add. It’s all that’s needed 
-(apply ‘+ ‘(1 3))    ; This isn’t very readable, efficient to code or helpful
+(+ 1 3)    ; We know there's 2 numbers to add. It's all that's needed 
+(apply ‘+ ‘(1 3))    ; This isn't very readable, efficient to code or helpful
 (setq mylist ‘(list 1 3))    ; What if our data was in a list?
-(+ (nth 0 mylist) (nth 1 mylist))    ; Now this isn’t very efficient or readable 
+(+ (nth 0 mylist) (nth 1 mylist))    ; Now this isn't very efficient or readable 
 (apply ‘+ mylist) ;    In this case, this is now better 
-(setq mylist ‘(1 3 5…etc…)) ;    What if we didn’t know how many items in the list? 
-(apply ‘+ mylist) ;    It’s still the same no matter how many items
+(setq mylist ‘(1 3 5…etc…)) ;    What if we didn't know how many items in the list? 
+(apply ‘+ mylist) ;    It's still the same no matter how many items
 ```
 
 When you have a list of raw data, it's not practical to build a new list inserting the function in the front of it so that it can be evaluated. it's also not efficient (coding or processing) to loop through that list of potentially unknown length processing each item one at a time.
@@ -237,11 +237,13 @@ Using (lambda) is essentially the same thing but on the function level instead o
 (setq mylist '("APPLE" "ORANGE" "BANANA" "ZUBROVKA"))
 ```
 
-You could do something like this to pass the T along with the string to (strcase) by building a list of T‟s for each string value…
+You could do something like this to pass the T along with the string to (strcase) by building a list of T's for each string value…
 
 ```c
 (mapcar ‘strcase mylist ‘(T T T T))
 ```
+
+1『这里虽然作者用上面「不好的」例子引出 lambda，但上面的例子对目前的自己很有启发。如果 mapcar 一个自己定义好的函数（即传入函数名），这个函数有 2 个入参，mapcar 的第一个参数列表用已有的数组，第二个列表可以人为造一个数组。（2021-11-09）』
 
 This works well because as you learned earlier, each of the lists passes its items in parallel meaning a T goes along with each sting to (strcase). However, you could also do this…
 
@@ -249,11 +251,11 @@ This works well because as you learned earlier, each of the lists passes its ite
 (mapcar ‘(lambda (x) (strcase x T)) mylist)
 ```
 
-doesn't seem much different does it. it's actually less clear using (lambda). But what if you don't know ahead of time how many strings are going to be passed? You'll have to create a loop that creates enough T‟s for that second list which further complicates the first example. In the second example that uses (lambda), it doesn't matter. We defined a function with (lambda) that adds the T. (mapcar) then just passes each item to the function, which is accessed with the function‟s argument X.
+doesn't seem much different does it. it's actually less clear using (lambda). But what if you don't know ahead of time how many strings are going to be passed? You'll have to create a loop that creates enough T's for that second list which further complicates the first example. In the second example that uses (lambda), it doesn't matter. We defined a function with (lambda) that adds the T. (mapcar) then just passes each item to the function, which is accessed with the function's argument X.
 
 Also, consider that the first example worked well because we just blindly passed items from the lists to (strcase). But what if we needed to perform some type of operation on them? Mathematical operations, conditional testing (if/cond/eq/equal/…etc…) all would not have worked unless they were inside the (lambda) function, which could perform any number of operations in the data.
 
-Let's take a look at another example. This time, we're going to give (mapcar) a list of Month names and we‟d like back from (mapcar), a list of Month names abbreviated to the first 3 letters, with the initial letter being upper case and the last two lower case. Let's use this as our list…
+Let's take a look at another example. This time, we're going to give (mapcar) a list of Month names and we'd like back from (mapcar), a list of Month names abbreviated to the first 3 letters, with the initial letter being upper case and the last two lower case. Let's use this as our list…
 
 ```c
 (setq months ‘(“JANUARY” “february” “March” “aPRIL” “MaY” “JUNE” “july” “AuGusT” “SEPtember” “octOBER” “NOVEMBER” “DeCemBer”))
@@ -275,7 +277,7 @@ Which returns this as our list…
 ("Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")
 ```
 
-Now wasn‟t that much easier? You can even use multiple lists with (lambda), just make sure there's enough argument variables declared so that there's one for each list that will be passing values from. Again, take this for an example…
+Now wasn't that much easier? You can even use multiple lists with (lambda), just make sure there's enough argument variables declared so that there's one for each list that will be passing values from. Again, take this for an example…
 
 ```c
 (setq pt1 ‘(-3.24 2.82 0.0)) 
@@ -302,11 +304,11 @@ This results in the point (-0.37 5.79) being returned. Notice that one of the po
 )
 ```
 
-In this example, (mapcar) isn't using a quoted function („), instead it's using the (function) function. This was introduced because when running compiled AutoLISP code (FAS or VLX files), if the code fails in the right place in the right conditions, the quoted (lambda) function‟s source code could be exposed and displayed on the text screen. By wrapping it the (function) statement, it's protected from viewing during these types of failures. Using either form is perfectly fine, and one is not more correct than the other. Using the quoted function is a little easier to read and typically all that's needed if you aren't worried about keeping people from viewing your source code. Just as there's a quote function (quote) that can be used in place of the quote symbol („), the (function) function does a similar thing at the function level. Now hopefully that wasn‟t too confusing with all the function functions and quote quotes.
+In this example, (mapcar) isn't using a quoted function ('), instead it's using the (function) function. This was introduced because when running compiled AutoLISP code (FAS or VLX files), if the code fails in the right place in the right conditions, the quoted (lambda) function's source code could be exposed and displayed on the text screen. By wrapping it the (function) statement, it's protected from viewing during these types of failures. Using either form is perfectly fine, and one is not more correct than the other. Using the quoted function is a little easier to read and typically all that's needed if you aren't worried about keeping people from viewing your source code. Just as there's a quote function (quote) that can be used in place of the quote symbol ('), the (function) function does a similar thing at the function level. Now hopefully that wasn't too confusing with all the function functions and quote quotes.
 
 #### 1.2.4 Putting It All Together Back At The Office
 
-When you can back to the office, try this for an exercise. This is the exact very same example I had years ago when I made the leap into using more advanced functions like (mapcar), (apply), and (lambda). I‟d seen those advanced functions used before, but I never took the time to use them or figure them out let alone mixing several all together nested. Then, I found the need to use the (nentsel) function, which returned nested data from a user selection. That is, I wanted information about a coordinate of an object within a block, not information about the block. The (nentsel) explanation in the AutoLISP reference explains the data it returns and how it's processed using the transformation matrix to get what you are looking for. The following code was what I came up with after 2 days where pt1 was the point and mat was the transformation matrix as turned by (nentsel) …
+When you can back to the office, try this for an exercise. This is the exact very same example I had years ago when I made the leap into using more advanced functions like (mapcar), (apply), and (lambda). I'd seen those advanced functions used before, but I never took the time to use them or figure them out let alone mixing several all together nested. Then, I found the need to use the (nentsel) function, which returned nested data from a user selection. That is, I wanted information about a coordinate of an object within a block, not information about the block. The (nentsel) explanation in the AutoLISP reference explains the data it returns and how it's processed using the transformation matrix to get what you are looking for. The following code was what I came up with after 2 days where pt1 was the point and mat was the transformation matrix as turned by (nentsel) …
 
 ```c
 (setq pt1
@@ -795,7 +797,7 @@ The explanation of all that these two functions do and how they do it is beyond 
 )
 ```
 
-Some other things that are important to know about reactors are that you shouldn‟t prompt for user input or call the (command) function in a reactor‟s callback function. While it can be done successfully in some cases, it can also cause problems because some reactors fire while commands are still active. don't count on being able to do this and be prepared for problems. Also note that just like with recursive programming, it's possible to have a reactor fire itself. That is, if your save reactor saved the drawing, or if an object reactor modified an object, it could fire itself resulting in an endless loop. You'll need to make programming considerations in your code to check for those conditions to prevent them from occurring. The most common method is to have your callback function check for the value in a variable, and if it's not set, set it and proceed with the callback function. If the event triggers itself, it'll see that the variable is already set and not finish. Just don't forget to clear the flag when your code is finished processing whatever it's doing.
+Some other things that are important to know about reactors are that you shouldn't prompt for user input or call the (command) function in a reactor's callback function. While it can be done successfully in some cases, it can also cause problems because some reactors fire while commands are still active. don't count on being able to do this and be prepared for problems. Also note that just like with recursive programming, it's possible to have a reactor fire itself. That is, if your save reactor saved the drawing, or if an object reactor modified an object, it could fire itself resulting in an endless loop. You'll need to make programming considerations in your code to check for those conditions to prevent them from occurring. The most common method is to have your callback function check for the value in a variable, and if it's not set, set it and proceed with the callback function. If the event triggers itself, it'll see that the variable is already set and not finish. Just don't forget to clear the flag when your code is finished processing whatever it's doing.
 
 there's a lot to reactors. Review the AutoLISP reference for the various types of reactors available as well as their events and the various functions that help you manage reactors. If you're ambitious, dissect the 2 utility functions I've supplied and see how they work. If you can understand the logic and workings of those 2 utility functions, You'll have already mastered programming reactors in Visual LISP.
 
@@ -888,7 +890,7 @@ Now that we can extract a property, Let's try setting one. This property will be
 
 Because the Layer property is not Read-Only that means it can be set with a value indicating the new layer. But according to the format of how these functions are called, we need to specify the Line object first so that will be our first argument to the function. The next thing is the value for the Layer name. This would then be the second argument to the function. Calling that function would look something like this… (vla-put-layer lineobject layername).
 
-I know you're catching on to all this so this example includes error checking. It also includes an additional error checking function (vlax-write-enabled-p) that will tell you if the specified object is allowed to be modified or not. This would prevent an error if for some reason a particular object couldn‟t be modified. The only thing to watch here is that the Layer you are going to change to already exists in the drawing.
+I know you're catching on to all this so this example includes error checking. It also includes an additional error checking function (vlax-write-enabled-p) that will tell you if the specified object is allowed to be modified or not. This would prevent an error if for some reason a particular object couldn't be modified. The only thing to watch here is that the Layer you are going to change to already exists in the drawing.
 
 This covers extracting and setting properties quite well. The next thing we need to cover is Methods. For this example, we'll create a line using ActiveX in Visual LISP.
 
@@ -902,7 +904,7 @@ With AutoCAD being able to have multiple documents open at once, each open docum
 
 Finally, from the Document object, you need to get to the ModelSpace object. If you look at the Document object (not the Documents collection – remember we skipped past it with ActiveDocument), You'll see the Modelspace property. This property returns the ModelSpace collection which is what we need to tell Visual LISP where to add the line. To jump to the ModelSpace collection object, You'll be using the (vla-get-modelspace) function that returns the Modelspace object we need. The code we'll eventually end up using looks something like one of these two examples. You'll see one takes each, one step at a time (if you think You'll need the Application or ActiveDocument objects again) and the other does them all at once (if you won't need the Application or ActiveDocument objects again later).
 
-The next step is getting the points we need for the start and end of the line. Looking back at the AddLine method, You'll see it specifies the StartPoint and EndPoint as a Variant – 3 element Array of Doubles. A “Double” is a Visual Basic data type similar to a Real number. And Array, is Visual Basic‟s equivalent to a List. And funally, a Variant, is a special Visual Basic data type that can hold any data type (string, real, double, etc.).
+The next step is getting the points we need for the start and end of the line. Looking back at the AddLine method, You'll see it specifies the StartPoint and EndPoint as a Variant – 3 element Array of Doubles. A “Double” is a Visual Basic data type similar to a Real number. And Array, is Visual Basic's equivalent to a List. And funally, a Variant, is a special Visual Basic data type that can hold any data type (string, real, double, etc.).
 
 This is a lot different that how AutoLISP specified points with a list of three Real numbers. It sounds complicated but once you get use to it, it's not a big deal, it still takes a little while to see and understand what's really going on. The best way to see how a point like this is structured is to extract a point from an existing line and look at how it's structured. This way, AutoCAD shows you what it uses, and then you can duplicate it. Let's look at the endpoint of the line we previously changed the layer of using the (vla-get-startpoint) function.
 
@@ -945,7 +947,7 @@ type = Constant or Integer indicating the type of variant
         vlax-vbArray (8192)
 ```
 
-After this last step, the point in now ready for use by Visual LISP‟s (vla-addline) function. Here's how it would look to create this point in the Visual LISP editor. Notice that when the function (vla-safearray-fill) is used, you don't need to save its return value although you can if you like.
+After this last step, the point in now ready for use by Visual LISP's (vla-addline) function. Here's how it would look to create this point in the Visual LISP editor. Notice that when the function (vla-safearray-fill) is used, you don't need to save its return value although you can if you like.
 
 This is a lot of work just to get a point for use in Visual LISP ActiveX. You could always make a wrapper function to do this or, you could use the easier to use function (vlax-3D-point). This function takes a list, or separate coordinate data like you are use to dealing with in AutoLISP and returns a safe array. Let's take a look at how that's done for the Line's EndPoint.
 
