@@ -991,4 +991,3 @@ Earnest, 148–149, 158
 Williams, Joseph M.: Style (with Gregory colomb), 21–23, 67, 78–79, 80–81 writing, 10–12; and classic style, 235–236; conflation of, with「English,」102–103; school and college, 77; technical, 234–235; and thinking, 59–64
 
 Yeats, William Butler: The Autobiography of William Butler Yeats, 7
-
