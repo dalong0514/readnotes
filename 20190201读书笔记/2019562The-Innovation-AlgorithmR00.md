@@ -473,9 +473,17 @@ ARIZ-61 把创新过程分为三个阶段：分析、实施（消除技术矛盾
 
 2『精确定义最终理想解的两大原则。做一张信息数据卡片。（2021-09-08）』—— 已完成
 
-### 0501. 金句卡 —— 
+### 0501. 金句卡 —— 人类总是不断地总结经验，所有发现，有所发明，所有创造，有所进步
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
+信息源自「杨叔子的序言」
+
+的确，这是一本好书！它好在十分适应当前我国要走「自主创新」道路的需要，好在非常符合当前世界科技发展竟争的湖流。毛泽东同志早已明确指出：「人类总得不断地总结经验，有所发现，有所发明，有所创造，有所前进。」是的，创新是一个民族的永恒灵魂，创新是一个国家的前进动力。只有创新，才有发展；只有关键科技创新，才有真正的独立自主地位。众所周知，我国的技术依存度太高。据统计，在 20 世纪 90 年代中期，工业发达国家技术依存度平均为 10%，即 100 件的关键技术中，10 件靠进口，而我国远在 50% 以上。在我国中长期科技发展规划中，到 2020 年要将其降到 30% 以下，显然，还是远高于工业发达国家。
+
+创新，靠人！靠创新人才！我国清楚认识到，国际的激烈竞争，我国的高速发展，归根结底，就在人才。英译者舒利亚克在他写的前言中引用原著者阿奇舒勒的话：既然人们能被培养成为医生或音乐家，那么也能被训练得具有创新性；一定存在常用的基本工具和原理，每个人都能学习它们，以提高自身的创造力和创新性。阿奇舒勒认为，人类需要新的、更有效的创新工具和指导。所以，可贵的是：
+
+第一，这本专著远非只从技术上着眼，而是高屋建瓴地从哲学思维上着眼，来深入审视与论述创新的有关问题，这点是主要的；第二，这也很重要，这本专著并非用板着面孔的说教方式，而是以一种生动活泼的从特殊到一般的方式来审视与论述创新的有关问题及方法和原则，这就易为人接受。
+
+这本专著也就分了三个部分来写：第一部分，创新技术，写思想；第二部分，创新辩证法，写方法，写 ARIZ（创新算法），这是本专著的核心；第三部分，写应克服的主要障碍，以培养更高的创新意识。全书严谨而很有系统。
 
 ### 0601. 任意卡 —— 汽车、电话没发明前人们对此想法的态度
 
@@ -621,6 +629,8 @@ In the second section,「Dialectics of Invention,」Altshuller provides us with 
 
 The last part of the book,「Man and Algorithm,」describes the main obstacles to creativity — psychological barriers — and how to overcome them through cultivating「TRIZ mind」— a higher creative consciousness.
 
+1『上面是本书三大部分的内容概要。（2022-03-04）』
+
 This, in our opinion, all adds up to a book which is a scientific marvel of the 20th Century.
 
 Translation of the text from Altshuller's native Russian was a somewhat difficult task. Altshuller's writing style is more like that of a novelist than a scientist. His text is packed with idioms whose meanings are mainly understood only in Russian. In fact, some Russian TRIZ experts expressed the view that it is impossible to translate Altshuller into other languages. We took the challenge while attempting to preserve the original flavor of Altshuller's writing. However, this was a lengthy and exacting process that took over a year to complete.For those interested in such things, we divided the process into the following steps:
@@ -631,15 +641,15 @@ Translation of the text from Altshuller's native Russian was a somewhat difficul
 
 3 Lev verified the accuracy of Steve's interpretation, making corrections when needed.
 
-3 Together, both retranslated questionable passages to ensure their proper meaning.
+4 Together, both retranslated questionable passages to ensure their proper meaning.
 
-4 Steve produced a final edited draft.
+5 Steve produced a final edited draft.
 
-5 Richard Langevin read this draft for「errors in logic.」
+6 Richard Langevin read this draft for「errors in logic.」
 
-6 Robyn Cutler performed extensive proofreading.
+7 Robyn Cutler performed extensive proofreading.
 
-7 Both Lev and Steve reviewed the final document.
+8 Both Lev and Steve reviewed the final document.
 
 Consequently, all credit for what does work should go directly to Mr. Altshuller; all responsibility for what does not must revert to Mr. Shulyak and Mr. Rodman.
 
@@ -709,7 +719,7 @@ For the Master (1926-1998)
 
 ## Three Questions
 
-A Short Interview with Genrich Altshuller, Summer, 1998
+A Short Interview with Genrich Altshuller, Summer, 1998.
 
 While preparing our translation of this book, we approached Genrich Altshuller with a proposal that he submit a special introduction for inclusion in the book. This would give him the opportunity to personnally address his many new readers in the west, and perhaps express to them his hopes — and concerns — for the future development of his brainchild, TRIZ.
 
@@ -907,7 +917,7 @@ Victor R. Fey is a Managing Partner of The TRIZ Group, and Adjunct Professor of 
 
 ## C4 关于作者：根里奇·斯拉维奇·阿奇舒勒 [1]
 
-列奥尼德·勒纳（Leonid Lerner）
+—— 列奥尼德·勒纳（Leonid Lerner）
 
 我们要介绍的是一位独一无二的人。
 
