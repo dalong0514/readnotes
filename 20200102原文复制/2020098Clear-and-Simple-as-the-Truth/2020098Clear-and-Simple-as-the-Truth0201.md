@@ -1,7 +1,5 @@
 ## 0101. Principles of Classic Style
 
-
-
 ### 1.3 The Elements of Style
 
 Elementary does not always mean easy. It often means fundamental. Euclid's mathematical classic is called The Elements of Geometry. If we ask what Euclid means by「elements,」we will discover that they consist of a short list of twenty-three definitions, such as「a line is breadthless length,」five postulates, such as「all right angles are equal to one another,」and five common notions, such as「if equals be added to equals, the wholes are equal.」From these elements, all of Euclid's geometry follows. For a mathematical genius like Sir Isaac Newton, the book is really over once these elements are laid out, since everything else is implicit within them. The Elements of Geometry, the most successful textbook in history, establishes a set of expectations for other textbooks that present the structure of a field. So, when we look into a book called The Elements of Accounting or The Elements of Boatbuilding or the elements of anything—every field has at least half a dozen books with such a title—we expect what we find in Euclid: a small number of starting points at a high level of generality from which all the details of the subject follow.
@@ -34,7 +32,7 @@ The MLA Style Manual is just a shorter and arbitrarily different version of The 
 
 Even Strunk and White's famous textbook The Elements of Style—whose title might lead you to expect a writer's equivalent to Euclid's Elements of Geometry—treats style as composed of distinguishing surface marks. If you open Euclid's Elements to the first page, you see a few fundamental definitions and axioms. If you open Strunk and White's Elements to the first page, you see:
 
-1. Form the possessive singular of nouns by adding's.
+1 Form the possessive singular of nouns by adding's.
 
 Follow this rule whatever the final consonant. Thus write,
 
@@ -59,6 +57,78 @@ In music and in painting, different fundamental decisions define different style
 The domain of style is what can be chosen. A fundamental stand is a choice open to the writer. By contrast, to know a language is to know a great range of things that are not open to choice: it is not open to every writer, for example, to decide that sentences shall begin with a period and end with a capital letter, that the word「dog」shall refer to cats, that predicates shall not agree in number and person with their subjects, or that six fine brick houses shall be called「brick fine houses six.」You can, however, decide whether to call a certain dog a「dog」or a「hound,」to say「Sally devoured the roast beef」rather than「The roast beef was devoured by Sally,」to write in sentences that are short and clipped rather than baroque and periodic, or to write「24 March 1954」rather than「March 24, 1954,」but these are surface features. Books that talk about style in writing treat these moments of choice at the surface level but typically ignore the elements of style, which is to say, the fundamental choices from which surface features derive.
 
 We propose to describe the fundamental questions that are the elements of style in writing, and the answers to these questions that define classic style. The elements come under five topical headings: truth, presentation, scene, cast, thought and language.
+
+0201 风格要素与古典立场
+
+1.3 风格的要素 ①
+
+① 标题及正文中的「要素」与正文《几何原本》《会计学基础》中的「原本」和「基础」均对应同一个英文单词 Elements —— 译者注
+
+基础（Elementary）并不总是意味着简单。它常有不可或缺之意。欧几里得的数学经典被称为《几何原本》（The Elements of Geometry），如果我们问欧几里得「原本」（elements）指什么，我们会发现，它们被列成二十三条定义（如「线只有长度而没有宽度」）、五大公设（如「凡是直角都相等」）和五大公理（如「等量加等量，其和相等」）。这些要素是欧几里得整个几何体系发展的基础。对于艾萨克·牛顿爵士这样的数学天才来说，这本书把这些要素逐一列出来也就结束了，因为所有其他含义都隐含其中。《几何原本》是历史上最成功的教科书，在阐述领域体系上为其他教科书树立了一组标杆。因此，当我们查看一本《会计学基础》（The Elements of Accounting）或《造船术基础》（The Elements of Boatbuilding）或任一领域基础的书时，我们想看的是欧几里得那样的书：从一小部分高度概括的基础定理延伸出科学的所有细节。
+
+十八世纪，化学从炼金术中独立出来，开始围绕化学元素的概念构建体系，当时为人所知的化学元素只有很少一部分。化学元素，像欧几里得的几何要素，是所在领域的核心基点，不同的是，它们也是构成所有更复杂事物的基础。化学元素这个概念一般来说是安托万·拉瓦锡（Antoine Lavoiser, 1743-1794）的首创，读过他的《化学基础论》（Traitelementaire de chemie, presente dans un ordre noveau etdapresles decouvertes modernes,1789）的人几乎没有不喜欢的，部分原因是这本书的写作风格正是古典风格；该主题的其他书因写作风格太复杂，未能被广泛普及。
+
+1-3『看到拉瓦锡以及他「化学基础论」好亲切，之前研读过，而且拉瓦锡（1743-1794）之前记录进牛人卡片里，而且知道他是法国大革命时被砍的头，因之前是个官员，拉格朗日为其惋惜。（2022-03-06）』
+
+化学元素的概念可以类比欧几里得几何要素的概念，在化学学科中，一切事物都隐含在化学元素中。即使现在发现的 118 种化学元素远超过拉瓦锡当时知道的数量，也全都能收录在化学教材封面内侧或者教室墙上的元素周期表中。所有物质都由化学元素组合而成，这个概念是化学学科的基础；但是有些化学元素作为组成成分，不如其他元素重要。比如，氧元素很重要，但未命名的元素 —— 即使知道它们的存在 —— 因没有通过实验分离出来所以不那么重要。
+
+跟几何体系不一样，自然世界不是发明出来的。根据几何的众多基点，该学科可以划分成不同分支。而自然世界只有一个，它的学科基点并非人类发明。因此，尽管「基础原子」这个概念很重要也很明晰，但这些元素实际所处的列表仍有些许模糊和空白。过去五十年新添加或新发明的元素，都是新异元素，与我们以识化学世界的基本性质没有太大关系。
+
+化学元素周期表完全是模仿字母表。化学元素是物质世界的一种字母组合。作为英语及大部分欧洲语言的书写字母，罗马字母本身是一组元素。我们可以用二十六个字母写出这些语言的每个单词，甚至那些过时的单词，又甚至尚未造出来的新词。当把这些字母排列组合在打字机键盘上时，我们可以看到，虽然这些字母不是同等重要 —— E 键的缺失会比 Z 键的缺失更让人想念 —— 但它们像欧几里得定理一样普遍；它们都不可替代：没有哪个是从另一个派生而来的。当原先的打字机键盘变成更复杂的计算机键盘时，键盘也跟着扩增。它增加了新异功能键，它们都很方便，但不像字母表中的字母一样基础。计算机键盘与化学元素周期表一样，在空间布局上考虑了新异元素的边缘性质。
+
+这些例子中的要素都很确定且数量不多，是各自领域一切事物的基点。文本风格的要素也应该具备类似条件。这些要素不可能是五花八门、模棱两可的表面特征和死板规则。笔者认为，风格要素可以表达为对一组关系提出的系列问题 —— 真相、呈现、作者、读者、思想和语言，以及它们两两之间的关系。这些基础问题在我们写作之前必须有意识或无意识地回答出来。这些问题都是同等基础的问题。没有哪个关注表面现象 —— 比如句子的长短 —— 也没有哪一个由另一个派生而来，不论相互关系多么紧密。
+
+这些问题问的是一系列关系：什么是可知的？什么可以用言语表达？思想和语言的关系是什么？作者对话的读者是谁？为什么是他们？作者与读者之间的内在关系是什么？言语交流的隐含条件是什么？任何一种确定的风格，都会对真相、语言、作者及读者采取一种立场。古典风格是一组密切相关的决定。它确立了角色，而且创建出一种独特的关系网络；它对风格要素采取一致的立场。采取的立场不同，形成的风格也不同。
+
+风格源于一组基本立场（Fundamental Decisions），这种概念在音乐学和艺术史上很常见。比如，查尔斯·罗森（Charles Rosen）说到古典风格音乐的起源时，首先讲的是当时巴洛克盛期风格无法满足的他称为「需求」的东西。罗森分析，巴洛克盛期风格是为了表现静止状态：表达情绪或某个戏剧性的危急时刻。古典风格是为了表现动态行为。巴洛克盛期风格大师亨德尔（Handel）会同时表现不同的情绪。古典风格大师莫扎特表现的是某个场景中的个体人物从一种情绪进入另一种情绪。按罗森的话说，「戏剧性行为取代了戏剧性情绪」。古典风格不同于巴洛克盛期风格是因为它对事物的呈现做出了不同的决定。虽然可以列出古典风格和吧洛克盛期风格的表面差异，但不能把这种变化的根源和特点理解为一组表面特征替换了另一组表面特征。罗森认为，多梅尼科·斯卡拉蒂（Domenico Scarlatti）的羽管键琴奏鸣曲是古典风格表现戏剧性场景的首批重要代表作。斯卡拉蒂的作品尽管缺乏古典风格的许多表面特征，但在基本问题上采取的是古典风格立场：「其奏鸣曲的格调变化表现为戏剧性事件，有明确的起点和发展脉络，对后代音乐家的风格产生了重要影响。」「虽然他的作品没有表现出从一种韵律过渡到另一种韵律的古典风格技巧，但在音调变化上，他已经表达出了真正的戏剧性冲突......」1
+
+艺木史领域也有这种普遍的认识，风格源于基本立场而不是表面特征。比如，埃米尔·马勒（Emile Male）分析西欧宗教艺术图像的起源时指出，十三至十五世纪的神学家都把世界看成一个「巨大的图形符号」。这种把世界当作统一符号形式的概念是十三世纪的宗教艺术风格确立的基础，但在十五世纪的宗教艺术风格中并不是这样的。马勒写道，「深邃的象征主义主导了十三世纪教堂…...门廊雕像的排列」，因此「沙特尔大教堂的雕像形成了一种浑然天成的思想体系」。26
+
+相比之下，十五世纪法国阿布维尔的圣乌勒弗兰大教堂（Saint-Vulfran）的正门 —— 马勒称其宏伟壮观，并把它的华美与丰富装饰与十三世纪的杰出作品相比 —— 与十三世纪百科全书式的教学风格有天壤之别。圣乌勒弗兰大教堂的雕塑项目没有受到任何此类风格理念的影响，因为它与同世纪其他杰出宗教艺术作品一样，并不把世界看成符号。作为符号风格基础的十三世纪象征主义，发展到十五世纪后少了深奥和书卷气。情感和情绪取代了图形符号和百科全书式结构。风格源于一组基本立场而不是一系列表面特征，这种论点很少出现在谈论写作风格的书中。几乎每一本关于写作的书都会在书名或者某个重要章节标题上用到「风格」这个词，很多杂志期刊还会专门出一页格式须知规定出版样式。
+
+我们可以举其中几个例子：《芝加哥风格手册》（The Chicago Manual of Style）①、《MLA 风格手册》（MLA Style Manual）、《丰收的读者》（The Harvest Reader）最后一章「风格」、凯特·杜拉宾（KateTb）《芝加哥大学论文写作指南》（Manual for writers for Term Papers, Theses, and Dissertations）第六章「风格」、斯特伦克（Strunk）和怀特（White）合著的《风格的要素》（The Elements of Style）及约瑟夫·M. 威廉姆斯（Joseph M. Williams）为他与格雷戈里·卡洛姆（Gregory Colomb）的合作写的摘要《风格：清晰、优雅的写作》（Syle: Toward Clarity and Grace）①。
+
+① 此书有高等教育出版社出版的中文版《芝加哥手册：写作编辑和出版指南》，吴波等译。—— 译者注
+
+① 此书有经济新潮社出版的繁体中文版《英文写作的魅力》，陈佳伶译。—— 译者注
+
+这些指南、教材和手册所说的「风格」不是同一回事。《芝加哥风格手册》中的「风格」是一种必要的随机决定，以保证印刷文本的统一，但对思想内容或概念组织来说则无关紧要。比如就思想内容或概念组织而言，日期 1954 年 3 月 24 日是写成「March24, 1954」还是「24 March 1954」没有区别，但一篇文章中的日期应按统一格式书写，而《芝加哥风格手册》用一种随即标准保持统一。这里的「风格」是对印刷文本表面特征随机做出的必要决定。
+
+与之相反，约瑟夫·M 威廉姆斯的《风格：清晰、优雅的写作》一书认为印刷文本的表面特征对他所说的风格无关紧要，他的风格是为了说明如何改进「观点文本」（Pointed prose）以便读者理解。
+
+而我们上面试举出的六种风格只是管中窥豹（类似的例子不胜枚举），它们讨论的「风格」不涉及罗森和马勒所说的那种能定义风格的核心立场。
+
+《MLA 风格手册》只是《芝加哥风格手册》的缩略版，两者的差异随机而定。凯特·杜拉宾的格式要求有很多「从《芝加哥风格手册》第 13 版改编过来」，适用于学期论文。而《丰收的读者》（The Harvest Reader）的最后一章「风格」表明风格是完成全部重要工作之后的一种装饰性元素，就像刷房子的油漆。
+
+甚至斯特伦克和怀特的著名教科书《风格的要素》认为风格由明显的表面特征构成，书名也许会让你联想到欧几里得的《几何原本》。如果翻到《几何原本》第一页，你会看到一些基础的定义和公理，但翻到《风格的要素》第一页，你看到的是：
+
+单数名词构成所有格加「's」
+
+不管单数名词以什么辅音字母结尾，必须遵守这条规则。例如：
+
+Charles's friend（查理的朋友）
+
+Burns's poems（彭斯的诗）
+
+the witch's malice（妖妇的毒心）
+
+例外的情况也是有的，是指一些以 -es 或 -is 结尾的古代专有名词或古代习用词组，其所有格仅需加「'」。例如 Jesus'（耶稣的），for conscience' sake（为了良心），for righteousness' sake（为了正义）① 。
+
+① 汉译文出自陈一鸣翻译版本，本书其他《风格的要素》选段均出自该版本，该版本书名汉译文为《英文写作指南》。—— 译者注
+
+假如你看第五章「认识风格」，作者意在探讨「更广义的风格」，你会发现作者谈的不是核心决定，而是类似如何区分「distinguishing」和「distinguished」的显著语言表面特征：「当我们谈及菲茨杰拉德的风格时…...我们说的是他的文字在纸上发出的声音。」
+
+斯特伦克和怀特把整个风格说成一种「高深莫测的东西」，因为仅仅学会一条条唯一要素（他们认为的表面要素），无法学会风格。「谁知道一些触动人心的音符为什么稍稍重组就不再动人了呢？」查尔斯·罗森考虑的是确立音乐风格的核心决定，而不是单个音符，他眼中的风格是一种可理解的历史进程，而不是高深莫测的东西。
+
+约瑟夫·威廉姆斯的《风格》一书，不说高深莫测的东西，而是明智地怀疑用法规则。即便最后一章「用法」讨论了基本规则，也只是把这些用法知识点当成写作的次要技巧。没人会指责《风格》给出了一种技巧性的写作方法，因为它明确指出它不会指导你怎么写，而是指导你如何解决写作遇到的问题：假如作者已经想好了要写什么，也拟好了草稿，但是发现他的文本不能被读者理解，这时候《风格》就会告诉作者如何改变表达结构以适应读者的阅读习惯。这就是威廉姆斯的方法与我们前述所有其他人的方法的不同之处。威廉姆斯的书不是指导随机惯用表达或个人喜好的手册，而是示范如何阅读他说的「应用文」—— 包括议论文、说明文和备忘录等。了解这种范文格式后，作者就能调整论文，以便符合读者的预期。咸廉姆斯的书作为一本高等技巧指导书效果显著。但它表现的是一种修改活动 —— 与真相、语言、读者和作者这些基本问题的决定无关。从这点来说，威廉姆斯论述的是笼统的风格，不是具体某种风格。威廉姆斯所述风格已然对基本问题做出一组统一的决定，但他没有承认这些决定或承认它们可供选择。
+
+我们列出的每本谈论风格的书，一开始提出的假设注定了最终的错误。如果一开始你就认为风格无论怎么看都是一组表面的技巧性要素清单，那你有可能学会这份清单，表现出风格，但不是特定某种风格。
+
+在音乐和绘画领域，基本立场不同则风格不同。在几何学或逻辑学领域，基本公理不同则体系不同。在写作上，对风格要素采取的立场不同则文本风格的类型不同。只有把风格看作对核心问题采取的一种基本立场，才可能看到由其他立场构成的其他风格。
+
+风格可以自主选择。基本立场可以由作者自主选择。相反，了解一门语言却要掌握很多不能自主选择的东西，比如每个作者都不能自由决定句子开头应用句号，最后一个字母应大写，「狗」这个词应指代猫，谓语不应与主语的单复数和人称一致，六座漂亮的砖房应说成「砖漂亮的房六座」。但你可以选择用「狗」还是「猎狗」来称呼某只狗，说「萨利大口吃着烤牛肉」而不说「烤牛肉被萨利大口吃着」，用小短句而不是巴洛克风格的华丽辞藻和长圆周句；或者把日期 1954 年 3 月 24 日写成「24 March 1954」，而不是「March 24, 1954」，但这些都是表面特征。谈论写作风格的书只是从表面上决定这些选择，一般都忽略了风格的要素 —— 表面特征的基本选择。
+
+我们接下来会逐一介绍这些基本问题，即风格的要素，以及古典风格对这些问题的回答。这些要素分别是真相、呈现、场景、角色、思想和语言。
 
 ### 1.4 The Classic Stand on the Elements of Style
 
