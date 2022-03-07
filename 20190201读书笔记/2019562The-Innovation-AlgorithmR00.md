@@ -837,9 +837,9 @@ boris zlotin，书籍如下：
 
 ### 02. Simon Litvin
 
-The Word that Became Action: About G. Altshuller's The Innovation Algorithm
+The Word that Became Action: About G. Altshuller's The Innovation Algorithm.
 
-「In the beginning was the word . . . .」
+In the beginning was the word......
 
 In 1969, while still a student, I accidentally bought a book with a flashy title. It was devoted to a new area of knowledge — the methodology of innovation.
 
@@ -847,7 +847,7 @@ About 15 years later, Genrich Altshuller offered his Scale of Fantasy that provi
 
 Its first edition of 100,000 copies sold-out immediately. This was very surprising considering that it was a technical book. The book is saturated with thoughts, ideas and convincing examples about his theory of inventiveness. Besides, it was created by the hands of a brilliant writer, and possessed charm and an unusual attractive force. Even the titles of its sections and chapters could be put together like elements of a jigsaw puzzle, creating a picture of the theory of innovation. Titles like:
 
-Inventing Methods of Inventing Through Knowledge, not Numbers Step-by-Step An Alloy Made of Logic, Intuition, and Skills How the Algorithm Works Breaking an Old Structure Over the Barriers
+Inventing Methods of Inventing Through Knowledge, not Numbers Step-by-Step An Alloy Made of Logic, Intuition, and Skills How the Algorithm Works Breaking an Old Structure Over the Barriers.
 
 Today, TRIZ is accepted all over the world. New tools to improve technology have become part of TRIZ's system, along with collected examples of practical utilization of these tools. New TRIZ software has been created and successfully used, and yet the main ideas in Altshuller's The Innovation Algorithm have not lost their significance. Those ideas are: The process of creativity can be learned; the process of creativity can be detected and become accessible to those who want to solve creative problems; there exists an「algorithm」for invention.
 
@@ -857,7 +857,7 @@ Simon Litvin is Vice President of Pragmatic Vision, Inc., and a Member of the Co
 
 将思想变为行动：关于根里奇·阿奇舒勒先生的创新算法。
 
-「开始是这个词…...」
+开始是这个词…...
 
 1969 年，我还是个学生，偶然买了一本标题显眼的书，它的主题是个新的知识领域：创新方法论。
 
@@ -927,7 +927,7 @@ Victor R. Fey is a Managing Partner of The TRIZ Group, and Adjunct Professor of 
 
 而是说：「拿去。」
 
-他的名字就是根里奇阿奇舒勒
+他的名字就是根里奇阿奇舒勒。
 
 [1] 本文摘自列奥尼德·勒纳的一篇文章，全文于 1991 年发表在俄罗斯的杂志《Ogonek》上。它的英译版第一次发表，是作为《40 个原理》书的一部分。阿奇舒勒先生逝世于 1998 年 9 月 24 日。
 
@@ -991,11 +991,11 @@ Victor R. Fey is a Managing Partner of The TRIZ Group, and Adjunct Professor of 
 
 列夫·舒利亚克：用一个例子来看如何循序渐进地应用矛盾矩阵。
 
-破冰船必须在冰厚 10ft（1ft= 0.3048m）的水道上运输货物（见图 A1-1）。传统的方法是，前面破冰船在冰中开出一条通道，船队跟随其后。破 冰船前进的速度只有 2km/h。我们必须提高速度，至少到 6km/h，当然越快越好。其他的运输方式不能接受我们的研究表明，在当时的工业水平下，破冰船的引擎是效率最高的。
+破冰船必须在冰厚 10ft（1ft= 0.3048m）的水道上运输货物（见图 A1-1）。传统的方法是，前面破冰船在冰中开出一条通道，船队跟随其后。破冰船前进的速度只有 2km/h。我们必须提高速度，至少到 6km/h，当然越快越好。其他的运输方式不能接受我们的研究表明，在当时的工业水平下，破冰船的引擎是效率最高的。
 
 解答：[1] 主要的目标是把船速从 2km/h 提高到 6km/h（也就是提高船的生产率）。实现这个目标的一种常用方法是增加船的引擎功率，然而增加功率会使船的其他参数（传动系统的占用空间、船的总重量等）产生连锁反应，这是我们不想要的。因此，存在技术矛盾（TC, Technica Contradiction）。
 
-[1] 以上是对破冰船问题的分析。不过我们并不想提供所述概念的工程实现，我们的目的是指出可能的工程设计方向
+[1] 以上是对破冰船问题的分析。不过我们并不想提供所述概念的工程实现，我们的目的是指出可能的工程设计方向。
 
 TC1：速度和功率。
 
@@ -1033,7 +1033,7 @@ TC2：生产率和功率。
 
 结论：大部分原理建议改变和冰相互作用的那一部分船体。完全去掉船的这一部分，那么船通过冰将没有问题了 —— 如果不考虑船的底部将沉到海底的情况。为防止这种情况，可以将船的上部和下部用两个薄的刀片连接起来，而刀片切割冰层就容易多了。把船的横截面最小化，从而就可以减少切割冰层时所需要的力。船的底部留在冰层下面，同时还可以装载货物。现在这个破冰船也可以当做货船用（图 A1-2）。
 
-### A3：40 个发原理
+### A3：40 个发明原理
 
 1、分割原理。1）将物体分割成独立的部分。2）使物体成为可组合的部件（易于拆卸和组装）。3）增加物体被分割的程度。
 
