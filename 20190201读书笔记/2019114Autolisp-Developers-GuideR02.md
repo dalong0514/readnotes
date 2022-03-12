@@ -969,4 +969,4 @@ If you are familiar with the AutoCAD Object Model and follow the procedures demo
 
 Learning Objectives: 1) Learn how to use advanced Autolisp functions. 2) Understand advanced concepts like recursion. 3) Understand how reactors work. 4) Learn how to use the nearly 2000 undocumented Autolisp functions.
 
-』——未完成
+』—— 未完成
