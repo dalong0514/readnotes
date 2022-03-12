@@ -24,6 +24,8 @@
 
 ### 0501. 数据信息卡 —— ObjectARX、ObjectARX Wizards、AutoCAD .NET Wizards 三者关系
 
+信息源自「2022003An-Introduction-to-AutoCAD-NET-API-Using-CS.md」
+
 1 Open Microsoft Visual Studio
 
 2 From the File menu, New flyout, select Project…
