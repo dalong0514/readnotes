@@ -1,3 +1,5 @@
+THREE The Studio
+
 Introduction
 
 The first part of this book — which we will call「the Essay」 — presents principles of style. The second — the Museum — presents exhibits and analyses of style. Once we had written the Essay and the Museum, we thought we had finished our book. Anyone who wanted to acquire the style, we assumed, had everything necessary at hand. All we had left out was the work involved in acquiring the style. Classic style pretends there is no work in writing, and we had happily skipped right over all the stages we had gone through ourselves in acquiring this most versatile and useful style. It is no secret that writing in any style is work, so we have added the Studio to our book — a place where apprentices can progress from inevitably awkward beginnings to confident mastery in semiprivacy under the benevolent eye of a friendly master who looks forward to regarding them as equals, perhaps superiors.
@@ -421,6 +423,3 @@ For this advanced exercise, select and present in classic style a subject as far
 Conclusion
 
 Every great artist was once an apprentice who learned fundamentals from someone much less talented. Velásquez was a much greater painter than his teacher. Newton was a much greater mathematician than his teacher. Neither could have progressed without a formation in fundamentals. Now that you have obtained a formation in fundamentals and experimented with a few advanced exercises, you have completed the apprenticeship offered in this Studio. But artists never really leave their studios. They continue to refine their grasp of fundamentals and extend their reach. There is no end to this refinement or extension. If there were a final exercise in the Studio, it would be to keep your eyes open for new opportunities to advance your command of style while keeping your presentations clear and simple as the truth.
-
-FOUR
-

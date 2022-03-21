@@ -1,3 +1,5 @@
+FOUR
+
 Further Readings in Classic Prose
 
 classic guidebooks are a natural place to begin. They form a large and universal genre in which actual scenes and casts are almost identical to the model scene and cast of classic style. They accordingly require little covert substitution by the writer, and in that respect are simple to analyze. The Audubon Society Field Guide Series: Subjects include Birds; Butterflies; Fishes, Whales, and Dolphins; Fossils; Insects and Spiders; Mammals; Mushrooms; The Night Sky; Reptiles and Amphibians; Rocks and Minerals; Seashells; Seashore Creatures; Trees; Weather; Wildflowers. The Michelin Green Guide Series: Places include all the regions of France; many European countries, including Greece and Italy; and several metropolitan regions, including Paris, Rome, London, and Washington, D.C.

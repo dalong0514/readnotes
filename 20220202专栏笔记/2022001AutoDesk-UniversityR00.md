@@ -15,16 +15,16 @@ You may also have additional components that perform specific "services" to your
 Consider the following simple code example, which might represent some business logic code that uses a data tier, and a logging component.
 
 ```cs
-public class Example1 {
-
+public class Example1 
+{
     public void DoTheWork() { 
         DataRepository dataRepository = new DataRepository(); 
-        Logger logger = new Logger(); logger.Log("Getting the data"); 
+        Logger logger = new Logger(); 
+        logger.Log("Getting the data"); 
         DataSet theData = dataRepository.GetSomeData(); 
         // Do some work with the data...
         logger.Log("Done." );
     }
-
 }
 ```
 
@@ -39,23 +39,20 @@ While it is good that we've separated the data access and logging code into thei
 Now examine the following alternative:
 
 ```cs
-public class Example2 {
-
+public class Example2 
+{
     private readonly IDataRepository _dataRepository; 
     private readonly ILogger _logger; 
-    
     public Example2(IDataRepository dataRepository, ILogger logger) {
         _dataRepository = dataRepository;
         _logger = logger; 
     } 
-    
     public void DoTheWork() {
-    _logger.Log("Getting the data" );
-    DataSet theData = _dataRepository.GetSomeData();
-    // Do some work with the data...
-    _logger.Log("Done."); 
+        _logger.Log("Getting the data" );
+        DataSet theData = _dataRepository.GetSomeData();
+        // Do some work with the data...
+        _logger.Log("Done."); 
     }
-
 }
 ```
 
@@ -139,8 +136,19 @@ Select Add to add and close the window.
 
 That is a lot of steps!! Thankfully, the DotNet wizard sets all these values for us.
 
-### 0601. 任意卡 ——
+### 0502. 数据信息卡 —— 几个 .NET AutoCAD 二次开发常用的函数
 
-最后还有一张任意卡，记录个人阅读感想。
+信息源自「2022024Programming-AutoCAD-with-CS-Best-Practices.md」
 
+There are a couple of techniques used in this code worth mentioning, but are beyond the scope of this class.
+
+1 Use of the using keyword, which automatically calls Dispose() on the transaction object when it goes out of scope.
+
+2 Use of the RXObject.GetClass method along with the ObjectId.ObjectClass method, which allows you to check for the type of object before you actually open it.
+
+3 Use of the UpgradeOpen method, which allows you to only open an object for write when you know you need to.
+
+1『上面几个 .NET AutoCAD 二次开发常用的函数，做一张信息数据卡片。（2022-03-21）』—— 已完成
+
+### 0601. 任意卡 —— 
 
