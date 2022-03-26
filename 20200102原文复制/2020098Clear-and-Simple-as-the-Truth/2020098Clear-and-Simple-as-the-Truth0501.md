@@ -218,128 +218,254 @@ Liebling's description of Huey Long's statue turns on concepts about American cu
 
 Liebling demonstrates a typical classic elision from what is easy for any reader to see for herself — the statue — to his highly personal interpretation, based on abstract cultural and ethical concepts. He never says that anyone else can see the cultural matrix into which he places the statue; he treats that matrix as a matter of course and suggests that its finest details can be delineated by anyone who was there. As a result, it requires deliberate analysis to realize that while anyone can verify the existence of the statue and the inscription on the scroll (「Share Our Wealth」), the interpretation that has been slipped between the description of the statue and the description of the scroll can be seen by no one who does not agree to accept Liebling's reflection as a thing. This agreement, Liebling recognizes, requires persuasion, but he never explicitly acknowledges a need to persuade. Instead, he addresses his problem by artful juxtaposition and tacit assurances that what he supplies (whether fact or interpretation) is as reliable as what is right there in front of him and — accidents of time and place aside — can be right there in front of you. Consider the comparison between「Share Our Wealth,」the slogan actually carved on the scroll, and「Every Man a King,」which Liebling cites as another of Huey Long's slogans. The second slogan is nowhere to be seen at the gravesite, but it is one of Huey Long's best-known lines. Liebling's claim can be verified by anyone who checks the relevant sources. It is only an invisible step to treat the interpretation as something that can be verified in the relevant sources too, and it is a classic technique to distract the reader from observing that the relevant source in this case is the writer's imagination.
 
-When that was once begun, it was as little in my fear, that what words of complaint I heard among lerned men of other parts utter'd against the Inquisition, the same I should hear by as lerned men at home utterd in time of Parlament against an order of licencing; and that so generally, that when I had disclos'd my self a companion of their discontent, I might say, if without envy, that he whom an honest quæstorship had indear'd to the Sicilians, was not more by them importun'd against Verres, then the favourable opinion which I had among many who honour ye, and are known and respected by ye, loaded me with entreaties and perswasions; that I would not despair to lay together that which just reason should bring into my mind, toward the removal of an undeserved thraldom upon lerning.
+0501 古典论证
 
-— John Milton, Areopagitica
+呈现即论证
 
-This passage, a single sentence of 142 words, is almost impossible to understand at one reading. Although it comes from an essay ostensibly meant to be a speech to Parliament, it does not model itself on speech and distances itself self-consciously from any possible model of conversation. It has no image schema indicating a clear direction or a goal. It is in every way unclassic and offers a striking contrast to the most conspicuous style of French prose contemporary with it.
+选段 5-1
 
-It would be tempting for any contemporary writing consultant to offer a sort of over-the-counter prescription for improving this sentence if it were not for the fact that it occurs in a major seventeenth-century prose text that has been studied and admired around the world for over three centuries. Such a writing consultant would place a premium on clarity and would suggest effective means of rewriting the entire Areopagitica so as to make it easier to parse. But Milton would have viewed these revisions as a complete destruction of his mature and accomplished style, and he would have been right.
+有了这个真相，我不可能还说服不了你相信我的清白。
 
-Clarity is a prime virtue within classic style or practical style, and it is easy to begin judging other styles by the standards of one of these general styles, especially for writers who actually use one of them on a regular basis. Classic style, like practical style, encourages such judgments by making a tacit claim to being a universal style. But this claim is deceptive. Neither classic style nor practical style can suit Milton's purposes because his model scene is not the scene essential to either classic or practical style. In this way, this passage resembles Samuel Johnson's opening comments in his「Preface to Shakespeare」: both Milton and Johnson write in mature and consistent styles completely incompatible with either classic or practical style. The model scene behind classic style is conversation, with the result that it tends to come in discrete units, intelligible when excerpted. The model scene behind the Areopagitica requires a display of ostentatiously orchestrated erudition. This scene places the highest premium on gravity and allusion — not on clarity. Far from depending on a model of conversation, it is not even modeled on English speech; it is modeled on written Latin. The influence of Milton's model scene upon his style is such that an excerpted passage may be nearly unintelligible, but there is no reason for Milton to view this as a fault. He does not mean the Areopagitica to live through pithy excerpts, and he most certainly would suffer from using a style that looks as if it is easy to parse or conveniently packaged into easily digested bites. To rewrite the Areopagitica in the style of La Rochefoucauld or A. J. Liebling would be to ensure that the reader Milton is addressing would immediately brand it as trivial.
+她跟他说话的语气如此笃定，即使是看起来不大可能的真相也很容易让人信服，以至克莱夫芙先生几乎相信她的清白。
 
-Socrates in the Apology expresses a touchstone of classic style, as if it were a fundamental priority of all style:「If you hear me defending myself in the same language which it has been my habit to use, both in the open spaces of this city (where many of you have heard me) and elsewhere, do not be surprised.」
+—— 拉法耶特夫人，《克莱芙王妃》1
 
-He explicitly refuses to adopt the mannered style of the courtroom, and he implies that there is something artificial and dishonest in that style. He adopts as his model scene conversation, voice, spontaneity. As a result, it is easy to excerpt from his speech discrete, intelligible units of discourse. The Apology is, after all, with a very minimum of glossing, perfectly intelligible today in translation to audiences in Oregon or Ohio or Hong Kong, audiences who know absolutely nothing about the conventions of Athenian courtrooms at the beginning of the fourth century B.c.
+以上两个选段均选自《克莱芙王妃》里的场景，王妃在她丈夫临终前试图说服丈夫相信她没有背叛他。虽然她有自己的私心，但这个场景仍然是古典风格，因为王妃是一个杰出人物，对真相怀有自律又虔诚的忠诚，她的动机是尊重真相而非为己谋私。我们选入这些段落，是因为它们阐释了古典风格概念中的真相，因为它们明确将那种概念中的真相与说服关联起来。9
 
-By contrast, imagine a speech by an Athenian orator whose main goal, unlike Socrates', is to win his case. Contemporary readers in Hong Kong or Ohio cannot, of course, imagine any such thing in detail. The specific good moves in such a speech would go unnoticed or function as barriers to understanding in much the fashion that Milton's elaborate syntax and classical allusions do in the passage from the Areopagitica. It would be impossible to「correct」Milton's style (or the Athenian orator's) without understanding the scene that helps define his style as well as he does. Only a few specialists in seventeenth-century English parliamentary history have any such knowledge today, and it is not obvious that any of them now knows how to address the Parliament that Milton wished to address as well as Milton did himself. No general principle (「Omit needless words,」for example) can ever supersede a specific knowledge of such elements of style as the scene and cast that help define a style, for only they can indicate which words are needless.
+真相即使不是看起来那么回事，也有足够的说服力，这种坚定不仅属于她最著名的小说中的叙述者，也属于拉法耶特夫人本人。这不是一个天真的人不切实际的想法。拉法耶特夫人是路易十四的小姨子亨利埃塔的密友，而且跟国王接触密切。虽然不清楚细节，但拉法耶特夫人在改治问题上表现活跃 —— 尤其对一个女人来说。她代表萨沃伊公爵夫人游说法国法院，并通过她让法国人了解阿马德乌斯公爵的秘密政策决定。1670 年亨利埃塔去世后，拉法耶特夫人因为健康状况不佳退出了法院，但法院的实权人物随后多年继续去巴黎探访她。1672 年，她与法国国王同席用餐庆祝《凡尔赛和约》的签订，对国王的陆军大臣卢瓦依然有很大影响力。她见证了数十起因为政治阴谋声名鹊起又名誉尽毁的事件，她深刻地认识到，一种显然客观公正的陈述方式具有多么大的力量。人们都知道她素来尊重真相，也鄙视软弱之人逃避令人不快的真相。
 
-While I've indicated to you previously that we may well have, probably do have, enough monetary stimulus in the system to create that [economic recovery], I'm not sure that we will not need some insurance or to revisit this issue, and all I can say to you is that we're all looking at the same set of data, the same economy, the same sense of confidence which pervades it. We're all making our judgments with respect to how that is evolving with respect to economic activity and where the risks of various different actions are. And there will be differences inevitably.
+她最喜欢的游说方式是私下对话。偏见、利益或激情或许会阻碍真相被接受，正如这里引用的她的小说段落所述那样。但在她的观念里，即小说中王妃的观念，真相具有天然的说服力，这种说服力如此强大，即使不是表面上看起来的那回事，任何一位公允的听众都会信服。正是奉行这种原则，她建立的职业生涯令所有现代政治律师或说客羡慕不已。
 
-— Alan Greenspan, chairman of the Federal Reserve Board, responding to senators at a congressional hearing, who were trying to get him to cut interest rates in order to speed economic recovery (March 1992)
+我们很容易怀疑这不是古典风格的场景，因为王妃显然有自己的利益考量，但她采取的姿态是，无论她可能感受到什么样的直接压力，她的最高首选动机都是真相。正如她所说：「我承认，激情可以引导我，但还没有强大到可以蒙蔽我（J'avoue que les passions peuvent me conduire, mais elles ne sauraient m'aveugler）。」
 
-This passage from Alan Greenspan, as reported by The New York Times of 20 April 1992, is certainly not an example of classic style, but it is a definite style and a cultivated one. Since it is above all a spoken style (meant, however, to be read in newspaper accounts), Mr. Greenspan refers to it as「an incoherent mumble.」Its virtues are just the opposite of classic style's virtues, and performances in this style should not be confused with the speaker's general level of articulateness. It is not a style of obfuscation as it is sometimes claimed to be, for its speaker is not hiding a conclusion or a point that he actually expresses buried in all that confusing verbiage. It is rather a style of gridlock, expressed in a manner that is built around images of contradictory and asymmetrical motion and a shifting kaleidoscope of qualifications. It is not, like classic style, a general style; it is a special style deliberately deployed by the relatively few people in positions like that of the chairman of the Federal Reserve Board, whose powers are vast and whose words are carefully studied for hints of what they are likely to do. If the passage is pored over carefully, it gives no hint about whether Greenspan will or will not lower interest rates, whether he has made up his mind on the subject, or even whether he agrees that lowering interest rates will have the effect that the senators think it will have.
+我们无法控制我们的利益 —— 我们没有能力让自己时刻保持客观中立 —— 但没必要让那些利益支配我们的行为，哪怕我们需要极大的自制力来抵制利益的诱惑。通常，我们很难相信那些声称不考虑自身利益的人。正因为如此，拉法耶特夫人才费心思为王妃这个人物塑造遵守纪律的形象。一但同时用概括和事件塑造出人物形象，读者就有可能相信，尽管有利益方面的压力，古典风格真相仍是她的最高动机。这一动机，即使可能受到个人利益的诱惑，仍然可以指导任何愿意遵守特殊纪律的人的行为。当读者相信一个可能受个人利益影响的人，实际上依据真相行事时，这种古典概念 —— 真相无论看起来多么不可能发生，都自带说服力 —— 会产生一种让人非信不可的效果。
 
-For powerful directors of policy forced to testify in public, the virtues of classic style can be disastrous. The protocol of congressional hearings requires that the respondents appear to respect the committee, so people like Alan Greenspan cannot say,「I'm here because I have to be here, but I'm not telling you anything.」The unusual circumstances of this scene require the successful practitioner to give the impression that he or she actually may have said something of substance, and to avoid at all costs inviting any further clarifying questions of an obvious sort. If Greenspan had said,「I think we've already lowered interest rates enough, but we are monitoring the situation continually and it may be that at some point it will make sense to lower them further. I will do what I think is indicated at the appropriate time, and that may not be what you think is indicated,」he would have made his essential points much more clearly, but at an unacceptable cost. It is unwise for him to indicate to the senators in a clear fashion that he will do what he thinks best and will be unaffected by anything they think, nor does he wish clearly to rule out what they suggest since it is against his interests to indicate either that he will or will not lower the interest rates and equally against his interests to give any indication about when he will make up his mind. The hypothetical revision is clearer certainly, but it invites unwelcome questions: Then you have ruled out, for the moment, lowering interest rates? Under what future circumstances will it make sense to lower the rates further? What are you watching as an indicator that the current rates are too high?
+古典概念中的说服，只是建立一个古典场景，在这个场景中，真相最终替代了所有实际或可能的利益动机。在一个牵涉利益的情境中，无论说话者用什么方式，只要能建立这种场景，就相当于打破了人总是受利益支配这个刻板印象。
 
-All of these questions must be warded off because he really does not wish to give any indication of his future course of action. Various markets would react to any hint he may give of what he is likely to do. In the circumstances,「While I've indicated to you previously that we may well have, probably do have, enough monetary stimulus in the system to create that . . .」is in every way superior to「I think we've already lowered interest rates enough.」The statement is so filled with qualifications and so indefinite even with respect to its effective date or what it is talking about that it says absolutely nothing about what he may do while seeming to offer a concession.「While I said x at some point in the past,」leads the audience to expect「I say y now.」That is not the actual sequence, and what does follow is so much at odds with what is expected, and so entirely shapeless, that it is not immediately clear that there is actually no concession. Everything is done to leave doubt on later analysis even that he still thinks enough has been done now「to create that」(create what? the exasperated reader says), since the whole phrase is framed by「I've indicated to you previously,」and does not offer the expected symmetrical statement about what the speaker is indicating now. Greenspan uses subtle verbal resources to avoid the unhedged present indicative and to erase any momentary appearance of stable assertion: modals, ambiguous reference, adverbs of doubt, locations of events in an indefinite future or an indefinite ongoing present.
+总体来说，人们可能会受利益支配，但并不意味着无论在什么场合每个人都会受利益支配。尊重真相的古典风格作者则属于贵族阶层任何人只要愿意遵循古典风格的纪律，都可以成为这样的贵族。
 
-This passage and a consideration of the special requirements of its exceptional scene can serve as a reminder first, that what is a vice in one style can be a virtue in another and second, that there are not merely two styles, good and bad, but many styles, some general, some highly specialized. Almost any English composition teacher would say that this passage「needs revision,」and may go on to suggest what is wrong with it. In fact, there is nothing wrong with it. It is a virtuoso performance of stonewalling disguised as incoherence. There is nothing sloppy about it. It is not unplanned. It is deliberate in its contradiction of the expected symmetrical and directional image schema whose expectations it frustrates with exquisite skill. It is a performance as precise as a cat's walking though a chaos of objects on a messy desk without disturbing any of them.
+选段 5-2
 
-This memorandum . . . deals with what might be called the least important questions confronting authors and publishers. But it is precisely because of their relative unimportance, despite their capacity for mischief-making, that we should be able to take them in our stride. The effort, in other words, is to remove them from the problem category so that we can devote our energy to matters of larger significance — authors and editors to intelligent and imaginative control of fact and expression, designers and compositors to efficient and artistic typesetting, proofreaders to rapid and precise detection of inaccuracies.
+哈代是更早年代的图灵；他是另一位普通的英国同性恋无神论者，只是恰好是世界上最优秀的数学家之一。
 
-Although there are some matters of comma style (for instance, restrictive vs. nonrestrictive clauses) so well established in custom as to have become rules, nearly all are merely matters of taste. We prefer a comma before the conjunction in a series (「red, white, and blue」), and also after「i.e.」and「e.g.」
+—— 安德鲁·霍奇斯，《艾伦·图灵传 —— 如谜的解谜者》2
 
-— 「Memorandum for Authors, Editors, Compositors, Proofreaders on the Preparation of Manuscripts and the Handling of Proof,」Princeton University Press, January 1990
+如果用几句犀利的话就能总结伟大历史事件的教训，那么研究历史对于政治教有来说就没有必要了。我们只需要几句总结的活就行了。但政治上的严谨，并不是口头可以传授的：它是一种必须付出吸辛才能获得的品质。一本好的指南如果能够带你领略其他人的重要经历，那么它就能为你省下很多心力。它只是告诉你最需要知道的，不会告诉你太多：比如为什么采取这一步，这一步如何让事情变成灾难。你需要自己去思考，为什么它变成了灾难性的事情，如何做可以避免一只有自己去判断，一个人才能获得政治教育；在那个领域，像所有其他领域一样，只有独立思考，才能学到东西。
 
-English orthography satisfies all the requirements of the canons of reputability under the law of conspicuous waste. It is archaic, cumbrous, and ineffective; its acquisition consumes much time and effort; failure to acquire it is easy of detection.
+—— 伯纳德·德·茹弗内尔，修昔底德《伯罗奔尼搬战争史》
 
-— Thorstein Veblen, The Theory of the Leisure Class
+托马斯·霍布斯译本「序言」3
 
-The attitude of the memorandum from Princeton University Press might come as a surprise to readers of the guides and handbooks used in English composition courses, where questions of capitalization, spelling, punctuation, and usage seem to constitute not just the most conspicuous surface aspects of writing but practically the whole subject. The reason for this common misordering of priorities is precisely the conspicuous nature of these accidentals. That is why Thorstein Veblen suggested in a classic work of sociology that spelling is meant to indicate a form of social distinction based on the leisure to learn an arbitrary and inefficient system. Such things as the pronunciation and spelling of place names often serve as a marker distinguishing the local population from outsiders. A distinguished American theologian who pulled off a highway to ask directions to Beloit, which he pronounced in the French manner (bell-wah), was quickly informed, once the laughter died down,「Beh-LOIT, buddy. You're in Wisconsin now.」
+霍奇斯的句子有一条不容辩驳的断言，虽然本身无可争议：在他所处的时代，G. H. 哈代是世界上最优秀的数学家之一。还有另一条更有观点的隐含断言：伟大的数学家在其他方面可能相当普通。最后一条不易察觉的断言是：无论对伟大的数学家这些特殊群体而言，还是对整个群体而言，同性恋或无神论者没有什么不正常的。
 
-Accidentals hardly enter into the elements of style at all, but they can cause any amount of mischief unless they are well managed because they indicate the writer's knowledge of etiquette and protocol. The idea that dictionaries and handbooks control these questions is a common misunderstanding. Dictionaries and handbooks try as hard as they can to keep up with the practice of a vaguely defined set of speakers who together determine prevailing limits of taste in such matters. Dictionary editors are in the same position as individuals who do not wish to be conspicuous in the wrong way. But unlike many of these individuals, the editors understand that they are observing a contest in social influence, not recording — much less defining — a correct position.
+哈代是剑桥大学教授纯粹数学的萨德菜里恩（Sadleirian）讲座教授，于自杀未遂之后的那一年（1947）年逝世，享年 70 岁；艾伦·图灵被指控为性罪犯，被判处荷尔蒙「治疗」，于 1954 年自杀，享年 42 岁。在他们生活的时代和地方，人们通常难以将反常的现象联想到杰出人士。
 
-In Lulu in Hollywood, Louise Brooks, who must be the best writer among all the sex symbols of the silent screen, explains that she became painfully aware of her Kansas accent because it made her sound provincial in New York. She encountered a Columbia University student at the soda fountain of a drugstore she frequented and flattered him into becoming her speech teacher. In her own words,
+作为一名反对把同性恋当作疾病的数学家，霍奇斯选取了一些典型案例证明：在图灵生活的年代，英国人的同性恋观以及这些观念给同性恋的生活带来的影响。他的书当然会鼓励对待这种问题的某些态度，也会否定其他态度，但用了古典风格的策略来表明自己的观点。这本书的力量不在于作者公开地论证，而是把呈现本身当作无形的论证。
 
-「Mulk」became「milk,」and「kee-yow」became「cow.」Then:「Not ‘watter' as in ‘hotter' but ‘water' as in ‘daughter.' And it's not ‘hep,' you hayseed — it's ‘help,' ‘help,' ‘help'!」Within a month of fudge sundaes, this boy had picked his way through my vocabulary, eliminating the last trace of my hated Kansas accent. From the start, it had been my intention not to exchange one label for another. I didn't want to speak the affected London stage-English of the high-comedy stars, like Ina Claire and ruth chatterton; I wanted to speak clean, unlabeled English. My soda jerk spoke clean, unlabeled English.
+这种无形的论证，没有试图指出其他观点的不足，也没有为自己的观点据理力争。它几乎只告诉读者往哪看。在这段中，霍奇斯试图让读者处于某种视角中，让读者将「同性恋、无神论者」与「伟大的数学家」融合在一起。有些人听到「同性恋无神论者」可能会感到震惊，怎么都不可能将其和「伟大的数学家」联系起来。但霍奇斯既没有自以为是，也没有高人一等。他说得好像他的读者当然知道，正如他知道一样，一位同性恋无神论者，可以是普通的英国人，也可以是伟大的数学家。
 
-Louise Brooks was no doubt right to think that in New York in the 1920s a femme fatale could not go around saying「kee-yow」instead of「cow,」but consider how wrong she is to think that she had acquired「unlabeled」English. She had merely dropped an unfashionable label for one that was more suitable to the image she sought to project. Even if we leave her native Kansas out of the question, how would her New York soda jerk's「clean, unlabeled English」sound in Baton Rouge, Louisiana? Fort Worth, Texas? Chicago, Illinois? Or even across the bridge in Brooklyn?
+乍看之下，伯纳德·德·茹弗内尔的选段看起来与霍奇斯的选段相似。和霍奇斯一样，茹弗内尔直接断定，而不是事无巨细地逐一论证。
 
-The same social principle applies to many conspicuous aspects of language, none of which determines style. Consider the disappearance of the word「Negro」from contemporary American usage and the currently tenuous position of its successor,「black.」At what point was「Negro」archaic usage and who decided the question? Certainly not American dictionaries. They merely surveyed current usage until they determined that the change had become general. The same phenomenon is going on today with the term「black,」which itself may soon become archaic in general usage to be replaced by either「Afro-American」or「African American.」The competition between these two terms will be decided by how quickly one of them is generally adopted.
+但这些断言呈现的并不是读者理所当然会看到的真相。茹弗内尔的文章虽然没有曲解，但也不像即兴说话。他的断言像一段论证的开头，尽管后面并无论证。这一段话偏离了古典风格典型的场景和角色。这个场景不是同辈的对话，而是教授对大二学生的教海。作者为自己克服困难所得的智慧而自豪，让读者相信他的话，因为他比他们知道得更多，而不是因为他们站在同样的视角可以验证他说的话。他的观点看似有理，表达清楚，但实际上是某种形式的自以为是。它不是古典风格，尽管句子写得不错，也总结了一个漂亮的（不劳而获的）泛论。
 
-All such competitions induce anxiety in many writers and speakers because the「wrong」choice can make a speaker or writer look ridiculous. For this reason there is always a market for self-proclaimed language gurus, and every bookstore has a shelf of etiquette books that pretend all these questions are settled, although inevitably these books often disagree with one another. Publishers and their technical staffs are under no illusions; they know there is no authority outside of the social hierarchy of native speakers and writers. They also know that while accidentals can cause mischief, no degree of mere correctness can possibly constitute a style and too much anxiety about accidentals can compromise one. There were plenty of actresses in the 1920s who never had to substitute「cow」for「kee-yow,」but none of them projected the image that Louise Brooks did. She would have ruined that image, moreover, had she betrayed anxiety about getting it right.
+选段 5-3
 
-Misunderstandings on this subject sometimes extend to people who have exceptional power to influence usage. The New York Times and The Washington Post gave coverage to Thurgood Marshall's decision to use the term「Afro-American」in a written opinion he filed in 1989 as an associate justice of the United States Supreme court.
+真相很少纯粹，也绝不简单。
 
-First the eminent jurist explained his motives:「I spent most of my life fighting to get Negro spelled with a capital N. . . . Then people started saying black and I never liked it.」
+—— 奥斯卡·王尔德，《不可儿戏》4
 
-Then he revealed how greatly he underrated his own authority:「Justice Marshall said he chose Afro-American rather than African American, now gaining currency, because ‘Afro-American is in the dictionary and the other one isn't.'「
+理解一个民族的文化，即在不削弱其特殊性的情况下，昭示出其常态。
 
-Montaigne déjà avait trouvé en sa Gascogne et dans sa tour de Montaigne, un style de génie, mais tout individuel et qui ne tirait pas à conséquence. Pascal a trouvé un style à la fois individuel, de génie, qui a sa marque et que nul ne peut lui prendre, et un style aussi de forme générale, logique et régulière, qui fait loi, et auquel tous peuvent et doivent plus ou moins se rapporter: il a établi la prose française.
+—— 克利福德·格尔茨，《文化的解释》5
 
-[Montaigne already had found in his Gascony and in his tower at Montaigne a style of genius, but a completely individual one that drew no followers. Pascal discovered a style at once individual, marked by genius, completely his own, that no one could take from him, and yet a general style, logical and regular, with the force of law, one that everyone can and should more or less adopt as a standard: he established French prose.]
+为了在社会上获得成功，人们就竭力做出在社会上已经成功的样子。
 
-— Sainte-Beuve, Port-Royal
+—— 拉罗什福科，《道德藏言录》① 6
 
-Classic style, in the hands of its master practitioners, can be distinctive without appearing to be personal. Its implicit claim is that it does not depend upon the writer's personality for its effects. Sainte-Beuve points to this feature of classic style in comparing two great French writers, Montaigne and Pascal.
+毋庸置疑，论证或教导要想同时表现出力量和优雅，大部分取决于它们是否简洁。
 
-It was, of course, the French educational bureaucracy in the nineteenth century that made Pascal's style something like「law」and decided that he had not merely demonstrated the powers of a style but「established French prose.」Still, the apparent paradox — the claim that Pascal's style is individual yet available to everyone and even more or less obligatory — is a consequence of the classic stand on truth, presentation, scene, cast, thought and language. Pascal is a reasonable model for pedagogical purposes precisely because his style is a general one. While no student is likely to achieve Pascal's level of mastery, the great usefulness of his style as a model is precisely that it is possible for almost anyone to achieve a working competence without needing either Pascal's exceptional abilities or his exceptional passion and sense of purpose. What is personal to him lies outside the style, for his principal achievement, on this view, is more in the nature of a discovery about writing than a written expression of his own thought. Classic style disavows superior powers of introspection or exceptional personal insight or exceptional personal commitment; it never abandons the implicit claim to be merely presenting what the reader, once properly situated, can verify. Its seventeenth-century French practitioners employed the style in a variety of literary forms: in personal correspondence, in books of maxims and moral portraits, in at least one notable work of fiction, and in the memoir literature that is a feature of seventeenth-century French prose. The memoirs of both La Rochefoucauld and his rival, the Cardinal de Retz, share all the essential marks of the style. While their observations are unmistakably their own, they never ask the reader to accept what they say on the strength of something that can belong only to them. Like all classic writers, they do all the work, they do it invisibly, and they suggest that, accidents of opportunity aside, the reader could do precisely what they are doing. As one nineteenth-century editor of Retz put it,
+—— 亚历山大·蒲柏，《人论》作者序 7
 
-[L]a langue n'était évidemment pour lui [Retz] qu'un moyen de rendre sa pensée, ou plutôt de présenter habilement, sous un certain jour, les hommes, les événements, et en particulier ses propres actions.
+汉译文选自何怀宏翻译版本，本书其他《道德箴言录》选段均出自该版本。—— 译者注
 
-[Language is evidently for him {Retz} only a way of presenting his thought, or better of ably presenting, on any given day, people, events, and especially his own actions.]
+这里不存在与间接的或复杂的东西相对的直接的或「自然的」东西：在此存在的只是不同的复杂性程度而已。
 
-Dem schreibenden Herzog bietet sich die Erinnerung an Menschen und Auftritte mit so drängender Gewalt und so viel Fülle des Einzelnen, daß seine Feder kaum mit zukommen scheint, und er ist offenbar vollkommen uberzeugt, daß alles, was ihm einfällt, für das Ganze unentberhrlich ist und sich auch ins Ganze einordnen wird, ohne daß er im voraus dafür Sorge tragen muß.
+—— 迈克尔·奥克肖特，《经脸及其模式》① 8
 
-[As Saint-Simon writes, memories of people and scenes come to him so urgently and with such an abundance of details that his pen seems hardly able to keep up with it all; and he is apparently quite convinced that everything that occurs to him is indispensable for the whole and that it will find its proper place there without his having to prepare for it in advance.]
+选段 5-3 中的五个短句，按照年代先后，最早的写于十七世纪，最晚的写于二十世纪。各自所处的文化不同，表达目的不同，甚至连语言也不同，它们出现在完全不同类型的作品中，但有类似的结构特点。每句话都有一个鲜明的观点，精妙而「简单」，一旦说出来，就必然如此。
 
-— Erich Auerbach, Mimesis
+它们有着相同的立场：他们看到的，好像是不经意的发现，只要正确地指出来，读者也会看到。读者非常乐意「验证」每位作者的言论，尽管每种言论是基于普通观察提炼出的新发现。
 
-Je le voyais bec à bec entre deux bougies, n'y ayant du tout que la largeur de la table entre deux. J'ai décrit ailleurs son horrible physionomie. Eperdu tout à coup par l'ouïe et par la vue, je fus saisi, tandis qu'il parlait, de ce que c'était qu'un jésuite, qui, par son néant personnel et avoué, ne pouvait rien espérer pour sa famille, ni, par son état et par ses vœux, pour soi-même, pas même une pomme ni un coup de vin plus que les autres; qui par son âge touchait au moment de rendre compte à Dieu, et qui, de propos délibéré et amené avec grand artifice, allait mettre l'Etat et la religion dans la plus terrible combustion, et ouvrir la persécution la plus affreuse pour des questions qui ne lui faisaient rien, et qui ne touchaient que l'honneur de leur école de Molina. Ses profondeurs, les violences qu'il me montra, tout cela me jeta en un tel (sic) extase, que tout à coup je me pris à lui dire en l'interrompant:「Mon Père, quel âge avez-vous?」Son extrême surprise, car je le regardais de tous mes yeux, qui la virent se peindre sur son visage, rappela mes sens. . . . [I saw him face to face between two candles, having nothing but the width of the table between the two of us. I have elsewhere described his horrible physiognomy. Bewildered suddenly by hearing and sight, I was seized, while he talked, with what a Jesuit was, who, through his personal and avowed nothingness, could hope nothing for his family, nor, through his condition and his vows, for himself, not even an apple or a drink of wine more than the others; who, through his age, was close to the moment of rendering his account to God, and who, of deliberate purpose, and brought about with great artifice, was going to put the State and religion into the most terrible combustion, and inaugurate the most frightful persecution for questions which meant nothing to him and which affected only the honor of their school of Molina. His depths, the violences which he showed me, all this threw me into such an ecstasy that I suddenly found myself saying, interrupting him:「Father, how old are you?」His extreme surprise, for I was looking at him with all my eyes, which saw it painted on his face, called back my senses. . . .]
+王尔德（Wilde）在他最著名的戏剧作品《不可儿戏》（The Importance of Being Earnest）中，充分表明了一种态度，即平实风格概念中的真相根本不对。他取材于平实风格常用的陈词滥调 —— 真相纯粹且简单 —— 并做了提炼。奥克肖特虽然不是用某个现成的陈词滥调，但同样做了概念提炼，将粗略的两极分化改成了由浅及深的程度变化。格尔茨提取了人种论的两种陈词滥调 —— 要彰显就得削弱，要看到常态就得失去特殊性 —— 并改写了它们的条件使其形成一种具体的四方平衡状态。拉罗什福科选择了通常被认为对立的情况 ——「属于什么样的人」对应「努力成为什么样的人」—— 并观察到二者在取得社会上的成功这方面密不可分，表象几乎是一切，以至于认真模仿某种社会状态是达到这种状态的有效方式。蒲柏的写作风格以简洁见长，用简洁证明了这个词自身的含义，他重新思考了「优雅」和「力量」这二者的简单对立，细致地发现二者都源于「简洁」。
 
-— Saint-Simon, as quoted in Erich Auerbach, Mimesis
+格尔茨和蒲柏都没有正面驳斥公认的陈词滥调，但不动声色地否定了没有新意的概念。格尔茨间接反对了彰显一种文化就要让它跟所有其他文化一样的主张。而蒲柏实际上展示了优雅与力量并非相互排斥。每个例子的效果就像下象棋时的精彩一招；它自始至终都在那里，一旦决定，似乎只能这么做，但要一开始就看出来，需要不同寻常的敏锐洞察力。
 
-In Mimesis, the Romance philologist Erich Auerbach offers a series of virtuoso stylistic analyses of the type known as explication de texte. The passages he has selected are arranged in a chronological sequence beginning with Homer and the sacred scripture of ancient Israel and ending with selections from Virginia Woolf and Marcel Proust. In keeping with the subject of his book, whose subtitle in its English translation is「The Representation of Reality in Western Literature,」the sequence of passages he discusses is conceived as an evolutionary progress of representational styles that depend increasingly for their effects on an evident asymmetry between writer and reader in their model cast. Here the classic style of Retz and Pascal is seen as formulaic and superficial compared with the next element of the sequence — the inimitably idiosyncratic performance of Saint-Simon, whose representations of individuals at the court of Louis XIV are incomparable not merely for their individuality and complexity but also for the drama of the writer's performance. Saint-Simon's prose is not a window but something like an acrobat's high wire, a platform for fantastic feats obviously beyond the reader's competence and just barely within the writer's. The writer is not so much competent as he is pushing the limits of his art, his language repeatedly tottering on the edge of syntactic incoherence but frequently achieving striking results that have the air of being part inspired genius, part happy accident.
+① 汉译文选自吴玉军翻译版本。—— 译者注
 
-Auerbach's claims for Saint-Simon are grounded in a conviction that the truth of human existence is very far from clear and simple; it is rather unknown and unknowable to any one individual, but reveals itself in historical processes, the dialectic counterpart of the individual projects that, seen as a sequence, unwittingly and progressively reveal what we know of human truth.
+意像图式
 
-When historical particulars are seen not in the classic perspective as occasions for the revelation of eternal truth but rather in this romantic perspective as moments in the unfolding of a truth progressively revealed in history, classic style of presentation can be compared unfavorably to romantic styles of representation. This is exactly what Auerbach does.
+选段 5-4
 
-His comparison of classic and romantic styles predictably reverses classic values. Its opening note is the preference for inspiration over rational order: the unpredictable insight that occurs in the very act of composition is preferred to the classic pattern of thought preceding speech. For a romantic like Auerbach, deliberate thought as a principle of expression guarantees a superficial and false vision; inspiration in the course of writing is a badge of authenticity and truth:「Everything that occurs to [Saint-Simon] in connection with his subject, he throws into his sentences just as it happens to come to mind, in full confidence that it will somehow fit together in unity and clearness.」For Auerbach, it is not a demerit that Saint-Simon may not see this unity and clearness, that he may merely serve as an inspired conduit to make it available to a future reader.
+你想象你所渴望之物；你寻求你所想象之物；最后，你创造你所寻求之物。
 
-Classic style values the order of rational analysis as being reliable and not idiosyncratic; it distrusts the order of sensation and emotion as being unreliable, idiosyncratic, and often demonstrably wrong. Auerbach inverts this scale of values:
+—— 萧伯钠，《千岁人》，蛇对夏娃说的话 9
 
-Saint-Simon obtains his most profound insights not by rationally analyzing ideas and problems but by an empiricism applied to whatever sensory phenomenon happens to confront him and pursued to the point of penetrating to the existential. In contrast (to mention an obvious example) the Jesuit priest of the first [of Pascal's] Lettres provinciales was quite clearly stylized on the basis of a preceding rational study.
+选段 5-4 的思想有三个层级。它们的图式结构完全相同。每个层级都发生一项活动，这项活动又成为下面一项活动的发端。一个层级对应一句话表达。每句话都沿袭了思想的图式结构，比如「你想象你所渴望之物」这句话。活动两两一组，表达成句子也是两两一组 ——「你想象」和「你渴望」—— 组活动的概念关系反映在一组从句的语言关系中。
 
-This preference for following sensation as it brings unpredictable glimpses of truth is sensible on the romantic view that truth is elusive and never to be seen whole. If truth will not sit still for rational analysis, but comes only in suggestive fragmentary vision, then the writer must always write in fear that at any second whatever fragments of it have come to him will slip away. This intermittent and unpredictable pulse of revelation produces a romantic urgency to capture both the sensation and what it may suggest. This model is unthinkable in classic style, since truth is fully visible to any competent person and cannot slip away. Classic truth can never evaporate. As a result, classic presentation is characterized by calm and ease — a calm and ease that for Auerbach is a hallmark of complacency and self-deception.
+这三个层级并非相互独立，而是按时间顺序排列的：一个层级的末端是下一个层级的开端。这种概念顺序反映在语法结构上：三个句子语法形式相同，呈线性排列；指称一个句子末端的分句，用来指称下一个句子的发端。
 
-[T]he urgency of an inner impulse gives [Saint-Simon's] language something unusual, at times something violent and immoderately expressive, which runs counter to the ease and pleasantness which appealed to the taste of the time.
+萧伯纳的这段话 —— 精准贴合意象图式 —— 正是概念与语言相互匹配的结果，但这种匹配过程没有被展示出来。阅读这些句子犹如观看一位体操冠军表演一套双杠动作。显然，这套体操表演是先前训练的结果，展现给观众的只是成果。
 
-Auerbach conceives of the truth of human nature as consisting of「profondeurs opaques」: perception of truth will necessarily come in exceptional fragments at exceptional moments to exceptional people. It will come when the observer does not expect it. Saint-Simon, for example, in the middle of a conversation with the Jesuit, Père Tellier, is seized, according to Auerbach, by a revelation of「the essential nature of any strictly organized solidaritarian community.」This conception of truth is of course entirely foreign to classic style. On Auerbach's view, it is a sign of integrity for a writer to present fragments of opaque profundities incompletely perceived as they offer themselves to the individual genius. On the classic view, such a presentation can only be definitive proof of failure. In classic style, the expression is a presentation of the result of thought. Writing that does not meet this description is incompetent by classic standards, but superior for Auerbach:
+成果是最完美的呈现。在古典视角中，思想先于语言，语言足以表达思想。任何表达问题都可以在语言中找到合适的解决方案，这种方案一旦找到，看起来理所应当、完美且无以复加。作者知道调整到什么程度才算结束。
 
-The non-fictitious, non-precogitated quality of his material, its being drawn from immediate appearances, gives Saint-Simon a depth of life which even the great decades' most important portrayers of character, Molière for example or La Bruyère, could not achieve.
+古典风格措辞完美被认为是前期思想准确的结果。完成全部分析后古典风格作者精准区分出概念差异并确立准确的概念关系。然后他把这种分析结果表达出来。它在概念上的图式结构体现在语言的图式结构中。这种结果看起来常常像数学公式。
 
-In the classic view, this judgment is simply unintelligible because the evidence offered to support the claim seems to be evidence against it. This judgment has, in the classic view, the same logic as「Guesses are better than accurate knowledge because they are more personal.」
+在古典风格中，分析的目的是找到最高效、最准确的真相。表达因言简意丰而优雅，就像一件调弦完美的弦乐器：每根琴弦拉紧到特定程度，发出特定的音高，这种音高与其他音高构成特定关系。琴弦的音高和音高间的关系在调弦之前就已存在。每根琴弦调试到各自音高后，对照这个早已存在的事实可以判断演奏的效果。乐手调试乐器直到一切都刚刚好才算完成，一旦调到刚刚好的状态，也就没什么要做的了。
 
-Individual genius as Auerbach describes it consists of fragmentary and unpredictable visions. The writer cannot control them. Anything that can be controlled in a rational fashion is superficial artifice, not profound truth. Genius is charismatic — blessed with prophetic, inspirational moments of vision, much as E. B. White was momentarily blessed with a glimpse into the nature of time as he recorded his impressions of the girl riding her horse around the circus ring. Neither Saint-Simon nor E. B. White can count on such revelations. They may never come to these writers again; they may never come to the reader at all. What is virtue for Auerbach is egoistical delusion for classic style.
+同样，在古典视角中，思想先于表达存在，对照早就存在的思想可以判断表达的好坏。作者写句子，知道什么时候刚刚好，之后就没什么要做的了。
 
-Jane Austen's unforgettable presentation of Mr. Collins in Pride and Prejudice — regular and deliberate as it is — will inevitably appear to be on Auerbach's scale of values facile and superficial.
+萧伯纳的句子知道什么时候结束，因为他表达了完整的分析。可以将它和下面一段话对比。这是一位编辑为他服务的一本有影响力的杂志写的，句子虽然结束了，实际却没写完。
 
-Mr. Collins was not a sensible man, and the deficiency of nature had been but little assisted by education or society; the greatest part of his life having been spent under the guidance of an illiterate and miserly father; and though he belonged to one of the universities, he had merely kept the necessary terms, without forming at it any useful acquaintance. The subjection in which his father had brought him up, had given him originally great humility of manner, but it was now a good deal counteracted by the self-conceit of a weak head, living in retirement, and the consequential feelings of early and unexpected prosperity. A fortunate chance had recommended him to Lady Catherine de Bourgh when the living of Hunsford was vacant; and the respect which he felt for her high rank, and his veneration for her as his patroness, mingling with a very good opinion of himself, of his authority as a clergyman, and his rights as a rector, made him altogether a mixture of pride and obsequiousness, self-importance and humility.
+空间形式概念无疑对现代批评极为重要，不仅是文学批译，通常还有美术批评、语言批评和文化批评。事实上，二十世纪自然科学和人文科学从始至终的目标是发现和（或）构建解释具体现象的共时结构模式。10
 
-From the classic perspective, the virtue of Jane Austen's presentation is that once she has shown you where to look, her appraisal of Mr. Collins can be independently「verified」by any reader (just as it is by her characters). Saint-Simon gives a virtuoso presentation of Père Tellier and recounts his insight into the nature of the Jesuits, but while someone else might be able to verify Saint-Simon's presentation of the Jesuit of horrible physiognomy, no one else could follow the route from the physical description of one Jesuit to the revelation of the essential nature of the order. This route from the impression of one individual to a presumed knowledge of a whole community is precisely what Jane Austen means by「prejudice.」Pride and Prejudice turns on the representation of Elizabeth Bennet's repentance for having followed this route to self-deception. What is revelation in Saint-Simon is prejudice in Jane Austen.
+古典风格不是谁的专属风格。作者的地位或身份不会帮助他成为一名古典风格作者，但也不会妨碍他成为一名古典风格作者。一名本科生在讨论伦勃朗（Rembrandt）的画《戴金项链的老者》（Old Man with a Gold Chain）的空间形式时，用古典风格写出了下面这段话：
 
-Mimesis is a fable about the evolutionary history of style in which later steps in the process are necessarily superior to earlier steps. It is possible for Auerbach to see a particular writer such as Saint-Simon as an almost miraculous mutation exhibiting the shape of the future:「In his level of style, Saint-Simon is a precursor of modern and ultra-modern forms of conceiving and representing life.」Truth, for Auerbach, is not the property of an individual, indeed not essentially available to individuals: it resides in dialectical process — the historicist actions of epochs rather than the historical actions of individuals. The value of the individual writer consists in his degree of participation in that dialectical process. The individual genius of a great writer, then, consists in his seeing through immediate persons and events to the truth of the evolutionary historicist progression. Saint-Simon's excellence consists exactly in his being the first to glimpse a higher stage of epochal truth, as Auerbach remarks in his analysis of Saint-Simon's presentation of the duchesse de Lorge:
+伦勃朗画这福画时还是一位非常年轻的小伙子，但这幅画晨示了一位长者的羽见和智慧。这是一福悲楚的画，看着令人痛苦，因为它不单是一张年轻人的画作，也是一种对死亡的表达。11
 
-We must wait until the late nineteenth century and indeed actually until the twentieth, before we again find in European literature a similar level of tone, a synthesis of a human being which is so entirely free from traditional harmonizing, which presses so unswervingly on from the random data of the phenomenon itself to the ultimate depths of existence.
+选段 5-5
 
-On such a view, it is possible for Auerbach to place agency in epochs and their sequence rather than in individuals; to write, for example, of the「ease and pleasantness that appealed to the taste of the time,」as if times have tastes, rather than individuals. In Auerbach's formulation, an earlier taste is necessarily a less adequate taste. Although earlier tastes may survive into the future to be contemporary with later tastes, they will occupy lower levels on the historicist Great Chain of Adequacy. Auerbach implies that, luckily, the taste for ease and pleasantness lies now in our evolutionary past; it is nearly unimaginable for us now — who live higher on the evolutionary scale of style — to understand the tastes that previous styles created.
+......自负，与我们沉溺其中的自信，促使我们引出那些并非直接源于事实的各种结论：结果我们变得有几分爱好自欺。
 
-Since Auerbach's measure of stylistic maturity values writing to the extent that it penetrates through local and individual human purpose to historicist truth, he naturally discounts the individual purposes of writers as impediments to the representation of truth. The more a writer includes and the less he selects according to his own purpose, the more likely it is that his writing will touch upon those truths that are essentially beyond him. The less he allows his writing to be controlled by「precogitated」individual purpose, the more likely it is that truth will work though him as its conduit. The result, in Auerbach, is a principled blindness to the individual purposes of writers he regards as superficial in comparison with Saint-Simon. Pascal's presentation of a Jesuit in the first of the Lettres provinciales, for example, is in the service of classic polemic; Pascal has no need or reason to present a rich and randomly detailed description of an individual Jesuit. But for Auerbach, Pascal's principle of presentation, efficiently governed as it is by his immediate purpose, makes it unlikely that truth, which always lies beyond local purpose, will work through him.
+—— 安托万-洛朗·拉瓦锡，《化学基础论》序言 ① 12
 
-Pascal, like all classic writers, speaks for himself; writers that Auerbach admires hardly speak at all; it is the historical age that speaks through them. The voice of Auerbach's individual genius is not his own; it is the voice of Hegelian historical progress.
+① 汉译文选自任定成翻译版本。—— 译者注
 
-Since Auerbach's history presumes to know and to reveal the one ultimate purpose of writing, it can value one style absolutely above all others. Learned and inclusive as Auerbach is, his history is an ideological justification of the universal superiority of that single style, one that has not yet nor ever will be fully manifest in any text by any writer.
+人从来不像自己想象的那么章福，也并非自已想象的那么不幸。
 
-Classic style, a general style suitable for presenting the truth of anything, conceived as discrete and self-contained, has no continuing evolutionary history. It can be found in its perfect form in Thucydides, in Madame de Sévigné, in Jane Austen, in A. J. Liebling. It is not the style to which all previous writing aspires. Classic style is one style among many mature and consistent styles. Its virtues follow from its particular stand on the elements of style. They include the clarity and simplicity that come from matching language to thought on the motive of truth. Other styles have other virtues.
+—— 拉罗什福科，《道德藏言录》3
+
+因为在我看来，普通人的推理所包含的真理要比读书人的推理所包含的多得多：普通人是对切身的事情进行推理，如果判断错了，它的结果马上就会来惩罚他：读书人是关在书房里对思排的道理进行推理，思辩是不产生任何实效的，仅仅在他身上造成一种后果，就是思辨离常识越远，他由此产生的虚荣心大概就越大…...
+
+—— 勒内·笛卡儿，《谈谈方法》14
+
+…...那种正确判断、辦别真假的能力，也就是我们称为良知或理性的那种东西，本来就是人人均等的：我们的意见之所以有分歧，并不是由于有些人的理性多些，有些人的理性少些，而只是由于我们运用思想的途径不同，所考察的对象不是一回事。因为单有聪明才智是不够的，主要在于正确地运用才智。杰出的人才固然能够做出最大的好事，也同样可以做出最大的坏事：行动十分缓慢的人只要始终循着正道前进，就可以比离开正道飞奔的人走在前面很多。
+
+—— 勒内·笛卡儿，《谈谈方法》5
+
+将这些古典风格的法语文段 —— 来自化学、哲学和人类行为观察领域一放在一起看，表达的意思很明显。尽管每个人都有理性，但每个人的理性都会因为自我欺骗和个人利益而受到损害。古典思想在于通过自律避免这些弱点，同时还要避免为此沾沾自喜。这当然不可能。
+
+选段 5-6
+
+自我，不可能逃脱，但可以，通过才智和努力，转移对它的注意力。
+
+—— 唐纳德·巴塞尔姆，《杜米埃》16
+
+古典风格表达某种完整的性情只用了一句话。不喜欢这种风格的人，认为这种特点狭隘且千篇一律，容易落入俗套或自嘲中；而欣赏这种风格的人，认为它的格言特点与其所表达的思想一致，像某种完整统一的东西。巴塞尔姆的句子不仅是一种陈述或一种观察，还是一种生活态度的表达。它就像一种表达性情的自传的缩影。它的主题对表达的性情很重要 —— 自我，在文中被当作某种笼子。关在笼子里的人自然想出去，但第一个分句明确告诉我们，逃离是不可能的。有意思的是，这种情境引发的不是绝望，也不是被动，而是行动。因为。「通过才智和努力」，自我的受害者，即使无法实现理想目标，也可以实现最迫切的实际目标。这是一个相当惨淡的世界，但正是这个世界，给了你一个意外的理由去重视才智和努力。
+
+这种性情与杰弗逊或笛卡儿表现出来的性情不一样，他们都不是从人类基本潜力的局限开始的。然而，在十七世纪一些著名的法国古典作家中，也可以发现像巴塞尔姆这样退而求其次（resignation）的性情。比如拉罗什福科，他认为人类的基本潜力存在根本的局限性：人不可能没有自知之明，而对他人的认识，如果正确，揭示出来的总是为已谋私的品性。拉罗什福科的箴言「人从来不像自己想象的那么幸福，也并非自己想象的那么不幸」（Onn'est jamais si heureux ni si malheureux quon s'imagine）表达的性情是：面对人类潜力不可改变的局限，我们只能听之任之。
+
+巴塞尔姆的思想整体上是一种向目标运动的图式结构，有两次冲动：先前往理想目标但没成功 —— 标志着不可能实现 —— 再换成前往替代目标。第一次冲动是欲望，第二次冲动是接受。第二次冲动到达预期目标之前被中断，没想到这个可实现的次级目标要求的条件也相当因难。
+
+这句话模仿了它要表达的思想的图式结构：它直接前往的目标（逃脱）被否定了，又从这个被否定的目标前往有可能到达的目标（转移注意力）。根据语法规则，「can be」（可以）后面应该紧邻过去分词「be distracted」（转移对它的注意力）。
+
+但是这句话在语法上用了意想不到的迂回，在过去分词前面插了一个插入语。这种语法迂回创造了一种转移注意力的效果，这正是句子末尾所指的目标。
+
+把插入语「通过才智和努力」（with ingenuity and hard work）插到最后一个动词短语「可以转移（对它的）注意力」（can be distracted）之中，破坏了基础句子的对称性：「自我不可能逃脱，但可以转移对它的注意力（Th self cannot be escaped, but it can be distracted）。」这个细微变化暗示逃避的幻象和转移注意力的辛苦这两者截然不同。逃脱，因为不可能做到，没有附属条件。转移注意力，属于不同类型的事物，不像幻想那样渴望，也不像幻想那样简单。
+
+在古典风格看来，真相的结构是它的意义的一部分，而且很可能在它的表达中沿袭下来。这种沿袭为表达结构赋予了意义一两个语法对等的表达，包含的意思不同。我们看看下面的两种表达。
+
+自我不可能逃脱，但可以，通过才智和努力，转移对它的注意力。
+
+[The self cannot be escaped, but it can be, with ingenuity and hard work, distracted.]
+
+自我不可能逃脱，但通过才智和务力，可以转移对它的注意力。
+
+[The self cannot be escaped, but with ingenuity and hard work it can be distracted.]
+
+第一种表达的图示结构：前往目标时有脱轨、延误、干扰和辛苦。它从它要表达的思想中沿袭了这种结构。第二种表达没有这样的图式结构。两种表达的差异微乎其微，但不可忽视。
+
+古典风格非常注重细节，因此对表达的图式结构很用心。古典风格认为，细微差异不是随意为之，也不是为了装饰；它就是意义本身。只有严格要求和精益求精，才能看出细微差异，稍有马虎就很难注意到。细微差异是古典风格的精髓。不论多么细微，这些细节的意义是绝对的。两件看似几乎一样的东西，实际上不同，而古典风格专门用来呈现这些细致敏锐的差别。
+
+古典表达呈现最简单、准确的分析结果。前提是分析已经完成，它只需用最简单准确的形式表达结果。思想会找到确切的差异、确切的关系、确切的事物和形式，表达只用把这系列的分析呈现出来。表达如真相一样清晰简单，但不能更清晰、更简单了。巴塞尔姆的句子是古典风格，在于它表达了精准的分析。句子清晰简单，却也呈现出了想要传达的思想中必不可少的细微差异。
+
+不露声色
+
+选段 5-7
+
+他们槽践了你，你的爸妈。也许不是有意，但事实如此。
+
+—— 菲利普·拉金，《高窗》① 17
+
+① 此处参考舒丹丹的翻译，根据本书作者讨论的用词差异调整了「fuck」和「mum and dad」的翻译。原翻译为：他们搞槽了你，你妈咪和爹地。也许不是有意，但事实如此。—— 译者注
+
+
+
+
+
+
+
+这两句话在这里排列成散文，是一首十二行诗的前两行。虽然拉金使用了传统诗歌的韵律和节奏，但他赋予了他的诗歌说话的声音 —— 随意、即兴、对话感。他最好的诗歌不仅向古典风格散文看齐，而且具备了古典散文的条件。
+
+他的第一句话，「他们槽践了你，你的爸妈」听起来像是一边对话一边观察；这些词似乎与它们要表达的思想一样平淡无奇，它们说的是陈词滥调，但有一种不经意的新颖。这种观察萃取了大量个人经验历史，而不是抽取其中一个案例。读者可以直接参照自己的经验验证真相。
+
+他的第二句话，「也许不是有意，但事实如此」，听起来像是补充的想法。实际上，这是作者无形中做好了所有工作。不像拉罗什福科、萧伯纳或王尔德这些古典作家，拉金故意避免显露自己的才华，而是尽可能地隐藏他的才能和努力 —— 如果读得不仔细，就可能认识不到。但这些词句是作者做了很多无形工作之后精心呈现出来的。试试别的表达比如，「你的爸妈槽践了你，即使他们不是有意」—— 可以看到本来犀利的短句变得多么平淡无奇。
+
+如果细细体味拉金的用词，我们可以看出来这段话虽然表面上很随意，但实际上有多么细致和考究。稍想一想就能发现，「你的爸妈」（your mum and dad）和「你的父亲母亲」（your mother and father）、「你的爸爸妈妈」（your mommy and daddy）或「你的爸妈」（your dad and mum）是不一样的效果。「爸妈」是对父母的常见称呼，因为对他们的孩子来说，他们充当着特定的角色。母语为英语的人，尤其是说英式英语的人，确切地知道什么时候什么场景用这个称呼，但这个称呼有大量的变体。拉金在文中称呼父母的词非常完美，因为父母正是以「你的爸妈」身份「槽践了你」。拉金的语言用了一个完美的词汇萃取出这种极其复杂却又寻常的经历 —— 父母也不是不称职，但常常不出所料不可避免地让孩子变得更槽。「也许不是有意，但事实如此」。
+
+脏话几乎不会出现在古典文章中，恰恰因为说脏话的事由通常不是古典风格。它很少能正确地呈现，反而常常让观察更模糊不清。不正式的「爸妈」和粗俗的「糟践了你」，在这段话中特别贴合主题。表达本身虽然显得很普通，用词低调，但令人难忘，且不容置疑，由文化孕育，自然也能由文化证实。
+
+选段 5-8
+
+西奥多·德莱塞的小说，马克思主义的政治修辞，新泽西州北部的景观，机场的纪念品商店 —— 这些都有一种丑陋的特质，虽然能很快融入自身，细节也各不相同，但必然会没完没了地持续下去。
+
+—— 罗伯特·马丁·亚当斯，《说人坏话》18
+
+谢弗勒兹夫人光芒四射，集智慧、抱负和美丽于一身：地风情万千、活波大胆、勇于开拓：地动用她全部的魅力，争取把事情办成功，在这过程中她几乎总是给那些地碰到的人带来灾难。
+
+—— 拉罗什福科，《回忆录》19
+
+当拉罗什福科写谢弗勒滋夫人时，西奥多·德菜塞还没有写小说，马克思主义改治修辞还未出现，新泽西州北部的景观还未被英国教授开发出来，机场里还没有纪念品商店，也不存在机场。他和罗伯特·马丁·亚当斯各自受某种知识环境影响，但他们生活的社会不同，谈论的事情不同。尽管如此，他们的观察有很多共同的地方 —— 如果我们不考虑他们说的内容只看他们怎么组织语言。
+
+他们每个人都在精心盘算着一个点，从一开始就已经知道这个点，但为了水到渠成地达到它最大的效果，一直在做预备和准备工作。因为对自己谈论的话题有丰富的经验，他们每个人都表现出一副自信十足的姿态。他的判断无可辩驳，那些忍不住质疑的念头通常都会被打消，因为他们不会因言过其实而显得焦虑不安。亚当斯表示他不仅熟悉这种丑质，还熟悉其他种类的丑陋时，消除了读者的疑患。就好像不存在这些事物是否丑陋的疑问：他只关心他对它们的丑陋类别是否归属正确。
+
+从拉罗什福科的话中我们可以看出，他认识很多女性，其中一些人很有魅力，另一些人很有才华或很有抱负，但是没有一个人像谢弗勒兹夫人那样。拉罗什福科和亚当斯都是从一个安全的话题讲起。亚当斯描绘的永恒无望的丑陋没有威胁到他自己；拉罗什福科也不会参与到谢弗勒兹夫人的任何项目当中。他们的安全处境，表明他们没有迫切的利益企图，没有急于让读者相信他们所说的话，这种隐含的主张，也体现在句子本身的结构和语气当中。
+
+亚当斯的句子有一种沉思的语气，当然他并非不加选择地写下任何类型的丑陋。拉罗什福科也不急于否定谢弗勒兹夫人；他的描述中有一种欣赏和公正的语气。虽然事实证明接触这个女人很危险，但是这丝毫不减她的魅力，这些魅力不仅丰富多彩，而且很少在同一个人身上出现。想想看，如果拉罗什福科这样写，效果会有多不同：「尽管谢弗勒兹夫人美丽、聪慧…...」。
+
+这些句子没有表达任何疑问，做出的肯定且不加掩饰的判断可能会引起读者质疑，但他们平静而沉着的判断和对细微差异的表达，打消了读者质疑的念头。这种差异不是随意写的；它们是作者思考、观察和验证的结果 —— 像某种调查研究。但这种努力不会反映在表达上；就连写作本身也要听起来很容易。两位作者都没有暗示，他们要设想某些方式消除读者质疑的冲动，虽然他们已经预想过问题，也想出了应对之策。
+
+虽然都仔细斟酌过每个单词的用法和位置，但写完的句子像是即兴的说话。细细思考才会意识到，要即兴说出这么复杂又完美的句子是多么难（两个句子不论怎么改只会改得更差）。两位作家都不想让人察觉到他们付出的努力。这就是为什么要煞费苦心才能让写作看起来跟说话一样：因为写作意味着努力和刻意，有说服力的写作意味着策路。让写作模仿讲话需要做很多努力，出口成章、恰到好处且听起来事实就是如此，可以发生在对话中一常常是正题之前已经说了很多不妥帖的话，大家忘了而已。
+
+因为所有这些共有的特征，所以这些句子在风格上看起来很相似，尽管它们说的不是同一个主题，甚至用的不是同一种语言。
+
+选段 5-9
+
+一座棚栩如生的休伊·朗英雄雕像立在美国国会大厦墓地上方的高座上。他不拘、庞大、年轻的脸庞面向一座大楼，共三十四层，是他花了一年多一点的时间建成的，大部分是联邦政府授入的资金。那件青铜双排扣央克，紧紧地裹住他隆起的肚皮，有着那个时代着装的尊严，像穿着林肯的双排扣长礼服大衣。黄铜雕像的休伊，看起来跟什维尔和纳什维尔、南本德和托皮卡的滑稽佬一样，他们喜欢出没在二十年代术三十年代初一些非法经营的昂贵酒馆里。他看上去像一个边打高尔夫边说黄段子的男人，渴望每个遇到的人的夸赞。看到他立在那里，让我感到悲伤，感到自己老了。他的脚下有一座大理石做的飞马浮雕，刻有一行字，「分享我们的财富」。那是休伊·朗的一句口号，另外一句是「人人都是国王」。
+
+—— A. J. 李伯龄，《路易斯安那公爵》20
+
+在这最后一章，我想观察和追溯美国非洲主义的演变史：从它简单但令人生畏的目的即建立等级差异开始，到它失去这种差异后自我反思的替代性能，再到它在恐惧和欲望的修辞中欣欣向荣的存在。
+
+—— 托妮·莫里森，《在黑暗中游戏：白人性与文学想象》21
+
+克里斯托弗·莱曼-豪普特（Christopher Lehmann-Haupt）在《纽约时报》中评论托妮·莫里森《在黑暗中游戏》和她的小说《爵士乐》时，引用了这句话说明她的文章风格，并把这篇的风格与他称为莫里森的小说之诗进行了对比。他不认同「她用来表达她的观点的风格」22 这句话。他有一个默认的、传统的假设，几乎是新闻界通行的做法，即风格与思想完全分离。所以莫里森应该以更容易理解的方式呈现她的想法。正是基于这一假设，许多修改文章的做法都是最后抖一抖文章的表面，以为可以把污点和瑕疵抖落干净。
+
+莫里森的句子难以理解，不在于它的表面，而在于它的思想。句子的意象图式结构 —— 沿着一条路径从一个位置移向另一个位置的空间移动 —— 是基本的古典特征。下面这句一看就懂的话就是根据那种意象图式写出来的：
+
+我想观察和追溯基督教的历史，看它是怎么从犹太教的异端，发展成为古罗马帝国的国教，再演变成中世纪欧洲的主流宗教的。
+
+这个意象图式融合了一个基本隐喻：思想、信仰和制度 —— 都不是实物，也不能移动 —— 但可以通过隐喻将它理解为可移动的实物。不同国家是比喻意义上的不同位置；演变过程是从一个位置移向另一个位置的隐喻。人们可以「追溯」某观念、信念或制度的历史 —— 从视觉上的「追踪」其历史时期的「运动」所「沿循」的「路径」。莫里森的句子和这个描述基督教的句子，同样是建立在隐喻和意象图式相结合的基础上的。但是这句描述基督教的话一读就懂，而莫里森的句子令人相当费解。两者的差异体现在对主题的构想上。
+
+无论具体的主题还是抽象的主题，在古典风格中都会被构想为大家能看到的「事物」，各个层面都清晰明了 —— 从结构到细节。任何有能力的观察者看到后，都会承认这种文化「事物」。它的存在独立于作者的构想，当然也独立于作者的文章。二个主题，通过这种方式被构想为「事物」，既契合空间运动的意象图式，也契合将变化比作空间位移的隐喻。
+
+即使读者无法准确描述基督教，甚至也许只能勉强将它与佛教区分开来，但《纽约时报》的大多数读者都会承认 —— 当然也包括克里斯托弗·菜曼-豪普特 —— 人们可以观察基督教，就像可以观察巴吞鲁日国会大厦里的休伊·明的雕像一样。和基督教不一样，「美国非洲主义」因为自身的抽象而吸引注意力，正是因为它没有一个普遍认可的边界 —— 无论一个概念多么不确定都需要这样的边界，有了边界，才能从只有特殊读者理解的特殊观念变为日常谈论的通俗观念，在修辞目的上和可追溯轨迹的行星一样没有区别。
+
+美国非洲主义历史的三个阶段同样很准理解，所有这些都是陌生的抽象概念，在当代美国文化中还未得到普及。「中世纪欧洲」也是一个抽象的概念，但大家基本都知道；即使《纽约时报》的读者对中世纪欧洲完全没有概念，他们也可以认为这种抽象概念是确定且合理的，因为这类读者相信他可以自己查到。「恐惧和欲望的修辞」还没有这种普及程度，所以，美国非洲主义在恐惧和欲望的修辞中欣欣向荣的存在不能理所当然地被接受。
+
+莫里森的描述难以理解并不是因为偶然因素，不是换「另一种语言风格」即更容易理解的语言就能被理解了。她谈论的是一些还没有普及的特殊概念，这些概念无法独立于她的思想而存在。因此，在这段话中，作者和读者之间的不对等关系说明她的风格不是古典风格。假如一位作者是以古典风格呈现这样一个主题，要想追溯它的运动轨迹，就得先分析出美国非洲主义这个事实的具体细节，让读者能当作一件他可以体验的「事物」来理解。要用读者不易察觉的方式把实际的说服场景换成典型场景，而古典风格作者还得说服他的读者相信，他可以用理解金星的方式理解美国非洲主义，像一个天文学家追溯金星轨迹一样追溯美国非洲主义的发展路径。主题的抽象性质并不妨碍作者构建这样一个概念：像夏斯岱尔记录文化历史一样，像弗里德伦德尔鉴赏古画一样，像多德翻译新约一样，像费曼研究数学物理一样，像拉法耶特夫人观察情感一样，像塞维涅夫人观察社会一样，呈现最抽象的领域里最抽象的事物，就好像在谈论雕像、草莓或昏星一样。
+
+第一眼就能看出来，李伯龄描述休伊·朗的雕像的话可能与托妮·莫里森的那段话没有任何共同之处。莫里森谈的是抽象的文化现象和它的发展顺序；李伯龄谈的是任何人站在休伊·朗的坟墓前都能看到的静态雕像。把两段话放在一起，看起来好像验证了众多写作指南的建议：「要表现具体，避免抽象」。当然，无论思维还是写作都无法避免使用抽象事物，所以像大多数毫无针对性的建议一样，「要表现具体，避免抽象」这条准则很难用于实践。不过这条准则与风格上的合理观察至少有那么一点点关系，就像「你无法确定任何事情」这句话与海森堡的不确定性原理的关系。
+
+李伯龄描述的休伊·朗的雕像，依据的是二十世纪二三十年代的美国文化，这种文化概念跟莫里森笔下的文章一样抽象，至少对李伯龄来说是个人想法，就像莫里森说的美国非洲主义运动对她来说也是个人想法。两者在风格上的差异体现在他们阐述抽象概念的方式上。莫里森说的美国非洲主义很难代入进去，因为莫里森没有把她描述的主题当作一种任何人都可以验证的「事物」。因此，她的概念的抽象性质更为突出，她留给读者的选择是，要么认同她说的或她思考的，要么多多少少都会觉得这是一种个人的随意视角。
+
+李伯龄展示了古典风格的一种典型过渡方式，从任何人都可以自己看得到的事物 —— 雕像 —— 到基于抽象文化和道德观念的个人解读。他从没说任何其他人都能看到他这座雕像的文化环境；他把那种环境当作一种理所当然的实物，暗示任何人只要在现场都能描述出最细微的细节。所以仔细分析后才会意识到，虽然任何人都能验证雕像的存在与卷轴上刻的字（分享我们的财富），但如果读者不是把李伯龄的思考当成一种事物，就不会理解他从描述雕像自然过渡到描述卷轴的解读方式。李伯龄知道，要获得认同就得说服读者，但他从未明确承认有说服读者的必要。相反，他解决这个问题用的是一种巧妙的并置和不言自明的保证：他所说的一切（不论是事实还是观点），跟他眼前的事物一样可信 —— 排除偶然的空间因素和时间因素 —— 你也可以在眼前看到。看看「分享我们的财富」与「每个人都是国王」的对比，第一句是刻在卷轴上的口号，而第二句是李伯龄引用的休伊·朗的另一句口号。休伊·朗的墓地上看不到第二句口号，但它是休伊·朗最著名的句子之一。任何人只要查阅相关资料，都能印证李伯龄说的话。把作者的解读当作一种可以通过相关出处验证的事物，只是一个隐形的步骤；不让读者察觉到这段话的相关出处源于作者的想象，是一种古典风格技巧。
