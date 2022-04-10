@@ -4,7 +4,7 @@
 
 ### 2.1 直线
 
-### 2.1.1 说明
+#### 2.1.1 说明
 
 本节程序运行的结果是在 AutoCAD2008 中，创建两条相互垂直的直线。
 
@@ -12,129 +12,58 @@
 
 本书所使用的 C# 编程语言，涉及面向对象编程的概念。如果你第一次接触面向对象的编程，则建议可先阅读下面的 MSDN 文档：
 
-http://msdn.microsoft.com/zh-cn/library/dd460654.aspx
+[C# 文档 - 入门、教程、参考。 | Microsoft Docs](https://docs.microsoft.com/zh-cn/dotnet/csharp/)
 
-2.1.2 思路
+#### 2.1.2 思路
 
 首先，我们要知道。NET 的操作机理是完全不同于 VBA 的，和传统的 ObjectARX 很相似。在写程序之前，大家必须知道以下关于 AutoCAD 数据库的基础知识：
 
-》表。表是数据库的组成单位，一个数据库至少包含 9 个符号表（块表、层表、文字样
+1、表。表是数据库的组成单位，一个数据库至少包含 9 个符号表（块表、层表、文字样式表、线型表、视图表、UCS 表、视口表、注册应用程序表、标注样式表）。
 
-式表、线型表、视图表、UCS 表、视口表、注册应用程序表、标注样式表）。》记录。记录是表的组成单位，一个表可能包含多条记录，也可能不包含任何记录。图 2.1 用来描述 AutoCAD 数据库的基本结构再好不过。实体包含在块表记录中，要创建一个图形对象，需要遵循下面的基本步骤：
+2、记录。记录是表的组成单位，一个表可能包含多条记录，也可能不包含任何记录。图 2.1 用来描述 AutoCAD 数据库的基本结构再好不过。实体包含在块表记录中，要创建一个图形对象，需要遵循下面的基本步骤：
 
-(1) 得到创建对象的图形数据库。
+1）得到创建对象的图形数据库。
 
+2）在内存中创建实体类的一个对象。
 
+3）打开图形数据库的块表。
 
-(2) 在内存中创建实体类的一个对象。（3) 打开图形数据库的块表。
+4）打开一个存储实体的块表记录（通常绘图都在模型空间进行），所有模型空间的实体都存储在块表的「模型空间」记录中。
 
-(4) 打开一个存储实体的块表记录（通常绘图都在模型空间进行），所有模型空间的实体都存储在块表的「模型空间」记录中。
-
-(5) 将该对象添加到块表记录中。
-
-图形数据库
-
-命名对象字典
-
-对象
-
-层表块表
-
-其他符号表
-
-层表记录块表记录符号表记录
-
-实体
+5）将该对象添加到块表记录中。
 
 图 2.1 图形数据库的结构
 
-2.1.3 步骤
+#### 2.1.3 步骤
 
-1. 注册 AutoCAD 命令
+1、注册 AutoCAD 命令。
 
-(1) 用第 1 章所学习的方法，新建一个类库项目 Lines，将其解决方案名修改为 Chap02, 添加对 acbdmgd. .dll 和 acmgd. Dll 的引用，将二者的「复制本地」属性改为 False，将 Class1 类更名为 Lines.
+(1) 用第 1 章所学习的方法，新建一个类库项目 Lines，将其解决方案名修改为 Chap02，添加对 acbdmgd.dll 和 acmgd.dll 的引用，将二者的「复制本地」属性改为 False，将 Class1 类更名为 Lines。
 
-(2) 在 Lines 类中注册一个名为「FirstLine」的命令。在语句 public class Lines 下的大括
+2）在 Lines 类中注册一个名为「FirstLine」的命令。在语句 public class Lines 下的大括号内输入：
 
-号内输入：
+在输入 CommandMethod 后你会注意到其下方出现红色的波浪线，把鼠标移动到 CommandMethod 上后系统会弹出一行「未找到类型或命名空间的」的提示文本，如图 2.2(a) 所示。通过第 1 章的学习，我们知道应该为 CommandMethod 属性添加相应的命名空间，即在文件的开头加入如下语句：
 
-[CommandMethod ("FirstLine ")
+```cs
+using Autodesk.AutoCAD. Runtime;
+```
 
-public static void FirstLine (
-
-在输入 CommandMethod 后你会注意到其下方出现红色的波浪线，把鼠标移动到 CommandMethod 上后系统会弹出一行「未找到类型或命名空间的」的提示文本，如图 2.2 (a）所示。通过第 1 章的学习，我们知道应该为 CommandMethod 属性添加相应的命名空间，即在文件的开头加入如下语句：
-
-using Autodesk. AutoCAD. Runtime;
-
-你当然可以手动添加上面的语句，但通过 Visual Studio2010, 可以自动为程序添加相应
-
-的命名空间。只要单击 CommandMethod，当出现，图标后单击其右边的下拉按钮，如图
-
-2.2 (b）所示，在弹出的菜单中选择最上部的 usig 语句，这样对应的命名空间就被自动添加到文件的开头。
-
-public class Class1
-
-public class Class1
-
-[CommandMethod（「AddLines「）】【CommandMethod（「AddLines「）]
-
-未能找到类型或命名空间名称「Comm and 训 ethod」「（是否缺少 using 指令或程序集引用？）
-
-电
-
-using Autodesk. AutoCAD. Runtime:
-
-Autodesk. AutoCAD. Runtime. CommandMethod
-
-为「Comm and 训 ethod'」生成类（C)
-
-生成新类型红）。，
-
-(a) (b)
+你当然可以手动添加上面的语句，但通过 Visual Studio 2010，可以自动为程序添加相应的命名空间。只要单击 CommandMethod，当出现，图标后单击其右边的下拉按钮，如图 2.2(b) 所示，在弹出的菜单中选择最上部的 using 语句，这样对应的命名空间就被自动添加到文件的开头。
 
 图 2.2 自动添加命名空间
 
-2. 绘制直线
+2、绘制直线。
 
 编写绘制直线的实现代码。最后 FirstLine 命令完整的代码如下：
 
-[CommandMethod ("FirstLine")]
+上面代码中的 Database 类属于 Autodesk.AutoCAD.DatabaseServices 命名空间，Point3d 类属于 Autodesk.AutoCAD.Geometry 命名空间，你需要在 Lines 类的开头导入这两个命名空间。
 
-public static void FirstLine ()
+现在，让我们根据本节开始所讲的创建图形对象的步骤来对上面的代码进行分析。
 
-// 获取当前活动图形数据库
 
-Database db=HostApplicationServices. WorkingDatabase;
 
-Point3 d startPoint=new Point3d (0,100,0); // 直线起点
 
-Point3 d endpoint=new Point.3d (100,100,0); // 直线终点
-
-Line line=new Line (startPoint, endPoint); // 新建一直线对象
-
-// 定义一个指向当前数据库的事务处理，以添加直线
-
-using (Transaction trans=db. TransactionManager. StartTransaction ())
-
-BlockTable bt= (BlockTable) trans. Getobject (
-
-db. BlockTableId, OpenMode. ForRead); // 以读方式打开块表
-
-// 以写方式打开模型空间块表记录
-
-BlockTableRecord btr= (BlockTableRecord) trans. Getobject
-
-bt [BlockTableRecord. ModelSpace], OpenMode. ForWrite);
-
-// 将图形对象的信息添加到块表记录中，并返回 ObjectId 对象
-
-btr. AppendEntity (line);
-
-trans. AddNewlyCreatedDBObject (line, true); // 把对象添加到事务处理中 trans. Commit (); // 提交事务处理
-
-上面代码中的 Database 类属于 Autodesk. AutoCAD. DatabaseServices 命名空间，Point3d 类属于 Autodesk. AutoCAD. Geometry 命名空间，你需要在 Lines 类的开头导入这两个命名空间。
-
-现在，让我们根据本节开始所讲的创建图形对象的步骤来对上面的代码进行分析。（1) 获取创建对象的图形数据库。
+1）获取创建对象的图形数据库。
 
 有两种方法获取图形数据库，一种是直接通过 HostApplicationServices 类的 WorkingDatabase 属性获取，代码如下：
 
