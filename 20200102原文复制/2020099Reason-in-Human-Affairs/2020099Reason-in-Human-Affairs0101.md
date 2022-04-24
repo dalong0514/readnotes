@@ -409,8 +409,6 @@ What can vve say for and about this behavioral version, this bounded rationality
 
 Consequences ofBounded Rationality
 
-.
-
 Rationality of the sort described by the behavioral model doesn't optimize, of course. Nor does it even guarantee that our decisions will be consistent. As a matter of fact, it is very easy to show that choices made by an organism having these characteristics will often depend on the order in which alternatives are presented. If A is presented before B, A may seem desirable or at least satisfactory~ but ifB is presented before A, B will seem desirable and w1ll be chosen before A is even considered.
 
 The behavioral model gives up many of the beautiful formal properties of the Olympian model, b~t in re~rn for giving them up it provides a way of looking at ratl~nality that explains how creatures with our mental capacities or even, with our mental capacities supplemented with all the computers in Silicon Valley-get along in a world that is much too complicated to be understood from the Olympian viewpoint of SEU theory.
@@ -488,8 +486,6 @@ I should say here that I have heard physicists argue for a strong infusion of ho
 But let me go to a domain \Vhere the point can be made more unequivocally and convincingly. Perhaps some of you are familiar with Arthur Koestler's Darkness at Noon. It is a novel that describes what happens to a particular person at the time of the Russian purge trials of the 1930's. Now suppose you wish to understand the history of the Western world between the two world wars, and the events that led up to our contemporary world. You will then certainly need to understand the purge trials. Are you more likely to gain such an understanding by reading Darkness at Noon, or by reading a history book that deals with the trials, or by searching out the published transcripts of the trial testimony in the library? I would vote for Koestler's book as the best route, precisely because of the intense emotions it evokes in most readers.
 
 I could go down a long list of such alternatives: War and Peace versus a treatise on military sociology, Proust and Chekov versus a textbook on personality. If I were in a position ·where I had to defend the role of the humanities in education, to provide an argument for something like the traditional liberal arts curriculum of the earlv twen, tieth century, I would argue for them on the grounds that most human beings are able to attend to issues longer, to think harder about them, to receive deeper impressions that last longer, if information is presented in a context of emotion- a sort of hot dressing than if it is presented whollv without affect.
-
-J
 
 But educating with the help of hot cognition also implies a responsibility. If we are to learn our social science from novelists, then the novelists have to get it right. The scientific content must be valid. Freudian theory permeates a great deal of literature today-at the very time when Freudian theories are being revised radically by new psychological kno\vledge. There are few orthodox Freudians
 
