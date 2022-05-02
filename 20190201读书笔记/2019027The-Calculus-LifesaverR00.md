@@ -48,7 +48,7 @@ There's also the useful notation (a, ∞) for all the numbers greater than a not
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 数据信息卡 —— 
+### 0501. 数据信息卡 ——3 种常见去定义域的条件
 
 信息源自「2019027The-Calculus-Lifesaver0101.md」
 
