@@ -226,7 +226,7 @@ While acknowledging the power of learning from experience and the extensive use 
 
 组织在适应环境的过程中会遭受失败（表面上的失败，不一定是真正的失败），这样的案例比比皆是、有据可考。组织研究有个十分常见的主题：为什么给某公司带来成功的做法被搬到其他公司后并不一定带来成功？战场之中，扑朔迷离之事时有发生，类似的，组织之中，「事后诸葛亮」现象屡见不鲜。美国的钢铁业和汽车业在 20 世纪上半叶非常成功，下半叶却逐渐衰败。公立学校制度，以前是美国人的骄傲，让其他国家羡慕，现在却让美国人觉得尴尬。进入 21 世纪，美国开始丧失霸主地位，但是美国的政治制度很难随之做出调整。
 
-本书承认从经验中学习具有威力，也承认很多组织和个人根据经验适应环境、建构历史故事和模型，不过本书打算专门考察从经验中学习存在哪些问题。本书的论点是，个人和组织尽管渴望从经验中获取智慧，但是在这种渴望之下从经验当中做出的推断往往具有误导性。问题部分在于人类在做推断的过程中容易出现错误（这些错误一般是可以纠正的），但是更多在于经验自身的性质（March 2008，第 5 章）。结果，与大多数探讨体验式学习的书和文章不同，本书不是那么看好体验式学习的潜力（Kolb 1984；Sternberg and Wagner 1986；Kayes 2002）。本书打算指出经验特有的一些模糊性和体验式学习容易出现的一些错误。
+本书承认从经验中学习具有威力，也承认很多组织和个人根据经验适应环境、建构历史故事和模型，不过本书打算专门考察从经验中学习存在哪些问题。本书的论点是，个人和组织尽管渴望从经验中获取智慧，但是在这种渴望之下从经验当中做出的推断往往具有误导性。问题部分在于人类在做推断的过程中容易出现错误（这些错误一般是可以纠正的），但是更多在于经验自身的性质（March 2008，第 5 章）。结果，与大多数探讨体验式学习的书和文章不同，本书不是那么看好体验式学习的潜力（Kolb 1984; Sternberg and Wagner 1986; Kayes 2002）。本书打算指出经验特有的一些模糊性和体验式学习容易出现的一些错误。
 
 ### 1.1 Prolegomenon
 
@@ -264,11 +264,11 @@ Third, the environment of organizations consists, in part, in other adapting org
 
 另外，组织适应有三大关键特征对透彻理解至关重要，但是本书没有考虑这三大关键特征。
 
-第一，组织内部存在利益冲突（March 1988，第 5 章；Hoffman 1999；Rao，Morrill，and Zald 2000）。这一点，让忽略利益冲突的组织适应理论出了名地不完善，特别是，让成败判定、信息汇集变得非常复杂（Cyert and March 1963；Augier and March 2001）。利益冲突是所有组织的显著特征，不仅影响对智慧的追求，而且影响对智慧的定义（Greenwood，Suddaby，and Hinings 2002；Olsen 2009）。
+第一，组织内部存在利益冲突（March 1988，第 5 章；Hoffman 1999；Rao，Morrill，and Zald 2000）。这一点，让忽略利益冲突的组织适应理论出了名地不完善，特别是，让成败判定、信息汇集变得非常复杂（Cyert and March 1963；Augier and March 2001）。利益冲突是所有组织的显著特征，不仅影响对智慧的追求，而且影响对智慧的定义（Greenwood, Suddaby, and Hinings 2002; Olsen 2009）。
 
 第二，组织适应涉及数个嵌套水平的同步交互适应（March 1994，第 2，6 章；Friedland and Alford 1991）。组织群在演化，与此同时，组织群内部的个体组织也在演化；组织在演化，与此同时，组织内部的个人也在演化。这些嵌套适应系统相互影响，一个水平的适应有时会替代另外一个水平的适应，有时会干扰另外一个水平的适应。
 
-第三，在某种程度上，组织的环境是由其他组织构成的，因此，组织适应的一个基本特点是多个组织同步调整、共同演化（Hannan and Freeman 1989；Kauffman and Johnsen 1992；Levinthal and Myatt 1994）。大部分有关组织学习的研究都把环境看成外源的，本书也打算这么做，这么做是一种明显的简化。
+第三，在某种程度上，组织的环境是由其他组织构成的，因此，组织适应的一个基本特点是多个组织同步调整、共同演化（Hannan and Freeman 1989; Kauffman and Johnsen 1992; Levinthal and Myatt 1994）。大部分有关组织学习的研究都把环境看成外源的，本书也打算这么做，这么做是一种明显的简化。
 
 ### 1.2 Two Components of Intelligence
 
@@ -312,14 +312,14 @@ This history of scholarship forms a background for the explorations in the prese
 
 当然，从经验中学习并不是人类学习的唯一机制。确实，个人和组织所拥有的知识，大部分不是从日常生活或工作中获取的，而是首先经由专家的系统观察和分析，然后经由权威（例如，书本、网络、老师）的传播，之后经由或直接或间接的实践验证而来的。从广泛意义上说，这些知识可以归为学术知识而不是经验知识（March 2004）。
 
-然而，当代组织文献仍然认为体验式学习是人类适应环境的一种比较重要的方式，是人类提高行动与环境匹配度的一种比较重要的机制（Argyris and Schon 1978；Levit and March 1988；Huber 1991；Payne，Bett-man，andJohnson 1993；Cohen and Sproull 1996；Argote 1999；Nooteboom 2000；Starbuck and Hedberg 2001；Greve 2003）。令人羡慕的组织被描述成「学习型组织」，促进组织学习的顾问比比皆是（Argyris and Schon 1978；Senge 1990）；最近的组织改进建议经常强调从经验中学习（Senge 1990；Olsen and Peters 1996；Dierkes et al. 2001；Zollo and Winter 2002）。
+然而，当代组织文献仍然认为体验式学习是人类适应环境的一种比较重要的方式，是人类提高行动与环境匹配度的一种比较重要的机制（Argyris and Schon 1978; Levit and March 1988; Huber 1991; Payne, Bett-man, andJohnson 1993; Cohen and Sproull 1996; Argote 1999; Nooteboom 2000; Starbuck and Hedberg 2001; Greve 2003）。令人羡慕的组织被描述成「学习型组织」，促进组织学习的顾问比比皆是（Argyris and Schon 1978; Senge 1990）; 最近的组织改进建议经常强调从经验中学习（Senge 1990; Olsen and Peters 1996; Dierkes et al. 2001; Zollo and Winter 2002）。
 
-有的学者认为，从经验中学习与理性行动理论（Arrow 1972；Coleman 1990；Milgrom and Robert 1992）有关，从博弈理论（von Neumann and Morgenstem 1944；Luce and Raiffa 1957；Kreps 1990b）和决策理论（Raiffa 1968；Machina 1987；Anand 1993；Augier and March 2002）中可见一斑。有的学者则认为，从经验中学习与规则遵循行动理论（March and Olsen 1989，第 2 章；March 1994，第 2 章）有关，从个人身份和机构身份、社会角色等概念中可见一斑。理性行动理论认为，智慧行动的基础是遵循结果逻辑（March and Olsen 1989，第 1 章；March 1994，第 1 章），规则遵循行动理论关注规则、身份和角色（Scott and Meyer 1983；Ashforth and Mael 1989；North 1990；Becker 2004；Brandstatter，Gigernzer，and Hertwig 2006），认为智慧行动的基础是遵循适当逻辑（Gunther 1993；March and Olsen 2006b）。这两派学者都认为体验式学习是人类智慧的要素。理性行动理论认为，组织通过总结过去来预测未来（Gavetti and Levinthal 2000；Zollo and Winter 2002；Gibbons and Roberts 2008）。规则遵循行动理论认为，组织把经验编码成规则（Alchian 1950；Nelsonand Winter 1982；March，Schulz，and Zhou 2000；Akerlof and Kranton 2005；March and Olsen 2006a）。
+有的学者认为，从经验中学习与理性行动理论（Arrow 1972; Coleman 1990; Milgrom and Robert 1992）有关，从博弈理论（von Neumann and Morgenstem 1944; Luce and Raiffa 1957; Kreps 1990b）和决策理论（Raiffa 1968; Machina 1987; Anand 1993; Augier and March 2002）中可见一斑。有的学者则认为，从经验中学习与规则遵循行动理论（March and Olsen 1989，第 2 章; March 1994，第 2 章）有关，从个人身份和机构身份、社会角色等概念中可见一斑。理性行动理论认为，智慧行动的基础是遵循结果逻辑（March and Olsen 1989，第 1 章; March 1994，第 1 章），规则遵循行动理论关注规则、身份和角色（Scott and Meyer 1983; Ashforth and Mael 1989; North 1990; Becker 2004; Brandstatter，Gigernzer，and Hertwig 2006），认为智慧行动的基础是遵循适当逻辑（Gunther 1993; March and Olsen 2006b）。这两派学者都认为体验式学习是人类智慧的要素。理性行动理论认为，组织通过总结过去来预测未来（Gavetti and Levinthal 2000; Zollo and Winter 2002; Gibbons and Roberts 2008）。规则遵循行动理论认为，组织把经验编码成规则（Alchian 1950; Nelsonand Winter 1982; March，Schulz，and Zhou 2000; Akerlof and Kranton 2005; March and Olsen 2006a）。
 
 这样，人们投入大量精力寻找促进组织从经验中学习的方法。他们开发出复杂的估计工具、建模工具和战略规划工具，帮助商业公司进行营销、财务、生产和人事方面的决策制定，帮助政府机构提高社会服务的效能和效率。他们设计出复杂的问责制度，帮助各种利益相关者控制组织。庞大的咨询行业形成了，传播最佳实务和优秀理论。现代大学纷纷设立管理学院，为私营领域和公共领域培养管理人才。管理教育提供「最佳实务」菜单，以及成套的理论（包括营销理论、政治理论、运营理论和公司理论，等等）。
 
 为了提高与环境的匹配度，组织经常对实务、流程和形式进行变革。诚然，还有另外一种更为简单的方式提高与环境的匹配度 —— 改变环境，各行各业的领头者经常使用这一方式。从这个角度来看，适应是弱者的事情，强者制定游戏规则，让别人适应自己。在一定程度上，历史上的伟大国家（古罗马、古中国、奥斯曼、西班牙、大不列颠、苏联、美国）之所以繁荣昌盛，都是因为强迫环境适应自己，而不是浪费精力努力适应环境。对于伟大的企业帝国（美国钢铁、通用汽车、壳牌、联合利华、索尼、IBM、微软）而言，情况也是如此。人类亦然。正如所有例子表明的那样，长远来看，通过改变环境来提高与环境的匹配度会带来一个不良后果 —— 适应能力的衰退（强者也有必须适应环境的时候）。霸主地位如果丧失了，适应能力就会加速衰退。
 
-人们在寻找促进组织从经验中学习的方法的同时，还在进行大量的实证研究和理论研究，希望形成一套理论，描述现实中的组织是如何适应环境的。这方面的工作直接指向理解组织群和个体组织是如何在适应压力之下随着时间而改变的（不一定是有意地改变）（Aldrich 1979；Cohen and Sproull 1996；Nooteboom 2000；Dierkes et al. 2001；Greve 2003；Aldrich and Ruef 2006；Dosi and Marengo 2007）。在这个方面，组织生态学研究做出了重要贡献（Hannan and Freeman 1989；Caroll and Hannan 2000）。
+人们在寻找促进组织从经验中学习的方法的同时，还在进行大量的实证研究和理论研究，希望形成一套理论，描述现实中的组织是如何适应环境的。这方面的工作直接指向理解组织群和个体组织是如何在适应压力之下随着时间而改变的（不一定是有意地改变）（Aldrich 1979; Cohen and Sproull 1996; Nooteboom 2000; Dierkes et al. 2001; Greve 2003; Aldrich and Ruef 2006; Dosi and Marengo 2007）。在这个方面，组织生态学研究做出了重要贡献（Hannan and Freeman 1989; Caroll and Hannan 2000）。
 
 以上简要介绍了组织学习的研究历史，目的是为后面章节的讨论打下背景基础。后面的章节将探讨从经验中学习的各种问题，这些问题，有些反映了人类那些著名的信息加工习惯，例如，固守成见、简化因果、寻求确定、妄自尊大。人类行为的那些特性是重要的，但是本书主要关注的是另外一组问题，这组问题反映的是经验和学习的交互作用。正如以下章节将要论证的那样，这组问题主要不在学习者而在经验本身。
