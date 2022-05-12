@@ -3347,4 +3347,3 @@ Symmetry and conservation
 93
 
 3.7 Summary and further problems
-
