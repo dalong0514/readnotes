@@ -38,7 +38,29 @@
 
 正如我们生活中所有重要的事件一样，无论婚姻还是职业，我进入这个领域在很大程度上不是事先计划好的。作为一名研究生，我人生中的第一个科研报告是给同学们介绍视网膜圆柱细胞中的化学反应。我只能通过近似使化学混沌变得有意义。在同一年，我办公室的同事卡洛斯·布罗迪（Carlos Brody）对孪生素数的分布感到好奇。所谓孪生素数，指相差为 2 的两个素数，如 3 和 5，11 和 13 等。没有人确切知道孪生素数的分布。作为一个懒惰的物理学家，我用素数的概率模型近似回答了卡洛斯的问题。这里又一次看到，近似促进了问题的理解。
 
-### 0501. 信息数据卡 ——
+### 0501. 信息数据卡 —— 燃烧一个 CH2 释放能量的数据
+
+信息源自「0201 抽象」
+
+燃烧一个 CH2 单元能释放出多少能量？为了进行这个估算，利用结合能表。这个能量是打破（不是形成）一个化学键需要的能量。这个表的第一列已经用到了抽象。例如，不存在唯一的碳氢（CH）结合能：甲烷的碳氢键和乙烷的碳氢键是不同的。但为了这个概念的可重复性，我们忽略了这个差别 一一 我们将其置于抽象的门槛之下 一一 将其抽象为碳氢键。
+
+「千卡/摩尔」这一列给出了用千卡表示的每摩尔碳氢键的结合能。1 千卡大约是 4000 焦耳，1 摩尔的键数为阿伏伽德罗常数（≈6×10^23) 。 「电子伏/化学键」这一列给出用电子伏表示的每个键的结合能。1 电子伏为 1.6×10^(-19) 焦耳。这个单位适合衡量原子的能量，因为大部分的结合能都在易于处理的几个电子伏范围内。
+
+我们用下图来表示燃烧一个碳氢单元的能量。
+
+反应的左边是一个碳-碳键，两个碳-氢键，1.5 个氧-氧双键。（碳-碳键是将 CH2 单元中的碳与相邻单元中碳東缚在一起的键）。共计  460 千卡/摩尔，就是打破这些键所需的能量。这是输入的能量，它减少了净燃烧能量。
+
+右边是两个碳-氧双键和两个氢-氧键。总共 606 千卡/摩尔的能量，是形成这些键释放的能量。这是输出的能量，它增加了净燃烧能量：
+
+释放的净能量为（606-460) 千卡，即大约每摩尔 CH2 释放 150 千卡。或说，大约每个 CH2 单元释放 6 个电子伏 一一 大约是 1.5 个化学键的能量。用单位质量的能量而不是用单位摩尔来表示燃烧所释放的能量也是很有用的。1 摩尔 CH2 单元重 14 克。因此，150 千卡/摩尔大约是 10 千卡/克或 40 千焦耳/克。这个能量密度值得记住，因为这给出了燃烧油脂和汽油或吃下脂肪后释放的能量（尽管脂肪不是纯的碳氢化合物）。
+
+2『燃烧一个 CH2 释放能量的数据，做一张信息数据卡片。（2022-05-13）』—— 已完成
+
+下表给出了植物和动物燃料的燃烧能（将纯碳氢化合物包括在内是为引起兴趣）。饱和脂肪酸是动物脂肪的主要成分；动物的能量储存在可以和汽油的能量密度相比拟的物质中 一一 大约是 10 千卡/克。另一方面，植物将能量储存在淀粉中，这是葡萄糖单元构成的链；葡萄糖的能量密度只有大约 4 千卡/克。食物中碳水化合物（糖和淀粉）的能量密度值也值得记住。这明显低于脂肪的能量密度：对提供我们能量来说，食用脂肪比食用淀粉要快得多。
+
+➤ 我们可以如何解释植物和动物不同的能量储存密度？
+
+植物不需要移动，所以低密度能量储存造成的额外重量就不是很重要了。葡萄单糖代谢方式带来的好处要胜过额外重量产生的微小弱点。然而对于动物来说，较小体重带来的优点超过了燃烧脂肪的复杂代谢方式带来的弱点。
 
 ### 0601. 任意卡 —— 教学的目的
 
@@ -56,9 +78,9 @@ Like all important parts of our lives, whether spouses or careers, I came to thi
 
 As a physics graduate student, I needed to prepare for the graduate qualifying exams. I also became a teaching assistant for the「Order-of-Magnitude Physics」course. In three months, preparing for the qualifying exams and learning the course material to stay a day ahead of the students, I learned more physics than I had in the years of my undergraduate degree. Physics teaching and learning had much room for improvement — and approximation and insight could fill the gap.
 
-Dedi- In gratitude to my teachers, I dedicate this book to Carver Mead for irre-cation placeable guidance and faith; and to Peter Goldreich and Sterl Phinney, who developed the「Order-of-Magnitude Physics」course at Caltech. From them I learned the courage to simplify and gain insight — the courage that I look forward to teaching you.
+In gratitude to my teachers, I dedicate this book to Carver Mead for irre-cation placeable guidance and faith; and to Peter Goldreich and Sterl Phinney, who developed the「Order-of-Magnitude Physics」course at Caltech. From them I learned the courage to simplify and gain insight — the courage that I look forward to teaching you.
 
-Organi- For many years, at the University of Cambridge and at MIT, I taught a zation course on the「Art of Approximation」organized by topics in physics and engineering. This organization limited the material's generality: Unless you become a specialist in general relativity, you may not study gravitation again. Yet estimating how much gravity deflects starlight (Section 5.3.1) teaches reasoning tools that you can use far beyond that example. Tools are more general and useful than topics.
+For many years, at the University of Cambridge and at MIT, I taught a zation course on the「Art of Approximation」organized by topics in physics and engineering. This organization limited the material's generality: Unless you become a specialist in general relativity, you may not study gravitation again. Yet estimating how much gravity deflects starlight (Section 5.3.1) teaches reasoning tools that you can use far beyond that example. Tools are more general and useful than topics.
 
 Therefore, I redesigned the course around the reasoning tools. This organization, which I have used at MIT and Olin College of Engineering, is reflected in this book — which teaches you one tool per chapter, each selected to help you build insight and master complexity.
 
@@ -72,7 +94,7 @@ Finding Using these tools, we will explore the natural and human-made worlds. We
 
 Sharing Like my earlier Street-Fighting Mathematics [33], this book is licensed under a this work Creative Commons Attribution–Noncommercial–Share Alike license. MIT Press and I hope that you will improve and share the work noncommer-cially, and we would gladly receive corrections and suggestions.
 
-Inter- The most effective teacher is a skilled tutor [2]. A tutor asks many questions, spersed because questioning, wondering, and discussing promote learning. Ques-ques- tions of two types are interspersed through the book. Questions marked with tions a in the margin, which a tutor would pose during a tutorial, ask you to develop the next steps of an argument. They are answered in the subsequent text, where you can check your thinking. Numbered problems, marked with a shaded background, which a tutor would give you to take home, ask you to practice the tool, to extend an example, to use several tools, and even to resolve an occasional paradox. Merely watching workout videos produces little fitness! So, try many questions of both types.
+The most effective teacher is a skilled tutor [2]. A tutor asks many questions, spersed because questioning, wondering, and discussing promote learning. Questions of two types are interspersed through the book. Questions marked with tions a in the margin, which a tutor would pose during a tutorial, ask you to develop the next steps of an argument. They are answered in the subsequent text, where you can check your thinking. Numbered problems, marked with a shaded background, which a tutor would give you to take home, ask you to practice the tool, to extend an example, to use several tools, and even to resolve an occasional paradox. Merely watching workout videos produces little fitness! So, try many questions of both types.
 
 Improve Through your effort, mastery will come — and with a broad benefit. As the our physicist Edwin Jaynes said of teaching [25]: 
 
@@ -94,7 +116,7 @@ May the tools in this book help you advance our world beyond the state in which 
 
 1『近似促进了理解，确实，有些东西不是需要那么精确的。』
 
-作为一个物理学研究生，我需要准备研究生资格考试。同时，我担任「数量级物理学」（Order-of-Magnitude Physics）课程的助教。在 3 个月内，通过准备资格考试和对课程进行备课，我在这段时间所学到的物理比我整个大学本科阶段学到的都要多。物理教学和学习有很大的改进空间——近似和洞察可以弥补这些不足。
+作为一个物理学研究生，我需要准备研究生资格考试。同时，我担任「数量级物理学」（Order-of-Magnitude Physics）课程的助教。在 3 个月内，通过准备资格考试和对课程进行备课，我在这段时间所学到的物理比我整个大学本科阶段学到的都要多。物理教学和学习有很大的改进空间 —— 近似和洞察可以弥补这些不足。
 
 我曾经在剑桥大学和麻省理工学院开设「近似的艺术」（Art of Approximation）课程很多年，这是由物理学和工程中的一些课题构成的课程。课程的内容限制了材料的一般性：除非你成为广义相对论的专家，否则一般不会再去研究引力理论。然而，在估算引力场使星光偏折多少（5.3.1 节）中所学会的分析工具的运用远远不局限于这一个例子。工具比课题本身更一般，更有用。
 
