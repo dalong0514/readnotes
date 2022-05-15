@@ -1,6 +1,6 @@
-# 0101. Electromagnetism
+## 0101. Electromagnetism
 
-## 1.1 Electrical forcesConsider
+### 1.1 Electrical forcesConsider
 
 a force like gravitation which varies predominantly inversely as thesquare of the distance, but which is about a billion-billion-billion-billion timesstronger. And with another diﬀerence. There are two kinds of「matter,」which wecan call positive and negative. Like kinds repel and unlike kinds attract — unlikegravity where there is only attraction. What would happen?
 
@@ -20,9 +20,7 @@ We have said that the electrical force, like a gravitational force, decreasesinv
 
 There is an important general principle that makes it possible to treat elec-tromagnetic forces in a relatively simple way. We ﬁnd, from experiment, that theforce that acts on a particular charge — no matter how many other charges thereare or how they are moving — depends only on the position of that particularcharge, on the velocity of the charge, and on the amount of charge. We can writethe force F on a charge q moving with a velocity v as `F = q(E + v × B)`.
 
-We call E the electric ﬁeld and B the magnetic ﬁeld at the location of the charge.The important thing is that the electrical forces from all the other charges in theuniverse can be summarized by giving just these two vectors. Their values willdepend on where the charge is, and may change with time. Furthermore, if wereplace that charge with another charge, the force on the new charge will be just in proportion to the amount of charge so long as all the rest of the charges inthe world do not change their positions or motions. (In real situations, of course,each charge produces forces on all other charges in the neighborhood and maycause these other charges to move, and so in some cases the ﬁelds can change ifwe replace our particular charge by another.)We know from Vol. I how to ﬁnd the motion of a particle if we know the force
-
-on it. Equation (1.1) can be combined with the equation of motion to give (1.2)
+We call E the electric ﬁeld and B the magnetic ﬁeld at the location of the charge.The important thing is that the electrical forces from all the other charges in theuniverse can be summarized by giving just these two vectors. Their values willdepend on where the charge is, and may change with time. Furthermore, if wereplace that charge with another charge, the force on the new charge will be just in proportion to the amount of charge so long as all the rest of the charges inthe world do not change their positions or motions. (In real situations, of course,each charge produces forces on all other charges in the neighborhood and maycause these other charges to move, and so in some cases the ﬁelds can change ifwe replace our particular charge by another.)We know from Vol. I how to ﬁnd the motion of a particle if we know the force on it. Equation (1.1) can be combined with the equation of motion to give (1.2)
 
 ![](./res/2021001.png)
 
@@ -48,7 +46,7 @@ It turns out that the form in which the laws of electrodynamics are simplestare 
 
 最后，我们还可能会问，是什么东西把带负电的电子保持在一起呢（因为它没有核力）？如果电子全都是由一种物质构成的，那它的每一部分理应排斥其他各部分，但又为什么不会飞散呢？不过，电子是否还含有「各部分」？也许，我们应该说电子只是一个点，而电力只是在不同的点电荷之间起作用，以致电子不会作用于其本身。或许是这样吧。关于电子由什么东西束缚在一起，我们只能说到这里。这个问题对于试图建立一套完整的电磁学理论产生了不少困难，而且至今没有做出解答。我们将在以后某些章节中对这一课题多做些讨论，以为我们大家助兴。
 
-正如我们已经见到的那样，应该指望电力与量子力学效应相结合来确定整块材料的细致结构，从而确定它们的特性。有的材料硬，有的材料软。有的是电的「导体」一一 因为它们中的电子能够自由运动；其他则是「绝缘体」 —  —  因为其中的电子被牢固地缚在各个原子内。这些性质是如何得来的？那是一个十分复杂的课题，我们将在以后加以讨论。因而现在仅就一些简单情况下的电力进行考察，也就是说，现在着手处理电方面 一一 也包括磁方面（那实际上是同一课题的另ー个部分） —  —  的规律。
+正如我们已经见到的那样，应该指望电力与量子力学效应相结合来确定整块材料的细致结构，从而确定它们的特性。有的材料硬，有的材料软。有的是电的「导体」一一 因为它们中的电子能够自由运动；其他则是「绝缘体」—— 因为其中的电子被牢固地缚在各个原子内。这些性质是如何得来的？那是一个十分复杂的课题，我们将在以后加以讨论。因而现在仅就一些简单情况下的电力进行考察，也就是说，现在着手处理电方面 一一 也包括磁方面（那实际上是同一课题的另ー个部分）—— 的规律。
 
 我们曾经说过，和引力相似，电力与电荷间距离的平方成反比地减弱，这一关系叫作库仑定律。但当电荷运动时，这一定律就不完全准确 一一 电力也以一种复杂的方式依赖于电荷的运动。运动电荷之间的作用力，有一部分我们称之为磁力，事实上，它是电效应的一个方面。这也是为什么要把这一课题叫作「电磁学」的缘故。
 
@@ -68,9 +66,9 @@ It turns out that the form in which the laws of electrodynamics are simplestare 
 
 事实证明，电动力学规律在其中最为简单的那一种形式，并非是人们可以期望的。要写出一个电荷对另一个电荷所产生的力的公式，并非那么容易。的确，当电荷静止不动时，库仑力的定律是十分简单的。但当电荷运动时，由于时间上的延迟和加速度的影响以及其他些缘故，关系就变得复杂了。因此，我们并不希望仅仅凭作用于各电荷间的力的规律来介绍电动力学；而发现更方便的是去考虑另一个观点 一一 那是电动力学规律表现得最易于处理的一种观点。
 
-`*` 帝国大厦指美国纽约市第五大街上的一座建筑物，地面上共 102 层，高 1454 英尺。 —  —  译者注
+`*` 帝国大厦指美国纽约市第五大街上的一座建筑物，地面上共 102 层，高 1454 英尺。—— 译者注
 
-## 1-2 Electric and magnetic ﬁelds
+### 1-2 Electric and magnetic ﬁelds
 
 First, we must extend, somewhat, our ideas of the electric and magneticvectors, E and B. We have deﬁned them in terms of the forces that are felt by acharge. We wish now to speak of electric and magnetic ﬁelds at a point even whenthere is no charge present. We are saying, in eﬀect, that since there are forces「acting on」the charge, there is still「something」there when the charge is removed.If a charge located at the point (x, y, z) at the time t feels the force F givenby Eq. (1.1) we associate the vectors E and B with the point in space (x, y, z).We may think of E(x, y, z, t) and B(x, y, z, t) as giving the forces that would beexperienced at the time t by a charge located at (x, y, z), with the condition thatplacing the charge there did not disturb the positions or motions of all the othercharges responsible for the ﬁelds.Following this idea, we associate with every point (x, y, z) in space two vectorsE and B, which may be changing with time. The electric and magnetic ﬁelds are,then, viewed as vector functions of x, y, z, and t. Since a vector is speciﬁed byits components, each of the ﬁelds E(x, y, z, t) and B(x, y, z, t) represents threemathematical functions of x, y, z, and t.
 
@@ -102,7 +100,7 @@ Fig. 1-2. A vector ﬁeld can be represented by drawing lines which are tangent 
 
 图 1-2 矢量场可用一些线来表示，这些线在每一点与场矢量的方向相切，而线的密度则与场矢量的大小成正比
 
-## 1-3 Characteristics of vector ﬁelds
+### 1-3 Characteristics of vector ﬁelds
 
 There are two mathematically important properties of a vector ﬁeld whichwe will use in our description of the laws of electricity from the ﬁeld point ofview. Suppose we imagine a closed surface of some kind and ask whether weare losing「something」from the inside; that is, does the ﬁeld have a quality of「outﬂow」? For instance, for a velocity ﬁeld we might ask whether the velocity isalways outward on the surface or, more generally, whether more ﬂuid ﬂows out(per unit time) than comes in. We call the net amount of ﬂuid going out throughthe surface per unit time the「ﬂux of velocity」through the surface. The ﬂowthrough an element of a surface is just equal to the component of the velocityperpendicular to the surface times the area of the surface. For an arbitrary closedsurface, the net outward ﬂow — or ﬂux — is the average outward normal componentof the velocity, times the area of the surface:
 
@@ -153,7 +151,7 @@ Fig. 1-4. (a) The velocity ﬁeld in a liquid. Imagine a tube of uniform cross s
 我们再把上述概念加以引申，而定义任一矢量场的「环流」（即使没有任何东西在流动亦然）。对于任一矢量场，绕任一想象中的闭合曲线的环流可以定义为矢量（沿一致向指）的平均切向分量乘以该回路的周长（图 1-5），即：
 
 ```
-环流 = 平均切向分量 x 绕行距离  —  —  公式 1.5
+环流 = 平均切向分量 x 绕行距离 —— 公式 1.5
 ```
 
 你们将会看到，这一定义确实给出了一个正比于上述迅速被冻结的管子里的环流速度的数值。
@@ -162,37 +160,27 @@ Fig. 1-4. (a) The velocity ﬁeld in a liquid. Imagine a tube of uniform cross s
 
 只要利用这两个概念 一一 通量与环流 一一 我们就能立即描述电学和磁学的所有定律。你可能不会一下子就理解其意义，但它们将给出有关电磁方面物理学基本描述方法的一些概念。
 
-## 1-4 The laws of electromagnetism
+### 1-4 The laws of electromagnetism
 
 The ﬁrst law of electromagnetism describes the ﬂux of the electric ﬁeld:
 
-The ﬂux of E through any closed surface = the net charge inside
-
-(1.6)
+The ﬂux of E through any closed surface = the net charge inside/ε0 (1.6)
 
 where 0 is a convenient constant. (The constant 0 is usually read as「epsilon-zero」or「epsilon-naught」.) If there are no charges inside the surface, even thoughthere are charges nearby outside the surface, the average normal component of Eis zero, so there is no net ﬂux through the surface. To show the power of thistype of statement, we can show that Eq. (1.6) is the same as Coulomb’s law,provided only that we also add the idea that the ﬁeld from a single charge isspherically symmetric. For a point charge, we draw a sphere around the charge.Then the average normal component is just the value of the magnitude of E atany point, since the ﬁeld must be directed radially and have the same strengthfor all points on the sphere. Our rule now says that the ﬁeld at the surface of thesphere, times the area of the sphere — that is, the outgoing ﬂux — is proportionalto the charge inside. If we were to make the radius of the sphere bigger, the areawould increase as the square of the radius. The average normal component ofthe electric ﬁeld times that area must still be equal to the same charge inside,and so the ﬁeld must decrease as the square of the distance — we get an「inversesquare」ﬁeld.
 
 If we have an arbitrary stationary curve in space and measure the circulationof the electric ﬁeld around the curve, we will ﬁnd that it is not, in general, zero(although it is for the Coulomb ﬁeld). Rather, for electricity there is a secondlaw that states: for any surface S (not closed) whose edge is the curve C,
 
-Circulation of E around C = − ddt
-
-(ﬂux of B through S).
-
-(1.7)
+Circulation of E around C = −d/dt(ﬂux of B through S). (1.7)
 
 We can complete the laws of the electromagnetic ﬁeld by writing two corre-
 
 sponding equations for the magnetic ﬁeld B:
 
-Flux of B through any closed surface = 0.
-
-(1.8)
+Flux of B through any closed surface = 0. (1.8)
 
 For a surface S bounded by the curve C,
 
-c2(circulation of B around C) = ddt
-
-(ﬂux of E through S)+ ﬂux of electric current through S
+c2(circulation of B around C) = d/dt(ﬂux of E through S) + ﬂux of electric current through S
 
 Fig. 1-5. The circulation of a vector ﬁeldis the average tangential component of thevector (in a consistent sense) times the cir-cumference of the loop.
 
@@ -224,9 +212,7 @@ Now, we have said that a current through a wire produces a magnetic ﬁeld,and t
 
 In short, electrical currents, as well as magnets, make magnetic ﬁelds. Butwait, what is a magnet, anyway? If magnetic ﬁelds are produced by movingcharges, is it not possible that the magnetic ﬁeld from a piece of iron is really theresult of currents? It appears to be so. We can replace the bar magnet of ourexperiment with a coil of wire, as shown in Fig. 1-9. When a current is passedthrough the coil — as well as through the straight wire above it — we observe amotion of the wire exactly as before, when we had a magnet instead of a coil. Inother words, the current in the coil imitates a magnet. It appears, then, that apiece of iron acts as though it contains a perpetual circulating current. We can,in fact, understand magnets in terms of permanent currents in the atoms of theiron. The force on the magnet in Fig. 1-7 is due to the second term in Eq. (1.1).
 
-
 Fig. 1-9. The bar magnet of Fig. 1-6 canbe replaced by a coil carrying an electricalcurrent. A similar force acts on the wire.
-
 
 Where do the currents come from? One possibility would be from the motionof the electrons in atomic orbits. Actually, that is not the case for iron, althoughit is for some materials. In addition to moving around in an atom, an electron alsospins about on its own axis — something like the spin of the earth — and it is thecurrent from this spin that gives the magnetic ﬁeld in iron. (We say「somethinglike the spin of the earth」because the question is so deep in quantum mechanicsthat the classical ideas do not really describe things too well.) In most substances,some electrons spin one way and some spin the other, so the magnetism cancelsout, but in iron — for a mysterious reason which we will discuss later — many ofthe electrons are spinning with their axes lined up, and that is the source of themagnetism.
 
@@ -300,13 +286,11 @@ c^2(B 绕 C 的环流) = d(通过 S 的 E 的通量)/dt + 通过 S 的电流通�
 
 究竟这些电流是从哪里来的呢？一种可能来自原子轨道中电子的运动。实际上虽然对于某些材料来说这是正确的，但对铁来说却是不正确的。一个电子，除了在原子中环行之外，还绕它本身的轴旋转 一一 有些像地球的自转 —— 正是由于自旋所产生的电流才为铁提供了磁场（我们说「有些像地球的自转」，是因为这一问题在量子力学中竟是那么奥妙，以致一些经典概念并不能真正恰当地描述这些事物）。在大多数物质中，有些电子这样自旋，另一些电子那样自旋，所以磁性互相抵消；可是在铁里 一一 由于某个我们将在以后加以讨论的神秘原因 一一 有许多电子却绕着它们的排列整齐的轴旋转着，这正是磁性的起源。
 
-1『磁铁有磁场的原理，做一张信息数据卡片。』——已完成
+1『磁铁有磁场的原理，做一张信息数据卡片。』—— 已完成
 
 ![](./res/2021015.png)
 
 图 1-9 图 1-6 中的磁铁可用一个流线来代替，有一相似的力作用在导线上
-
-
 
 由于磁铁的场都是来自电流，所以我们无需因存在磁铁而在式（1.8）和（1.9）中引进任何额外的项。我们只要取所有的电流，包括自旋电子的环行电流，那么该定律就对了。但你亦应注意，式（1.8）说明不存在与出现在式（1.6）右边的电荷相类似的磁「荷」。没有人曾发现过磁荷。
 
@@ -324,7 +308,7 @@ c^2(B 绕 C 的环流) = d(通过 S 的 E 的通量)/dt + 通过 S 的电流通�
 
 我们的方程组最引人注目的一个结果是，式（1.7）和（1.9）包含着关于在很大距离范围内的电磁辐射效应的解释。解释大致如下：假设由于导线里电流突然接通，就使得某处的磁场增大；于是，根据式（1.7）就必然存在一个电场的环流；当这建立起来的电场产生环流时，根据式（1.9）又一个磁的环流将形成；可是，这个磁场的建立又将产生一个新的电场环流…... 依此类推。就这样，场在通过空间前进时，除了在它们的发源处外，并不需要电荷或电流。这就是我们都能够互相看见的关键所在！这一切都存在于电磁场的方程组中。
 
-## 1-5 What are the ﬁelds?
+### 1-5 What are the ﬁelds?
 
 We now make a few remarks on our way of looking at this subject. You maybe saying:「All this business of ﬂuxes and circulations is pretty abstract. Thereare electric ﬁelds at every point in space; then there are these ‘laws.’ But what isactually happening? Why can’t you explain it, for instance, by whatever it is thatgoes between the charges.」Well, it depends on your prejudices. Many physicistsused to say that direct action with nothing in between was inconceivable. (Howcould they ﬁnd an idea inconceivable when it had already been conceived?) Theywould say:「Look, the only forces we know are the direct action of one piece ofmatter on another. It is impossible that there can be a force with nothing totransmit it.」But what really happens when we study the「direct action」of onepiece of matter right against another? We discover that it is not one piece rightagainst the other; they are slightly separated, and there are electrical forces actingon a tiny scale. Thus we ﬁnd that we are going to explain so-called direct-contactaction in terms of the picture for electrical forces. It is certainly not sensible totry to insist that an electrical force has to look like the old, familiar, muscularpush or pull, when it will turn out that the muscular pushes and pulls are goingto be interpreted as electrical forces! The only sensible question is what is themost convenient way to look at electrical eﬀects. Some people prefer to representthem as the interaction at a distance of charges, and to use a complicated law.Others love the ﬁeld lines. They draw ﬁeld lines all the time, and feel that writingE’s and B’s is too abstract. The ﬁeld lines, however, are only a crude way ofdescribing a ﬁeld, and it is very diﬃcult to give the correct, quantitative lawsdirectly in terms of ﬁeld lines. Also, the ideas of the ﬁeld lines do not containthe deepest principle of electrodynamics, which is the superposition principle.Even though we know how the ﬁeld lines look for one set of charges and whatthe ﬁeld lines look like for another set of charges, we don’t get any idea aboutwhat the ﬁeld line patterns will look like when both sets are present together.From the mathematical standpoint, on the other hand, superposition is easy — wesimply add the two vectors. The ﬁeld lines have some advantage in giving a vividpicture, but they also have some disadvantages. The direct interaction way ofthinking has great advantages when thinking of electrical charges at rest, buthas great disadvantages when dealing with charges in rapid motion.
 
@@ -352,7 +336,7 @@ It is the near-perfect cancellation of electrical eﬀects which allowed relativ
 
 正是由于电效应几乎完全抵消，才使得相对论效应（即磁现象）受到研究，而其正确方程组 —— 准确至 `v^2/c^2` 才被发现，虽则当时物理学家还不懂得发生的是什么事情。而这就是为什么当相对论被发现时，电磁学定律并不需要改变。它们 一一 不像力学 ー一 已准确至 `v^2/c^2` 的精度了。
 
-## 1-6 Electromagnetism in science and technology
+### 1-6 Electromagnetism in science and technology
 
 Let us end this chapter by pointing out that among the many phenomenastudied by the Greeks there were two very strange ones: that if you rubbed apiece of amber you could lift up little pieces of papyrus, and that there was astrange rock from the island of Magnesia which attracted iron. It is amazing tothink that these were the only phenomena known to the Greeks in which theeﬀects of electricity or magnetism were apparent. The reason that these werethe only phenomena that appeared is due primarily to the fantastic precisionof the balancing of charges that we mentioned earlier. Study by scientists whocame after the Greeks uncovered one new phenomenon after another that werereally some aspect of these amber and/or lodestone eﬀects. Now we realize thatthe phenomena of chemical interaction and, ultimately, of life itself are to beunderstood in terms of electromagnetism.
 

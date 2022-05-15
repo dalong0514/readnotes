@@ -1,4 +1,4 @@
-# 0201
+## 0201. Differential Calculus of Vector Fields
 
 2-1 Understanding physics
 
@@ -655,8 +655,3 @@ hx = ∇2hx.
 The same expression would not work if we were to ask for the radial componentof ∇2h. The radial component of ∇2h is not equal to ∇2hr. The reason is thatwhen we are dealing with the algebra of vectors, the directions of the vectors areall quite deﬁnite. But when we are dealing with vector ﬁelds, their directionsare diﬀerent at diﬀerent places. If we try to describe a vector ﬁeld in, say, polarcoordinates, what we call the「radial」direction varies from point to point. Sowe can get into a lot of trouble when we start to diﬀerentiate the components.For example, even for a constant vector ﬁeld, the radial component changes frompoint to point.It is usually safest and simplest just to stick to rectangular coordinatesand avoid trouble, but there is one exception worth mentioning: Since theLaplacian ∇2, is a scalar, we can write it in any coordinate system we want to(for example, in polar coordinates). But since it is a diﬀerential operator, weshould use it only on vectors whose components are in a ﬁxed direction—thatmeans rectangular coordinates. So we shall express all of our vector ﬁelds interms of their x-, y-, and z-components when we write our vector diﬀerentialequations out in components.
 
 2-12
-
-3
-
-Vector Integral Calculus
-
