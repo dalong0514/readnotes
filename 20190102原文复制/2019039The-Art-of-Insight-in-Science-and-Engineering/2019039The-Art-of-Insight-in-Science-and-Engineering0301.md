@@ -549,13 +549,9 @@ We'll first examine this idea in a familiar situation: converting units (Section
 
 We often convert a quantity from one unit system to another — for example, mass from English to metric units or prices from dollars to pounds or euros.
 
-A useful physical conversion is writing energy density — energy divided by amount of stuff — in useful units. Let's start with the reasonable energy unit for a chemical bond, namely the electron volt or eV (Section 2.1). Then a useful unit for energy density is
+A useful physical conversion is writing energy density — energy divided by amount of stuff — in useful units. Let's start with the reasonable energy unit for a chemical bond, namely the electron volt or eV (Section 2.1). Then a useful unit for energy density is 
 
-1 eV
-
-molecule.
-
-(3.8)
+1 eV / molecule. (3.8)
 
 This energy density is our invariant. As we convert from one unit system to another, our moves have to preserve the energy density.
 
@@ -667,11 +663,7 @@ The first form builds the abstraction of kilocalories per mole, and then says,
 
 「Here are 23 of them.」In contrast, the second form gives us the energy for 1 mole, a human-sized amount. The second form is more meaningful.
 
-Similarly, the speed of light 𝑐 is commonly quoted as (approximately) 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-68
-
-3 Symmetry and conservation
+Similarly, the speed of light 𝑐 is commonly quoted as (approximately) 
 
 3×108 ms.
 
@@ -793,12 +785,6 @@ A classic example of going from the invariant to the symmetry is the following s
 
 and sat back to enjoy the break. In a few minutes, Gauss returned with an answer of 5050.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-70
-
-3 Symmetry and conservation
-
 Was Gauss right? If so, how did he compute the sum so quickly?
 
 Gauss saw that the sum — the invariant — is unchanged when the terms are added backward, from highest to lowest:
@@ -905,11 +891,9 @@ In terms of the constants 𝐴 and 𝐵 , what speed minimizes 𝐸 flight?
 
 Like the parabola 𝑥(6−𝑥), this energy has one extremum. For the parabola, the extremum was a maximum; here, it is a minimum. Also similar to the parabola, this energy has two pieces connected by a commutative operation. For the parabola, the operation was multiplication; here, it is addition.
 
-Continuing the analogy, if we find a symmetry operation that transposes 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+Continuing the analogy, if we find a symmetry operation that transposes 
 
-72
 
-3 Symmetry and conservation
 
 the two pieces, then the speed preserved by the operation will be the minimum-energy speed.
 
@@ -967,19 +951,9 @@ Problem 3.20
 
 Solving a quadratic equation using symmetry The equation 6𝑥−𝑥2 +7 = 0 has a solution at 𝑥 = −1. Without using the quadratic formula, find any other solutions.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+### 3.3 Physical symmetry
 
-3.3 Physical symmetry
-
-73
-
-3.3 Physical symmetry
-
-For a physical application of symmetry, imagine a uniform metal 80◦
-
-10◦
-
-sheet, perhaps aluminum foil, cut into the shape of a regular penT = ?
+For a physical application of symmetry, imagine a uniform metal sheet, perhaps aluminum foil, cut into the shape of a regular penT = ?
 
 tagon. Imagine that to the edges are attached heat sources and 10◦
 
@@ -1013,61 +987,7 @@ ution on the simpler square sheet is hardly intuitive (the figure shows contour 
 
 What is a useful symmetry operation?
 
-Nature, in the person of the heat equation, does not care about the direction of our coordinate system. Thus, rotating the pentagon about its center does not change the temperature at the center. Therefore, the following five orientations of the pentagon share the same central temperature: 80◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-80◦
-
-10◦
-
-10◦
-
-80◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-80◦
-
-10◦
-
-10◦
-
-10◦
-
-10◦
-
-80◦
-
-10◦
-
-10◦
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-74
-
-3 Symmetry and conservation
+Nature, in the person of the heat equation, does not care about the direction of our coordinate system. Thus, rotating the pentagon about its center does not change the temperature at the center. Therefore, the following five orientations of the pentagon share the same central temperature: 
 
 Like Gauss adding the two versions of his sum (Section 3.2.2), stack these sheets mentally and add the temperatures that lie on top of each other to make the temperature profile of a new super sheet (adding the temperatures is valid because the heat equation is linear).
 
@@ -1089,9 +1009,7 @@ Second, both problems contain a symmetry operation. In Gauss's sum, the symmetry
 
 When there is change, look for what does not change. Look for invariants and the corresponding symmetries: the operations that preserve the invariants.
 
-Problem 3.21
-
-Symmetry solution for a square sheet
+Problem 3.21 Symmetry solution for a square sheet
 
 Here is the contour plot again of the temperature on a square 80◦
 
@@ -1135,7 +1053,7 @@ Here are three examples of bisecting paths:
 
 To set your problem-solving gears in motion, first rank these three bisecting paths according to their lengths.
 
-3.4 Box models and conservation
+### 3.4 Box models and conservation
 
 Invariance underlies a powerful everyday abstraction: box models. We already made a box model in Section 3.1.1, to decide whether to run or walk in the rain. Now let's examine this method further. The simplest kind of box contains a fixed amount of stuff — perhaps the volume of fluid or the number of students at an ideal university (where every student graduates in a fixed time). Then what goes into the box must come out. This conclusion seems simple, even simplistic, but it has wide application.
 
@@ -1150,12 +1068,6 @@ demand
 estimate of US oil usage (Section 1.4). The flow oil
 
 into the box — the push or the supply — is the imported and domestically produced oil. The flow out of the box — the pull or the demand — is the oil usage. The estimate, literally taken, asks for the supply (how much oil is imported and domestically produced). This estimate is difficult. Fortunately, as long as oil does not accumulate in the box (for example, as long as oil is not salted away in underground storage bunkers), then the amount of oil in the box is an invariant, so the supply equals the demand. To estimate the supply, we accordingly estimated the demand. This conservation reasoning is the basis of the following estimate of a market size.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-76
-
-3 Symmetry and conservation
 
 How many taxis are there in Boston, Massachusetts?
 
