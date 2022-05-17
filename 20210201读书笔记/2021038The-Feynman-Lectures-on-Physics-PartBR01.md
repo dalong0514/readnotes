@@ -28,8 +28,6 @@ There is an important general principle that makes it possible to treat elec-tro
 
 We call E the electric ﬁeld and B the magnetic ﬁeld at the location of the charge.The important thing is that the electrical forces from all the other charges in theuniverse can be summarized by giving just these two vectors. Their values willdepend on where the charge is, and may change with time. Furthermore, if wereplace that charge with another charge, the force on the new charge will be just in proportion to the amount of charge so long as all the rest of the charges inthe world do not change their positions or motions. (In real situations, of course,each charge produces forces on all other charges in the neighborhood and maycause these other charges to move, and so in some cases the ﬁelds can change ifwe replace our particular charge by another.)We know from Vol. I how to ﬁnd the motion of a particle if we know the force on it. Equation (1.1) can be combined with the equation of motion to give (1.2)
 
-![](./res/2021001.png)
-
 So if E and B are given, we can ﬁnd the motions. Now we need to know howthe E’s and B’s are produced.One of the most important simplifying principles about the way the ﬁelds areproduced is this: Suppose a number of charges moving in some manner wouldproduce a ﬁeld E1, and another set of charges would produce E2. If both sets ofcharges are in place at the same time (keeping the same locations and motionsthey had when considered separately), then the ﬁeld produced is just the sum `E = E1 + E2` (1.3). 
 
 This fact is called the principle of superposition of ﬁelds. It holds also for magneticﬁelds.This principle means that if we know the law for the electric and magneticﬁelds produced by a single charge moving in an arbitrary way, then all the laws ofelectrodynamics are complete. If we want to know the force on charge A we needonly calculate the E and B produced by each of the charges B, C, D, etc., andthen add the E’s and B’s from all the charges to ﬁnd the ﬁelds, and from themthe forces acting on charge A. If it had only turned out that the ﬁeld producedby a single charge was simple, this would be the neatest way to describe the lawsof electrodynamics. We have already given a description of this law (Chapter 28,Vol. I) and it is, unfortunately, rather complicated.
@@ -80,11 +78,7 @@ First, we must extend, somewhat, our ideas of the electric and magneticvectors, 
 
 It is precisely because E (or B) can be speciﬁed at every point in space that itis called a「ﬁeld.」A「ﬁeld」is any physical quantity which takes on diﬀerent valuesat diﬀerent points in space. Temperature, for example, is a ﬁeld — in this case ascalar ﬁeld, which we write as T(x, y, z). The temperature could also vary in time,and we would say the temperature ﬁeld is time-dependent, and write T(x, y, z, t).Another example is the「velocity ﬁeld」of a ﬂowing liquid. We write v(x, y, z, t)for the velocity of the liquid at each point in space at the time t. It is a vector ﬁeld.Returning to the electromagnetic ﬁelds — although they are produced bycharges according to complicated formulas, they have the following importantcharacteristic: the relationships between the values of the ﬁelds at one point andthe values at a nearby point are very simple. With only a few such relationshipsin the form of diﬀerential equations we can describe the ﬁelds completely. It is interms of such equations that the laws of electrodynamics are most simply written.There have been various inventions to help the mind visualize the behavior ofﬁelds. The most correct is also the most abstract: we simply consider the ﬁeldsas mathematical functions of position and time. We can also attempt to get amental picture of the ﬁeld by drawing vectors at many points in space, each ofwhich gives the ﬁeld strength and direction at that point. Such a representationis shown in Fig. 1-1. We can go further, however, and draw lines which areeverywhere tangent to the vectors — which, so to speak, follow the arrows andkeep track of the direction of the ﬁeld. When we do this we lose track of thelengths of the vectors, but we can keep track of the strength of the ﬁeld bydrawing the lines far apart when the ﬁeld is weak and close together when it isstrong. We adopt the convention that the number of lines per unit area at rightangles to the lines is proportional to the ﬁeld strength. This is, of course, only anapproximation, and it will require, in general, that new lines sometimes start upin order to keep the number up to the strength of the ﬁeld. The ﬁeld of Fig. 1-1is represented by ﬁeld lines in Fig. 1-2.
 
-![](./res/2021002.png)
-
 Fig. 1-1. A vector ﬁeld may be represented by drawing a set of arrows whose magnitudes and directions indicate the values of the vector ﬁeld at the points from which the arrows are drawn.
-
-![](./res/2021003.png)
 
 Fig. 1-2. A vector ﬁeld can be represented by drawing lines which are tangent to the direction of the ﬁeld vector at each point, and by drawing the density of lines proportional to the magnitude of the ﬁeld vector.
 
@@ -116,8 +110,6 @@ Flux = average normal component x surface area
 
 In the case of an electric ﬁeld, we can mathematically deﬁne somethinganalogous to an outﬂow, and we again call it the ﬂux, but of course it is not theﬂow of any substance, because the electric ﬁeld is not the velocity of anything. Itturns out, however, that the mathematical quantity which is the average normalcomponent of the ﬁeld still has a useful signiﬁcance. We speak, then, of theelectric ﬂux — also deﬁned by Eq. (1.4). Finally, it is also useful to speak of theﬂux not only through a completely closed surface, but through any boundedsurface. As before, the ﬂux through such a surface is deﬁned as the averagenormal component of a vector times the area of the surface. These ideas areillustrated in Fig. 1-3.
 
-![](./res/2021004.png)
-
 Fig. 1-3. The ﬂux of a vector ﬁeldthrough a surface is deﬁned as the aver-age value of the normal component of thevector times the area of the surface.
 
 There is a second property of a vector ﬁeld that has to do with a line, ratherthan a surface. Suppose again that we think of a velocity ﬁeld that describes theﬂow of a liquid. We might ask this interesting question: Is the liquid circulating?
@@ -132,8 +124,6 @@ You will see that this deﬁnition does indeed give a number which is proportion
 
 With just these two ideas — ﬂux and circulation — we can describe all the lawsof electricity and magnetism at once. You may not understand the signiﬁcanceof the laws right away, but they will give you some idea of the way the physics ofelectromagnetism will be ultimately described.
 
-![](./res/2021005.png)
-
 Fig. 1-4. (a) The velocity ﬁeld in a liquid. Imagine a tube of uniform cross section that follows an arbitrary closed curve as in (b). If the liquid were suddenly frozen everywhere except inside the tube, the liquid in the tube would circulate as shown in (c).
 
 1-3 矢量场的特征
@@ -143,7 +133,7 @@ Fig. 1-4. (a) The velocity ﬁeld in a liquid. Imagine a tube of uniform cross s
 例如，对于速度场，我们也许要问，该面上的速度是否总是向外，或更普遍地问，是否（每单位时间）流出的流体比流入的多。我们把单位时间流经该面的净流体量称为通过该面的「速度通量」。流经一个面积单元的流量恰好等于垂直该面积的速度分量乘以该面积。对于任一个闭合面，净流出量（或通量）等于速度向外的法向分量的平均值乘以该闭合曲面的面积：
 
 ```
-通量 = 平均法向分量 x 曲面的面积  —  —  公式 1.4
+通量 = 平均法向分量 x 曲面的面积
 ```
 
 在电场的情况下，我们可以在数学上定义与流出量相类似的东西，又称作通量，但这当然不是任何物质的流动，因为电场并不是任何东西的速度。然而，事实证明，场法向分量的平均值这个数学上的量仍有其实用意义。于是，我们来谈谈电通量 一一 这也是由式 1.4 定义的。最后，不仅谈论通过一个完全闭合曲面的通量，而且还谈论通过任一个有边界的曲面的通量这也是很有用处的。综上所述，通过这样一个面的通量被定义为矢量的法向分量的平均值乘以该曲面的面积。这些概念如图 1-3 所示。
@@ -157,7 +147,7 @@ Fig. 1-4. (a) The velocity ﬁeld in a liquid. Imagine a tube of uniform cross s
 我们再把上述概念加以引申，而定义任一矢量场的「环流」（即使没有任何东西在流动亦然）。对于任一矢量场，绕任一想象中的闭合曲线的环流可以定义为矢量（沿一致向指）的平均切向分量乘以该回路的周长（图 1-5），即：
 
 ```
-环流 = 平均切向分量 x 绕行距离 —— 公式 1.5
+环流 = 平均切向分量 x 绕行距离
 ```
 
 你们将会看到，这一定义确实给出了一个正比于上述迅速被冻结的管子里的环流速度的数值。
@@ -170,19 +160,25 @@ Fig. 1-4. (a) The velocity ﬁeld in a liquid. Imagine a tube of uniform cross s
 
 The ﬁrst law of electromagnetism describes the ﬂux of the electric ﬁeld:
 
+```
 The ﬂux of E through any closed surface = the net charge inside/ε0 (1.6)
+```
 
 where 0 is a convenient constant. (The constant 0 is usually read as「epsilon-zero」or「epsilon-naught」.) If there are no charges inside the surface, even thoughthere are charges nearby outside the surface, the average normal component of Eis zero, so there is no net ﬂux through the surface. To show the power of thistype of statement, we can show that Eq. (1.6) is the same as Coulomb’s law,provided only that we also add the idea that the ﬁeld from a single charge isspherically symmetric. For a point charge, we draw a sphere around the charge.Then the average normal component is just the value of the magnitude of E atany point, since the ﬁeld must be directed radially and have the same strengthfor all points on the sphere. Our rule now says that the ﬁeld at the surface of thesphere, times the area of the sphere — that is, the outgoing ﬂux — is proportionalto the charge inside. If we were to make the radius of the sphere bigger, the areawould increase as the square of the radius. The average normal component ofthe electric ﬁeld times that area must still be equal to the same charge inside,and so the ﬁeld must decrease as the square of the distance — we get an「inversesquare」ﬁeld.
 
 If we have an arbitrary stationary curve in space and measure the circulationof the electric ﬁeld around the curve, we will ﬁnd that it is not, in general, zero(although it is for the Coulomb ﬁeld). Rather, for electricity there is a secondlaw that states: for any surface S (not closed) whose edge is the curve C,
 
+```
 Circulation of E around C = −d/dt(ﬂux of B through S). (1.7)
+```
 
 We can complete the laws of the electromagnetic ﬁeld by writing two corre-
 
 sponding equations for the magnetic ﬁeld B:
 
+```
 Flux of B through any closed surface = 0. (1.8)
+```
 
 For a surface S bounded by the curve C,
 
@@ -266,8 +262,6 @@ c^2(B 绕 C 的环流) = d(通过 S 的 E 的通量)/dt + 通过 S 的电流通�
 
 式 1.6-1.9 以及式（1.1）都是电动力学的定律。牛顿定律写起来虽然简单，但它会引出一大堆复杂的结果，而你要深入地学习就得花费很长时间。现在这些定律既然写起来就没有那么简单，那当然意味着其结果将更为复杂，所以我们将花大量时间才能把它们全部弄清楚。
 
-![](./res/2021012.png)
-
 图 1-6 一条形磁铁在导线处给出了磁场 B。当有电流沿导线流动时，该导线由于受力 `F = qv x B` 的作用而运动
 
 通过做一系列小实验（这些实验在定性上表明电场和磁场的关系），我们就能验证某些电动力学定律。当你梳头时，将会对式（1.1）中的第一项有所体验，因而我们就不去证明这一项了。如图 1-6 所示，给悬挂在一条形磁铁上面的导线输入电流，式（1.1）中的第二项可得以演示。当电流接通时，导线由于受力 `F = qv x B` 作用而发生了运动；当存在电流时，线里的电荷在运动，所以它们有一速度，磁铁产生的磁场就会对它们施加作用力，结果把导线推向一旁。
@@ -276,15 +270,11 @@ c^2(B 绕 C 的环流) = d(通过 S 的 E 的通量)/dt + 通过 S 的电流通�
 
 导线为什么会推磁铁呢？导线里的电流会产生它自身的磁场，从而施力于磁铁上。按照式（1.9）中的第二项，电流必有一个 B 的环流 一一 在这种情况下，B 线就是环绕该导线的回路，如图 1-7 所示。作用于磁铁上的力，就是由这 B 产生的。
 
-![](./res/2021013.png)
-
 图 1-7 导线的磁场施力于磁铁
 
 式（1.9）还告诉我们，对于通过导线的一个恒定电流，对围绕导线的任何曲线 B 的环流都相同。由于曲线 一一 比方说是一圆周 一一 距离导线越远，则其周长越长，B 的切向分量就必然减小。你可以看到，事实上我们该期待 B 随着离开长直导线的距离线性地减弱。
 
 现在，我们已经说过，流经导线的电流会产生磁场；而当有磁场存在时，就有一力作用于载有电流的导线上。于是我们也预料到，如果用导线中的电流来产生磁场，则它会对另一载流导线施一作用力。这可由采用如图 1-8 所示的两根悬挂导线来做演示。当两电流同向时，两导线相吸；但当两电流方向相反时，它们将相斥。
-
-![](./res/2021014.png)
 
 图 1-8 两条通电流的导线互相有力作用着
 
@@ -294,15 +284,11 @@ c^2(B 绕 C 的环流) = d(通过 S 的 E 的通量)/dt + 通过 S 的电流通�
 
 1『磁铁有磁场的原理，做一张信息数据卡片。』—— 已完成
 
-![](./res/2021015.png)
-
 图 1-9 图 1-6 中的磁铁可用一个流线来代替，有一相似的力作用在导线上
 
 由于磁铁的场都是来自电流，所以我们无需因存在磁铁而在式（1.8）和（1.9）中引进任何额外的项。我们只要取所有的电流，包括自旋电子的环行电流，那么该定律就对了。但你亦应注意，式（1.8）说明不存在与出现在式（1.6）右边的电荷相类似的磁「荷」。没有人曾发现过磁荷。
 
 式（1.9）右边的第一项是由麦克斯韦从理论上发现的，而且十分重要。它说明一个变化着的电场会产生磁场。事实上，若没有这一项，该方程便毫无意义。若无此项，则在一非完整的回路中便不会有电流。但正如我们在下述例子中将见到的这样的电流确实存在。
-
-![](./res/2021016.png)
 
 图 1-10 B 绕曲线 C 的环流，既可以由通过面 S1 的电流给出，也可以由通过面 S2 的 E 的通量变化率给出
 
@@ -365,4 +351,3 @@ From a long view of the history of mankind — seen from, say, ten thousandyears
 从人类历史的长远观点来看 一一 例如过一万年之后回头来看 一一 毫无疑问，在 19 世纪中发生的最有意义事件将被认为是麦克斯韦对电磁学定律的发现。与这一重大科学事件相比，同一个十年中发生的美国内战，将降为一个地区性琐事而黯然失色。
 
 1『麦克斯韦比美国内战重要的多，这个观点之前在万维钢的精英日课「相对论」专题里提到，原来他是看这本书获取的这个信息，哈哈。（2021-01-22）』
-
