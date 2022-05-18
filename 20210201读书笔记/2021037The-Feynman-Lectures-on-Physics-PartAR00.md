@@ -150,15 +150,7 @@ An enzyme is made of another substance called protein. Enzymes are very big and 
 
 酶是由另一种称为蛋白质的物质构成的。酶分子族是非常庞大而复杂的，每一种酶互不相同，并且都控制着一定的特殊反应。图 3-1 中每个反应中都写上了酶的名称（有时同种酶可以控制两种反应）。我们要强调指出：酶本身并不直接参与反应，它们并没有变化，只是使一个原子从一个地方跑到另一个地方。干完了这件事后，它又准备对下一个原子做同样的事，犹如工厂里的机器一样。当然，必须对某种原子进行补充，并且可以处理另一些原子。比如，以氢为例，有些酶具有特殊的结构单元，能在各种化学反应中运送氢原子。例如，有三种或四种脱氢酶在我们整个循环的各个地方都用到。有趣的是，有一种机构使一个地方释放某些氢原子并将其取走，然后用到其他的地方去。
 
-### 0504. 数据信息卡 —— 磁铁有磁场的原理
-
-简言之，电流和磁铁均会产生磁场。且慢！试问磁铁究竟是什么？如果磁场是由运动电荷产生的，那么，来自一块磁铁的磁场是否有可能也是由于电流的原因呢？看来的确是这样。我们可以将实验中的条形磁铁用一个导电线圈来代替，如图 1-9 所示。当电流通过线圈同时也有电流通过在线圈上面的那根直导线 一一 时，我们便会观察到导线的运动与以前用磁铁而不用线圈时完全一样。换言之，线圈里的电流模仿了一块磁铁。因此，看来一块磁铁的作用就如同它含有一种永恒的环行电流一样。事实上，我们可以用铁原子中的恒定电流来理解磁铁。在图 1-7 中，作用在磁铁上的力就是由式（1.1）中的第二项引起的。
-
-究竟这些电流是从哪里来的呢？一种可能来自原子轨道中电子的运动。实际上虽然对于某些材料来说这是正确的，但对铁来说却是不正确的。一个电子，除了在原子中环行之外，还绕它本身的轴旋转 一一 有些像地球的自转 —— 正是由于自旋所产生的电流才为铁提供了磁场（我们说「有些像地球的自转」，是因为这一问题在量子力学中竟是那么奥妙，以致一些经典概念并不能真正恰当地描述这些事物）。在大多数物质中，有些电子这样自旋，另一些电子那样自旋，所以磁性互相抵消；可是在铁里 一一 由于某个我们将在以后加以讨论的神秘原因 一一 有许多电子却绕着它们的排列整齐的轴旋转着，这正是磁性的起源。
-
-1『磁铁有磁场的原理，做一张信息数据卡片。』—— 已完成
-
-### 0505. 数据信息卡 —— 冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的
+### 0504. 数据信息卡 —— 冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的
 
 We now return to our drop of water and look in another direction. Suppose that we decrease the temperature of our drop of water. Suppose that the jiggling of the molecules of the atoms in the water is steadily decreasing. We know that there are forces of attraction between the atoms, so that after a while they will not be able to jiggle so well. What will happen at very low temperatures is indicated in Fig. 1-4: the molecules lock into a new pattern which is ice. This particular schematic diagram of ice is wrong because it is in two dimensions, but it is right qualitatively. The interesting point is that the material has a deﬁnite place for every atom, and you can easily appreciate that if somehow or other we were to hold all the atoms at one end of the drop in a certain arrangement, each atom in a certain place, then because of the structure of interconnections, which is rigid, the other end miles away (at our magniﬁed scale) will have a deﬁnite location. So if we hold a needle of ice at one end, the other end resists our pushing it aside, unlike the case of water, in which the structure is broken down because of the increased jiggling so that the atoms all move around in diﬀerent ways. 
 
