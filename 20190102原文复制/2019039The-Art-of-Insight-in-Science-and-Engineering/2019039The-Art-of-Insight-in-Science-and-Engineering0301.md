@@ -551,223 +551,87 @@ We often convert a quantity from one unit system to another — for example, mas
 
 A useful physical conversion is writing energy density — energy divided by amount of stuff — in useful units. Let's start with the reasonable energy unit for a chemical bond, namely the electron volt or eV (Section 2.1). Then a useful unit for energy density is 
 
+```
 1 eV / molecule. (3.8)
+```
 
 This energy density is our invariant. As we convert from one unit system to another, our moves have to preserve the energy density.
 
 What are the legal moves — the moves that preserve the energy density?
 
-The legal moves are all ways of multiplying by 1 — for example, by 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.2 From invariant to symmetry operation 67
-
-6×1023 molecules
-
-1 mol
-
-or
-
-1 mol
-
-.
+The legal moves are all ways of multiplying by:
 
 (3.9)
 
-6×1023 molecules
+Either quotient is a form of 1, because 1 mole is defined to be Avogadro's number of molecules, and Avogadro's number is 6×1023. I carefully wrote「1 mol」with the number rather than simply as「mol.」The more explicit form reminds us that「6×1023 molecules per mole」is shorthand for a quotient of two identical quantities: 6×1023 molecules and 1 mole.
 
-Either quotient is a form of 1, because 1 mole is defined to be Avogadro's number of molecules, and Avogadro's number is 6×1023. I carefully wrote
-
-「1 mol」with the number rather than simply as「mol.」The more explicit form reminds us that「6×1023 molecules per mole」is shorthand for a quotient of two identical quantities: 6×1023 molecules and 1 mole.
-
-Multiplying the energy density by the first form of 1 gives 1 eV
-
-6×1023 molecules
-
-6×1023 eV
-
-×
-
-=
-
-.
+Multiplying the energy density by the first form of 1 gives 1 eV:
 
 (3.10)
 
-molecule
-
-1 mol
-
-mol
-
-(If we had multiplied by the second form of 1, the units of molecules would have become molecules squared instead of canceling. The strike-through lines help us check that we got the desired units.) The giant exponent makes this form almost meaningless. To improve it, let's multiply by another form of 1, based on the definition of an electron volt. Two forms of 1 are 1.6×10−19 J
-
-1 eV
-
-or
-
-1 eV
-
-.
+(If we had multiplied by the second form of 1, the units of molecules would have become molecules squared instead of canceling. The strike-through lines help us check that we got the desired units.) The giant exponent makes this form almost meaningless. To improve it, let's multiply by another form of 1, based on the definition of an electron volt. Two forms of 1 are:
 
 (3.11)
 
-1.6×10−19 J
-
-Multiplying by the first form of 1 gives
-
-1 eV
-
-6×1023 molecules
-
-×
-
-× 1.6×10−19 J ≈ 102 kJ.
+Multiplying by the first form of 1 gives:
 
 (3.12)
 
-molecule
+(A more exact value is 96 kilojoules per mole.) In the United States, energies related to food are stated in Calories, also known as kilocalories (roughly 4.2 kilojoules). In calorie units, the useful energy-density unit is:
 
-1 mol
+Which form is more meaningful: 23 kcal/mol or 23 kcal/mol?
 
-1 eV
-
-mol
-
-(A more exact value is 96 kilojoules per mole.) In the United States, energies related to food are stated in Calories, also known as kilocalories (roughly 4.2 kilojoules). In calorie units, the useful energy-density unit is 96 kJ
-
-1 kcal
-
-23 kcal
-
-×
-
-≈
-
-.
-
-(3.13)
-
-1 mol 4.2 kJ
-
-mol
-
-Which form is more meaningful: 23 kcal or 23 kcal?
-
-mol
-
-mol
-
-The forms are mathematically equivalent: You can multiply by 23 before or after dividing by a mole. However, they are not psychologically equivalent.
-
-The first form builds the abstraction of kilocalories per mole, and then says,
-
-「Here are 23 of them.」In contrast, the second form gives us the energy for 1 mole, a human-sized amount. The second form is more meaningful.
+The forms are mathematically equivalent: You can multiply by 23 before or after dividing by a mole. However, they are not psychologically equivalent. The first form builds the abstraction of kilocalories per mole, and then says,「Here are 23 of them.」In contrast, the second form gives us the energy for 1 mole, a human-sized amount. The second form is more meaningful.
 
 Similarly, the speed of light 𝑐 is commonly quoted as (approximately) 
-
-3×108 ms.
 
 (3.14)
 
 The psychologically fruitful alternative is
 
-𝑐 = 3×108 m
-
-1 s
-
-.
-
 (3.15)
 
 This form suggests that 300 million meters, at least for light, is the same as 1 second. With this idea, you can convert wavelength to frequency (Problem 3.14); with a slight extension, you can convert frequency to energy (Problem 3.15) and energy to temperature (Problem 3.16).
 
-Problem 3.12
-
-Absurd units
+Problem 3.12 Absurd units
 
 By multiplying by suitable forms of 1, convert 1 furlong per fortnight into meters per second.
 
-Problem 3.13
-
-Rainfall units
+Problem 3.13 Rainfall units
 
 Rainfall, in nonmetric parts of the world, is sometimes measured in acre feet. By multiplying by suitable forms of 1, convert 1 acre foot to cubic meters. (One square mile is 640 acres.)
 
-Problem 3.14
-
-Converting wavelength to frequency
+Problem 3.14 Converting wavelength to frequency
 
 Convert green-light wavelength, 0.5 micrometers (0.5 μm), to a frequency in cycles per second (hertz or Hz).
 
-Problem 3.15
-
-Converting frequency to energy
+Problem 3.15 Converting frequency to energy
 
 Analogously to how you used the speed of light in Problem 3.14, use Planck's constant ℎ to convert the frequency of green light to an energy in joules (J) and in electron volts (eV). This energy is the energy of a green-light photon.
 
-Problem 3.16
-
-Converting energy to temperature
+Problem 3.16 Converting energy to temperature
 
 Use Boltzmann's constant 𝑘B to convert the energy of a green-light photon (Problem 3.15) to a temperature (in kelvin). This temperature, except for a factor of 3, is the surface temperature of the Sun!
 
-Conversion factors need not be numerical. Insight often comes from symbolic factors. Here is an example from fluid flow. As we will derive in Section 5.3.2, the drag coefficient 𝑐d is defined as the dimensionless ratio 𝐹
-
-𝑐
-
-drag
-
-d ≡
-
-,
-
-1
+Conversion factors need not be numerical. Insight often comes from symbolic factors. Here is an example from fluid flow. As we will derive in Section 5.3.2, the drag coefficient 𝑐d is defined as the dimensionless ratio:
 
 (3.16)
 
-2 𝜌𝑣2𝐴
-
-where 𝜌 is the fluid density, 𝑣 is the speed of the object moving in the fluid, and 𝐴 is the object's cross-sectional area. To give this definition and ratio a 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.2 From invariant to symmetry operation 69
-
-physical interpretation, multiply it by 𝑑/𝑑, where 𝑑 is the distance that the object travels:
-
-𝐹
-
-𝑐
-
-drag 𝑑
-
-d ≡
-
-.
-
-1
+where 𝜌 is the fluid density, 𝑣 is the speed of the object moving in the fluid, and 𝐴 is the object's cross-sectional area. To give this definition and ratio a physical interpretation, multiply it by 𝑑/𝑑, where 𝑑 is the distance that the object travels:
 
 (3.17)
-
-2 𝜌𝑣2𝐴𝑑
 
 The numerator, 𝐹drag𝑑, is the work done or the energy consumed by drag.
 
 In the denominator, the product 𝐴𝑑 is the volume of fluid displaced by the object, so 𝜌𝐴𝑑 is the corresponding mass of fluid. Therefore, the denominator is also
 
-12 ×massoffluiddisplaced×𝑣2.
-
 (3.18)
 
 The object's speed 𝑣 is also approximately the speed given to the displaced fluid (which the object shoved it out of its way). Therefore, the denominator is roughly
 
-12 ×massoffluiddisplaced×(speedofdisplacedfluid)2.
-
 (3.19)
 
 This expression is the kinetic energy given to the displaced fluid. The drag coefficient is therefore roughly the ratio
-
-energy consumed by drag
-
-𝑐d ∼ energy given to the fluid .
 
 (3.20)
 
@@ -779,9 +643,9 @@ Almost every problem in the chemistry textbook could be solved by unit conversio
 
 A classic example of going from the invariant to the symmetry is the following story of the young Carl Friedrich Gauss. Although maybe just a legend, the story is so instructive that it ought to be true. Once upon a time, when Gauss was 3 years old, his schoolteacher, wanting to occupy the students, assigned them to compute the sum
 
-𝑆 = 1 + 2 + 3 + ⋯ + 100,
-
-(3.21)
+```
+𝑆 = 1 + 2 + 3 + ⋯ + 100, (3.21)
+```
 
 and sat back to enjoy the break. In a few minutes, Gauss returned with an answer of 5050.
 
@@ -789,99 +653,57 @@ Was Gauss right? If so, how did he compute the sum so quickly?
 
 Gauss saw that the sum — the invariant — is unchanged when the terms are added backward, from highest to lowest:
 
-1 + 2 + 3 + ⋯ + 100 = 100 + 99 + 98 + ⋯ + 1.
+```
+1 + 2 + 3 + ⋯ + 100 = 100 + 99 + 98 + ⋯ + 1. (3.22)
+```
 
-(3.22)
-
-Then he added the two versions of the sum, the original and the reflected: 1 + 2 + 3 + ⋯ + 100 = 𝑆
-
-+ 100 + 99 + 98 + ⋯ + 1 = 𝑆
+Then he added the two versions of the sum, the original and the reflected: 
 
 (3.23)
 
-101 + 101 + 101 + ⋯ + 101 = 2𝑆.
-
 In this form, 2𝑆 is easy to compute: It contains 100 copies of 101. Therefore, 2𝑆 = 100 × 101, and 𝑆 = 50 × 101 or 5050 — as the young Gauss claimed. He made the problem so simple by finding a symmetry: a transformation that preserved the invariant.
 
-Problem 3.17
-
-Number sum
+Problem 3.17 Number sum
 
 Use Gauss's method to find the sum of the integers between 200 and 300 (inclusive).
 
-Problem 3.18
+Problem 3.18 Symmetry for algebra
 
-Symmetry for algebra
+Use symmetry to find the missing coefficients in the expansion of 
 
-Use symmetry to find the missing coefficients in the expansion of (𝑎 − 𝑏)3: (𝑎 − 𝑏)3 = 𝑎3 − 3𝑎2𝑏+? 𝑎𝑏2+? 𝑏3.
+```
+(𝑎 − 𝑏)3: (𝑎 − 𝑏)3 = 𝑎3 − 3𝑎2𝑏+? 𝑎𝑏2+? 𝑏3. (3.24)
+```
 
-(3.24)
-
-Problem 3.19
-
-Integrals
+Problem 3.19 Integrals
 
 Evaluate these definite integrals. Hint: Use symmetry.
 
-10
-
-∞
-
-∞
-
-(a) ∫ 𝑥3𝑒−𝑥2 𝑑𝑥, (b) ∫
-
-𝑥3
-
-∫ ln 𝑥
-
-1 + 7𝑥2 + 18𝑥8 𝑑𝑥, and (c)
-
-1 + 𝑥2 𝑑𝑥.
-
-−10
-
-−∞
-
-0
-
 3.2.3 Finding maxima or minima
 
-To practice finding the symmetry operation, we'll find the maximum of the function 6𝑥 − 𝑥2 without using calculus. Calculus is the elephant gun. It can solve many problems, but only after blasting them into the same form (smithereens). Avoiding calculus forces us to use more particular, but more subtle methods — such as symmetry. As Gauss did in summing 1 + 2 + ⋯ +
-
-100, let's find a symmetry operation that preserves the essential feature of the problem — namely, the location of the maximum.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.2 From invariant to symmetry operation 71
+To practice finding the symmetry operation, we'll find the maximum of the function 6𝑥 − 𝑥2 without using calculus. Calculus is the elephant gun. It can solve many problems, but only after blasting them into the same form (smithereens). Avoiding calculus forces us to use more particular, but more subtle methods — such as symmetry. As Gauss did in summing 1 + 2 + ⋯ + 100, let's find a symmetry operation that preserves the essential feature of the problem — namely, the location of the maximum.
 
 Symmetry implies moving around an object's pieces. Fortunately, our function 6𝑥 − 𝑥2 factors into pieces:
 
-6𝑥 − 𝑥2 = 𝑥(6 − 𝑥).
+```
+6𝑥 − 𝑥2 = 𝑥(6 − 𝑥). (3.25)
+```
 
-(3.25)
+This form, along with the idea that multiplication is commutative, suggests the symmetry operation. For if the operation just swaps the two factors, replacing 𝑥(6 − 𝑥) with (6 − 𝑥)𝑥, it does not change the location of the maximum. (A parabola has exactly one maximum or minimum.) The symmetry operation that makes the swap is 
 
-This form, along with the idea that multiplication is commutative, suggests the symmetry operation. For if the operation just swaps the two factors, replacing 𝑥(6 − 𝑥) with (6 − 𝑥)𝑥, it does not change the location of the maximum. (A parabola has exactly one maximum or minimum.) The symmetry operation that makes the swap is 𝑥 ⟷ 6 − 𝑥.
-
-(3.26)
+```
+𝑥 ⟷ 6 − 𝑥. (3.26)
+```
 
 It turns 2 into 4 (and vice versa) and 1 into 5 (and vice versa). The only value unchanged (left invariant) by the symmetry operation is 𝑥 = 3. Therefore, 6𝑥 − 𝑥2 has its maximum at 𝑥 = 3.
 
-maximum
-
-Geometrically, the symmetry operation reflects the graph of 6𝑥 − 𝑥2 through the line 𝑥 = 3. By construction, this symme-6x − x2
-
-try operation preserves the location of the maximum. Therefore, the maximum has to lie on the line 𝑥 = 3.
+Geometrically, the symmetry operation reflects the graph of 6𝑥 − 𝑥2 through the line 𝑥 = 3. By construction, this symmetry operation preserves the location of the maximum. Therefore, the maximum has to lie on the line 𝑥 = 3.
 
 We could have found this maximum in several other ways, so the use of symmetry might seem superfluous or like overkill.
 
 However, it warms us up for the following, more compli-x = 3
 
 cated use. The energy required to fly has two pieces: generating lift, which requires an energy 𝐴/𝑣2, and fighting drag, which requires an energy 𝐵𝑣2. (𝐴 and 𝐵 are constants that we estimate in Sections 3.6.2 and 4.6.1.)
-
-𝐸flight = 𝐴
-
-𝑣2 + 𝐵𝑣2.
 
 (3.27)
 
@@ -891,107 +713,265 @@ In terms of the constants 𝐴 and 𝐵 , what speed minimizes 𝐸 flight?
 
 Like the parabola 𝑥(6−𝑥), this energy has one extremum. For the parabola, the extremum was a maximum; here, it is a minimum. Also similar to the parabola, this energy has two pieces connected by a commutative operation. For the parabola, the operation was multiplication; here, it is addition.
 
-Continuing the analogy, if we find a symmetry operation that transposes 
+Continuing the analogy, if we find a symmetry operation that transposes the two pieces, then the speed preserved by the operation will be the minimum-energy speed.
 
-
-
-the two pieces, then the speed preserved by the operation will be the minimum-energy speed.
-
-Finding this symmetry operation is hard to do in one gulp, because it must transpose 1/𝑣2 and 𝑣2 and transpose 𝐴 and 𝐵. These two difficulties suggest that we apply divide-and-conquer reasoning: Find a symmetry operation that transposes 1/𝑣2 and 𝑣2, and then modify so that it also transposes 𝐴
-
-and 𝐵.
-
-E
+Finding this symmetry operation is hard to do in one gulp, because it must transpose 1/𝑣2 and 𝑣2 and transpose 𝐴 and 𝐵. These two difficulties suggest that we apply divide-and-conquer reasoning: Find a symmetry operation that transposes 1/𝑣2 and 𝑣2, and then modify so that it also transposes 𝐴 and 𝐵.
 
 To transpose 1/𝑣2 and 𝑣2, the symmetry operation is the following:
 
-𝑣 ⟷ 1𝑣.
+```
+𝑣 ⟷ 1𝑣. (3.28)
+```
 
-(3.28)
-
-Now let's restore one of the two constants and modify Eflight
-
-the symmetry operation so that it transposes 𝐴/𝑣2 and Edrag
-
-𝑣2:
-
-Elift
-
-𝑣 ⟷ 𝐴
-
-vmin
-
-v
-
-𝑣 .
+Now let's restore one of the two constants and modify Eflight the symmetry operation so that it transposes 𝐴/𝑣2 and Edrag
 
 (3.29)
 
-Now let's restore the second constant, 𝐵, and find the full symmetry operation that transposes 𝐴/𝑣2 and 𝐵𝑣2: 𝐵 𝑣 ⟷ 𝐴
-
-𝑣 .
+Now let's restore the second constant, 𝐵, and find the full symmetry operation that transposes 𝐴/𝑣2 and 𝐵𝑣2: 
 
 (3.30)
 
-Rewriting it as a replacement for 𝑣, the symmetry operation becomes 𝑣 ⟷ 𝐴/𝐵
-
-𝑣 .
+Rewriting it as a replacement for 𝑣, the symmetry operation becomes 
 
 (3.31)
 
-This symmetry operation transposes the drag energy and lift energy, leaving the total energy 𝐸flight unchanged. Solving for the speed preserved by the symmetry operation gives us the minimum-energy speed: 1/4
-
-𝑣min = (𝐴𝐵) .
+This symmetry operation transposes the drag energy and lift energy, leaving the total energy 𝐸flight unchanged. Solving for the speed preserved by the symmetry operation gives us the minimum-energy speed: 
 
 (3.32)
 
 In Section 4.6.1, once we find 𝐴 and 𝐵 in terms of the characteristics of the air (its density) and the plane (such as its wingspan), we can estimate the minimum-energy (cruising) speeds of planes and birds.
 
-Problem 3.20
+Problem 3.20 Solving a quadratic equation using symmetry 
 
-Solving a quadratic equation using symmetry The equation 6𝑥−𝑥2 +7 = 0 has a solution at 𝑥 = −1. Without using the quadratic formula, find any other solutions.
+The equation 6𝑥−𝑥2 +7 = 0 has a solution at 𝑥 = −1. Without using the quadratic formula, find any other solutions.
+
+3.2 从不变性到对称操作
+
+在前面的例子中，我们知道游戏的玩法，然后寻找不变量。在被老鼠啃过的棋盘（章节 3.1.2）中，玩法是将一个 2×1 的骨牌放在两个相邻的空格上。不变量是黑空格数与白空格数之差。然而，通常不变量的好处是在另一个方面：你知道了不变量，然后寻找保持这个量不变的玩法。这些玩法称为对称操作，或简单地叫作对称。
+
+我们将先在一个熟悉的情况下考察这个概念：单位转换（章节 3.2.1）。然后我们通过一个高斯 [1] 3 岁时解决的求和问题（章节 3.2.2）及寻找极大和极小问题（章节 3.2.3）来体验一下。
+
+[1] 德国数学家，物理学家，近代数学奠基者之一。 —— 译者注
+
+3.2.1 单位转换
+
+我们常常把一个量从一个单位制转换到另一个单位制 —— 例如，质量用英制表示转换为用公制表示，或者价格从美元换成英镑或欧元。一个有用的例子是将能量密度（能量除以物质的量）以适合的单位表示。让我们首先对一个化学键用合理的能量单位表示，即电子伏或 eV（章节 2.1）。于是能量密度的单位是：
+
+```
+ev/分子
+```
+
+这个能量密度是我们的不变量。当我们从一个单位制转换到另一个单位制时，我们的所有操作必须保持能量密度不变。
+
+➤ 什么操作是合法的操作，即保持能量密度不变的操作？
+
+合法的操作就是用各种方式的 1 去乘 —— 比如，
+
+这两个比例式都是 1 的一种形式，因为 1 摩尔定义为阿伏伽德罗常数个分子，而阿伏伽德罗常数为 6×10$^23$。我将分母仔细地写成包括数字的「1 摩尔」，而不是简单地写成摩尔。这个显式提醒我们，「6×10$^23$ 分子 / 摩尔」是两个相等量，即 6×10$^23$ 个分子和 1 摩尔之商的简化。
+
+用第一种 1 的形式乘以能量密度得到：
+
+（如果我们使用了第二种 1 的形式，则「分子」无法相互抵消而成了「分子^2」。斜线帮助我们看清所要得到的单位。）这个巨大的指数使得这个形式几乎没有什么意义。为了改进，让我们用基于电子伏定义的 1 的另一个形式来乘：
+
+(3.11)
+
+转换时将这个 1 包括进去后得到：
+
+(3.12)
+
+（更精确的值是 96 千焦 / 摩尔。) 在美国，与食物相关的能量用卡路里表示，也以千卡表示（粗略地等于 42 千焦）。用卡路里表示，能量单位是：
+
+➤ 哪种形式更有意义，23（千卡/摩尔）还是 （23千卡）/摩尔？
+
+数学上，这两种形式是等价的。你可以在除以 1 摩尔之前或之后乘以 23。但在感觉上并不一样。第一种形式建立了每摩尔和千卡数的关系，并且告诉我们「每摩尔是 23 千卡」。它将 23 与其自然的部分，即千卡这一单位分离。相反，第二种形式给出了 1 摩尔的能量，而 1 摩尔与人的大小可比拟，因而是更具有洞察力的形式。
+
+类似地，通常光速 c 取为（近似地）：
+
+```
+3×10^8 m/s (3.14)
+```
+
+另一种感觉上更好的形式是：
+
+```
+c = (3x10^8m)/1s (3.15)
+```
+
+这个形式提示我们，至少对光而言，3 亿米的距离只是 1 秒钟而已。利用这个概念，可以将波长转换为频率（题 3.14）；稍微推广一下，可以将频率转换为能量（题 3.15）以及将能量转换为温度（题 3.16）。
+
+题 3.12 荒谬的单位
+
+通过乘 1 的适当形式，将 （1 弗隆）/（2 周）（1 弗隆约等于 201.168 米）转换为合理的单位（米 / 秒）。
+
+题 3.13 雨量单位
+
+在一些非公制国家，雨量常常用「英亩英尺」衡量。通过乘以 1 的适当形式，将 1 英亩英尺转换为米^3。
+
+题 3.14 波长转换为频率
+
+将绿光波长，0.5 微米，转换为频率（赫兹或 Hz）。
+
+题 3.15 频率转换为能量
+
+类似于你在题 3.14 中利用光速的方式，利用普朗克常数 h 将绿光频率转换为能量，并分别用焦耳（J）和电子伏（V）表示。这个能量就是绿光光子的能量。
+
+题 3.16 能量转换为温度
+
+利用玻尔兹曼常数 kB 将绿光光子的能量（题 3.15）转换为温度（用开尔文表示）。除因子 3，这个温度就是太阳表面的温度！
+
+转换因子不一定是数值的。洞察常常来自符号因子。这是来自流体的一个例子。在章节 5.3.2 我们将导出作为无量纲比例的阻力系数 cd：
+
+(3.16)
+
+其中 ρ 是流体密度，v 是流体中物体的运动速度，A 是物体的横截面积。为了给这个定义和比例一个直观的解释，分子分母同乘 d，其中 d 为物体运动的距离：
+
+分子（F阻力xd）是阻力做的功或消耗的能量。分母中 Ad 是物体在流体中移动时扫过的体积，所以 ρAd 就是相应的流体质量。因此，分母就是：
+
+```
+1/2 x 流体质量 x v^2 (3.18)
+```
+
+1『看到了流体力学里熟悉的公式：`1/2mv^2`。（2022-05-15）』
+
+物体的速度。也近似是物体扫过的流体（即物体移动时扫过的流体）速度。因此，分母近似是：
+
+```
+1/2 × 流体质量 ×（流体速度）^2，（3.19) 
+```
+
+这就是物体扫过的流体动能。阻力系数因此近似就是下列比值：
+
+```
+cd ~ 阻力消耗的能量/转移给流体的能量 (3.20)
+```
+
+我十年级时的化学老师麦克里迪先生告诉我们，单位转换是我们在整个课程中应该记住的一个概念。化学教科书中几乎每个问题的求解都可能用到单位转换，这一方面说明了书的质量，另一方面也说明了这个方法的威力。
+
+3.2.2 高斯儿时的求和
+
+从不变量到对称性的一个典型例子是年幼的高斯的一则故事。尽管很可能是一个传说，但这个故事很有启发意义，理应是真实的。从前，当高斯 3 岁的时候，他的老师想让孩子们多打发点时间，就出了一道求和题目：
+
+```
+S=1+2+3+…+100, (3.21)
+```
+
+然后坐回去享受孩子们做题时的闲暇。过了几分钟，高斯拿着答案 5050 跑来了。
+
+高斯是对的吗？如果是对的，那么他是如何这么快就得到答案的？
+
+高斯在求和中看到某种不变性：如果把所有项颠倒，从最大加到最小，那么和是不变的，然后他把这两个和加起来 —— 原来的与颠倒顺序的：
+
+```
+1+2+3+. …+100=S
+
+100+99+98+…+1=S
+
+101+101+101+…+101-2S
+
+(3.23)
+```
+
+利用这个形式，2S 容易计算：其包含 100 个 101。因此，2S=100×101。因此 S=50×101, 即 5050 —— 正如年幼的高斯所得到的。他通过发现的对称性将问题变得如此容易：即保持和不变的一个变换。
+
+题 3.17 数字和
+
+利用高斯的方法求 200 到 300（包含）之间自然数的和。
+
+题 3.18 代数的对称性
+
+利用对称性找出 (a-b)^3 展开式中缺失的系数：
+
+```
+(a-b)^3=a^3-3a^2b+?ab^3+?b3 (3.24)
+```
+
+题 3.19 积分
+
+计算下列定积分：
+
+3.2.3 求极大和极小值
+
+为了练习寻找对称操作，我们不用微积分来求函数 6x-x^2 的极大值。微积分是一件利器，可以解决许多问题，但前提是需要将问题化为相同的形式（小碎片）。避免使用微积分迫使我们使用更特别的，但也是更精致的方法 —— 比如对称性。正如高斯在求和 1+2+…+100 时做的，我们来找一个对称操作使其保持问题的本质特征不变 —— 即极大的位置。
+
+对称隐含了围绕物体各部分的运动。幸运的是，我们的函数 6x-x^2 可以因式分解为：
+
+```
+6x - x^2  = x(6-x) (3.25)
+```
+
+这个形式以及乘法可交换的性质，建议了一个对称操作。交换两个因子的操作，即将 x(6-x) 换成 (6-x)x，极值的位置是不变的。（一个抛物线有唯一的极大或极小值。）
+
+交换的对称操作即：
+
+```
+x←→6-x (3.26)
+```
+
+这个操作将 2 变成 4（及相反），1 变成 5（及相反）。在对称操作下仅有的不变的量是 x=3。因此，6x-x^2 在 x=3 具有极大值。
+
+从几何上来讲，对称操作关于直线 x=3 对极大值 6x-x$^2$ 的图形进行镜面反射。在这个变换中，对 6x-x$^2$ 称操作保持极大位置不变。因此，极大值必须位于直线 x=3 上。
+
+我们可以有很多其他找极大值的方法，所以对称性的使用似乎是多余的或者是过分的。然而，这 x=3 是对我们下面在更复杂问题中应用对称性的一个预热。正如我们将在章节 4.6.1 研究飞行时所要学到的，飞行需要的能量有两部分，升力需要的能量是 A/v$^2$，阻力需要的能量是 Bv$^2$（A 和 B 都是常数，将在章节 4.6.1 中进行估算）：
+
+(3.27)
+
+为了最小化燃料消耗，飞机选择巡航速度来最小化 E 飞行。更精确点说，巡航速度先选择好，飞机特意设计成在这个速度下 E 飞行最小。
+
+➤ 用 A 和 B 表示，多大的速度最小化 E 飞行？
+
+类似抛物线 x(6-x)，这个能量只有一个极值。对于抛物线，极值是极大值，而这里的能量是极小值。同样类似抛物线，能量也是两项通过「一个可交换的操作」组合而成。对于抛物线，这个操作是乘法，这里是加法。继续类比，如果我们找到一个交换这两项的对称操作，则保持不变的速度就是能量取极小的速度。
+
+想一下子找到对称操作是困难的，因为必须交换 1/v$^2$ 和 v$^2$ 及交换 A 和 B。这两个困难提示我们使用分而治之法：先找到交换 1/v$^2$ 和 v$^2$ 的对称操作，然后加以修正使其也交换 A 和 B。
+
+为了交换 1/v$^2$ 和 v$^2$，对称操作就是：
+
+(3.28)
+
+现在我们恢复其中一个常数并将对称操作 E 飞行修改为交换 A/v$^2$ 和 v$^2$：
+
+(3.29)
+
+现在我们恢复第二个常数 B，找出完整的交换 A/v$^2$ 和 Bv$^2$ 的对称操作：
+
+(3.30)
+
+球（重新写成）的变换，对称操作变成：
+
+(3.31)
+
+这个对称操作交换了阻力能量和升力能量，保持总能量 E 飞行不变。解出使对称操作保持不变的速度就给出能量最小的速度：
+
+(3.32)
+
+在章节 4.6.1，一旦我们找到用空气特性（如密度）和飞机（如机翼）表示的 A 和 B，我们就能估算飞机和鸟的最节省能量的速度。
+
+题 3.20 利用对称性求解二次方程
+
+方程 6x-x^2+7=0 有一个解 x=-1。不用二次方程的求根公式，找出另一个解。
 
 ### 3.3 Physical symmetry
 
-For a physical application of symmetry, imagine a uniform metal sheet, perhaps aluminum foil, cut into the shape of a regular penT = ?
-
-tagon. Imagine that to the edges are attached heat sources and 10◦
-
-10◦
-
-sinks — big blocks of metal at a fixed temperature — in order to 10◦
-
-hold the edges at the temperatures marked on the figure. After we wait long enough, the temperature distribution in the pentagon stops changing (comes to equilibrium).
+For a physical application of symmetry, imagine a uniform metal sheet, perhaps aluminum foil, cut into the shape of a regular pentagon. Imagine that to the edges are attached heat sources and sinks — big blocks of metal at a fixed temperature — in order to hold the edges at the temperatures marked on the figure. After we wait long enough, the temperature distribution in the pentagon stops changing (comes to equilibrium).
 
 Once the pentagon temperature equilibrates, what is the temperature at its center?
 
-A brute-force, analytic solution is difficult. Heat flow is described by the heat equation, a linear second-order partial-differential equation: 𝜅∇2𝑇 = ∂𝑇
+A brute-force, analytic solution is difficult. Heat flow is described by the heat equation, a linear second-order partial-differential equation: 
 
-∂𝑡 ,
-
-(3.33)
+```
+𝜅∇2𝑇 = ∂𝑇/∂𝑡 (3.33)
+```
 
 where 𝑇 is the temperature as a function of position and time, and 𝜅 (kappa) is the thermal diffusivity (which we will study in more detail in Chapter 7).
 
 But don't worry: You do not have to understand the equation, only that it is difficult to solve!
 
-80◦
-
-Once the temperature settles down, the time derivative becomes zero, and the equation simplifies to 𝜅∇2𝑇 = 0. However, even this 10◦
-
-10◦
-
-simpler equation has solutions only for simple shapes, and the solutions are complicated. For example, the temperature distrib-10◦
-
-ution on the simpler square sheet is hardly intuitive (the figure shows contour lines spaced every 10∘). For a pentagon, the temperature distribution is worse. However, because the pentagon is regular, symmetry might make the solution flow.
+Once the temperature settles down, the time derivative becomes zero, and the equation simplifies to 𝜅∇2𝑇 = 0. However, even this simpler equation has solutions only for simple shapes, and the solutions are complicated. For example, the temperature distribution on the simpler square sheet is hardly intuitive (the figure shows contour lines spaced every 10∘). For a pentagon, the temperature distribution is worse. However, because the pentagon is regular, symmetry might make the solution flow.
 
 What is a useful symmetry operation?
 
 Nature, in the person of the heat equation, does not care about the direction of our coordinate system. Thus, rotating the pentagon about its center does not change the temperature at the center. Therefore, the following five orientations of the pentagon share the same central temperature: 
 
 Like Gauss adding the two versions of his sum (Section 3.2.2), stack these sheets mentally and add the temperatures that lie on top of each other to make the temperature profile of a new super sheet (adding the temperatures is valid because the heat equation is linear).
-
-=
 
 (3.34)
 
@@ -1011,41 +991,13 @@ When there is change, look for what does not change. Look for invariants and the
 
 Problem 3.21 Symmetry solution for a square sheet
 
-Here is the contour plot again of the temperature on a square 80◦
+Here is the contour plot again of the temperature on a square sheet. The contour lines are separated by 10∘. Use that information to label the temperature of each contour line. Based on the symmetry reasoning, what should the temperature at the center of the square be? Is this predicted temperature consistent with what is shown in the contour plot?
 
-sheet. The contour lines are separated by 10∘. Use that information to label the temperature of each contour line. Based 10◦
+Problem 3.22 Simulating the heat equation
 
-10◦
+Using symmetry, we showed that the temperature at the center of the pentagon is the average of the temperatures of the sides. Check the solution by simulating the heat equation with a pentagonal boundary.
 
-on the symmetry reasoning, what should the temperature at the center of the square be? Is this predicted temperature con-10◦
-
-sistent with what is shown in the contour plot?
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.4 Box models and conservation 75
-
-Problem 3.22
-
-Simulating the heat equation
-
-Using symmetry, we showed that the temperature at the cen-80◦
-
-10◦
-
-ter of the pentagon is the average of the temperatures of the T = ?
-
-sides. Check the solution by simulating the heat equation 10◦
-
-10◦
-
-with a pentagonal boundary.
-
-10◦
-
-Problem 3.23
-
-Shortest bisecting path
+Problem 3.23 Shortest bisecting path
 
 What is the shortest path that bisects an equilateral triangle into two equal areas?
 
@@ -1053,69 +1005,69 @@ Here are three examples of bisecting paths:
 
 To set your problem-solving gears in motion, first rank these three bisecting paths according to their lengths.
 
+3.3 物理对称
+
+对于对称性的物理应用，考虑一个均匀的金属片，也许是铝箔，切割成规则的五边形。每个边都连接一个热源 —— 如保持固定温度的大块金属 —— 以使每条边都保持在图示所标的温度。当我们等足够长的时间后，五边形的温度分布不再变化（达到平衡）。
+
+➤ 一旦五边形的温度达到平衡，其中心温度是多少？
+
+硬算的话，想得到解析解是困难的。热流是由热方程描写的，一个二阶偏微分方程：
+
+其中 T 是温度，是时间和空间的函数，而 k 是热扩散系数（我们将在第 7 章进行更详细的研究）。但是别担心：你不必懂这个方程，只要知道方程很难解就行！
+
+一旦温度分布确定了，时间导数就变成零了，方程就简化为 `k∆^2T=0`。然而，即使是这个简化的方程也只是在形状简单的情况下有解，并且解是复杂的。比如，比较简单的正方形薄片上的温度分布也是很不直观的（图示是每 10 的等温线）。对于五边形，温度分布更复杂。但是，因为五边形是规则的，对称性也许能得到热流解。
+
+➤ 有用的对称操作是什么？
+
+从热方程的角度来看，大自然不会偏爱坐标系的某个方向。于是，将五边形围绕中心旋转不会改变中心温度。因此，下列五边形的五个取向具有相同的中心温度。
+
+正如高斯将两种求和形式相加一样（章节 3.2.2），将这些薄片人为叠在一起将每一点的温度相加得到整个超级薄片的温度分布（将各温度值相加是有效的，因为热方程是线性的）。
+
+每条边包含一个 80° 的边和四条 10° 的边，即温度为 120°。这个超薄片是一个规则的五边形，每条边的温度都是 120°。因此，整个薄片的温度都是 120° —— 包括中心。因为对称操作已经帮我们构造了一个更为简单的问题，我们不需要去解热方程了。
+
+最后一步告诉我们原来的薄片中心温度。对称操作将五边形围绕中心旋转，当薄片叠加时，中心也叠加。因此每个薄片的中心贡献 120° 的 1/5，所以，原来的薄片中心温度为 24°。
+
+比较高斯求和与薄片温度分布问题的对称性求解方法。这个比较启发我们得到一些可移植的概念（抽象）。首先，两个问题第一眼看起来都很复杂。高斯求和有很多项，所有的项都不同；五边形问题看起来需要求解一个困难的微分方程。其次，两个问题都包含了一个对称操作。在高斯求和中，对称操作是将求和顺序颠倒；对于五边形，对称操作是围绕中心旋转 72°。最后，对称操作保持了一个重要的量不变。对于高斯求和，这个量就是和；对于五边形，这个量是中心温度。
+
+发生任何变化时，寻找不变的量。寻找不变量及相应的对称性，即保持这个量不变的操作。
+
+题 3.21 正方形薄片的对称解
+
+如图是一个正方形薄片的等温线图。这些等温线彼此相差 10°。
+
+利用这个性质标出每根等温线的温度。基于对称性分析，正方形中心温度应该是多少？这个预测的温度和等温线显示的温度一致吗？
+
+题 3.22 模拟热方程
+
+利用对称性，我们证明了五边形中心温度是边缘温度的平均。通过模拟五边形边界下的热方程来验证这个解。
+
+题 3.23 最短等分线
+
+将一个等边三角形分为两个相同面积的最短等分线是什么？下图是三个例子。
+
+为了能让你解决问题的步伐进入轨道，首先将这三个例子按照等分线长度来排序。
+
 ### 3.4 Box models and conservation
 
 Invariance underlies a powerful everyday abstraction: box models. We already made a box model in Section 3.1.1, to decide whether to run or walk in the rain. Now let's examine this method further. The simplest kind of box contains a fixed amount of stuff — perhaps the volume of fluid or the number of students at an ideal university (where every student graduates in a fixed time). Then what goes into the box must come out. This conclusion seems simple, even simplistic, but it has wide application.
 
-3.4.1 Supply and demand
+#### 3.4.1 Supply and demand
 
-box
-
-For another example of a box model, return to our supply
-
-demand
-
-estimate of US oil usage (Section 1.4). The flow oil
-
-into the box — the push or the supply — is the imported and domestically produced oil. The flow out of the box — the pull or the demand — is the oil usage. The estimate, literally taken, asks for the supply (how much oil is imported and domestically produced). This estimate is difficult. Fortunately, as long as oil does not accumulate in the box (for example, as long as oil is not salted away in underground storage bunkers), then the amount of oil in the box is an invariant, so the supply equals the demand. To estimate the supply, we accordingly estimated the demand. This conservation reasoning is the basis of the following estimate of a market size.
+For another example of a box model, return to our estimate of US oil usage (Section 1.4). The flow oil into the box — the push or the supply — is the imported and domestically produced oil. The flow out of the box — the pull or the demand — is the oil usage. The estimate, literally taken, asks for the supply (how much oil is imported and domestically produced). This estimate is difficult. Fortunately, as long as oil does not accumulate in the box (for example, as long as oil is not salted away in underground storage bunkers), then the amount of oil in the box is an invariant, so the supply equals the demand. To estimate the supply, we accordingly estimated the demand. This conservation reasoning is the basis of the following estimate of a market size.
 
 How many taxis are there in Boston, Massachusetts?
 
 For many car-free years, I lived in an old neighborhood of Boston. I often rode in taxis and wondered about the size of the taxi market — in particular, how many taxis there were. This number seemed hard to estimate, because taxis are scattered throughout the city and hard to count.
 
-The box contains the available taxi driving (mea-supply
-
-available
-
-demand
-
-sured, for example, as time). It is supplied by taxi driving
-
-(drivers)
-
-(users)
-
-taxi drivers. The demand is due to taxi users. As long as the supply and demand match, we can
-
-estimate the supply by estimating the demand.
+The box contains the available taxi driving (measured, for example, as time). It is supplied byaxi drivers. The demand is due to taxi users. As long as the supply and demand match, we can estimate the supply by estimating the demand.
 
 For estimating the demand, the starting point is that Boston has roughly 500 000 residents. As a gut estimate, each resident uses maybe one taxi per month, for a 15-minute ride: Boston taxis are expensive; unless one doesn't own a car, it's hard to imagine using them more often than once a month or for longer than 15 minutes. Then the demand is about 105 hours of taxi driving per month:
 
-15 min
-
-1 hr
-
-105 hr
-
-5×105 residents ×
-
-×
-
-≈
-
-.
-
 (3.35)
-
-resident month 60 min
-
-month
 
 How many taxi drivers will that many monthly hours support?
 
-Taxi drivers work long shifts, maybe 60 hours per week. I'd guess that they carry passengers one-half of that time: 30 hours per week or roughly 100
-
-hours per month. At that pace, 105 hours of monthly demand could be supplied by 1000 taxi drivers or, assuming each taxi is driven by one driver, by 1000 taxis.
+Taxi drivers work long shifts, maybe 60 hours per week. I'd guess that they carry passengers one-half of that time: 30 hours per week or roughly 100 hours per month. At that pace, 105 hours of monthly demand could be supplied by 1000 taxi drivers or, assuming each taxi is driven by one driver, by 1000 taxis.
 
 What about tourists?
 
@@ -1123,81 +1075,39 @@ Tourists are very short-term Boston residents, mostly without cars. Tourists, al
 
 This estimate can be checked reliably, because Boston is one of the United States cities where taxis may pick up passengers only with a special permit, the medallion. The number of medallions is strictly controlled, so medallions cost a fortune. For about 60 years, their number was restricted to 1525, until a 10-year court battle got the limit raised by 260, to about 1800.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.4 Box models and conservation 77
-
 The estimate of 2000 may seem more accurate than it deserves. However, chance favors the prepared mind. We prepared by using good tools: a box model and divide-and-conquer reasoning. In making your own estimates, have confidence in the tools, and expect your estimates to be at least half decent. You will thereby find the courage to start: Optimism oils the rails of estimation.
 
-Problem 3.24
+Problem 3.24 Differential equation for an RC circuit box
 
-Differential equation for an RC circuit box
-
-Explain how a box model leads to the differential R
-
-equation for the low-pass 𝑅𝐶 circuit of Section 2.4.4: Vin Vout
-
-𝑅𝐶 𝑑𝑉out
-
-C
-
-𝑑𝑡 + 𝑉out = 𝑉in.
+Explain how a box model leads to the differential Requation for the low-pass 𝑅𝐶 circuit of Section 2.4.4: 
 
 (3.36)
 
 (Almost every differential equation arises from a box or conservation argument.)
 
-Problem 3.25
-
-Boston taxicabs tree
+Problem 3.25 Boston taxicabs tree
 
 Draw a divide-and-conquer tree for estimating the number of Boston taxicabs.
 
 First draw it without estimates. Then include your estimates, and propagate the values toward the root.
 
-Problem 3.26
-
-Needles on a Christmas tree
+Problem 3.26 Needles on a Christmas tree
 
 Estimate the number of needles on a Christmas tree.
 
-3.4.2 Flux
+#### 3.4.2 Flux
 
-Flows, such as the demand for oil or the supply of taxi cabs, are rates — an amount per time. Physical flows are also rates, but they live in a geometry. This embedding allows us to de- flow rate area
-
-fine a related quantity: flux.
-
-amount
-
-=
-
-time
-
-flux of stuff ≡ rate
-
-area = amount of stuff
-
-area × time .
+Flows, such as the demand for oil or the supply of taxi cabs, are rates — an amount per time. Physical flows are also rates, but they live in a geometry. This embedding allows us to define a related quantity: flux.
 
 (3.37)
 
 For example, particle flux is the rate at which particles (say, molecules) pass through a surface perpendicular to the flow, divided by the area of the surface. Dividing by the surface area, an operation with no counterpart in nonphysical flows (for example, in the demand for taxicabs), makes flux more invariant and useful than rate. For if you double the surface area, you double the rate. This proportionality is not newsworthy, and usually doesn't add insight, only clutter. When there is change, look for what does not change: Even when the area changes, flux does not.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-78
-
-3 Symmetry and conservation
-
-Problem 3.27
-
-Rate versus amount
+Problem 3.27 Rate versus amount
 
 Explain why rate (amount per time) is more useful than amount.
 
-Problem 3.28
-
-What is current density?
+Problem 3.28 What is current density?
 
 What kind of flux (flux of what?) is current density (current per area)?
 
@@ -1205,61 +1115,15 @@ The definition of flux leads to a simple and important connection between flux a
 
 In a time 𝑡 , how much stuff leaves the tube?
 
-vt
-
-In the time 𝑡, the stuff in the shaded chunk, spanning a length 𝑣𝑡, leaves the tube. This
-
-chunk has volume 𝐴𝑣𝑡. The amount of stuff
-
-A
-
-v
-
-in that volume is
-
-stuff
-
-v
-
-× 𝐴𝑣𝑡.
+In the time 𝑡, the stuff in the shaded chunk, spanning a length 𝑣𝑡, leaves the tube. This chunk has volume 𝐴𝑣𝑡. The amount of stuff
 
 (3.38)
 
-⏟olume
-
-⏟⏟⏟⏟ ⏟
-
-density of stuff
-
-volume
-
 The amount of stuff per volume, the density of stuff, occurs so often that it usually gets a special symbol. When the stuff is particles, the density is labeled 𝑛 for number density (in contrast to 𝑁 for the number itself). When the stuff is charge or mass, the density is labeled 𝜌.
 
-From the amount of stuff, we can find the flux: 𝐴𝑣𝑡
-
-density of stuff
-
-volume
-
-⏞⏞⏞⏞⏞
-
-flux of stuff = amount of stuff
-
-×
-
-area × time =
-
-area
-
-.
+From the amount of stuff, we can find the flux: 
 
 (3.39)
-
-⏟⏟⏟ × time
-
-⏟⏟⏟⏟
-
-𝐴𝑡
 
 The product 𝐴𝑡 cancels, leaving the general relation flux of stuff = density of stuff × flow speed.
 
@@ -1267,29 +1131,11 @@ The product 𝐴𝑡 cancels, leaving the general relation flux of stuff = densi
 
 As a particular example, when the stuff is charge (Problem 3.28), the flux of stuff becomes charge per time per area, which is current per area or current density. With that label for the flux, the general relation becomes current density
 
-⏟⏟⏟⏟⏟⏟⏟⏟⏟ = charge density
-
-⏟⏟⏟⏟⏟⏟⏟⏟⏟ × flow speed
-
-⏟⏟⏟⏟⏟⏟⏟,
-
-(3.41)
-
-𝐽
-
-𝜌
-
-𝑣drift
-
 where 𝑣drift is the flow speed of the charge — which you will estimate in Problem 6.16 for electrons in a wire.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.4 Box models and conservation 79
 
 The general relation will be crucial in estimating the power required to fly (Section 3.6) and in understanding heat conduction (Section 7.4.2).
 
-3.4.3 Average solar flux
+#### 3.4.3 Average solar flux
 
 An important flux is energy flux: the rate at which energy passes through a surface, divided by the area of the surface. Here, rate means energy per time, or power. Therefore, energy flux is power per area. An energy flux essential to life is the solar flux: the solar power per area falling on Earth.
 
@@ -1301,63 +1147,29 @@ The simplest reason is night and day. On the night side of the Earth, the solar 
 
 What is the solar flux averaged over the whole Earth?
 
-We can find the average flux using a box model (a sunlight
+We can find the average flux using a box model (a conservation argument). Here is sunlight coming to the Earth (with parallel rays, because the Sun is so far away). Hold a disk with radius 𝑅Earth perpendicular to the sunlight so that it blocks all sunlight that the Earth otherwise would get. The disk absorbs a power that we can find from the energy flux: 
 
-Earth
-
-conservation argument). Here is sunlight coming to the Earth (with parallel rays, because the Sun is so far away). Hold a disk with radius 𝑅Earth perpendicular to the sunlight so that it blocks all sunlight that the Earth otherwise would get. The disk absorbs a power that we can find from the energy flux: power = energy flux × area = 𝐹𝜋𝑅2Earth,
-
-(3.42)
+```
+power = energy flux × area = 𝐹𝜋𝑅2Earth, (3.42)
+```
 
 where 𝐹 is the solar flux. Now spread this power over the whole Earth, which has surface area 4𝜋𝑅2Earth:
 
-power
-
-𝐹𝜋𝑅2
-
-average flux =
-
-Earth
-
-surface area =
-
-= 𝐹
-
-4𝜋𝑅2
-
-4 .
-
-(3.43)
-
-Earth
-
 Because one-half of the Earth is in night, averaging over the night and day-light parts of the earth accounts for a factor of 2. Therefore, averaging over latitudes must account for another factor of 2 (Problem 3.29).
 
-Problem 3.29
-
-Averaging solar flux over all latitudes
+Problem 3.29 Averaging solar flux over all latitudes
 
 Integrate the solar flux over the whole sunny side of the Earth, accounting for the varying angles between the incident sunlight and the surface. Check that the result agrees with the result of the box model.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-80
-
-3 Symmetry and conservation
 
 The result is roughly 325 watts per square meter. This average flux slightly overestimates what the Earth receives at ground level, because not all of the 1300 watts per square meter hitting the top of the atmosphere reaches the surface. Roughly 30 percent gets reflected near the top of the atmosphere (by clouds). The surviving amount is about 1000 watts per square meter.
 
 Averaged over the surface of the Earth, it becomes 250 watts per square meter (which then goes into the surface and the atmosphere), or approximately 𝐹/5, where 𝐹 is the flux at the top of the atmosphere.
 
-3.4.4 Rainfall
+#### 3.4.4 Rainfall
 
 These 250 watts per square meter determine characteristics of our weather that are essential to life: the average surface temperature and the average rainfall. You get to estimate the surface temperature in Problem 5.43, once you learn the reasoning tool of dimensional analysis. Here, we will estimate the average rainfall.
 
-If the box representing the atmosphere holds a evaporation water in rainfall
-
-fixed amount of water — and over a long timescale, atmosphere
-
-the amount is constant (it is our invariant) — then what goes into the box must come out of the box.
+If the box representing the atmosphere holds a fixed amount of water — and over a long timescale, the amount is constant (it is our invariant) — then what goes into the box must come out of the box.
 
 The inflow is evaporation; the outflow is rain. Therefore, to estimate the rainfall, estimate the evaporation — which is produced by the solar flux.
 
@@ -1365,247 +1177,75 @@ How much rain falls on Earth?
 
 Rainfall is measured as a height of water per time — typically, inches or millimeters per year. To estimate global average rainfall, convert the supply of solar energy to the supply of rainwater. In other words, convert power per area to height per time. The structure of the conversion is power
 
-height
-
-area × ?? = time ,
-
 (3.44)
 
 where ?/? represents the conversion factor that we need to determine. To find what this conversion factor represents, we multiply both sides by area per power. The result is
-
-?
-
-area × height
-
-? = power × time = volume
-
-energy .
 
 (3.45)
 
 What physical quantity could this volume per energy be?
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.4 Box models and conservation 81
-
 We are trying to determine the amount of rain, so the volume in the numerator must be the volume of rain. Evaporating the water requires energy, so the energy in the denominator must be the energy required to evaporate that much water. The conversion factor is then the reciprocal of the heat of vaporization of water 𝐿vap, but expressed as an energy per volume. In Section 1.7.3, we estimated 𝐿vap as an energy per mass. To make it an energy per volume, just multiply by a mass per volume — namely, by 𝜌water: energy
 
-mass
-
-energy
-
-×
-
-=
-
-.
-
 (3.46)
-
-mass
-
-⏟⏟⏟⏟⏟ volume
-
-⏟⏟⏟⏟⏟
-
-volume
-
-⏟⏟⏟⏟⏟
-
-𝐿vap
-
-𝜌water
-
-𝜌water𝐿vap
 
 Our conversion factor, volume per energy, is the reciprocal, 1/𝜌water𝐿vap.
 
 Our estimate for the average rainfall then becomes solar flux going to evaporate water
 
-𝜌
-
-.
-
 (3.47)
-
-water𝐿vap
 
 For the numerator, we cannot just use 𝐹, the full solar flux at the top of the atmosphere. Rather, the numerator incorporates several dimensionless ratios that account for the hoops through which sunlight must jump in order to reach the surface and evaporate water:
 
-0.25
-
-averaging the intercepted flux over the whole surface of the Earth (Section 3.4.3)
-
-0.7
-
-the fraction not reflected at the top of the atmosphere 0.7
-
-of the sunlight not reflected, the fraction reaching the surface (the other 30 percent is absorbed in the atmosphere)
-
-× 0.7
-
-of the sunlight reaching the surface, the fraction reaching the oceans (the other 30 percent mostly warms land)
-
-= 0.09
-
-fraction of full flux 𝐹 that evaporates water (including averaging the full flux over the whole surface)
-
-The product of these four factors is roughly 9 percent. With 𝐿vap = 2.2 ×
-
-106 joules per kilogram (which we estimated in Section 1.7.3), our rainfall estimate becomes roughly
-
-𝐹
-
-fraction
-
-1300
-
-⏞⏞⏞ Wm
-
-⏞⏞−2
-
-⏞⏞ × 0.09
-
-⏞
-
-≈ 5.3×10−8 m
-
-103 kg m−3
-
-s
-
-.
+The product of these four factors is roughly 9 percent. With 𝐿vap = 2.2 × 106 joules per kilogram (which we estimated in Section 1.7.3), our rainfall estimate becomes roughly
 
 (3.48)
 
-⏟⏟⏟⏟⏟⏟⏟ × 2.2×106 J kg−3
-
-⏟⏟⏟⏟⏟⏟⏟⏟⏟
-
-𝜌water
-
-𝐿vap
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-82
-
-3 Symmetry and conservation
-
-The length in the numerator is tiny and hard to perceive. Therefore, the common time unit for rainfall is a year rather than a second. To convert the rainfall estimate to meters per year, multiply by 1: 5.3×10−8 m 3×107 s
-
-1.6 m
-
-×
-
-≈
-
-(3.49)
-
-s
-
-1 yr
-
-yr
+The length in the numerator is tiny and hard to perceive. Therefore, the common time unit for rainfall is a year rather than a second. To convert the rainfall estimate to meters per year, multiply by
 
 (about 64 inches per year). Not bad: Including all forms of falling water, such as snow, the world average is 0.99 meters per year — slightly higher over the oceans and slightly lower over land (where it is 0.72 meters per year). The moderate discrepancy between our estimate and the actual average arises because some sunlight warms water without evaporating it. To reflect this effect, our table on page 81 needs one more fraction (≈ 2/3).
 
-Problem 3.30
-
-Solar luminosity
+Problem 3.30 Solar luminosity
 
 Estimate the solar luminosity — the power output of the Sun (say, in watts) — based on the solar flux at the top of the Earth's atmosphere.
 
-Problem 3.31
-
-Total solar power falling on Earth
+Problem 3.31 Total solar power falling on Earth
 
 Estimate the total solar power falling on the Earth's surface. How does it compare to the world energy consumption?
 
-Problem 3.32
+Problem 3.32 Explaining the difference between ocean and land rainfall Why is the average rainfall over land lower than over the ocean?
 
-Explaining the difference between ocean and land rainfall Why is the average rainfall over land lower than over the ocean?
-
-3.4.5 Residence times
+#### 3.4.5 Residence times
 
 Because of evaporation, the atmosphere contains a lot of water: roughly 1.3×1016 kilograms — as vapor, liquid, and solid. This mass tells us the residence time: how long a water molecule remains in the atmosphere before it falls back to the Earth as precipitation (the overall name for rain, snow, or hail). The estimate will illustrate a new way to use box models.
 
 Here is the box representing the water in the atmosphere (assumed to need only one box). The box is filled by evaporation and emptied by rainfall.
 
-evaporation
+Imagine that the box is a water hose holding a mass 𝑚water. How long does a water molecule take to get from one end of the hose to other? This time is the average time taken by a water molecule from evaporation until its return to the Earth as precipitation. In the box model, the time is the time to completely fill the box. This time constant, denoted 𝜏, is mass of water in the atmosphere
 
-mwater
+```
+𝜏 = rate of inflow or outflow, as a mass per time (3.50)
+```
 
-rainfall
-
-in atmosphere
-
-Imagine that the box is a water hose holding a mass 𝑚water. How long does a water molecule take to get from one end of the hose to other? This time is the average time taken by a water molecule from evaporation until its 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.4 Box models and conservation 83
-
-return to the Earth as precipitation. In the box model, the time is the time to completely fill the box. This time constant, denoted 𝜏, is mass of water in the atmosphere
-
-𝜏 = rate of inflow or outflow, as a mass per time .
-
-(3.50)
-
-The numerator is 𝑚water. For the denominator, we convert rainfall, which is a speed (for example, in meters per year), to a mass flow rate (mass per time). Let's name the rainfall speed 𝑣rainfall. The corresponding mass flux is, using our results from Section 3.4.2, 𝜌water𝑣rainfall: mass flux = density
-
-⏟⏟⏟⏟⏟ × flow speed
-
-⏟⏟⏟⏟⏟⏟⏟ = 𝜌water𝑣rainfall.
+The numerator is 𝑚water. For the denominator, we convert rainfall, which is a speed (for example, in meters per year), to a mass flow rate (mass per time). Let's name the rainfall speed 𝑣rainfall. The corresponding mass flux is, using our results from Section 3.4.2, 𝜌water𝑣rainfall: 
 
 (3.51)
 
-𝜌water
-
-𝑣rainfall
-
 Flux is flow per area, so we multiply mass flux by the Earth's surface area 𝐴Earth to get the mass flow:
 
-mass flow = 𝜌water𝑣rainfall 𝐴Earth.
-
-(3.52)
+```
+mass flow = 𝜌water𝑣rainfall 𝐴Earth. (3.52)
+```
 
 At this rate, the fill time is
 
-𝜏 =
-
-𝑚water
-
-𝜌
-
-.
-
 (3.53)
 
-water𝑣rainfall 𝐴Earth
-
-There are two ways to evaluate this time: the direct but less insightful method, and the less direct but more insightful method. Let's first do the direct method, so that we at least have an estimate for 𝜏: 𝜏 ∼
-
-1.3×1016 kg
-
-≈ 2.5×10−2 yr,
-
-(3.54)
-
-103 kg m−3 × 1 m yr−1 × 4𝜋 × (6×106 m)2
+There are two ways to evaluate this time: the direct but less insightful method, and the less direct but more insightful method. Let's first do the direct method, so that we at least have an estimate for 𝜏:
 
 which is roughly 10 days. Therefore, after evaporating, water remains in the atmosphere for roughly 10 days.
 
-For the less direct but more insightful method, notice which quantities are not reasonably sized — that is, not graspable by our minds — namely, 𝑚water and 𝐴Earth. But the combination 𝑚water/𝜌water𝐴Earth is reasonably sized: 𝑚water
-
-𝜌
-
-∼
-
-1.3×1016 kg
-
-water 𝐴Earth
-
-103 kg m−3 × 4𝜋 × (6×106 m)2 ≈ 2.5×10−2 m.
+For the less direct but more insightful method, notice which quantities are not reasonably sized — that is, not graspable by our minds — namely, 𝑚water and 𝐴Earth. But the combination 𝑚water/𝜌water𝐴Earth is reasonably sized:
 
 (3.55)
 
@@ -1613,13 +1253,193 @@ This length, 2.5 centimeters, has a physical interpretation. If all water, snow,
 
 Rainfall takes away 100 centimeters per year. Therefore, draining this ocean, with a 2.5-centimeter depth, requires 2.5×10−2 years or about 10 days. This time is, once again, the residence time of water in the atmosphere.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+3.4 黑箱模型与守恒量
 
-84
+不变性背后隐含了一个有力的日常生活的抽象：黑箱模型。我们已经在章节 3.1.1 构造了一个黑箱模型，用以决定在雨中走还是跑。现在我们来进一步考察这个模型。最简单的黑箱包含一定量的物体或许是流体的体积，或者某个大学的学生数（每个学生都会在一个确定的年限之后毕业）。进入黑箱的所有东西都会从黑箱出来。这个结论似乎是简单的，甚至是最简单的，但却具有广泛的应用。通过将这个模型作为不变性原理的例子来研究，可以将模型和一般原理联系起来，从而帮助我们理解原理和模型。
 
-3 Symmetry and conservation
+3.4.1 供给与需求
 
-3.5 Drag using conservation of energy
+黑箱模型的另一个例子，回想一下我们关于美国进口原油的估算（章节 14）。流进黑箱的 —— 推或者供供给 —— 是进口的原油。流出黑箱的 —— 拉或者需求 —— 是进口原油的使用量。表面上看，问题问的是供给（进口多少原油）。不幸的是，这个估算是困难的。但幸运的是，只要原油不在黑箱中累积（比如，只要原油不存放在地下储存桶中），则供给就等于需求。为了估算供给，我们转而来估算需求。这个想法是基于下面对市场大小的估算。
+
+➤ 波士顿有多少出租车？
+
+有很多年，我在波士顿附近的一个旧街区过着没车的、无忧无虑的生活。我常常坐在出租车里思考出租车市场的大小。出租车的供应量似乎很难估算，因为出租车都散在城市的各个角落，难以计数。但估算出租车的需求量会容易些。
+
+出发点是波士顿大约有 500000 居民。直觉的估算，每个居民大约每个月会坐一次出租车，大约 15 分钟的车程：因为波士顿出租车很贵，除非自己没车，否则很难想象一个人会每月坐几次出租车或超过 15 分钟车程。需求量是大约每月 10 小时的出租车程：
+
+➤ 那么需要多少出租车司机才能支撑这个需求量？
+
+出租车司机工作时间很长，也许每周 60 小时。他们可能有一半的时间是载客的：即每周 30 小时，或大概每月 100 小时。按这样估算，每月 10$^5$ 小时的需求量可以由 1000 个出租车司机提供，或者，假定每辆出租车由一名司机驾驶，则需要 1000 辆出租车。
+
+旅游者的贡献如何估算？
+
+旅游者是非常短期的波士顿居民，大部分都没车。旅游者尽管数量比居民少，但比居民更多乘坐出租车，乘坐的时间也更长。为了将旅游者的贡献计入出租车的需求量，我将简单地将前面的估算加倍，得到 2000 辆出租车的结果。
+
+这个估算可以用可靠的方法来验证，因为波士顿是出租车需要特别许可证（一个特殊的徽章）才可以搭载乘客的城市。发出的徽章数是严格控制的，所以这个徽章是很值钱的。在大约 60 年内，这个数字限制在 1525，直到一次 10 年的法庭辩论将上限增加了 260，总数达到了 1800。
+
+2000 的估算值看起来比预想的要更精确。机会总是青睐有准备的大脑。我们用很好的工具做了准备：黑箱模型和分而治之法。在进行估算时，对工具要有信心，然后期待你的估算值至少能过得去。这样你就有勇气开始：优化对原油及铁路的估算。
+
+题 3.24 RC 电路的微分方程
+
+解释黑箱模型如何导致章节 2.4.4 的低通 RC 电路的微分方程：
+
+（几乎每个微分方程都来自一个黑箱或一个守恒量。）
+
+题 3.25 波士顿出租车树图
+
+画出分而治之法的树图来估算波士顿出租车数量。首先画出没有估算值的。然后将你的估算值计入，并向上传递到树根。
+
+题 3.26 圣诞树上的松针
+
+估算圣诞树上的松针数。
+
+3.4.2 流量
+
+流量，比如说原油的需求量，或者出租车的供应量，都是某种速率 —— 即单位时间的量。物理的流量也是某种速率，但和几何尺度相关。这使得我们可以定义一个相关的、更加不变的量：通量。
+
+```
+物质的通量 = 速度/面积 = 物质的重量/面积 x 时间
+```
+
+比如，粒子通量是粒子（如分子）以某种速度垂直通过一个截面的流量，再除以截面的面积。除以面积这个做法，在非物理的流量（如出租车的需求量）中没有对应，使通量比流量更为有用。因为如果你将面积加倍，流量也加倍。这样的一种正比关系不仅没有什么价值，通常也不给人更多启发，只是增加了点杂乱。每当发生变化时，我们就应该寻找不变量：即使面积改变，通量也不会改变。
+
+题 3.27 速率与总量
+
+解释为何速率（单位时间内的量）比总量更有用。
+
+题 3.28 什么是电流密度
+
+什么类型的通量（什么量的通量）是电流密度？
+
+通量的定义导致了通量和流体速度之间的一个简单而重要的联系。假设有一管物质（比如分子），其横截面积为 A。物质以速度 v 在管中流动。
+
+➤ 在时间 t 内，有多少物质离开管子？
+
+在时间 t 内，离开管子的物质位于阴影部分，长度为 vt。这一块的体积是 Avt。这部分体积内的物质一共有：
+
+单位体积物质的量，即物质密度，经常出现因而通常需要一个特殊的符号来表示。当这些物质是粒子时，密度通常用 n 标记，表示数密度（与表示粒子数的 N 不同）。如果物质是电荷，密度就用 ρ 标记，表示电荷密度。
+
+由物质的量，我们可得通量：
+
+乘积 At 消去，留下一个一般的关系式：
+
+```
+物质通量 = 物质密度 × 流速 (3.40)
+```
+
+举一个特殊的例子，当物质是电荷时（题 3.28），通量变成单位时间单位面积的电荷，即单位面积的电流或电流密度。将这些量的标记用于上述通量，一般表达式变成：
+
+```
+电流密度 = 电荷密度 × 流速 (3.41)
+```
+
+其中 v 是电荷的速度 —— 这也是你在题 6.16 中要估算的电子在导线中的漂移速度。
+
+这个一般关系在估算飞行（章节 3.6）所需要的能量和理解热传导时是至关重要的（章节 7.4.2）。
+
+3.4.3 平均太阳通量
+
+一个重要的通量是能量的通量：能量通过一个截面的速率除以截面的面积。这里，速率表示单位时间的能量或功率。因此，能流就是单位面积的功率。对生命非常重要的是太阳通量：即照射到地球表面单位面积的太阳功率。这个通量决定了我们大部分的气候。在大气层顶端，直接观察太阳的话，通量大约是 F=1300 瓦 / 米^2。
+
+但是，这个通量并不是均匀地分布在整个地球表面的。最简单的原因就是白天和黑夜。地球处于黑夜的一边，太阳的通量是零。更复杂的是，不同的纬度具有不同的通量：赤道区域因为接收到更多的通量而比两极温暖。
+
+➤ 整个地球的平均太阳通量是多少？
+
+我们可以利用黑箱模型（守恒量的讨论）得到平均通量。下面是阳光入射到地球的示意图。（假定是平行光，因为太阳如此遥远。）用一个半径为 R 地球的盘子垂直阳光使其正好遮挡住地球。圆盘吸收的功率可以从能量通量得到：
+
+```
+功率 = 能流 x 面积 =  FπR地球（3.42）
+```
+
+其中 F 是太阳通量。现在将这个功率平均散布在整个地球表面，其表面积为 4πR^2：
+
+因为地球的一半处于黑夜，对白天和黑夜的平均给出因子 2。因此，对不同纬度的平均一定给出了另一个因子 2（题 3.29）。
+
+题 3.29 太阳通量对所有纬度的平均
+
+考虑到入射光与表面夹角的变化，将通量对地球有阳光的表面进行积分。验证所得结果与黑箱模型结果一致。
+
+这个结果大约是 325 瓦 / 米$2$。相对地球实际接收到的，这个结果稍微过高估算了点，因为并不是在大气层顶端的通量都能到达地球表面。大约 30% 会在大气层顶端被反射（如云）。剩下大约是 1000 瓦 / 米$2$。对地球表面平均，就变成 250 瓦 / 米$2$（这些就进入地面和空气中），或者大约是 F/5，其中 F 是大气层顶端的通量。
+
+3.4.4 雨量
+
+这每平方米 250 瓦的能量决定了对生命活动至关重要的气候特征：表面的平均温度和平均雨量。当你学到了量纲分析这个分析工具之后，你就可以在题 5.43 中估算表面温度。这里，我们将估算平均雨量。
+
+如果这个黑箱代表含有一定量水分的大气 —— 经过足够长的时间后这个含量是常数，则进入黑箱的东西一定全部从黑箱出来。进入的是蒸发量；出来的是雨量。因此，要估算雨量，就要估算蒸发量 —— 这是由太阳通量产生的。
+
+➤ 地球上的雨量有多少？
+
+雨量是用单位时间水的高度来衡量的 —— 典型地，用英寸 / 年或米 / 年。为了估算雨量，要将太阳提供的能量转化为雨量。换言之，将单位面积的功率转化为单位时间的高度。转换的结构是：
+
+(3.44)
+
+其中 ?/? 表示未知的转换因子。为了找到这个转换因子所代表的量，我们两边同乘面积 / 功率。得到结果：
+
+➤ 单位能量的体积可能是什么物理量？
+
+我们在试图确定雨量，所以分子中的体积应该是雨量的体积。水的蒸发需要能量，所以分母中的能量应该是蒸发这些水量所需要的能量。转换因子因而是水蒸发热量 L 蒸发（单位体积所需能量）的倒数。在章节 1.7.3，我们估算了 L 蒸发，但是用单位质量的能量表示的。为了将其变成单位体积的能量，只需乘单位体积的质量这一因子 —— 即，乘以水的密度 ρ：
+
+我们的转换因子，单位能量的体积，就是 1/（ρ水L蒸发）。我们对平均雨量的估算于是就变成：
+
+对分子，我们不能就用 F，即大气层顶端总的太阳通量，而是需要考虑几个无量纲的比例因子，阳光必须克服这些因素才能到达地面并蒸发水量。
+
+这四个因子的乘积大约为 9%。利用 L 蒸发 = 2.2×10$^6$ 焦耳 / 千克（我们在章节 1.7.3 估算的），我们对雨量的估算大约是：
+
+分子中的长度太小了，很难感觉到。因此，通常用的时间单位是年降雨量而不是秒降雨量。为了将雨量的估算转换成米 / 年，乘以因子 1：
+
+在非公制单位中，我们的估算大约是 64 英寸 / 年。包括所有形式的降水，比如下雪，全世界的平均年降水量是每年 0.99 米海上稍微高一点而陆地上稍微少一点（每年 0.72 米）。我们的估算和实际值的差异源于有部分通量只是加热水而并不用来蒸发水，因此在上述表格还应有一个因子，约为 2/3。
+
+题 3.30 太阳光度
+
+估算太阳光度即太阳的输出功率（基于大气层顶端的太阳通量来估算）。
+
+题 3.31 太阳总功率
+
+估算入射到地球的太阳总功率。与全世界的能量消耗相比如何？
+
+题 3.32 解释海面和陆地降雨量的差别
+
+为什么陆地的平均降雨量比海洋上的降雨量少？
+
+3.4.5 滞留时间
+
+由于蒸发，大气中含有很多水分：大约 1.3×10$^6$ 千克 —— 以水蒸气，液体和固体的形式存在。这个质量告诉我们滞留时间：即一个水分子在作为降水（对雨、雪、冰雹的总称）下落到地面之前在大气中停留多少时间。这个估算将会显示使用黑箱模型的新方式。
+
+下面是表示大气水分的黑箱。黑箱被蒸发充满，然后通过降雨变空。
+
+假设黑箱是包含质量 m 水的一段水龙带。水分子从水龙带的一端到另一端需要多长时间？这个时间是水分子从蒸发再通过降雨重新回到地球的平均时间。在这个模型中，这个时间就是将黑箱充满的时间。时间常数用 x 表示，即：
+
+(3.50)
+
+分子就是 m 水。至于分母，我们将雨量（这是一个速度，比如每年多少米）转换为质量流的速率（单位时间的质量）。我们令雨量速度为雨。则利用我们在章节 3.4.2 中的结果，相应的质量通量就是 ρ 水 v 雨：
+
+```
+质量通量 = 密度 x 流速 = ρ 水 v 雨 （3.51) 
+```
+
+通量是单位面积的流量，因此将质量通量乘以地球表面积 A 地球就得到质量流量：
+
+```
+质量流量 = ρ 水 v 雨 A 地球 （3.52） 
+```
+
+按这个速率，黑箱充满的时间为：
+
+(3.53)
+
+有两种方式来计算这个时间：较少洞察力的直接计算法；不那么直接但更具有洞察力的方法。我们首先用直接计算法，这样至少我们可以对 x 有个估算。
+
+这大约是 10 天。因此，蒸发后，水在大气中大约会滞留 10 天。
+
+关于不那么直接但更具有洞察力的方法，注意到有些量并不属于合理的尺度即不容易让我们的感觉把握，如水和 A 地球。但组合 m 水 / ρ 水 A 地球是在我们能感知的尺度内：
+
+(3.55)
+
+这个长度，2.5 厘米，可以有一个物理的解释。即如果大气中所有的水，包括雪、水蒸气等都降落到地球表面，则会形成一个 2.5 厘米深的海洋。
+
+降雨每年带走 100 厘米。因此，将 2.5 厘米深的海洋排空，需要 2.5×10$^-2$ 年或大约 10 天。这个时间正是水在大气中的滞留时间。
+
+### 3.5 Drag using conservation of energy
 
 A box model will next help us estimate drag forces. Drag, one of the most difficult subjects in physics, is also one of the most important forces in everyday life. If it weren't for drag, bicycling, flying, and driving would be a breeze. Because of drag, locomotion requires energy. Rigorously calculating a drag force requires solving the Navier–Stokes equations: (𝐯⋅∇)𝐯 + ∂𝐯
 
@@ -1697,12 +1517,6 @@ We'll test the analysis by predicting the cone's terminal speed: that is, its st
 
 (3.61)
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-86
-
-3 Symmetry and conservation
-
 The terminal speed thus reveals the drag force. (Even though the drag force equals the weight, the left side is only an approximation to the drag force, so we connect the left and right sides with a single approximation sign ∼.) The terminal speed 𝑣term is then
 
 𝑣term ∼
@@ -1751,58 +1565,6 @@ Because the template is three-quarters of a full circle, 𝐴paper = 34𝜋𝑟2
 
 The paper area has one factor of three-quarters, whereas the cross-sectional area has two factors of three-quarters, so 𝐴paper/𝐴cs = 4/3. Now 𝑣term simplifies as follows:
 
-𝑚
-
-1/2
-
-1/2
-
-⎛
-
-4
-
-𝐴
-
-⏞⏞⏞⏞⏞⏞⏞ × 𝑔⎞
-
-⎛
-
-⎞
-
-𝑣
-
-⎜⎜ paper 𝜎paper
-
-⎟⎟
-
-⎜⎜ 3𝜎paper 𝑔⎟⎟
-
-term ∼ ⎜
-
-⎜⎜
-
-𝐴
-
-⎟⎟ = ⎜⎜
-
-⎟⎟ .
-
-(3.66)
-
-cs 𝜌air
-
-⎟
-
-⎜ 𝜌air ⎟
-
-⎝
-
-⎠
-
-⎝
-
-⎠
-
 The only unfamiliar number is the areal density 𝜎paper, the mass per area of paper. Fortunately, areal density is used commercially, so most reams of printer paper state their areal density: typically, 80 grams per square meter.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
@@ -1837,46 +1599,6 @@ Therefore, our estimate in Section 1.1 is consistent with the proposed areal den
 
 After putting in the constants, the cone's terminal speed is predicted to be roughly 0.9 meters per second:
 
-𝜎
-
-1/2
-
-paper
-
-𝑔
-
-⎛⎜
-
-⏞⏞⏞⏞⏞⏞⏞⏞⏞ ⏞⏞⏞⏞⏞⎞⎟
-
-𝑣
-
-⎜⎜4 8×10−2 kgm−2 × 10ms−2 ⎟⎟
-
-term ∼ ⎜
-
-⎜⎜
-
-⎟ ≈ 0.9 m s−1.
-
-(3.68)
-
-⎜3 ×
-
-1.2 kg m−3
-
-⎟
-
-⏟⏟⏟⏟⏟
-
-⎟⎟
-
-⎝
-
-𝜌air
-
-⎠
-
 To test the prediction and, with it, the analysis justifying it, I held the cone slightly above my head, from about 2 meters high. After I let the cone go, it fell for almost exactly 2 seconds before it hit the ground — for a speed of roughly 1 meter per second, very close to the prediction. Box models and conservation triumph again!
 
 3.5.3 Cycling
@@ -1886,12 +1608,6 @@ In introducing the analysis of drag, I said that drag is one of the most importa
 What is the world-record cycling speed?
 
 The first task is to define the kind of world record. Let's analyze cycling on level ground using a regular bicycle, even though faster speeds are possible riding downhill or on special bicycles. In bicycling, energy goes into rolling resistance, friction in the chain and gears, and air drag. The importance of drag rises rapidly with speed, due to the factor of 𝑣2 in the drag force, so at high-enough speeds drag is the dominant consumer of energy.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-88
-
-3 Symmetry and conservation
 
 Therefore, let's simplify the analysis by assuming that drag is the only consumer of energy. At the maximum cycling speed, the power consumed by drag equals the maximum power that the rider can supply. The problem therefore divides into two estimates: the power consumed by drag (𝑃drag) and the power that an athlete can supply (𝑃athlete).
 
@@ -1967,54 +1683,6 @@ W ≡ s3 .
 
 The units in 𝑣max become
 
-W
-
-kg m2 s−3
-
-W
-
-1/3
-
-⎛⎜ ⏞⏞⏞⏞⏞⏞⏞
-
-⎜
-
-⎞
-
-1/3
-
-⎜ kg m2 s−3 ⎟
-
-⎜
-
-⎟
-
-⎜
-
-⎟ = ( s−3
-
-.
-
-(3.75)
-
-⎜
-
-⎟
-
-kg m−3 × m2 ⎟⎟
-
-m−3 )
-
-J
-
-⎝
-
-⎠
-
-kg m2 s−2
-
-s−1
-
 The kilograms cancel, as do the square meters. The cube root then contains only meters cubed over seconds cubed; therefore, the units for 𝑣max are meters per N
 
 m
@@ -2060,12 +1728,6 @@ The calculations and bookkeeping can easily obscure the most important effect an
 or 3. That level of agreement is usually enough to convince us that our model contains the situation's essential features.
 
 Here, our predicted speed is only 30 percent lower than the actual value, so our model of the energy cost of cycling must be broadly correct. Its main error arises from the factor of one-half that we ignored when estimating the drag force — as you can check by doing Problem 3.33.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-90
-
-3 Symmetry and conservation
 
 3.5.4 Fuel efficiency of automobiles
 
