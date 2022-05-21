@@ -1441,91 +1441,51 @@ Rainfall takes away 100 centimeters per year. Therefore, draining this ocean, wi
 
 ### 3.5 Drag using conservation of energy
 
-A box model will next help us estimate drag forces. Drag, one of the most difficult subjects in physics, is also one of the most important forces in everyday life. If it weren't for drag, bicycling, flying, and driving would be a breeze. Because of drag, locomotion requires energy. Rigorously calculating a drag force requires solving the Navier–Stokes equations: (𝐯⋅∇)𝐯 + ∂𝐯
+A box model will next help us estimate drag forces. Drag, one of the most difficult subjects in physics, is also one of the most important forces in everyday life. If it weren't for drag, bicycling, flying, and driving would be a breeze. Because of drag, locomotion requires energy. Rigorously calculating a drag force requires solving the Navier–Stokes equations: 
 
-∂𝑡 = −1𝜌∇𝑝 + 𝜈∇2𝐯.
-
-(3.56)
+```
+(𝐯⋅∇)𝐯 + ∂𝐯/∂𝑡 = −1/𝜌∇𝑝 + 𝜈∇2𝐯 (3.56)
+```
 
 They are coupled, nonlinear, partial-differential equations. You could read many volumes describing the mathematics to solve these equations. Even then, solutions are known only in a few circumstances — for example, a sphere moving slowly in a viscous fluid or moving at any speed in a nonviscous fluid. However, a nonviscous fluid — what Feynman [14, Section II-40-2], quoting John von Neumann, rightly disparages as「dry water」 — is particularly irrelevant to real life because viscosity is the cause of drag, so a zero-viscosity solution predicts zero drag! Using a box model and conservation of energy is a simple and insightful alternative.
 
-3.5.1 Box model for drag
+#### 3.5.1 Box model for drag
 
-We will first estimate the energy lost to drag as an ob-Acs
-
-v
-
-ject moves through a fluid, as in Section 3.2.1. From the energy, we will find the drag force. To quantify the the d
-
-problem, imagine pushing an object of cross-sectional area 𝐴cs at speed 𝑣 for a distance 𝑑. The object sweeps out a tube of fluid.
+We will first estimate the energy lost to drag as an object moves through a fluid, as in Section 3.2.1. From the energy, we will find the drag force. To quantify the the problem, imagine pushing an object of cross-sectional area 𝐴cs at speed 𝑣 for a distance 𝑑. The object sweeps out a tube of fluid.
 
 (The tube length 𝑑 is arbitrary, but it will cancel out of the force.) How much energy is consumed by drag?
 
 Energy is consumed because the object gives kinetic energy to the fluid (say, water or air); viscosity, as we will model in Section 6.4.4, then turns this energy into heat. The kinetic energy depends on the mass of the fluid and on the speed it is given. The mass of fluid in the tube is 𝜌𝐴cs𝑑, where 𝜌 is the fluid density. The speed imparted to the fluid is roughly the speed of the object, which is 𝑣. Therefore, the kinetic energy given to the fluid is roughly 𝜌𝐴cs𝑣2𝑑:
 
-𝐸kinetic ∼ 𝜌𝐴cs𝑑
-
-⏟ × 𝑣2 = 𝜌𝐴cs𝑣2𝑑.
-
 (3.57)
-
-mass
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.5 Drag using conservation of energy 85
 
 This calculation ignores the factor of one-half in the definition of kinetic energy. However, the other approximations, such as assuming that only the swept-out fluid is affected or that all the swept-out fluid gets speed 𝑣, are at least as inaccurate. For this rough calculation, there is little point in including the factor of one-half.
 
-This kinetic energy is roughly the energy converted into heat. Therefore, the energy lost to drag is roughly 𝜌𝐴cs𝑣2𝑑. The drag force is then given by energy lost to drag
-
-⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟ = drag force
-
-⏟⏟⏟⏟⏟ × distance
-
-⏟⏟⏟⏟⏟ .
+This kinetic energy is roughly the energy converted into heat. Therefore, the energy lost to drag is roughly 𝜌𝐴cs𝑣2𝑑. The drag force is then given by:
 
 (3.58)
 
-∼𝜌𝐴cs𝑣2𝑑
-
-𝐹drag
-
-𝑑
-
 Now we can solve for the drag force:
 
-𝐹drag ∼ 𝜌𝐴cs𝑣2.
-
-(3.59)
+𝐹drag ∼ 𝜌𝐴cs𝑣2. (3.59)
 
 As expected, the arbitrary distance 𝑑 has canceled out.
 
-3.5.2 Testing the analysis with a home experiment To test this analysis, try the following home experiment. Photocopy or print this page at 200 percent enlargement (a factor of 2 larger in width and height), cut out the template, and tape the two straight edges together to make a cone:
+#### 3.5.2 Testing the analysis with a home experiment 
 
-⟶
+To test this analysis, try the following home experiment. Photocopy or print this page at 200 percent enlargement (a factor of 2 larger in width and height), cut out the template, and tape the two straight edges together to make a cone:
 
 (3.60)
-
-3.5 cm
 
 We could use many other shapes. However, a cone is easy to construct, and also falls without swishing back and forth (as a sheet of paper would) or flipping over (as long as you drop it point down).
 
 We'll test the analysis by predicting the cone's terminal speed: that is, its steady speed while falling. When the cone is falling at this constant speed, its acceleration is zero, so the net force on it is, by Newton's second law, also zero. Thus, the drag force 𝐹drag equals the cone's weight 𝑚𝑔
 
-(where 𝑚 is the cone's mass and 𝑔 is the gravitational acceleration): 𝜌air𝑣2𝐴cs ∼ 𝑚𝑔.
+(where 𝑚 is the cone's mass and 𝑔 is the gravitational acceleration): 
 
-(3.61)
+𝜌air𝑣2𝐴cs ∼ 𝑚𝑔. (3.61)
 
-The terminal speed thus reveals the drag force. (Even though the drag force equals the weight, the left side is only an approximation to the drag force, so we connect the left and right sides with a single approximation sign ∼.) The terminal speed 𝑣term is then
-
-𝑣term ∼
-
-𝑚𝑔
-
-𝐴
-
-.
+The terminal speed thus reveals the drag force. (Even though the drag force equals the weight, the left side is only an approximation to the drag force, so we connect the left and right sides with a single approximation sign ∼.) The terminal speed 𝑣term is then:
 
 (3.62)
 
@@ -1533,13 +1493,7 @@ cs𝜌air
 
 The mass of the cone is
 
-𝑚 = 𝐴paper × areal density of paper.
-
-⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟
-
-(3.63)
-
-𝜎paper
+𝑚 = 𝐴paper × areal density of paper. (3.63)
 
 Here, 𝐴paper is the area of the cone template; and the areal density 𝜎paper, named in analogy to the regular (volume) density, is the mass per area of paper. Although areal density seems like a strange quantity to define, it is used worldwide to describe the「weight」of different papers.
 
@@ -1547,49 +1501,23 @@ The quotient 𝑚/𝐴cs contains the ratio 𝐴paper/𝐴cs. Rather than estima
 
 How does the cross-sectional area 𝐴 cs compare to the area of the paper?
 
-Because the cone's circumference is three-quarters of the circum-r
-
-ference of the full circle, its cross-sectional radius is three-quar-co
-
-ters of the radius 𝑟 of the template circle. Therefore, ne circumference
-
-2
-
-𝐴cs = 𝜋 (34𝑟) .
+Because the cone's circumference is three-quarters of the circum-ference of the full circle, its cross-sectional radius is three-quarters of the radius 𝑟 of the template circle. Therefore:
 
 (3.64)
 
-Because the template is three-quarters of a full circle, 𝐴paper = 34𝜋𝑟2.
+Because the template is three-quarters of a full circle:
 
-(3.65)
+𝐴paper = 34𝜋𝑟2. (3.65)
 
 The paper area has one factor of three-quarters, whereas the cross-sectional area has two factors of three-quarters, so 𝐴paper/𝐴cs = 4/3. Now 𝑣term simplifies as follows:
 
+(3.66)
+
 The only unfamiliar number is the areal density 𝜎paper, the mass per area of paper. Fortunately, areal density is used commercially, so most reams of printer paper state their areal density: typically, 80 grams per square meter.
-
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.5 Drag using conservation of energy 87
 
 Is this 𝜎 paper consistent with the estimates for a dollar bill in Section 1.1?
 
 There we estimated that the thickness 𝑡 of a dollar bill, or of paper in general, is approximately 0.01 centimeters. The regular (volume) density 𝜌 would then be 0.8 grams per cubic centimeter:
-
-𝜎
-
-g
-
-𝜌
-
-paper
-
-paper =
-
-𝑡 ≈ 80 g m−2 × 1 m2 = 0.8
-
-10−2 cm 104 cm2
-
-cm3 .
 
 (3.67)
 
@@ -1601,7 +1529,7 @@ After putting in the constants, the cone's terminal speed is predicted to be rou
 
 To test the prediction and, with it, the analysis justifying it, I held the cone slightly above my head, from about 2 meters high. After I let the cone go, it fell for almost exactly 2 seconds before it hit the ground — for a speed of roughly 1 meter per second, very close to the prediction. Box models and conservation triumph again!
 
-3.5.3 Cycling
+#### 3.5.3 Cycling
 
 In introducing the analysis of drag, I said that drag is one of the most important physical effects in everyday life. Our analysis of drag will now help us understand the physics of a fantastically efficient form of locomotion — cycling (for its efficiency, see Problem 3.34).
 
@@ -1613,109 +1541,49 @@ Therefore, let's simplify the analysis by assuming that drag is the only consume
 
 Power is force times velocity:
 
-energy
-
-power = time = force×distance
-
-time
-
-= force × velocity.
-
-(3.69)
+power = energy / time = force × distance / time = force × velocity. (3.69)
 
 Therefore,
 
-𝑃drag = 𝐹drag𝑣max ∼ 𝜌𝑣3𝐴cs.
+𝑃drag = 𝐹drag𝑣max ∼ 𝜌𝑣3𝐴cs. (3.70)
 
-(3.70)
-
-Setting 𝑃drag = 𝑃athlete allows us to solve for the maximum speed: 1/3
-
-𝑣max ∼ ( 𝑃athlete
-
-𝜌
-
-) ,
+Setting 𝑃drag = 𝑃athlete allows us to solve for the maximum speed:
 
 (3.71)
-
-air 𝐴cs
 
 where 𝐴cs is the cyclist's cross-sectional area. In Section 1.7.2, we estimated 𝑃athlete as 300 watts. To estimate the cross-sectional area, divide it into a width and a height. The width is a body width — say, 0.4 meters. A racing cyclist crouches, so the height is roughly 1 meter rather than a full 2 meters.
 
 Then 𝐴cs is roughly 0.4 square meters.
 
-Plugging in the numbers gives
-
-1/3
-
-𝑣max ∼ (
-
-300 W
-
-.
+Plugging in the numbers gives:
 
 (3.72)
 
-1 kg m−3 × 0.4 m2 )
-
 That formula, with its mix of watts, meters, and seconds, looks suspicious. Are the units correct?
 
-Let's translate a watt stepwise into meters, kilograms, and seconds, using the definitions of a watt, joule, and newton: kg m
+Let's translate a watt stepwise into meters, kilograms, and seconds, using the definitions of a watt, joule, and newton: 
 
-W ≡ Js,
+W ≡ J/s,
 
-J ≡ N m,
+J ≡ Nm,
 
-N ≡ s2 .
+N ≡ kgm/s^2 .
 
 (3.73)
 
-The three definitions are represented in the next divide-and-conquer tree, one definition at each nonleaf node. Propagating the leaves toward the root gives us the following expression for the watt in terms of meters, kilograms, and seconds (the fundamental units in the SI system): kg m2
+The three definitions are represented in the next divide-and-conquer tree, one definition at each nonleaf node. Propagating the leaves toward the root gives us the following expression for the watt in terms of meters, kilograms, and seconds (the fundamental units in the SI system): 
 
-W ≡ s3 .
+W ≡ kgm2/s3 (3.74)
 
-(3.74)
+The units in 𝑣max become:
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+(3.75)
 
-3.5 Drag using conservation of energy 89
+The kilograms cancel, as do the square meters. The cube root then contains only meters cubed over seconds cubed; therefore, the units for 𝑣max are meters per second.
 
-The units in 𝑣max become
-
-The kilograms cancel, as do the square meters. The cube root then contains only meters cubed over seconds cubed; therefore, the units for 𝑣max are meters per N
-
-m
-
-second.
-
-kg m s−2
-
-Let's estimate how many meters per second. Don't let the cube root frighten you into using a calculator. We kg
-
-m
-
-s−2
-
-can do the arithmetic mentally, if we massage (adjust) the numbers slightly. If only the power were 400 watts (or instead the area were 0.3 square meters)! Instead of wishing, make it so — and don't worry about the loss of accuracy: Because we have neglected the drag coefficient, our speed will be approximate anyway. Then the cube root becomes an easy calculation:
-
-300 400 W
-
-1/3
-
-𝑣
-
-⎞
-
-max ∼ ⎛
-
-⎜
-
-⎟ = (1000)1/3 m s−1 = 10 m s−1.
+Let's estimate how many meters per second. Don't let the cube root frighten you into using a calculator. We can do the arithmetic mentally, if we massage (adjust) the numbers slightly. If only the power were 400 watts (or instead the area were 0.3 square meters)! Instead of wishing, make it so — and don't worry about the loss of accuracy: Because we have neglected the drag coefficient, our speed will be approximate anyway. Then the cube root becomes an easy calculation:
 
 (3.76)
-
-⎝1 kg m−3 × 0.4 m2 ⎠
 
 In more familiar units, the record speed is 22 miles per hour or 36 kilometers per hour. As a comparison, the world 1-hour record — cycling as far as possible in 1 hour — is 49.7 kilometers or 30.9 miles, set in 2005 by Ondřej Sosenka. Our prediction, based on the conservation analysis of drag, is roughly 70 percent of the actual value.
 
@@ -1723,13 +1591,11 @@ How can such an estimate be considered useful?
 
 High accuracy often requires analyzing and tracking many physical effects.
 
-The calculations and bookkeeping can easily obscure the most important effect and its core idea, costing us insight and understanding. Therefore, almost everywhere in this book, the goal is an estimate within a factor of 2
-
-or 3. That level of agreement is usually enough to convince us that our model contains the situation's essential features.
+The calculations and bookkeeping can easily obscure the most important effect and its core idea, costing us insight and understanding. Therefore, almost everywhere in this book, the goal is an estimate within a factor of 2 or 3. That level of agreement is usually enough to convince us that our model contains the situation's essential features.
 
 Here, our predicted speed is only 30 percent lower than the actual value, so our model of the energy cost of cycling must be broadly correct. Its main error arises from the factor of one-half that we ignored when estimating the drag force — as you can check by doing Problem 3.33.
 
-3.5.4 Fuel efficiency of automobiles
+#### 3.5.4 Fuel efficiency of automobiles
 
 Bicycles, in many places, are overshadowed by cars. From the analysis of drag, we can estimate the fuel consumption of a car (at highway speeds).
 
@@ -1737,141 +1603,39 @@ Most of the world measures fuel consumption in liters of fuel per 100 kilometers
 
 For a bicycle, we compared powers: the power consumed by drag with the power supplied by an athlete. For a car, we are interested in the fuel consumption, which is related to the energy contained in the fuel. Therefore, we need to compare energies. For cars traveling at highway speeds, most of the energy is consumed fighting drag. Therefore, the energy consumed by drag equals the energy supplied by the fuel.
 
-Driving a distance 𝑑, which will be 100 kilometers, consumes an energy 𝐸drag ∼ 𝜌air𝑣2𝐴cs 𝑑.
+Driving a distance 𝑑, which will be 100 kilometers, consumes an energy:
 
-(3.77)
+𝐸drag ∼ 𝜌air𝑣2𝐴cs 𝑑. (3.77)
 
-The fuel provides an energy
+The fuel provides an energy:
 
-𝐸fuel ∼ energy density
+𝐸fuel ∼ energy density × fuel mass = ℰfuel 𝜌fuel𝑉fuel. (3.78)
 
-⏟⏟⏟⏟⏟⏟⏟⏟⏟ × fuel mass
-
-⏟⏟⏟⏟⏟ = ℰfuel 𝜌fuel𝑉fuel.
-
-(3.78)
-
-ℰfuel
-
-𝜌fuel 𝑉fuel
-
-Because 𝐸fuel ∼ 𝐸drag, the volume of fuel required is given by 𝐸
-
-𝑉
-
-drag
-
-𝑣2𝐴cs
-
-fuel ∼ 𝜌
-
-∼ 𝜌air
-
-𝑑.
+Because 𝐸fuel ∼ 𝐸drag, the volume of fuel required is given by:
 
 (3.79)
 
-fuelℰfuel
-
-𝜌fuel ℰfuel
-
-⏟⏟⏟⏟⏟⏟⏟
-
-𝐴consumption
-
 Because the left-hand side, 𝑉fuel, is a volume, the complicated factor in front of the travel distance 𝑑 must be an area. Let's make an abstraction by naming this area. Because it is proportional to fuel consumption, a self-documenting name is 𝐴consumption. Now let's estimate the quantities in it.
 
-1. Density ratio 𝜌 air/𝜌 fuel. The density of gasoline is similar to the density of water, so the density ratio is roughly 10−3.
+1 Density ratio 𝜌 air/𝜌 fuel. The density of gasoline is similar to the density of water, so the density ratio is roughly 10−3.
 
-2. Speed 𝑣. A highway speed is roughly 100 kilometers per hour (60 miles per hour) or 30 meters per second. (A useful approximation for Americans is that 1 meter per second is roughly 2 miles per hour.) 3. Energy density ℰ fuel. We estimated this quantity Section 2.1 as roughly 10 kilocalories per gram or 40 megajoules per kilogram.
+2 Speed 𝑣. A highway speed is roughly 100 kilometers per hour (60 miles per hour) or 30 meters per second. (A useful approximation for Americans is that 1 meter per second is roughly 2 miles per hour.) 
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+3 Energy density ℰ fuel. We estimated this quantity Section 2.1 as roughly 10 kilocalories per gram or 40 megajoules per kilogram.
 
-3.5 Drag using conservation of energy 91
-
-4. Cross-sectional area 𝐴 cs. A car's cross section is about 2 me-car
-
-ters across by 1.5 meters high, so 𝐴cs ∼ 3 square meters.
-
-1.5 m
-
-(cross section)
+4 Cross-sectional area 𝐴 cs. A car's cross section is about 2 meters across by 1.5 meters high, so 𝐴cs ∼ 3 square meters.
 
 With these values,
 
-2 m
-
-𝑣2
-
-𝐴cs
-
-⏞⏞⏞⏞⏞
-
-𝐴
-
-103 m2 s−2 × 3 m2
-
-⏞
-
-consumption ∼ 10−3 ×
-
-≈ 8×10−8 m2.
-
 (3.80)
 
-4×107 J kg−1
-
-⏟⏟⏟⏟⏟⏟⏟
-
-ℰfuel
-
-To find the fuel consumption, which is the volume of fuel per 100 kilometers of driving, simply multiply 𝐴consumption by 𝑑 = 100 kilometers or 105 meters, and then convert to liters to get 8 liters per 100 kilometers: 𝑉fuel ≈ 8×10−8 m2
-
-⏟⏟⏟⏟⏟⏟⏟ × 105 m
-
-⏟ × 103 ℓ = 8 ℓ.
+To find the fuel consumption, which is the volume of fuel per 100 kilometers of driving, simply multiply 𝐴consumption by 𝑑 = 100 kilometers or 105 meters, and then convert to liters to get 8 liters per 100 kilometers: 
 
 (3.81)
 
-1m3
-
-𝐴consumption
-
-𝑑
-
 For the fuel efficiency, we use 𝐴consumption in the form 𝑑 = 𝑉fuel/𝐴consumption to find the distance traveled on 1 gallon of fuel, converting the gallon to cubic meters:
 
-𝑉fuel
-
-1
-
-⏞ g
-
-⏞ allon
-
-⏞⏞⏞
-
-4 ℓ
-
-10−3 m3
-
-𝑑 ∼
-
-×
-
-×
-
-= 5×104 m.
-
 (3.82)
-
-8×10−8 m2
-
-⏟⏟⏟⏟⏟⏟⏟ 1 gallon
-
-1 ℓ
-
-𝐴consumption
 
 The struck-through exponent of 3 in the m3 indicates that the cubic meters became linear meters, as a result of cancellation with the m2 in the 𝐴consumption. The resulting distance is 50 kilometers or 30 miles. The predicted fuel efficiency is thus roughly 30 miles per gallon.
 
@@ -1881,19 +1645,13 @@ The fuel-efficiency and fuel-consumption predictions are far more accurate than 
 
 What went right?
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+The analysis neglects two important factors, so such accuracy is possible only if these factors cancel. The first factor is the dimensionless constant hidden in the single approximation sign of the drag force: 
 
-92
+𝐹drag ∼ 𝜌air𝐴cs𝑣2. (3.83)
 
-3 Symmetry and conservation
+Including the dimensionless prefactor (shown in gray), the drag force is:
 
-The analysis neglects two important factors, so such accuracy is possible only if these factors cancel. The first factor is the dimensionless constant hidden in the single approximation sign of the drag force: 𝐹drag ∼ 𝜌air𝐴cs𝑣2.
-
-(3.83)
-
-Including the dimensionless prefactor (shown in gray), the drag force is 𝐹drag = 12𝑐d 𝜌air𝐴cs𝑣2,
-
-(3.84)
+𝐹drag = 12𝑐d 𝜌air𝐴cs𝑣2, (3.84)
 
 where 𝑐d is the drag coefficient (introduced in Section 3.2.1). The factor of one-half comes from the one-half in the definition of kinetic energy. The drag coefficient is the remaining adjustment, and its origin is the subject of Section 5.3.2. For now, we need to know only that, for a typical car, 𝑐d ≈ 1/2.
 
@@ -1907,289 +1665,341 @@ What other effect did we neglect?
 
 The engine efficiency — a typical combustion engine, whether gasoline or human, is only about 25 percent efficient: An engine extracts only one-quarter of the combustion energy in the fuel; the remaining three-quarters turns into heat without doing mechanical work. Including this factor increases our estimate of the fuel consumption by a factor of 4.
 
-The engine efficiency and the more accurate drag force together give the following estimate of the fuel consumption, with the new effect in gray: 1
-
-𝑉
-
-2 𝑐d
-
-fuel ≈ 0.25 × 𝜌air𝑣2𝐴cs
-
-𝜌
-
-𝑑.
+The engine efficiency and the more accurate drag force together give the following estimate of the fuel consumption, with the new effect in gray: 
 
 (3.85)
 
-fuelℰfuel
-
 The 0.25 in the denominator, from the engine efficiency, cancels the 12𝑐d in the numerator. That is why our carefree estimate, which neglected both factors, was so accurate. The moral, which I intend only half jokingly: Neglect many factors, so that the errors can cancel one another out.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.6 Lift using conservation of momentum 93
-
-Problem 3.33
-
-Adjusting the cycling record
+Problem 3.33 Adjusting the cycling record
 
 Our estimate of the world 1-hour record as roughly 35 kilometers (Section 3.5.3) ignored the drag coefficient. For a bicyclist, 𝑐d ≈ 1. Will including the drag coefficient improve or worsen the prediction in comparison with the actual world record (roughly 50 kilometers)? Answer that question before making the new prediction!
 
 What is the revised prediction?
 
-Problem 3.34
-
-Bicyclist fuel efficiency
+Problem 3.34 Bicyclist fuel efficiency
 
 What is the fuel consumption and efficiency of a bicyclist powered by peanut butter? Express your estimate as an efficiency (miles per gallon of peanut butter) and a consumption (liters of peanut butter per 100 kilometers). How does a bicycle compare with a car?
 
-3.6 Lift using conservation of momentum
+3.5 能量守恒与阻力
+
+黑箱模型接着将帮助我们估算阻力。阻力，物理学中最困难的问题之一，也是日常生活中最重要的力之一。如果没有阻力，那么骑自行车，飞行及驾驶将是很轻松的事。因为有阻力，运动需要能量。严格计算阻力需要求解纳维斯托克斯方程：
+
+(3.56)
+
+这是一组耦合的非线性偏微分方程。你可能在很多书中读过描写如何求解这类方程的数学。即便如此，也只有在某些情况下才有解 —— 比如，一个球在黏滞性流体中低速运动，或者在非黏滞性流体中以任意速度运动。但是，所谓非黏滞性流体 —— 费恩曼 [1]（《费恩曼物理学讲义》1] 章节 40-2）曾引用过的，冯·诺依曼将其准确地描述为「干水」—— 和实际生活完全不相干，因为黏滞性是阻力的原因，所以非黏滞流体的解给出零阻力！利用黑箱模型和能量守恒是简单而富有洞察力的另一种解法。
+
+[1] 美国物理学家，以费恩曼图和路径积分著称，著有经典物理学讲义《费恩曼物理学讲义》。—— 译者注
+
+3.5.1 阻力的黑箱模型
+
+我们首先来估算一个物体在流体中运动时阻力造成的能量损失。为了将问题中的参数定量化，想象推一个截面积为 Acs 的物体，使其在流体中以速度 v 移动距离 d。物体扫过一个管状的流体。（管长 d 是任意的，但在后面计算力 Acs 的时候会消去。）
+
+➤ 阻力会消耗多少能量？
+
+消耗能量是因为物体会将动能传递给流体（比如说，水或空气）。正如我们将在章节 6.4.4 中构建的模型，黏滞性又会将这个能量转化为热。动能取决于流体的质量及速度。管中的流体质量为 ρAcsd，其中 ρ 为流体密度。传递给流体的速度大致就是物体的速度，即 v。因此，传递给流体的动能大约就是 ρAcsu^2d：
+
+这个计算忽略了动能定义中的因子 1/2。但是其他近似，如假设只有扫过的流体受到影响或只有被扫到的流体获得速度，至少是不够精确的。对这种粗略的计算，把 1/2 的因子包含进来是没有意义的。
+
+这个动能粗略地就是转化为热的能量。因此，阻力损失的能量大约是 ρAcsu^2d。则阻力由下式给出：
+
+阻力损失的能量 = 阻力 × 距离（3.58) 
+
+我们可以解得阻力：
+
+F 阻力 ~ ρAcsu^2 (3.59)
+
+正如之前预期的，任意距离 d 已经消去了。
+
+3.5.2 利用家庭实验来验证分析
+
+为了验证这个分析，尝试下面的家庭实验。将左边图形粘接成一个圆锥。
+
+(3.60)
+
+我们可以使用很多其他的形状，但圆锥容易构造；我已经用小记录纸做了很多个了。圆锥下落时不会飘来飘去（如一张纸那样）或者翻转（只要扔的时候尖端向下）。
+
+我们将通过预测圆锥的最终速度（下落时达到的稳定速度）来验证这个分析。当圆锥以恒定速度下落时，其加速度为零，所以按照牛顿第二定律，作用在圆锥上的净力也为零。因此，阻力 F 阻力等于圆锥的重力 mg，其中 m 是圆锥的质量，而 g 是重力加速度：
+
+ρ空气v^2Acs ~ mg. (3.61)
+
+于是最终速度可以反映出阻力。（即使阻力等于重力，左边 F 阻力也只是阻力的一个近似，所以我们用近似符号 ～ 将左右两边联系起来。）最终速度终为：
+
+(3.62)
+
+圆锥的质量为：
+
+(3.63)
+
+其中 A 纸为圆锥折叠前的面积；而面密度，类似于通常的（体）密度，是单位面积纸的质量。尽管面密度看起来似乎是个奇怪的量，但在商业上全世界都用它来描述不同纸张的重量。
+
+商数 m/Acs 包含比例式 A纸 / Acs。不要估算两个面积，再求得其比例，我们直接估算比例。
+
+➤ 截面积与纸面积的比是多少？
+
+因为圆锥的周长是原来的圆周长的 3/4，则其截面的半径也是圆半径的 3/4。因此：
+
+(3.64)
+
+因为圆锥的原型是整个圆的 3/4，
+
+(3.65)
+
+纸的面积有因子 3/4，而圆锥截面积有两个 3/4 因子，所以 A 纸 / Acs = 4/3。现在 v 终简化为：
+
+唯一留下的不熟悉的量是面密度纸，即单位面积纸的质量。幸运的是，面密度在商业上广泛使用，所以大多数打印纸都会标记其面密度，典型的就是 80 克 / m2。
+
+➤ 这个面密度与我们在章节 1.1 估算的一元纸币密度一致吗？
+
+前面我们估算的纸币厚度或一般纸的厚度 t 约为 0.01 厘米，则通常的（体）密度 p 为 0.8 克 / 厘米 3：
+
+(3.67)
+
+这个密度比水的密度稍微小一点，对纸而言是合理的密度，纸来自木材（木头几乎都能浮在水上）。因此，我们在章节 1.1 中的估算与这里给出的 80 克 / m2 的面密度一致。将这些数值考虑进去后，圆锥的最终速度大约是 0.9 米 / 秒：
+
+(3.68)
+
+为了验证这个结果和相应的分析，我把圆锥举在离我头顶稍高一点的位置，大约 2 米高的样子。当我释放圆锥后，圆锥几乎准确地在 2 秒后掉到地板上 —— 大约以 1 米 / 秒的速度。黑箱模型和守恒定律再次取得成功！
+
+3.5.3 骑行
+
+在介绍阻力的分析时，我曾说阻力是日常生活中最重要的物理效应之一。我们对阻力的分析现在可以用来帮助我们理解效率极高的运动形式 —— 骑行，背后的物理学（关于骑行的效率，见题 3.34）。
+
+➤ 自行车骑行速度的世界纪录是多少？
+
+第一个任务是定义世界纪录的类型。让我们来分析利用普通自行车在平地上的骑行，即便下坡或使用特殊的自行车达到更快的速度是可能的。在骑行时，能量用于克服骑行的阻力，链条和齿轮的摩擦力，以及空气的阻力。因为阻力的重要性随速度的增长迅速增加（由于阻力公式中的 2 项），当速度足够高时，阻力是能量消耗的最主要原因。
+
+因此，我们可以简化分析，假定阻力是能量消耗的唯一原因。在最大骑行速度时，阻力消耗的功率等于骑行者所能提供的最大功率。问题因而被分解为两个估算：阻力消耗的功率和运动员能提供的功率。
+
+功率是力乘以速度：
+
+功率 = 能量 / 时间 = 力 x 距离 / 时间 = 力 × 速度 (3.69)
+
+因此，
+
+P阻力 = F阻力V极 ～ ρv^3Acs (3.70)
+
+令 P 阻力 = P 运动员，我们可解得最大速度：
+
+(3.71)
+
+其中 Acs 是自行车运动员的截面积。在章节 1.7.2，我们估算的 P 运动员为 300 瓦。为了估算截面积，可将其分解为宽和高。宽度就是身体的宽度 —— 比如说，0.4 米。自行车运动员比赛时身体是蜷缩的，所以高度大约是 1 米而不是其整个身高 2 米。由此 Acs 大约是 0.4 m^2。
+
+将数值代入，得：
+
+➤ 这个公式里，各种单位如瓦，米，秒等混杂着，看起来令人疑惑。这些单位是正确的吗？
+
+我们来把瓦分解为米、千克、秒等，利用瓦、焦耳和牛顿的定义：
+
+W=J/s, J=Nm, N= kgm/s^2 (3.73)
+
+这三个定义都在分而治之法树图上表示，每个定义都在非树叶的节点上。将树叶往上传递到树根，就给出我们用米、千克和秒（国际单位制的基本单位）表示的瓦的公式：
+
+W = kgm$^2$/s$^3$   (3.74)
+
+V 极的单位就变成：
+
+(3.75)
+
+千克消去了，m2 也消去了。立方根里包含的是米除以秒；因此，V 极的单位是米 / 秒。
+
+为了再次确认，我们来估算速度是多少米 / 秒。不要被立方根吓到而使用计算器。我们可以心算，如果将数字稍微调整一下。只要功率是 400 瓦或面积是 0.3m3 就行！不要只停留在想法，而是要付诸行动 —— 不必担心会损害精确性：我们已经忽略了阻力系数，我们的速度本来就是近似的。这样立方根就是一个容易的计算：
+
+(3.76)
+
+用更加熟悉的单位，这个记录是 36 公里 / 小时。作为比较，世界 1 小时记录 —— 1 小时内自行车的最高速度 —— 为 49.7 公里 / 小时或 30.9 英里 / 小时。我们基于能量守恒的阻力分析得到的结果，大约是实际值的 70%。
+
+➤ 这样的估算为何可以被认为是合理的？
+
+高精度常常需要分析和追踪很多物理效应。计算和追踪过程很容易忽略最重要的效应和其中的核心概念，不利于我们的洞察和理解。因此，在本书的几乎每个部分，目的就是在精确到 2 或 3 倍的范围内进行估算。
+
+这个水平上的一致对于确信我们的模型是合理的常常是足够的。
+
+这里我们给出的速度比实际值仅仅低了 30%，我们关于骑车消耗能量的模型一定是基本正确的。主要的误差来自我们在估算阻力时忽略的 1/2 因子 —— 这可以通过完成题 3.33 来验证。
+
+3.5.4 汽车的燃油效率
+
+大自行车与汽车相比，在很多方面都相形见绌。从阻力的分析，我们可以估算汽车（以高速公路上的速度行驶）的燃料消耗。对此，世界上大多数国家都用行驶百公里消耗多少升燃料来衡量。但美国用的是这个量的倒数，即燃油效率 —— 一定量的燃料可行驶的距离  —— 每加仑的英里数来衡量。
+
+对自行车，我们比较了两种功率：即阻力消耗的功率和运动员所能提供的功率。对于汽车，我们感兴趣的是燃料的消耗，这关系到蕴藏在其中的能量。因此，我们需要对能量进行比较。对于汽车而言，当其高速行驶时，大部分的能量消耗是用于抵抗阻力。因此，阻力消耗的能量等于燃料所能提供的能量。
+
+行驶距离 d，以后会取 100 公里，消耗的能量为：
+
+(3.77)
+
+燃料提供的能量为：
+
+(3.78)
+
+因为 E 燃料 ～E 阻力，所需要的燃料体积为：
+
+(3.79)
+
+因为左边 V 燃料是体积，所以 d 前面复杂的因子必须是面积。我们通过给这个面积命名来做一个抽象。一个直观的名字是 A 消耗，因为这个面积正比于燃料消耗。现在我们来估算 A 消中的各个量。
+
+1、密度比 ρ 空气 / ρ 燃料。汽油的密度和水的密度相似，所以比例约为 10^-3。
+
+2、速度 v。高速上的速度大约是 100 公里 / 小时或 30 米 / 秒。
+
+3、能量密度 e。我们在章节 2.1 估算过这个量，大约是 10 千卡 / 克或 4000 万焦耳 / 千克。
+
+4、截面积 Acs。一辆车的截面大约是 2 米长、1.5 米高，所以 Acs 大约是 3m2。
+
+利用这些数值，A 消耗大约就是 8X10$^-8$m2：
+
+这个面积将帮助我们得到燃料效率和燃料消耗。
+
+为了得到燃料消耗，即每百公里的燃油体积，直接用 d=100 公里或 10 米乘以 A，然后转换成升：
+
+(3.81)
+
+我们的结果是每百公里油耗是 8 升 一一 这是非常精确的。
+
+至于燃料效率，我们利用 d = V燃料 / A消耗 中的 A 消耗，来得到 1 加仑燃料可以行驶的距离，将加仑转换为 m3：
+
+上式中 m3 删去的指数 3 表明米 3 变成米了，这是消去 A 消耗 中 m2 的结果。最后得到的距离为 50 公里或 30 英里。于是估算的燃料效率大约是 30 英里 / 加仑。
+
+对燃料效率和燃料消耗的估算比我们想象的要精确得多，尤其是我们做了这么多的近似！比如，我们除阻力外忽略了所有其他能量损失。
+
+我们还使用了非常粗略的阻力表达式 ρ 空气 vAs，这是从合理但粗略的守恒量讨论导出的。然而，我们最后找到了正确的道路。
+
+➤ 是什么使得结果这么精确？
+
+上面的分析忽略了两个重要的因子，所以这么精确的结果只有在这些因子互相抵消时才可能得到。第一个因子是阻力分析近似时隐含的无量纲常数：
+
+F阻力 ～ ρ空气Acsv2 (3.83)
+
+考虑到无量纲因子（用灰色表示），阻力就变成：
+
+F阻力 = 1/2cd·ρ空气·Acs·v2 (3.84)
+
+其中 cd 是阻力系数（章节 3.2.1 引入的）。因子 1/2 来自动能的定义。阻力系数是剩下可调整的部分，其来源是章节 5.3.2 讨论的主题。现在我们只需知道，对一个典型的汽车，cd ≈ 1/2。因此，近似中隐含的无量纲常数因子大约是 1/4。
+
+➤ 基于这个更精确的阻力，每百公里汽车消耗的燃料是多于还是少于 8 升？
+
+考虑 cd/2 后，阻力及燃料消耗减少了 4 倍。因此，汽车每消耗 1 加仑燃料可以行驶 120 英里或每百公里耗油只有 2 升。这个更仔细的考虑得到的估算并不那么乐观 —— 比原来的简单估算差得多。
+
+➤ 我们忽略了其他什么因素？
+
+引擎效率：一个典型的内燃机，不论是汽油的还是人力的，只有 大约 25% 的效率，即只能获取燃料燃烧能量的 1/4，其余 3/4 都转化为热而不对机械做功。考虑到这个因素，我们对燃料消耗的估算就增加了 4 倍。
+
+考虑到引擎效率，更精确的阻力将给出下面对燃料消耗的估算，新的因素用灰色表示：
+
+(3.85)
+
+分母中来自引擎效率的 0.25 与分子中的 2：相消。这一抵消解释了为什么忽略两种因素后的粗略估算是如此精确。这一结果的意义在于，当然这只是半开玩笑地说，忽略很多的因素，因而误差就互相抵消了。
+
+题 3.33 自行车记录的调整
+
+我们对自行车 1 小时记录的估算是大约 35 公里（章节 3.5.3），其中忽略了阻力系数。对于自行车运动员，cd≈1。考虑阻力系数后，与实际的世界纪录（大约 50 公里）相比，预测的结果是改进了还是更差？在给出新的估算结果之前回答这一问题！修正后的结果是多少？
+
+题 3.34 自行车运动员燃料效率
+
+一个依靠花生奶油的自行车运动员的燃料消耗和燃料效率是多少？将你的结果表示成效率（每加仑花生奶油的英里数）和消耗（每百公里的花生奶油升数）。自行车与汽车相比如何？
+
+### 3.6 Lift using conservation of momentum
 
 If drag is a drag, our next force, which is the companion to drag, should lift our spirits. Using conservation and box models, we will estimate the power required to generate lift. There are two main cases: hovering flight — for example, a hummingbird — and forward flight. Compared to forward flight, hovering flight has one fewer parameter (there is no forward velocity), so let's begin with its analysis, for a bird of mass 𝑚.
 
-3.6.1 Hovering: Hummingbirds
+#### 3.6.1 Hovering: Hummingbirds
 
 How much power does a hummingbird require to hover?
 
-box
+Hovering demands power because a hummingbird has weight: The Earth, via the gravitational field, supplies the hummingbird with downward momentum. The Earth therefore loses downward downward momentum or, equivalently, acquires upward momentum. (Thus, the Earth accelerates upward toward the hummingbird, although very, very slowly.) This flow of momentum can be tracked with a box model. Let's draw the box around the Earth–hummingbird system and imagine the system as the whole universe. The box contains a fixed (constant) amount of downward momentum, so the gravitational field can transfer downward momentum only within the box. In particular, the field transfers downward momentum from the Earth to the hummingbird. This picture is a fancy way of saying that the Earth exerts a downward force on the hummingbird, but the fancy way shows us what the hovering hummingbird must do to stay aloft.
 
-Hovering demands power because a hummingbird has weight: The Earth, via the gravitational field, supplies the hummingbird bird
-
-with downward momentum. The Earth therefore loses downward downward
-
-momentum or, equivalently, acquires upward momentum. (Thus, momentum
-
-the Earth accelerates upward toward the hummingbird, although earth
-
-very, very slowly.) This flow of momentum can be tracked with a box model. Let's draw the box around the Earth–hummingbird system and imagine the system as the whole universe. The box contains a fixed (constant) amount of downward momentum, so the gravitational field can transfer downward momentum only within the box. In particular, the field transfers downward momentum from the Earth to the hummingbird. This picture is a fancy way of saying that the Earth exerts a downward force on the hummingbird, but the fancy way shows us what the hovering hummingbird must do to stay aloft.
-
-box
-
-If the hummingbird keeps this downward momentum, it would accumulate downward speed — and crash to the ground. Fortunately, the air
-
-box has one more constituent: the fluid (air). The hummingbird gives the downward momentum to the air: It flaps its wings and sends air bird
-
-downward. Lift, like drag, requires a fluid. (The air pushes down on the Earth, returning the downward momentum that the Earth lost via the gravitational field. Thus, the Earth does not accelerate.) earth
+If the hummingbird keeps this downward momentum, it would accumulate downward speed — and crash to the ground. Fortunately, the air box has one more constituent: the fluid (air). The hummingbird gives the downward momentum to the air: It flaps its wings and sends air bird downward. Lift, like drag, requires a fluid. (The air pushes down on the Earth, returning the downward momentum that the Earth lost via the gravitational field. Thus, the Earth does not accelerate.)
 
 How much power is required to send air downward?
 
-Power is force times speed. The force is the gravitational force 𝑚𝑔 that the hummingbird is unloading onto the air. Estimating the air's downward speed 𝑣𝑧 requires careful thought about the flow of momentum. The air carries the downward momentum supplied to the hummingbird. The momentum supply (a momentum rate or momentum per time) is area ∼ L2
+Power is force times speed. The force is the gravitational force 𝑚𝑔 that the hummingbird is unloading onto the air. Estimating the air's downward speed 𝑣𝑧 requires careful thought about the flow of momentum. The air carries the downward momentum supplied to the hummingbird. The momentum supply (a momentum rate or momentum per time) is the force 𝑚𝑔: Force is simply momentum per time. Because momentum flux is momentum per time per area, 
 
-the force 𝑚𝑔: Force is simply momentum per time. Because mo-vz
-
-mentum flux is momentum per time per area, 𝑚𝑔 = momentum flux × area.
-
-(3.86)
-
-downward
-
-mom. density
+𝑚𝑔 = momentum flux × area. (3.86)
 
 When we first studied flux, in Section 3.4.2, we derived that
 
-∼ ρ airvz
+flux of stuff = density of stuff × flow speed. (3.87)
 
-flux of stuff = density of stuff × flow speed.
+Because our stuff is momentum, this relation takes the particular form:
 
-(3.87)
+momentum flux = momentum density × flow speed. (3.88)
 
-Because our stuff is momentum, this relation takes the particular form momentum flux = momentum density × flow speed.
+Substituting this momentum flux into 𝑚𝑔 = momentum flux × area, 
 
-(3.88)
-
-Substituting this momentum flux into 𝑚𝑔 = momentum flux × area, 𝑚𝑔 = momentum density × flow speed × area.
-
-(3.89)
+𝑚𝑔 = momentum density × flow speed × area. (3.89)
 
 Momentum density is momentum (𝑚air𝑣𝑧) per volume, so it is 𝜌air𝑣𝑧. The flow speed is 𝑣𝑧. Thus,
 
-𝑚𝑔 = 𝜌air𝑣𝑧 × 𝑣𝑧 × area = 𝜌air𝑣2𝑧 × area.
-
-(3.90)
+𝑚𝑔 = 𝜌air𝑣𝑧 × 𝑣𝑧 × area = 𝜌air𝑣2𝑧 × area. (3.90)
 
 To complete this equation, so that it gives us the downward velocity 𝑣𝑧, we need to estimate the area. It is the area over which the hummingbird directs air downward. It is roughly 𝐿2, where 𝐿 is the wingspan (wingtip to wingtip). Even though the wings do not fill that entire area, the relevant area is still 𝐿2, because the wings disturb air in a region whose size is comparable to their longest dimension. (For this reason, high-efficiency planes, such as gliders, have very long wings.)
 
-Using 𝐿2 as the estimate for the area, we get 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+Using 𝐿2 as the estimate for the area, we get:
 
-3.6 Lift using conservation of momentum 95
+𝑚𝑔 ∼ 𝜌air𝑣2𝑧𝐿2, (3.91)
 
-𝑚𝑔 ∼ 𝜌air𝑣2𝑧𝐿2,
-
-(3.91)
-
-so the downward velocity is
-
-𝑣𝑧 ∼
-
-𝑚𝑔
-
-𝜌air𝐿2 .
+so the downward velocity is:
 
 (3.92)
 
 With this downward velocity and with the downward force 𝑚𝑔, the power 𝑃 (not to be confused with momentum!) is
 
-𝑃 = 𝐹𝑣𝑧 ∼ 𝑚𝑔 𝑚𝑔
-
-𝜌air𝐿2 .
-
 (3.93)
 
 Let's estimate this power for an actual hummingbird: the Calliope hummingbird, the smallest bird in North America. Its two relevant characteristics are the following:
 
-wingspan 𝐿 ≈ 11 cm,
-
-(3.94)
+wingspan 𝐿 ≈ 11 cm, 
 
 mass 𝑚 ≈ 2.5 g.
 
-As the first step in estimating the hovering power, we'll estimate the downward air speed using our formula for 𝑣𝑧. The result is that, to stay aloft, the hummingbird sends air downward at roughly 1.3 meters per second: 𝑚𝑔
+(3.94)
 
-⏞⏞⏞⏞⏞⏞⏞
-
-1/2
-
-𝑣
-
-2.5×10−2 N
-
-⎞
-
-𝑧 ∼ ⎛
-
-⎜
-
-⎟ ≈ 1.3 m s−1.
+As the first step in estimating the hovering power, we'll estimate the downward air speed using our formula for 𝑣𝑧. The result is that, to stay aloft, the hummingbird sends air downward at roughly 1.3 meters per second: 
 
 (3.95)
 
-⎝ 1.2 kg m−3
+The resulting power consumption is roughly 30 milliwatts: 
 
-⏟⏟⏟⏟⏟ × 1.2×10−2 m2
-
-⏟⏟⏟⏟⏟⏟⏟⎠
-
-𝜌air
-
-𝐿2
-
-The resulting power consumption is roughly 30 milliwatts: 𝑃 ∼ 2.5
-
-⏟⏟×
-
-⏟ 10−2
-
-⏟⏟ N
-
-⏟⏟ × 1.3 m s−1
-
-⏟⏟⏟⏟⏟ ≈ 3
-
-⏟×10−2
-
-⏟⏟ W
-
-⏟⏟ .
-
-(3.96)
-
-𝑚𝑔
-
-𝑣𝑧
-
-30 mW
-
-(Because animal metabolism, like a car engine, is only about 25 percent efficient, the hummingbird needs to eat food at a rate corresponding to 120
-
-milliwatts.)
+(Because animal metabolism, like a car engine, is only about 25 percent efficient, the hummingbird needs to eat food at a rate corresponding to 120 milliwatts.)
 
 This power seems small: Even an (incandescent) flashlight bulb, for example, requires a few watts. However, as a power per mass, it looks more significant:
 
-𝑃𝑚 ∼ 3×10−2W ≈ 10 W
-
-2.5×10−3 kg
-
-kg.
-
 (3.97)
 
-In comparison, the world-champion cyclist Lance Armstrong, with one of the highest human power outputs, was measured to have a power output of 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+In comparison, the world-champion cyclist Lance Armstrong, with one of the highest human power outputs, was measured to have a power output of 7 watts per kilogram (Section 1.7.2). However, for a chemically unenhanced world-class athlete, 5 watts per kilogram is a more typical value. According to our estimates, hummingbird muscles should be twice as powerful as this world-class human value! Even for a small bird, hovering is hard work.
 
-96
-
-3 Symmetry and conservation
-
-7 watts per kilogram (Section 1.7.2). However, for a chemically unenhanced world-class athlete, 5 watts per kilogram is a more typical value. According to our estimates, hummingbird muscles should be twice as powerful as this world-class human value! Even for a small bird, hovering is hard work.
-
-Problem 3.35
-
-Fueling hovering
+Problem 3.35 Fueling hovering
 
 How much nectar must a hummingbird drink, as a fraction of its body mass, in order to hover for its working day (roughly 8 hours)? By mass, nectar is roughly 50 percent sugar.
 
-Problem 3.36
-
-Human hovering
+Problem 3.36 Human hovering
 
 How much power would a person have to put out in order to hover by flapping his or her arms?
 
-3.6.2 Lift in forward flight
+#### 3.6.2 Lift in forward flight
 
 Now that we understand the fundamental mechanism wing
 
-of lift — discarding downward momentum by giving it to the air — we are ready to study forward flight: the body
-
-L
-
-v
-
-flight of a migrating bird or of a plane. Forward flight is more complicated than hovering because forward wing
-
-flight has two velocities: the plane's forward velocity 𝑣 and the downward component 𝑣𝑧 of the air's velocity after passing around the wing. In forward flight, 𝑣𝑧 depends not only on the plane's weight and wingspan, but also on the plane's forward velocity.
+of lift — discarding downward momentum by giving it to the air — we are ready to study forward flight: the flight of a migrating bird or of a plane. Forward flight is more complicated than hovering because forward wing flight has two velocities: the plane's forward velocity 𝑣 and the downward component 𝑣𝑧 of the air's velocity after passing around the wing. In forward flight, 𝑣𝑧 depends not only on the plane's weight and wingspan, but also on the plane's forward velocity.
 
 To stay aloft, the plane, like the hummingbird, must deflect air downward.
-
-air
-
-wing
-
-v
-
-(side view)
-
-vz
 
 The wing does this magic using complicated fluid mechanics, but we need not investigate it. All the gymnastics are hidden in the box. We need just the downward velocity 𝑣𝑧 required to keep the plane aloft, and the power required to give the air that much downward velocity. The power is, as with hovering, 𝑚𝑔𝑣𝑧. However, the downward velocity 𝑣𝑧 is not the same as in hovering.
 
 It is determined by a slightly different momentum-flow diagram. It shows the air flow before and after it meets the wing.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-3.6 Lift using conservation of momentum
-
-97
-
-downward
-
-mom. density
-
-∼ ρ airvz
-
 Before the air reaches the wing (the left tube), the air has zero downward momentum. As in the analysis of hovering flight, the Earth supplies downward momentum to the plane, which passes it onto the air. This downward momentum is carried away by the air after the wing (the right tube).
 
-As with any flux, the rate of transfer of downward momentum is flux of downward momentum × area.
+As with any flux, the rate of transfer of downward momentum is:
 
-(3.98)
+flux of downward momentum × area. (3.98)
 
-As in the analysis of the hummingbird, this rate must be 𝑚𝑔, so that the plane stays aloft. The first factor, the flux of downward momentum, is density of downward momentum × flow speed.
+As in the analysis of the hummingbird, this rate must be 𝑚𝑔, so that the plane stays aloft. The first factor, the flux of downward momentum, is:
 
-(3.99)
+density of downward momentum × flow speed. (3.99)
 
 Therefore,
 
-𝑚𝑔 = density of downward momentum × flow speed × area.
-
-(3.100)
+𝑚𝑔 = density of downward momentum × flow speed × area. (3.100)
 
 As in the analysis of hovering, the density of downward momentum is 𝜌𝑣𝑧.
 
@@ -2197,111 +2007,19 @@ In contrast to the analysis of hovering, where the stuff (downward momentum) is 
 
 As in the analysis of hovering, the relevant area is the squared wingspan 𝐿2, because the wings alter the airflow over a distance comparable to their longest dimension, which is their wingspan. You can see this effect in a NASA photograph of an airplane flying through a cloud of smoke. The giant swirl, known as the wake vortex, has a diameter comparable to the plane's wingspan. Large planes can generate vortices that flip over small planes. Thus, when coming in for landing, planes must maintain enough separation to give these vortices time to dissipate.
 
-2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
-
-98
-
-3 Symmetry and conservation
-
-With these estimates, the equation for 𝑣𝑧 becomes 𝑚𝑔
-
-⏟ ∼
-
-𝜌air𝑣𝑧
-
-⏟
-
-×
-
-𝑣
-
-⏟ × 𝐿2
-
-⏟ .
+With these estimates, the equation for 𝑣𝑧 becomes:
 
 (3.101)
 
-transfer rate
-
-downward-momentum density
-
-flow speed
-
-area
-
-Now we can solve for the downward air speed: 𝑣𝑧 ∼ 𝑚𝑔
-
-𝜌air𝑣𝐿2 .
+Now we can solve for the downward air speed: 
 
 (3.102)
 
-Now we can estimate the power required to generate lift in forward flight: 𝑃 = force
-
-⏟ × velocity
-
-⏟⏟⏟⏟⏟ ∼ 𝑚𝑔 × 𝑚𝑔
-
-𝜌
-
-𝑚𝑔
-
-𝑣
-
-air𝑣𝐿2 = (𝑚𝑔)2
-
-𝜌air𝑣𝐿2 .
+Now we can estimate the power required to generate lift in forward flight: 
 
 (3.103)
 
-𝑧
-
 Here is a comparison of hovering and forward flight.
-
-hovering
-
-forward flight
-
-deflection area
-
-𝐿2
-
-𝐿2
-
-downward-momentum density
-
-𝜌air𝑣𝑧
-
-𝜌air𝑣𝑧
-
-flow speed
-
-𝑣𝑧
-
-𝑣
-
-downward-momentum flux
-
-𝜌air𝑣2𝑧
-
-𝜌air𝑣𝑧𝑣
-
-downward-momentum flow 𝑚𝑔
-
-𝜌air𝑣2𝑧𝐿2
-
-𝜌air𝑣𝑧𝑣𝐿2
-
-downward velocity 𝑣𝑧
-
-𝑚𝑔/𝜌air𝐿2
-
-𝑚𝑔/𝜌air𝑣𝐿2
-
-power to generate lift (𝑚𝑔𝑣𝑧)
-
-𝑚𝑔 𝑚𝑔/𝜌air𝐿2
-
-(𝑚𝑔)2/𝜌air𝑣𝐿2
 
 In contrast to hovering, in forward flight the power contains the forward velocity in the denominator — a location that would produce nonsense for hovering, where the forward velocity is zero.
 
@@ -2309,45 +2027,15 @@ As we did for hovering flight using the Calliope hummingbird, let's apply our kn
 
 We'll estimate the power in two steps: the weight 𝑚𝑔 and then the downward air speed 𝑣𝑧. The weight is the easy step: It is just 4 × 106 newtons.
 
-The downward air speed 𝑣𝑧 is 𝑚𝑔/𝜌air𝑣𝐿2. The only unknown quantity is the takeoff speed 𝑣. You can estimate it by estimating the plane's acceleration 𝑎 while taxiing on the runway and by estimating the duration of the 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+The downward air speed 𝑣𝑧 is 𝑚𝑔/𝜌air𝑣𝐿2. The only unknown quantity is the takeoff speed 𝑣. You can estimate it by estimating the plane's acceleration 𝑎 while taxiing on the runway and by estimating the duration of the acceleration. When I last flew on a 747, I measured the acceleration by suspending my key chain from a string and estimating the angle 𝜃 that it made with vertical (perpendicular to the ground). Then tan 𝜃 = 𝑎/𝑔. For small 𝜃, the relation simplifies to 𝑎/𝑔 ≈ 𝜃. I found 𝜃 ≈ 0.2, so the acceleration was about 0.2𝑔 or 2 meters per second per second. This acceleration lasted for about 40 seconds, giving a takeoff speed of 𝑣 ≈ 80 meters per second (180 miles per hour).
 
-3.7 Summary and further problems 99
-
-acceleration. When I last flew on a 747, I measured the acceleration by suspending my key chain from a string and estimating the angle 𝜃 that it made with vertical (perpendicular to the ground). Then tan 𝜃 = 𝑎/𝑔. For small 𝜃, the relation simplifies to 𝑎/𝑔 ≈ 𝜃. I found 𝜃 ≈ 0.2, so the acceleration was about 0.2𝑔 or 2 meters per second per second. This acceleration lasted for about 40 seconds, giving a takeoff speed of 𝑣 ≈ 80 meters per second (180
-
-miles per hour).
-
-The resulting downward speed 𝑣𝑧 is roughly 12 meters per second: 𝑚𝑔
-
-⏞⏞⏞⏞⏞
-
-𝑣
-
-4×106 N
-
-𝑧 ∼
-
-≈ 12 m s−1.
+The resulting downward speed 𝑣𝑧 is roughly 12 meters per second: 
 
 (3.104)
 
-1.2 kg m−3
+Then the power required to generate lift is roughly 50 megawatts: 
 
-⏟⏟⏟⏟⏟ × 80 m s−1
-
-⏟⏟⏟⏟⏟ × 3.6×103 m2
-
-⏟⏟⏟⏟⏟⏟⏟
-
-𝜌air
-
-𝑣
-
-𝐿2
-
-Then the power required to generate lift is roughly 50 megawatts: 𝑃 ∼ 𝑚𝑔𝑣𝑧 ≈ 4×106 N × 12 m s−1 ≈ 5×107 W.
-
-(3.105)
+𝑃 ∼ 𝑚𝑔𝑣𝑧 ≈ 4×106 N × 12 m s−1 ≈ 5×107 W. (3.105)
 
 Let's see whether these estimates are reasonable. According to the plane's technical documentation, the 747-400's four engines together can provide roughly 1 meganewton of thrust. This thrust can accelerate the plane, with a mass of 4×105 kilograms, at 2.5 meters per second. This value is in good agreement with my estimate of 2 meters per second, made by suspending a key chain from a string and turning it into a plumb line.
 
@@ -2356,3 +2044,141 @@ As another check: At takeoff, when 𝑣 is roughly 80 meters per second, the meg
 This output is comparable to our estimate of 50 megawatts for the power to lift the plane off the ground. After liftoff, the engines use some of their power to lift the plane and some to accelerate the plane, because the plane still needs to reach its cruising speed of 250 meters per second.
 
 Symmetry and conservation make even fluid dynamics tractable.
+
+3.6 飞行
+
+如果阻力是一种阻碍的话，我们下一个力，阻力的伴侣，将会提升我们的精神。利用守恒量和黑箱模型，我们将估算飞行所需要的功率和能量。有两种主要的情形：旋停飞行（比如说蜂鸟）和向前飞行。与向前飞行比较，旋停飞行的参数要少一个（没有向前的速度），所以我们从一个质量为 m 的蜂鸟开始分析。
+
+3.6.1 悬停：蜂鸟
+
+➤ 蜂鸟悬停时需要多大的功率？
+
+悬停需要功率，这是因为蜂鸟具有重量：地球通过向下动量引力场，给蜂鸟一个向下的动量。地球因而损失了向下地球的动量，或等价地，获得了一个向上的动量。（因此，地球会有一个向蜂鸟的加速度，尽管非常非常小。）动量的流动可以用黑箱模型来追踪。我们来把地球-蜂鸟系统画在一个盒子里并假设这就是整个宇宙。盒子具有一个固定的（常数）向下的动量值，所以引力场只能在盒子内部将向下的动量转移。特别地，引力场可以将向下的动量从地球转移给蜂鸟。
+
+这个图是地球将蜂鸟往下拉的另一种新奇的说法，不过这一新奇的说法给我们显示了蜂鸟所要做的。
+
+如果蜂鸟保持这个向下的动量，它就会积累向下的速度 —— 然后掉到地面。蜂鸟可以将这个麻烦 —— 向下的动量一转移给空气。它扇动翅膀将空气向下压。飞行，和阻力一样，需要流体。空气向地面压，通过引力场返还地球流失的向下的动量。
+
+➤ 将空气往下压需要多大功率？
+
+功率是力乘以速度。力就是蜂鸟悬浮在空气中受到的引力 mg。估算空气向下的速度 vz 需要仔细考虑动量流。空气携带了提供给蜂鸟的动量。动量供给（动量率或单位时间的动量）即为力 mg。而力就是单位时间的动量。因为动量流是单位面积的动量率：
+
+mg = 动量流 × 面积（3.86)
+
+在章节 3.4.2 第一次研究通量时，我们曾经导出：
+
+物质的通量 = 物质密度 × 速度 (3.87)
+
+因为现在讨论的是动量，所以我们有以下的特殊关系式：
+
+动量流 = 动量密度 × 面积 (3.88)
+
+因此，将动量换成 mg = 动量流 x 面积形式：
+
+mg = 动量密度 x vz x 面积 (3.89)
+
+动量密度是单位体积的动量（m 空气 vz），所以就是 ρ 空气 vz。因此：
+
+mg = ρ 空气 vz x 面积 (3.90)
+
+为了完成这个方程以求得向下的速度，我们需要估算面积。这是蜂鸟让空气向下的面积，大约就是 L$^2$，其中 L 是翅膀宽度（即翅尖到翅尖的距离）。即使翅膀没有完全占据整个面积，相应的面积仍是 L$^2$，因为翅膀扰动空气的面积尺度与翅膀的最大尺度相关。（由于这个原因，高效的飞机，如滑翔机具有非常长的机翼。）
+
+使用 L$^2$ 作为面积的估算，我们得到：
+
+(3.91)
+
+所以向下的速度为：
+
+(3.92)
+
+有了这个向下的速度及向下的力 mg，功率 P（不要与动量混淆）就是：
+
+(3.93) 
+
+现在我们来估算一只真实蜂鸟的功率：北美最小的鸟 —— Calliope 蜂鸟。其相关的数据为：
+
+翼展 L≈11cm，质量 m≈2.5g (3.94)
+
+正如在第一步估算悬停功率时那样，我们将用关于，的公式来估算向下的空气速度。结果是这样的，如果蜂鸟悬停在空中，必须将空气以大约 1.3 米 / 秒向下输送：
+
+(3.95)
+
+相应的功率消耗大约是 30 毫瓦：
+
+（因为动物的新陈代谢，类似于汽车引擎，只有大约 25% 的效率，蜂鸟进食的速率要按 120 毫瓦来算。）
+
+这个功率似乎是很小的一甚至一个手电筒的灯泡（白炽灯）也需要几瓦。然而，按照单位质量的功率，看起来就很惊人了。
+
+10W/kg (3.97)
+
+作为对比，世界自行车冠军阿姆斯特朗，具有最高的人力输出功率，测到的输出功率为 7 瓦 / 千克（章节 1.7.2）。然而，对于没有用化学药物增强的世界级运动员，5 瓦 / 千克是更典型的数据。按照我们的估算，蜂鸟的肌肉要强健两倍。即便对于蜂鸟，悬停也是困难的工作！
+
+题 3.35 加油悬停
+
+一只蜂鸟为了在工作日悬停（大约 8 小时），按照其体重的比例，需要喝多少花蜜？按质量来算，花蜜的 50% 是糖。
+
+题 3.36 人的悬停
+
+如果一个人通过拍打双臂使其悬停，需要多大的功率？
+
+3.6.2 向前飞行
+
+既然我们理解了飞行的基本机制 —— 通过将动量转移给空气来扔掉向下的动量我们现在可以来研究向前飞行了 —— 候鸟或飞机的飞行。因为有两个速度：飞机向前的速度及空气流过机翼后向下的速度分量，向前机翼飞行比悬停要复杂得多。在向前飞行时，v 机身 L 不仅与飞机重量和翼展有关，也与飞机的向前速度有关。飞机为了停留在空中，和蜂鸟一样，必须将空气往下压。
+
+利用复杂的流体力学可知，机翼的确起到了这个神奇的作用，但我们不需要在这儿研究。所有的复杂性都隐藏在黑箱中。我们只是要找到使飞机停留在空中所需要的向下速度，以及使空气具有较大的向下速度所需要的功率。类似于悬停，功率是 mgv，。然而，向下速度 v，与悬停时不同。
+
+这可以用稍微有点不同的动量流图来确定。下图显示了空气流过机翼前和流过机翼后的气流。
+
+空气接触机翼前（左边的圆柱），空气向下的动量为零。正如在悬停飞行中分析的一样，地球提供了飞机向下的动量并将其转移给空气。这个向下的动量在空气流过机翼后被空气带走（右边的圆柱）。
+
+因为对于任何通量，向下动量的转移为：
+
+向下动量的通量 × 面积 (3.98)
+
+而向下动量的通量为：
+
+向下动量的密度 × 流速 (3.99)
+
+因此，
+
+mg = 向下动量的密度 x 流速 × 面积 (3.100)
+
+正如在蜂鸟的分析中一样，向下动量的转移率是 mg，因此飞机会停留在空中。类似地，相应的面积为翼展的平方 L2, 因为机翼在与其最大尺度即翼展相关的距离上改变了气流。
+
+你可以在美国航空航天局（NASA）的一张飞机在烟雾云中着陆的著名照片中看到这个效应。巨大的气旋，或漩涡的直径可与翼展相比。大飞机产生的漩涡可以掀翻小飞机。因此，飞机着陆时，必须保持足够的间隔使得这些漩涡有消退的时间。
+
+与对悬停分析的不同，那里带走向下动量的空气是向下运动的，而这里带走动量的空气是向右运动的。因此，在悬停中的流速是向下的空气速度 vo，在向前飞行时，流速是向前速度 v。
+
+有了这些估算，关于 vz 的方程变成：
+
+(3.101)
+
+解出向下速度，得：
+
+(3.102)
+
+现在我们可以估算在向前飞行时产生升力所需要的功率了：
+
+(3.103)
+
+下表是分析悬停飞行和向前飞行时一些关键量的比较。
+
+与悬停不同，在向前飞行中功率的分母包括了向前的速度 —— 这项对悬停没有意义，因为悬停时向前速度为零。
+
+正如我们用蜂鸟作为悬停飞行的例子，让我们将这些知识用于实际物体的向前飞行。这个物体可以是一架波音 747-400 喷气式飞机，我们将估算起飞所需要的功率。一架 747 的翼展 L 大约是 60 米，最大起飞质量 m 大约为 4×105 千克（400 吨）。
+
+我们将分两步来估算这个功率：重量 mg，然后是空气的向下速度 vz 。重量是容易的一步：就是 4×10$^6$ 牛顿。空气的向下速度 vz 是 mg/ρ空气vL2，唯一的未知量是起飞速度 v。这个可以通过估算飞机在跑道上滑行的加速度 a 和加速时间来估算。我上次乘坐 747 的时候，我用悬挂的钥匙链测量了加速度并估算了和垂线（与地面垂直）的夹角。有 tan𝜃=a/g。对于小角度 𝜃，这个关系简化为 a/g≈0。我发现 𝜃≈0.2，因此加速度大约是 0.2g 或 2 米 / 秒。这个加速度持续了约 40 秒，因此起飞速度为 u≈80 米 / 秒。
+
+这样得到向下速度 v 大概是 12 米 / 秒：
+
+(3.104)
+
+产生升力所需要的功率大约是 5000 万瓦：
+
+(3.105)
+
+让我们来看看这个估算是否合理。按照飞机的技术资料，747-400 的 4 个引擎一共可以提供大约 100 万牛顿的推力。这个推力可以将质量为 4×10 千克的飞机以 2.5 米 / 秒加速。这个与我估算的 2 米 / 秒 2 符合得很好。
+
+另一种验证方式，起飞时，当速度达到 80 米 / 秒，100 万牛顿的推力相应的是 8000 万瓦的输出功率。这个输出和我们估算的 5000 万瓦的飞机起飞升力所需功率相当。起飞后，引擎使用一部分功率来提升飞机，一 部分功率用来加速飞机，因为飞机需要达到大约 250 米 / 秒的巡航速度。
+
+对称性和守恒量甚至使得流体动力学都变得可以处理了。

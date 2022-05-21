@@ -1,3 +1,64 @@
+## Part III Discarding complexity
+
+with loss of information
+
+You've organized (Part I); you've discarded complexity without losing information (Part II); yet the phenomenon still resists understanding. When the going gets tough, the tough lower their standards: Approximate first, and worry later. Otherwise you never start, and you can never learn that the approximations would have been accurate enough—if only you had gathered the courage to make them. Helping you make these approximations is purpose of our final set of tools.
+
+These four tools help us discard complexity while losing information. First, we round or lump complicated numbers and graphs (Chapter 6). Second, we accept that our knowledge is incomplete, and we quantify the uncertainty with the tool of probability (Chapter 7). Third, we study simpler versions of hard problems—the tool of easy cases (Chapter 8). Fourth and finally, by making spring models (Chapter 9), we approximate and can understand many phenomena, including cooking times, sound speeds, and the color of the sky and the sunset.
+
+to master complexity
+
+organize it
+
+discard it
+
+Part I
+
+without losing information
+
+losing information
+
+1
+
+2
+
+Part II
+
+Part III
+
+lumping
+
+probabilistic reasoning
+
+easy cases
+
+spring models
+
+## 0601. Lumping
+
+6.1 Approximate!
+
+199
+
+6.2 Rounding on a logarithmic scale
+
+200
+
+6.3 Typical or characteristic values
+
+203
+
+6.4 Applying lumping to shapes
+
+212
+
+6.5 Quantum mechanics
+
+229
+
+6.6 Summary and further problems
+
+
 234
 
 In 1982, thousands of students in the United States choice
