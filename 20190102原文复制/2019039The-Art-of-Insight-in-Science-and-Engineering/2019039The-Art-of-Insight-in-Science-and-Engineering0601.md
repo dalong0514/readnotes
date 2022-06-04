@@ -2,9 +2,9 @@
 
 with loss of information
 
-You've organized (Part I); you've discarded complexity without losing information (Part II); yet the phenomenon still resists understanding. When the going gets tough, the tough lower their standards: Approximate first, and worry later. Otherwise you never start, and you can never learn that the approximations would have been accurate enough—if only you had gathered the courage to make them. Helping you make these approximations is purpose of our final set of tools.
+You've organized (Part I); you've discarded complexity without losing information (Part II); yet the phenomenon still resists understanding. When the going gets tough, the tough lower their standards: Approximate first, and worry later. Otherwise you never start, and you can never learn that the approximations would have been accurate enough — if only you had gathered the courage to make them. Helping you make these approximations is purpose of our final set of tools.
 
-These four tools help us discard complexity while losing information. First, we round or lump complicated numbers and graphs (Chapter 6). Second, we accept that our knowledge is incomplete, and we quantify the uncertainty with the tool of probability (Chapter 7). Third, we study simpler versions of hard problems—the tool of easy cases (Chapter 8). Fourth and finally, by making spring models (Chapter 9), we approximate and can understand many phenomena, including cooking times, sound speeds, and the color of the sky and the sunset.
+These four tools help us discard complexity while losing information. First, we round or lump complicated numbers and graphs (Chapter 6). Second, we accept that our knowledge is incomplete, and we quantify the uncertainty with the tool of probability (Chapter 7). Third, we study simpler versions of hard problems — the tool of easy cases (Chapter 8). Fourth and finally, by making spring models (Chapter 9), we approximate and can understand many phenomena, including cooking times, sound speeds, and the color of the sky and the sunset.
 
 to master complexity
 
@@ -117,11 +117,11 @@ In the left pair, one square contains 10 percent more dots than the other square
 
 6.2 Rounding on a logarithmic scale
 
-Just as driving to visit a next-door neighbor atrophies our muscles and ability to move around the physical world, asking calculators to do simple arithmetic dulls our ability to navigate the quantitative world. We never develop an innate sense of sizes and scales in the world. The antidote is to do the computations ourselves, but approximately—by placing quantities on a logarithmic scale and rounding them to the nearest convenient value.
+Just as driving to visit a next-door neighbor atrophies our muscles and ability to move around the physical world, asking calculators to do simple arithmetic dulls our ability to navigate the quantitative world. We never develop an innate sense of sizes and scales in the world. The antidote is to do the computations ourselves, but approximately — by placing quantities on a logarithmic scale and rounding them to the nearest convenient value.
 
 6.2.1 Rounding to the nearest power of ten The simplest method of rounding is to round every number to the nearest power of ten. That simplification turns most calculations into adding and subtracting integer exponents (the exceptions come from roots, which produce fractional exponents). Here,「nearest」is judged on a logarithmic scale, where distance is measured not with differences but with ratios or factors.
 
-For example, 50—although closer to 10 than to 100 on a linear scale—is a factor of 5 greater than 10 but only a factor of 2 smaller than 100. Therefore, 50 is closer to 100 than to 10 and would get rounded to 100.
+For example, 50 — although closer to 10 than to 100 on a linear scale — is a factor of 5 greater than 10 but only a factor of 2 smaller than 100. Therefore, 50 is closer to 100 than to 10 and would get rounded to 100.
 
 As practice, let's estimate the number of minutes in a day: 1 day × 24 hours
 
@@ -183,7 +183,7 @@ hour
 
 The exact value is 1440 minutes, so the estimate is only 30 percent too small.
 
-This error is a reasonable tradeoff to gain a method that requires almost no effort—who needs a calculator to multiply 10 by 100? Furthermore, the accuracy is enough for many calculations, where insight is needed more than accuracy.
+This error is a reasonable tradeoff to gain a method that requires almost no effort — who needs a calculator to multiply 10 by 100? Furthermore, the accuracy is enough for many calculations, where insight is needed more than accuracy.
 
 Problem 6.1
 
@@ -361,7 +361,7 @@ In between is Massachusetts. Because I live there, I know that it has 6 million 
 
 From this example, you can also see how lumping enhances symmetry reasoning: When there is change, look for what does not change (Section 3.1).
 
-Here, each state has its own population, so there's plenty of change among the list of states. Lumping helps us find, or create, a quantity that does not change. We imagine a typical state, one that may not even exist (just as no family has the average of 2.3 children), and replace every state with this state. We've lumped away all the change—throwing away information in exchange for insight into the population of the country.
+Here, each state has its own population, so there's plenty of change among the list of states. Lumping helps us find, or create, a quantity that does not change. We imagine a typical state, one that may not even exist (just as no family has the average of 2.3 children), and replace every state with this state. We've lumped away all the change — throwing away information in exchange for insight into the population of the country.
 
 Problem 6.9
 
@@ -383,7 +383,7 @@ Finding a scaling exponent usually requires a physical model. You can often buil
 
 asking yourself what physics prevents it from happening. Thus, why can't we jump to the Moon? Because it demands a vast amount of energy, far beyond what our muscles can supply. The point to extract from this thought experiment is that jumping demands energy, which is supplied by muscles.
 
-The appearance of supply and demand suggests, as in the estimate of the number of taxis in Boston (Section 3.4.1), that we equate the demand to the supply. Then we estimate each piece separately—divide and conquer.
+The appearance of supply and demand suggests, as in the estimate of the number of taxis in Boston (Section 3.4.1), that we equate the demand to the supply. Then we estimate each piece separately — divide and conquer.
 
 animal
 
@@ -423,7 +423,7 @@ The muscle mass also varies from animal to animal. Introducing a dimensionless p
 
 6 Lumping
 
-Alas, 𝛼 varies across species (compare a cheetah and a turtle), within a species, and within the lifetime of an individual—for example, my 𝛼 is dropping as I sit writing this book. If we account for all these variations, we will be overwhelmed by their complexity. Lumping rescues us: It gives us permission to assume that 𝛼 is the same for every animal. We replace the diversity of animals with a typical animal. This assumption is not as crazy as it might sound. It doesn't mean that all animals have the same muscle mass. Rather, it means that all animals have the same fraction of muscle; as an example, for people, 𝛼 ∼ 0.4.
+Alas, 𝛼 varies across species (compare a cheetah and a turtle), within a species, and within the lifetime of an individual — for example, my 𝛼 is dropping as I sit writing this book. If we account for all these variations, we will be overwhelmed by their complexity. Lumping rescues us: It gives us permission to assume that 𝛼 is the same for every animal. We replace the diversity of animals with a typical animal. This assumption is not as crazy as it might sound. It doesn't mean that all animals have the same muscle mass. Rather, it means that all animals have the same fraction of muscle; as an example, for people, 𝛼 ∼ 0.4.
 
 With this lumping assumption, 𝑚muscle = 𝛼𝑚 becomes the simpler proportionality 𝑚muscle ∝ 𝑚. Because the supplied energy is proportional to the muscle mass, it is proportional to the animal's mass: 𝐸supplied ∝ 𝑚muscle ∝ 𝑚.
 
@@ -431,7 +431,7 @@ With this lumping assumption, 𝑚muscle = 𝛼𝑚 becomes the simpler proporti
 
 This result is as simple as we can hope for, and it depends on the right quantity, the animal's mass. Now let's use it to predict how an animal's jump height depend on this mass.
 
-Because the demanded energy and supplied energy are equal, and the demanded energy—the gravitational potential energy—is proportional to 𝑚ℎ, 𝑚ℎ ∝ 𝑚.
+Because the demanded energy and supplied energy are equal, and the demanded energy — the gravitational potential energy — is proportional to 𝑚ℎ, 𝑚ℎ ∝ 𝑚.
 
 (6.12)
 
@@ -471,7 +471,7 @@ A moral of this example is that lumping augments proportional reasoning.
 
 Proportional reasoning reduces complexity by showing us a notation for ignoring quantities that do not vary. For example, when all animals face the same gravitational field, then 𝐸demanded = 𝑚𝑔ℎ simplifies to 𝐸demanded ∝ 𝑚ℎ.
 
-Alas, we live in the desert of the real, where「the same」is almost always only an approximation—for example, as with the energy density of muscle in different animals. Lumping rescues us. It gives us permission to replace these changing values with a single, constant, typical value—making the relations amenable to proportional reasoning.
+Alas, we live in the desert of the real, where「the same」is almost always only an approximation — for example, as with the energy density of muscle in different animals. Lumping rescues us. It gives us permission to replace these changing values with a single, constant, typical value — making the relations amenable to proportional reasoning.
 
 Problem 6.10
 
@@ -627,7 +627,7 @@ vold
 
 vnew
 
-When 𝐯 makes its significant change, from 𝐯old to 𝐯new, it produces a change in 𝐯 comparable in magnitude to 𝑣. The characteristic time 𝜏—the time required to make this change—is a decent fraction of a period of revolution.
+When 𝐯 makes its significant change, from 𝐯old to 𝐯new, it produces a change in 𝐯 comparable in magnitude to 𝑣. The characteristic time 𝜏 — the time required to make this change — is a decent fraction of a period of revolution.
 
 Because a full period is 2𝜋𝑟/𝑣, the characteristic time is comparable to 𝑟/𝑣.
 
@@ -641,7 +641,7 @@ around the circle, which is almost exactly 1 radian. Because 1 radian creates an
 
 (6.22)
 
-This equation encapsulates a physical, proportional-reasoning explanation of 𝑎 = 𝑣2/𝑟. Namely, in circular motion, the velocity vector changes direction significantly in approximately 1 radian of rotation. This motion requires a time 𝜏 ∼ 𝑟/𝑣. Therefore, the circular acceleration 𝑎 contains two factors of 𝑣—one factor from the 𝑣 itself and one factor from the time in the denominator—and it contains 1/𝑟, also from the time in the denominator.
+This equation encapsulates a physical, proportional-reasoning explanation of 𝑎 = 𝑣2/𝑟. Namely, in circular motion, the velocity vector changes direction significantly in approximately 1 radian of rotation. This motion requires a time 𝜏 ∼ 𝑟/𝑣. Therefore, the circular acceleration 𝑎 contains two factors of 𝑣 — one factor from the 𝑣 itself and one factor from the time in the denominator — and it contains 1/𝑟, also from the time in the denominator.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -655,11 +655,11 @@ energy 𝐸 is related to the blast radius 𝑅 and the air density 𝜌: 𝐸 �
 
 (6.23)
 
-where 𝑡 is the time since the blast. However, dimensional analysis, as a mathematical argument, does not give a physical explanation for its results, which can often feel like magic. Lumping explains the magic by helping us analyze a physical model—a model whose analysis would otherwise be absurd in its complexity.
+where 𝑡 is the time since the blast. However, dimensional analysis, as a mathematical argument, does not give a physical explanation for its results, which can often feel like magic. Lumping explains the magic by helping us analyze a physical model — a model whose analysis would otherwise be absurd in its complexity.
 
-The physical model is that the blast increases the thermal energy of the air molecules, thus increasing the speed of sound—which is the speed at which the blast expands. Using this model exactly requires setting up and solving differential equations, as Taylor did [44]. Lumping, by turning calculus into algebra, simplifies the equations without discarding their physical meaning.
+The physical model is that the blast increases the thermal energy of the air molecules, thus increasing the speed of sound — which is the speed at which the blast expands. Using this model exactly requires setting up and solving differential equations, as Taylor did [44]. Lumping, by turning calculus into algebra, simplifies the equations without discarding their physical meaning.
 
-The first step is to estimate the thermal energy. It comes almost entirely from the hot fireball—that is, from the blast energy. This energy is spread unevenly over the blast, with a higher energy density nearer the blast center and a lower density farther away. For the lumping approximation, smear the blast energy 𝐸 evenly throughout a sphere of radius 𝑅. This sphere's volume is comparable to 𝑅3, so the typical or characteristic energy density is ℰ ∼ 𝐸/𝑅3.
+The first step is to estimate the thermal energy. It comes almost entirely from the hot fireball — that is, from the blast energy. This energy is spread unevenly over the blast, with a higher energy density nearer the blast center and a lower density farther away. For the lumping approximation, smear the blast energy 𝐸 evenly throughout a sphere of radius 𝑅. This sphere's volume is comparable to 𝑅3, so the typical or characteristic energy density is ℰ ∼ 𝐸/𝑅3.
 
 The next step is to use this energy density to estimate the speed of sound 𝑐s.
 
@@ -949,7 +949,7 @@ this lumping approximation, everyone lives happily until a sudden death at his o
 
 6 Lumping
 
-The rectangle's height can be computed from its area, which is the US population—approximately 300 million (as we estimated in Section 6.3.1). Therefore, the height is 4 million per year:
+The rectangle's height can be computed from its area, which is the US population — approximately 300 million (as we estimated in Section 6.3.1). Therefore, the height is 4 million per year:
 
 height = area
 
@@ -963,7 +963,7 @@ year .
 
 Based on this estimate, there should be 16 million people (in the United States) with the four undergraduate ages of 18, 19, 20, or 21 years.
 
-Not everyone in this pool is an undergraduate. Therefore, the final step is to account for the fraction of adults who are college graduates. In the United States, where education has traditionally been widely spread throughout the population, this fraction (or adjustment factor) is high—say, 0.5. The number of US undergraduates should be about 8 million.
+Not everyone in this pool is an undergraduate. Therefore, the final step is to account for the fraction of adults who are college graduates. In the United States, where education has traditionally been widely spread throughout the population, this fraction (or adjustment factor) is high — say, 0.5. The number of US undergraduates should be about 8 million.
 
 For comparison, the 2010 US census data gives 5.361 million enrolled in four-year colleges, and 4.942 million in two-year colleges, for a combined total of almost exactly 10 million. Our estimate, which lies halfway between the four-year and the combined total, is quite good!
 
@@ -981,7 +981,7 @@ same method to estimate how many university
 
 students graduated in 1950 in the United King-65 years
 
-dom. (「College」in American English and「university」in British English are roughly equivalent.) The UK population at the time was 50 million. With a life expectancy of, say, 65 years, the rectangle's height is roughly 800 000 per year. If, as in the United States of today, 50 percent of the age-eligible population goes to university, 400 000 should graduate each year. However, in 1950, the actual number was roughly 17 000—more than a factor of 20 smaller than the estimate.
+dom. (「College」in American English and「university」in British English are roughly equivalent.) The UK population at the time was 50 million. With a life expectancy of, say, 65 years, the rectangle's height is roughly 800 000 per year. If, as in the United States of today, 50 percent of the age-eligible population goes to university, 400 000 should graduate each year. However, in 1950, the actual number was roughly 17 000 — more than a factor of 20 smaller than the estimate.
 
 Such a huge error probably does not come from the population estimate.
 
@@ -1055,7 +1055,7 @@ speed, as we found experimentally in Section 3.5.2, is roughly 1 meter per secon
 
 6 Lumping
 
-The first, slanted segment represents free fall, as if there were no air resistance. The free-fall acceleration is 𝑔, so the free-fall velocity has slope 𝑔: In 1 second, the speed increases by 10 meters per second. The slanted and horizontal segments meet where 𝑔𝑡 = 𝑣term. Thus, they meet at approximately 0.1 seconds. Based on the lumping approximation, we expect the cone to reach a significant fraction of its terminal speed by 0.1 seconds—which is only 5 percent of the total fall time of 2 seconds.
+The first, slanted segment represents free fall, as if there were no air resistance. The free-fall acceleration is 𝑔, so the free-fall velocity has slope 𝑔: In 1 second, the speed increases by 10 meters per second. The slanted and horizontal segments meet where 𝑔𝑡 = 𝑣term. Thus, they meet at approximately 0.1 seconds. Based on the lumping approximation, we expect the cone to reach a significant fraction of its terminal speed by 0.1 seconds — which is only 5 percent of the total fall time of 2 seconds.
 
 Roughly how far does the cone fall in this time?
 
@@ -1115,7 +1115,7 @@ Using graph lumping, we can understand the mechanism of energy dissipation witho
 
 z
 
-As an example, the arrows in the velocity-profile diagram show a fluid's horizontal speed above a flat boundary—for example, the air speed above a frozen lake. Farther above v
+As an example, the arrows in the velocity-profile diagram show a fluid's horizontal speed above a flat boundary — for example, the air speed above a frozen lake. Farther above v
 
 the boundary, the arrows are longer, indicating that the fluid moves faster. In a high-viscosity liquid, such as honey, the viscous forces are large, and they force nearby regions move at nearly the same speed: The flow oozes.
 
@@ -1215,7 +1215,7 @@ have radius 𝑟.
 
 How does this change affect the mean free path?
 
-Now a collision happens if the centers of two molecules approach within a distance 𝑑 = 2𝑟, the diameter of the sphere. Thus, 𝜎—called the scattering cross section—becomes 𝜋(2𝑟)2 or 𝜋𝑑2. The mean free path is then a factor of 4 smaller and is
+Now a collision happens if the centers of two molecules approach within a distance 𝑑 = 2𝑟, the diameter of the sphere. Thus, 𝜎 — called the scattering cross section — becomes 𝜋(2𝑟)2 or 𝜋𝑑2. The mean free path is then a factor of 4 smaller and is
 
 𝜆 ∼ 1
 
@@ -1255,9 +1255,9 @@ and the mean free path is
 
 𝜋 × (3×10−10 m)2
 
-To evaluate this expression in your head, divide the calculation into three steps—doing the most important first.
+To evaluate this expression in your head, divide the calculation into three steps — doing the most important first.
 
-1. Units. The numerator contains cubic meters; the denominator contains square meters. Their quotient is meters to the first power—as it should be for a mean free path.
+1. Units. The numerator contains cubic meters; the denominator contains square meters. Their quotient is meters to the first power — as it should be for a mean free path.
 
 2. Powers of ten. The numerator contains −2 powers of ten. The denominator contains 3 powers of ten: 23 in Avogadro's number and −20 in (10−10)2. The quotient is −5 powers of ten. Along with the units, the expression so far is 10−5 meters.
 
@@ -1269,7 +1269,7 @@ To evaluate this expression in your head, divide the calculation into three step
 
 The 2.2/6 is roughly 10−0.5. The three factors of 3 (one contributed by 𝜋) are 101.5. Therefore, the remaining factors contribute 10−2.
 
-Putting the pieces together, the mean free path becomes 10−7 meters, which is 100 nanometers—quite close to the true value of 68 nanometers.
+Putting the pieces together, the mean free path becomes 10−7 meters, which is 100 nanometers — quite close to the true value of 68 nanometers.
 
 Problem 6.21
 
@@ -1301,7 +1301,7 @@ Explain this phenomenon using a physical model and lumping.
 
 6.4.6 Lumping the path of light bent by gravity Lumping, as we have seen, replaces a complex, changing process with a simpler, constant process. In the next example, we'll use that simplification to build and analyze a physical model for the bending of starlight by the Sun. In Section 5.3.1, using dimensional analysis and educated guessing, we concluded that the bending angle is roughly 𝐺𝑚/𝑟𝑐2, where 𝑚 is the mass of the Sun and 𝑟 is the distance of closest approach (for a ray grazing the Sun, it is just the radius of the Sun). Lumping provides a physical model for this result; this model will, in Section 8.2.2.2, allow us to predict the effect of extremely strong gravitational fields.
 
-Imagine again a beam (or photon) of light that leaves a distant star. In its journey, it grazes the surface of the Sun and reaches our eye. To estimate the deflection angle using lumping, first identify the changing process—the source of the complexity. Here, the light beam deflects from its original, straight path and the gravitational force from the Sun changes in magnitude and direction as the photon travels. Therefore, calculating the deflection angle requires setting up and evaluating an integral—and carefully checking its trigonometric factors, such as the cosines and secants.
+Imagine again a beam (or photon) of light that leaves a distant star. In its journey, it grazes the surface of the Sun and reaches our eye. To estimate the deflection angle using lumping, first identify the changing process — the source of the complexity. Here, the light beam deflects from its original, straight path and the gravitational force from the Sun changes in magnitude and direction as the photon travels. Therefore, calculating the deflection angle requires setting up and evaluating an integral — and carefully checking its trigonometric factors, such as the cosines and secants.
 
 The antidote to complicated integrals is lumping. The lumping approximation simply pretends that the beam bends only near the Sun. In this approximation, only near the Sun does gravity operate. We further assume that, while the photon is near the Sun, its downward acceleration (the acceleration perpendicular to the path) is constant, rather than varying rapidly with position.
 
@@ -1495,7 +1495,7 @@ How large is the compressed region?
 
 Because the ball's radius or diameter changes, the compressed region might be the whole ball. This tempting reasoning turns out to be incorrect. To see why, imagine an extreme case: compressing a huge, 10-meter cube of rubber (rubber, because one can imagine compressing it). By pressing your finger onto the center of one face, you'll indent the face by, say, 1 millimeter over an area of 1 square centimeter. In the notation that we use for the ball, 𝛿 ∼ 1 millimeter, 𝑟 ∼ 1 centimeter, and 𝑅 ∼ 10 meters.
 
-The strained region is not the whole cube, nor any significant fraction of it! Rather, its radius is comparable to the radius of the contact region—a fingertip (𝑟 ∼ 1 centimeter). From this thought experiment, we learn that when the object is large enough (𝑅 ≫ 𝑟), the strained volume is related not to the size of the object, but rather to the size of contact region (𝑟).
+The strained region is not the whole cube, nor any significant fraction of it! Rather, its radius is comparable to the radius of the contact region — a fingertip (𝑟 ∼ 1 centimeter). From this thought experiment, we learn that when the object is large enough (𝑅 ≫ 𝑟), the strained volume is related not to the size of the object, but rather to the size of contact region (𝑟).
 
 Therefore, in the estimate for the typical strain, the length in the denominator is 𝑟. The typical strain 𝜖 is then 𝛿/𝑟.
 
@@ -1571,7 +1571,7 @@ How large is the contact radius 𝑟 in practice?
 
 Let's plug in numbers for a superball (a small, highly elastic rubber ball) resting on the ground. The density of rubber is roughly the density of water.
 
-A superball is small—say, 𝑅 ∼ 1 centimeter. Its elastic modulus is roughly 𝑌 ∼ 3 × 107 pascals. (This elastic modulus is a factor of 300 smaller than oak's and almost a factor of 104 smaller than steel's.) Then 𝜌
+A superball is small — say, 𝑅 ∼ 1 centimeter. Its elastic modulus is roughly 𝑌 ∼ 3 × 107 pascals. (This elastic modulus is a factor of 300 smaller than oak's and almost a factor of 104 smaller than steel's.) Then 𝜌
 
 𝑔
 
@@ -1689,11 +1689,11 @@ When we introduced quantum mechanics to estimate the size of hydrogen (Section 5
 
 6.5.1 Particle in a box: Size of neutron stars In mechanics, the simplest useful model is motion in a straight line at box
 
-constant acceleration (which includes constant velocity). This model underlies numerous analyses—for example, the lumping analysis of a pendulum period (Section 6.3.3). In quantum mechanics, the simplest useful model is a particle confined to a box. Let's give the particle a mass 𝑚 and the box a width 𝑎.
+constant acceleration (which includes constant velocity). This model underlies numerous analyses — for example, the lumping analysis of a pendulum period (Section 6.3.3). In quantum mechanics, the simplest useful model is a particle confined to a box. Let's give the particle a mass 𝑚 and the box a width 𝑎.
 
 m
 
-What is the lowest possible energy of the particle—that is, its ground-state width a
+What is the lowest possible energy of the particle — that is, its ground-state width a
 
 energy?
 

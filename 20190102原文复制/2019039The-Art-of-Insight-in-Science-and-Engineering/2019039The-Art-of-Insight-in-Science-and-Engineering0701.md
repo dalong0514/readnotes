@@ -1,12 +1,12 @@
 276
 
-Our previous tool, lumping, helps us simplify by discarding less important information. Our next tool, probabilistic reasoning, helps us when our information is already incomplete—when we've discarded even the chance or the wish to collect the missing information.
+Our previous tool, lumping, helps us simplify by discarding less important information. Our next tool, probabilistic reasoning, helps us when our information is already incomplete — when we've discarded even the chance or the wish to collect the missing information.
 
 7.1 Probability as degree of belief: Bayesian probability The essential concept in using probability to simplify the world is that probability is a degree of belief. Therefore, a probability is based on our knowledge, and it changes when our knowledge changes.
 
 7.1.1 Is it my telephone number?
 
-Here is an example from soon after I had moved to England. I was talking to a friend on the phone, of the old-fashioned variety with wires connecting it to the wall. David needed to call me back. However, having just moved to the apartment, I was unsure of my phone number; plus, for anyone used to American phone numbers, British phone numbers have a strange and hard-to-remember format. I had a reasonably likely guess, which I gave David so that he could call me back. After I hung up, I tested my guess by picking up my phone and dialing my guess—and got a busy signal.
+Here is an example from soon after I had moved to England. I was talking to a friend on the phone, of the old-fashioned variety with wires connecting it to the wall. David needed to call me back. However, having just moved to the apartment, I was unsure of my phone number; plus, for anyone used to American phone numbers, British phone numbers have a strange and hard-to-remember format. I had a reasonably likely guess, which I gave David so that he could call me back. After I hung up, I tested my guess by picking up my phone and dialing my guess — and got a busy signal.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -20,25 +20,25 @@ This question makes no sense if probability is seen as long-run frequency.
 
 In that view, the probability of a coin turning up heads is 1/2 because 1/2
 
-is the limiting proportion of heads in an ever-longer series of tosses. However, for evaluating the plausibility of the phone number, this interpretation—called the frequentist interpretation—cannot apply, because there is no repeated experiment.
+is the limiting proportion of heads in an ever-longer series of tosses. However, for evaluating the plausibility of the phone number, this interpretation — called the frequentist interpretation — cannot apply, because there is no repeated experiment.
 
-The frequentist interpretation gets stuck because it places probability in the physical system itself. The alternative—that probability reflects the incompleteness of our knowledge—is known as the Bayesian interpretation of probability. It is the interpretation suited for mastering complexity. A book-length discussion and application of this fundamental point is Edwin Jaynes's Probability Theory: The Logic of Science [26].
+The frequentist interpretation gets stuck because it places probability in the physical system itself. The alternative — that probability reflects the incompleteness of our knowledge — is known as the Bayesian interpretation of probability. It is the interpretation suited for mastering complexity. A book-length discussion and application of this fundamental point is Edwin Jaynes's Probability Theory: The Logic of Science [26].
 
 The Bayesian interpretation is based on one simple idea: A probability reflects our degree of belief in a hypothesis. Probabilities are therefore subjective: Someone with different knowledge will have different probabilities. Thus, by collecting evidence, our degrees of belief change. Evidence changes probabilities.
 
 In the phone-number problem, what is the hypothesis and what is the evidence?
 
-The hypothesis—often denoted 𝐻—is the statement about the world whose credibility we would like to judge. Here,
+The hypothesis — often denoted 𝐻 — is the statement about the world whose credibility we would like to judge. Here,
 
 𝐻 ≡ My phone-number guess is correct.
 
 (7.1)
 
-The evidence—often denoted 𝐸 or 𝐷 (for data)—is the information that we collect, obtain, or learn and then use to judge the hypothesis. It augments our knowledge. Here, 𝐸 is the result of the experiment: 𝐸 ≡ Dialing my guess gave a busy signal.
+The evidence — often denoted 𝐸 or 𝐷 (for data) — is the information that we collect, obtain, or learn and then use to judge the hypothesis. It augments our knowledge. Here, 𝐸 is the result of the experiment: 𝐸 ≡ Dialing my guess gave a busy signal.
 
 (7.2)
 
-Any hypothesis has an initial probability Pr (𝐻). This probability is called the prior probability, because it is the probability prior to, or before, incorporating the evidence. After learning the evidence 𝐸, the hypothesis has a new probability Pr (𝐻 ∣ 𝐸): the probability of the hypothesis 𝐻 given—that is, upon assuming—the evidence 𝐸. This probability is called the posterior probability, because it is the probability, or degree of belief, after including the evidence.
+Any hypothesis has an initial probability Pr (𝐻). This probability is called the prior probability, because it is the probability prior to, or before, incorporating the evidence. After learning the evidence 𝐸, the hypothesis has a new probability Pr (𝐻 ∣ 𝐸): the probability of the hypothesis 𝐻 given — that is, upon assuming — the evidence 𝐸. This probability is called the posterior probability, because it is the probability, or degree of belief, after including the evidence.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -48,7 +48,7 @@ The recipe for using evidence to update probabilities is Bayes' theorem: Pr (�
 
 (7.3)
 
-The new factor, the probability Pr (𝐸 ∣ 𝐻)—the probability of the evidence given the hypothesis—is called the likelihood. It measures how well the candidate theory (the hypothesis) explains the evidence. Bayes' theorem then says that
+The new factor, the probability Pr (𝐸 ∣ 𝐻) — the probability of the evidence given the hypothesis — is called the likelihood. It measures how well the candidate theory (the hypothesis) explains the evidence. Bayes' theorem then says that
 
 posterior probability
 
@@ -86,7 +86,7 @@ O(𝐻 | 𝐸)
 
 O(𝐻)
 
-The odds 𝑂 are related to the probability 𝑝 by 𝑂 = 𝑝/(1 − 𝑝). For example, a probability of 𝑝 = 2/3 corresponds to an odds of 2—often written as 2:1
+The odds 𝑂 are related to the probability 𝑝 by 𝑂 = 𝑝/(1 − 𝑝). For example, a probability of 𝑝 = 2/3 corresponds to an odds of 2 — often written as 2:1
 
 and read as「2-to-1 odds.」
 
@@ -144,7 +144,7 @@ O(𝐻)∼1
 
 Pr(𝐸 | 𝐻) / Pr(𝐸 | 𝐻) ∼ 20
 
-My guess has become very likely—and it turned out to be correct.
+My guess has become very likely — and it turned out to be correct.
 
 Problem 7.3
 
@@ -284,7 +284,7 @@ The geometric mean (the midpoint) of these endpoints is 250 000
 
 square kilometers.
 
-Although reasonable, this approach overestimates the width of the plausible range—a mistake that we'll correct shortly. However, even this overestimated range spans only a factor of 2.4, whereas my starting range of 104…107 square kilometers spans a factor of 1000. Divide-and-conquer reasoning has significantly narrowed my plausible range by replacing a quantity about which I have vague knowledge, namely the area, with quantities about which I have more precise knowledge.
+Although reasonable, this approach overestimates the width of the plausible range — a mistake that we'll correct shortly. However, even this overestimated range spans only a factor of 2.4, whereas my starting range of 104…107 square kilometers spans a factor of 1000. Divide-and-conquer reasoning has significantly narrowed my plausible range by replacing a quantity about which I have vague knowledge, namely the area, with quantities about which I have more precise knowledge.
 
 The second bonus is that subdividing into many quantities carries only a small penalty, smaller than suggested by simply multiplying the endpoints.
 
@@ -338,7 +338,7 @@ midpoint (here, 310 kilometers) and 𝜎 is the width, measured as a distance on
 
 400 w (km)
 
-distribution, the one-sigma range contains 68 percent of the probability—conveniently close to 2/3. When we ask our plausible ranges to contain a 2/3 probability, we are estimating a one-sigma range.
+distribution, the one-sigma range contains 68 percent of the probability — conveniently close to 2/3. When we ask our plausible ranges to contain a 2/3 probability, we are estimating a one-sigma range.
 
 The two log-normal distributions supply the probabilistic description required to combine the plausible ranges. The rules of probability theory (Problem 7.5) produce the following two-part recipe.
 
@@ -496,7 +496,7 @@ dB equivalent for a factor of 1.37 ,
 
 (7.21)
 
-which is approximately 0.16. (The factor of 2 arises because the region extends equally on both sides of the peak.) Therefore, the shaded probability is approximately 0.16/ 2𝜋 or only 0.07. I am surprised, but encouraged, by the high accuracy of my estimate for the UK's land area. Once again, many individual errors—for example, in estimating journey times and speeds—have canceled out.
+which is approximately 0.16. (The factor of 2 arises because the region extends equally on both sides of the peak.) Therefore, the shaded probability is approximately 0.16/ 2𝜋 or only 0.07. I am surprised, but encouraged, by the high accuracy of my estimate for the UK's land area. Once again, many individual errors — for example, in estimating journey times and speeds — have canceled out.
 
 Problem 7.4
 
@@ -558,7 +558,7 @@ Suppose that your knowledge of the quantities 𝑎, 𝑏, and 𝑐 is given by t
 
 𝑐 = 1…10.
 
-Which quantity—𝑎𝑏𝑐 or 𝑎2𝑏—has the wider plausible range?
+Which quantity — 𝑎𝑏𝑐 or 𝑎2𝑏 — has the wider plausible range?
 
 Problem 7.10
 
@@ -634,7 +634,7 @@ The second derivative is zero when 𝑥 = ±1. This value is expressed in the �
 
 7 Probabilistic reasoning
 
-𝑥 = ±1 means the one-sigma points 𝜇 ± 𝜎. So the points of maximum (absolute) slope—the points that our gut can most accurately estimate—are the one-sigma points! We find them first and then find their midpoint.
+𝑥 = ±1 means the one-sigma points 𝜇 ± 𝜎. So the points of maximum (absolute) slope — the points that our gut can most accurately estimate — are the one-sigma points! We find them first and then find their midpoint.
 
 When we estimate a 2/3-probability range, we are finding a one-sigma range almost exactly: In a normal or log-normal distribution, the one-sigma range contains approximately 68 percent of the probability, which is almost exactly 2/3. For comparison, the two-sigma range contains approximately 95 percent of the probability, which is a popular number in statistical analysis. Therefore, you may also want to find your two-sigma range (Problem 7.11). However, the slope at the two-sigma points is approximately a factor of 2.2 smaller than the slope at the one-sigma endpoints, so the two-sigma range is somewhat harder to estimate than is the one-sigma range. To find the two-sigma range, first estimate the one-sigma range, and then double its width (on a log scale).
 
@@ -654,7 +654,7 @@ Gold or banknotes?
 
 Having broken into a bank vault, do you take the banknotes or the gold? Assume that your capacity to carry loot is limited by mass rather than by volume.
 
-a. Estimate gold's value density (monetary value per mass)—for example, in dollars per gram. Give plausible ranges for your subestimates and find the resulting plausible range for the value density.
+a. Estimate gold's value density (monetary value per mass) — for example, in dollars per gram. Give plausible ranges for your subestimates and find the resulting plausible range for the value density.
 
 b. For your favorite banknote, give your plausible range for its value density and for the ratio
 
@@ -688,7 +688,7 @@ Answering these questions requires understanding random walks.
 
 7.3.1 Behavior of random walks: Lumping and probabilistic reasoning For our first random walk, imagine a perfume molecule wandering in a room, moving in a straight line until collisions with air molecules deflect it in a random direction. This randomness reflects our incomplete knowledge: Knowing the complete state of the colliding molecules, we could calculate their paths after the collision (at least, in classical physics). However, we do not have that knowledge and do not want it!
 
-Even without that information, the random motion of one molecule is still complicated. The complexity arises from the generality—that the direction of travel and the distance between collisions can have any value. To simplify, we'll lump in several ways.
+Even without that information, the random motion of one molecule is still complicated. The complexity arises from the generality — that the direction of travel and the distance between collisions can have any value. To simplify, we'll lump in several ways.
 
 Distance. Let's assume that the molecule travels a typical, fixed distance between collisions. This distance is the mean free path 𝜆.
 
@@ -706,7 +706,7 @@ Time. Let's assume that the molecule travels at a typical, fixed speed 𝑣 and 
 
 In this heavily lumped, one-dimensional model, a molecule starts at an origin (𝑥 = 0) and wanders along a line. At each tick it moves left or right with probability 1/2 for each direction.
 
-As time passes, the molecule spreads out. Actually, the molecule itself does not spread out! It has a particular position, but we just don't know it. What spreads out is our belief about the position. In the notation of probability theory, this belief is a set of probabilities—a probability distribution—based upon our knowledge of the molecule's starting position: Pr (molecule is at position 𝑥 at time 𝑡 ∣ it was at 𝑥 = 0 at 𝑡 = 0).
+As time passes, the molecule spreads out. Actually, the molecule itself does not spread out! It has a particular position, but we just don't know it. What spreads out is our belief about the position. In the notation of probability theory, this belief is a set of probabilities — a probability distribution — based upon our knowledge of the molecule's starting position: Pr (molecule is at position 𝑥 at time 𝑡 ∣ it was at 𝑥 = 0 at 𝑡 = 0).
 
 (7.26)
 
@@ -772,7 +772,7 @@ The expected position is the weighted average of the possible positions, weighte
 
 So ⟨𝑥⟩, which starts at zero, remains zero.
 
-A useful measure is the squared position 𝑥2—more useful because it is never negative, making moot the symmetry argument that made ⟨𝑥⟩ = 0.
+A useful measure is the squared position 𝑥2 — more useful because it is never negative, making moot the symmetry argument that made ⟨𝑥⟩ = 0.
 
 Analogous to ⟨𝑥⟩, the expected or mean squared position ⟨𝑥2⟩ is the average of the possible values of 𝑥2, weighted by their probabilities.
 
@@ -802,7 +802,7 @@ The half width of the plausible range for an area 𝐴 = ℎ𝑤 was given by �
 
 (7.29)
 
-where 𝜎𝑥 is the half width of the plausible range for the quantity 𝑥. The half widths are step sizes in a random walk—random because the estimate is equally like to be an underestimate or an overestimate (representing step-ping left or right, respectively). Therefore, the half widths, like the step sizes in a random walk, add via their squares (「adding in quadrature」).
+where 𝜎𝑥 is the half width of the plausible range for the quantity 𝑥. The half widths are step sizes in a random walk — random because the estimate is equally like to be an underestimate or an overestimate (representing step-ping left or right, respectively). Therefore, the half widths, like the step sizes in a random walk, add via their squares (「adding in quadrature」).
 
 The number of ticks is 𝑛 = 𝑡/𝜏, so ⟨𝑥2⟩, which is 𝑛𝜆2, is also 𝑡𝜆2/𝜏. Thus,
 
@@ -924,7 +924,7 @@ A similar estimate explains the existence of circulatory systems. Imagine an oxy
 
 10−9 m2 s−1
 
-Over long distances—long compared to the mean free path 𝜆—diffusion is a slow method of transport! Large organisms, especially warm-blooded organisms with high metabolic rates, need another solution: a circulatory system. It transports oxygen much more efficiently than diffusion can, just as air currents do for perfume. The circulatory system, a branching network of ever-smaller capillaries, ends once the typical distance between the smallest capillaries and a cell is small enough for diffusion to be efficient.
+Over long distances — long compared to the mean free path 𝜆 — diffusion is a slow method of transport! Large organisms, especially warm-blooded organisms with high metabolic rates, need another solution: a circulatory system. It transports oxygen much more efficiently than diffusion can, just as air currents do for perfume. The circulatory system, a branching network of ever-smaller capillaries, ends once the typical distance between the smallest capillaries and a cell is small enough for diffusion to be efficient.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -1020,11 +1020,11 @@ momentum diffusing in water
 
 1.0×10−6
 
-In air, all three diffusion constants—𝐷 for molecules, 𝜅 for energy, and 𝜈 for momentum—are roughly 1.5 × 10−5 square meters per second. Their similarity is no coincidence. The same mechanism (diffusion of air molecules) transports molecules, energy, and momentum.
+In air, all three diffusion constants — 𝐷 for molecules, 𝜅 for energy, and 𝜈 for momentum — are roughly 1.5 × 10−5 square meters per second. Their similarity is no coincidence. The same mechanism (diffusion of air molecules) transports molecules, energy, and momentum.
 
 In water, however, the molecular diffusion constant 𝐷 is several orders of magnitude smaller than the heat- and momentum-diffusion constants (𝜅
 
-and 𝜈, respectively). Even the momentum- and heat-diffusion constants differ roughly by a factor of 7. This dimensionless ratio, 𝜈/𝜅, is the Prandtl number 𝖯𝗋. For water, I usually remember 𝜈, because it is just a power of ten in SI units, and remember the Prandtl number—the lucky number 7—and use these values to reconstruct 𝜅.
+and 𝜈, respectively). Even the momentum- and heat-diffusion constants differ roughly by a factor of 7. This dimensionless ratio, 𝜈/𝜅, is the Prandtl number 𝖯𝗋. For water, I usually remember 𝜈, because it is just a power of ten in SI units, and remember the Prandtl number — the lucky number 7 — and use these values to reconstruct 𝜅.
 
 7.3.3 Thermal diffusivities of liquids and solids The large discrepancy between the molecular and thermal diffusion constants in water indicates that our model for diffusion in water is not complete. The problem is not limited to water. If we had made a similar comparison for any solid, comparing the molecular and thermal diffusion constants (𝐷 and 𝜅), the discrepancy would have been even larger.
 
@@ -1068,7 +1068,7 @@ To estimate 𝜅 for a solid, let's use 𝜅water along with the scaling relatio
 
 7.3 Random walks: Viscosity and heat flow 257
 
-In a typical solid, the sound speed 𝑐s is 5 kilometers per second—roughly a factor of 3 faster than in water. The mean free path 𝜆 is also longer than in the totally disordered lattice of a liquid. In a solid without too many lattice defects, and at room temperature, a phonon travels a few lattice spacings before scattering—compared to just one lattice spacing in water.
+In a typical solid, the sound speed 𝑐s is 5 kilometers per second — roughly a factor of 3 faster than in water. The mean free path 𝜆 is also longer than in the totally disordered lattice of a liquid. In a solid without too many lattice defects, and at room temperature, a phonon travels a few lattice spacings before scattering — compared to just one lattice spacing in water.
 
 These two differences, each contributing a factor of 3, make the typical thermal diffusivity of a solid a factor of 10 larger than that of water: 𝜅solid ∼ 𝜅water × 10 ≈ 1.5×10−6 m2 s−1.
 
@@ -1076,7 +1076,7 @@ These two differences, each contributing a factor of 3, make the typical thermal
 
 Rounded to 10−6 square meters per second, this value is our 𝜅 (m2 s−1)
 
-canonical thermal diffusivity of a solid—for example, sand- Au stone or brick. The table also shows a new phenomenon: 1.3×10−4
+canonical thermal diffusivity of a solid — for example, sand- Au stone or brick. The table also shows a new phenomenon: 1.3×10−4
 
 Cu
 
@@ -1124,7 +1124,7 @@ The hot stove supplies blobs of heat (of energy) that wander back and forth: The
 
 In this lumping picture, the temperature profile Tstove
 
-is a rectangle with a moving right edge—representing the heat wave moving upward and into top
+is a rectangle with a moving right edge — representing the heat wave moving upward and into top
 
 bottom
 
@@ -1190,7 +1190,7 @@ Thot
 
 hot to touch, and then it monotonically approaches feels hot
 
-the stove temperature—as sketched in the figure.
+the stove temperature — as sketched in the figure.
 
 Troom
 
@@ -1446,7 +1446,7 @@ In cooking, the hot zone diffuses inward from the hot surface. For the most tang
 
 The answer lies in the concept of the boundary layer. For the cooking examples (Sections 7.3.3.1 and 7.3.3.2), this layer is the expanding hot zone. It arises from the boundary constraint (the temperature), which diffuses into the skillet or the fish. For the fan blade, the analogous constraint is that, next to the blade, the fluid has zero velocity with respect to the blade. The condition, called the no-slip boundary condition, has the justification that the fluid molecules next the surface get caught by the inevitable roughness at the surface. (For a historical and philosophical discussion of the subtleties of this boundary condition, see Michael Day's article on「The no-slip condition of fluid dynamics」[8].)
 
-Starting at the blade surface, a zero-speed or, equivalently, zero-momentum zone diffuses into the fluid—just as the stove temperature diffuses into the skillet or the oven temperature into the fish fillet. After a growth time 𝑡, the zero-momentum front has diffused a distance 𝛿 ∼ 𝜈𝑡 , where 𝜈 is the diffusion constant for momentum (the kinematic viscosity). The distance 𝛿
+Starting at the blade surface, a zero-speed or, equivalently, zero-momentum zone diffuses into the fluid — just as the stove temperature diffuses into the skillet or the oven temperature into the fish fillet. After a growth time 𝑡, the zero-momentum front has diffused a distance 𝛿 ∼ 𝜈𝑡 , where 𝜈 is the diffusion constant for momentum (the kinematic viscosity). The distance 𝛿
 
 is the boundary-layer thickness. Within the boundary layer, the fluid moves more slowly than the fluid in the free stream. Using a rectangular lumping picture, the fluid speed is zero within the layer and full speed outside it.
 
@@ -1526,7 +1526,7 @@ This speed depends inversely on the distance. This scaling is consistent with ou
 
 transport over long distances (for example, for perfume molecules diffusing across a room) but fast over short distances (for example, for neurotransmitter molecules diffusing across a synaptic cleft).
 
-When the diffusing quantity is momentum, the appropriate diffusion constant is 𝜈, and the diffusion speed is 𝜈/𝐿. Thus, the Reynolds number, 𝑣flow𝐿/𝜈, is the ratio 𝑣flow/𝑣diffusion—for the same reason that it is the ratio of times 𝑡diffusion/𝑡flow (as you will find in Problem 7.32). Using the diffusion speed, we can estimate fluxes and flows.
+When the diffusing quantity is momentum, the appropriate diffusion constant is 𝜈, and the diffusion speed is 𝜈/𝐿. Thus, the Reynolds number, 𝑣flow𝐿/𝜈, is the ratio 𝑣flow/𝑣diffusion — for the same reason that it is the ratio of times 𝑡diffusion/𝑡flow (as you will find in Problem 7.32). Using the diffusion speed, we can estimate fluxes and flows.
 
 7.4.2 Flux
 
@@ -1572,7 +1572,7 @@ n2
 
 Or it could be a shirt (𝐿 ∼ 2 millimeters) with different tempera-F2→1
 
-tures—concentrations of energy—on the inside and outside. On one side, the density of stuff is 𝑛1; on the other side it is 𝑛2. Then L
+tures — concentrations of energy — on the inside and outside. On one side, the density of stuff is 𝑛1; on the other side it is 𝑛2. Then L
 
 there are two fluxes in the gap, left to right and right to left: 𝐹
 
@@ -1632,7 +1632,7 @@ Problem 7.26
 
 Stokes drag
 
-In this problem, you use momentum flux (Problem 7.25) to estimate the drag force on a sphere of radius 𝑟 in a flow at low Reynolds number (𝖱𝖾 ≪ 1). If 𝖱𝖾 ≪ 1, the boundary layer (Section 7.3.4)—the region over which the fluid velocity changes from zero to the free-stream velocity 𝑣—is comparable in thickness to 𝑟. Using that information, estimate the viscous drag force on the sphere.
+In this problem, you use momentum flux (Problem 7.25) to estimate the drag force on a sphere of radius 𝑟 in a flow at low Reynolds number (𝖱𝖾 ≪ 1). If 𝖱𝖾 ≪ 1, the boundary layer (Section 7.3.4) — the region over which the fluid velocity changes from zero to the free-stream velocity 𝑣 — is comparable in thickness to 𝑟. Using that information, estimate the viscous drag force on the sphere.
 
 If the diffusing stuff is heat (energy), the diffusion constant is the thermal diffusivity 𝜅, and the concentration gradient is the gradient of energy density. Thus, heat flux is
 
@@ -1750,7 +1750,7 @@ To estimate our heat loss standing outside on a cold winter's day, we need to es
 
 Why do we estimate the thermal conductivity of air rather than of clothing?
 
-The purpose of clothing is to trap air so that heat flows via conduction—that is, by diffusion—rather than via the faster process of convection. (If the perfume molecules of Section 7.3.1 could be similarly limited to diffusion, the perfume aromas would travel very slowly.) Because 𝐾 ≡ 𝜌𝑐p𝜅, estimating 𝐾 splits into three subproblems, one for each factor. The density of air 𝜌air is just 1.2 kilograms per cubic meter (slightly more accurate than 1 kilogram per cubic meter). The thermal diffusivity 𝜅air is 1.5×10−5 square meters per second.
+The purpose of clothing is to trap air so that heat flows via conduction — that is, by diffusion — rather than via the faster process of convection. (If the perfume molecules of Section 7.3.1 could be similarly limited to diffusion, the perfume aromas would travel very slowly.) Because 𝐾 ≡ 𝜌𝑐p𝜅, estimating 𝐾 splits into three subproblems, one for each factor. The density of air 𝜌air is just 1.2 kilograms per cubic meter (slightly more accurate than 1 kilogram per cubic meter). The thermal diffusivity 𝜅air is 1.5×10−5 square meters per second.
 
 The specific heat 𝑐p is not as familiar, but we can estimate it. As for water, it measures the thermal energy per mass per temperature: thermal energy
 
@@ -1858,7 +1858,7 @@ m K.
 
 𝜅air
 
-Before using the thermal conductivity, let's try out the specific heat of air on an old method of air conditioning. One summer I lived in a tiny Manhattan apartment (30 square meters). Summers are hot in New York City, and the beautiful people flee for the cooler beach areas—cooler thanks partly to the high specific heat of water (Problem 7.27). Because of global warming and the old electrical wiring in the apartment building, too old to handle an air-conditioning unit, the apartment reached 30 ∘C at night. A friend who grew up before air conditioning suggested taking a wet sheet and using a fan to blow air past it.
+Before using the thermal conductivity, let's try out the specific heat of air on an old method of air conditioning. One summer I lived in a tiny Manhattan apartment (30 square meters). Summers are hot in New York City, and the beautiful people flee for the cooler beach areas — cooler thanks partly to the high specific heat of water (Problem 7.27). Because of global warming and the old electrical wiring in the apartment building, too old to handle an air-conditioning unit, the apartment reached 30 ∘C at night. A friend who grew up before air conditioning suggested taking a wet sheet and using a fan to blow air past it.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -1952,7 +1952,7 @@ This change would have turned the hot 30 ∘C room into a cold 10 ∘C room, if 
 
 7 Probabilistic reasoning
 
-the walls (and from the fan motor), Δ𝑇 will be less than 20 ∘C—perhaps 10 ∘C, leaving the room at a pleasant and sleepable temperature of 20 ∘C.
+the walls (and from the fan motor), Δ𝑇 will be less than 20 ∘C — perhaps 10 ∘C, leaving the room at a pleasant and sleepable temperature of 20 ∘C.
 
 This calculation shows not only that evaporative cooling is a reasonable method of air conditioning, but also that our estimate for the specific heat of air is reasonable.
 
@@ -1988,13 +1988,13 @@ air
 
 (7.81)
 
-where Δ𝑇 = 𝑇2 − 𝑇1 is the temperature difference across a gap, Δ𝑥 is the gap size, and 𝐾 is the thermal conductivity of the gap material. Here, the gap material is air—the clothing serves to trap the air.
+where Δ𝑇 = 𝑇2 − 𝑇1 is the temperature difference across a gap, Δ𝑥 is the gap size, and 𝐾 is the thermal conductivity of the gap material. Here, the gap material is air — the clothing serves to trap the air.
 
 Let's say that the air outside is at 𝑇1 = 0 ∘C and that skin is at 𝑇2 = 30 ∘C
 
 (slightly lower than the internal body temperature of 37 ∘C). Then Δ𝑇 =
 
-30 K. Against the advice of your elders, you dress in a thin T-shirt—for decency, a very long one. A thin T-shirt has thickness Δ𝑥 of roughly 2 millimeters. With these parameters, the heat flux through the shirt becomes 300 watts per square meter:
+30 K. Against the advice of your elders, you dress in a thin T-shirt — for decency, a very long one. A thin T-shirt has thickness Δ𝑥 of roughly 2 millimeters. With these parameters, the heat flux through the shirt becomes 300 watts per square meter:
 
 Δ𝑇
 
@@ -2026,7 +2026,7 @@ Let's say that the air outside is at 𝑇1 = 0 ∘C and that skin is at 𝑇2 = 
 
 Δ𝑥
 
-Flux is power per area, so the energy flow—the power—is the flux times a person's surface area. A person is roughly 2 meters tall and 0.5 meters wide, with a front and a back, so the surface area is about 2 square meters.
+Flux is power per area, so the energy flow — the power — is the flux times a person's surface area. A person is roughly 2 meters tall and 0.5 meters wide, with a front and a back, so the surface area is about 2 square meters.
 
 Thus, the power (the energy outflow) is 600 watts.
 
@@ -2042,7 +2042,7 @@ One solution is to generate heat to make up the difference: by shivering or exer
 
 Another simple solution is to dress warmly by putting on thick layers. Let's recalculate the power loss if you put on a jacket and thick pants, each 2 centimeters thick. We could redo the power calculation from scratch, but that approach is brute force. It is simpler to notice that the gap thickness Δ𝑥
 
-has increased by a factor of 10, yet nothing else changed. Because flux is inversely proportional to the gap size, the flux and the power drop by the same factor of 10. Therefore, wearing thick clothing reduces the energy outflow to a manageable 60 watts—comparable to the basal metabolism. As a result, your body heat can keep you warm. Indeed, when wearing thick clothing, only areas exposed directly to cold air, such as your hands and face, feel cold. Those regions are protected by only a thin layer of still air (the boundary layer analyzed in Section 7.3.4).
+has increased by a factor of 10, yet nothing else changed. Because flux is inversely proportional to the gap size, the flux and the power drop by the same factor of 10. Therefore, wearing thick clothing reduces the energy outflow to a manageable 60 watts — comparable to the basal metabolism. As a result, your body heat can keep you warm. Indeed, when wearing thick clothing, only areas exposed directly to cold air, such as your hands and face, feel cold. Those regions are protected by only a thin layer of still air (the boundary layer analyzed in Section 7.3.4).
 
 A thick gap means a small heat flux: When it is cold, bundle up!
 
@@ -2358,9 +2358,9 @@ m K .
 
 𝐾nonmetallic solid
 
-This conductivity is a factor of 30 larger than 𝐾air. As a result, wearing wet clothes on a cold day is so unpleasant and can even be dangerous. Thick clothing (a coat) allowed a comfortable 60 watts of heat flow—a factor of 10
+This conductivity is a factor of 30 larger than 𝐾air. As a result, wearing wet clothes on a cold day is so unpleasant and can even be dangerous. Thick clothing (a coat) allowed a comfortable 60 watts of heat flow — a factor of 10
 
-lower than the T-shirt allowed. Wetting the thick coat increases the thermal conductivity by a factor of 30. The heat loss therefore increases by a factor of 30—making it higher even than the heat loss through the dry T-shirt.
+lower than the T-shirt allowed. Wetting the thick coat increases the thermal conductivity by a factor of 30. The heat loss therefore increases by a factor of 30 — making it higher even than the heat loss through the dry T-shirt.
 
 When you hike in the hills and mountains, bring waterproof clothing!
 
@@ -2450,7 +2450,7 @@ Why does mercury (Hg) have such a low thermal conductivity for a metal?
 
 7.5 Summary and further problems
 
-In large, complex systems, the information is either overwhelming or not available. Then we have to reason with incomplete information. The tool for this purpose is probabilistic reasoning—in particular, Bayesian probability. Probabilistic reasoning helps us manage incomplete information. Using it, we can estimate the uncertainty in our divide-and-conquer estimates and understand the physics of random walks and thereby viscosity, boundary layers, and heat flow.
+In large, complex systems, the information is either overwhelming or not available. Then we have to reason with incomplete information. The tool for this purpose is probabilistic reasoning — in particular, Bayesian probability. Probabilistic reasoning helps us manage incomplete information. Using it, we can estimate the uncertainty in our divide-and-conquer estimates and understand the physics of random walks and thereby viscosity, boundary layers, and heat flow.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -2482,11 +2482,11 @@ Extend the fish-cooking argument of Section 7.3.3.2 to three dimensions to predi
 
 Problem 7.35
 
-Resistive networks to analyze random walks Random walks are closely connected to infinite resistive networks (this connection is explored deeply in Random Walks and Electric Networks [11]). In particular, the probability of escape 𝑝esc—the probability that an 𝑛-dimensional random walker escapes to infinity and never returns to the origin—is related to the resistance 𝑅
+Resistive networks to analyze random walks Random walks are closely connected to infinite resistive networks (this connection is explored deeply in Random Walks and Electric Networks [11]). In particular, the probability of escape 𝑝esc — the probability that an 𝑛-dimensional random walker escapes to infinity and never returns to the origin — is related to the resistance 𝑅
 
 to infinity of a 𝑛-dimensional electrical network of unit resistors: 𝑝esc = 1/2𝑛𝑅.
 
-Use this connection, along with lumping arguments, to estimate 𝑅 and thereby show that the two-dimensional random walk is recurrent (𝑝esc = 0) but that the three-dimensional walk is transient (𝑝esc > 0)—consistent with Pólya's theorem (Problem 7.17).
+Use this connection, along with lumping arguments, to estimate 𝑅 and thereby show that the two-dimensional random walk is recurrent (𝑝esc = 0) but that the three-dimensional walk is transient (𝑝esc > 0) — consistent with Pólya's theorem (Problem 7.17).
 
 Problem 7.36
 
@@ -2534,7 +2534,7 @@ velocity of the tea to fall by a significant fraction. To estimate 𝜏, conside
 
 and diameter 𝑙, filled with liquid. Tea near the edge of the l
 
-teacup—and near the base, but for simplicity neglect the effect of the base—is slowed by the presence of the edge (a result of the no-slip boundary condition).
+teacup — and near the base, but for simplicity neglect the effect of the base — is slowed by the presence of the edge (a result of the no-slip boundary condition).
 
 a. In terms of the viscous torque 𝑇, the initial angular velocity 𝜔, and 𝜌 and 𝑙, estimate the spindown time 𝜏. Hint: Consider angular momentum, and drop all dimensionless constants, such as 𝜋 and 2.
 

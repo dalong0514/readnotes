@@ -4,7 +4,7 @@ So, for long-lasting learning and understanding, make bonds; connect each new fa
 
 Only connect! That was the whole of her sermon… Live in fragments no longer.
 
-— E. M. Forster [16]
+ —  E. M. Forster [16]
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -88,7 +88,7 @@ Milonni, editors, Physics and Probability: Essays in Honor of Edwin T. Jaynes. C
 
 [33] Sanjoy Mahajan. Street-Fighting Mathematics: The Art of Educated Guessing and Op-portunistic Problem Solving. MIT Press, Cambridge, MA, 2010.
 
-[34] Ned Mayo. Ocean waves—their energy and power. The Physics Teacher, 35(6):352-356, 1997.
+[34] Ned Mayo. Ocean waves — their energy and power. The Physics Teacher, 35(6):352-356, 1997.
 
 [35] Karen McComb, Craig Packer and Anne Pusey. Roaring and numerical assessment in contests between groups of female lions, Panthera leo. Animal Behaviour, 47(2):379–387, 1994.
 

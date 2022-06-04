@@ -2,9 +2,9 @@ Long-lasting learning
 
 The world is complex! But our nine reasoning tools help us master and enjoy the complexity. Spanning fields of knowledge, the tools connect disparate facts and ideas and promote long-lasting learning.
 
-An analogy for the value of connected knowledge is an infinite two-dimensional lattice of dots: a percolation lattice [21]. Every dot marks a piece of knowledge—a fact or an idea. Now add bonds between neighboring pieces of knowledge, with a probability 𝑝bond for each bond. The following figures show examples of finite lattices starting at 𝑝bond = 0.4. Marked in bold is the largest pbond = 0.40
+An analogy for the value of connected knowledge is an infinite two-dimensional lattice of dots: a percolation lattice [21]. Every dot marks a piece of knowledge — a fact or an idea. Now add bonds between neighboring pieces of knowledge, with a probability 𝑝bond for each bond. The following figures show examples of finite lattices starting at 𝑝bond = 0.4. Marked in bold is the largest pbond = 0.40
 
-cluster—the largest connected set of dots. As 𝑝bond increases, this cluster unifies an ever-larger fraction of the lattice of knowledge.
+cluster — the largest connected set of dots. As 𝑝bond increases, this cluster unifies an ever-larger fraction of the lattice of knowledge.
 
 pbond = 0.40
 

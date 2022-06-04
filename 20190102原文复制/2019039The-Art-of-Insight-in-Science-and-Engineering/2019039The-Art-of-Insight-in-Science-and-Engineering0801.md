@@ -1,6 +1,6 @@
 312
 
-A correct analysis works in all cases—including the simplest ones. This principle is the basis of our next tool for discarding complexity: the method of easy cases. We will meet the transferable ideas in an everyday example (Section 8.1.1). Then we will use them to simplify and understand complex phenomena, including black holes (Section 8.2.2.2), the temperature of the Sun (Section 8.3.2.3), and the diversity of water waves (Section 8.4.1).
+A correct analysis works in all cases — including the simplest ones. This principle is the basis of our next tool for discarding complexity: the method of easy cases. We will meet the transferable ideas in an everyday example (Section 8.1.1). Then we will use them to simplify and understand complex phenomena, including black holes (Section 8.2.2.2), the temperature of the Sun (Section 8.3.2.3), and the diversity of water waves (Section 8.4.1).
 
 8.1 Warming up
 
@@ -8,55 +8,55 @@ Let's start with an everyday example, so that we do not have to handle mathemati
 
 8.1.1 Everyday example of easy cases
 
-One August, upon becoming eligible for one of the tax benefits at work, I chose to put $500 in an account for the calendar year's health costs (a feature of America's bureaucratic health system). The payroll office advised me that they would deduct $125 each month for the rest of the year—namely, for August through December. As August is the eighth month and December the twelfth month, the amount looked correct: 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+One August, upon becoming eligible for one of the tax benefits at work, I chose to put `$`500 in an account for the calendar year's health costs (a feature of America's bureaucratic health system). The payroll office advised me that they would deduct `$`125 each month for the rest of the year — namely, for August through December. As August is the eighth month and December the twelfth month, the amount looked correct: 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
 280
 
 8 Easy cases
 
-$500
+`$`500
 
-12th month − 8th month = $500
+12th month − 8th month = `$`500
 
-4 months = $125
+4 months = `$`125
 
 month.
 
 (8.1)
 
-However, in January, the payroll office advised me that they should have deducted only $100 per month.
+However, in January, the payroll office advised me that they should have deducted only `$`100 per month.
 
 Which amount was correct?
 
-The simplest way to decide is the method of easy cases. Don't directly solve the hard problem of computing the correct deduction in general. Instead, imagine a simpler world in which I started deducting for the year in December. In this easy case, with only one month providing the year's deduction, the answer requires no calculation: Deduct $500 per month.
+The simplest way to decide is the method of easy cases. Don't directly solve the hard problem of computing the correct deduction in general. Instead, imagine a simpler world in which I started deducting for the year in December. In this easy case, with only one month providing the year's deduction, the answer requires no calculation: Deduct `$`500 per month.
 
-Then use the easy case and this result to check the proposed recipe, which predicted $125 per month when deductions started in August. In the easy case, when deductions start in December, the starting and ending months are both the twelfth month, so the recipe predicts an infinite deduction: $500
+Then use the easy case and this result to check the proposed recipe, which predicted `$`125 per month when deductions started in August. In the easy case, when deductions start in December, the starting and ending months are both the twelfth month, so the recipe predicts an infinite deduction: `$`500
 
-$ infinity
+`$` infinity
 
-12th month − 12th month = $500
+12th month − 12th month = `$`500
 
 0 months = month .
 
 (8.2)
 
-They do not pay me enough to survive that recipe. It needs an adjustment: $500
+They do not pay me enough to survive that recipe. It needs an adjustment: `$`500
 
-= $500
+= `$`500
 
 12th month − 12th month +1 month
 
-1 month = $500
+1 month = `$`500
 
 month.
 
 (8.3)
 
-Applying this modified recipe to an August instead of a December start, the denominator is 5 months rather than 4 months, and the deduction is $100
+Applying this modified recipe to an August instead of a December start, the denominator is 5 months rather than 4 months, and the deduction is `$`100
 
 per month. The revised advice from the payroll office was correct.
 
-This analysis contains several features that we can abstract away and use to simplify difficult problems. First, the easy cases are specified by values of a dimensionless quantity. Here, it is the difference 𝑚2 − 𝑚1 between the first and last month numbers. Second, for particular values of the dimensionless quantity—for the easy cases—the problem has an obvious answer. Here, the easy case is 𝑚2 − 𝑚1 = 0. Third, understanding the easy cases transfers to the hard cases. Here, our understanding of the case 𝑚2 − 𝑚1 = 0 shows that the denominator should be 𝑚2 − 𝑚1 + 1 rather than 𝑚2 − 𝑚1.
+This analysis contains several features that we can abstract away and use to simplify difficult problems. First, the easy cases are specified by values of a dimensionless quantity. Here, it is the difference 𝑚2 − 𝑚1 between the first and last month numbers. Second, for particular values of the dimensionless quantity — for the easy cases — the problem has an obvious answer. Here, the easy case is 𝑚2 − 𝑚1 = 0. Third, understanding the easy cases transfers to the hard cases. Here, our understanding of the case 𝑚2 − 𝑚1 = 0 shows that the denominator should be 𝑚2 − 𝑚1 + 1 rather than 𝑚2 − 𝑚1.
 
 8.1.2 Easy cases of the shared-birthday probability The same easy-cases reasoning helps us check more abstruse formulas. As an example, cast your mind back to the birthday paradox of Section 4.4.
 
@@ -126,7 +126,7 @@ For the mass of Problem 8.1, relax the assumption of zero friction. If the coeff
 
 8.2 Two regimes
 
-After warming up with the examples in Section 8.1, let's now look system-atically at how to use the method of easy cases. The first step is to identify the dimensionless quantity. Once you know it—let's call it 𝛽—the behavior 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+After warming up with the examples in Section 8.1, let's now look system-atically at how to use the method of easy cases. The first step is to identify the dimensionless quantity. Once you know it — let's call it 𝛽 — the behavior 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
 282
 
@@ -140,7 +140,7 @@ and 𝛽 ≫ 1 equivalent (Section 8.2.1) or because a geometric or physical con
 
 Then the analysis at one bookend can be used as the analysis for the other bookend, and there are really two regimes: the symmetric bookends and the middle regime.
 
-8.2.1.1 Why multiplication is more important than addition As an example, here's an easy-cases explanation of why, when estimating, multiplication is a more important operation than addition. Let's say that we are estimating a cost, a force, or an energy consumption that splits into two pieces 𝐴 and 𝐵 to add together—for example, energy for heating and for transportation. Estimating 𝐴 + 𝐵 seems to require addition.
+8.2.1.1 Why multiplication is more important than addition As an example, here's an easy-cases explanation of why, when estimating, multiplication is a more important operation than addition. Let's say that we are estimating a cost, a force, or an energy consumption that splits into two pieces 𝐴 and 𝐵 to add together — for example, energy for heating and for transportation. Estimating 𝐴 + 𝐵 seems to require addition.
 
 The need disappears after we examine the easy-cases regimes. The regimes are determined by a dimensionless quantity. Because 𝐴 and 𝐵 have the same dimensions, their ratio 𝐴/𝐵 is dimensionless, and it categorizes the three easy-cases regimes.
 
@@ -162,7 +162,7 @@ Regime 3
 
 𝐴/𝐵 ≫ 1
 
-In the first regime, the sum 𝐴 + 𝐵 is approximately 𝐵. In the symmetric third regime, the sum is approximately 𝐴. The common feature of the first and third regimes—their invariant—is that one contribution dominates the other. Only the second regime, where 𝐴 ∼ 𝐵, is different. To handle it, just make the lumping approximation that 𝐴 = 𝐵; then 𝐴 + 𝐵 ≈ 2𝐴.
+In the first regime, the sum 𝐴 + 𝐵 is approximately 𝐵. In the symmetric third regime, the sum is approximately 𝐴. The common feature of the first and third regimes — their invariant — is that one contribution dominates the other. Only the second regime, where 𝐴 ∼ 𝐵, is different. To handle it, just make the lumping approximation that 𝐴 = 𝐵; then 𝐴 + 𝐵 ≈ 2𝐴.
 
 So, when estimating 𝐴 + 𝐵, we do not need addition. In the first and third regimes, we just pick the larger contribution, 𝐴 or 𝐵. In the second regime, we just multiply by 2.
 
@@ -212,7 +212,7 @@ area → 0
 
 The first and third regimes are identical because of a symmetry: Interchanging 𝑎 and 𝑏 rotates the ellipse by 90∘ (and reflects it through its vertical axis) without changing its area. Therefore, any proposed formula for the area must work in the first regime, must satisfy the symmetry requirement that interchanging 𝑎 and 𝑏 has no effect on the area (thereby taking care of the third regime), and must work for a circle (the second regime).
 
-Because of the symmetry requirement, simple but asymmetric modifica-tions of the area of a circle—namely, 𝜋𝑎2 and 𝜋𝑏2—cannot be the area of an ellipse. A plausible, symmetric alternative is 𝜋(𝑎2 + 𝑏2)/2. In the second regime, where 𝑎 = 𝑏, it correctly predicts the area of a circle. However, it fails in the first regime: The area isn't zero even when 𝑎 = 0.
+Because of the symmetry requirement, simple but asymmetric modifica-tions of the area of a circle — namely, 𝜋𝑎2 and 𝜋𝑏2 — cannot be the area of an ellipse. A plausible, symmetric alternative is 𝜋(𝑎2 + 𝑏2)/2. In the second regime, where 𝑎 = 𝑏, it correctly predicts the area of a circle. However, it fails in the first regime: The area isn't zero even when 𝑎 = 0.
 
 Is there an alternative that passes all three tests?
 
@@ -242,13 +242,13 @@ relevant quantities and their dimensions. The goal 𝑚2 M
 
 right block's mass
 
-is the acceleration of the masses. Because they are connected by a string, their accelerations have the same magnitude but opposite directions. Let 𝑎 be the downward acceleration of the mass on the left—whether it is labeled 𝑚1 or 𝑚2 (planning for an application of symmetry). Because 𝑎 is our goal quantity, it is the first quantity on the list. The motion is caused by gravity, so the list includes 𝑔. Finally, the masses affect the acceleration, so the list includes 𝑚1 and 𝑚2. And that's the whole list.
+is the acceleration of the masses. Because they are connected by a string, their accelerations have the same magnitude but opposite directions. Let 𝑎 be the downward acceleration of the mass on the left — whether it is labeled 𝑚1 or 𝑚2 (planning for an application of symmetry). Because 𝑎 is our goal quantity, it is the first quantity on the list. The motion is caused by gravity, so the list includes 𝑔. Finally, the masses affect the acceleration, so the list includes 𝑚1 and 𝑚2. And that's the whole list.
 
 Doesn't the tension also affect the acceleration?
 
 The tension has an important effect: Without the tension, there would be no problem to solve, because each mass would accelerate downward at 𝑔.
 
-However, the tension is a consequence of 𝑚1, 𝑚2, and 𝑔—quantities already on the list. Thus, tension is redundant; adding it would only confuse the dimensional analysis.
+However, the tension is a consequence of 𝑚1, 𝑚2, and 𝑔 — quantities already on the list. Thus, tension is redundant; adding it would only confuse the dimensional analysis.
 
 This list contains only two independent dimensions: mass (M) and acceleration (LT−2). Four quantities built from two independent dimensions produce two independent dimensionless groups. The most natural choices are the acceleration ratio 𝑎/𝑔 and the mass ratio 𝑚1/𝑚2. Then the most general dimensionless statement is
 
@@ -436,7 +436,7 @@ range
 
 launch angle
 
-angle 𝜃—which is already dimensionless—and, based on the proportional-reasoning result, 𝑅𝑔/𝑣2. Then the most general dimensionless statement is
+angle 𝜃 — which is already dimensionless — and, based on the proportional-reasoning result, 𝑅𝑔/𝑣2. Then the most general dimensionless statement is
 
 𝑅𝑔
 
@@ -594,7 +594,7 @@ In Section 6.4.6, we used lumping to find that the gravitational field from a ma
 
 where 𝑟 is the distance of closest approach.
 
-This angle is dimensionless. Thus, let's use it to categorize and to investigate the easy cases of light bending. The first regime is 𝜃 ≪ 1—for example, the Sun bending starlight by roughly 1 arcsecond. The second regime is 𝜃 ∼ 1. In this regime, a new physical phenomenon appears, and lumping will help us analyze it.
+This angle is dimensionless. Thus, let's use it to categorize and to investigate the easy cases of light bending. The first regime is 𝜃 ≪ 1 — for example, the Sun bending starlight by roughly 1 arcsecond. The second regime is 𝜃 ∼ 1. In this regime, a new physical phenomenon appears, and lumping will help us analyze it.
 
 coyote:
 
@@ -618,11 +618,11 @@ In the coyote model, light zooms past the mass Bend!
 
 (say, a star) ignorant of gravity. After it has gone θ
 
-too far—by a distance comparable to
+too far — by a distance comparable to
 
 r
 
-𝑟—the star
+𝑟 — the star
 
 holds up a sign saying,「You forgot about grav-m
 
@@ -646,7 +646,7 @@ Bend!
 
 The ray, on command, bends by 90∘. It travels along and gets reminded again. The distance of closest approach is still 𝑟, so 𝜃 is still 90∘. The beam traces out a square. Although the ray doesn't actually follow this path with its sharp corners, the path illustrates the fundamental feature of the 𝜃 ∼ 1 regime: The ray is in orbit around the star.
 
-When 𝜃 ∼ 1, light gets captured by the strong gravitational field. The third regime, 𝜃 ≫ 1, doesn't introduce a new physical phenomenon—the light is still captured by the gravitational field. In either regime, the mass is a black hole.
+When 𝜃 ∼ 1, light gets captured by the strong gravitational field. The third regime, 𝜃 ≫ 1, doesn't introduce a new physical phenomenon — the light is still captured by the gravitational field. In either regime, the mass is a black hole.
 
 Problem 8.6
 
@@ -678,7 +678,7 @@ What is roughly the largest radius that the Earth could have, with its current m
 
 Two regimes are easier than three. Therefore, we studied that case first to develop experience and identify the transferable ideas. Fortunately, even when a complex situation has three regimes, two simplifications are possible. First, the bookend regimes are often easier than the middle regime (Section 8.3.1). Then we study the bookends and, to predict the behavior in the middle, interpolate between the bookends. Alternatively, two effects compete and reach a draw in the middle regime (Section 8.3.2). This middle regime is then the regime found in nature.
 
-8.3.1 Three regimes where the bookends are easier In a common easy-cases situation, the dimensionless number categorizing the three regimes is a ratio between two physical effects. Then the two bookends are the easiest regimes to analyze—because at each bookend, one or the other effect vanishes. We'll practice this analysis in an example from introductory mechanics (Section 8.3.1.1); then we'll graduate to drag (Section 8.3.1.2).
+8.3.1 Three regimes where the bookends are easier In a common easy-cases situation, the dimensionless number categorizing the three regimes is a ratio between two physical effects. Then the two bookends are the easiest regimes to analyze — because at each bookend, one or the other effect vanishes. We'll practice this analysis in an example from introductory mechanics (Section 8.3.1.1); then we'll graduate to drag (Section 8.3.1.2).
 
 8.3.1.1 Rolling down the plane
 
@@ -708,7 +708,7 @@ analysis, from Problem 5.18, tells us that the most general dimensionless statem
 
 where 𝑓 is a dimensionless function, 𝜃 is the incline angle, 𝐼 is the object's moment of inertia, 𝑚 is its mass, and 𝑟 is its radius. The only quantities that affect the acceleration are the two dimensionless groups: the incline angle 𝜃 and the dimensionless mass distribution 𝐼/𝑚𝑟2. The ratio 𝐼/𝑚𝑟2, and therefore the acceleration, is invariant under changes to the object's mass or radius (for example, making a bigger ring or disc). In plainer language, which however doesn't connect as much to symmetry reasoning, simply changing the object's mass or radius without changing its shape does not change its acceleration.
 
-Which shape rolls faster—a ring or a disc?
+Which shape rolls faster — a ring or a disc?
 
 In this comparison, the inclined plane and thus the incline angle 𝜃 remain fixed. However, the dimensionless group 𝐼/𝑚𝑟2 changes and can categorize the easy-cases regimes. This group occurs repeatedly in the analysis, so we'll often symbolize it as 𝛽. By understanding the behavior in the regimes defined by 𝛽, we'll be able to predict the result of the ring–disc race.
 
@@ -886,7 +886,7 @@ after
 
 8.3.1.2 Drag using easy cases
 
-Drag, like any phenomenon related to fluids, is a hard problem. In particular, there is no way to calculate the drag coefficient 𝑐d as a function of Reynolds number 𝖱𝖾—even for simple shapes such as a sphere or a cylinder.
+Drag, like any phenomenon related to fluids, is a hard problem. In particular, there is no way to calculate the drag coefficient 𝑐d as a function of Reynolds number 𝖱𝖾 — even for simple shapes such as a sphere or a cylinder.
 
 However, dimensional analysis (Section 5.3.2) has told us that drag coefficient
 
@@ -1026,7 +1026,7 @@ Problem 8.13
 
 Terminal speed of fog droplets
 
-a. Estimate the terminal speed of fog droplets (𝑟 ∼ 10 𝜇m). In estimating the drag force, use either the limit of low or high Reynolds numbers—whichever limit you guess is more likely to be valid. (Problem 8.12 introduces this reasoning.) b. Use the speed to estimate the Reynolds number and check whether you used the correct limit for the drag force. If not, try the other limit!
+a. Estimate the terminal speed of fog droplets (𝑟 ∼ 10 𝜇m). In estimating the drag force, use either the limit of low or high Reynolds numbers — whichever limit you guess is more likely to be valid. (Problem 8.12 introduces this reasoning.) b. Use the speed to estimate the Reynolds number and check whether you used the correct limit for the drag force. If not, try the other limit!
 
 c. Fog is a low-lying cloud. How long does a fog droplet require to fall 1 kilometer (a typical cloud height)? What is the everyday effect of this settling time?
 
@@ -1038,7 +1038,7 @@ c. Fog is a low-lying cloud. How long does a fog droplet require to fall 1 kilom
 
 Interpolation. We now know the drag force in the two extreme regimes: viscous drag (low Reynolds number) and form drag (high Reynolds number).
 
-Interpolating between these regimes is easiest in dimensionless form—that is, in terms of the drag coefficient rather than the drag force.
+Interpolating between these regimes is easiest in dimensionless form — that is, in terms of the drag coefficient rather than the drag force.
 
 24
 
@@ -1130,7 +1130,7 @@ Problem 8.18
 
 Bode magnitude sketch for an RC circuit A Bode magnitude plot is a log–log plot of ∣gain∣ versus frequency. In a lumped Bode sketch, which often gives the most insight into the behavior of a system, the segments of the plot are straight lines. Make the Bode magnitude sketch for the low-pass 𝑅𝐶 circuit of Problem 8.17, labeling the slopes and intersection points.
 
-8.3.2 Three regimes where two effects compete In the final group of three-regime examples, the three regimes are again based on the relative size of two physical effects. However, in contrast to the examples in Section 8.3.1, where we chose a regime—for example, by choosing a flow speed and thus the Reynolds number—here nature chooses. Nature chooses the middle regime, where the two competing physical effects reach a draw. The method of easy cases shows how that choice is made.
+8.3.2 Three regimes where two effects compete In the final group of three-regime examples, the three regimes are again based on the relative size of two physical effects. However, in contrast to the examples in Section 8.3.1, where we chose a regime — for example, by choosing a flow speed and thus the Reynolds number — here nature chooses. Nature chooses the middle regime, where the two competing physical effects reach a draw. The method of easy cases shows how that choice is made.
 
 8.3.2.1 Height of the atmosphere
 
@@ -1192,7 +1192,7 @@ contracting
 
 In the first regime, the atmosphere is expanding: The molecules have so much thermal energy that they escape farther from Earth. In the third regime, the atmosphere is contracting: The molecules do not have enough thermal energy to resist gravity as it pulls them back to Earth. The happy medium, where the atmosphere is stable, is the middle regime.
 
-Therefore, the regime is chosen not by us but by nature. The height of the atmosphere is determined by the requirement that the two effects compete and reach a draw—when the two effects are comparable in strength. In that regime, 𝑚𝑔𝐻 ∼ 𝑘B𝑇, so the atmosphere's scale height is 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+Therefore, the regime is chosen not by us but by nature. The height of the atmosphere is determined by the requirement that the two effects compete and reach a draw — when the two effects are comparable in strength. In that regime, 𝑚𝑔𝐻 ∼ 𝑘B𝑇, so the atmosphere's scale height is 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
 8.3 Three regimes
 
@@ -1204,9 +1204,9 @@ Therefore, the regime is chosen not by us but by nature. The height of the atmos
 
 (8.39)
 
-For the Earth's atmosphere, where 𝑇 ≈ 300 K and the molecular mass 𝑚 is approximately the mass of a nitrogen molecule, this height is roughly 8 kilometers—as we predicted in Section 5.4.1 using dimensional analysis. The easy-cases reasoning complements the dimensional analysis by providing a physical model.
+For the Earth's atmosphere, where 𝑇 ≈ 300 K and the molecular mass 𝑚 is approximately the mass of a nitrogen molecule, this height is roughly 8 kilometers — as we predicted in Section 5.4.1 using dimensional analysis. The easy-cases reasoning complements the dimensional analysis by providing a physical model.
 
-As a bonus, this general model of competition explains why we guess that an unknown dimensionless number is comparable to 1—for example, when we estimated an atomic blast energy in Section 5.2.2. Often, the dimensionless number represents a ratio between two physical effects. Then「comparable to 1」means「the effects have reached a draw.」By guessing that unknown dimensionless numbers were comparable to 1, we foreshadowed the easy-cases reasoning that we use for these examples of competition.
+As a bonus, this general model of competition explains why we guess that an unknown dimensionless number is comparable to 1 — for example, when we estimated an atomic blast energy in Section 5.2.2. Often, the dimensionless number represents a ratio between two physical effects. Then「comparable to 1」means「the effects have reached a draw.」By guessing that unknown dimensionless numbers were comparable to 1, we foreshadowed the easy-cases reasoning that we use for these examples of competition.
 
 8.3.2.2 Hydrogen's binding energy
 
@@ -1236,7 +1236,7 @@ confinement energy
 
 where the absolute-value bars say that, although the electrostatic potential energy is negative, we care only about its magnitude.
 
-In a hydrogen atom of radius 𝑟, the electrostatic energy is 𝑒2/4𝜋𝜖0𝑟. The confinement energy—which we estimated in Section 6.5.2 by using lumping—is comparable to ℏ2/𝑚e𝑟2. Therefore,
+In a hydrogen atom of radius 𝑟, the electrostatic energy is 𝑒2/4𝜋𝜖0𝑟. The confinement energy — which we estimated in Section 6.5.2 by using lumping — is comparable to ℏ2/𝑚e𝑟2. Therefore,
 
 𝛽 ∼ 𝑒2/4𝜋𝜖0𝑟
 
@@ -1348,7 +1348,7 @@ The special radius, and therefore 𝑟, is determined by equating electrostatic 
 
 E
 
-Our next project is to use the easy-cases regimes of size to understand thermal expansion—why substances expand upon heating. The first step is to sketch the total energy 𝐸, Econfinement
+Our next project is to use the easy-cases regimes of size to understand thermal expansion — why substances expand upon heating. The first step is to sketch the total energy 𝐸, Econfinement
 
 which is the sum of confinement and electrostatic energies.
 
@@ -1396,7 +1396,7 @@ To see how this asymmetry leads to thermal expansion, look at how thermal energy
 
 305
 
-converts into and out of potential energy in the bond. The minimum bond length 𝑟min and the maximum bond length 𝑟max are determined by where the vibration speed is zero—where the bond has slurped up all the kinetic energy (the thermal energy) and turned it into potential energy.
+converts into and out of potential energy in the bond. The minimum bond length 𝑟min and the maximum bond length 𝑟max are determined by where the vibration speed is zero — where the bond has slurped up all the kinetic energy (the thermal energy) and turned it into potential energy.
 
 ravg
 
@@ -1534,7 +1534,7 @@ In the first regime, the Sun is too cold for its size, so gravity wins the compe
 
 307
 
-the temperature, and the thermal energy fall—until thermal motion again balances gravity. The result is the middle regime. In the middle regime, the Sun has just the right temperature—determined by the condition 𝑘B𝑇 ∼
+the temperature, and the thermal energy fall — until thermal motion again balances gravity. The result is the middle regime. In the middle regime, the Sun has just the right temperature — determined by the condition 𝑘B𝑇 ∼
 
 𝐺𝑀Sun𝑚p/𝑅Sun, so
 
@@ -1610,11 +1610,11 @@ waves
 
 on the open ocean, where their wavelength was much smaller than v2 = gh
 
-the depth. Their speed—technically, the phase velocity—is given by 𝑣2 = 𝑔𝜆 (Problem 5.11), where 𝜆 is the reduced wavelength 𝜆/2𝜋.
+the depth. Their speed — technically, the phase velocity — is given by 𝑣2 = 𝑔𝜆 (Problem 5.11), where 𝜆 is the reduced wavelength 𝜆/2𝜋.
 
 h → 0
 
-These two regimes—deep and shallow water—are distinguished by n
+These two regimes — deep and shallow water — are distinguished by n
 
 the dimensionless ratio ℎ/𝜆. (You can also use ℎ/𝜆, but the math-deep-water
 
@@ -1628,9 +1628,9 @@ Because the axis measures depth, let's orient the axis vertically and place deep
 
 Another familiar kind of wave is produced by dropping a pebble in a pond.
 
-Small ripples zoom outward from the point of impact. These waves have a small wavelength, much smaller than the depth of the pond. Therefore, ℎ/𝜆 is large—as it is for deep-water waves.
+Small ripples zoom outward from the point of impact. These waves have a small wavelength, much smaller than the depth of the pond. Therefore, ℎ/𝜆 is large — as it is for deep-water waves.
 
-However, these ripples are different from the deep-water waves on the open ocean. Ocean waves are driven by the water's weight—that is, by gravity. In contrast, ripples are driven by the water's surface tension—the same effect that allows small bugs to walk on water (see Problem 8.15). In order to distinguish ripples from deep-water gravity waves, our second axis should measure the relative importance of gravity and surface tension.
+However, these ripples are different from the deep-water waves on the open ocean. Ocean waves are driven by the water's weight — that is, by gravity. In contrast, ripples are driven by the water's surface tension — the same effect that allows small bugs to walk on water (see Problem 8.15). In order to distinguish ripples from deep-water gravity waves, our second axis should measure the relative importance of gravity and surface tension.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -1940,7 +1940,7 @@ n
 
 ρn
 
-On this map, the middle regimes are not our usual middle regimes. Our usual middle regimes represented a particular regime (which was usually of the form 𝛽 ∼ 1). However, on this map, the middle regimes represent the general solution 𝛽 = anything. As an example, look at the bottom, deep-water row of three regimes. The bookend regimes, deep-water gravity waves and deep-water ripples, are easy cases of the middle, deep-water regime. For fun, check the other limiting cases, including that the central regime—which covers waves driven by any mixture of gravity and surface tension and traveling on any depth of water—turns into the other eight regimes in the appropriate limits.
+On this map, the middle regimes are not our usual middle regimes. Our usual middle regimes represented a particular regime (which was usually of the form 𝛽 ∼ 1). However, on this map, the middle regimes represent the general solution 𝛽 = anything. As an example, look at the bottom, deep-water row of three regimes. The bookend regimes, deep-water gravity waves and deep-water ripples, are easy cases of the middle, deep-water regime. For fun, check the other limiting cases, including that the central regime — which covers waves driven by any mixture of gravity and surface tension and traveling on any depth of water — turns into the other eight regimes in the appropriate limits.
 
 8.4.2 The two-dimensional world of physics Now we'll use the same method to organize the four fundamental branches of physics: classical (Newtonian) mechanics, quantum mechanics, special relativity, and quantum electrodynamics.
 
@@ -1960,7 +1960,7 @@ relativity
 
 mechanics
 
-For the second axis, we compare one of the two remaining branches of physics—either quantum mechanics or quantum electrodynamics—with either classical mechanics or special relativity. Because quantum electrodynamics, if only from its name, looks frightening, let's select quantum mechanics. We've seen its effect several times: Quantum mechanics contributes a new constant of nature ℏ. This constant appears in the Heisenberg uncertainty principle Δ𝑝Δ𝑥 ∼ ℏ, where Δ𝑝 and Δ𝑥 are a particle's momentum and position uncertainties, respectively. The Heisenberg uncertainty principle restricts how small we can make these uncertainties, and therefore how accurately we can determine the position and momentum.
+For the second axis, we compare one of the two remaining branches of physics — either quantum mechanics or quantum electrodynamics — with either classical mechanics or special relativity. Because quantum electrodynamics, if only from its name, looks frightening, let's select quantum mechanics. We've seen its effect several times: Quantum mechanics contributes a new constant of nature ℏ. This constant appears in the Heisenberg uncertainty principle Δ𝑝Δ𝑥 ∼ ℏ, where Δ𝑝 and Δ𝑥 are a particle's momentum and position uncertainties, respectively. The Heisenberg uncertainty principle restricts how small we can make these uncertainties, and therefore how accurately we can determine the position and momentum.
 
 However, if ℏ were zero, then the uncertainty principle would not restrict anything. We could exactly determine the position and momentum of a particle simultaneously, as we expect in classical mechanics. Classical mechanics is the ℏ → 0 limit of quantum mechanics. Therefore, classical and quantum mechanics are connected on a second, ℏ axis. The map including quantum mechanics therefore has two dimensions.
 
@@ -1986,7 +1986,7 @@ mechanics
 
 8 Easy cases
 
-In this two-dimensional map of physics, one corner sits empty. Furthermore, one branch of physics—quantum electrodynamics—hasn't been considered. We need only a bit of courage to set quantum electrodynamics in the empty corner. Quantum mechanics must be the 𝑐 → ∞ limit of quantum electrodynamics. And it is. Quantum electrodynamics is the result of marrying special relativity (𝑐 < ∞) and quantum mechanics (ℏ > 0). Thus, in the ℏ → 0 limit, quantum electrodynamics turns into special relativity.
+In this two-dimensional map of physics, one corner sits empty. Furthermore, one branch of physics — quantum electrodynamics — hasn't been considered. We need only a bit of courage to set quantum electrodynamics in the empty corner. Quantum mechanics must be the 𝑐 → ∞ limit of quantum electrodynamics. And it is. Quantum electrodynamics is the result of marrying special relativity (𝑐 < ∞) and quantum mechanics (ℏ > 0). Thus, in the ℏ → 0 limit, quantum electrodynamics turns into special relativity.
 
 quantum
 
@@ -2094,9 +2094,9 @@ rmax
 
 rmin
 
-Match the three power means—arithmetic, geo-
+Match the three power means — arithmetic, geo-
 
-metric, and harmonic—to the three lengths: the l
+metric, and harmonic — to the three lengths: the l
 
 semimajor axis 𝑎 (which is related to the orbital period), the semiminor axis 𝑏, and the semilatus rectum 𝑙 (which is related to the orbital angular momentum).
 
@@ -2140,7 +2140,7 @@ Problem 8.26
 
 Superfluid helium
 
-Helium, when cold, turns into a liquid. When very cold, the liquid turns into a superfluid—a quantum liquid. Here is a dimensionless ratio determining how quantum the liquid is
+Helium, when cold, turns into a liquid. When very cold, the liquid turns into a superfluid — a quantum liquid. Here is a dimensionless ratio determining how quantum the liquid is
 
 quantum uncertainty in the position of a helium atom 𝛽 ≡
 
@@ -2180,7 +2180,7 @@ A fixed-term, fixed-interest-rate loan has four important parameters: the princi
 
 The dimensionless quantity determining the type of loan is 𝛽 ≡ 𝑛𝜏𝑟.
 
-a. Estimate the payment (the amount per term) in the easy case 𝛽 = 0, in terms of 𝑃, 𝑛, and 𝜏. (The term 𝑛𝜏 and the repayment interval 𝜏 don't vary that much—𝜏 is usually 1 month and 𝑛𝜏 is somewhere between 3 to 30 years—so 𝛽 ≪ 1 is usually reached by lowering the interest rate 𝑟.) b. Estimate the payment in the slightly harder case where 𝛽 ≪ 1 (which includes the 𝛽 = 0 case). In this regime, the loan is called an installment loan.
+a. Estimate the payment (the amount per term) in the easy case 𝛽 = 0, in terms of 𝑃, 𝑛, and 𝜏. (The term 𝑛𝜏 and the repayment interval 𝜏 don't vary that much — 𝜏 is usually 1 month and 𝑛𝜏 is somewhere between 3 to 30 years — so 𝛽 ≪ 1 is usually reached by lowering the interest rate 𝑟.) b. Estimate the payment in the slightly harder case where 𝛽 ≪ 1 (which includes the 𝛽 = 0 case). In this regime, the loan is called an installment loan.
 
 c. Estimate the payment in the easy case 𝛽 ≫ 1. In this regime, the loan is called an annuity. (This regime is usually reached by increasing 𝑛.) Problem 8.29
 
@@ -2252,7 +2252,7 @@ The terminal speed 𝑣 of a raindrop with radius 𝑟 can be written in the fol
 
 air
 
-In this problem, you use easy cases of 𝑥 ≡ 𝜌water/𝜌air to guess how buoyancy affects this result. (Imagine that you may vary the density of air or water as needed.) In dimensional analysis, including the buoyant force requires including 𝜌air, 𝑔, and 𝑟 in order to compute the weight of the displaced fluid (which is the buoyant force)—but those variables are already included in the dimensional analysis.
+In this problem, you use easy cases of 𝑥 ≡ 𝜌water/𝜌air to guess how buoyancy affects this result. (Imagine that you may vary the density of air or water as needed.) In dimensional analysis, including the buoyant force requires including 𝜌air, 𝑔, and 𝑟 in order to compute the weight of the displaced fluid (which is the buoyant force) — but those variables are already included in the dimensional analysis.
 
 Therefore, including buoyancy doesn't require a new dimensionless group. So it must change the form of the dimensionless function 𝑓 .
 
@@ -2292,7 +2292,7 @@ Our final tool for mastering complexity is making spring models. The essential c
 
 9.1 Bond springs
 
-A ubiquitous spring is the bond between the electron and proton in hydrogen—the bond that is our model for all chemical bonds. In Section 9.1.1, we'll build a spring model of hydrogen, giving us a physical model for the Young's modulus (Section 9.1.2) and for the speed of sound (Section 9.1.3).
+A ubiquitous spring is the bond between the electron and proton in hydrogen — the bond that is our model for all chemical bonds. In Section 9.1.1, we'll build a spring model of hydrogen, giving us a physical model for the Young's modulus (Section 9.1.2) and for the speed of sound (Section 9.1.3).
 
 9.1.1 Finding the spring
 
@@ -2316,7 +2316,7 @@ a0
 
 x
 
-locally by its tangent line—which is an example of lumping shapes and graphs (Section 6.4) and is where spring attraction
+locally by its tangent line — which is an example of lumping shapes and graphs (Section 6.4) and is where spring attraction
 
 models discard actual information and complexity.
 
@@ -2604,13 +2604,13 @@ Equating the typical energies gives an equation for 𝜔0: 𝑘𝐴20
 
 𝐸kinetic
 
-The amplitude 𝐴0 divides out—another illustration that a spring's period is independent of amplitude—giving 𝜔0 ∼ 𝑘/𝑚 . Because the energy ratio is 1 (due to the virial theorem), the missing dimensionless prefactor is 1.
+The amplitude 𝐴0 divides out — another illustration that a spring's period is independent of amplitude — giving 𝜔0 ∼ 𝑘/𝑚 . Because the energy ratio is 1 (due to the virial theorem), the missing dimensionless prefactor is 1.
 
 9.2.2 Vibrations of a piano string
 
-From springs to strings: A piano string is a steel wire stretched close to its breaking point—the high tension makes the string's resistance to bending less important and the sound cleaner (as you investigated in Problem 9.17).
+From springs to strings: A piano string is a steel wire stretched close to its breaking point — the high tension makes the string's resistance to bending less important and the sound cleaner (as you investigated in Problem 9.17).
 
-When you push a piano key, a hammer bangs on the string and sets it into vibration—whose frequency we'll estimate with a spring model.
+When you push a piano key, a hammer bangs on the string and sets it into vibration — whose frequency we'll estimate with a spring model.
 
 For a physical model, start with an unstretched piano string of length 𝐿.
 
@@ -2698,7 +2698,7 @@ Now let's estimate the kinetic energy in the motion of the string. As the string
 
 ∼𝑣2
 
-where 𝜌 is the string's density and 𝑏 is its diameter. The kinetic energy is also proportional to the squared amplitude 𝑦20—the other energy signature of a spring. Equating the energies gives the equation for 𝜔: 𝑦 2
+where 𝜌 is the string's density and 𝑏 is its diameter. The kinetic energy is also proportional to the squared amplitude 𝑦20 — the other energy signature of a spring. Equating the energies gives the equation for 𝜔: 𝑦 2
 
 𝜌𝑏2 𝐿 𝜔2 𝑦2
 
@@ -2728,7 +2728,7 @@ The length 𝐿 and the squared amplitude 𝑦20 cancel, leaving 𝜔 = 1
 
 (9.21)
 
-Despite the extensive use of lumping, this result turns out to be exact—as do many energy-based spring analyses. The circular frequency 𝑓 = 𝜔/2𝜋
+Despite the extensive use of lumping, this result turns out to be exact — as do many energy-based spring analyses. The circular frequency 𝑓 = 𝜔/2𝜋
 
 has the same structure:
 
@@ -2884,7 +2884,7 @@ Therefore, the stiffness is
 
 (9.33)
 
-To find how (Δ𝑙)typical spring depends on ℎ, compare typical bond springs in the thick and thin blocks—for example, a spring halfway from the neutral line to the top surface. Because the thick block is twice as thick as the thin block, this spring is twice as far from the neutral line in absolute distance.
+To find how (Δ𝑙)typical spring depends on ℎ, compare typical bond springs in the thick and thin blocks — for example, a spring halfway from the neutral line to the top surface. Because the thick block is twice as thick as the thin block, this spring is twice as far from the neutral line in absolute distance.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -2892,7 +2892,7 @@ To find how (Δ𝑙)typical spring depends on ℎ, compare typical bond springs 
 
 9 Spring models
 
-The extension is proportional to the distance from the neutral line—as you can guess by observing that it is the simplest scaling relationship that predicts zero extension at the neutral line (or try Problem 9.1). In symbols, (Δ𝑙)typical spring ∝ ℎ.
+The extension is proportional to the distance from the neutral line — as you can guess by observing that it is the simplest scaling relationship that predicts zero extension at the neutral line (or try Problem 9.1). In symbols, (Δ𝑙)typical spring ∝ ℎ.
 
 (9.34)
 
@@ -3132,9 +3132,9 @@ Because the bar vibrates freely without an external force, the center of mass (t
 
 9.3 Generating sound, light, and gravitational radiation 331
 
-9.3 Generating sound, light, and gravitational radiation The sound generated by the vibrating wood blocks is an example of the most pervasive spring: radiation. It comes in three varieties. Electromagnetic radiation (or, more informally, light) is produced by an accelerating charge. Sound (acoustic radiation) can be produced simply by a changing but nonmoving charge (such as an expanding or contracting speaker membrane). Therefore, sound is simpler than light—which in turn is simpler than gravitational radiation. Do the easy cases first: We'll first apply spring models to sound (Section 9.3.1). By adding the complexity of motion, we'll extend the analysis to light (Section 9.3.2). Then we'll be ready for the complexity of gravitational radiation (Section 9.3.3).
+9.3 Generating sound, light, and gravitational radiation The sound generated by the vibrating wood blocks is an example of the most pervasive spring: radiation. It comes in three varieties. Electromagnetic radiation (or, more informally, light) is produced by an accelerating charge. Sound (acoustic radiation) can be produced simply by a changing but nonmoving charge (such as an expanding or contracting speaker membrane). Therefore, sound is simpler than light — which in turn is simpler than gravitational radiation. Do the easy cases first: We'll first apply spring models to sound (Section 9.3.1). By adding the complexity of motion, we'll extend the analysis to light (Section 9.3.2). Then we'll be ready for the complexity of gravitational radiation (Section 9.3.3).
 
-9.3.1 Acoustic radiation from a charge monopole When we think of radiation, we think first of electromagnetic radiation, which we see (pun intended) everywhere. To analyze sound radiation while benefiting from what we know about electromagnetic radiation, we'll find an analogy between electromagnetic and acoustic radiation—starting at the source of radiation, namely a single charge (a monopole).
+9.3.1 Acoustic radiation from a charge monopole When we think of radiation, we think first of electromagnetic radiation, which we see (pun intended) everywhere. To analyze sound radiation while benefiting from what we know about electromagnetic radiation, we'll find an analogy between electromagnetic and acoustic radiation — starting at the source of radiation, namely a single charge (a monopole).
 
 The search for the acoustic analog of charge is aided by scaling relations. An electric charge 𝑞 produces a disturbance, the electric field 𝐸. Their connection is 𝐸 ∝ 𝑞. Because the symbols 𝐸 and 𝑞 amplify the mental connection to electromagnetism, let's write the relation between 𝐸 and 𝑞 in words. Words promote a broader, more abstract view not limited to electromagnetism: field ∝ charge.
 
@@ -3218,7 +3218,7 @@ the rate, a convenient notation is ˙
 
 𝑀: The dot represents the time derivative,
 
-turning mass into a mass rate—which is the charge strength.
+turning mass into a mass rate — which is the charge strength.
 
 acoustics
 
@@ -3250,7 +3250,7 @@ field from a point source
 
 We have found an acoustic field 𝑣 proportional to 𝑟−2. But, as we found in Section 5.4.3, the signature of radiation is that the field is proportional to 𝑟−1. So, we have constructed the acoustic analog of a static electric field and charge, but we have not yet constructed a radiating acoustic system.
 
-Producing radiation requires change—for example, due to a speaker. As a model of a speaker, a small pulsating sphere grows and shrinks in response to the music that it broadcasts. Maybe you put the sphere in a fancy box and slap a brand name on it, but growing and shrinking is still its fundamental operating principle and how it makes sound. A simple model of this change is spring motion—a sinusoidal oscillation in the charge:
+Producing radiation requires change — for example, due to a speaker. As a model of a speaker, a small pulsating sphere grows and shrinks in response to the music that it broadcasts. Maybe you put the sphere in a fancy box and slap a brand name on it, but growing and shrinking is still its fundamental operating principle and how it makes sound. A simple model of this change is spring motion — a sinusoidal oscillation in the charge:
 
 ˙𝑀 = ˙𝑀0 cos𝜔𝑡.
 
@@ -3330,7 +3330,7 @@ In the lumping model, the velocity field in the near zone follows the changes in
 
 𝑀 instantly, with energy flowing outward and inward in rhythm with the speaker's motion. At the zone boundary, at 𝑟 ∼ 𝜆, the velocity field changes its character. It becomes a signal describing those changes, and this signal, a sound wave, travels outward at the speed of sound 𝑐s.
 
-To estimate the power carried by this signal—which is the power radiated by the source—start with the power per area, which is energy flux. At the zone boundary, 𝑟 ∼ 𝜆, so
+To estimate the power carried by this signal — which is the power radiated by the source — start with the power per area, which is energy flux. At the zone boundary, 𝑟 ∼ 𝜆, so
 
 energy flux = energy density (at 𝑟 ∼ 𝜆)
 
@@ -3342,11 +3342,11 @@ energy flux = energy density (at 𝑟 ∼ 𝜆)
 
 𝑐s
 
-To estimate the energy density at 𝑟 ∼ 𝜆, return to the lumping approximation—that the velocity field tracks the changes in ˙
+To estimate the energy density at 𝑟 ∼ 𝜆, return to the lumping approximation — that the velocity field tracks the changes in ˙
 
 𝑀 throughout the
 
-near zone—and gather enough courage to extend the assumption. Assume that the instantaneous tracking happens all the way out to the zone boundary—that is, it applies not just when 𝑟 ≪ 𝜆 but even when 𝑟 ∼ 𝜆 (where the field abruptly changes its character and becomes a radiation field).
+near zone — and gather enough courage to extend the assumption. Assume that the instantaneous tracking happens all the way out to the zone boundary — that is, it applies not just when 𝑟 ≪ 𝜆 but even when 𝑟 ∼ 𝜆 (where the field abruptly changes its character and becomes a radiation field).
 
 In this approximation, the velocity field at 𝑟 ∼ 𝜆 is 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -3442,7 +3442,7 @@ This calculation becomes slightly simpler if we replace ˙
 
 𝑀 by 𝜌 ˙𝑉,
 
-where ˙𝑉 is the rate of volume change. (In acoustics, ˙𝑉 is often called the source strength 𝑄—for example, in the classic work The Physics 1 cm
+where ˙𝑉 is the rate of volume change. (In acoustics, ˙𝑉 is often called the source strength 𝑄 — for example, in the classic work The Physics 1 cm
 
 of Musical Instruments [15, p. 172]. However, for the sake of the analogy with electromagnetism, it is more consistent to make the source strength ˙
 
@@ -3684,7 +3684,7 @@ implies an electromagnetic radiated power of 𝑞2𝜔2/8𝜋𝜖0𝑐.
 
 9 Spring models
 
-Alas, this conjecture has three problems. First, if it represents the power radiated by an oscillating charge—moving, say, on a spring oscillating with frequency 𝜔—then its acceleration is ∝ 𝜔2, so the radiated power is proportional to the acceleration. However, we learned from dimensional analysis (Section 5.4.3) that the power had to be proportional to the acceleration squared. Second, the power should depend on the amplitude of the motion, which is a length, yet the proposed power contains no such length.
+Alas, this conjecture has three problems. First, if it represents the power radiated by an oscillating charge — moving, say, on a spring oscillating with frequency 𝜔 — then its acceleration is ∝ 𝜔2, so the radiated power is proportional to the acceleration. However, we learned from dimensional analysis (Section 5.4.3) that the power had to be proportional to the acceleration squared. Second, the power should depend on the amplitude of the motion, which is a length, yet the proposed power contains no such length.
 
 These two problems are symptoms of the third problem, that transferring the acoustic analysis to electromagnetism has made an illegal situation. A single changing electromagnetic charge 𝑞(𝑡) violates charge conservation: If 𝑞(𝑡) is increasing, from where would the new charge come?
 
@@ -3758,7 +3758,7 @@ E+
 
 This approximation would be exact if the vectors lay along the test
 
-same line—which they would if the dipole were an ideal di-charge
+same line — which they would if the dipole were an ideal di-charge
 
 pole, with zero separation (𝑙 = 0). By making this approximation even for this nonideal dipole, we will obtain an important E−
 
@@ -3876,11 +3876,11 @@ Problem 9.7
 
 Lifetime of hydrogen if it could radiate
 
-Assuming that the ground state of hydrogen could radiate as an oscillating dipole (because of the orbiting electron), estimate the time 𝜏 required for it to radiate its binding energy 𝐸0. The ground state of hydrogen is protected by quantum mechanics—there is no lower-energy state to go to—but many of hydrogen's higher-energy states have a lifetime comparable to 𝜏.
+Assuming that the ground state of hydrogen could radiate as an oscillating dipole (because of the orbiting electron), estimate the time 𝜏 required for it to radiate its binding energy 𝐸0. The ground state of hydrogen is protected by quantum mechanics — there is no lower-energy state to go to — but many of hydrogen's higher-energy states have a lifetime comparable to 𝜏.
 
-9.3.3 Gravitational radiation from a quadrupole Having started with acoustics and practiced with electromagnetics, we can extend our analysis of radiation to gravitational waves—without solving the equations of general relativity. In acoustics, radiation could be produced by a monopole (a point charge). In electromagnetics, radiation could be produced by a dipole but not by a monopole. Building a dipole requires charges of two signs. Because the gravitational equivalent of charge is mass, which comes in one sign, there is no way to make a gravitational dipole.
+9.3.3 Gravitational radiation from a quadrupole Having started with acoustics and practiced with electromagnetics, we can extend our analysis of radiation to gravitational waves — without solving the equations of general relativity. In acoustics, radiation could be produced by a monopole (a point charge). In electromagnetics, radiation could be produced by a dipole but not by a monopole. Building a dipole requires charges of two signs. Because the gravitational equivalent of charge is mass, which comes in one sign, there is no way to make a gravitational dipole.
 
-Therefore, gravitational radiation requires a quadrupole. A quadrupole is to a dipole what a dipole is to a monopole. It is two nearby dipoles with opposite strengths—so that their fields almost cancel.
+Therefore, gravitational radiation requires a quadrupole. A quadrupole is to a dipole what a dipole is to a monopole. It is two nearby dipoles with opposite strengths — so that their fields almost cancel.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -4154,7 +4154,7 @@ quadrupole ≈ 32
 
 Sun
 
-In this processed form, the dimensions are more obviously correct than they were in the unprocessed form. The factors before the × sign are all dimensionless. The factor of 𝑚Earth𝑣2 is an energy. And the factor of 𝜔 converts energy into energy per time—which is power.
+In this processed form, the dimensions are more obviously correct than they were in the unprocessed form. The factors before the × sign are all dimensionless. The factor of 𝑚Earth𝑣2 is an energy. And the factor of 𝜔 converts energy into energy per time — which is power.
 
 Now that we have reorganized the formula into meaningful chunks, we are ready to evaluate its factors.
 
@@ -4238,7 +4238,7 @@ With these values,
 
 The resulting radiated power is about 200 watts. At that rate, the Earth's orbit will not soon collapse due to gravitational radiation (Problem 9.8).
 
-Quadrupole radiation depends strongly on the Mach number 𝑣source/𝑐, and the Earth's Mach number is tiny. However, when a star gets captured by a black hole, the orbital speed can be a large fraction of 𝑐. Then the Mach number is close to 1 and the radiated power can be enormous—perhaps large enough for us to detect on distant Earth.
+Quadrupole radiation depends strongly on the Mach number 𝑣source/𝑐, and the Earth's Mach number is tiny. However, when a star gets captured by a black hole, the orbital speed can be a large fraction of 𝑐. Then the Mach number is close to 1 and the radiated power can be enormous — perhaps large enough for us to detect on distant Earth.
 
 Problem 9.8
 
@@ -4312,7 +4312,7 @@ tunately, we do not need to solve for the motion in general, because we can use 
 
 The three regimes are then (1) 𝜔 ≪ 𝜔0, (2) 𝜔 = 𝜔0, and (3) 𝜔 ≫ 𝜔0.
 
-To decide which regime is relevant, let's make a rough estimate of how the two frequencies compare. For air molecules, the natural frequency 𝜔0 corresponds to ultraviolet radiation—the radiation required to break the strong triple bond in N2. The driving frequency 𝜔 corresponds to one of the colors in visible light (sunlight), so the electron's motion is in the first, low-frequency regime 𝜔 ≪ 𝜔0. (For the analysis of the other regimes, try Problems 9.12 and 9.15.)
+To decide which regime is relevant, let's make a rough estimate of how the two frequencies compare. For air molecules, the natural frequency 𝜔0 corresponds to ultraviolet radiation — the radiation required to break the strong triple bond in N2. The driving frequency 𝜔 corresponds to one of the colors in visible light (sunlight), so the electron's motion is in the first, low-frequency regime 𝜔 ≪ 𝜔0. (For the analysis of the other regimes, try Problems 9.12 and 9.15.)
 
 The low-frequency regime is easiest to study in the 𝜔 = 0 extreme. It represents a constant force 𝐹 = 𝑒𝐸0 pulling on the electron and stretching the electron–proton bond. When there is change, make what does not change! The bond stretches until the spring force balances the stretching force 𝑒𝐸0. The forces balance when the stretch is 𝑥 = 𝐹/𝑘 or 𝑒𝐸0/𝑘.
 
@@ -4412,7 +4412,7 @@ The factor of 𝐸20 is proportional to the energy density in the incoming sunli
 
 (9.118)
 
-Let's review how the four powers of 𝜔 got here. For low frequencies—and visible light is a low frequency compared to the natural electronic-vibration frequency of an air molecule—the amplitude of spring motion is independent of the driving frequency. The acceleration is then proportional to 𝜔2.
+Let's review how the four powers of 𝜔 got here. For low frequencies — and visible light is a low frequency compared to the natural electronic-vibration frequency of an air molecule — the amplitude of spring motion is independent of the driving frequency. The acceleration is then proportional to 𝜔2.
 
 And the radiated power is proportional to the square of the acceleration, so it is proportional to 𝜔4.
 
@@ -4420,7 +4420,7 @@ And the radiated power is proportional to the square of the acceleration, so it 
 
 9.4 Effect of radiation: Blue skies and red sunsets 349
 
-Therefore, the air molecule acts like a filter that takes in (some of the) incoming sunlight and produces scattered light, altering the distribution of colors—similar to how a circuit changes the amplitude of each incoming frequency. However, unlike the low-pass 𝑅𝐶 circuit of Section 2.4.4, which preserves low frequencies and attenuates high frequencies, the air molecule amplifies the high frequencies.
+Therefore, the air molecule acts like a filter that takes in (some of the) incoming sunlight and produces scattered light, altering the distribution of colors — similar to how a circuit changes the amplitude of each incoming frequency. However, unlike the low-pass 𝑅𝐶 circuit of Section 2.4.4, which preserves low frequencies and attenuates high frequencies, the air molecule amplifies the high frequencies.
 
 Here are the sunlight and the scattered spectra based on the 𝜔4 filter. Each spectrum shows, by the area of each band, the relative intensities of the various colors. (The unlabeled color band between red and yellow is orange.) I
 
@@ -4460,7 +4460,7 @@ yellow
 
 yellow
 
-Sunlight looks white. In the scattered light, the high-frequency colors such as blue and violet are much more prominent than they are in sunlight. For example, because 𝜔blue/𝜔red ≈ 1.5 and 1.54 ≈ 5, the blue part of the sunlight is amplified by a factor of 5 compared to the red part. As a result, the scattered light—what comes to us from the sky—looks blue!
+Sunlight looks white. In the scattered light, the high-frequency colors such as blue and violet are much more prominent than they are in sunlight. For example, because 𝜔blue/𝜔red ≈ 1.5 and 1.54 ≈ 5, the blue part of the sunlight is amplified by a factor of 5 compared to the red part. As a result, the scattered light — what comes to us from the sky — looks blue!
 
 9.4.2 Sunsets are red
 
@@ -4670,7 +4670,7 @@ light, blue–green light. A blue–green photon has an energy ℏ𝜔 of approx
 
 for blue–green light 𝜆mfp ∼ 100 kilometers. After a distance comparable to 100 kilometers, a significant fraction of the nonred light has been removed (and scattered in all directions).
 
-At midday, when the Sun is overhead, the travel distance is the thickness of the atmosphere 𝐻, roughly 8 kilometers. This distance is much shorter than the mean free path, so very little light (of any color) is scattered out of the sunbeam, and the Sun looks white as it would from space. (Fortunately, our theory doesn't predict that the midday Sun looks red—but do not test this analysis by looking directly at the Sun!) As the Sun descends in the sky, sunlight travels ever farther in the atmosphere.
+At midday, when the Sun is overhead, the travel distance is the thickness of the atmosphere 𝐻, roughly 8 kilometers. This distance is much shorter than the mean free path, so very little light (of any color) is scattered out of the sunbeam, and the Sun looks white as it would from space. (Fortunately, our theory doesn't predict that the midday Sun looks red — but do not test this analysis by looking directly at the Sun!) As the Sun descends in the sky, sunlight travels ever farther in the atmosphere.
 
 At sunset, how far does sunlight travel in the atmosphere?
 
@@ -4704,7 +4704,7 @@ longer than 100 kilometers for a blue–green photon. The trip of 300 kilometers
 
 Many physical processes contain a minimum-energy state where small deviations from the minimum require an energy proportional to the square of the deviation. This behavior is the essential characteristic of a spring. A spring is therefore not only a physical object but a transferable abstraction.
 
-This abstraction has helped us understand chemical bonds, sound speeds, and acoustic, electromagnetic, and gravitational radiation—and from there the colors of the sky and sunset.
+This abstraction has helped us understand chemical bonds, sound speeds, and acoustic, electromagnetic, and gravitational radiation — and from there the colors of the sky and sunset.
 
 Problem 9.10
 
@@ -4836,7 +4836,7 @@ Buckling
 
 In this problem you estimate the force required to buckle a strut, F
 
-such as a leg bone landing on the ground. The strut has Young's modulus 𝑌, thickness ℎ, width 𝑤, and length 𝑙. The force 𝐹 has de- ∆x flected the strut by Δ𝑥, producing a torque 𝐹Δ𝑥. Find the restoring torque and the approximate condition on 𝐹 for 𝐹Δ𝑥 to exceed the restoring torque—whereupon the strut buckles.
+such as a leg bone landing on the ground. The strut has Young's modulus 𝑌, thickness ℎ, width 𝑤, and length 𝑙. The force 𝐹 has de- ∆x flected the strut by Δ𝑥, producing a torque 𝐹Δ𝑥. Find the restoring torque and the approximate condition on 𝐹 for 𝐹Δ𝑥 to exceed the restoring torque — whereupon the strut buckles.
 
 Problem 9.19
 

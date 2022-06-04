@@ -1,5 +1,40 @@
 ## 0501. Dimensions
 
+5.1 Dimensionless groups
+
+139
+
+5.2 One dimensionless group
+
+147
+
+5.3 More dimensionless groups
+
+152
+
+5.4 Temperature and charge
+
+165
+
+5.5 Atoms, molecules, and materials
+
+175
+
+5.6 Summary and further problems
+
+192
+
+In 1906, Los Angeles received 540 millimeters of precipitation (rain, snow, sleet, and hail).
+
+Is this rainfall large or small?
+
+On the one hand, 540 is a large number, so the rainfall is large. On the other hand, the rainfall is also 0.00054 kilometers, and 0.00054 is a tiny number, so the rainfall is small. These arguments contradict each other, so at least one must be wrong. Here, both are nonsense.
+
+A valid argument comes from a meaningful comparison — for example, comparing 540 millimeters per year with worldwide average rainfall — which we estimated in Section 3.4.3 as 1 meter per year. In comparison to this rainfall, Los Angeles in 1906 was dry. Another meaningful comparison is with the average rainfall in Los Angeles, which is roughly 350 millimeters per year. In comparison, 1906 was a wet year in Los Angeles.
+
+In the nonsense arguments, changing the units of length changed the result of the comparison. In contrast, the meaningful comparisons are independent of the system of units: No matter what units we select for length and time, the ratio of rainfalls does not change. In the language of symmetry, which we met in Chapter 3, changing units is the symmetry operation, 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+
+
 and meaningful comparisons are the invariants. They are invariant because they have no dimensions. When there is change, look for what does not change: Make only dimensionless comparisons.
 
 This criterion is necessary for avoiding nonsense; however, it is not sufficient. To illustrate the difficulty, let's compare rainfall with the orbital speed of the Earth. Both quantities have dimensions of speed, so their ratio is invariant under a change of units. However, judging the wetness or dryness of Los Angeles by comparing its rainfall to the Earth's orbital speed produces nonsense.
@@ -182,7 +217,7 @@ This quotient has dimensions of L−1. To make it dimensionless, multiply it by 
 
 Are there other dimensionless groups?
 
-To get rid of time, we started with 𝑎/𝑣2 and then ended, inevitably, with the group 𝑎𝑟/𝑣2. To make another dimensionless group, we would have to choose another starting point. However, the only starting points that get rid of time are powers of 𝑎/𝑣2—for example, 𝑣2/𝑎 or 𝑎2/𝑣4—and those choices lead to the corresponding power of 𝑎𝑟/𝑣2. Therefore, any dimensionless group can be formed from 𝑎𝑟/𝑣2. Our three quantities 𝑎, 𝑟, and 𝑣 produce exactly one independent dimensionless group.
+To get rid of time, we started with 𝑎/𝑣2 and then ended, inevitably, with the group 𝑎𝑟/𝑣2. To make another dimensionless group, we would have to choose another starting point. However, the only starting points that get rid of time are powers of 𝑎/𝑣2 — for example, 𝑣2/𝑎 or 𝑎2/𝑣4 — and those choices lead to the corresponding power of 𝑎𝑟/𝑣2. Therefore, any dimensionless group can be formed from 𝑎𝑟/𝑣2. Our three quantities 𝑎, 𝑟, and 𝑣 produce exactly one independent dimensionless group.
 
 As a result, any statement about the circular acceleration can be written using only 𝑎𝑟/𝑣2. All dimensionless statements using only 𝑎𝑟/𝑣2 have the general form
 
@@ -254,7 +289,7 @@ Using that form, which we cannot escape, the acceleration of the train is 𝑎 �
 
 (5.16)
 
-where the ∼ contains the (unknown) dimensionless constant. In this case, the dimensionless constant is 1. However, dimensional analysis, as this procedure is called, does not tell us its value—which would come from a calculus analysis or, approximately, from a lumping analysis (Section 6.3.4).
+where the ∼ contains the (unknown) dimensionless constant. In this case, the dimensionless constant is 1. However, dimensional analysis, as this procedure is called, does not tell us its value — which would come from a calculus analysis or, approximately, from a lumping analysis (Section 6.3.4).
 
 Using 𝑎 ∼ 𝑣2/𝑟, we can now estimate the inward acceleration of the train going around a curve. Imagine a moderately high-speed train traveling at 𝑣 ≈ 60 meters per second (approximately 220 kilometers or 135 miles per hour). At such speeds, railway engineers specify that the track's radius of curvature be at least 2 or 3 kilometers. Using the smaller radius of curvature, the inward acceleration becomes
 
@@ -288,7 +323,7 @@ timate the maximum walking speed. In walking, one foot is always in contact with
 
 center of mass (CM), pivots around the foot in contact with l
 
-the ground—as if the body were an inverted pendulum. If you walk at speed 𝑣 and have leg length 𝑙, then the resulting circular acceleration (the acceleration toward the foot) is 𝑣2/𝑙. When you walk fast enough such that this acceleration is more than 𝑔, gravity cannot supply enough acceleration.
+the ground — as if the body were an inverted pendulum. If you walk at speed 𝑣 and have leg length 𝑙, then the resulting circular acceleration (the acceleration toward the foot) is 𝑣2/𝑙. When you walk fast enough such that this acceleration is more than 𝑔, gravity cannot supply enough acceleration.
 
 This change happens when 𝑣 ∼ 𝑔𝑙 . Then your foot leaves the ground, and the walk turns into a run. Therefore, gait is determined by the dimensionless ratio 𝑣2/𝑔𝑙. This ratio, which also determines the speed of water waves (Problem 5.15) and of ships (Problem 5.64), is called the Froude number and abbreviated 𝖥𝗋.
 
@@ -328,7 +363,7 @@ there is only one independent dimensionless group, the universe cares only about
 
 5.1.2 Counting dimensionless groups
 
-Finding the circular acceleration required finding all possible dimensionless groups and showing that all groups could be constructed from one group—say, 𝑎𝑟/𝑣2. That reasoning followed a chain of constraints: To get rid of the time, the dimensionless group had to contain the quotient 𝑎/𝑣2; to get rid of the length, the quotient needed to be multiplied by the correct power of 𝑟.
+Finding the circular acceleration required finding all possible dimensionless groups and showing that all groups could be constructed from one group — say, 𝑎𝑟/𝑣2. That reasoning followed a chain of constraints: To get rid of the time, the dimensionless group had to contain the quotient 𝑎/𝑣2; to get rid of the length, the quotient needed to be multiplied by the correct power of 𝑟.
 
 For each problem, do we have to construct a similar chain of reasoning in order to count the dimensionless groups?
 
@@ -354,7 +389,7 @@ Our shortcut predicts no dimensionless groups at all. However, 𝑊/𝑚𝑔 is 
 
 What went wrong?
 
-Although the three quantities seem to contain three dimensions, the three dimensional combinations actually used—force (MLT−2), mass (M), and acceleration (LT−2)—can be constructed from just two dimensions. For example, we can construct them from mass and acceleration.
+Although the three quantities seem to contain three dimensions, the three dimensional combinations actually used — force (MLT−2), mass (M), and acceleration (LT−2) — can be constructed from just two dimensions. For example, we can construct them from mass and acceleration.
 
 But acceleration is not a fundamental dimension, so how can we use it?
 
@@ -462,7 +497,7 @@ c. What dimensionless constant is this group equal to?
 
 5.2 One dimensionless group
 
-The most frequent use of dimensional analysis involves one independent dimensionless group—for example, 𝑎𝑟/𝑣2 in our analysis of circular acceleration (Section 5.1.1). Let's look at this kind of case more closely, which has lessons for more complicated problems.
+The most frequent use of dimensional analysis involves one independent dimensionless group — for example, 𝑎𝑟/𝑣2 in our analysis of circular acceleration (Section 5.1.1). Let's look at this kind of case more closely, which has lessons for more complicated problems.
 
 5.2.1 Universal constants
 
@@ -472,7 +507,7 @@ independent dimensionless group = dimensionless constant, (5.22) θ 0
 
 the dimensionless constant is universal. Let's see what universal means m
 
-through an example—the analysis of a small-amplitude pendulum. So, imagine releasing a pendulum from a small angle 𝜃0.
+through an example — the analysis of a small-amplitude pendulum. So, imagine releasing a pendulum from a small angle 𝜃0.
 
 What is its period of oscillation?
 
@@ -480,7 +515,7 @@ The first step in dimensional analysis is to list the relevant 𝑇 T
 
 period
 
-quantities. The list begins with the goal quantity—here, 𝑔 LT−2 gravity the period 𝑇. It depends on gravity 𝑔, the string length 𝑙 L
+quantities. The list begins with the goal quantity — here, 𝑔 LT−2 gravity the period 𝑇. It depends on gravity 𝑔, the string length 𝑙 L
 
 string length
 
@@ -506,7 +541,7 @@ only quantity with dimensions of mass. A simple dimensionless group is 𝑔𝑇2
 
 where 𝐶 is a dimensionless constant. Even though its value is, for the moment, unknown, it is universal. The same constant applies to a pendulum with a shorter string or, perhaps more surprisingly, to a pendulum on Mars, with its different gravitational strength. If we find the constant for one pendulum on one planet, we know it for all pendulums on all planets.
 
-There are at least three ways to find 𝐶. The first is to solve the pendulum differential equation—which is hard work. The second approach is to solve a cleverly designed simpler problem (Problem 3.4). Although the approach is clever, it is not as general as the third method.
+There are at least three ways to find 𝐶. The first is to solve the pendulum differential equation — which is hard work. The second approach is to solve a cleverly designed simpler problem (Problem 3.4). Although the approach is clever, it is not as general as the third method.
 
 The third method is to measure 𝐶 with a home experiment! For that purpose, I turned my key ring into a pendulum by hanging it from a string. The string was roughly twice the length of American letter paper l
 
@@ -528,7 +563,7 @@ In metric units, 𝑔 ≈ 9.8 meters per second per second, 𝑙 ≈ 0.6 meters,
 
 (5.25)
 
-The system of units does not matter—which is the reason for using dimensionless groups: They are invariant under a change of units. Even so, an explicit 6 probably would not appear if we solved the pendulum differential equation honestly. But a more precise measurement of 𝐶 might suggest a closed form for this dimensionless constant.
+The system of units does not matter — which is the reason for using dimensionless groups: They are invariant under a change of units. Even so, an explicit 6 probably would not appear if we solved the pendulum differential equation honestly. But a more precise measurement of 𝐶 might suggest a closed form for this dimensionless constant.
 
 The pendulum length, from the knot where I hold it to the center of the key ring is 0.65 meters (slightly longer than the rough estimate of 0.6 meters).
 
@@ -648,7 +683,7 @@ With only one dimensionless group, the most general dimensionless statement abou
 
 (5.30)
 
-For a particular explosion, 𝐸 is fixed (although unknown), as is 𝜌air. Therefore, these quantities drop out of the corresponding scaling relation, which becomes 𝑡2 ∝ 𝑅5 or 𝑅 ∝ 𝑡2/5. On log–log axes, the data on the blast radius should fall along a line of slope 2/5—as they almost exactly do: 185
+For a particular explosion, 𝐸 is fixed (although unknown), as is 𝜌air. Therefore, these quantities drop out of the corresponding scaling relation, which becomes 𝑡2 ∝ 𝑅5 or 𝑅 ∝ 𝑡2/5. On log–log axes, the data on the blast radius should fall along a line of slope 2/5 — as they almost exactly do: 185
 
 R (m)
 
@@ -706,7 +741,7 @@ To make a second independent dimensionless group, we add a degree of freedom to 
 
 With this complication, what are independent dimensionless groups?
 
-Adding a quantity but no new independent dimension creates one more independent dimensionless group. Therefore, there are two independent groups—for example, 𝑣/ 𝑔ℎ and 𝑣0/ 𝑔ℎ. The most general dimensionless statement, which has the form group 1 = 𝑓 (group 2), is 𝑣 = 𝑓 ⎛⎜ 𝑣0 ⎞⎟.
+Adding a quantity but no new independent dimension creates one more independent dimensionless group. Therefore, there are two independent groups — for example, 𝑣/ 𝑔ℎ and 𝑣0/ 𝑔ℎ. The most general dimensionless statement, which has the form group 1 = 𝑓 (group 2), is 𝑣 = 𝑓 ⎛⎜ 𝑣0 ⎞⎟.
 
 (5.33)
 
@@ -774,7 +809,7 @@ d. Does a denser ring roll faster than a less dense ring (of the same radius)?
 
 5.3.1 Bending of starlight by the Sun
 
-Our next example of two independent dimensionless groups—the deflection of starlight by the Sun—will illustrate how to incorporate physical knowledge into the mathematical results from dimensional analysis.
+Our next example of two independent dimensionless groups — the deflection of starlight by the Sun — will illustrate how to incorporate physical knowledge into the mathematical results from dimensional analysis.
 
 Rocks, birds, and people feel the effect of gravity. So why not light? The analysis of its deflection is a triumph of Einstein's theory of general relativity. However, the theory is based on ten coupled, nonlinear partial-differential equations. Rather than solving these difficult equations, let's use dimensional analysis.
 
@@ -824,7 +859,7 @@ L
 
 closest approach
 
-gravitational constant 𝐺 and the Sun's mass 𝑚 (we'll use the more general symbol 𝑚 rather than 𝑀Sun, because we may apply the formula to light paths around other stellar objects). These quantities could join the list as two separate quantities. However, the physical consequences of gravity—for example, the gravitational force—depend on 𝐺 and 𝑚 only through the product 𝐺𝑚. Therefore, let's include just the 𝐺𝑚 abstraction on the list. (Problem 5.19 shows you how to find its dimensions.) The final quantity on the list is based on our knowledge that gravity gets weaker with distance. Therefore, we include the distance from the Sun to the light beam. The phrase「distance from the Sun」is ambiguous, because the beam is at various distances. Our quantity 𝑟 will be the shortest distance from the center of the Sun to the beam (the distance of closest approach).
+gravitational constant 𝐺 and the Sun's mass 𝑚 (we'll use the more general symbol 𝑚 rather than 𝑀Sun, because we may apply the formula to light paths around other stellar objects). These quantities could join the list as two separate quantities. However, the physical consequences of gravity — for example, the gravitational force — depend on 𝐺 and 𝑚 only through the product 𝐺𝑚. Therefore, let's include just the 𝐺𝑚 abstraction on the list. (Problem 5.19 shows you how to find its dimensions.) The final quantity on the list is based on our knowledge that gravity gets weaker with distance. Therefore, we include the distance from the Sun to the light beam. The phrase「distance from the Sun」is ambiguous, because the beam is at various distances. Our quantity 𝑟 will be the shortest distance from the center of the Sun to the beam (the distance of closest approach).
 
 apparent
 
@@ -918,7 +953,7 @@ where 𝑓 is a universal, dimensionless function. Dimensional analysis cannot d
 
 and not of the four quantities 𝐺, 𝑚, 𝑟, and 𝑐 separately. That information is the great simplification.
 
-Step 4: Use physical knowledge to narrow the possibilities The space of possible functions—here, all nonpathological functions of one variable—is vast. Therefore, the fourth and final step is to narrow the possibilities for 𝑓 by incorporating physical knowledge. First, imagine increasing the effect of gravity by increasing the mass 𝑚—which increases 𝐺𝑚/𝑟𝑐2.
+Step 4: Use physical knowledge to narrow the possibilities The space of possible functions — here, all nonpathological functions of one variable — is vast. Therefore, the fourth and final step is to narrow the possibilities for 𝑓 by incorporating physical knowledge. First, imagine increasing the effect of gravity by increasing the mass 𝑚 — which increases 𝐺𝑚/𝑟𝑐2.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -950,7 +985,7 @@ The factor of 2 for Newtonian gravity results from solving for the trajectory of
 
 How large are these angles?
 
-Let's first estimate the bending angles closer to home—produced by the Earth's gravity. For a light ray just grazing the surface of the Earth, the bending angle (in radians!) is roughly 10−9: 𝐺
+Let's first estimate the bending angles closer to home — produced by the Earth's gravity. For a light ray just grazing the surface of the Earth, the bending angle (in radians!) is roughly 10−9: 𝐺
 
 𝑚Earth
 
@@ -1052,17 +1087,17 @@ Newtonian gravity
 
 𝜃Sun/𝜃Earth
 
-The German astronomer Soldner had derived the same result in 1803. The eclipse expeditions to test his (and Soldner's) prediction got rained out or clouded out. By the time an expedition got lucky with the weather, in 1919, Einstein had invented a new theory of gravity—general relativity—and it predicted a deflection twice as large, or 1.75 arcseconds.
+The German astronomer Soldner had derived the same result in 1803. The eclipse expeditions to test his (and Soldner's) prediction got rained out or clouded out. By the time an expedition got lucky with the weather, in 1919, Einstein had invented a new theory of gravity — general relativity — and it predicted a deflection twice as large, or 1.75 arcseconds.
 
 The eclipse expedition of 1919, led by Arthur Eddington of Cambridge University and using a 13-inch lens, measured the deflection. The measurements are difficult, and the results were not accurate enough to decide clearly which theory was right. But 1919 was the first year after World War One, in which Germany and Britain had fought each other almost to obliv-ion. A theory invented by a German, confirmed by an Englishman (from 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
 5.3 More dimensionless groups 159
 
-Newton's university, no less)—such a picture was welcome after the war.
+Newton's university, no less) — such a picture was welcome after the war.
 
 The world press and scientific community declared Einstein vindicated.
 
-A proper confirmation of Einstein's prediction came only with the advent of radio astronomy, which allowed small deflections to be measured accurately (Problem 5.21). The results, described as the dimensionless factor multiplying 𝐺𝑚/𝑟𝑐2, were around 4 ± 0.2—definitely different from the Newtonian prediction of 2 and consistent with general relativity.
+A proper confirmation of Einstein's prediction came only with the advent of radio astronomy, which allowed small deflections to be measured accurately (Problem 5.21). The results, described as the dimensionless factor multiplying 𝐺𝑚/𝑟𝑐2, were around 4 ± 0.2 — definitely different from the Newtonian prediction of 2 and consistent with general relativity.
 
 Problem 5.21
 
@@ -1138,7 +1173,7 @@ As the only dimensionless group, it has to be a constant: There is no other grou
 
 This result is equivalent to our prediction based on conservation of energy, that 𝐹drag ∼ 𝜌𝑣2𝐴cs. However, trouble happens when we wonder about the dimensionless constant's value.
 
-Dimensional analysis, as a mathematical technique, cannot predict the constant. Doing so requires physical reasoning, which starts with the observation that drag consumes energy. Here, no quantity on which 𝐹drag depends—namely, 𝜌, 𝑣, or 𝐴cs—represents a mechanism of energy loss. Therefore, the drag coefficient should be zero. Although this value is consistent with the prediction that the drag coefficient is constant, it contradicts all our experience of fluids!
+Dimensional analysis, as a mathematical technique, cannot predict the constant. Doing so requires physical reasoning, which starts with the observation that drag consumes energy. Here, no quantity on which 𝐹drag depends — namely, 𝜌, 𝑣, or 𝐴cs — represents a mechanism of energy loss. Therefore, the drag coefficient should be zero. Although this value is consistent with the prediction that the drag coefficient is constant, it contradicts all our experience of fluids!
 
 Our analysis needs to include a mechanism of energy loss. In fluids, loss is due to viscosity (for an object moving at a constant speed and generating no waves). Its physics is the topic of Section 7.3.2, as an example of a diffusion constant. For our purposes here, we need just its dimensions in order to incorporate viscosity into a dimensionless group: The dimensions of kinematic viscosity 𝜈 are L2T−1. (Unfortunately, in almost every font, the standard symbols for velocity and kinematic viscosity, 𝑣 and 𝜈, look similar; however, even more confusion would result from selecting new symbols.) Thus, the kinematic viscosity joins our list. Adding one quantity without adding a new independent dimension creates a new independent dimensionless group. Similarly, in our analysis of the deflection of starlight (Section ), adding the speed of light 𝑐 created a second independent dimensionless group.
 
@@ -1164,9 +1199,9 @@ area
 
 two quantities. Mass appears only in the density; thus, 𝜌 ML−3 fluid density the density cannot appear in group 2: If it were part of 𝜈 L2T−1 viscosity group 2, there would be no way to cancel the dimensions of mass, and group 2 could not be dimensionless.
 
-Time appears in two quantities: speed 𝑣 and viscosity 𝜈. Because each quantity contains the same power of time (T−1), group 2 has to contain the quotient 𝑣/𝜈—otherwise the dimensions of time would not cancel.
+Time appears in two quantities: speed 𝑣 and viscosity 𝜈. Because each quantity contains the same power of time (T−1), group 2 has to contain the quotient 𝑣/𝜈 — otherwise the dimensions of time would not cancel.
 
-Here's what we know so far about this dimensionless group: So that mass disappears, it cannot contain the density 𝜌; so that time disappears, it must contain 𝑣 and 𝜈 as their quotient 𝑣/𝜈. The remaining task is to make length disappear—for which purpose we use the object's cross-sectional area 𝐴cs.
+Here's what we know so far about this dimensionless group: So that mass disappears, it cannot contain the density 𝜌; so that time disappears, it must contain 𝑣 and 𝜈 as their quotient 𝑣/𝜈. The remaining task is to make length disappear — for which purpose we use the object's cross-sectional area 𝐴cs.
 
 The quotient 𝑣/𝜈 has dimensions of L−1, so 𝐴cs 𝑣/𝜈 is a new, independent dimensionless group.
 
@@ -1214,7 +1249,7 @@ viscosity ν
 
 information needed to determine the drag coefficient (for a given shape).
 
-Now let's use this dimensionless framework to analyze the cone experiment: The experimental data showed that the small and large cones fell at the same speed—roughly 1 meter per second.
+Now let's use this dimensionless framework to analyze the cone experiment: The experimental data showed that the small and large cones fell at the same speed — roughly 1 meter per second.
 
 What are the corresponding Reynolds numbers?
 
@@ -1340,7 +1375,7 @@ d ≈
 
 𝑣2
 
-Because no quantity in this calculation depends on the cone's size, both cones have the same drag coefficient. (Our estimated drag coefficient is significantly larger than the canonical drag coefficient for a solid cone, roughly 0.7, and is approximately the drag coefficient for a wedge.) Thus, the drag coefficient is independent of Reynolds number—at least, for Reynolds numbers between 3500 and 7000. The giant-cone experiment of Problem 4.16 shows that the independence holds even to 𝖱𝖾 ∼ 14 000.
+Because no quantity in this calculation depends on the cone's size, both cones have the same drag coefficient. (Our estimated drag coefficient is significantly larger than the canonical drag coefficient for a solid cone, roughly 0.7, and is approximately the drag coefficient for a wedge.) Thus, the drag coefficient is independent of Reynolds number — at least, for Reynolds numbers between 3500 and 7000. The giant-cone experiment of Problem 4.16 shows that the independence holds even to 𝖱𝖾 ∼ 14 000.
 
 Within this range, the dimensionless function 𝑓 in drag coefficient = 𝑓cone(Reynolds number)
 
@@ -1354,7 +1389,7 @@ is a constant. What a simple description of the complexity of fluid flow!
 
 5 Dimensions
 
-This conclusion for 𝑓cone is valid for most shapes. The most extensive drag data is for a sphere—plotted below on log–log axes (data adapted from Fluid-Dynamic Drag: Practical Information on Aerodynamic Drag and Hydrodynamic Resistance [23]):
+This conclusion for 𝑓cone is valid for most shapes. The most extensive drag data is for a sphere — plotted below on log–log axes (data adapted from Fluid-Dynamic Drag: Practical Information on Aerodynamic Drag and Hydrodynamic Resistance [23]):
 
 104
 
@@ -1418,7 +1453,7 @@ Problem 5.25
 
 Compound pendulum
 
-Use dimensional analysis to deduce as much as you can about the period 𝑇 of a compound pendulum—that is, a pendulum where the l
+Use dimensional analysis to deduce as much as you can about the period 𝑇 of a compound pendulum — that is, a pendulum where the l
 
 bob is not a point mass but is an extended object of mass 𝑚. The light rod (no longer a string) of length 𝑙 is fixed to the center of mass of the object, which has a moment of inertia 𝐼CM about the point of m
 
@@ -1452,7 +1487,7 @@ It has dimensions of energy per temperature; thus, it connects temperature to en
 
 For our first temperature example, let's estimate the speed of air molecules.
 
-We will then use that knowledge to estimate the speed of sound. Because the speed 𝑣 of air molecules is a result of thermal energy, it depends on 𝑘B𝑇. But 𝑣 and 𝑘B𝑇—two quantities made from two independent dimensions—cannot make a dimensionless group. We need one more quantity: the mass 𝑚 of an air molecule.
+We will then use that knowledge to estimate the speed of sound. Because the speed 𝑣 of air molecules is a result of thermal energy, it depends on 𝑘B𝑇. But 𝑣 and 𝑘B𝑇 — two quantities made from two independent dimensions — cannot make a dimensionless group. We need one more quantity: the mass 𝑚 of an air molecule.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -1466,7 +1501,7 @@ LT−1
 
 thermal speed
 
-mensions, only two of the dimensions are indepen- 𝑘B𝑇 ML2T−2 thermal energy dent—for example, M and LT−1. Therefore, the 𝑚
+mensions, only two of the dimensions are indepen- 𝑘B𝑇 ML2T−2 thermal energy dent — for example, M and LT−1. Therefore, the 𝑚
 
 M
 
@@ -1542,7 +1577,7 @@ molecular mass
 
 motion. Gravity drags molecules toward Earth; thermal motion spreads them all over the universe. Our list must include quantities representing both sides of that competition: 𝑚 and 𝑔 for gravity, and 𝑘B𝑇 for thermal energy.
 
-Four quantities (including the goal 𝐻) built from three independent dimensions produce one independent dimensionless group. A reasonable choice for the group—reasonable because it is proportional to the goal 𝐻—is the ratio 𝑚𝑔𝐻/𝑘B𝑇. Therefore, the atmosphere's scale height is given by 𝐻 ∼ 𝑘B𝑇
+Four quantities (including the goal 𝐻) built from three independent dimensions produce one independent dimensionless group. A reasonable choice for the group — reasonable because it is proportional to the goal 𝐻 — is the ratio 𝑚𝑔𝐻/𝑘B𝑇. Therefore, the atmosphere's scale height is given by 𝐻 ∼ 𝑘B𝑇
 
 𝑚𝑔 .
 
@@ -1632,7 +1667,7 @@ In this expression, the dimensional combination ML2T−2 is energy. Therefore, v
 
 QT−1
 
-To simplify these dimensions, use [𝑉]—the dimensions of voltage—as an abstraction for the dimensional mess ML2T−2Q−1. Then,
+To simplify these dimensions, use [𝑉] — the dimensions of voltage — as an abstraction for the dimensional mess ML2T−2Q−1. Then,
 
 [resistance] = [𝑉] × TQ−1.
 
@@ -1692,13 +1727,13 @@ cillation frequency. The output voltage 𝑉out is then the real part of 𝑉1�
 
 complex) output amplitude. What quantities determine the gain 𝐺, defined as the ratio 𝑉1/𝑉0? What is a good set of independent dimensionless groups built from 𝐺 and these quantities?
 
-Along with the potential (or voltage) 𝑉, a leading actor in electromagnetics is the electric field. (Once you understand how to handle electric fields, you can practice by analyzing magnetic fields—try Problems 5.31, 5.32, and 5.33.) Electric fields not only transmit force; they also contain energy. This energy is important, not least because its transport is how the Sun warms the Earth. We will estimate the energy contained in electric fields by using 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
+Along with the potential (or voltage) 𝑉, a leading actor in electromagnetics is the electric field. (Once you understand how to handle electric fields, you can practice by analyzing magnetic fields — try Problems 5.31, 5.32, and 5.33.) Electric fields not only transmit force; they also contain energy. This energy is important, not least because its transport is how the Sun warms the Earth. We will estimate the energy contained in electric fields by using 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
 170
 
 5 Dimensions
 
-dimensional analysis. This analysis will give us the result that we used in Section 2.4.2 to estimate, by analogy, the energy in a gravitational field. Like the gravitational field, the electric field extends over space. Therefore, we usually want not the energy itself, but rather the energy per volume—the energy density.
+dimensional analysis. This analysis will give us the result that we used in Section 2.4.2 to estimate, by analogy, the energy in a gravitational field. Like the gravitational field, the electric field extends over space. Therefore, we usually want not the energy itself, but rather the energy per volume — the energy density.
 
 What is the energy density in an electric field?
 
@@ -1722,7 +1757,7 @@ with the goal at the head of the table. Energy 𝐸 MLT−2Q−1
 
 electric field
 
-density is energy per volume, so its dimensions 𝜖0 M−1L−3T2Q2 SI constant are ML−1T−2. Electric field is force per charge (just as gravitational field is force per mass—analogy!), so its dimensions are MLT−2Q−1.
+density is energy per volume, so its dimensions 𝜖0 M−1L−3T2Q2 SI constant are ML−1T−2. Electric field is force per charge (just as gravitational field is force per mass — analogy!), so its dimensions are MLT−2Q−1.
 
 What are the dimensions of 𝜖0 ?
 
@@ -1752,7 +1787,7 @@ How many independent dimensions do the three quantities contain?
 
 At first glance, the quantities contain four independent dimensions: M, L, T, and Q. However, the Buckingham Pi theorem would then predict −1
 
-dimensionless groups, which is nonsense. Indeed, the number of independent dimensions cannot exceed the number of quantities (a restriction that you explained in Problem 5.7). Here, as you verify in Problem 5.30, there are only two independent dimensions—for example, MLT−2Q−1 (the dimensions of electric field) and L2Q−1.
+dimensionless groups, which is nonsense. Indeed, the number of independent dimensions cannot exceed the number of quantities (a restriction that you explained in Problem 5.7). Here, as you verify in Problem 5.30, there are only two independent dimensions — for example, MLT−2Q−1 (the dimensions of electric field) and L2Q−1.
 
 Three quantities constructed from two independent dimensions produce one independent dimensionless group. A useful choice for this group, because it is proportional to the goal ℰ, is ℰ/𝜖0𝐸2.
 
@@ -1764,7 +1799,7 @@ The third step is to use the independent dimensionless group to make the most ge
 
 The fourth step is to narrow the possibilities by using physical knowledge.
 
-With only one independent dimensionless group, the space of possibilities is already narrow. The only freedom is the dimensionless prefactor hidden in the single approximation sign ∼; it turns out to be 1/2. In Section 5.4.3, the scaling ℰ ∝ 𝐸2 will help us explain the surprising behavior of the electric field produced by an accelerating charge—and thereby explain why stars are visible and radios work.
+With only one independent dimensionless group, the space of possibilities is already narrow. The only freedom is the dimensionless prefactor hidden in the single approximation sign ∼; it turns out to be 1/2. In Section 5.4.3, the scaling ℰ ∝ 𝐸2 will help us explain the surprising behavior of the electric field produced by an accelerating charge — and thereby explain why stars are visible and radios work.
 
 Problem 5.30
 
@@ -1848,7 +1883,7 @@ If the radiated power depended on the velocity, then we could use the principle 
 
 Why doesn't the reference-frame argument allow us to eliminate the acceleration?
 
-It depends on changing to another inertial reference frame—that is, a frame that moves at a constant velocity relative to the original frame. This relative motion does not affect the charge's acceleration, only its velocity.
+It depends on changing to another inertial reference frame — that is, a frame that moves at a constant velocity relative to the original frame. This relative motion does not affect the charge's acceleration, only its velocity.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -1856,7 +1891,7 @@ It depends on changing to another inertial reference frame—that is, a frame th
 
 5 Dimensions
 
-However, if we change to a noninertial—an accelerating—reference frame, we must modify the equations of motion, adding terms for the Coriolis, cen-trifugal, and Euler forces. (For more on reference frames, a wonderful expo-sition is John Taylor's Classical Mechanics [45].) If we switch to a noninertial frame, all bets are off about the radiated power. In summary, acceleration is different from velocity.
+However, if we change to a noninertial — an accelerating — reference frame, we must modify the equations of motion, adding terms for the Coriolis, cen-trifugal, and Euler forces. (For more on reference frames, a wonderful expo-sition is John Taylor's Classical Mechanics [45].) If we switch to a noninertial frame, all bets are off about the radiated power. In summary, acceleration is different from velocity.
 
 These four quantities, built from three inde-
 
@@ -1968,9 +2003,9 @@ As a scaling relation, 𝐸 ∝ 𝑟−1. Compare it to the −2 scaling exponen
 
 5.5 Atoms, molecules, and materials
 
-With our growing repertoire of dimensional analyses, we can explore ever more of the world. Perhaps the most fundamental property of the world is that it is composed of atoms. Feynman argued for the importance of the atomic theory in his famous lectures on physics [14, Vol. 1, p. 1-2]: If, in some cataclysm, all of scientific knowledge were to be destroyed, and only one sentence passed on to the next generation of creatures, what statement would contain the most information in the fewest words? I believe it is the atomic hypothesis (or the atomic fact, or whatever you wish to call it) that all things are made of atoms—little particles that move around in perpetual motion, attracting each other when they are a little distance apart, but repelling upon being squeezed into one another. In that one sentence, you will see, there is an enormous amount of information about the world…. [emphasis in original]
+With our growing repertoire of dimensional analyses, we can explore ever more of the world. Perhaps the most fundamental property of the world is that it is composed of atoms. Feynman argued for the importance of the atomic theory in his famous lectures on physics [14, Vol. 1, p. 1-2]: If, in some cataclysm, all of scientific knowledge were to be destroyed, and only one sentence passed on to the next generation of creatures, what statement would contain the most information in the fewest words? I believe it is the atomic hypothesis (or the atomic fact, or whatever you wish to call it) that all things are made of atoms — little particles that move around in perpetual motion, attracting each other when they are a little distance apart, but repelling upon being squeezed into one another. In that one sentence, you will see, there is an enormous amount of information about the world…. [emphasis in original]
 
-The atomic theory was first stated over 2000 years ago by the ancient Greek philosopher Democritus. Using quantum mechanics, we can predict the properties of atoms in great detail—but the analysis involves complicated mathematics that buries the core ideas. By using dimensional analysis, we can keep the core ideas in sight.
+The atomic theory was first stated over 2000 years ago by the ancient Greek philosopher Democritus. Using quantum mechanics, we can predict the properties of atoms in great detail — but the analysis involves complicated mathematics that buries the core ideas. By using dimensional analysis, we can keep the core ideas in sight.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -1980,7 +2015,7 @@ The atomic theory was first stated over 2000 years ago by the ancient Greek phil
 
 5.5.1 Dimensional analysis of hydrogen
 
-We'll study the simplest atom: hydrogen. Dimensional analysis will explain its size, and its size will in turn explain the size of more complex atoms and molecules. Dimensional analysis will also help us estimate the energy needed to disassemble a hydrogen atom. This energy will in turn explain the bond energies in molecules. These energies will explain the stiffness of materials, the speed of sound, and the energy content of fat and sugar—all starting from hydrogen!
+We'll study the simplest atom: hydrogen. Dimensional analysis will explain its size, and its size will in turn explain the size of more complex atoms and molecules. Dimensional analysis will also help us estimate the energy needed to disassemble a hydrogen atom. This energy will in turn explain the bond energies in molecules. These energies will explain the stiffness of materials, the speed of sound, and the energy content of fat and sugar — all starting from hydrogen!
 
 In the dimensional analysis of the size of hydrogen, the zeroth step is to give the size a name. The usual name and symbol for the radius of hydrogen is the Bohr radius 𝑎0.
 
@@ -2040,7 +2075,7 @@ The other problem with this approach is that electromagnetic radiation travels a
 
 (5.88)
 
-An orbiting electron is an accelerating electron (accelerating inward with the circular acceleration 𝑎 = 𝑣2/𝑎0), so the electron would radiate. Radiation would carry away energy from the electron, the electron would spiral into the proton, and hydrogen would not exist—nor would any other atom.
+An orbiting electron is an accelerating electron (accelerating inward with the circular acceleration 𝑎 = 𝑣2/𝑎0), so the electron would radiate. Radiation would carry away energy from the electron, the electron would spiral into the proton, and hydrogen would not exist — nor would any other atom.
 
 So adding the speed of light only compounds our problem.
 
@@ -2052,7 +2087,7 @@ The second resolution is instead to add quantum mechanics. Its fundamental equat
 
 (5.89)
 
-Most of the symbols in this partial-differential equation are not important for dimensional analysis—this disregard is how dimensional analysis simplifies problems. For dimensional analysis, the crucial point is that Schrö-
+Most of the symbols in this partial-differential equation are not important for dimensional analysis — this disregard is how dimensional analysis simplifies problems. For dimensional analysis, the crucial point is that Schrö-
 
 dinger's equation contains a new constant of nature: ℏ, which is Planck's constant ℎ divided by 2𝜋. We can include quantum mechanics in our model of hydrogen simply by including ℏ on our list of relevant quantities. In that way, we teach dimensional analysis about quantum mechanics.
 
@@ -2252,7 +2287,7 @@ Only now, having simplified the calculation down to abstractions worth rememberi
 
 This calculation we can do mentally. The units of electron volts cancel, leaving only nanometers (nm). The two powers of ten upstairs (in the numerator) and the three powers of ten downstairs (in the denominator) result in 10−1 nanometers or 1 ångström (10−10 meters). The remaining factors result in a factor of 1/2: 2/(0.7 × 5) ≈ 1/2.
 
-Therefore, the size of hydrogen—the Bohr radius—is about 0.5 ångströms: 𝑎0 ∼ 0.5×10−10 m = 0.5 Å.
+Therefore, the size of hydrogen — the Bohr radius — is about 0.5 ångströms: 𝑎0 ∼ 0.5×10−10 m = 0.5 Å.
 
 (5.99)
 
@@ -2320,7 +2355,7 @@ Shortcut to calculate the binding energy of hydrogen Use the shortcuts in Proble
 
 In Problem 5.36, you showed, using the values of ℏ𝑐, 𝑚e𝑐2, and 𝛼, that this energy is roughly 14 electron volts. For the sake of a round number, let's call the binding energy roughly 10 electron volts.
 
-This energy sets the scale for chemical bonds. In Section 3.2.1, we calculated, by unit conversion, that 1 electron volt per molecule corresponded to roughly 100 kilojoules per mole. Therefore, breaking a chemical bond requires roughly 1 megajoule per mole (of bonds). As a rough estimate, it is not far off. For example, if the molecule consists of a few life-related atoms (carbon, oxygen, and hydrogen), then the molar mass is roughly 50 grams—a small jelly donut. Therefore, burning a jelly donut, as our body does slowly when we eat the donut, should produce roughly 1 megajoule—a useful rule of thumb and way of imagining a megajoule.
+This energy sets the scale for chemical bonds. In Section 3.2.1, we calculated, by unit conversion, that 1 electron volt per molecule corresponded to roughly 100 kilojoules per mole. Therefore, breaking a chemical bond requires roughly 1 megajoule per mole (of bonds). As a rough estimate, it is not far off. For example, if the molecule consists of a few life-related atoms (carbon, oxygen, and hydrogen), then the molar mass is roughly 50 grams — a small jelly donut. Therefore, burning a jelly donut, as our body does slowly when we eat the donut, should produce roughly 1 megajoule — a useful rule of thumb and way of imagining a megajoule.
 
 Problem 5.37
 
@@ -2372,11 +2407,11 @@ c. The Heisenberg uncertainty principle from quantum mechanics says that the unc
 
 d. Therefore find 𝜃 as a function of 𝜆 and 𝐷.
 
-e. Estimate a pupil diameter and the resulting diffraction angle. The light-sensitive cells in the retina that we use in bright light are the cones. They are most dense in the fovea—the central region of the retina that we use for reading and any other task requiring sharp vision. At that location, their density is roughly 0.5×107 per square centimeter. Is that what you would predict?
+e. Estimate a pupil diameter and the resulting diffraction angle. The light-sensitive cells in the retina that we use in bright light are the cones. They are most dense in the fovea — the central region of the retina that we use for reading and any other task requiring sharp vision. At that location, their density is roughly 0.5×107 per square centimeter. Is that what you would predict?
 
 Problem 5.40
 
-Kepler's third law for non-inverse-square force laws With an inverse-square force, Kepler's third law—the relation between orbit radius and period—is 𝑇 ∝ 𝑟3/2 (Section 4.2.2). Now generalize the law to forces of the form 𝐹 ∝ 𝑟𝑛, using dimensional analysis to find the scaling exponent 𝛽 in the orbital period 𝑇 ∝ 𝑟𝛽 as a function of the scaling exponent 𝑛 in the force law.
+Kepler's third law for non-inverse-square force laws With an inverse-square force, Kepler's third law — the relation between orbit radius and period — is 𝑇 ∝ 𝑟3/2 (Section 4.2.2). Now generalize the law to forces of the form 𝐹 ∝ 𝑟𝑛, using dimensional analysis to find the scaling exponent 𝛽 in the orbital period 𝑇 ∝ 𝑟𝛽 as a function of the scaling exponent 𝑛 in the force law.
 
 Problem 5.41
 
@@ -2392,7 +2427,7 @@ With quantum mechanics and its new constant ℏ, we can explain the surface temp
 
 5 Dimensions
 
-hot object—a so-called blackbody—radiates energy. (Here,「hot」means warmer than absolute zero, so every object is hot.) Hotter objects radiate more, so the radiated energy flux 𝐹 depends on the object's temperature 𝑇.
+hot object — a so-called blackbody — radiates energy. (Here,「hot」means warmer than absolute zero, so every object is hot.) Hotter objects radiate more, so the radiated energy flux 𝐹 depends on the object's temperature 𝑇.
 
 How are the energy flux 𝐹 and the surface temperature 𝑇 connected?
 
@@ -2430,7 +2465,7 @@ We use this choice implicitly when we say that the mass of an electron is 2014-0
 
 5.5 Atoms, molecules, and materials 183
 
-5 × 105 electron volts—which is an energy. The complete statement is that, in the usual units, the electron's rest energy 𝑚e𝑐2 is 5 × 105 electron volts.
+5 × 105 electron volts — which is an energy. The complete statement is that, in the usual units, the electron's rest energy 𝑚e𝑐2 is 5 × 105 electron volts.
 
 But when we choose 𝑐 ≡ 1, then 5×105 electron volts is also the mass 𝑚e.
 
@@ -2724,11 +2759,11 @@ Place the lengths on a logarithmic scale, and label the gaps (the ratios of succ
 
 5.5.3 Molecular binding energies
 
-We studied hydrogen, which as an element scarcely exists on Earth, mainly to understand chemical bonds. Chemical bonds are formed by attractions between electrons and protons, so the hydrogen atom is the simplest chemical bond. The main defect of this model is that the electron–proton bond in a hydrogen atom is much shorter than in most bonds. A typical chemical bond is roughly 1.5 ångströms, three times larger than the Bohr radius. Because electrostatic energy scales as 𝐸 ∝ 1/𝑟, a typical bond energy should be smaller than hydrogen's binding energy by a factor of 3. Hydrogen's binding energy is roughly 14 electron volts, so 𝐸bond is roughly 4 electron volts—in agreement with the bond-energy values tabulated in Section 2.1.
+We studied hydrogen, which as an element scarcely exists on Earth, mainly to understand chemical bonds. Chemical bonds are formed by attractions between electrons and protons, so the hydrogen atom is the simplest chemical bond. The main defect of this model is that the electron–proton bond in a hydrogen atom is much shorter than in most bonds. A typical chemical bond is roughly 1.5 ångströms, three times larger than the Bohr radius. Because electrostatic energy scales as 𝐸 ∝ 1/𝑟, a typical bond energy should be smaller than hydrogen's binding energy by a factor of 3. Hydrogen's binding energy is roughly 14 electron volts, so 𝐸bond is roughly 4 electron volts — in agreement with the bond-energy values tabulated in Section 2.1.
 
 Another important bond is the hydrogen bond. These intermolecular bonds, which hold water molecules together, are weaker than the intra molecular hydrogen–oxygen bonds within a water molecule. But hydrogen bonds determine important properties of the most important liquid on our planet.
 
-For example, the hydrogen-bond energy determines water's heat of vaporization—which determines much of our weather, including the average rainfall on the Earth (as we found in Section 3.4.3).
+For example, the hydrogen-bond energy determines water's heat of vaporization — which determines much of our weather, including the average rainfall on the Earth (as we found in Section 3.4.3).
 
 O−
 
@@ -2768,7 +2803,7 @@ The resulting energy is roughly 0.4 electron volts: 4 eV × 34 × 12 × 14 ≈ 0
 
 (5.123)
 
-This estimate is not bad considering the rough numbers that it used. Empirically, a typical hydrogen bond is 23 kilojoules per mole or about 0.25 electron volts. Each water molecule forms close to four hydrogen bonds (two from the oxygen to foreign hydrogens, and one from each hydrogen to a foreign oxygen). Thus, each molecule gets credit for almost two hydrogen bonds—one-half of the per-molecule total in order to avoid counting each bond twice. Per water molecule, the result is 0.4 electron volts Because vaporizing water breaks the hydrogen bonds, but not the intramolecular bonds, the heat of vaporization of water should be approximately 0.4 electron volts per molecule. In macroscopic units, it would be roughly 40 kilojoules per mole—using the conversion factor from Section 3.2.1, that 1 electron volt per molecule is roughly 100 kilojoules per mole.
+This estimate is not bad considering the rough numbers that it used. Empirically, a typical hydrogen bond is 23 kilojoules per mole or about 0.25 electron volts. Each water molecule forms close to four hydrogen bonds (two from the oxygen to foreign hydrogens, and one from each hydrogen to a foreign oxygen). Thus, each molecule gets credit for almost two hydrogen bonds — one-half of the per-molecule total in order to avoid counting each bond twice. Per water molecule, the result is 0.4 electron volts Because vaporizing water breaks the hydrogen bonds, but not the intramolecular bonds, the heat of vaporization of water should be approximately 0.4 electron volts per molecule. In macroscopic units, it would be roughly 40 kilojoules per mole — using the conversion factor from Section 3.2.1, that 1 electron volt per molecule is roughly 100 kilojoules per mole.
 
 Because the molar mass of water is 1.8 × 10−2 kilograms, the heat of vaporization is also 2.2 megajoules per kilogram: 40 kJ
 
@@ -2802,7 +2837,7 @@ The quantum constant ℏ is also the smallest possible angular momentum of a rot
 
 An important macroscopic consequence of the per-atom and per-molecule energies is the existence of solid matter: substances that resist bending, twisting, squeezing, and stretching. These resistance properties are analogous to spring constants.
 
-However, a spring constant is not the quantity to estimate first, because it is not invariant under simple changes. For example, a thick bar resists stretching more than a thin bar does. Similarly, a shorter bar resists stretching more than a longer bar does. The property independent of the shape or amount of substance—invariant to these changes—is the stiffness or elastic modulus. There are several elastic moduli, of which the Young's modulus is the most broadly useful. It is defined by stress
+However, a spring constant is not the quantity to estimate first, because it is not invariant under simple changes. For example, a thick bar resists stretching more than a thin bar does. Similarly, a shorter bar resists stretching more than a longer bar does. The property independent of the shape or amount of substance — invariant to these changes — is the stiffness or elastic modulus. There are several elastic moduli, of which the Young's modulus is the most broadly useful. It is defined by stress
 
 𝑌 =
 
@@ -2822,7 +2857,7 @@ Stress, like the closely related quantity pressure, F
 
 F
 
-is force per area: It is the applied force 𝐹 divided by the cross-sectional area. The denominator, the fractional change in length, is the dimensionless ratio (Δ𝑙)/𝑙. Thus, the dimensions of stiffness are the dimensions of pressure—which are also the dimensions of energy density. To see the connection between pressure and energy density, multiply the definition of pressure (force per area) by length over length:
+is force per area: It is the applied force 𝐹 divided by the cross-sectional area. The denominator, the fractional change in length, is the dimensionless ratio (Δ𝑙)/𝑙. Thus, the dimensions of stiffness are the dimensions of pressure — which are also the dimensions of energy density. To see the connection between pressure and energy density, multiply the definition of pressure (force per area) by length over length:
 
 length
 
@@ -2834,7 +2869,7 @@ area × length = volume.
 
 (5.126)
 
-As energy per volume, we can estimate a typical elastic modulus 𝑌. For the numerator, a suitable energy is the typical binding energy per atom—the energy 𝐸binding required to remove the atom from the substance by breaking its bonds to surrounding atoms. For the denominator, a suitable volume is a typical atomic volume 𝑎3, where 𝑎 is a typical interatomic spacing (3
+As energy per volume, we can estimate a typical elastic modulus 𝑌. For the numerator, a suitable energy is the typical binding energy per atom — the energy 𝐸binding required to remove the atom from the substance by breaking its bonds to surrounding atoms. For the denominator, a suitable volume is a typical atomic volume 𝑎3, where 𝑎 is a typical interatomic spacing (3
 
 ångströms). The result is
 
@@ -2852,7 +2887,7 @@ This derivation is slightly incomplete: In multiplying the definition of pressur
 
 5 Dimensions
 
-same dimensions, but not whether they have comparable values. If they do not, then the estimate for 𝑌 needs a dimensionless prefactor, which might be far from 1. Therefore, before we estimate 𝑌, let's confirm the estimate by using a second method, an analogy—a form of abstraction that we learned in Section 2.4.
+same dimensions, but not whether they have comparable values. If they do not, then the estimate for 𝑌 needs a dimensionless prefactor, which might be far from 1. Therefore, before we estimate 𝑌, let's confirm the estimate by using a second method, an analogy — a form of abstraction that we learned in Section 2.4.
 
 The analogy, with which we also began this discussion of stiffness, is between a spring constant (𝑘) and a Young's modulus (𝑌). There are three physical quantities in the analogy.
 
@@ -3006,7 +3041,7 @@ Problem 5.49
 
 Pressure melting during ice skating
 
-Water expands when it freezes. Thus, increasing the pressure on ice should, by Le Chatelier's principle, push it toward becoming water—which lowers its freezing point. Based on the freezing point and the heat of vaporization of water, estimate the change in freezing point caused by ice-skate blades. Is this change large enough to explain why ice-skate blades slip with very low friction on a thin sheet of water?
+Water expands when it freezes. Thus, increasing the pressure on ice should, by Le Chatelier's principle, push it toward becoming water — which lowers its freezing point. Based on the freezing point and the heat of vaporization of water, estimate the change in freezing point caused by ice-skate blades. Is this change large enough to explain why ice-skate blades slip with very low friction on a thin sheet of water?
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -3060,7 +3095,7 @@ Problem 5.54
 
 Steel cable under its own weight
 
-The stiffness of a material should not be confused with its strength! Strength is the stress (a pressure) at which the substance breaks; it is denoted 𝜎y. Like stiffness, it is an energy density. The dimensionless ratio 𝜎y/𝜎, called the yield strain 𝜖y, has a physical interpretation: the fractional length change at which the substance breaks. For most materials, it lies in the range 10−3…10−2—with brittle materials (such as rock) toward the lower end. Using the preceding information, estimate the maximum length of a steel cable before it breaks under its own weight.
+The stiffness of a material should not be confused with its strength! Strength is the stress (a pressure) at which the substance breaks; it is denoted 𝜎y. Like stiffness, it is an energy density. The dimensionless ratio 𝜎y/𝜎, called the yield strain 𝜖y, has a physical interpretation: the fractional length change at which the substance breaks. For most materials, it lies in the range 10−3…10−2 — with brittle materials (such as rock) toward the lower end. Using the preceding information, estimate the maximum length of a steel cable before it breaks under its own weight.
 
 2014-09-02 10:51:35 UTC / rev 78ca0ee9dfae
 
@@ -3224,7 +3259,7 @@ the density of the fluid
 
 the kinematic viscosity of the fluid
 
-a. Find three independent dimensionless groups 𝐺1, 𝐺2, and 𝐺3 from these six quantities—preparing to write the most general statement as group 1 = 𝑓 (group 2, group 3).
+a. Find three independent dimensionless groups 𝐺1, 𝐺2, and 𝐺3 from these six quantities — preparing to write the most general statement as group 1 = 𝑓 (group 2, group 3).
 
 (5.138)
 
