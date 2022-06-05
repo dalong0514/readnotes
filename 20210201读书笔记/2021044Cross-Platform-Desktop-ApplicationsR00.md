@@ -90,17 +90,7 @@ When Node.js was released in 2009, a year after Google Chrome, it combined a mul
 
 1-2『这里，node.js 是将 V8 引擎和 libuv 结合起来的一个 JS 后端语言，补充进 node.js 的术语卡片。（2021-04-18）』—— 已完成
 
-### 0202. 术语卡 ——
-
-### 0203. 术语卡 ——
-
-### 0301. 人名卡 ——
-
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-### 0401. 数据信息卡 ——
-
-### 0501. 任意卡 ——
+### 0301. 任意卡 —— 锁死 node.js 第三方包版本号的两种方法
 
 信息源自「0501Using Node.js within NW.js and Electron」
 
@@ -135,10 +125,6 @@ Based on my experience working with Node.js since 2010, my suggestion is to use 
 npm 的 shrinkwrap 命令会将安装的模块版本号锁定。在 package.json 文件同级目录下运行 npm shrinkwrap 命令时会产生一个名为 npm-shrinkwrap.json 文件，这个 JSON 文件包含了一些配置信息，指明了安装模块的具体版本号，如下所示：
 
 上述文件有助于让 npm 知道具体要安装哪个版本的模块。根据我从 2010 年就开始使用 Node.js 到现在的经验，我的建议是，保持 package.json 文件中的模块版本号最新、将 node_modules 文件夹从版本控制中移除以及如有必要，使用 npm shrinkwrap 将依赖的模块版本号锁定。
-
-### 0601. 金句卡 ——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
 
 ## 内容简介
 
