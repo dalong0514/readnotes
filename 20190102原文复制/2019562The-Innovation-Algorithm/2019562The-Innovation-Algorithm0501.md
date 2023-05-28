@@ -130,7 +130,21 @@ TC2：生产率和功率。
 
 ## 附录 C —— 补充材料
 
-### C4 关于作者：根里奇·斯拉维奇·阿奇舒勒 [1]
+### About the Author, Genrich Altshuller
+
+by Leonid Lerner
+
+The person we are going to discuss is unique.
+
+He is unique not just because he developed an amazing science. He is unique because he never asked for anything in return.
+
+He never said, “Give me.”
+
+He always said, “Take this.”
+
+His name is Genrich Altshuller.
+
+关于作者：根里奇·斯拉维奇·阿奇舒勒 [1]
 
 列奥尼德·勒纳（Leonid Lerner）
 
@@ -146,7 +160,71 @@ TC2：生产率和功率。
 
 [1] 本文摘自列奥尼德·勒纳的一篇文章，全文于 1991 年发表在俄罗斯的杂志《Ogonek》上。它的英译版第一次发表，是作为《40 个原理》书的一部分。阿奇舒勒先生逝世于 1998 年 9 月 24 日。
 
-### 给斯大林的信
+Letter to Stalin
+
+In December of 1948, while a Lieutenant of the Caspian Sea Military Navy, Genrich Altshuller wrote a dangerous letter addressed: “Personally to Comrade Stalin.” The author pointed out to his country’s leader that there was chaos and ignorance in the USSR’s approach to innovation and inventing. At the end of the letter he expressed an even more “outrageous” thought: There exists a theory that can help any engineer invent. This theory could produce invaluable results and revolutionize the technical world. The harsh answer to this letter did not arrive until two years later. Meanwhile, let’s introduce this brash young Lieutenant.
+
+Genrich Altshuller was born on October 15, 1926 in Tashkent in the former USSR. He spent many years in Baku, the Capital of Azerbaidzhan. Since 1990 he has resided in Petrozavodsk, Karelia.
+
+Altshuller received his first Author’s Certificate [internal Russian patent] for an underwater diving apparatus while a student in the ninth grade. In the tenth grade he built a boat having a rocket engine that used carbide for fuel. In 1946 he developed his first mature invention, a method for escaping from an immobilized submarine without diving gear. This invention was immediately classified as a military secret — and Altshuller was offered employment in the patent department of the Caspian Sea Military Navy.
+
+The head of that patent department was a man who indulged in fantasies. He asked Altshuller to find a solution to one fantasy: find a military diversion to help a soldier trapped behind enemy lines with no resources. In response, Altshuller invented a new kind of weapon — an extremely noxious chemical substance made from common medical drugs. This invention was a success, and the inventor was brought to meet Mr. Beria, the head of the KGB in Moscow. Four years later, while in one of Beria’s prisons, Altshuller would be charged with disrupting a parade in Red Squire with this same invention.
+
+Altshuller was a successful young inventor. What triggered his desire to write a letter to Stalin that would destroy his carrier and change his life forever?
+
+“The point is, ” Altshuller says, “not only did I have to invent, I had to help those who wanted to invent as well.”
+
+Dozens of people came to his office. “Here is a problem,“ they said. “I cannot solve it. What can I do?” In response, Altshuller searched all the scientific libraries but did not find even the most elementary text book on the subject of inventing. Scientists claimed that inventions were the result of accidents, mood, or “blood type.” Altshuller could not accept this — if a methodology for inventing did not exist, one should be developed.
+
+Altshuller shared his ideas with his former schoolmate Rafael Shapiro, an inventor driven to achieve maximum success. By this time, Altshuller had already learned that invention is nothing more than the removal of a technical contradiction with the help of certain principles. Invention is certain if an inventor possesses knowledge of these principles. Shapiro was exited about this discovery and suggested that they should immediately write a letter to Stalin to get his support.
+
+Altshuller and Shapiro prepared themselves. They searched for new methods, studied all the existing patents and took part in inventing competitions. They even received a National Competition Award for inventing a flame and heat resistant suit. Suddenly, they were asked to come to Tbilisi, a town in Georgia. They were arrested as they arrived and, two days later, their interrogation began. They were charged with “inventor’s” sabotage and, as was usual in those days, sentenced to 25 years imprisonment.
+
+This happened in 1950. The reader may think this is the beginning of a story about “a martyr for his ideas.” However, Altshuller views his arrest differently.
+
+“Before prison, I struggled with simple human doubts. If my ideas were so important, why weren’t they recognized? All my doubts were resolved by the MGB [Moscow Committee of State Security].” After his arrest a series of situations occurred where, in order to stay alive, Altshuller utilized TRIZ (The Theory of Solving Inventive Problems) concepts as his only means of defense.
+
+In a Moscow prison, Altshuller refused to sign a confession and was placed on an “interrogation conveyor.” All night he was questioned. During the day, he was not allowed to sleep. Altshuller understood that he could not survive under these conditions. He stated the problem: How can I sleep and not sleep at the same time? The task seemed unsolvable. The most rest he was permitted was to sit with his eyes open.
+
+This meant that, in order to sleep, his eyes must be open and closed at the same time.
+
+This was easy. Two pieces of paper were torn from a cigarette package. With a charred match, he drew a pupil on each piece of paper.
+
+Altshuller’s roommate spit on the papers and stuck them to Altshuller’s closed eyes. After that he sat across from the door’s peek hole and calmly fell asleep. He was thus able to sleep for several days in a row. His interrogator wondered why Altshuller seemed fresh every night.
+
+Finally, Altshuller was sentenced to Siberia’s Gulag where he worked 12 hours every day logging. Knowing that he could not survive working so hard, he asked himself the question: “Which is better — continue to work, or refuse and be put into solitary confinement?” He choose confinement and was transferred to a section with criminals. Here survival was much simpler. He befriended the prisoners by telling them many fictional stories he new by heart.
+
+Later, Altshuller was transferred to a camp were the older intelligentsia — scientists, lawyers, architects — were slowly dying. To cheer up these desperate people, Altshuller opened his “One Student University.” Each day, for 12 to 14 hours, he attended classes and seminars that the revived professors gave him. This is how Altshuller received his “college education.”
+
+In the Varkuta coal mines — another gulag camp — he spent 8 to 10 hours a day developing his TRIZ theory while constantly resolving emergency technical situations in the mines. Nobody believed that this young inventor was working in the mines for the first time. Everybody thought he was tricking them. The chief engineer did not want to hear that TRIZ methods were helping.
+
+One night, Altshuller heard that Stalin had died. A year and a half later, Altshuller was released. Upon his return to Baku he learned that his mother, having lost all hope of ever seeing her son, committed suicide.
+
+In 1956, the first paper written by Altshuller and Shapiro, “Psychology of Inventive Creativity,” was published in the journal Voprosi of Psihologi [Problems of Psychology]. For scientists who study the creative process it was as if a bomb had exploded. Until that time, Soviet and foreign psychologists believed it a fact that inventions were born through accidental enlightenment — the sudden spark of an idea.
+
+After analyzing a fund of worldwide patents, Altshuller offered a different method based on the results of human inventive activity. Invention derives from a problem analysis revealing a contradiction.
+
+After studying 200,000 patents, Altshuller concluded that there are about 1,500 technical contradictions that can be resolved relatively easily by applying fundamental principles.
+
+“You can wait a hundred years for enlightenment, or you can solve the problem in 15 minutes with these principles,” he said.
+
+What would Altshuller’s opponents say if they knew that the obscure “H. Altov” [Altshuller’s pen name] was making a living writing science fiction stories utilizing TRIZ concepts? Altov wrote his fictions utilizing his inventive ideas. In 1961 Altshuller wrote his first book How to Learn to Invent. In this small book he laughs at the popular opinion that one must be born an inventor. He criticizes the trial and error method used to make discoveries. Fifty thousand readers, each paying only 25 kopecks [25 cents], learned the first 20 inventive methods of TRIZ.
+
+In 1959, trying to get acceptance of his theory, Altshuller wrote a letter to the highest patent organization in the former Soviet Union — VOIR [All Union Society of Inventors and Innovators]. He asked for a chance to prove his theory. Nine years later, after writing hundreds of letters, he finally got his answer. His requested seminar on inventive methodology would be held in Dsintary, Georgia, not later than December of 1968.
+
+It was the first ever seminar on TRIZ. There for the first time he met people who had considered themselves his students. Alexander Selioutski from Petrosavodsk, Voluslav Mitrofanov from Leningrad, Isaak Buchman from Riga, and others. These young engineers — and later many others would open TRIZ schools in their cities. Hundreds of people that went through Altshuller’s schools asked him to come and conduct seminars in different towns of the Soviet Union.
+
+In 1969 Altshuller published a new book: Algorithm of Inventing. In this book he gave his readers and students 40 Principles, and the first algorithm to solve complex inventive problems.
+
+Voluslav Mitrofanov, the founder of Leningrad University of Technical Creativity, told a story about Robert Anglin, a prominent inventor from Leningrad. Once, Anglin — who has over 40 inventions developed through the agony of trial-and-error creativity — came to a TRIZ seminar. He was very quiet during the TRIZ training session. After everyone had left, he was still sitting at the table, covering his head with his hands. “How much time was wasted!” he was saying. “How much time ... If I only knew TRIZ earlier!”
+
+The Russian TRIZ Association was established in 1989 with Altshuller as President.
+
+This is an excerpt from an article written by Leonid Lerner and published in the Russian Magazine Ogonek in 1991. It was translated and originally published in English as part of the book 40 Principles. 
+
+Mr. Altshuller died September 24, 1998
+
+给斯大林的信
 
 1948 年 12 月，作为一名里海海军上尉，根里奇·阿奇舒勒写了一封很危险的信，并且在信封上注明：「斯大林同志亲启。」信的作者向国家领导人指出，苏联在发明创新的方法方面既混乱又无知。在信的末尾，他甚至提出了一个更加令人「无法容忍」的想法：有一种理论可以帮助任何一位工程师进行创新。该理论可以产生无价的成果，并将使技术世界产生革命性的变化。两年后阿奇舒勒才收到对这封信的粗暴答复。现在让我们介绍一下这位性急的年轻上尉。
 
@@ -200,9 +278,31 @@ TC2：生产率和功率。
 
 1989 年成立了俄罗斯 TRIZ 协会，阿奇舒勒担任主席。
 
-### C 关于英文译者
+### About the Translators
 
-#### 列夫·A. 舒利亚克
+关于英文译者
+
+#### 列夫·A. 舒利亚克（Lev A. Shulyak）
+
+Lev A. Shulyak, an inventor for almost four decades, was born in Moscow, USSR.
+
+In 1954, he received his degree as a Mechanical Engineer from the Moscow College of Highway Construction.
+
+He worked as a mechanical engineer on the construction of BRATSK, the biggest hydropower station of its time, helping to design, manufacture and implement the first automatic system for producing wet concrete mix.
+
+In 1961 he bought Genrich Altshuller’s first book on the subject of inventing: How to Become an Inventor. This book helped him in the problem solving process and, within a year, he received his first patent for an electromechanical transducer.
+
+From 1961 to 1974, he received 15 patents on automatic control systems and mechanical equipment. These inventions helped save millions of rubbles in the construction of several hydropower stations.
+
+In 1973, Shulyak completed his Masters Degree in Mechanical Engineering. The following year, he emigrated to the United States. Settling in Worcester, Massachusetts, Shulyak was employed by Norton Company as a Project Manager from 1976 to 1983. Using his knowledge in TRIZ he saved hundreds of thousands of dollars for this company by redesigning process equipment.
+
+Shulyak has received four American patents on different consumer products, some of which he has successfully manufactured and marketed.
+
+In 1984, he was the first person in the United States to teach engineers and children TRIZ methodology.
+
+In 1991, he founded the Technical Innovation Center and began teaching courses on TRIZ-based Systematic Innovation to inventors, engineers and children. He has co-translated, with Steven Rodman, several books by Altshuller, including And Suddenly the Inventor Appeared (1995), 40 Principles (1998), and The Innovation Algorithm (1999). In September, 1998, he was named a TRIZ MASTER by Genrich Altshuller.
+
+Today Mr. Shulyak is dedicating himself to fulfilling his dream of building a center for innovation and creativity — the Altshuller Institute for TRIZ Studies. On October 15, 1998 the Institute was officially founded. It will continue to promote TRIZ while furthering its development and dissemination around the world.
 
 列夫·A. 舒利亚克，是一位从事发明创造近 40 年的发明家，出生于苏联的莫斯科。
 
@@ -224,7 +324,17 @@ TC2：生产率和功率。
 
 在他生命的最后 10 年，他开始驾驶小型飞机和跳伞。1999 年 12 月，列夫·舒利亚克在一次飞机失事中丧生。我们将永远细怀他的精神。
 
-#### 史蒂夫·罗德曼
+#### 史蒂夫·罗德曼（Steven Rodman）
+
+Steven Rodman is a writer, educator, and computer and media consultant. His interest in TRIZ began soon after meeting Lev Shulyak in 1993.
+
+In addition to being a founder and principal in Technical Innovation Center, Inc., where he is Vice President of Publications and Technology, he is also a founder and member of the Windchime Group and ConVergence: New Media Design.
+
+Previously, he was a Senior Technical Instructor at Prime Computer in Ireland, Puerto Rico and Framingham, U.S. (where he was also the Systems Administrator for the Advance Manufacturing Training Department). After ten years with Prime, he served five years as Director of Information Systems and Technologies at Worcester Magazine, Worcester Business Journal, and the Hartford Business Journal. He has also been a senior staff writer for Worcester Business Journal, and a contributing writer to Worcester Magazine and other publications.
+
+Rodman has studied TRIZ since 1993, primarily under the tutelage of Lev Shulyak. He has also studied under several other Russian TRIZ masters. He was instrumental in the formation of The Altshuller Institute for TRIZ Studies.
+
+This is the third TRIZ book by Genrich Altshuller he has collaborated on with Lev Shulyak.
 
 史蒂夫·罗德曼是一位作家、教育家、信息架构师和技术咨询师。他在 1993 年遇到列夫·舒利亚克之后不久，开始对 TRIZ 感兴趣。
 
