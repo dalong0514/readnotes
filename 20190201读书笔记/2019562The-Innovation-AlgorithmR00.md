@@ -342,6 +342,8 @@ xxxx
 
 唯一编码：202305232214
 
+打印备注：2023-05-29
+
 原文汇总：
 
 信息源自「内容简介」
@@ -450,9 +452,13 @@ Genrich Altshuller.(1999).The Innovation Algorithm.Technical Innovation Center. 
 
 根里奇·斯拉维奇·阿奇舒勒.(2008).创新算法.(谭增波，茹海燕，译).华中科技大学出版社 => 0101创新技术
 
+唯一编码：202305292322
+
 自我解读：
 
 综摄法的四个类比：1）直接类比。想给建筑染色，想想自然界里其他事物是如何染色的。2）拟人类比。想给建筑染色，想想我自己是一颗树，我该如何用现有的资源条件给自己染色呢。待补充。（2022-02-26）
+
+打印备注：2023-05-29
 
 原文：
 
@@ -566,13 +572,11 @@ Genrich Altshuller.(1999).The Innovation Algorithm.Technical Innovation Center. 
 
 #### 2.3 术语卡—— 技术矛盾
 
-
-
 ### 0301. 人名卡
 
 请为根里奇·阿奇舒勒（Genrich Altshuller）写一份 500-1000 字的小传。要求包括他的姓名全称、生卒年份、教育背景、工作经历、主要身份、家庭网络、社会关系、人生重要节点以及重要成果，着重介绍其重要成果和著作，请参考维基百科的信息，并给出链接。
 
-#### 3.1 人名卡 —— 阿奇舒勒
+#### 3.1 人名卡 —— 根里奇·阿奇舒勒（Genrich Altshuller）
 
 标题：根里奇·阿奇舒勒（Genrich Altshuller）
 
@@ -599,6 +603,8 @@ Genrich Altshuller.(1999).The Innovation Algorithm.Technical Innovation Center. 
 参考：[Genrich Altshuller: his biography and books - Toolshero](https://www.toolshero.com/toolsheroes/genrich-altshuller/)
 
 唯一编码：202305241121
+
+打印备注：2023-05-29
 
 ### 0401. 金句卡
 
