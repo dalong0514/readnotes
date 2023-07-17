@@ -1,0 +1,29 @@
+## 0101. Introduction
+
+### 1.1 AIMS AND OBJECTIVES
+
+This book is intended to provide guidance on a specific technique developed for use in the process and chemical industries. The technique described is HAZOP (hazard and operability) study, a detailed method for systematic examination of a well-defined process or operation, either planned or existing.
+
+The HAZOP study method was developed by ICI in the 1960s and its use and development was encouraged by the Chemical Industries Association (CIA) Guide published in 1977. Since then, it has become the technique of choice for many of those involved in the design of new processes and operations. In addition to its power in identifying safety, health, and environmental (SHE) hazards, a HAZOP study can also be used to search for potential operating problems. Not surprisingly, the method has been applied in many different ways within the process industries.1 
+
+While it is frequently used on new facilities, it is now often applied to existing facilities and modifications. It has also been successfully applied to process documentation, pilot plant, and hazardous laboratory operations as well as tasks such as commissioning and decommissioning, emergency operations, and incident investigation.
+
+The objective here is to describe and illustrate the HAZOP study method, showing a variety of uses and some of the approaches that have been successful within the process industry. An important input has come from European Process Safety Centre (EPSC) members where 22 member companies responded in a survey carried out prior to the first edition of this Guide (2000). This identified many features generally regarded as essential to a good study. In addition, many common variations were described. These variations are in part due to the range of problems encountered within industry but also reflect individual choices of style. HAZOP study is a versatile technique and good results may be achieved by several different approaches provided the basic principles are followed. It is hoped that this Guide will help maintain a high standard for HAZOP study within the industry, both by raising quality and encouraging flexibility without putting any unnecessary constraints upon its use and development.
+
+The HAZOP study method is well developed and is useful in most applications. There are other methods, however, that may have to be considered depending on the complexity and hazards of the installation being constructed and the state of the design. This publication does not address these methods in detail but their importance is discussed in Chapter 2. A fuller account is given in the IChemE Guide, Hazard Identification Methods.2 
+
+Finally, three illustrations of process industry applications are given in Appendices 3, 4 and 5. These examples cannot fully represent all the possible applications and process industries and readers new to HAZOP study are advised to consult the reference list, 3-6 the International Electrotechnical Commission (IEC) standard, 7 or guidelines written specifically for other industries.
+
+It is hoped that this guide will help people within the process industries, including all those with responsibilities within safety management systems. Although it is primarily written for HAZOP study leaders, scribes, and members, it may also be of use to those involved in training and plant management.
+
+### 1.2 ESSENTIAL FEATURES OF HAZOP STUDY
+
+A HAZOP study is a structured analysis of a system, process, or operation for which detailed design information is available, carried out by a multidisciplinary team. The team proceeds on a line-by-line or stage-by-stage examination of a firm design for the process or operation. While being systematic and rigorous, the analysis also aims to be open and creative. This is done by using a set of guidewords in combination with the system parameters to seek meaningful deviations from the design intention. A meaningful deviation is one that is physically possible—for example, no flow, high pressure, or reverse reaction. Deviations such as no temperature or reverse viscosity have no sensible, physical meaning and are not considered. The team concentrates on those deviations that could lead to potential hazards to safety, health, or the environment. It is important to distinguish between the terms hazard and risk. They have been defined 8 as follows: a “hazard” is a physical situation with the potential for human injury, damage to property, damage to the environment, or a combination of these. A “risk” is the likelihood of a specified undesirable event occurring within a specified period or in specified circumstances. It can also be expressed as a combination of likelihood and severity, as illustrated in Figure 1.1.
+
+Figure 1.1 Illustrative risk graph.
+
+In addition to the identification of hazards, it is common practice for the team to search for potential operating problems. These may concern security, human factors, quality, financial loss, or design defects.
+
+Where causes of a deviation are found, the team evaluates the consequences using experience and judgment. If the existing safeguards are adjudged to be inadequate, then the team recommends an action for change or calls for further investigation of the problem. The consequences and related actions may be risk-ranked. The analysis is recorded and presented as a written report which is used in the implementation of the actions.
+
+To avoid misunderstanding and confusion with other forms of process hazard study or project hazard review, the term HAZOP study is reserved for studies which include the essential features outlined earlier in this section. Descriptions such as “coarse scale HAZOP” or “checklist HAZOP” should be avoided.
