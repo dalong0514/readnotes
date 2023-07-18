@@ -1,3 +1,7 @@
+## 记忆时间
+
+Frank Crawley.(2015).HAZOP: Guide to Best Practice.Institution of chemical Engineers.(IChemE.) => xxxx
+
 ## 卡片
 
 ### 0101. 新知卡
@@ -186,6 +190,19 @@ GPT-4（2023-07-18）
 
 ### 0601. 基础卡
 
-#### 6.1 基础卡 —— XXXX
+#### 6.1 基础卡 —— 比 10 年一次更低的频次应借助其他手段
 
-最后还有一张任意卡，记录个人阅读感想。
+标题：比 10 年一次更低的频次应借助其他手段
+
+参考：Frank Crawley.(2015).HAZOP: Guide to Best Practice.Institution of chemical Engineers(IChemE) => 0401.The Detailed HAZOP Study Procedure
+
+原文：
+
+The estimations of likelihood and severity are normally qualitative, typically in order of magnitude bands. They rely on the team’s experience and judgment of similar events and will be uncertain, perhaps by as much as a factor of 3 (i.e., about one-half of an order of magnitude). A good team will quickly estimate frequencies as low as once in 10 years for common events. For lower frequencies, it may be necessary to make some analysis of the conditions needed for the event to occur and to do a rough quantification to get to lower frequencies. Inevitably, the uncertainty in the estimate will be greater for very low frequencies. When events of very low frequency, of one in 100 years or less, need to be considered, it is better to refer the problem to outside analysis by QRA or full Hazard Analysis and not to lose focus on the identification exercise.
+
+
+
+
+
+
+

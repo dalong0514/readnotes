@@ -116,27 +116,27 @@ This simple example shows how a HAZOP study works. It is applied to a familiar t
 
 Consider filling the fuel tank of a diesel-engined car as part of the operation of a new filling station. Assume the design of the filling station is complete and that it has been subjected to a full set of Hazard Studies. The intention here is to look at one function of the design. Consider a car driver arriving to take on fuel. Having selected this filling station, we consider what the driver has to do. A minimum set of steps is:
 
-1. Select a filling bay that is not occupied.
+1 Select a filling bay that is not occupied.
 
-2. Park so the filling hose can reach the inlet to the car’s fuel tank.
+2 Park so the filling hose can reach the inlet to the car’s fuel tank.
 
-3. Remove the cap from the fuel tank.
+3 Remove the cap from the fuel tank.
 
-4. Determine which fuel is required—95-octane lead-free petrol, diesel, high-octane petrol, etc.
+4 Determine which fuel is required—95-octane lead-free petrol, diesel, high-octane petrol, etc.
 
-5. Place the fuel nozzle into the car’s fuel tank inlet.
+5 Place the fuel nozzle into the car’s fuel tank inlet.
 
-6. Start the flow of fuel.
+6 Start the flow of fuel.
 
-7. Monitor the flow, stopping it when enough has been added.
+7 Monitor the flow, stopping it when enough has been added.
 
-8. Replace the fuel nozzle on the pump stand.
+8 Replace the fuel nozzle on the pump stand.
 
-9. Replace the cap on the car fuel tank.
+9 Replace the cap on the car fuel tank.
 
-10. Pay for the fuel taken.
+10 Pay for the fuel taken.
 
-11. Drive away.
+11 Drive away.
 
 These could be made more precise but initial drafts of operating instructions rarely cover all situations.
 
