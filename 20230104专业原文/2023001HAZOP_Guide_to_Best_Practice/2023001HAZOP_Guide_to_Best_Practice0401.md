@@ -1,5 +1,9 @@
 ## 0401. The Detailed HAZOP Study Procedure
 
+你是一名化学工程师和工业安全专家，且精通英文。请将下面内容翻译为中文，要求严谨。
+
+{xxxx}
+
 The actual study must proceed in a carefully planned, systematic manner to cover all of the selected aspects of the process or operation. It is normal to cover a continuous operation by dividing it into sections and working from an upstream starting point. A batch process or a procedure is divided into sequential steps and these are taken in a chronological order. The division of a process into sections or steps is described in more detail in Section 5.3 and illustrated in Appendices 3À5. The pattern of analysis for an individual section or step a is shown in Figure 4.1, and its main elements are described in the following sections.
 
 Figure 4.1 Flow diagram for the HAZOP analysis of a section or stage of an operation—the parameter-first approach.
@@ -15,6 +19,14 @@ Next, a design intention for the step is formulated and recorded. This should in
 It is good practice to develop a comprehensive design intention, clearly linked to the drawings being used, which can be referred to during the search for deviations. A design intention may refer to equipment items in the section, to materials, conditions, sources, and destination, to changes or transfers, as well as to the means of control and timing of a step. It not only refers to plant equipment but covers what is intended to be done within the section being analyzed.
 
 The recording of the design intention should include sufficient information to enable a later user of the records to understand the picture developed and used by the HAZOP team during their study.
+
+团队在开始分析某个部分或阶段时，必须对现有的情况有充分的理解，或者拥有足够的信息以形成一个充分的概念模型。应该制定一份完整的描述，包括所有关键参数，并且 HAZOP 报告应该包含设计描述。
+
+接下来，为步骤制定并记录一个设计意图。这应该包括预期操作范围（包络）的声明，以便团队能够识别出任何超出此范围的情况作为偏差。设计意图可能与步骤描述以及设备的设计参数相互关联。
+
+制定一份与正在使用的图纸明确相关的全面设计意图是好的做法，这可以在寻找偏差时参考。设计意图可能会参考部分中的设备项目，材料，条件，源头和目的地，改变或转移，以及步骤的控制方式和时间。它不仅参考工厂设备，而且涵盖了在被分析的部分内打算做什么。
+
+设计意图的记录应包括足够的信息，以便 HAZOP 团队在其研究期间使用的记录的后续用户能够理解他们形成并使用的图像。
 
 ### 4.2 GENERATING A DEVIATION
 
@@ -32,7 +44,21 @@ The extent of this list emphasizes the need for the team to form a clear concept
 
 Most of the combinations in Table 4.3 have obvious meanings but, as an example of the subtlety possible in HAZOP study, reverse pressure is included. It may apply to the situation in twin tubing where the pressure in the annulus between the outer and inner tube may be sufficient to crush the inner tube.
 
-HAZOP study is most effective when it is a creative process, and the use of checklists for guidewords or parameters can stultify creativity. Nevertheless, checklists can be helpful for an experienced team. Illustrations are given in Appendix 2, pages 99À100.
+HAZOP study is most effective when it is a creative process, and the use of checklists for guidewords or parameters can stultify creativity. Nevertheless, checklists can be helpful for an experienced team. Illustrations are given in Appendix 2, pages 99-100.
+
+下一步是通过结合引导词 b 和参数 c 生成一个有意义的偏差。可以通过取一个参数并依次与每个引导词组合，看看是否能得到一个有意义的偏差（先参数后引导词的方法）。这就是图 4.1 中描述的方法。另一种方法是取一个引导词，然后依次尝试每个参数（先引导词后参数的方法）。关于先引导词后参数方法的更多详细信息，请参见附录 1，第 95-97 页。
+
+流程工厂的标准引导词集列在表 4.1 中，旁边是它们的通用含义。通常使用前七个，如果适合的话，也包括其他的。由于引导词的目的是帮助团队以创新和彻底的方式寻找有意义的偏差，所以选择一套适合正在研究的问题的集合很重要。可以尝试标准集合的变体或者向列表中添加其他内容。一些公司为特定的技术开发了自己的引导词集。
+
+尽管可以明确推荐应考虑哪些引导词，但是无法提供关于参数的坚定建议。选择参数是每个团队必须为每个研究系统解决的任务。表 4.2 给出了可能用于流程操作分析的参数的例子。这个列表并不是详尽无遗的，但旨在展示可以使用的参数和引导词搜索的深度和广度。必须强调的是，许多列出的参数并不适用于每个问题或过程，因为参数与被研究的个别系统、过程或操作有关。
+
+b 这里使用的「引导词」一词是指动作词或短语，如「无」、「更多」和「以及」。其他作者使用了其他术语，如关键词。
+
+c 这里使用的「参数」一词是指在研究阶段中提到的变量、组件或活动的通用名称，例如流量、压力、传输和测量。已经使用了许多替代术语，包括关键词、属性词、元素和特性。我们不建议将关键词用作引导词或参数，因为这可能会引起混淆。
+
+这个列表的广泛性强调了团队形成清晰的概念模型并使用它来决定在寻找可能的偏差时应使用哪些参数的需要。寻找偏差时必须记住，不是每个引导词都能和参数结合起来产生有意义的偏差。讨论没有物理意义的组合是浪费时间。表 4.3 给出了一些有意义的组合例子。许多参数会从步骤描述和设计意图的声明中得出，前提是它是明确和全面的。此外，一个好的团队在检查过程中，特别是对于后来的引导词 "以及"、"部分" 和 "其他"，可能会识别出更多的参数。在离开一个节点之前，将所有的引导词应用到设计意图是好的做法。
+
+表 4.3 中的大多数组合都有明显的含义，但是，作为 HAZOP 研究可能的微妙性的一个例子，包括了反向压力。它可能适用于双管情况，其中外管和内管之间的环空压力可能足以压碎内管。
 
 ### 4.3 IDENTIFYING CAUSES
 
@@ -45,6 +71,16 @@ An alternative approach is to ignore the safeguards when evaluating consequences
 It is important that causes are clearly described, as broadly similar causes may have distinctly different consequences. In these circumstances, it is necessary to distinguish and treat each cause separately. For example, pump failure due to a mechanical cause may cause loss of containment as well as loss of flow while pump failure due to an electrical cause may simply lead to loss of flow. So while it may sometimes be possible to group causes together, this should only be done where the team is sure that the consequences are identical for every cause.
 
 Finally, before the discussion of a particular deviation is concluded, the team should consider all of the possible causes suggested.
+
+一旦确定了有意义的偏差，团队便开始寻找原因。如果后果微不足道，那么一开始就值得注意，因为没有必要寻找原因。如果可能存在多个原因，比如在管道「无流动」这个偏差中，进行一次简短的头脑风暴以确定尽可能多的原因非常有帮助，要记住原因可能与人为因素以及硬件项目有关。在寻找原因（和评估后果）时，团队所有成员都需要采取积极和批判的态度，但不能防守。这对于任何负责设计的成员来说尤为重要。创建并使用一个经常出现的原因的数据库来确保没有忽视任何常见原因可能会有用。然而，如果这样做，就不能让它影响团队的创造力或者成为原因的主要来源。
+
+虽然只需要详细讨论实际的原因，但在不考虑后果的性质和严重性的情况下，不能对此进行判断。可接受的风险涉及到频率和严重性的评估，因此在 HAZOP 分析中，完全分离原因和后果的讨论是不切实际的。有时，这可能导致通过在 HAZOP 研究会议之外更详细的分析来评估风险的行动，例如，由于原因的组合可能导致重大后果。"实际的" 一词意味着要考虑原因的可能频率。如果只有微小的后果，那么甚至高频的原因可能被忽视。实际上，是基于事件的频率和后果的严重性做出的风险评估。对于大多数事件，有经验的团队在这方面很少遇到困难。然而，关于描述为「实际」的原因的频率的判断可能会因公司和国家的不同而不同，这肯定是因为立法方法的不同。在某些情况下，最好分析并记录即使是频率非常低的原因，可能包括所有已经确定的原因。
+
+另一种方法是在评估后果时忽略安全防护措施，以便了解最终的影响。然后逐一考虑每个原因。现在可以评估安全防护措施的充分性，并确定是否需要采取行动。
+
+重要的是，原因要清楚地描述，因为类似的原因可能会有明显不同的后果。在这种情况下，需要区分并分别处理每一个原因。例如，由于机械原因导致的泵故障可能会导致泄漏以及流量的丧失，而由于电气原因导致的泵故障可能只会导致流量的丧失。所以，虽然有时可能可以把原因归为一类，但只有在团队确定对每一个原因的后果都是一样的情况下才能这么做。
+
+最后，在讨论某个特定偏差之前，团队应该考虑所有可能的原因建议。
 
 ### 4.4 EVALUATING CONSEQUENCES
 
@@ -82,6 +118,30 @@ The advantage of this approach is that it shows the worst case consequences, the
 
 A further benefit of risk assessment after the consideration of the consequences is that minor problems are apparent and further discussion can be terminated.
 
+最初，HAZOP 研究中几乎没有进行风险评估，其目的在于识别危险和操作问题。这仍然是一种有效的方法。然而，如果在研究过程中要进行风险评估，团队需要一个经过共识的方法，包括：
+
+·是否会评估所有问题，还是只评估严重性较高的问题；
+
+·如何进行评估；
+
+·何时进行评估。
+
+对每个问题进行风险评估可能会耗费很多时间。然而，如果团队有一个熟悉的、构建良好的风险矩阵，且该矩阵适合特定的行业，他们会在分配可能性和严重性类别方面变得高效。好的软件包通过提供方便查看的矩阵提示，可能还允许记录不同后果类别（如环境、过程或人员伤害）的不同风险。
+
+可能性和严重性的估计通常是定性的，通常是以数量级的顺序。它们依赖于团队对类似事件的经验和判断，并可能存在不确定性，可能达到 3 倍的因子（即大约半个数量级）。好的团队会迅速估计出常见事件每 10 年发生一次的频率。对于更低的频率，可能需要分析事件发生所需的条件，并进行粗略的定量化，以得到更低的频率。不可避免地，对非常低频率的估计中的不确定性会更大。当需要考虑频率非常低，100 年或更长时间内发生一次的事件时，最好将问题转交给 QRA 或全面的危害分析进行外部分析，而不是失去对识别工作的焦点。
+
+评估可能在团队澄清后果后，或者在讨论安全措施之后进行。一些公司选择在三个阶段评估风险：
+
+1 未经缓解的；
+
+2 在安全措施之后；
+
+3 在采取行动之后。
+
+这种方法的优点是，它显示了最坏情况的后果，现有安全措施对这些后果的缓解程度，以及提出的行动的效果。这种顺序非常清楚地说明了问题的严重性，依赖现有的安全措施，因此需要确保在操作过程中保持这些措施，并因此证明了采取提议行动的好处。
+
+在考虑后果后进行风险评估的另一个好处是，可以明显看出哪些问题是次要的，进一步的讨论可以终止。
+
 ### 4.7 RECOMMENDATIONS/ACTIONS
 
 Several different approaches are in common use:
@@ -98,6 +158,20 @@ Actions may be either specific or generic. The former is more common but, where 
 
 It is good practice to have an entry in the action column for every deviation and cause discussed, even if the entry simply states that no action is required because the existing safeguards are considered adequate, to show that the team concluded their discussion.
 
+有几种常见的处理方式：
+
+• 在发现潜在问题后，总是将其转交给 HAZOP 会议之外的团队进行调查。
+
+• 另一个极端的做法是，团队尽可能地处理问题，并记录对该问题的推荐解决方案，无论是工程上的还是程序上的。
+
+• 常规做法是中间路线，即团队只在存在标准违规或团队一致同意可以由他们自行决定的解决方案时，才推荐解决问题的方案。所有其他问题，特别是没有达成一致的问题，都应转交给 HAZOP 会议外的团队进行进一步调查。这种做法的好处在于，一旦达成一致，对硬件的更改可以立即标记在工作图纸上，并在研究的剩余部分中予以考虑。
+
+应在研究定义中商定使用哪种方法。无论采取哪种方法，团队在采取任何积极行动以及对原因和后果的看法上都应达成共识。此外，应考虑并在HAZOP研究中涵盖可能与变更相关的进一步原因、后果和偏差。至关重要的是，所有建议/行动必须清晰明了，无歧义地记录下来，以便在项目的后期阶段，非团队成员也能理解。
+
+行动可以是具体的，也可以是通用的。前者更常见，但是，如果一项变更可能在设计的几个点上应用，那么制定一个通用的行动会更简单，这样可以避免重复，也可以避免对过程的不同部分中相似问题采取不同的行动。
+
+对于讨论过的每个偏差和原因，都在行动列中做出记录是个好习惯，即使记录的只是不需要采取行动，因为认为现有的保护措施已经足够，这也显示出团队已经结束了讨论。
+
 ### 4.8 RECORDING
 
 The conclusions reached by the team must be fully recorded, and it should be remembered that the HAZOP report typically represents the only comprehensive record of the study and of the operating strategy intended by the designers of the plant. The report should be regarded as one of the suite of key documentation handed forward to the operators of the project.
@@ -110,7 +184,11 @@ In the parameter-first approach, the normal sequence is to consider in turn all 
 
 To get the best results from a HAZOP study, it is essential that the group functions as a team throughout, with every member feeling free to contribute and actually doing so. It is expected that a consensus will be reached at every stage of the analysis. If any team member is not satisfied with a conclusion or recommendation, then the team should aim to resolve the issue before moving on or turn it into an action for further discussion outside the meeting.
 
-4.10 AN ILLUSTRATION OF THE HAZOP STUDY PROCESS
+在参数优先的方法中，正常的顺序是逐个考虑一个特定偏差的所有原因。完成后，考虑同一参数与另一个指导词组合，看是否可以生成有意义的偏差。这种情况会持续，直到尝试了所有的指导词。在实践中，团队很快就会认识到应该用哪些指导词考虑每个参数。当所有有意义的偏差都被检查后，团队将移至另一个参数，并考虑所有适当的指导词。当团队不能提出更多的参数时，该部分或步骤的 HAZOP 分析就完成了。
+
+为了从 HAZOP 研究中获得最好的结果，至关重要的是，团队在整个过程中都要像一个团队一样工作，每个成员都应该感到自由发言并实际参与。预期在分析的每个阶段都会达成一致意见。如果任何团队成员对结论或建议不满意，那么团队应该在继续前解决这个问题，或者将其变为进一步讨论的行动，这个讨论会在会议之外进行。
+
+### 4.10 AN ILLUSTRATION OF THE HAZOP STUDY PROCESS
 
 This simple example shows how a HAZOP study works. It is applied to a familiar task. The early stages are set out in full but the analysis is not completed, only going far enough to show at least one line of analysis for each guideword. You can easily add some more yourself.
 
@@ -301,3 +379,193 @@ SM
 “Extreme weather conditions—wind, frost, lightning, snow.”
 
 Table 4.4 shows extracts from the report.
+
+这个简单的例子展示了 HAZOP 研究是如何运作的。它被应用到一个熟悉的任务中。早期阶段已经全面展开，但分析并未完成，只进行到每个指导词至少有一条分析线的程度。你可以很容易地自己再添加一些。
+
+考虑作为新加油站操作一部分的填充柴油发动机汽车的油箱。假设加油站的设计已经完成，并且已经进行了一整套的危险研究。这里的意图是查看设计的一个功能。考虑一下车主到达加油站。在选择了这个加油站后，我们考虑驾驶员需要做什么。最小的一组步骤包括：
+
+1 选择一个未被占用的加油湾。
+
+2 停车，使加油管可以接触到汽车油箱的入口。
+
+3 从油箱中取出盖子。
+
+4 确定需要哪种燃料 - 无铅汽油 95 号、柴油、高辛烷值汽油等。
+
+5 将燃料喷嘴放入汽车油箱入口。
+
+6 开始加油。
+
+7 监视燃料流动，当加入足够的燃料时停止。
+
+8 将燃料喷嘴放回泵架。
+
+9 将盖子放回汽车油箱。
+
+10 付款。
+
+11 开车离开。
+
+这些步骤可以更具体，但是操作说明的初稿很少覆盖所有的情况。
+
+需要为研究收集信息。这应该包括：
+
+·填充站的布局，显示进出车道、泵的数量、位置和间距，以及相关建筑（商店和付款点、油罐供应区和加油连接口、洗车区、压缩空气和水供应站等）。需要设备的图纸和照片。
+
+·每个典型泵站的详细信息（如果有不止一种样式），包括可供选择的燃料种类、使用的控制系统、显示屏和流量。最低要求是图纸、规格和照片；团队访问现场将是有用的。通常会包括 P&ID。
+
+·燃料属性；
+
+·现场排水细节和计划；
+
+·消防安全措施和消防设备；
+
+·典型使用情况的详细信息 - 可用泵空间的占用率、每次访问的时间、转移量的范围、其他到站和离站的交通（例如，只购物的访问）；
+
+·现场操作人员的数量和他们的一般职责；
+
+·供应油箱加油的频率以及在补给期间对客户访问的任何限制；
+
+·泵的典型不可用性，例如由于燃料短缺或单个泵故障；
+
+·加油站事件的历史（特定于运营公司和一般性）。}
+
+{我们将假设一位经验丰富的 HAZOP 研究负责人已被任命来领导这项研究。负责人将审查这些信息的一般适用性和覆盖范围，然后思考如何将操作步骤（上述的 1 到 11）划分为研究阶段。初步的建议可能是：
+
+我们将在这里查看阶段 2。
+
+团队领导需要组建一个合适的团队。可能包括：
+
+·团队领导（TL）;
+
+·现场建筑师（SA）;
+
+·现场管理人员成员（SM）;
+
+·泵制造商代表（PM）;
+
+·本地操作员（LO）;
+
+·代表性用户（RU）;
+
+·石油公司健康与安全顾问（HS）;
+
+·记录员（TS）。
+
+在熟悉研究数据后，团队会讨论阶段 2 涉及的内容，并制定一个设计意图。可能是：
+
+以与安全性兼容的最快速率，从选定的固定泵转移柴油到汽车的油箱。转移的数量可能是选定的体积、选定的价值或是满油箱的容量。转移将由一名未经培训的公众成员控制，并可手动终止或在油箱满时自动切断。
+
+在领导的建议下，团队正在使用标准的七个指导词，即：
+
+·无；
+
+·多；
+
+·少；
+
+·以及；
+
+·部分；
+
+·反转；
+
+·其他；
+
+加上额外的
+
+·其他地方；
+
+·之前 / 之后。
+
+团队对可能的参数的初步考虑得出以下结果（在研究本身过程中，可能会因提出的想法而扩展）：
+
+·组成；
+
+·流速；
+
+·数量；
+
+·温度；
+
+·安全；
+
+·控制。
+
+下一部分给出了团队讨论的示例，首先是关于高燃料流量的讨论：
+
+TL
+
+我想更多地讨论一下汽车油箱中的高燃料流。灌注器上的死人手柄失效，或者在汽车油箱高水位的情况下无法关闭，这些情况的影响是什么？
+
+LO
+
+燃料会以无法控制的方式从油箱中溢出，并进入排水系统，然后被截流器接住。
+
+RU
+
+我们知道是否有任何水平测量或截流器超载的警告吗？
+
+HS
+
+我认为是有的。
+
+TS
+
+我正在记录一个关于 HS 的行动，以验证这一点。
+
+LO
+
+这提出了一些关于清空截流器的问题，包括‘怎么清空？'和‘多久清空一次？'。
+
+TS
+
+我正在记录 LO 和 HS 之间的这个行动。
+
+TL
+
+关于高流量的这些原因，还有没有其他相关的后果？
+
+在后期的某个阶段，团队进行了一次简短的头脑风暴会议，开始使用指导词其他 / 非。
+
+TL
+
+我建议我们开始使用指导词‘其他 / 非'，通过头脑风暴来寻找可能的偏差。有什么想法吗？
+
+LO
+
+填充了非标准的燃料容器。
+
+PM
+
+可能使用了不同的燃料。
+
+RU
+
+试图进行汽车千斤顶。
+
+HS
+
+安全性 - 发动机起火。
+
+TS
+
+汽车挂有拖车或房车。
+
+RU
+
+汽车无法重新启动，或者注意到有轮胎漏气。
+
+LO
+
+从车辆中泄漏冷却液、发动机油或其他液体。
+
+SA
+
+司机病倒或看起来病倒（喝酒，吸毒）。
+
+SM
+
+极端天气条件 - 风，霜，闪电，雪。
+
+表 4.4 显示了报告中的一些节选。
