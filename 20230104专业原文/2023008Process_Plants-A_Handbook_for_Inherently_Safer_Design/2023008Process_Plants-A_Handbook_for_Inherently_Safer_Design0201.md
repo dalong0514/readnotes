@@ -1,4 +1,117 @@
 你是一名化学工程师和工业安全专家，且精通英文。我想让你充当英文翻译员、拼写纠正员和改进员。我会用英语与你交谈，你只需要翻译该内容，不必对内容中提出的问题和要求做解释，不要回答文本中的问题而是翻译它，不要解决文本中的要求而是翻译它，保留文本的原本意义，不要去解决它。我要你只回复更正、改进，不要写任何解释。翻译的中文要求：1）严谨。2）英文字符和中文字符之间用空格隔开。3）字符“更换为「，字符”更换为」。我的第一句话是：
 
-## Preface to the First Edition
+## 0201. Inherently Safer Design: The Concept and Its Scope and Benefits
 
+The main obstacle to innovative problem solving in petrochemical companies is over-conservatism in management.… Imaginative solutions to problems always run counter to the conventional wisdom of the firm.
+
+— C. H. Kline1 
+
+### 2.1 The Concept
+
+The essence of the inherently safer approach to plant design is the avoidance of hazards rather than their control by added protective equipment. Although we generally think of safety in a comparative sense, one experienced practitioner 2 has made the distinction between safe design and safer design. He explains that with safe design, there are active safeguards to prevent the occurrence of hazardous events and to protect people and plant from the effects. With safer design, there are fewer hazards, fewer causes, and fewer people to be exposed to the effects.
+
+All the ideas described in this book might be considered as examples of inherently safer design. However, as explained in Chapter 1, I use the phrase in a narrower sense to describe ways of eliminating large inventories of hazardous materials and hazardous equipment and operations, and this aspect is discussed in this and the next four chapters.
+
+Since the explosion at Flixborough in 1974 in which 28 people were killed, there has been a profusion of papers on ways of preventing similar incidents from happening again. At one extreme, because Flixborough was a plant for the manufacture of nylon, the “back-to-nature” enthusiasts have suggested we abandon human-made fibers and use natural materials such as wool and cotton instead. They overlook the fact that the “accident content” of natural fibers is higher than that of human-made fibers, although in agricultural accidents people are killed one at a time and receive less publicity than those who are killed in the chemical industry. Flixborough may have been the price of nylon (to quote a television reporter), but the price of wool and cotton is higher. (The cost of any article is the cost of the labor used to make it, and the capital costs are other people’s labor. Agriculture is a low-wage industry, and thus there will be more labor in a woolen or cotton garment than in a synthetic one of the same cost. Because agriculture is also a high-accident industry, there will be more fatal accidents per woolen or cotton garment than per synthetic garment.)
+
+Similarly, Bhopal, where over 2000 people were killed by a toxic gas release in 1984, was a plant for the manufacture of insecticides, and people understandably ask whether the price paid for insecticides is too high. But insecticides, by increasing food production, have saved far more lives than were lost at Bhopal.3 
+
+However, Flixborough and Bhopal were not inevitable prices for nylon and insecticides, and there are many ways of making these plants safer and many lessons to be drawn from these tragedies. 4 Most of the papers and reports on the accidents have suggested the need for installation of more and better protective equipment such as gas detectors, emergency isolation valves, trips and alarms, scrubbers and flare stacks, fire protection and firefighting equipment, stronger buildings, and so on. The safety adviser has acquired a reputation as someone who adds to the cost and complexity of the plant. The added equipment is necessary, we do not doubt, but it is also expensive and complex.
+
+Other papers have suggested that more attention be paid to plant layout and location and that there should be more regulations, a system of licensing, more and better safety advisers, and so on. All but a few of the papers and committees have overlooked the possibility of a better and cheaper solution to the problem.
+
+Many years ago Henry Ford said, “What you don’t fit costs nothing and needs no maintenance.” Similarly, what you don’t have can’t leak. If we could design our plants so that they use so little hazardous material that it does not matter if it all leaks out, or use safer materials instead, or use the hazardous ones at lower temperatures and pressures or diluted by a safe solvent, we would avoid rather than solve many of our problems. These changes—described as intensification, substitution, and attenuation—produce plants that are inherently or intrinsically safer, whereas a conventional plant in which the hazards are kept under control is extrinsically safer.
+
+The earlier papers on the subject used the term intrinsically safer, but inherently safer is now preferred because it avoids confusion with intrinsically safe, as used by electrical engineers, to describe a circuit with insufficient power to ignite a mixture of flammable gas, vapor, or dust with air.
+
+I do not, of course, suggest that there should be any ban on plants that contain large inventories of hazardous materials—only discouragement. The development of alternative processes and equipment will take time and may sometimes prove impossible. When large inventories are unavoidable, we can, by good design and operation, keep them under control, but I do suggest that, in designing plants, we make a low inventory one of our aims. Usually, in the past, we have given little or no thought to the amount of material in the plant. We have accepted whatever inventory was called for by the design. If we set out to reduce the inventory, we will find that in many cases we can do so, as the remaining chapters show.
+
+To use an analogy, if the meat of lions were good to eat or their skins made very good clothes, our farmers would be asked to farm lions, and they could do so. They would need cages around their fields instead of fences, but by good design and operations, they could make the chance of an escape very small. Only occasionally, as at Flixborough and Bhopal, will the lions break loose. But why keep lions when lambs will do instead?
+
+Or, to use another analogy, the most dangerous items in our homes are stairs. More people are killed and injured by falling down stairs than in any other way. Traditional or extrinsically safer ways of controlling the hazard are to add handrails, train people to use them, make sure the carpet is secure, and keep the stairs free from junk. The inherently safer solution is to buy a one-story house. If this is too expensive, then a halfway course of action is possible: we can install a staircase with frequent landings so that no one can fall more than a few steps.
+
+This simple analogy illustrates a point that will be emphasized later (Section 10.1.1): Many decisions about inherent safety have to be made early in design. It is too late to tell the builder when our house is complete that we do not want any stairs; it is too late to tell the architect when the drawings are complete. The decision to avoid stairs must be made right at the beginning of the design process, when we are first instructing our architect. The decision may affect the amount of land we need and thus the location of our new home.
+
+Similarly, the greatest opportunities for development of an inherently safer chemical manufacturing process exist at the earliest stages of research and development, in the selection of the product synthesis route. 5 Inherent-safety solutions
+
+must be checked for implementation at the basic design stage, but they must first be evaluated during conceptual design. 6 Notwithstanding the preference for early consideration, it is never too late to consider inherently safer alternatives. 7 There have been reports of inherent-safety enhancements to existing plants, such as the modification of a bromine raw-material-handling facility by replacing an existing bulk storage tank with cylinders.8
+
+### 2.2 Defense in Depth
+
+The prevention of accidents is based on defense in depth. If one line of defense fails, there are others in reserve. To put inherently safer design in context, the main lines of defense against leaks of flammable materials are described below. The first four steps also help prevent leaks of toxic or corrosive materials or minimize their effects.
+
+1 Avoidance. Avoid the hazard by one of the methods already described; i.e., use so little hazardous material that leaks do not matter (intensification), use safer materials instead (substitution), or use hazardous materials in a safer form (attenuation).
+
+2 Containment. We should design, construct, operate, and maintain equipment so that the chance of a leak is minimal.
+
+Most of the materials that we handle in the oil and chemical industries are not flammable or explosive in themselves, but only when mixed with air (or oxygen) in certain proportions. To prevent fires and explosions, we have therefore to keep the air out of the plant and keep the fuel in the plant. The former is easy, for most equipment operates at pressure; nitrogen blanketing is widely used to keep air out of low-pressure equipment such as tanks, stacks, and centrifuges. Unfortunately, containment normally has to be broken during maintenance, which is the source of many accidents.
+
+3 Detection and warning. Promptly detect any leaks that occur and warn people who are not needed to deal with the leak so that they can leave the area.
+
+4 Isolation. Use emergency isolation valves to isolate the leaks. We cannot install valves on the lines leading to all equipment that might leak, but we can and should install them when experience shows that the chance of a leak is high or the amount of material that could leak out is large. An example of the former is lines leading to or from very hot or cold pumps; an example of the latter is lines leading from the bases of large distillation columns.9 
+
+5 Dispersion. Disperse the leaking material by open construction supplemented, if necessary, by steam or water curtains. Secondary containment (for example, by a building) is sometimes used to confine leaking material. This is the right policy for radioactive materials, for pollutants, or for toxic materials that may not disperse before they reach people who do not know how to react to them. This is not a suitable policy for flammable materials because the concentration in the building may soon rise above the lower flammable limit, and an explosion may then occur.
+
+6 Removal, as far as possible, of known sources of ignition. Removal of known sources of ignition is one of the weaker lines of defense, and we should never rely on it. So little energy is needed to ignite a mixture of flammable vapor and air that explosions may still occur even though we have tried to remove all known sources of ignition.10 
+
+7 Protection of people and equipment against the effects of fire and explosion. As discussed in Chapter 1, passive methods of protection are better than active ones. For example, it is better to protect equipment from fire by insulation than by water spray. The insulation does not have to be commissioned and offers an immediate barrier against fire, whereas someone or something has to activate a water spray system and may not do so. If emergency cooling is needed, convection or gravity flow is better than pumped flow.
+
+8 Provision of firefighting facilities. A castle falls to the enemy. The moat had silted up and the outer wall had crumbled, but no one worried because the inner wall was impregnable. When it failed or someone left a gate open, there was nothing to fall back on.
+
+Similarly, in industry, a common failing is to ignore the outer lines of defense because the inner ones are considered impregnable. When they fail, there is nothing to fall back on. Some companies have not worried about leaks of flammable gas because they had, they believed, removed all sources of ignition so that leaks could not ignite. When an unsuspected source of ignition turned up, an explosion occurred. 10 More often, companies have not worried about large inventories of hazardous materials because they knew, they thought, how to prevent leaks and deal with any that occurred. When they were proved wrong, a fire or explosion occurred or people were killed by toxic gas or vapor.
+
+Effective loss prevention is based on strong outer defenses, i.e., on getting rid of our hazards when we can rather than controlling them by added equipment that may fail or may be neglected. “It is hubris to imagine we can infallibly prevent a thermodynamically favoured event.”11 
+
+### 2.3 The Scope
+
+Applying the concept of inherently safer design at the very beginning of a project, we may be able to choose a safe product instead of a hazardous one. When a process is being chosen, we may be able to choose a route that avoids the use of hazardous raw materials or intermediates (Section 4.2).
+
+Once the chemistry has been decided and we are developing the flowsheet, we may be able to choose or develop intensified equipment such as reactors, distillation columns, and heat exchangers that do not require large quantities of materials in progress (Sections 3.1 through 3.5). It may be possible to manage without intermediate storage, possibly by siting production and consuming plants near each other (Section 3.6), and to avoid flammable heat-transfer fluids or refrigerants (Section 4.1).
+
+With detailed design, we may be able to reduce inventories by the application of well-known methods (Section 3.7). The most important inventories to reduce or avoid are those of flashing flammable or toxic liquids, i.e., liquids under pressure above their atmospheric pressure boiling points. Liquids below their boiling points produce very little little vapor; gases leak at a lower mass rate than liquids through a hole of a given size and are often dispersed by jet mixing. Flashing liquids, however, leak at about the same rate as cooler liquids and then turn into a mixture of vapor and spray (Figure 2.1). The spray, if fine, is just as flammable, explosive, or toxic as the vapor and can be spread as easily as the wind. Most vapor-cloud explosions and most major toxic incidents have been the results of leaks of flashing flammable liquids. 12 Flixborough and Bhopal were both due to leaks of flashing liquids. At Bhopal, the liquid was not normally above its boiling point, but addition of water to a storage tank caused a runaway reaction to occur.
+
+The scope of inherently safer design is thus seen to extend throughout the process-design life cycle. This is a recurrent theme in these pages, and also in the numerous inherently safer design resource publications that have appeared in the literature over the past 10 years or so. 13–22 These various review articles and texts contain a wealth of examples of inherent-safety application, some of which appear in later chapters of this book.
+
+Figure 2.1 Leak rates through a 2-in. hole. (Petrol is the U.K. term for gasoline.)
+
+### 2.4 The Benefits of Inherently Safer Design
+
+Inherently safer plants are usually cheaper than conventional ones because they do not need so much additional protective equipment. It is difficult to say how much cheaper, for designers do not keep records of safety costs. Safety should not be something added afterward to a plant, like a coat of paint, but an integral part of design. If a design engineer is asked to list the cost of the safety features on a plant, the designer usually lists the newer features that were the subject of debate but not the cost of well-established safety features such as relief valves. These are considered basic engineering and taken for granted.
+
+At a guess, we would save at least 5%, often 10%, of the capital cost of most new plants if we could reduce our inventories of hazardous materials and thus reduce expenditure on added protective equipment such as trips and alarms, fire and leak detectors, emergency isolation valves, fire insulation, water spray, and firefighting equipment. On some plants the savings would be much greater.
+
+Equally important would be reductions in the cost of testing and maintaining the equipment. For instruments, this is roughly equal to the installed capital cost. As a result, instruments cost twice what you think. In addition, much management time is, or should be, taken up by monitoring to make sure that the protective equipment is operated, tested, and maintained correctly. If plants can be made inherently safer, this effort can be reduced. Also, it will be easier to persuade the authorities and the public that the plant will not blow up or poison the neighborhood. It will be easier to find a site for the plant, and the equipment may not have to be spread so far apart (Section 10.6).
+
+These and several other cost parameters were considered in a recent analysis of the “real cost of process safety.” 23 This hypothetical study was conducted for a simple process of making salt solution in open vats by dissolving sodium chloride in a highly hazardous chemical, dihydrogen monoxide (i.e., water). Although obviously somewhat tongue in cheek, the cost benefits of inherent-safety applications are well made by the authors.24 
+
+If inventories can be reduced, the biggest saving will probably come from a reduction in the size of the plant items (reactors, distillation columns, heat exchangers, storage vessels, etc.) and a corresponding reduction in the size of the pipework, structures, and foundations. Much of the capital cost for a chemical plant is related to its civil engineering structural design and components.25  Compare the reductions in cost achieved in other industries by reductions in size. Compare modern computers and radios with earlier models or a modern electric pump with a steam-driven beam-pumping engine. Much of the pressure for intensification has come from those primarily interested in reducing costs, and because intensification produces such big reductions in cost, it should be our first choice before substitution or attenuation. The finance director and the process-safety engineer can be allies! Consider the title of Reference 25: Process Intensification Magnifies Profits; surely such a headline would catch the eye of any business manager.
+
+The plants we are now designing, with their large vessels and inventories, may seem to us to be in the forefront of technology. Perhaps they are really the chemical engineering equivalent of a beam engine, and our grandchildren will be starting a society to preserve the few remaining large distillation columns so that, like the surviving beam engines, they can be shown to the public on weekends and circulated on public holidays.
+
+Finally, another possible advantage of substantial reductions in size and cost, by analogy with computers, is that if large reductions can be achieved, then overcapacity may be economic and will simplify control problems (Section 10.1.4).
+
+Inherently safer design is not simply an isolated improvement, but a desirable part of the total packet of changes that the chemical industry needs to make for the twenty-first century. Our plants are too hazardous, too expensive, and too complicated and use too much energy, need too much maintenance, and produce too much pollution and waste. Inherently safer design, especially intensification, can help us to reduce these limitations (Figure 2.2). Simplification, and therefore reduction in cost and maintenance, comes about because less additional safety equipment is needed. If we can intensify, the smaller size of the equipment reduces cost directly. If we can reduce the recycles of unconverted raw material (“free rides”), we will save energy and further reduce cost (Section 3.2.4). The principles of inherently safer design can be applied to prevention of pollution and waste reduction. As described in Chapter 1, many companies talk about inherent SHE (safety, health, and environment).
+
+Figure 2.2 Inherent safety is not an isolated (although desirable) change but, rather, part of a package of improvements needed by the process industries.
+
+Sir Maurice Hodgson, former chairman of Imperial Chemical Industries (ICI), has written, “Certainly in ICI we are clear that our future plants will have to contain less ironmongery for a given capacity, be less energy-consuming and be more productive per unit of everything. Process intensification, energy-saving technology, better design and control systems are the means.”26 
+
+When I worked in industry, my research colleagues sometimes complained about the high cost of extrinsic safety features. They suggested that by asking for so much added safety I was making their designs uneconomic. I replied that the added safety was necessary because they invented such poor processes—poor in other ways besides safety. It is not economic to push large inventories round and round, giving them a “free ride.” If engineers could invent better processes, we would not need to add so much safety equipment. See the comments from an experienced process designer at the end of Chapter 4.
+
+In the fourth century a theologian wrote that “all great controversies depend on both sides sharing one false premise.” 27 A false premise is shared by the operating staff who want to add more protective equipment to their plants and the designers who say, “We’ve spent enough; the plant is now as safe as it needs to be.” We do not have to spend more money to make the plant safer; if we consider safety early in design, we can avoid many hazards. Expressed from a probabilistic risk perspective, inherently safer design is a way to decrease the uncertainty about whether harmful events will take place.28 
+
+Appendix: “The Lady or the Tiger?”—A New Version of an Old Tale
+
+A king offered a challenge to three young men. Each would be put in a room with two doors and could open both. If he opened one, a hungry tiger would come out—the fiercest and most cruel that could be obtained—that would tear him to pieces. If he opened the other, a young lady would come out, the most suitable to his years and station that His Majesty could select from amongst his fair subjects.
+
+The first young man refused the challenge. He lived safe and died chaste.
+
+The second young man hired risk-assessment consultants. They collected all the available data on lady and tiger populations. They brought in sophisticated equipment to listen for growling and detect the faintest whiff of perfume. They completed checklists. They developed a utility function and assessed the young man’s risk aversion. Naturally this took time (and money). The young man, now no longer quite so young, began to worry that he would soon be no longer able to enjoy the lady. Finally, he asked the consultants to recommend a course of action. He opened the optimal door and was eaten by a low-probability tiger.
+
+The third young man took a course in tiger handling.29
+
+The moral of the story (for those who like to have parables explained) is as follows:
+
+The young men represent us all, the tiger the hazards of industry, and the lady the benefits industry brings to humanity. Like the first young man, society can leave the game. We can manage without chemical plants, the benefits they bring, and the risks they carry. Like the second young man, we can (and do) try to assess the risks and open the safest doors, but we can never be completely sure that our assessments are correct and that an accident will not occur. When possible, we should try, like the third young man, to change the work situation and to choose designs or methods of working that minimize the hazard.
+
+### References
