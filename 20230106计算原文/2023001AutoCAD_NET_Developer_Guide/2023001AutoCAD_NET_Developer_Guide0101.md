@@ -1,5 +1,7 @@
 ## 0101. About .NET and the AutoCAD .NET API (.NET)
 
+2019073AutoCAD.NET开发指南
+
 This introduction describes the concepts of exposing AutoCAD® objects through a managed .NET application programming interface (API). The AutoCAD .NET API allows you to automate tasks such as creating and modifying objects stored in the database of a drawing file or change the contents of a customization file. This guide covers using Microsoft® Visual Studio® 2019, and the programming languages Microsoft® Visual Basic® .NET (referred to in this guide as VB.NET) and Microsoft® Visual C#® with the AutoCAD .NET API.
 
 ### 1.1 Developer's Guide Organization (.NET)

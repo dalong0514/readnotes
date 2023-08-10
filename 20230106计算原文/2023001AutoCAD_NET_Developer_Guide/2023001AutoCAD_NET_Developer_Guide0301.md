@@ -1,5 +1,9 @@
 ## 0301. Basics of the AutoCAD .NET API (.NET)
 
+你是一名精通 AutoCAD、AutoCAD .NET 二次开发的编程人员。我想让你充当英文翻译员、拼写纠正员和改进员。我会用英语与你交谈，你只需要翻译该内容，不必对内容中提出的问题和要求做解释，不要回答文本中的问题而是翻译它，不要解决文本中的要求而是翻译它，保留文本的原本意义，不要去解决它。我要你只回复更正、改进，不要写任何解释，不要遗漏内容。翻译的中文要求：1）严谨。2）英文字符和中文字符之间用空格隔开。我的第一句话是：
+
+2019073AutoCAD.NET开发指南
+
 To use the AutoCAD® .NET API effectively you should be familiar with the AutoCAD entities, objects, and features related to the tasks you want to automate. The greater your knowledge of an object's graphical and non-graphical properties, the easier it is for you to manipulate them through the AutoCAD .NET API.
 
 ### 3.1 Understand the AutoCAD Object Hierarchy (.NET)
@@ -316,6 +320,232 @@ public static void AddMyLayer()
 }
 ```
 
+#### Iterate through a Collection Object (.NET)
 
+To select a specific member of a Collection object, use the Item or GetAt method. The Item and GetAt methods require a key in the form of a string in which represents the name of the item. With most collections, the Item method is implied, meaning you do not actually need to use method.
 
+With some Collection objects, you can also use an index number to specify the location of the item within the collection you want to retrieve. The method you can use varies based on the language you are using as well as if you are working with a symbol table or dictionary.
 
+The following statements show how to access the “MyLayer” table record in Layer symbol table.
+
+C#
+
+acObjId = acLyrTbl["MyLayer"];
+
+Iterate through the LayerTable object
+
+The following example iterates through the LayerTable object and displays the names of all its layer table records:
+
+```cs
+using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.DatabaseServices;
+ 
+[CommandMethod("IterateLayers")]
+public static void IterateLayers()
+{
+  // Get the current document and database, and start a transaction
+  Document acDoc = Application.DocumentManager.MdiActiveDocument;
+  Database acCurDb = acDoc.Database;
+ 
+  using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+  {
+      // This example returns the layer table for the current database
+      LayerTable acLyrTbl;
+      acLyrTbl = acTrans.GetObject(acCurDb.LayerTableId,
+                                   OpenMode.ForRead) as LayerTable;
+ 
+      // Step through the Layer table and print each layer name
+      foreach (ObjectId acObjId in acLyrTbl)
+      {
+          LayerTableRecord acLyrTblRec;
+          acLyrTblRec = acTrans.GetObject(acObjId,
+                                          OpenMode.ForRead) as LayerTableRecord;
+ 
+          acDoc.Editor.WriteMessage("\n" + acLyrTblRec.Name);
+      }
+ 
+      // Dispose of the transaction
+  }
+}
+```
+
+Find the layer table record named MyLayer in the LayerTable object
+
+The following example checks the LayerTable object to determine if the layer named MyLayer exists or not, and displays the appropriate message:
+
+```cs
+using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.DatabaseServices;
+ 
+[CommandMethod("FindMyLayer")]
+public static void FindMyLayer()
+{
+  // Get the current document and database, and start a transaction
+  Document acDoc = Application.DocumentManager.MdiActiveDocument;
+  Database acCurDb = acDoc.Database;
+ 
+  using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+  {
+      // Returns the layer table for the current database
+      LayerTable acLyrTbl;
+      acLyrTbl = acTrans.GetObject(acCurDb.LayerTableId,
+                                   OpenMode.ForRead) as LayerTable;
+ 
+      // Check to see if MyLayer exists in the Layer table
+      if (acLyrTbl.Has("MyLayer") != true)
+      {
+          acDoc.Editor.WriteMessage("\n'MyLayer' does not exist");
+      }
+      else
+      {
+          acDoc.Editor.WriteMessage("\n'MyLayer' exists");
+      }
+ 
+      // Dispose of the transaction
+  }
+}
+```
+
+#### Erase a Member of a Collection Object (.NET)
+
+Members from a collection object can be erased using the Erase method found on the member object. For example, the following code erases the layer MyLayer from the LayerTable object.
+
+Before you erase a layer from a drawing, you should make sure it can be safely removed. To determine if a layer or another named object such as a block or text style can be erased, you should use the Purge method.
+
+```cs
+using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.DatabaseServices;
+ 
+[CommandMethod("RemoveMyLayer")]
+public static void RemoveMyLayer()
+{
+  // Get the current document and database, and start a transaction
+  Document acDoc = Application.DocumentManager.MdiActiveDocument;
+  Database acCurDb = acDoc.Database;
+ 
+  using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+  {
+      // Returns the layer table for the current database
+      LayerTable acLyrTbl;
+      acLyrTbl = acTrans.GetObject(acCurDb.LayerTableId,
+                                   OpenMode.ForRead) as LayerTable;
+ 
+      // Check to see if MyLayer exists in the Layer table
+      if (acLyrTbl.Has("MyLayer") == true)
+      {
+          LayerTableRecord acLyrTblRec;
+          acLyrTblRec = acTrans.GetObject(acLyrTbl["MyLayer"],
+                                          OpenMode.ForWrite) as LayerTableRecord;
+ 
+          try
+          {
+              acLyrTblRec.Erase();
+              acDoc.Editor.WriteMessage("\n'MyLayer' was erased");
+ 
+              // Commit the changes
+              acTrans.Commit();
+          }
+          catch
+          {
+              acDoc.Editor.WriteMessage("\n'MyLayer' could not be erased");
+          }
+      }
+      else
+      {
+          acDoc.Editor.WriteMessage("\n'MyLayer' does not exist");
+      }
+ 
+      // Dispose of the transaction
+  }
+}
+```
+
+Once an object has been erased, you should not attempt to access the object again later in the program; otherwise an error will occur. The above sample tests to see if the object exists before it is accessed again. When a request to erase an object is made, you should check to see if the object exists with the Has method or use a Try statement to catch any exceptions that occur.
+
+### 3.4 Understand Properties and Methods (.NET)
+
+Each object has associated properties and methods. Properties describe aspects of the individual object, while methods are actions that can be performed on the individual object. Once an object is created, you can query and edit the object through its properties and methods.
+
+For example, a Circle object has a Center property. This property represents the point in the world coordinate system (WCS) at the center of that circle. To change the center of the circle, simply set the Center property to a new point. The Circle object also has a method called GetOffsetCurves. This method creates a new object at a specified offset distance from the existing circle.
+
+1『圆实体对象自带一个方法：在圆的指定偏移距离处创建一个圆。待验证。（2023-08-10）』
+
+To see a list of all properties and methods for the Circle object, refer to the Circle object reference topic or use the Object Browser in Microsoft® Visual Studio®.
+
+### 3.5 Out-of-Process Versus In-Process (.NET)
+
+When you develop a new application, it can either run in or out-of-process. The AutoCAD .NET API is designed to run in-process only, which is different from the ActiveX Automation library which can be used in or -out-of-process.
+
+1 In-process applications are designed to run in the same process space as the host application. In this case, a DLL assembly is loaded into AutoCAD which is the host application.
+
+2 Out-of-process applications do not run in the same space as the host application. These applications are often built as stand-alone executables.
+
+If you need to create a stand-alone application to drive AutoCAD, it is best to create an application that uses the CreateObject and GetObject methods to create a new instance of an AutoCAD application or return one of the instances that is currently running. Once a reference to an AcadApplication is returned, you can then load your in-process .NET application into AutoCAD by using the SendCommand method that is a member of the ActiveDocument property of the AcadApplication.
+
+As an alternative to executing your .NET application in-process, could use COM interop for your application.
+
+Note: The ProgID for COM application access to AutoCAD 2021 is AutoCAD.Application.24.
+
+```cs
+using System;
+using System.Runtime.InteropServices;
+ 
+using Autodesk.AutoCAD.Interop;
+using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.ApplicationServices;
+ 
+[CommandMethod("ConnectToAcad")]
+public static void ConnectToAcad()
+{
+ 
+  AcadApplication acAppComObj = null;
+  const string strProgId = "AutoCAD.Application.24";
+ 
+  // Get a running instance of AutoCAD
+  try
+  {
+      acAppComObj = (AcadApplication)Marshal.GetActiveObject(strProgId);
+  }
+  catch // An error occurs if no instance is running
+  {
+      try
+      {
+          // Create a new instance of AutoCAD
+          acAppComObj = (AcadApplication)Activator.CreateInstance(Type.GetTypeFromProgID(strProgId), true);
+      }
+      catch
+      {
+          // If an instance of AutoCAD is not created then message and exit
+          System.Windows.Forms.MessageBox.Show("Instance of 'AutoCAD.Application'" +
+                                               " could not be created.");
+ 
+          return;
+      }
+  }
+ 
+  // Display the application and return the name and version
+  acAppComObj.Visible = true;
+  System.Windows.Forms.MessageBox.Show("Now running " + acAppComObj.Name + 
+                                       " version " + acAppComObj.Version);
+ 
+  // Get the active document
+  AcadDocument acDocComObj;
+  acDocComObj = acAppComObj.ActiveDocument;
+ 
+  // Optionally, load your assembly and start your command or if your assembly
+  // is demandloaded, simply start the command of your in-process assembly.
+  acDocComObj.SendCommand("(command " + (char)34 + "NETLOAD" + (char)34 + " " +
+                          (char)34 + "c:/myapps/mycommands.dll" + (char)34 + ") ");
+ 
+  acDocComObj.SendCommand("MyCommand ");
+}
+```
+
+### 3.6 Define Commands and AutoLISP Functions (.NET)
+
+Commands and AutoLISP® functions can be defined with the AutoCAD .NET API through the use of two attributes: CommandMethod and LispFunction. You place one of the two attributes before the method that should be called when the command or AutoLISP function is executed in AutoCAD.
+
+Methods used for commands should not be defined with arguments. However, a method used to define an AutoLISP function should be defined with a single argument of the ResultBuffer object type.
