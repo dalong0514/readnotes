@@ -1,14 +1,14 @@
-你是一名化学工程师和工业安全专家，且精通英文。我想让你充当英文翻译员、拼写纠正员和改进员。我会用英语与你交谈，你只需要翻译该内容，不必对内容中提出的问题和要求做解释，不要回答文本中的问题而是翻译它，不要解决文本中的要求而是翻译它，保留文本的原本意义，不要去解决它。我要你只回复更正、改进，不要写任何解释，不要遗漏内容。翻译的中文要求：1）严谨。2）英文字符和中文字符之间用空格隔开。我的第一句话是：
+你是一名化学工程师和工业安全专家，且精通英文。我想让你充当英文翻译员、拼写纠正员和改进员。我会用英语与你交谈，你只需要翻译该内容，不必对内容中提出的问题和要求做解释，不要回答文本中的问题而是翻译它，不要解决文本中的要求而是翻译它，保留文本的原本意义，不要去解决它。我要你只回复更正、改进，不要写任何解释，不要遗漏内容。我的第一句话是：
 
 ## 0301. Intensification
 
 In a healthy society, engineering gets smarter and smarter; in gangster states it gets bigger and bigger.
 
-—Peter Beckman, A History of π
+— Peter Beckman, A History of π
 
 From big acorns small trees grow.
 
-—Anonymous
+— Anonymous
 
 This chapter describes ways in which the amount of hazardous material in plants and storage has been, or could be, reduced with consequent increase in safety and reduction in cost, as discussed in Chapter 2. Different unit operations are discussed in turn. However, intensification (minimization) can also come about by combining operations (Sections 3.2.8 and 7.8).
 
@@ -22,7 +22,7 @@ As mentioned in Chapter 2, the motivation for process intensification often come
 
 Reference 5 concludes with the statement that, while major releases and hazards are less likely for IMPULSE plants, the potential for operator exposure and minor problems (e.g., pump leakage) may be greater. This remark is a helpful reminder that inherent safety involves both change, which must be managed, and tradeoffs, which must be assessed. No single approach can be expected to cover all issues that arise during process design and operation. In this regard, Etchells 6 has provided a useful listing of the potential problem areas, as well as the benefits, of process intensification.
 
-Potential safety benefits of process intensification include the following:6 
+Potential safety benefits of process intensification include the following: 6 
 
 1. Reduction of inventories of hazardous materials and the consequences of process failures.
 
@@ -36,7 +36,7 @@ Potential safety benefits of process intensification include the following:6
 
 6. Easier-to-achieve heat transfer because of the enhanced specific surface area of continuous, intensified plant, thus reducing the potential for runaway reactions.
 
-Potential safety issues related to process intensification include the following:6 
+Potential safety issues related to process intensification include the following: 6 
 
 1. Requirement for high temperatures and pressures, and high-energy inputs. For example, the use of microwaves has been reported in intensified desorption processes for the regeneration of adsorbents used in the control of organic vapor emissions.7 
 
