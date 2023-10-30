@@ -1,5 +1,8 @@
 ## 记忆时间
 
+
+[4 The Concepts of Inherently Safer Processes and Assessment | The Use and Storage of Methyl Isocyanate (MIC) at Bayer CropScience | The National Academies Press](https://nap.nationalacademies.org/read/13385/chapter/7)
+
 ## 卡片
 
 ### 0101. 新知卡
@@ -98,12 +101,7 @@
 
 GPT-4（2023-07-18）：
 
-克莱茨（Trevor Kletz，1922-2013）是
-
-
-
-
-Trevor Kletz，一位英国的化学工程师和工业安全专家，他的生涯大多数时间致力于化工安全领域。Kletz 出生于 1922 年，于 2013 年去世。他在化工过程安全领域的工作，特别是在事故预防和分析方面，为全球的化学工业和相关领域产生了深远影响。
+克莱茨（Trevor Kletz，1922-2013）是一位英国的化学工程师和工业安全专家，他的生涯大多数时间致力于化工安全领域。Kletz 出生于 1922 年，于 2013 年去世。他在化工过程安全领域的工作，特别是在事故预防和分析方面，为全球的化学工业和相关领域产生了深远影响。
 
 Kletz 在利物浦大学获得化学工程学位，并在 1944 年加入了英国的伊科石油公司（I.C.I.）作为一个化学工程师。他在 ICI 的工作早期主要集中在生产和设计方面，然而在 1968 年他转向了安全工程，这成为了他职业生涯的转折点。他在 ICI 的这个角色中待了近 15 年，期间开展了一系列的创新工作，包括推动 HAZOP（危害和可操作性研究）的广泛使用。
 
