@@ -1,4 +1,4 @@
-# 0201. INFINITE PROBABILITY FIELDS
+## 0201. INFINITE PROBABILITY FIELDS
 
 § 1. Axiom of Continuity
 
@@ -108,9 +108,7 @@ F(a1, a2, . . . , an) is called the distribution function of the variables x1, x
 
 The investigation of fields of probability of the above type is sufficient for all classical problems in the theory of probability6. In particular, a probability function in Rn can be defined thus:
 
-We take any non-negative point function f(x1, x2, . . . , xn) defined in Rn, such that
-
-and set
+We take any non-negative point function f(x1, x2, . . . , xn) defined in Rn, such that and set
 
 f(x1, x2, . . . , xn) is, in this case, the probability density at the point (x1, x2, . . . , xn) (cf. Chap. III, § 2).
 

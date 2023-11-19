@@ -1,4 +1,4 @@
-# 0101. Elementary Theory of Probability
+## 0101. Elementary Theory of Probability
 
 We define as elementary theory of probability that part of the theory in which we have to deal with probabilities of only a finite number of events. The theorems which we derive here can be applied also to the problems connected with an infinite number of random events. However, when the latter are studied, essentially new principles are used. Therefore the only axiom of the mathematical theory of probability which deals particularly with the case of an infinite number of random events is not introduced until the beginning of Chapter II (Axiom VI).
 
@@ -10,7 +10,7 @@ Every axiomatic (abstract) theory admits, as is well known, of an unlimited numb
 
 The postulational basis of the theory of probability can be established by different methods in respect to the selection of axioms as well as in the selection of basic concepts and relations. However, if our aim is to achieve the utmost simplicity both in the system of axioms and in the further development of the theory, then the postulational concepts of a random event and its probability seem the most suitable. There are other postulational systems of the theory of probability, particularly those in which the concept of probability is not treated as one of the basic concepts, but is itself expressed by means of other concepts.[1] However, in that case, the aim is different, namely, to tie up as closely as possible the mathematical theory with the empirical development of the theory of probability.
 
-## 1.1 Axioms [2]
+### 1.1 Axioms [2]
 
 Let E be a collection of elements ξ, η, ζ, . . ., which we shall call elementary events, and a set of subsets of E; the elements of the set will be called random events.
 
@@ -36,7 +36,7 @@ $$P\{ξ_{i1}, ξ_{i2}, . . ., ξ_{iλ}\} = p_{i1} + p_{i2} + ... + p_{iλ}$$
 
 In such cases, p1, p2, . . ., pk are called the probabilities of the elementary events ξ1, ξ2, . . ., ξk or simply elementary probabilities. In this way are derived all possible finite fields of probability in which δ consists of the set of all subsets of E. (The field of probability is called finite if the set E is finite.) For further examples see Chap. II, § 3.
 
-## 1.2 The Relation to Experimental Data [4]
+### 1.2 The Relation to Experimental Data [4]
 
 We apply the theory of probability to the actual world of experiments in the following manner:
 
@@ -66,7 +66,7 @@ Remark 1. If two separate statements are each practically reliable, then we may 
 
 Remark 2. To an impossible event (an empty set) corresponds, in accordance with our axioms, the probability 5, but the converse is not true: does not imply the impossibility of A. When, from principle (b) all we can assert is that when the conditions are realized but once, event A is practically impossible. It does not at all assert, however, that in a sufficiently long series of tests the event A will not occur. On the other hand, one can deduce from the principle (a) merely that when and n is very large, the ratio m/n will be very small (it might, for example, be equal to 1/n).
 
-## 1.3 Notes on Terminology
+### 1.3 Notes on Terminology
 
 We have defined the objects of our future study, random events, as sets. However, in the theory of probability many set-theoretic concepts are designated by other terms. We shall give here a brief list of such concepts.
 
@@ -112,7 +112,7 @@ Random Events
 
 9. From the occurrence of event B follows the inevitable occurrence of A.
 
-## 1.4 Immediate Corollaries of the Axioms; Conditional Probabilities; Theorem of Bayes
+### 1.4 Immediate Corollaries of the Axioms; Conditional Probabilities; Theorem of Bayes
 
 From A + Ā = E and the Axioms IV and V it follows that
 
@@ -156,7 +156,7 @@ Proof: From (12) we have
 
 To obtain the formula (14) it only remains to substitute for the probability its value derived from (13) by applying the theorem on total probability.
 
-## 1.5 Independence
+### 1.5 Independence
 
 The concept of mutual independence of two or more experiments holds, in a certain sense, a central position in the theory of probability. Indeed, as we have already seen, the theory of probability can be regarded from the mathematical point of view as a special application of the general theory of additive set functions. One naturally asks, how did it happen that the theory of probability developed into a large individual science possessing its own methods?
 
@@ -222,7 +222,7 @@ In the case n = 2 the conditions (7) reduce to two equations:
 
 It is easy to see that the first equation in (8) alone is a necessary and sufficient condition for the independence of A1 and A2 provided .
 
-## 1.6 Conditional Probabilities as Random Variables, Markov Chains
+### 1.6 Conditional Probabilities as Random Variables, Markov Chains
 
 Let be a decomposition of the fundamental set E:
 
@@ -247,9 +247,6 @@ Thus, Markov chains form a natural generalization of sequences of mutually indep
 then the basic formula of the theory of Markov chains will assume the form:
 
 If we denote the matrix by p(m, n), (1) can be written as15:
-
-
-
 
 1 For example, R. von Mises [1] and [2] and S. Bernstein [1].
 
