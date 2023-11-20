@@ -1,4 +1,4 @@
-## Coding AI Is the New Literacy
+## Introduction: Coding AI Is the New Literacy
 
 Today we take it for granted that many people know how to read and write. Someday, I hope, it will be just as common that people know how to write code, specifically for AI.
 
@@ -28,7 +28,7 @@ I hope the promise of building basic AI applications, even more than that of bui
 
 很多星期天，我都会从附近的披萨店买一片披萨。柜台后面的绅士几乎没有理由学习如何构建视频游戏或编写自己的网站软件（除了个人成长和获得新技能的乐趣）。
 
-但人工智能和数据科学即使对披萨制造商来说也有很大的价值。线性回归模型可能使他能够更好地估计需求，从而优化餐厅的人员配备和供应链。他可以更好地预测夏威夷披萨的销售 —— 我的最爱！ 这样他就可以提前做更多的夏威夷馅饼，减少顾客等待的时间。
+但人工智能和数据科学即使对披萨制造商来说也有很大的价值。线性回归模型可能使他能够更好地估计需求，从而优化餐厅的人员配备和供应链。他可以更好地预测夏威夷披萨的销售 —— 我的最爱！这样他就可以提前做更多的夏威夷馅饼，减少顾客等待的时间。
 
 人工智能和数据科学的使用几乎可以在任何产生数据的情况下找到。因此，与传统软件工程相比，各种各样的职业将发现定制人工智能应用程序和数据衍生见解的更多用途。这使得面向人工智能的编码比传统编码更有价值。它可以让无数个人利用数据让他们的生活更加丰富。
 
