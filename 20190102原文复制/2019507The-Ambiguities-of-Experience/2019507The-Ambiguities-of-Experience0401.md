@@ -8,9 +8,7 @@ The second caveat is that studies of novelty and creativity are sometimes confus
 
 In addition, this chapter treats two assumptions as more or less self-evident. The first is that most novel ideas are bad ones — that is, they will subsequently be judged unsuccessful. Only a small, unpredictable fraction of novel initiatives will turn out to be successful. The second assumption is that when novel ideas are generated, there is no reliable way to anticipate which of them will be successful. The few novel ideas that will prove to be creative are indistinguishable from those that will not until considerable time has passed. These two properties of novelty are critical to understanding the problems with novelty.
 
-ADAPTATION AS AN ENEMY
-
-OF NOVELTY
+ADAPTATION AS AN ENEMY OF NOVELTY
 
 The proposition that humans conserve beliefs and practices and thus are hostile to novelty is well known to the study of social psychology (Lord, Ross, and Lepper 1979; Nickerson 1998). It is also characteristic of learning from experience. As we observed in chapter 2, new rules, routines, forms, and ideas are disadvantaged by the way the replication of success leads to increasing stability in choice. This is partly because novel things have properties that place them at risk. Their outcome distributions tend to have low means and high variances; they often require practice; their returns are often delayed in time and are often global rather than local. It is also partly because the replication of success tends to find a satisfactory (possibly because of chance) alternative and stick with it, particularly if alternatives require practice in order to realize their potential. The replication of success reduces the likelihood of throwing good money after bad, but it also means that good alternatives with poor initial results will be permanently passed over.
 
@@ -38,9 +36,7 @@ It is possible to specify situations in which attributes that are locally subopt
 
 The problem is complicated by the undoubted role of exploitative knowledge in the development and execution of novel ideas. Many studies of creativity identify the creative tension between processes of imagination and processes of execution, recognizing the extent to which the foolishness of exploration has to be juxtaposed to the discipline of exploitation. Either alone is not enough. It is usually argued, however, that the relation has to evolve in such a way that the ratio of imagination to the discipline of conventional knowledge is high relatively early in any particular project and declines over time. The usual concern is that the ratio tends to decline more rapidly than is desirable and thus that novel ideas are normalized too quickly.
 
-TWO THEORETICAL TRACKS FOR
-
-UNDERSTANDING NOVELTY
+TWO THEORETICAL TRACKS FOR UNDERSTANDING NOVELTY
 
 Novelty is a conspicuous feature of organization life, so any simple idea that the adaptive efficiencies coded into knowledge and adaptive processes are homogeneously inimical to the generation of novelty or the reproduction of novelty-generating mechanisms is probably incomplete. In attempting to understand the survival of novelty in the face of adaptive mechanisms that seem likely to extinguish it, students of adaptation have developed theories of novelty along two main tracks, each of which offers insight but neither of which has led to a strikingly satisfactory resolution.
 
@@ -66,9 +62,7 @@ One conventional approach to talking about adaptive inefficiency is to provide a
 
 Such labeling is a kind of intellectual last resort that can be justified primarily by the extent to which it stimulates scholarship that reduces the use of the label. For example, some years ago, the label of「risk preference」was introduced into choice theory as a generic label for observed nonlinearities in the revealed human utility for money over alternative gambles and thus for unexplained deviations from predicted behavior. This led to considerable effort to unpack the nonlinearities, an effort that has sometimes been confused by the label but that has, on balance, probably been fruitful (March and Shapira 1987, 1992; March 1999c, chap. 15; Denrell 2007, 2008).
 
-THE SURVIVAL OF MECHANISMS
-
-OF NOVELTY
+THE SURVIVAL OF MECHANISMS OF NOVELTY
 
 An alternative to providing a catchall label for instances of novelty is to try to identify specific processes that generate unavoidable but predictable mistakes of adaptation. For example, we can imagine a theory of knowledge decay. Knowledge can be assumed to be accumulated through adaptation and stored in libraries, genes, rules, and memories. Knowledge is lost through turnover, forgetting, and misfiling, which assure that at any point there is considerable ignorance. Something that was once known is no longer known. In addition, knowledge is lost through its incomplete accessibility. Something that is known at one place is unknown at another (Jeppesen and Lakhani 2009).
 
@@ -84,9 +78,7 @@ In order for a theory of deviance to contribute to a theory of novelty, however,
 
 In an analogous fashion, the imitation of successful practices generally results in improved chances of survival, but it also can result in transformations that are exceptionally deviant. Again, most of these will fail miserably, but some small fraction will turn out to have attributes that are unusually favorable (Zbaracki 1998; Czarniawska and Sevón 2005). Similar things can be said about random interdisciplinary or cross-cultural interaction (March 2008, chap. 13). By embedding them in processes of efficient reproduction of favorable traits, selective adaptation preserves mechanisms for producing foolish novelty.
 
-Adaptive Generation of Conditions
-
-for Novelty in Organizations
+Adaptive Generation of Conditions for Novelty in Organizations
 
 Three ways in which effective adaptation in organizations creates conditions favorable to novelty generation, even though the return from such novelty may be negative, are well known in organizational studies (for a further discussion, see Miner, Haunschild, and Schwab 2003). The first is the way in which success leads to organizational slack and its associated reduction in control, which in turn yields experimentation and avoidance of the infant mortality of ideas (Cyert and March 1963; Nohria and Gulati 1996; Greve 2003). Among start-up firms, excess capital resources provide slack buffers that limit the infant mortality of novel ideas (Levinthal 1991). In effect, substantial success, either in performance or in soliciting early support, absorbs the negative effects of failure and reduces the close monitoring of idea initiatives. These slack buffers reflect uncommitted resources (Deutsch 1963) that facilitate the extended pursuit of untested ideas, some small fraction of which may turn out to be exceptionally good ones (Winter 1971). Slack is produced by efficiency, but it serves to protect foolishness from elimination. Novelty (which is likely to be mostly foolish) is a side consequence of slack, which is a side consequence of effective adaptation.
 

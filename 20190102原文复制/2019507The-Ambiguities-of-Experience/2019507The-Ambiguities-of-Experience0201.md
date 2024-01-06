@@ -124,9 +124,7 @@ On the other hand, learning through the replication of success has troubling unf
 
 A striking feature of these results is the extent to which they depend less on attributes of the learner than on attributes of experience. When experience unfolds in a way that makes learning effective, intelligence is augmented by the replication of success. But when experience is organized, as it often is, by complexity, ambiguity, stochastic variability, and limited sample sizes, the replication of success — whether through trial-and-error learning, imitation, or selection — is likely to lead to suboptimal outcomes.
 
-LOW-INTELLECT LEARNING AND
-
-HIGH-INTELLECT EXPLANATIONS
+LOW-INTELLECT LEARNING AND HIGH-INTELLECT EXPLANATIONS
 
 Although it is flawed in important ways, replication of success is a ubiquitous instrument of learning. In one form or another, and despite its substantial disabilities, it characterizes much of the adaptiveness of human actors. At the same time, however, the low-intellect simplicities of trial-and-error learning, imitation, and selection conflict with high-intellect hopes. Human conceit (both among actors and among observers) often seems to eschew attributions of human behavior to success replication in favor of more complicated, cognitive comprehensions, explanations, and justifications.
 
