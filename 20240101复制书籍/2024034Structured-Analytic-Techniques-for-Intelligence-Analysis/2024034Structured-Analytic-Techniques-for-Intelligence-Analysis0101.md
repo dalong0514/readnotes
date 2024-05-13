@@ -88,7 +88,7 @@ The use of the term "alternative analysis," however, persists in official direct
 
 智慧的起点在于对术语的精确界定。
 
-— 苏格拉底，古希腊哲学家
+—— 苏格拉底，古希腊哲学家
 
 2000 年，中央情报局（CIA）成立了谢尔曼肯特情报分析学院，目的是为了提高情报分析的效率。当时的情报副总监约翰·麦克劳克林给学院下达了一个任务，要求他们将当时所谓的「替代分析」技术进行整合。为了完成这个任务，肯特学院开发了一系列的技术集合，中央情报局的情报总监开始在一门课程中教授这些技术，这门课程后来发展成了高级分析工具和技术研讨会。之后，肯特学院将这门课程向国防情报局和美国情报界的其他部门的分析师开放。
 
@@ -96,9 +96,9 @@ The use of the term "alternative analysis," however, persists in official direct
 
 随着时间的推移，一些分析师误解了或反对了对于分析更加严格的要求，他们将替代分析理解为仅仅是传统分析方法的另一种选择。对他们来说，这个术语意味着只有在分析具有极端重要性的特殊情况下才需要使用替代程序。肯特学院的讲师们对此进行了反驳，他们认为这些技术并不是传统分析的替代品，而是良好分析的核心要素，应该成为常规做法 —— 将严谨性和结构融入到分析师的日常工作流程中。
 
-在 2004 年，肯特学校为了根据过去几年积累的经验更新培训材料，决定出版《贸易技巧入门》一书，7 伦道夫·H·菲舍尔和罗杰·Z·乔治是该书的主要起草人。乔治当时指出，「‘替代分析'这一名称给人的感觉过于局限且不够描述性。至少有十几种不同的分析技术都被归入这一术语，因此我们决定寻找一个更全面、更适合这一广泛分析方法的名称。」8 兰迪·菲舍尔的妻子凯西在一次餐桌谈话中提出了‘结构化分析技术'这一名称，兰迪对此表示赞赏。乔治将这些技术组织成三个类别：诊断技术、对立技术、和想象力技术。2005 年 6 月，「结构化分析技术」这一术语正式成为官方术语，当时肯特学校正式批准了更新的培训材料。
+在 2004 年，肯特学校为了根据过去几年积累的经验更新培训材料，决定出版《贸易技巧入门》一书，7 伦道夫·H·菲舍尔和罗杰·Z·乔治是该书的主要起草人。乔治当时指出，「替代分析这一名称给人的感觉过于局限且不够描述性。至少有十几种不同的分析技术都被归入这一术语，因此我们决定寻找一个更全面、更适合这一广泛分析方法的名称。」8 兰迪·菲舍尔的妻子凯西在一次餐桌谈话中提出了「结构化分析技术」这一名称，兰迪对此表示赞赏。乔治将这些技术组织成三个类别：诊断技术、对立技术、和想象力技术。2005 年 6 月，「结构化分析技术」这一术语正式成为官方术语，当时肯特学校正式批准了更新的培训材料。
 
-尽管如此，‘替代分析'这一术语仍在官方指令中被使用。根据 2004 年的《情报改革法》，国家情报总监有责任确保美国情报界的各个部门进行替代分析，现在将其定义为在分析产品中纳入替代结果和假设。我们将「替代分析」视为现在被认为是结构化分析技术的一个子集，并建议避免使用「替代分析」这一术语，以防止任何混淆。然而，我们强烈支持「分析替代方案」—— 无论是假设还是情景 —— 作为良好分析的一个基本组成部分。
+尽管如此，「替代分析」这一术语仍在官方指令中被使用。根据 2004 年的《情报改革法》，国家情报总监有责任确保美国情报界的各个部门进行替代分析，现在将其定义为在分析产品中纳入替代结果和假设。我们将「替代分析」视为现在被认为是结构化分析技术的一个子集，并建议避免使用「替代分析」这一术语，以防止任何混淆。然而，我们强烈支持「分析替代方案」—— 无论是假设还是情景 —— 作为良好分析的一个基本组成部分。
 
 ### 1.4 The Expanding Use of Structured Analytic Techniques
 
@@ -148,7 +148,7 @@ In the popular literature, the names of some techniques are normally capitalized
 
 在众多可能被收录的技术中，我们精选了六十六种，这些技术对于情报行业以及政府、学术界和私营部门的分析工作尤为有用。我们没有包含那些仅用于特定领域如法律执法或商业咨询中的单一分析类型的技术。
 
-这个列表是动态的，随着新技术的发现和旧技术的淘汰，它会不断更新。在第二版中，我们删减了两种技术，并引入了五种新技术。在这一版中，出于后文将详细说明的原因，我们移除了魔鬼代言人、红队分析、角色扮演和虚拟头脑风暴等技术。同时，一些与分析过程紧密相关的工具 —— 如启动检查表、客户检查表、AIMS（包含受众、问题、信息和叙事）和问题重定义 —— 也被移除，因为它们在 Pherson 和 Pherson 的《战略情报的批判性思维》一书中已有详尽阐述。我们新增了九种新技术，包括不一致查找器™、关键不确定性查找器™、关键驱动因素生成™、逆向假设、通过对比叙事进行分析、反事实推理、机会孵化器™、蝴蝶结分析和关键路径分析。
+这个列表是动态的，随着新技术的发现和旧技术的淘汰，它会不断更新。在第二版中，我们删减了两种技术，并引入了五种新技术。在这一版中，出于后文将详细说明的原因，我们移除了魔鬼代言人、红队分析、角色扮演和虚拟头脑风暴等技术。同时，一些与分析过程紧密相关的工具 —— 如启动检查表、客户检查表、AIMS（包含受众、问题、信息和叙事）和问题重定义 —— 也被移除，因为它们在 Pherson 的《战略情报的批判性思维》一书中已有详尽阐述。我们新增了九种新技术，包括不一致查找器、关键不确定性查找器、关键驱动因素生成、逆向假设、通过对比叙事进行分析、反事实推理、机会孵化器、蝴蝶结分析和关键路径分析。
 
 某些培训项目可能需要将这些技术精简至特定分析类型所需的核心技术。我们理解，没有一个列表能够满足所有人的需求。尽管如此，我们仍希望提供一个相对全面的列表和术语词汇，以便为日益增长的客户群体在使用结构化分析技术时提供支持，特别是在那些需要跨组织协作的项目中，促进这些技术的交流与应用。
 
@@ -176,17 +176,27 @@ Readers who go through these six chapters of techniques from start to finish may
 
 Highlights of the six chapters of techniques are as follows:
 
-Chapter 5 : Getting Organized. The eight techniques cover the basics, such as checklists, sorting, ranking, and organizing your data. Chapter 6 : Exploration Techniques. The nine techniques include several types of brainstorming, including Circleboarding ™ , Starbursting, and Cluster Brainstorming, which was called Structured Brainstorming in previous editions. The Nominal Group Technique is a form of brainstorming that is appropriate when there is concern that a brainstorming session might be dominated by a particularly aggressive analyst or constrained by the presence of a senior officer. It also introduces several mapping techniques, Venn Analysis, and Network Analysis. Chapter 7 : Diagnostic Techniques . The eleven techniques covered in this chapter include the widely used Key Assumptions Check and Chronologies and Timelines. The Cross-Impact Matrix supports group learning about relationships in a complex system. Several techniques fall in the domain of hypothesis generation and testing (Multiple Hypothesis Generation, Diagnostic Reasoning, Analysis of Competing Hypotheses [ACH], Argument Mapping, and Deception Detection), including a new technique called the Inconsistencies Finder ™ , which is a simplified version of ACH. Chapter 8 : Reframing Techniques . The sixteen techniques in this family help analysts break away from established mental models by using Outside-In Thinking, Structured Analogies, Red Hat Analysis, Quadrant Crunching ™ , and the Delphi Method to reframe an issue or imagine a situation from a different perspective. What If? Analysis and High Impact/Low Probability Analysis are tactful ways to suggest that the conventional wisdom could be wrong. Two important techniques developed by the authors, Premortem Analysis and Structured Self-Critique, give analytic teams viable ways to imagine how their own analysis might be wrong. The chapter concludes with a description of a subset of six techniques grouped under the umbrella of Adversarial Collaboration and an original approach to Structured Debate. Chapter 9 : Foresight Techniques . This family of twelve techniques includes four new techniques for identifying key drivers, analyzing contrasting narratives, and engaging in Counterfactual Reasoning. The chapter also describes five methods for developing scenarios and expands the discussion of Indicators Validation and Evaluation by presenting several new techniques for generating indicators. Chapter 10 : Decision Support Techniques . The ten techniques in this family include three new Decision Support Techniques: Opportunities Incubator ™ , Bowtie Analysis, and Critical Path Analysis. The chapter also describes six classic Decision Support Techniques, including Decision Matrix, Force Field Analysis, and Pros-Cons-Faults-and-Fixes, all of which help managers, commanders, planners, and policymakers make choices or trade-offs between competing goals, values, or preferences. The chapter concludes with a description of the Complexity Manager, which was developed by Richards J. Heuer Jr.
+Chapter 5 : Getting Organized. The eight techniques cover the basics, such as checklists, sorting, ranking, and organizing your data. 
+
+Chapter 6 : Exploration Techniques. The nine techniques include several types of brainstorming, including Circleboarding ™ , Starbursting, and Cluster Brainstorming, which was called Structured Brainstorming in previous editions. The Nominal Group Technique is a form of brainstorming that is appropriate when there is concern that a brainstorming session might be dominated by a particularly aggressive analyst or constrained by the presence of a senior officer. It also introduces several mapping techniques, Venn Analysis, and Network Analysis. 
+
+Chapter 7 : Diagnostic Techniques. The eleven techniques covered in this chapter include the widely used Key Assumptions Check and Chronologies and Timelines. The Cross-Impact Matrix supports group learning about relationships in a complex system. Several techniques fall in the domain of hypothesis generation and testing (Multiple Hypothesis Generation, Diagnostic Reasoning, Analysis of Competing Hypotheses [ACH], Argument Mapping, and Deception Detection), including a new technique called the Inconsistencies Finder ™ , which is a simplified version of ACH. 
+
+Chapter 8 : Reframing Techniques. The sixteen techniques in this family help analysts break away from established mental models by using Outside-In Thinking, Structured Analogies, Red Hat Analysis, Quadrant Crunching ™ , and the Delphi Method to reframe an issue or imagine a situation from a different perspective. What If? Analysis and High Impact/Low Probability Analysis are tactful ways to suggest that the conventional wisdom could be wrong. Two important techniques developed by the authors, Premortem Analysis and Structured Self-Critique, give analytic teams viable ways to imagine how their own analysis might be wrong. The chapter concludes with a description of a subset of six techniques grouped under the umbrella of Adversarial Collaboration and an original approach to Structured Debate. 
+
+Chapter 9 : Foresight Techniques. This family of twelve techniques includes four new techniques for identifying key drivers, analyzing contrasting narratives, and engaging in Counterfactual Reasoning. The chapter also describes five methods for developing scenarios and expands the discussion of Indicators Validation and Evaluation by presenting several new techniques for generating indicators. 
+
+Chapter 10 : Decision Support Techniques. The ten techniques in this family include three new Decision Support Techniques: Opportunities Incubator ™ , Bowtie Analysis, and Critical Path Analysis. The chapter also describes six classic Decision Support Techniques, including Decision Matrix, Force Field Analysis, and Pros-Cons-Faults-and-Fixes, all of which help managers, commanders, planners, and policymakers make choices or trade-offs between competing goals, values, or preferences. The chapter concludes with a description of the Complexity Manager, which was developed by Richards J. Heuer Jr.
 
 How can we know that the use of Structured Analytic Techniques does, in fact, improve the overall quality of the analytic product? Chapter 11 ("The Future of Structured Analytic Techniques") begins with a discussion of two approaches to answer this question: logical reasoning and empirical research. The chapter then employs one of the techniques in this book, Complexity Manager, to assess the prospects for continued growth in the use of Structured Analytic Techniques. It asks the reader to imagine it is 2030 and answer the following questions based on an analysis of ten variables that could support or hinder the growth of Structured Analytic Techniques during this time period: Will structured techniques gain traction and be used with greater frequency by intelligence agencies, law enforcement, and the business sector? What forces are spurring the increased use of structured analysis? What obstacles are hindering its expansion?
 
 1.6 章节快速概览
 
-第 2 章（「结构化技术的作用」）通过描述它与情报分析方法学的其他三个主要类别的不同之处，定义了结构化分析技术的应用范围。本章提出了一种包含六个不同类别或家族的分类法，这些家族反映了结构化分析技术在情报生产过程中分析任务的不同阶段所起的作用。本章还探讨了结构化技术如何帮助分析师避免、克服或至少减轻他们日常工作中可能遇到的认知偏差、启发式误用和直觉陷阱。最后，本章讨论了数字虚假信息制造者如何利用人们的认知局限来推动其议程，以及结构化技术如何成为对抗这种现象的有效工具。
+第 2 章（结构化技术的作用）通过描述它与情报分析方法学的其他三个主要类别的不同之处，定义了结构化分析技术的应用范围。本章提出了一种包含六个不同类别或家族的分类法，这些家族反映了结构化分析技术在情报生产过程中分析任务的不同阶段所起的作用。本章还探讨了结构化技术如何帮助分析师避免、克服或至少减轻他们日常工作中可能遇到的认知偏差、启发式误用和直觉陷阱。最后，本章讨论了数字虚假信息制造者如何利用人们的认知局限来推动其议程，以及结构化技术如何成为对抗这种现象的有效工具。
 
-第 3 章（「挑选合适的技术方法」）阐述了我们选择技术方法的依据，探讨了哪些技术方法可能首先被掌握并频繁应用，并提供了一个指南，帮助分析师根据自身需求选择合适的技术方法。该指南提出了关于分析师工作目标和需求的十二个问题。对任何一个问题的肯定回答都会指引分析师前往相应的章节，以便快速定位到最合适的技术方法。本章最后强调了在分析过程中培养五种核心思维习惯的重要性。
+第 3 章（挑选合适的技术方法）阐述了我们选择技术方法的依据，探讨了哪些技术方法可能首先被掌握并频繁应用，并提供了一个指南，帮助分析师根据自身需求选择合适的技术方法。该指南提出了关于分析师工作目标和需求的十二个问题。对任何一个问题的肯定回答都会指引分析师前往相应的章节，以便快速定位到最合适的技术方法。本章最后强调了在分析过程中培养五种核心思维习惯的重要性。
 
-第 4 章（「协作实践指南」）基于我们之前的观察，即全球情报界的分析工作正从主要由单个分析师独立完成转向团队或群体协作的模式。本章探讨了如何将分析过程拓展至包括来自不同地域的区域和功能专家，这些专家通常通过日益扩大的社会网络进行合作。本章提出，大多数分析工作应分为两个阶段：首先是广泛参与的社会网络进行的发散性分析或创新阶段，随后是由小型分析团队进行的收敛性分析阶段，最终形成报告。
+第 4 章（协作实践指南）基于我们之前的观察，即全球情报界的分析工作正从主要由单个分析师独立完成转向团队或群体协作的模式。本章探讨了如何将分析过程拓展至包括来自不同地域的区域和功能专家，这些专家通常通过日益扩大的社会网络进行合作。本章提出，大多数分析工作应分为两个阶段：首先是广泛参与的社会网络进行的发散性分析或创新阶段，随后是由小型分析团队进行的收敛性分析阶段，最终形成报告。
 
 第 5 至 10 章分别介绍了不同的结构化分析技术家族，总计涵盖了六十六种结构化技术（参见图 1.6）。每个章节首先介绍该技术家族的特点，以及这些技术如何帮助克服已知的认知偏差、启发式误用或直觉陷阱。随后是对每种技术的详细讨论，包括适用场景、带来的价值、方法描述、潜在的风险、与其他技术的关系以及技术的起源。
 
@@ -200,15 +210,15 @@ How can we know that the use of Structured Analytic Techniques does, in fact, im
 
 第 6 章：探索技巧。本章探讨了九种头脑风暴技巧，包括创新的 Circleboarding™、Starbursting 以及集群头脑风暴，后者在早期版本中被称为结构化头脑风暴。名义小组技术是一种特殊的头脑风暴方法，适用于避免会议被强势分析师主导或受高级官员影响的情况。此外，本章还介绍了 Venn 分析和网络分析等映射技术。
 
-第 7 章：诊断技巧。本章详细介绍了十一种诊断技巧，包括广泛应用的关键假设检查和时间线制作。交叉影响矩阵是一种工具，帮助团队理解复杂系统中各因素之间的关系。本章还涵盖了假设生成和测试的一系列技巧，如多假设生成、诊断推理、竞争假设分析（ACH）、论证映射和欺骗检测，并引入了一种简化版的 ACH 技巧 —— 不一致查找器™。
+第 7 章：诊断技巧。本章详细介绍了十一种诊断技巧，包括广泛应用的关键假设检查和时间线制作。交叉影响矩阵是一种工具，帮助团队理解复杂系统中各因素之间的关系。本章还涵盖了假设生成和测试的一系列技巧，如多假设生成、诊断推理、竞争假设分析（ACH）、论证映射和欺骗检测，并引入了一种简化版的 ACH 技巧 —— 不一致查找器。
 
-第 8 章：重构技巧。本章的十六种技巧旨在帮助分析师打破常规思维，通过从外向内思考、结构化类比、红帽分析、象限压缩™和德尔菲方法等，重新审视问题或从新视角设想情境。假设分析和高影响 / 低概率分析是提出传统智慧可能存在缺陷的巧妙方式。作者提出的两种技巧 —— 事前分析和结构化自我批评，为分析团队提供了自我审视的方法。本章最后介绍了对抗性合作的六种技巧和一种创新的结构化辩论方法。
+第 8 章：重构技巧。本章的十六种技巧旨在帮助分析师打破常规思维，通过从外向内思考、结构化类比、红帽分析、象限压缩和德尔菲方法等，重新审视问题或从新视角设想情境。假设分析和高影响/低概率分析是提出传统智慧可能存在缺陷的巧妙方式。作者提出的两种技巧 —— 事前分析和结构化自我批评，为分析团队提供了自我审视的方法。本章最后介绍了对抗性合作的六种技巧和一种创新的结构化辩论方法。
 
 第 9 章：远见技巧。本章介绍了十二种远见技巧，包括四种新技巧，用于识别关键驱动因素、分析对比叙事和进行反事实推理。此外，还描述了五种情景开发方法，并扩展了指标验证和评估的讨论，引入了几种生成指标的新技巧。
 
 第 10 章：决策支持技巧。本章介绍了十种决策支持技巧，包括三种新技巧：机会孵化器™、蝴蝶结分析和关键路径分析。同时，本章还回顾了六种经典的决策支持技巧，如决策矩阵、力场分析和利弊故障修复，这些技巧帮助决策者在不同目标、价值观或偏好之间做出选择。本章以理查兹·J·霍耶尔开发的复杂性管理者方法作为结尾。
 
-我们如何确信结构化分析技术的应用能够实质性地提升分析工作的质量？第 11 章（「结构化分析技术的未来展望」）开篇即探讨了两种解答此问题的方法：逻辑推理与实证研究。接着，本章运用书中介绍的一种技术 —— 复杂性管理器，来预测结构化分析技术在未来是否能持续发展。设想时值 2030 年，我们需要基于对十个可能影响结构化分析技术发展的关键变量的分析，来回答以下问题：结构化分析技术是否会在情报界、执法部门以及商业领域中得到更广泛的应用？有哪些因素正在推动这一技术的普及？又存在哪些障碍限制了它的推广？
+我们如何确信结构化分析技术的应用能够实质性地提升分析工作的质量？第 11 章（结构化分析技术的未来展望）开篇即探讨了两种解答此问题的方法：逻辑推理与实证研究。接着，本章运用书中介绍的一种技术 —— 复杂性管理器，来预测结构化分析技术在未来是否能持续发展。设想时值 2030 年，我们需要基于对十个可能影响结构化分析技术发展的关键变量的分析，来回答以下问题：结构化分析技术是否会在情报界、执法部门以及商业领域中得到更广泛的应用？有哪些因素正在推动这一技术的普及？又存在哪些障碍限制了它的推广？
 
 ### Notes
 

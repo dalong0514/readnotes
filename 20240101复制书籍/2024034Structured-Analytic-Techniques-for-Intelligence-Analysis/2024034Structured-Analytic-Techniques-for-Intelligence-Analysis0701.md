@@ -1,8 +1,10 @@
+Randolph H. Pherson, Richards J. Heuer.(2020).2024034Structured-Analytic-Techniques-for-Intelligence-Analysis3Ed.CQ Press => 0301 Choosing the Right Technique
+
 ## 0701. Diagnostic Techniques
 
 A nalysis conducted by the intelligence, law enforcement, and business communities will never achieve the accuracy and predictability of a true science because the information with which analysts must work is typically incomplete, ambiguous, and potentially deceptive. The analytic process can, however, benefit from the lessons of science and adapt some of the elements of scientific reasoning.
 
-The scientific process involves observing, categorizing, formulating hypotheses, and then testing those hypotheses. Generating and testing hypotheses is a core function of structured analysis. A possible explanation of the past or a judgment about the future is a hypothesis that needs to be tested by collecting and presenting evidence. This chapter focuses on several key techniques that support the Diagnostic Reasoning process, including challenging key assumptions about what the information reveals, developing Chronologies and Timelines, generating alternative hypotheses, and testing the validity of hypotheses and the quality of argumentation. Practice in using three of the techniques—Key Assumptions Check, Multiple Hypothesis Generation, and Analysis of Competing Hypotheses—will help analysts become proficient in the first three of the Five Habits of the Master Thinker (see chapter 3 ): challenging assumptions, generating alternative explanations, and identifying inconsistent evidence.
+The scientific process involves observing, categorizing, formulating hypotheses, and then testing those hypotheses. Generating and testing hypotheses is a core function of structured analysis. A possible explanation of the past or a judgment about the future is a hypothesis that needs to be tested by collecting and presenting evidence. This chapter focuses on several key techniques that support the Diagnostic Reasoning process, including challenging key assumptions about what the information reveals, developing Chronologies and Timelines, generating alternative hypotheses, and testing the validity of hypotheses and the quality of argumentation. Practice in using three of the techniques—Key Assumptions Check, Multiple Hypothesis Generation, and Analysis of Competing Hypotheses—will help analysts become proficient in the first three of the Five Habits of the Master Thinker (see chapter 3): challenging assumptions, generating alternative explanations, and identifying inconsistent evidence.
 
 The generation and testing of hypotheses is a skill, and its subtleties do not come naturally. It is a form of reasoning that people can learn to use for dealing with high-stakes situations. What does come naturally is drawing on our existing body of knowledge and experience (mental model) to make an intuitive judgment. 1 In most circumstances in our daily lives, this is an efficient approach that works most of the time. For intelligence analysis, however, it is not adequate, because intelligence issues are generally so complex, and the risk and cost of error are too great. Also, the situations are often novel, so the intuitive judgment shaped by past knowledge and experience may well be wrong.
 
@@ -17,6 +19,26 @@ The first part of this chapter describes techniques for challenging key assumpti
 The second section describes three techniques for generating hypotheses. Other chapters include additional techniques for generating hypotheses, but which also have a variety of other purposes. These include Cluster Brainstorming, Nominal Group Technique, and Venn Analysis ( chapter 6 ); the Delphi Method and Classic Quadrant Crunching™ ( chapter 8 ); various forms of Foresight analysis ( chapter 9 ); and Critical Path Analysis and Decision Trees ( chapter 10 ).
 
 This chapter concludes with a discussion of five techniques for testing hypotheses, detecting deception, and evaluating the strength of an argument. These techniques spur the analyst to become more sensitive to the quality of the data and the strength of the logic and to look for information that not only confirms but can disconfirm the hypothesis. One of these, Analysis of Competing Hypotheses (ACH), was developed by Richards J. Heuer Jr. specifically for use in intelligence analysis.
+
+0701 诊断技术
+
+情报、执法和商业界的分析工作，虽然难以达到纯科学研究那样的精确度和预见性，因为分析师所依赖的信息往往残缺不全、模棱两可，甚至带有误导性。然而，分析过程可以借鉴科学方法的精髓，融入科学推理的某些要素。
+
+科学方法包括观察、分类、提出假设，进而对这些假设进行检验。在结构化分析中，提出并检验假设是至关重要的环节。对历史事件的解释或对未来趋势的预测，都需要通过搜集和呈现证据来验证其假设的正确性。本章节将探讨几种关键技术，它们有助于诊断推理过程的推进，包括质疑信息背后的关键假设、构建时间序列和时间线、提出多种可能的假设，以及验证假设的合理性和论证的严谨性。通过实践三种技术 —— 关键假设检查、多假设生成和竞争假设分析，分析师能够精通大师思考者的五个习惯中的前三项（详见第 3 章）：质疑既有假设、构思多种解释方案、识别证据中的矛盾之处。
+
+生成和测试假设是一种需要后天学习的技能，它涉及到处理高风险情况的复杂推理。人们天生倾向于依赖已有的知识和经验（即心理模型）来做出直觉判断。在日常生活中，这种直觉判断通常是高效的，大多数情况下都能奏效。然而，在情报分析领域，这种方法就显得力不从心了，因为情报问题往往极其复杂，错误的代价和风险极高。而且，面对的往往是前所未见的新情况，基于过往知识和经验的直觉判断很可能失准。
+
+对复杂问题的有效分析，首先要提出一系列可能的假设。经验丰富的分析师会借鉴科学家的方法，对这些假设进行测试。仅凭与假设相符的证据，无法完全证实假设的正确性，因为同样的证据可能与多个假设相符。科学研究往往通过反驳或证伪假设来取得进展。一个无法被反驳的假设，其可信度与拥有大量支持证据的假设相当。只要有一个证据与假设不符，就足以让我们对那个假设产生怀疑。最有可能正确的假设，往往是那些反对证据最少的。
+
+分析师通常采用一种名为溯因推理的方法来检验假设，这种方法与更为人熟知的演绎和归纳推理有所不同。溯因推理首先基于一组事实，然后构建假设，这些假设如果成立，将提供对这些事实的最佳解释。最有说服力的假设是那些能够最准确解释事实的假设。在情报分析领域，由于存在不确定性，对假设的明确证明或反驳并不常见。
+
+运用诊断技术能够有效对抗多种认知偏差。它通过引入新的观点和多种可能性，帮助分析师减少确认偏差的影响，并降低因追求故事连贯性而接受证据的偏差。此外，诊断技术还能帮助分析师避免直觉陷阱，如过分依赖第一印象、忽视矛盾证据以及过度投射个人经验。
+
+本章首先介绍了一系列技术，用于挑战关键假设、确立分析基准，并识别可能影响局势结果的关键变量、驱动因素或参与者之间的关系。这些技术使分析师能够探索对其研究对象的新颖和替代解释。
+
+接下来，本章介绍了三种产生假设的技术。其他章节还包含了更多用于产生假设的技术，这些技术同时也服务于其他目的。例如，集群头脑风暴、名义小组技术和维恩分析（参见第 6 章）；德尔菲法和经典象限挤压™（参见第 8 章）；以及各种前瞻性分析（参见第 9 章）和关键路径分析与决策树（参见第 10 章）。
+
+本章最后讨论了五种测试假设、检测欺骗和评估论点强度的技术，这些技术促使分析师更加敏感于数据的质量和逻辑的强度，并寻找不仅能够证实而且能够反驳假设的信息。其中之一，竞争性假设分析法（ACH），是由理查兹·J·休尔（Richards J. Heuer Jr.）专门为情报分析开发的方法。
 
 Overview of Techniques
 
@@ -38,13 +60,33 @@ Deception Detection employs a set of checklists analysts can use to determine wh
 
 Argument Mapping is a method that can be used to put a single hypothesis to a rigorous logical test. The structured visual representation of the arguments and evidence makes it easier to evaluate any analytic judgment. Argument Mapping is a logical follow-on to an ACH analysis. It is a detailed presentation of the arguments for and against a single hypothesis; ACH is a more general analysis of multiple hypotheses. The successful application of Argument Mapping to the hypothesis favored by the ACH analysis would increase confidence in the results of both analyses.
 
+技术概览
+
+关键假设检查是最重要也是最常用的技术之一。分析判断总是基于证据和假设（或先入为主的观念）的组合，这些假设影响证据的解释方式。关键假设检查是一种系统性的努力，旨在明确并挑战指导分析师思考的假设（即心理模型）。
+
+时间线和时间轴用于组织事件或行动的数据。当理解相关事件的时间和顺序或识别关键事件和差距变得重要时，它们就会被使用。
+
+交叉影响矩阵是一种技术，适用于任何形式的头脑风暴之后，该头脑风暴识别出与分析项目相关的变量列表。头脑风暴的结果被放入一个矩阵中，该矩阵用于指导小组讨论，系统地检查每个变量如何影响特定问题上下文中与之相关的所有其他变量。小组讨论通常是一个宝贵的学习经验，为未来的合作奠定了基础。交叉影响讨论的结果应该保留以供将来参考，并在分析完成后作为交叉检查。
+
+多重假设生成有多种实现方法。本书介绍了三种技术 —— 简单假设、象限假设生成和多重假设生成。简单假设使用起来最简单，但并非总是最佳选择。象限假设生成用于在结果可能仅受两个主要因素影响时，提出一组假设。多重假设生成则用于提出大量可能的假设。后两种技术尤其适用于提出一组既互斥又全面覆盖所有可能性的假设（MECE）。
+
+诊断推理是一种将假设测试应用于评估重要新信息的方法。这种方法要求在所有可能解释该信息的合理假设的背景下评估信息，而不仅仅局限于分析员已有的心智模型。通过诊断推理，分析员能够考虑多种可能的结论，从而降低对意外事件的误判风险。与竞争假设分析（ACH）不同，诊断推理侧重于评估单个证据项；而 ACH 则处理包含多个证据项和更复杂分析过程的整个问题。
+
+竞争假设分析（ACH）是将卡尔·波普尔的科学哲学思想应用于情报分析的一种方法。波普尔是 20 世纪最具影响力的科学哲学家之一，他主张科学推理应从多个假设出发，通过排除或拒绝那些可被反驳的假设，来推进科学理论的发展。ACH 方法迫使分析员面对分析过程中固有的不确定性，并帮助他们整理和处理相关信息，以找到减少不确定性的途径。
+
+Inconsistencies Finder™ 是一种简化版的 ACH 工具，它帮助分析师根据已识别的不一致信息量来评估一组假设的相对可信度。它提供了一个快速框架，用于识别数据中的不一致性，并找出最可能正确的假设。
+
+欺骗检测使用一套检查清单，分析师可以用它来判断何时可能遇到欺骗行为，如何识别自己是否正遭受欺骗，以及如何采取措施避免被欺骗。这种方法还有助于检测数字虚假信息或「假新闻」的存在。外国情报机构、经济竞争对手或其他敌对组织进行欺骗的可能性是一种特殊的假设类型，可以纳入任何 ACH 分析中。通过欺骗检测技术识别的信息随后可以作为相关信息输入到 ACH 矩阵中。
+
+论证映射是一种可以用来对单一假设进行严格逻辑测试的方法。论点和证据的结构化视觉表示使得评估任何分析判断变得更加容易。论证映射是 ACH 分析的逻辑延续。它是对单一假设支持与反对论点的详细展示；而 ACH 是对多个假设的更一般性分析。成功地将论证映射应用于 ACH 分析中偏好的假设，将增强对两种分析结果的信心，因为它提供了对假设更深入的逻辑检验。
+
 7.1 Key Assumptions Check
 
 Analytic judgment is always based on a combination of evidence and assumptions, or preconceptions, which influences how the evidence is interpreted. 3 The Key Assumptions Check is a systematic effort to make explicit and question the assumptions (the mental model) that guide an analyst's interpretation of evidence and reasoning about a problem. Such assumptions are usually necessary and unavoidable as a means to fill gaps in the incomplete, ambiguous, and sometimes deceptive information with which the analyst must work. They are driven by the analyst's education, training, and experience, plus the organizational context in which the analyst works.
 
 An organization really begins to learn when its most cherished assumptions are challenged by counterassumptions. Assumptions underpinning existing policies and procedures should therefore be unearthed, and alternative policies and procedures put forward based upon counterassumptions.
 
-—Ian I. Mitroff and Richard O. Mason, Creating a Dialectical Social Science: Concepts, Methods, and Models (1981)
+— Ian I. Mitroff and Richard O. Mason, Creating a Dialectical Social Science: Concepts, Methods, and Models (1981)
 
 The Key Assumptions Check is one of the most common techniques used by intelligence analysts because they typically need to make assumptions to fill information gaps. In the intelligence world, these assumptions are often about another country's intentions or capabilities, the way governmental processes usually work in that country, the relative strength of political forces, the trustworthiness or accuracy of key sources, the validity of previous analyses on the same subject, or the presence or absence of relevant changes in the context in which the activity is occurring. Assumptions are often difficult to identify because many sociocultural beliefs are held unconsciously or so firmly that they are assumed to be truth and not subject to challenge.
 
@@ -96,6 +138,64 @@ Origins of This Technique
 
 Although assumptions have been a topic of analytic concern for a long time, the idea of developing a specific analytic technique to focus on assumptions did not occur until the late 1990s. The discussion of Key Assumptions Check in this book is from Randolph H. Pherson, Handbook of Analytic Tools and Techniques , 5th ed. (Tysons, VA: Pherson Associates, LLC, 2019).
 
+7.1 关键假设检查分析判断的形成往往依赖于证据与假设或先入之见的结合，这些因素共同塑造了分析师对证据的解读及其对问题的推理方式。关键假设检查是一种系统性的方法，旨在揭示并挑战那些指导分析师理解证据和推理过程的内在假设（即心理模型）。这些假设在分析师处理不完整、模糊甚至带有误导性的信息时显得尤为必要和不可避免。它们源自分析师的教育背景、专业训练、实践经验，以及其所处的组织环境。
+
+一个组织只有在面对挑战其核心假设的对立观点时，才能真正实现学习与成长。因此，揭示并审视支撑现有政策和程序的假设至关重要，同时基于对立假设提出新的政策和程序也是必要的。
+
+— Ian I. Mitroff 和 Richard O. Mason，《创造辩证社会科学：概念、方法和模型》（1981）
+
+关键假设检查是情报分析师常用的技术之一，因为在情报分析中，分析师经常需要基于假设来填补信息上的空白。在情报领域，这些假设可能涉及其他国家的意图或能力、该国政府运作的常规方式、政治力量的相对强弱、关键信息来源的可靠性或准确性、以往对同一主题分析的有效性，以及活动发生环境中相关变化的存在与否。识别这些假设往往颇具挑战，因为许多社会文化信仰可能被无意识地接受，或者被视为不容置疑的真理。
+
+何时使用
+
+对于当前事件的任何解释或未来发展的估计都需要基于证据的解读。如果证据不完整或模糊，解读过程中会受到关于该国或公司通常运作方式的假设的影响。这些假设应在分析过程的早期明确提出。
+
+如果在项目开始时未进行关键假设检查，那么在协调过程中或在结论提出或交付之前进行，仍然极其有价值。在分析过程早期进行关键假设检查后，通常希望在报告起草前后再次审查这些假设。此时，任务是确定这些假设是否仍然有效，或者是否需要进行修改。
+
+当随着时间的推移跟踪同一主题或问题时，分析人员应考虑定期重新评估他们的关键假设，特别是在发生重大新发展或意外事件之后。如果经过反思，发现一个或多个关键假设不再成立，分析人员应通知在该目标或问题上工作的关键政策制定者或企业决策者，指出一个基础构建不再适用或至少是可疑的。
+
+增值在任何项目的开始准备一份书面工作假设列表，有助于分析人员：
+
+- 明确支撑基本分析线的具体假设。
+- 更好地理解正在发挥作用的基本动态。
+- 获得更好的视角并激发对问题的新的思考。
+- 发现关键因素之间的隐藏关系和联系。
+- 确定哪些发展会质疑一个关键假设。
+- 避免意外，当新信息使旧假设无效时。
+
+进行关键假设检查有助于分析师减轻启发式方法误用对分析思维的影响，包括倾向于将某个假设值或未知事物视为评估的起点（锚定效应），在未充分收集信息和进行分析之前就急于做出判断（过早封闭），以及根据回忆实例的难易程度来估计事件发生的频率（可用性启发式）。此外，它还能帮助分析师避免几种常见的心理误区，如在数据有限时过度解读（过度解释小样本），错误地认为当前情况与过去经验中的动态相同（投射过去的经验），以及因缺乏合适的信息分类而未能将重要信息纳入分析（缺乏足够的分类）。
+
+通过进行关键假设检查，分析师能够更深入地理解支撑其关键判断或结论的假设。这有助于分析师确定他们对于自己的评估和传播关键发现的信心程度。
+
+方法
+
+进行关键假设检查的过程在概念上看似简单，但在实际操作中却常常面临挑战。其中一个挑战是，参与的分析师必须能够接受自己的假设可能是错误的。为了确保检查的有效性，建议邀请几位在该领域有广泛知识但未对特定假设有预设立场的知名分析师参与。此外，聘请一位经验丰富的促进者来引导整个过程也是非常重要的。需要注意的是，许多被视为「关键假设」的点，在深入分析后往往变成了「关键不确定性」。根据兰多夫·费舍尔作为分析项目促进者的丰富经验，大约有四分之一的关键假设在经过仔细审查后会被推翻。
+
+进行关键假设检查的步骤如下：
+
+- 组织一个由正在处理该问题的分析师和一些「局外人」组成的小组。由于主要分析团队可能已经形成了一套固定的思维模式，因此「局外人」的加入可以带来新的视角。理想情况下，促进者应提前通知参与者会议的主题，并要求他们准备一份关于该主题的假设清单。如果参与者未能提前准备，可以在会议开始时进行一次无声的头脑风暴，让每位参与者在索引卡上写下他们的假设。随后，收集这些卡片，并将假设列在白板或挂图上，供所有人共同审视。鼓励参与者提出更多的假设。从当前主流的分析观点出发，寻找支持这些观点的额外论据。使用各种启发式工具来激发参与者的思考：
+
+未找到意译内容
+
+基本上，我们可以将假设分为三类：坚固的（S）、有条件的正确（C）、以及未被证实或存在疑问的 —— 即「关键的不确定性」（U）。我们需要对这个假设列表进行细化。删除那些经不起仔细审查的假设，并根据讨论中出现的新信息添加新的假设。如果某个假设引发了广泛的讨论，我们可以考虑将其拆分为两个更具体的假设，或者重新表述以使假设的含义更加清晰。最重要的是，我们需要特别关注那些如果错误，将直接影响分析结论的假设。同时，我们也可以考虑将这些关键的不确定性转化为情报收集的具体要求或研究的重点。
+
+在分析结束时，我们必须认识到，我们的分析结论的准确性概率不可能高于我们推理链条中最薄弱的一环。因此，我们需要回顾所有的假设，评估证据的质量和来源的可靠性，并全面考虑问题的复杂性和难度。在此基础上，我们可以对分析结论可能出错的概率进行一个大致的估计。然后，我们可以用这个估计来计算我们的结论最终准确的粗略概率。例如，如果我们有 75% 的把握认为结论是正确的，那么也就意味着我们有 25% 的可能性是错误的。这种对可能出错的关注，是为了对抗人们通常不愿意承认自己可能犯错的自然倾向。
+
+图 7.1 展示了在 20 世纪 90 年代的文·何·李间谍案中，一些明显错误的假设，以及通过进一步调查揭示的这些假设的真实情况。如果在案件早期进行关键假设检查，可能就能更早地发现针对李的指控中的弱点。
+
+与其他技术的关联
+
+关键假设检查常与其他分析方法结合使用，因为假设在所有结构化分析中都至关重要。正确识别这些假设是分析成功的关键。例如，当一个假设对分析结果至关重要，且其有效性存疑时，紧随关键假设检查之后进行「如果假设错误会怎样？」的分析是有益的。我们可以设想一个未来（或当前）情境，其中假设不成立。是什么因素可能导致假设错误？这些因素如何影响假设？以及可能带来的后果是什么？
+
+图 7.1 关键假设检查：文浩李案例来源：Pherson Associates, LLC, 2019.
+
+关键假设检查与分析假设法（ACH）之间有着特别重要的互动。在 ACH 矩阵中，关键假设应被视为「证据」的一部分，以确保矩阵准确反映分析师的思考过程。在构建 ACH 矩阵时，讨论相关信息的过程中往往会浮现出新的假设。这种情况发生在分析师评估证据与假设之间的一致性或不一致性时，意识到这种评估依赖于其他因素 —— 通常是一个或多个假设。经典四象限挤压™（第 8 章）和简单场景、可能性锥体以及反转假设（第 9 章）等方法都利用假设及其对立面来探索多种可能的解释或结果。
+
+这项技术的起源尽管假设一直是分析领域关注的焦点，但直到 20 世纪 90 年代末，才有人提出专门针对假设进行分析的技术。本书中关于关键假设检查的讨论源自伦道夫·H·弗森的《分析工具和技术手册》第 5 版（Tysons, VA：Pherson Associates, LLC, 2019）。
+
+
+
+
 7.2 Chronologies and Timelines
 
 A Chronology is a list that places events or actions in the order in which they occurred, usually in narrative or bulleted format. A Timeline is a graphic depiction of those events put in context of the time of the events and the time between events. Both are used to identify trends or relationships among the events or actions and, in the case of a Timeline, among the events and actions as well as other developments in the context of the overarching intelligence problem.
@@ -135,6 +235,34 @@ A team of analysts working on strategic missile forces knows what steps are nece
 Origins of This Technique
 
 Chronologies and Timelines are well-established techniques used in many fields. The information here is from M. Jones, "Sorting, Chronologies, and Timelines," The Thinker's Toolkit (New York: Three Rivers Press, 1998), chapter 6 ; and from Pherson Associates training materials.
+
+
+7.2 编年史与时间线编年史是一系列按照事件或行动发生顺序排列的记录，通常采用叙述或项目符号列表的形式。时间线则是以图形方式展示这些事件，将其置于历史背景中，并标明事件之间的时间间隔。这两种工具都用于揭示事件或行动之间的趋势和联系，而时间线更进一步，将这些事件与其他相关发展联系起来，为更广泛的情报问题提供背景。
+
+何时使用编年史和时间线是组织和理解事件顺序的有效工具。当分析师需要梳理事件的时间顺序时，这些工具尤为重要。它们不仅能够揭示关键事件，还能指出信息中的缺失部分，这些事件之间可能存在因果关系，也可能没有。
+
+在分析任务初期，编年史和时间线常被用来构建事件的背景框架。在事后分析中，它们有助于剖析情报报告的流程，找出分析失误的原因，并在情报或商业领域的意外事件发生后，凸显关键事件的重要性。此外，它们在准备简报或向陪审团展示证据时，能够以清晰易懂的方式组织信息。
+
+增加的价值编年史和时间线是分析师识别事件间模式和关联的有力工具。通过它们，分析师能够将零散的事件与整体情境相联系，突出显示或识别重大变化，以及辅助发现趋势、新兴问题或异常现象。当数据的含义尚不明确时，它们可以作为收集和整理原始数据的工具。多层次时间线使分析师能够追踪并分析可能相互影响的并发事件。
+
+时间线上的活动可能会启发分析师推测出之前未被发现的事件。简而言之，已知事件的顺序只有在其他未被记录的事件发生时才显得合理。随后，分析师可以寻找这些遗漏事件的其他线索。
+
+年代记和时间线是分析师用来减轻认知偏差和启发式影响的实用工具，这些偏差包括未经核实就接受数据为真，因为这有助于「构建论点」（证据接受偏差），在随机事件中寻找模式，将其视为有系统的，并融入连贯的故事中（对连贯性和不确定性减少的追求），以及为复杂问题提供快速简单的解答（心理散弹枪）。它还能减少几种直觉陷阱的影响，例如过分重视第一印象或最初引起注意的数据（依赖第一印象），不充分考虑信息缺失的影响（忽视信息缺失），以及忽略与预期不符的信息（忽视不一致证据）。
+
+方法年代记和时间线是整理日常消息流量中接收信息时的有效且简单的方法。可以使用 Microsoft Word 文档或 Excel 电子表格来记录研究结果并整理证据。Excel 的绘图功能或 Analysts' Notebook 等工具可以帮助绘制时间线。按照以下步骤操作：
+
+在研究问题时，确保将相关信息按其发生的日期或顺序列出。正确引用数据以帮助揭示潜在的模式或链接非常重要。要特别注意区分事件发生的日期和报告收到的日期。通过询问以下问题来检查年代记或时间线：
+
+未找到意译内容
+
+在使用时间线分析时，分析人员有时会错误地假设，后续事件是由先前事件引起的。此外，如果分析人员在识别与时间线或年表信息相关的背景事件时缺乏创造性思维，那么这种分析方法的价值可能会大打折扣。
+
+图 7.2 展示了导弹发射日期的时间线估计，该图由 Pherson Associates, LLC 于 2019 年提供。特别指出，TEL 指的是导弹的运输、竖立和发射装置。
+
+举例来说，一个分析团队专注于战略导弹部队的研究，他们熟知核导弹发射的准备流程。（请参阅图 7.2。）这个团队一直在密切关注一个国家，他们推测该国即将对其中程地对地弹道导弹进行新变种的测试。在 2 月中旬，他们观察到了测试发射的初步迹象，并决定加强对主要和次要测试发射设施的监控。他们将观察到的和预期的活动整合到一个时间线中，以此来预测可能的测试发射日期。通过这种方式，分析人员能够预估导弹发射的可能时间，并向决策者提供可能活动的预警信号。
+
+本文提到的技术信息源自 M. Jones 的著作《思考者的工具包》（纽约：Three Rivers Press，1998），特别是第 6 章中关于「排序、年表和时间线」的内容；以及 Pherson Associates 提供的相关培训材料。
+
 
 7.3 Cross-Impact Matrix
 
@@ -180,7 +308,49 @@ See also the discussion of the Complexity Manager technique in chapter 10 . An i
 
 Origins of This Technique
 
-The Cross-Impact Matrix technique was developed in the 1960s as one element of a quantitative futures analysis methodology called Cross-Impact Analysis. Richards J. Heuer Jr. became familiar with it when the CIA was testing the Cross-Impact Analysis methodology. He started using it as an intelligence analysis technique, as described here, more than forty years ago. For simple instructions for using the Cross-Impact Matrix and printable templates, go to http://discoveryoursolutions.com/toolkit/cross_impact_matrix.html .
+The Cross-Impact Matrix technique was developed in the 1960s as one element of a quantitative futures analysis methodology called Cross-Impact Analysis. Richards J. Heuer Jr. became familiar with it when the CIA was testing the Cross-Impact Analysis methodology. He started using it as an intelligence analysis technique, as described here, more than forty years ago. For simple instructions for using the Cross-Impact Matrix and printable templates, go to http://discoveryoursolutions.com/toolkit/cross_impact_matrix.html.
+
+7.3 交叉影响矩阵交叉影响矩阵是一种工具，它帮助分析师在面对「万物互联」的复杂问题时，能够系统地分析每个因素如何影响其他与之相关的因素。
+
+何时使用在项目初期，当团队还在学习如何应对复杂情况时，交叉影响矩阵尤为有用。在识别所有可能影响结果的变量、驱动因素或参与者的头脑风暴会议或其他讨论之后，使用交叉影响矩阵来探究这些变量之间的相互关系是合乎逻辑的下一步。通过讨论每对变量之间的相互作用，团队可以获得深刻的见解，并为持续的合作奠定坚实的基础。至于矩阵的完成程度以及对每个变量影响的具体描述，这取决于项目的特性和重要性。有时候，仅仅进行讨论就已经足够。
+
+交叉影响的分析在以下情况中是有用的：
+
+- 当情况不断变化，分析师需要全面理解可能影响结果的所有因素及其相互关系时。
+- 当情况稳定，但需要识别并监控可能破坏稳定性的因素及其相互作用时。
+- 当重大事件发生后，分析师需要评估该事件对其他重要力量的影响及其潜在后果时。
+
+增值
+
+分析师在预测未来事件时，会考虑主导力量和可能影响结果的未来事件，并评估这些力量或事件的相对影响力或可能性。通常，他们将这些因素单独考虑，忽略了它们之间可能存在的重要相互作用。交叉影响矩阵为此类相互作用的讨论提供了一个平台。通过这种讨论，我们常常发现，原本看似简单和独立的变量或问题实际上是相互关联的。在讨论每个潜在的交叉影响时，信息的共享能够带来宝贵的学习机会。因此，交叉影响矩阵是一个实用的工具，几乎可以在任何旨在解释当前事件或预测未来结果的研究中使用。
+
+交叉影响矩阵提供了一个结构，帮助管理分析中遇到的复杂性。它要求分析师明确表达所有关于变量之间关系的假设。这样做有助于分析师通过追溯分析论点背后的基本前提来捍卫或批评他们的结论。
+
+使用交叉影响矩阵特别有助于帮助分析师避免受到启发式偏差的影响，例如在找到一个看似满意的答案后就停止寻找原因（即过早闭合），或者选择第一个看起来「足够好」的答案（即满足性），以及将随机事件视为系统性的并作为连贯世界的一部分（即对连贯性和不确定性减少的渴望）。这种方法还可以提供对几种直觉陷阱的有力补救，包括对小样本数据过度解释结论（即过度解释小样本），给予第一印象或最初看似重要的数据过多权重（即依赖第一印象），以及面对额外或矛盾证据时仍然坚持判断（即拒绝证据）。
+
+方法如下：
+
+召集一组对主题各个方面有知识的分析师。该组进行头脑风暴，列出可能对正在研究的问题产生一些影响的变量或事件。然后，项目协调员创建一个矩阵，将这些变量或事件列表放在矩阵的左侧，并将相同的变量或事件横跨顶部。
+
+小组接着构建矩阵，深入分析并详细记录每个变量或事件与其他所有变量或事件之间的相互作用。例如，变量 1 的存在是否会增强或削弱变量 2、3、4 等的影响？或者事件 1 的发生是否会提高或降低事件 2、3、4 等发生的可能性？如果一个变量确实对另一个变量产生影响，这种影响的正负强度可以通过在矩阵的相应单元格中标注大小不同的加号或减号来体现（如果没有显著影响，则留空）。描述每对变量或事件之间关系的术语包括「增强」、「抑制」或「无关」。
+
+图 7.3 展示了一个包含六个变量、存在三十种潜在相互作用的交叉影响矩阵。值得注意的是，每对变量之间的关系被评估两次，因为这种关系可能不是对等的。也就是说，变量 1 对变量 2 的影响可能与变量 2 对变量 1 的影响不同。在实际应用中，交叉影响矩阵可能包含数百种甚至更多的相互作用，因此仔细分析每一种相互作用可能是一项耗时的任务。
+
+描述图 7.3 交叉影响矩阵分析师应当运用交叉影响技术，以识别那些可能被忽略的变量或事件之间的关键相互作用，或是那些可能相互增强的变量组合。相互增强的变量组合可能导致在可预测方向上的快速且显著的变化。另一方面，仅仅识别变量之间的关系及其影响方向，对于解决某些问题已经足够。
+
+讨论的深度和记录结果的方式取决于具体情况。这取决于你在讨论中学到了多少，每次应用矩阵时都可能不同。如果集体讨论这些变量或事件的可能性及其相互关系是一个有益的学习过程，那么就继续深入讨论。如果发现了可能影响分析判断的重要关系，那么就详细记录在矩阵中，并做好笔记。如果小组的讨论收获不大，那么就及时结束讨论。
+
+作为团队合作的一部分，成员们可以在网上进行讨论，并定期回顾他们的主要发现。在时间允许的情况下，分析师可以添加新的信息或修改之前关于每对变量相互作用的信息。这个记录将成为项目进行中的一个重要参考，帮助大家回忆和回顾。
+
+与其他技术的联系矩阵作为一种多用途的技术，在第 5 章中有所讨论。这里描述的交叉影响矩阵通常在分析项目开始时通过头脑风暴来引入。在探讨头脑风暴中确定的相关因素之间的关系时，可以邀请其他经验丰富的分析师参与。分析师可以通过创建一个视觉化的思维导图或概念图来进一步发展交叉影响矩阵的讨论，展示所有关系的网络。
+
+请参阅第 10 章中关于复杂性管理器技术的讨论。复杂性管理器技术中的一个关键部分是一种形式的交叉影响分析，它帮助分析更接近一个基于事实的结论。
+
+这项技术的起源
+
+Cross-Impact Matrix 技术是在 1960 年代作为 Cross-Impact Analysis 这一定量未来分析方法论的一个组成部分而开发的。Richards J. Heuer Jr. 在中央情报局测试 Cross-Impact Analysis 方法论时熟悉了这项技术，并在四十多年前就开始将其应用于情报分析领域。关于如何使用 Cross-Impact Matrix 的简单说明和可打印模板，您可以访问 http://discoveryoursolutions.com/toolkit/cross_impact_matrix.html 获取更多信息。
+
+
 
 7.4 Multiple Hypothesis Generation
 
@@ -264,6 +434,76 @@ Origins of This Technique
 
 The generation and testing of hypotheses is a key element of scientific reasoning. The Simple Hypotheses approach and Quadrant Hypothesis Generation are described in the Handbook of Analytic Tools and Techniques, 5th ed. (Tysons, VA: Pherson Associates, LLC, 2019) and Pherson Associates training materials. The description of the Multiple Hypotheses Generator ® can be found in the fourth edition of the Handbook of Analytic Tools and Techniques (Reston, VA: Pherson Associates, LLC, 2015).
 
+7.4 多重假设生成在广义上，假设是一种可能的解释或结论，它需要通过收集和分析证据来进行检验。它是一个尚未被证实的陈述性语句 —— 基于观察的「有根据的猜测」，旨在通过进一步的观察或实验来验证其正确性或错误性。
+
+一个好的假设应当满足由助记符 STOP 所代表的以下标准：
+
+S：作为陈述，而非问题。T：既可证伪又稳定。O：基于观察和已有知识。P：明确预测可能的结果。
+
+假设生成是任何严格分析过程中不可或缺的一部分，它帮助分析员广泛而创造性地探索各种可能性，避免在常识被证明错误时感到意外。其目标在于构建一组假设，这些假设能够与现有的相关信息以及未来可能出现的新数据进行持续的审查和测试。分析员应当致力于确保这些假设之间互不重叠，且尽可能全面覆盖所有可能性，以满足假设应互斥且全面穷尽（MECE）的原则。
+
+生成假设的技术多种多样，包括本书其他部分讨论的技术，如维恩分析、集群头脑风暴、多种形式的远见分析、经典象限压缩™、星爆法、德尔菲法和决策树等。本节将探讨专门用于假设生成的技术，并介绍三种不同的技术方法：简单假设、象限假设生成和多重假设生成器 ®。
+
+何时使用它
+
+未找到意译内容
+
+这些技术特别有助于帮助情报分析人员克服一些经典的直觉陷阱，例如以下几种：
+
+避免单一假设的陷阱。分析师在面对问题时，往往会迅速形成一个初步的主导假设，并随着新信息的获取不断验证这一假设。然而，优秀的分析师会同时考虑多个可能的解释，以确保不会因为信息与主导假设不符而被忽略。例如，当有人将大量资金从中国转移到其他国家时，金融分析师可能会首先怀疑这是洗钱行为。但也有可能这些资金是通过合法途径获得的，因此这一替代假设应当被保留，直到有确凿证据证明其不成立。
+
+警惕小样本的过度解读。在数据不足的情况下，分析师常常面临做出判断的压力。在这种情况下，提供多个可能的解释是更为明智的做法。例如，美国情报界在评估伊拉克是否拥有大规模杀伤性武器时，如果能够提出三种不同的假设，而不是仅仅两种，那么将更有助于全面理解情况：（1）伊拉克拥有大规模杀伤性武器计划，但情报界尚未找到证据；（2）伊拉克的计划规模较小，但有能力在短时间内加速生产；或者（3）伊拉克根本没有大规模杀伤性武器计划，之前的报告是误导。
+
+反思过去的经验。在压力之下，分析师可能会倾向于选择一个假设，仅仅因为它避免了过去的错误或是重复了以往的成功。例如，在第二次伊拉克战争前夕，美国情报界为了避免重蹈低估萨达姆·侯赛因大规模杀伤性武器能力的覆辙，可能会过于倾向于某些假设。
+
+注意第一印象的影响。在时间紧迫的情况下，分析师可能会过分依赖最初的信息或印象，尤其是当这些信息特别引人注目或令人印象深刻时。例如，如果分析师最近访问了一个国家或观看了一个特别生动或令人不安的视频，他们可能会受到这些第一手资料的强烈影响。
+
+7.4.1 方法：简单假设为了运用简单假设方法，项目伊始便需明确问题，并规划这些假设的应用方式。假设的应用途径多样：(1) 在竞争假设分析中发挥作用，(2) 在其他假设检验项目中扮演角色，(3) 作为构建情景的基石，或者 (4) 作为提醒我们关注可能出现的特别积极或令人担忧结果的工具。图 7.4.1 清晰地描绘了这一流程。
+
+组建一个多元化的团队，成员们将共同审视与问题相关的信息和解释，无论是涉及的活动还是行为，都是我们评估的对象。在构建这个多元化的团队时，我们应考虑吸纳不同领域的专业知识，包括对相关地理区域文化的深入了解，不同利益相关者的视角，以及多样化的思维模式（如左脑逻辑思维与右脑创造性思维，或不同性别的思维差异）。接下来，我们应采取以下步骤：
+
+请每位团队成员在一张索引卡上，尽可能地提出最多三个不同的解释或假设。为了激发创造性思维，我们可以采取以下方法：
+
+- 应用理论：借鉴对同一现象众多案例的研究成果。
+
+图 7.4.1 描述了简单假设的来源，由 Globalytica, LLC 在 2019 年提供。这种方法通过将当前事件与历史上的类似情况进行对比，来分析和理解当前情境。它基于所有已知的事实，并考虑了特定时间和地点下潜在力量的作用。首先，我们收集相关信息并将其展示在白板上，然后整理这些信息以避免重复。接下来，我们运用集群头脑风暴等个人和团队创意技巧，来识别影响事件的关键力量和因素。我们将这些假设分组，并为每个组别命名。通过重新表述问题和考虑相反的情况，我们能够产生新的想法，并更新我们的假设列表。在进行竞争性假设分析时，我们确保每个假设都是互斥的，即如果一个假设成立，其他假设则必须不成立。我们通过提出记者常用的「六何」问题（何人、何事、如何、何时、何地、为何）来进一步澄清每个假设。最后，我们挑选出最有潜力的假设进行深入研究。
+
+7.4.2 方法：四象限假设生成当问题的结果可能由两个关键驱动因素决定时，我们可以使用四象限技术来生成一组基本的假设。这种方法通过识别四种极端情景，每种情景代表两个主要驱动因素的一种极端条件，来探索所有逻辑上的可能性。这样，我们就能够考虑到两个驱动因素之间相互作用的所有可能情况，从而产生分析师可能忽视的选项。
+
+Quadrant Hypothesis Generation 相较于 Multiple Hypotheses Generator®，更易于使用且操作更快捷，但它仅适用于结果由两个主要驱动力决定的情况，并且正确识别这些驱动力至关重要。当存在两个以上的主要驱动因素，或者分析人员对哪些力量构成两个主要驱动因素意见不一时，该技术的有效性会降低。
+
+使用 Quadrant Hypothesis Generation 的步骤如下：
+
+首先，通过 Cluster Brainstorming 等技术或咨询领域专家，识别出两个主要驱动因素。进行讨论以明确这两个关键驱动因素，这本身就是一个有益的过程。接着，构建一个 2×2 矩阵，将每个驱动因素视为一个从一端到另一端的连续体。在矩阵的垂直和水平轴上标出每个驱动因素的两个极端。然后，在每个象限内详细描述如果受到这两个驱动因素极端影响，最终状态将会如何。接下来，制定迹象或指标，以显示事件是否正朝着某个假设发展。最后，利用这些迹象或指标的变化，制定情报收集策略或研究重点，以追踪事件的发展方向。
+
+图 7.4.2 描述了 Quadrant Hypothesis Generation 的一个应用实例：关于伊拉克未来的四个假设。
+
+在图 7.4.2 中，展示了一个 Quadrant Hypothesis Generation 图表的示例。分析人员被要求撰写一份文件，预测伊拉克的未来，特别关注政府的潜在最终状态。分析人员已经确定了并一致同意影响政府未来的两个关键驱动因素：联邦政府的集中化程度和政府的宗教控制程度。他们根据这些驱动因素构建了象限图，并基于此提出了四个逻辑假设。
+
+从象限图中得出的四个假设可以表述如下：
+
+7.4.3 方法：多假设生成器 ®
+
+多假设生成器 ® 是一种技术，它帮助分析师创造出多种可能的解释来分析一个问题、活动或行为。虽然分析师通常可以通过集思广益来形成一系列假设，但使用多假设生成器 ® 可以更有信心地确保没有遗漏重要的替代观点或异常情况。分析师应利用这一工具来确保他们已经考虑了各种可能的假设。在某些情况下，当分析师拥有大量数据时，他们希望确保已经找到了与所有数据相符的合理解释。或者，当面对一个看似能够解释当前现象的假设时，分析师可能需要评估其有效性。这种方法有助于分析师将不同的假设按照可信度从高到低排序，重点关注那些位于列表顶端、被认为最值得深入研究的假设。
+
+要使用这个方法：
+
+1. 召集一个由不同背景成员组成的团队，共同定义研究的问题、活动或行为。通常，通过以下方式提问会很有帮助：
+
+如何开发新的变体来挑战现有的主导假设，即...？有哪些可能的变异能够颠覆主导假设中的基本假设，即...？首先，我们需要明确主导假设中的关键要素：参与者、内容和原因。然后，为每个关键要素提出可能的替代方案。在审查这些替代方案时，应确保每个列表中的选项都是互斥的。通过这种方式，我们可以生成所有可能的变异组合，如图 7.4.3 所示。
+
+图 7.4.3 展示了多假设生成器 ® 如何生成变异组合，该图表来源于 Globalytica, LLC, 2019。我们需要排除那些不合逻辑的变异组合。对于剩余的组合，我们通过检验每个要素的关键假设来评估其可信度。有些假设本身是可以通过实验验证的。我们采用 1 到 5 分的评分体系为每个变异组合打分，1 分代表低可信度，5 分代表高可信度。然后，我们将这些组合按照可信度从高到低重新排序。接下来，我们将这些变异组合转化为假设，并确保每个假设都满足良好的假设标准。最后，我们从列表的顶部选择那些最值得进一步研究的假设。
+
+潜在的陷阱在于，这项技术的有效性取决于分析师能否提出一组全面的替代解释。如果团队合作存在问题，那么结果也可能存在偏差。虽然不能保证正确的假设一定会从这个过程中被识别出来，但这种方法大大增加了正确假设被包含在考虑范围内的可能性。
+
+与其他技术的关系方面，这项技术可以与其他分析方法结合使用，以提高分析的全面性和准确性。
+
+任何前瞻性分析过程的成果都可以被看作是一系列可能的假设。四象限假设生成法是形态分析法的一种具体应用，这在第 9 章中有详细介绍。替代未来分析使用类似的方法，通过四象限图来描绘四种可能的未来情景，而多场景生成法则通过这种方法来构建多组四种不同的未来情景。这两种技术同样在第 9 章中被详细阐述。
+
+这项技术的起源假设的提出和验证是科学推理的核心部分。简单假设方法和四象限假设生成法在《分析工具和技术手册》第五版（Tysons, VA：Pherson Associates, LLC, 2019）以及 Pherson Associates 的培训资料中有所描述。而多假设生成器 ® 的详细描述则可以在第四版《分析工具和技术手册》（Reston, VA：Pherson Associates, LLC, 2015）中找到。
+
+
+
 7.5 Diagnostic Reasoning
 
 Diagnostic Reasoning is the application of hypothesis testing to a new development, a single new item of information or intelligence, or the reliability of a source. It differs from Analysis of Competing Hypotheses (ACH) in that it is used to evaluate a single item of relevant information or a single source; ACH deals with an entire range of hypotheses and multiple items of relevant information.
@@ -301,6 +541,36 @@ Diagnostic Reasoning is an integral part of two other techniques: Analysis of Co
 Origins of This Technique
 
 Diagnostic Reasoning has been the principal method for medical problem solving for many years. For information on the role of Diagnostic Reasoning in the medical world, see the following publications: Albert S. Elstein, "Thinking about Diagnostic Thinking: A Thirty-Year Perspective," Advances in Health Science Education, published online by Springer Science+Business Media, August 11, 2009; and Pat Croskerry, "A Universal Model of Diagnostic Reasoning," Academic Medicine 84, no. 8 (August 2009).
+
+7.5 诊断推理诊断推理是一种将假设检验应用于新出现的情况、单一的新信息或情报，以及信息来源可靠性的方法。与竞争假设分析（ACH）不同，诊断推理专注于评估单个相关信息或单个来源，而 ACH 则涉及多个假设和多个信息项的综合分析。
+
+何时使用当分析师在评估新事件的意义、新报告的价值或新信息来源的可信度时，如果发现自己正在做出快速直觉判断，就应该运用诊断推理。通常情况下，支持主导假设的信息往往也能与替代假设相吻合。因此，在这种情况下，新信息不应被视为支持主流观点或主导假设的证据。
+
+诊断推理技术有助于降低被意外情况所困扰的风险。它确保分析师或决策者在决策过程中至少会考虑其他可能的解释。当分析师或决策者试图寻找证据以证实其现有的心理模型或政策立场时，使用这一技术尤为重要。它帮助分析师判断相同的信息是否与其他合理的结论或替代假设相一致。
+
+增值
+
+诊断推理的价值在于它帮助分析师平衡他们自然倾向于将新信息解释为与他们对正在发生的事情的现有理解一致的倾向 —— 即分析师的心智模型。该技术促使分析师自问，同样的信息是否与其他合理的结论或替代假设一致。发现支持最可能结论的大部分信息的价值有限是很常见的，因为这些信息与替代结论一致。人们需要在所有可能的解释信息的背景下评估新信息，而不仅仅是在一个已经建立的心智模型的背景下。
+
+诊断推理技术帮助分析师识别支持假设的必要信息，并避免将注意力集中在一种生动的场景或解释上而忽视其他可能性或替代假设的错误（生动性偏差）。在评估证据时，分析师倾向于将新信息融入他们当前的感知中。诊断推理保护他们免受只寻求与主导假设一致的信息的陷阱（确认偏差）和选择第一个看似「足够好」的答案的陷阱（满足性）。
+
+经验可能会阻碍专家，因为他们经常紧握着过时的模型 —— 而新鲜的视角可能会有所帮助。诊断推理帮助分析师避免直觉陷阱，即当某事似乎与分析师的过去经验相符时，假设相同的动态正在起作用（投射过去经验）。它还帮助分析师克服面对越来越多的证据与初始结论相矛盾时继续坚持分析判断的陷阱（拒绝证据），以及在初次审视时没有考虑所有可能的替代方案就驳回信息的陷阱（忽视不一致的证据）。
+
+方法诊断推理是一种思维过程，它强调质疑而非确认已有的信念。以下是实施诊断推理的步骤：
+
+当你遇到一个可能重要的信息时，先在脑海中形成一个初步的理解（即，对事件发生的原因或其对未来的影响进行解释）。基于你现有的认知框架，迅速做出一个直觉性的判断。明确你的核心问题。例如，在诊断推理的头脑风暴中，我们常常从以下问题开始：
+
+对于主要假设（定义为...），是否存在其他解释，这些解释同样能够与新获得的信息、新出现的情况或新来源的报道相吻合？除了主要假设，是否还有其他可能的原因...？独自或与团队成员一起，集思广益，探讨其他分析师可能认为有合理性的不同观点的替代判断。将这些替代方案一一列出。对于每一个替代方案，思考以下问题：如果这个替代方案成立，我有多大可能已经接触到，但未予以重视的与该解释相符的信息？基于对这些替代方案的全面考量，做出一个初步的判断。如果新信息对所有替代方案的可能性相同，那么这个信息就没有诊断价值，可以不予考虑。如果信息明显与某些替代方案不符，那么这些方案可能需要被排除。对每个替代方案进行这样的分析后，决定哪些需要进一步探讨，哪些可以暂时搁置，等待新信息的揭示。接下来，重点寻找能够反驳剩余替代方案的证据，而不是试图证实它们。
+
+潜在陷阱
+
+当接收到新信息时，分析师必须确认这些信息的真实性，排除任何可能的欺骗或误导。同时，我们也要意识到，并非所有关键信息都具有诊断价值，有时甚至所有相关信息都无法完全揭示。
+
+诊断推理与其他技术的联系诊断推理是竞争假设分析和指标验证与评估这两种技术的核心要素（详见第 9 章）。尽管如此，我们将其单独列出，以强调它在其他领域同样适用。诊断推理是一种基础的批判性思维方式，应在情报分析中得到广泛应用。
+
+这项技术的历史渊源多年来，诊断推理一直是医学领域解决问题的主要方法。若想了解诊断推理在医学中的应用，可以参考以下文献：Albert S. Elstein 的《关于诊断思考的思考：三十年的视角》，发表于《健康科学教育进展》，由 Springer Science+Business Media 在线出版，2009 年 8 月 11 日；以及 Pat Croskerry 的《诊断推理的通用模型》，发表于《学术医学》第 84 卷第 8 期（2009 年 8 月）。
+
+
 
 7.6 Analysis of Competing Hypotheses
 
@@ -380,13 +650,105 @@ ACH is often used in conjunction with other techniques. For example, Cluster Bra
 
 The ACH matrix is intended to reflect all relevant information and arguments that affect one's thinking about a designated set of hypotheses. That means it should also include assumptions identified by a Key Assumptions Check, discussed earlier in this chapter. Conversely, rating the consistency of an item of relevant information with a specific hypothesis is often based on an assumption. When rating the consistency of relevant information in an ACH matrix, the analyst should ask, "If this hypothesis is true, would I see this item of relevant information?" A common thought in response to this question is, "It all depends on. . . ." This means that, however the consistency of that item of relevant information is rated, that rating is likely based on an assumption—whatever assumption the rating "depends on." These assumptions should be recorded in the matrix and then considered in the context of a Key Assumptions Check.
 
-The Delphi Method ( chapter 8 ) can double-check the conclusions of an ACH analysis. In this process, outside experts are asked separately to assess the probability of the same set of hypotheses and to explain the rationale for their conclusions. If the two different groups of analysts using different methods arrive at the same conclusion, confidence in the conclusion increases. If they disagree, their lack of agreement is also useful, as one can then seek to understand the rationale for the different judgments.
+The Delphi Method (chapter 8) can double-check the conclusions of an ACH analysis. In this process, outside experts are asked separately to assess the probability of the same set of hypotheses and to explain the rationale for their conclusions. If the two different groups of analysts using different methods arrive at the same conclusion, confidence in the conclusion increases. If they disagree, their lack of agreement is also useful, as one can then seek to understand the rationale for the different judgments.
 
 ACH and Argument Mapping (described later in this chapter) are both used on the same types of complex analytic problems. They are both systematic methods for organizing relevant information, but they work in fundamentally different ways and are best used at different stages in the analytic process. ACH is used during an early stage to analyze a range of hypotheses to determine which is most consistent with the broad body of relevant information. At a later stage, when the focus is on developing, evaluating, or presenting the case for a specific conclusion, Argument Mapping is the appropriate method. Each method has strengths and weaknesses, and the optimal solution is to use both.
 
 Origins of This Technique
 
-Richards Heuer originally developed the ACH technique at the CIA in the mid-1980s as one part of a methodology for analyzing the presence or absence of Soviet deception. It was described publicly in his book, Psychology of Intelligence Analysis , first published in 1999; 6 Heuer and Randolph Pherson helped the Palo Alto Research Center gain funding from the federal government during 2004 and 2005 to produce the first professionally developed ACH software. Randolph Pherson managed its introduction into the U.S. Intelligence Community. Globalytica, LLC, with Pherson's assistance, subsequently developed a collaborative version of the software called Te@mACH ® . An example of an Analysis of Competing Hypotheses can be found at https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/art11.html .
+Richards Heuer originally developed the ACH technique at the CIA in the mid-1980s as one part of a methodology for analyzing the presence or absence of Soviet deception. It was described publicly in his book, Psychology of Intelligence Analysis , first published in 1999; 6 Heuer and Randolph Pherson helped the Palo Alto Research Center gain funding from the federal government during 2004 and 2005 to produce the first professionally developed ACH software. Randolph Pherson managed its introduction into the U.S. Intelligence Community. Globalytica, LLC, with Pherson's assistance, subsequently developed a collaborative version of the software called Te@mACH ® . An example of an Analysis of Competing Hypotheses can be found at https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/art11.html.
+
+7.6 竞争性假设分析 (ACH)
+
+ACH 是一种分析方法，它首先列出所有可能的假设，然后系统地检查每一条相关数据与这些假设的一致性或矛盾性。这种方法遵循卡尔·波普尔（Karl Popper）的科学哲学，他是二十世纪最有影响力的科学哲学家之一，强调通过反驳假设来推进科学认识。4
+
+在 ACH 中，分析员首先确定一组互斥的假设，即对事件的不同解释或预测。然后，分析员评估每一项数据与每个假设的匹配程度，最终选择与数据最吻合的假设。这种方法的核心在于，不是寻找证据来支持最可能的假设，而是通过排除不合理的假设来找到最可能的答案。最可能的假设是那些与数据矛盾最少的假设，而不是拥有最多支持证据的假设。
+
+何时使用 ACH
+
+ACH 适用于几乎所有需要对事件的不同解释进行分析的场合。当你面临重要的判断或决策，不能容忍错误时，或者需要一个系统的方法来避免意外结果时，ACH 是一个很好的选择。特别是在处理争议性问题时，以及当分析员需要记录他们考虑了哪些信息以及如何得出结论时，ACH 尤为适用。如果其他分析员或决策者对结论有异议，ACH 可以帮助明确分歧点，使后续讨论能够集中在最关键的实质性差异上。
+
+竞争假设分析（ACH）是一种在数据丰富且需要深入评估时特别有效的分析方法。它擅长解决涉及化学、生物、放射性和核技术的问题，例如帮助我们了解某个部件最可能用于哪种武器系统，或者揭示某个国家正在进口或开发哪种类型的导弹系统。这种方法对于指导刑事调查和确定分析方向至关重要，尤其是在面对可能的否认和欺骗时，因为 ACH 最初就是为了应对这些挑战而设计的。
+
+虽然单个分析师可以使用 ACH，但当一个小团队共同工作时，它的效果最佳。团队成员可以相互挑战，对收集到的信息进行深入评估，这有助于促进与其他部门或机构同事之间的信息交流和思想碰撞。
+
+进行 ACH 分析需要一定的时间投入，构建分析矩阵可能需要一天或更长时间。一旦所有相关信息收集完毕，分析师可能需要花费数小时来完成整个分析过程，并最终得出结论。通常，一个经验丰富的指导者或熟悉该技术的同事会帮助新手分析师顺利完成这一过程。
+
+在实际操作中，分析师往往面临着处理不完整、模糊、异常甚至欺骗性数据的情况。时间压力和人类固有的认知偏见可能导致分析师做出不准确或不全面的判断。如果分析师对某个主题已有初步了解，他们可能会倾向于发展一个偏好的假设，并寻找证据来支持它，这种做法被称为「满足性」，即接受第一个看似合理的答案。在这种情况下，ACH 分析方法的价值在于它能够帮助分析师更全面、客观地评估所有可能的假设，从而做出更准确的判断。
+
+满足性是一种高效的行为方式，它通过节省时间来提高效率，但这种做法往往伴随着确认偏误的问题。确认偏误是指分析师倾向于只关注那些支持他们偏好的假设或普遍接受的观点的信息，而忽视了可能出现的意外情况。这种倾向导致分析师在接受信息时，往往不会对其真实性进行深入评估，也不会质疑自己的基本假设，从而形成了一个看似连贯但可能存在偏差的故事（这种倾向被称为证据接受偏误）。满足性的做法使得分析师忽略了探索其他可能的解释或结果，而这些探索本应是完整分析不可或缺的一部分。结果是，满足性未能意识到，那些看似支持他们偏好的假设的信息，实际上也可能与其他合理的假设相符。更重要的是，满足性往往忽视了那些本应出现但实际缺失的信息的重要性。
+
+竞争性假设分析（ACH）是一种方法，它要求分析师不仅要识别出所有可能的合理假设，还要尝试通过全面分析相关数据、假设和信息缺口来反驳这些假设。虽然 ACH 在开始时需要投入较多的时间和精力，但最终它能带来显著的好处。当分析师初次接触 ACH 并发现其价值时，这是因为 ACH 鼓励他们去思考如何通过证据来反驳不同的假设，这种思考方式能够激发他们以全新的视角审视问题，从而更深入地理解证据、解释和可能的结果。
+
+ACH 过程要求分析师将收集的信息进行整理，并以一种有用的方式组织起来，以便在分析中可以方便地检索和使用。这通常通过创建一个矩阵来实现，矩阵的左侧列出相关信息，顶部列出各种假设。然后，对每一项相关信息进行评估，判断它与每个假设是一致还是不一致。结果随后被用来评估每个假设的证据和逻辑支持程度。虽然可以手动完成，但使用 Excel 电子表格或专为这一目的设计的 ACH 软件会更加简便和高效。各种 ACH 软件应用程序可以用来按信息来源类型、信息日期以及对每个假设的支持或反对程度来排序和分析数据。
+
+ACH 帮助分析师通过以下方式生产出更好的分析产品：
+
+- 保持相关信息的记录，并跟踪这些信息如何与每个假设相关联。
+- 在分析师编码数据时捕捉分析师的关键假设，并记录需要额外信息或收集需求的内容。
+- 使分析师能够以一种有组织和透明的方式呈现结论，因为它记录了结论是如何得出的。
+- 提供一个基础，用于识别可以监控和验证的指标，以确定事件的发展方向。
+- 留下清晰的审计轨迹，说明分析是如何进行的，结论是如何得出的，以及个别分析师在他们的假设或判断上可能存在的差异。
+
+ACH 软件
+
+ACH，即分析性竞争假设，最初在 20 世纪 80 年代中期作为中央情报局（CIA）内部的一种手动分析技术被采用。首个专业开发并经过测试的 ACH 软件是在 2005 年由帕洛阿尔托研究中心（PARC）开发的，该项目得到了美国联邦政府的资金支持，并由理查兹·J·霍尔（Richards J. Heuer Jr.）和兰多夫·费尔森（Randolph Pherson）提供技术指导。兰多夫·费尔森负责将这一技术引入美国情报界。尽管 PARC 版本的 ACH 是为单个分析师设计的，但实际上它经常被同一地点的分析师团队所采用。这些团队成员表示，
+
+ACH 技术帮助他们更清晰地认识到与其他分析师或不同分析部门之间的意见差异。通过对 ACH 矩阵的审查，他们能够系统地识别和讨论这些差异。在意见分歧时，参考矩阵有助于将讨论从个人层面提升到更为客观的分析层面。
+
+2010 年，兰多夫·费尔森为 Globalytica, LLC 开发了一个名为 Te@mACH® 的协作版 ACH。这个版本保留了 PARC ACH 工具的大部分功能，但特别允许不同地点的分析师实时协作处理同一问题。他们可以共同提出假设，并在共享的矩阵上输入数据，前提是他们必须基于相同的假设框架和共享的信息资源进行工作。该软件还支持他们通过电子交流方式讨论各自的评估和假设，比较个人分析与团队分析，并了解团队对于问题解决方案的共识。
+
+此外，其他政府机构、研究机构和学术机构也开发了自己的 ACH 版本。例如，梅希亚堡学院开发了一个名为结构化竞争假设分析的版本，它在 ACH 的基础上增加了对某些分析环节的深入要求。
+
+通过使用协作式分析判断（ACH）工具，所有分析师可以共享同一个包含证据、论点和假设的数据库，确保团队中的每位成员都有机会表达他们对信息与各个假设之间关联性的看法。这些工具支持同步和异步工作模式，并提供调查方法来输入数据以减少偏见，记录关键假设和收集需求，以及过滤功能，使分析师能够查看每个人对相关信息的评估。
+
+方法在记忆中同时保留五个或七个假设，并分析每条信息如何与这些假设相匹配，这对大多数分析师来说是一项挑战。这要求分析师具备比仅仅寻找证据支持一个已认定的最可能假设更为灵活的思维方式。以下是 ACH 的核心九步流程，即使没有软件支持，也可以手动执行。
+
+未找到意译内容
+
+在询问某一信息是否与特定假设一致或不一致时，一个常见的回答是：「这取决于……」这意味着对假设的评价很可能基于某个假设。在填写矩阵时，应当记录下所有这样的假设。完成矩阵后，寻找这些假设中的任何模式，例如在评估多个信息项时是否重复使用了相同的假设。在相关信息已按诊断性排序后，注意有多少高度诊断性的不一致评级是基于假设的。考虑对这些假设的信心程度，然后相应地调整 ACH 不一致分数的信心。
+
+审查分析人员在评估上的不同意见，并决定是否需要调整评级（参见图 7.6b）。通常，分析人员对信息项评级的差异可以追溯到他们在评级时对假设的不同假设。通过重新考虑假设来优化矩阵。将两个假设合并为一个，或者添加一个最初未考虑的新假设是否有意义？如果添加了新假设，需要回溯并重新评估所有与此新假设相关的信息。可以在任何时候添加额外的相关信息。
+
+图 7.6A 创建 ACH 矩阵
+
+描述图 7.6B：评估 ACH（假设冲突分析）中各假设的不一致性水平。基于对每项相关信息的诊断性分析，初步判断各假设的可能性。采用反驳而非证实假设的方法。计算每个假设的不一致性评分，即不一致性评级的总数。首先，统计每个假设的「I」和「II」评级的总数。不一致性评级最多的假设最不可能成立，而不一致性评分最低的假设或假设群则初步被认为是最可能的。不一致性评分是粗略的估计，不是精确的计算。ACH 是一个辅助分析师做出判断的工具，而非代替分析师的判断。这一过程可能比其他非系统性或不严格的方法更频繁地得出正确估计，但不一致性评分并不免除分析师运用自身判断的必要。下文的「潜在陷阱」部分指出了在某些情况下分析师需要忽略不一致性评分。分析你的初步结论对关键信息的依赖程度，以评估其敏感性。例如，寻找对主要假设有「C」评级但对其他所有假设有「I」评级的证据。评估那些获得「C」评级的报告、论点或假设的重要性和可信度。考虑如果相关信息是错误的、误导性的或有不同解释，对分析的潜在影响。如果所有证据对每个假设都获得「C」评级，则表明证据不具备诊断性。如果对数据的另一种解释会改变整体结论，应重新检查你的解释的准确性。报告结论时，考虑所有假设的相对可能性，而不仅仅是可能性最大的一个。指出哪些相关信息最具诊断性，并说明它们如何支持最可能的假设。确定未来观察的指标或里程碑。创建两个列表：一个关注未来事件或额外研究可能揭示的内容，以证实分析判断；另一个则关注可能表明分析判断不准确或情况已改变的事件。验证这些指标，并定期监控这两个列表，以保持对新信息是否加强或削弱你的案例的警觉。
+
+潜在的陷阱提醒一句：ACH（分析层次处理）只有在所有参与分析的分析师都以相对开放的心态对待问题时才有效。如果分析师已经对某个「正确答案」有了坚定的信念，他们往往会找到一种方法来解释相关信息，使其与先前的信念相符。换句话说，ACH 作为对抗确认偏误的工具，其作用类似于流感疫苗。流感疫苗通常能预防流感，但如果你已经感染了流感，它并不能治愈你。
+
+为每个假设生成的矛盾分数并不是一个神奇的公式，它不会直接告诉你应该相信哪个假设。ACH 软件通过一个系统的分析过程来帮助你，而矛盾分数的计算准确性完全取决于你选择和评估相关信息的能力。
+
+由于反驳假设比找到支持假设的信息更为困难，因此生成和测试替代假设的过程可能会增加分析师的不确定性，而不是减少。这种不确定性虽然令人沮丧，但它通常是对实际情况的真实反映。ACH 程序的一个优势在于，它能够帮助分析师集中注意力于那些导致不确定性的关键信息，或者如果这些信息可用，它们能够减少这种不确定性。ACH 可以指导未来的信息收集、研究和分析工作，以解决不确定性问题，并得出更准确的判断。
+
+分析师应该意识到可能导致他们自己的信念与矛盾分数之间出现分歧的五种情况。在前两种情况下，矛盾分数看似错误，但实际上是正确的。而在接下来的三种情况下，矛盾分数可能看似正确，但实际上是错误的。分析师需要识别这些情况，理解其中的问题，并做出相应的调整。
+
+假设或逻辑推断可能未被考虑。如果矩阵中的分数与你的最可能假设不符，矩阵可能缺少关键信息。你的思考可能受到未在列表中明确提出的假设或逻辑推断的影响。因此，应将这些因素纳入矩阵，以全面反映影响你判断的所有要素。在政治或军事分析中，分析师的结论往往基于对其他国家能力或意图的假设。ACH 过程旨在揭示影响分析师思考的因素，以便这些因素可以被质疑和调整。对不太可能的假设关注不足。如果你认为某个不太可能的假设被过分重视，可能是因为缺乏反驳它们的相关信息。你可能未充分搜集这些信息，或者这些信息根本不存在。如果无法找到反驳假设的证据，你可能需要重新评估不确定性。决定性的相关信息。有时，情报收集者会从可靠的内部来源获得高可信度信息。尽管 ACH 分析可以标记这些信息为高可信度，但这可能不足以体现这些信息对分析师思考的决定性影响。在某些情况下，一个或两个来自可信来源的权威报告可能强烈支持一个假设，以至于它们否定了所有其他假设，无论其他信息如何。证据集不平衡。证据和论点必须全面代表问题。如果在一个边缘问题上证据过多，而在核心问题上证据不足，不一致分数可能会误导分析。回报递减。随着证据的积累，每条新证据对不一致分数的影响逐渐减小。例如，当有五十项证据时，新增一项对平均值的影响小于只有十项时。这意味着，随着时间的推移，新证据对不一致分数的影响减弱。因此，在评估随时间的变化时，定期删除旧信息或分别分析新旧信息是有益的。
+
+在使用 ACH（分析性思维与推理）时，需要注意以下几点：
+
+- 并非所有被发现的信息都具有诊断价值，即能够明确指向某个结论。
+- 我们可能遗漏了一些关键的相关信息。
+- 有些信息可能是不准确、带有欺骗性或误导性的。
+- 由于评级过程依赖于个人判断，因此可能存在人为误差。
+- 如果分析工作由团队完成，可能会受到群体思维的影响，或者因为团队内部缺乏良好的沟通和协作而导致偏差。
+
+ACH 常常与其他分析技术结合使用，例如：
+
+- 集群头脑风暴、名义小组技术、多假设生成或德尔菲方法等，这些方法可以帮助我们提出假设或收集相关信息，并评估这些信息的重要性。
+- 欺骗检测技术可以帮助我们了解对手可能的欺骗动机、机会和手段，以及他们过去的欺骗行为，这些信息对于 ACH 分析至关重要。
+- 诊断推理技术是 ACH 方法的一部分，它帮助我们进行逻辑推理。
+- ACH 方法的最后一步是确定指标，这些指标将用于监测和预测未来的发展趋势。
+
+未找到意译内容
+
+ACH（分析竞争假设）和论证映射是两种用于解决复杂分析问题的方法。它们都旨在系统化地组织相关信息，但它们的工作原理截然不同，并且适用于分析过程的不同阶段。ACH 通常用于分析过程的早期阶段，通过对一系列假设进行分析，来确定哪个假设与大量相关信息最为吻合。而当分析进入后期阶段，重点转向构建、评估或展示对特定结论的支持时，论证映射则成为更合适的方法。每种方法都有其独特的优势和局限性，最佳实践是结合使用这两种方法。
+
+这项技术的起源可以追溯到 Richards Heuer 在 1980 年代中期为中央情报局（CIA）开发 ACH 技术的时候，当时它是作为分析苏联是否进行欺骗的方法论的一部分。Heuer 在他的著作《情报分析心理学》中首次公开了这一技术，该书于 1999 年首次出版。Heuer 与 Randolph Pherson 合作，帮助帕洛阿尔托研究中心在 2004 年和 2005 年获得了联邦政府的资金支持，用于开发首个专业级的 ACH 软件。Pherson 还负责将这一技术引入美国情报界。随后，在 Pherson 的协助下，Globalytica, LLC 开发了一个名为 Te@mACH® 的协作版软件。如果您想查看分析竞争假设的一个实例，可以访问中央情报局的官方网站：https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/art11.html
+
+
+
+
+
 
 7.7 Inconsistencies Finder™
 
@@ -546,101 +908,14 @@ The cells in each row show the impact of the variable represented by that row on
 
 Variables 2 and 4 in the cross-impact matrix have the greatest effect on the other variables, while variable 6 has the most negative effect.
 
-Variable 1
-
-Variable 2
-
-Variable 3
-
-Variable 4
-
-Variable 5
-
-Variable 6
-
-Variable 1
-
-Nil
-
-Neutral
-
-Positive
-
-Neutral
-
-Strong negative
-
-Neutral
-
-Variable 2
-
-Neutral
-
-Nil
-
-Negative
-
-Strong positive
-
-Positive
-
-Positive
-
-Variable 3
-
-Strong positive
-
-Negative
-
-Nil
-
-Positive
-
-Neutral
-
-Negative
-
-Variable 4
-
-Neutral
-
-Strong positive
-
-Neutral
-
-Nil
-
-Positive
-
-Negative
-
-Variable 5
-
-Strong negative
-
-Positive
-
-Neutral
-
-Positive
-
-Nil
-
-Neutral
-
-Variable 6
-
-Negative
-
-Positive
-
-Strong negative
-
-Negative
-
-Negative
-
-Nil
+| - | Variable 1 | Variable 2 | Variable 3 | Variable 4 | Variable 5 | Variable 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Variable 1 | Nil | Neutral | Positive | Neutral | Strong negative | Neutral |
+| Variable 2 | Neutral | Nil | Negative | Strong positive | Positive | Positive |
+| Variable 3 | Strong positive | Negative | Nil | Positive | Neutral | Negative |
+| Variable 4 | Neutral | Strong positive | Neutral | Nil | Positive | Negative |
+| Variable 5 | Strong negative | Positive | Neutral | Positive | Nil | Neutral |
+| Variable 6 | Negative | Positive | Strong negative | Negative | Negative | Nil |
 
 Back to Figure
 
