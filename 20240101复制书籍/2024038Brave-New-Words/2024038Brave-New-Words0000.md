@@ -324,9 +324,6 @@ Greg 照做了，片刻之后，GPT-4 解释了为什么其他选项是错误的
 
 从这里开始，hack-AI-thon 的参与者们探讨了关于安全性、安全和偏见的问题。（要记住，这是在 OpenAI 发布 ChatGPT 之前的很久。）我们发现了一些明显的担忧：让学生使用生成式 AI（Generative AI）来写论文、进行研究、替他们考试，甚至帮助他们申请大学，真的合适吗？我们担心人工智能可能会使我们的孩子变成一代不学无术的作弊者。随着 AI 的普及，曾经帮助孩子们做作业的父母可能会失去一个重要的沟通机会。对于教师来说，这到底是一个福音，还是会削弱他们的教学能力？我从未认为 AI 会让教师失业，在最理想的情况下，它会提升教师的教学能力，但我也担心它在某些关键方面会削弱这种能力。
 
-
-
-
 大约二十年前，我也曾看到对教育中按需视频的类似担忧：它会成为学生的干扰吗？会降低他们的注意力吗？会让学生变得孤立而不是促进他们与教师之间的联系吗？学生们怎么知道该看什么？如果他们在某个科目上遇到困难，有问题要问，他们会向谁求助？
 
 然而，探索永远不应被恐惧阻碍。我们在测试 GPT-4 的过程中，发现了许多解决问题的办法，这些办法在一定程度上还增强了其优点。比如，为了防止作弊，我们设想了一个拒绝直接给出答案的 AI 导师。这个导师像优秀的人工导师一样，提出引导性的问题。在考虑学生安全时，我们设计了一个记录所有对话并对老师和家长透明的系统。为了促进人与人之间的交流，我们建议提供一些工具，帮助教师和学生节省时间和精力。
@@ -358,3 +355,37 @@ Greg 照做了，片刻之后，GPT-4 解释了为什么其他选项是错误的
 为了最大化这项技术的优势，我们需要重新审视当前的可能性。同时，我们也要考虑如何减轻风险、缓解恐惧和克服犹豫。这意味着我们需要重新思考从教师的角色，到孩子如何使用多媒体，再到人们如何获得认证，以及如何帮助毕业生找到工作等各个方面。
 
 我们正处于一个教育的转折点，这个转折点将带来深远的影响，并且正在改变和将继续改变学习、工作以及人类目标的方方面面。
+
+## Acknowledgments
+
+Thank you to Umaima Marvi for being the best life partner, whose support has been instrumental in every step of this journey.
+
+Imran, Diya, and Azad, who inspire me every day to try to make myself and the world a little bit better. Masooda Khan, for raising me as a single mother and teaching me to persist when things get tough. Farah Khan, for being my first teacher and mentor. Naseem Marvi, for being an amazing mother-in-law, listener, and friend. Polly, for being the ideal foot warmer during much of the book-writing process.
+
+Nadia, Arman, Ali, Azad, and Nazrat Rahman, for helping to plant the seed for all this. Dan Wohl, for being a great boss and mentor who was cool with me working on Khan Academy on the side while working for him.
+
+Ann (our board chair) and John Doerr for believing in and supporting this effort from the beginning.
+
+Shantanu Sinha, Ben Kamens, Jason Rosoff, and Bilal Musharraf, Khan Academy's first team beyond me that helped turn it into a real organization.
+
+Bill Gates, Jorge Paulo and Susanna Lemann, Carlos Rodriguez-Pastor, Reed Hastings, Dan Benton, Scott Cook, Signe Ostby, Ratan Tata, Carlos Slim, Tony Slim, Eric Schmidt, Elon Musk, David Siegel, Laura Overdeck, John Overdeck, Laurene Powell Jobs, David Stiles Nicholson, Carlyse Ciocca, Erica and Feroz Dewan, Ray and Barbara Dalio, Bob Hughes, Jack Little, Jeanne O'Keefe, Craig Santos, Charles, Liz, Chase, and Elizabeth Koch, Brian Hooks, Janine and Jeff Yass, Ravenel Curry, Laure and Guillaume Pousaz, Ross Annable, Lonnie Smith, Mark and Debra Leslie, Chuck Kung and Lisa Guerra, Larry Cohen, Sundar Pichai, James Manyika, Satya Nadella, Shantanu Narayen, Dharmesh Shah, Jack Dorsey, Jeb Bush, Sean O'Sullivan, Ted Mitchell, Patricia Levesque, Curtis Feeny, Sanjiv Yajnik, Fareed Zakaria, Arne Duncan, Tom Friedman, Diane Greene, Walter Isaacson, Todd Rose, David Coleman, Sameer Sampat, Dianne Seeman, Yuri Milner, Henry McCance, Geraldine Acuna-Sunshine, Craig McCaw, Susan McCaw, Tim Reynolds, Scott Heimlich, Eduardo Cetlin, Gisèle Huff, Jerry Hume, Darren Woods, Robert Bradway, Gary Wilson, Jeff and Tricia Raikes, Bobby Kotick, Mason and Logan Angel, Angela Duckworth, Ethan Mollick, Chris Anderson, and Francis Ford Coppola, for being incredible supporters, advisers, and mentors.
+
+Greg Brockman, Sam Altman, and Jessica Shieh, for your partnership on this AI journey.
+
+The entire Khan Academy team, including the individuals below who were instrumental in our early concepts and launch:
+
+Engineering: Paul Morgan, Shawn Jansepar, Sujata Salem, Jason Chancey, Pepper Miller, Mark Sandstrom, Sean Driedger-Bauer, John Resig, Kelli Hill, Chase Carnaroli, Jason Voll, Jack Zhang, Hunter Liu, RJ Corwin, Salman Omer, Zachary Plummer, Alice Pao, Jeanette Head, Brian Genisio, Jonathan Price, Liz Faubell, Mahtab Sabet, Robert Pippin, Sarah E.S. Proffitt, Walt Wells, Matthew Curtis, Ned Redmond, Nicole Watts, Rachel Roberts, Sarah Third, David Braley, Kathy Phillip, Luke Smith, Andrew Pagan, Alex Morelli, Maddy Andrade-Ozaette, Amos Latteier, Elise McCrorie, Divya Chandrasekar, Emily Janzer, Ian Powell, Adam Berkan, Adam Goforth, Patrick McGill, Matt Morgan, Boris Lau, Erik Helal, Michael Mendoza, Nathan Dobrowolski, Kevin Barabash, Gerardo Gonzalez, Gina Valderrama, Danielle Whyte, Tim McCabe, Craig Silverstein, Miguel Castillo, Reid Mitchell, Cat Yannish.
+
+Product, content, and design: Kristen DiCerbo, Ricky Chandarana, Adrienne Hunter Wong, Dave Travis, Laurie LeDuc,  Daniel De Angulo, Sarah Robertson, Gintas Bradunas, Tommy Day, Susan August, Elvira Valdez, Corey Kollbocker, Jess Hendel, Heather Meston, Charlie Auen, Jeff Dodds, Nick Kokkinis, Anya Bila, Jonah Goldsaito, Lan Borg, Karen Shapiro.
+
+Thank you to Stacey Olson, Vicki Zubovic, Regina Ross, Julian Roberts, Rachel Boroditsky, Julia Cowles, Sandeep Bapna, Jeremy Schifeling, Jason Hovey, Ted Chen, Craig Silverstein, Diana Olin, Jordan Peavey, Evan Rahman, Eirene Chen, Barb Kunz, Felipe Escamilla, Jesse Ambrose, for supporting and leading key parts of our work.
+
+Special thanks to visionary education leaders including Dr. Katie Jenner, Commissioner Frank Edelblut, Superintendent Peggy Buffington, Dr. Jose Fuentes, Alan Usherenko, Tim Nellegar, and all the remarkable educators and students at Newark Public Schools, School City of Hobart, and our partner districts in Indiana and across the country.
+
+My thanks to Richard Pine, Eliza Rothstein, Inkwell Management, Ibrahim Ahmad, Lee Kravetz, Carolyn Coleburn, Yuleza Negron, Bridget Gilleran, Molly Fessenden, Barb Kunz, Elizabeth Pham Janowski, Alex Cruz-Jimenez, Carrie Cook, Suzanne Roberts, Tom Greene, Tomer Altman, Joanna Samuels, Roger Studley, Eric Berson, Mimi Kravetz.
+
+Huge thanks to Jeremiah Hennessy for convincing me to quit my day job in 2009.
+
+I'd like to thank the hundreds of thousands of people who have donated to make Khan Academy possible and the hundreds of millions of learners, parents, and teachers who have chosen to use Khan Academy to uplift themselves and those they care about.
+
+Last, but not least, thank you benevolent aliens for helping us help prepare humanity for first contact. Onward!
