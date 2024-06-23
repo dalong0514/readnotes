@@ -1,30 +1,38 @@
-James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => Preface
+James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => 0801 The Theory of Affordances
 
-## 08
+## 0801. The Theory of Affordances
 
-THE THEORY OF AFFORDANCES
+I have described the environment as the surfaces that separate substances from the medium in which the animals live. But I have also described what the environment affords animals, mentioning the terrain, shelters, water, fire, objects, tools, other animals, and human displays. How do we go from surfaces to affordances? And if there is information in light for the perception of surfaces, is there information for the perception of what they afford? Perhaps the composition and layout of surfaces constitute what they afford. If so, to perceive them is to perceive what they afford. This is a radical hypothesis, for it implies that the "values" and "meanings" of things in the environment can be directly perceived. Moreover, it would explain the sense in which values and meanings are external to the perceiver.
 
-I have described the environment as the surfaces that separate substances from the medium in which the animals live. But I have also described what the environment affords animals, mentioning the terrain, shelters, water, fire, objects, tools, other animals, and human displays. How do we go from surfaces to affordances? And if there is information in light for the perception of surfaces, is there information for the perception of what they afford? Perhaps the compos- ition and layout of surfaces constitute what they afford. If so, to perceive them is to perceive what they afford. This is a radical hypothesis, for it implies that the "values"and"meanings"of things in the environment can be directly perceived. Moreover, it would explain the sense in which values and meanings are external to the perceiver.
-
-The affordances of the environment are what it offers the animal, what it provides or furnishes, either for good or ill. The verb to afford is found in the dictionary, but the noun affordance is not. I have made it up. I mean by it some- thing that refers to both the environment and the animal in a way that no existing term does. It implies the complementarity of the animal and the envir- onment. The antecedents of the term and the history of the concept will be treated later; for the present, let us consider examples of an affordance.
+The affordances of the environment are what it offers the animal, what it provides or furnishes, either for good or ill. The verb to afford is found in the dictionary, but the noun affordance is not. I have made it up. I mean by it something that refers to both the environment and the animal in a way that no existing term does. It implies the complementarity of the animal and the environment. The antecedents of the term and the history of the concept will be treated later; for the present, let us consider examples of an affordance.
 
 If a terrestrial surface is nearly horizontal (instead of slanted), nearly flat (instead of convex or concave), and sufficiently extended (relative to the size of the animal) and if its substance is rigid (relative to the weight of the animal), then the surface affords support. It is a surface of support, and we call it a substratum, ground, or floor. It is stand-on-able, permitting an upright posture for quadrupeds and bipeds. It is therefore walk-on-able and run-over-able. It is not sink-into-able like a surface of water or a swamp, that is, not for heavy terrestrial animals. Support for water bugs is different.
 
-120 The Ecological Approach to Visual Perception
-
 Note that the four properties listed-horizontal, flat, extended, and rigid- would be physical properties of a surface if they were measured with the scales and standard units used in physics. As an affordance of support for a species of animal, however, they have to be measured relative to the animal. They are unique for that animal. They are not just abstract physical properties. They have unity relative to the posture and behavior of the animal being considered. So an affordance cannot be measured as we measure in physics.
 
-Terrestrial surfaces, of course, are also climb-on-able or fall-off-able or get- underneath-able or bump-into-able relative to the animal. Different layouts afford different behaviors for different animals, and different mechanical encounters. The human species in some cultures has the habit of sitting as distinguished from kneeling or squatting. If a surface of support with the four properties is also knee-high above the ground, it affords sitting on. We call it a seat in general, or a stool, bench, chair, and so on, in particular. It may be natural like a ledge or artificial like a couch. It may have various shapes, as long as its functional layout is that of a seat. The color and texture of the surface are irrelevant. Knee-high for a child is not the same as knee-high for an adult, so the affordance is relative to the size of the individual. But if a surface is hori- zontal, flat, extended, rigid, and knee-high relative to a perceiver, it can in fact be sat upon. If it can be discriminated as having just these properties, it should look sit-on-able. If it does, the affordance is perceived visually. If the surface properties are seen relative to the body surfaces, the self, they constitute a seat and have meaning.
+Terrestrial surfaces, of course, are also climb-on-able or fall-off-able or get-underneath-able or bump-into-able relative to the animal. Different layouts afford different behaviors for different animals, and different mechanical encounters. The human species in some cultures has the habit of sitting as distinguished from kneeling or squatting. If a surface of support with the four properties is also knee-high above the ground, it affords sitting on. We call it a seat in general, or a stool, bench, chair, and so on, in particular. It may be natural like a ledge or artificial like a couch. It may have various shapes, as long as its functional layout is that of a seat. The color and texture of the surface are irrelevant. Knee-high for a child is not the same as knee-high for an adult, so the affordance is relative to the size of the individual. But if a surface is horizontal, flat, extended, rigid, and knee-high relative to a perceiver, it can in fact be sat upon. If it can be discriminated as having just these properties, it should look sit-on-able. If it does, the affordance is perceived visually. If the surface properties are seen relative to the body surfaces, the self, they constitute a seat and have meaning.
 
-There could be other examples. The different substances of the environment have different affordances for nutrition and for manufacture. The different objects of the environment have different affordances for manipulation. The other animals afford, above all, a rich and complex set of interactions, sexual, predatory, nurturing, fighting, playing, cooperating, and communicating. What other persons afford, comprises the whole realm of social significance for human beings. We pay the closest attention to the optical and acoustic inform- ation that specifies what the other person is, invites, threatens, and does.
+There could be other examples. The different substances of the environment have different affordances for nutrition and for manufacture. The different objects of the environment have different affordances for manipulation. The other animals afford, above all, a rich and complex set of interactions, sexual, predatory, nurturing, fighting, playing, cooperating, and communicating. What other persons afford, comprises the whole realm of social significance for human beings. We pay the closest attention to the optical and acoustic information that specifies what the other person is, invites, threatens, and does.
 
-The Niches of the Environment
+可供性理论
+
+我之前提到过，环境是物质与动物生活的介质之间的分界面。同时，我还描述了环境为动物提供的各种条件，比如地形、庇护所、水源、火源、物体、工具、其他动物和人类展示等。那么，我们是如何从这些分界面理解到环境的可供性的呢？如果光线中的信息能让我们感知到这些表面，那么是否也能让我们感知到它们的用途呢？或许表面的组成和布局就代表了它们的可供性。如果真是这样，感知这些表面就意味着感知它们的可供性。这一假设很大胆，因为它暗示环境中事物的「价值」和「意义」可以被直接感知。此外，这还解释了这些价值和意义为何是外在于感知者的。
+
+环境的可供性指的是它为动物提供的条件，无论是好是坏。虽然「提供」这个动词在字典中可以找到，但「可供性」这个名词是我创造的。我用这个词来描述一种既包含环境又包含动物的关系，现有的术语无法准确表达。这意味着动物与环境之间是互补的。关于这个术语的来源和概念历史，我们稍后再讨论；现在，让我们先看一个可供性的例子。
+
+如果地表是几乎水平的（而不是倾斜的）、几乎平坦的（而不是凸起或凹陷的），并且相对于动物的体型来说足够宽广，并且其材质对动物的重量来说是刚性的，那么这个地表就能提供支撑。它就是一个支撑面，我们称之为地基、地面或地板。它能够让四足动物和两足动物保持直立姿势，也就是说，它可以行走和奔跑。它不像水面或沼泽那样会下沉，至少对于重的陆地动物来说是这样的。而水生昆虫的支撑情况则不同。
+
+需要注意的是，这四个特性 —— 水平、平坦、宽广和刚性 —— 如果用物理学中的标准单位来测量，它们是表面的物理属性。然而，作为支撑某种动物的能力，它们必须相对于动物来测量。对于该动物来说，这些特性是独特的，不仅仅是抽象的物理属性。它们相对于该动物的姿势和行为具有整体性。因此，支撑能力不能像我们在物理学中那样测量。
+
+陆地表面对于动物来说，可以攀爬、跌落、钻到下面或撞到。不同的地形布局会导致不同动物的行为和机械接触。人类在某些文化中习惯坐着，而不是跪着或蹲着。如果一个支撑面既水平又平坦、延展、坚硬，并且高度适合膝盖，那它就适合坐。我们称这种支撑面为座位，具体可以是凳子、长椅、椅子等。它可能是天然的，如岩架，也可能是人造的，如沙发。只要它的功能布局是座位，形状和表面颜色、质地都无关紧要。对孩子来说的膝盖高度和对成年人来说的膝盖高度不同，因此座位的适用性也因个体大小而异。如果一个表面具有这些特性，并且看起来适合坐，那么它就可以通过视觉感知成为座位，并具有意义。
+
+还有其他例子。环境中的不同物质对营养和制造有不同的用途。环境中的不同物体对操作有不同的功能。其他动物提供了丰富而复杂的互动，包括性行为、捕食、养育、战斗、玩耍、合作和交流。其他人提供的互动构成了人类社会的全部意义。我们最关注的是光学和声学信息，这些信息告诉我们其他人是谁、在做什么、邀请什么或威胁什么。
+
+### 8.1 The Niches of the Environment
 
 Ecologists have the concept of a niche. A species of animal is said to utilize or occupy a certain niche in the environment. This is not quite the same as the habitat of the species; a niche refers more to how an animal lives than to where it lives. I suggest that a niche is a set of affordances.
 
-The natural environment offers many ways of life, and different animals have different ways of life. The niche implies a kind of animal, and the animal implies a kind of niche. Note the complementarity of the two. But note also that the environment as a whole with its unlimited possibilities existed prior to animals. The physical, chemical, meteorological, and geological conditions of The Theory of Affordances 121
-
-the surface of the earth and the pre-existence of plant life are what make animal life possible. They had to be invariant for animals to evolve.
+The natural environment offers many ways of life, and different animals have different ways of life. The niche implies a kind of animal, and the animal implies a kind of niche. Note the complementarity of the two. But note also that the environment as a whole with its unlimited possibilities existed prior to animals. The physical, chemical, meteorological, and geological conditions of the surface of the earth and the pre-existence of plant life are what make animal life possible. They had to be invariant for animals to evolve.
 
 There are all kinds of nutrients in the world and all sorts of ways of getting food; all sorts of shelters or hiding places, such as holes, crevices, and caves; all sorts of materials for making shelters, nests, mounds, huts; all kinds of loco- motion that the environment makes possible, such as swimming, crawling, walking, climbing, flying. These offerings have been taken advantage of; the niches have been occupied. But, for all we know, there may be many offerings of the environment that have not been taken advantage of, that is, niches not yet occupied.
 
@@ -34,9 +42,23 @@ An important fact about the affordances of the environment is that they are in a
 
 The niche for a certain species should not be confused with what some animal psychologists have called the phenomenal environment of the species. This can be taken erroneously to be the "private world" in which the species is supposed to live, the "subjective world," or the world of "consciousness."The behavior of observers depends on their perception of the environment, surely enough, but this does not mean that their behavior depends on a so-called private or subjective or conscious environment. The organism depends on its environment for its life, but the environment does not depend on the organism for its existence.
 
-Man's Alteration of the Natural Environment
+环境的生态位
 
-In the last few thousand years, as everybody now realizes, the very face of the earth has been modified by man. The layout of surfaces has been changed, by cutting, clearing, leveling, paving, and building. Natural deserts and moun- tains, swamps and rivers, forests and plains still exist, but they are being encroached upon and reshaped by man-made layouts. Moreover, the substances of the environment have been partly converted from the natural materials of the earth into various kinds of artificial materials such as bronze, iron, concrete, and bread. Even the medium of the environment-the air for us and the water for fish-is becoming slowly altered despite the restorative cycles that yielded a steady state for millions of years prior to man. 122 The Ecological Approach to Visual Perception
+生态学家提出了「生态位」的概念。一个动物物种被认为占据了环境中的某个生态位。生态位不同于栖息地；它更多指的是动物的生活方式，而不是它们生活的地点。我认为，生态位可以看作是一组环境提供的机遇。
+
+自然环境提供了多种多样的生活方式，不同的动物有各自不同的生活方式。生态位和动物之间存在互补关系：一种动物意味着一种生态位，一种生态位也意味着一种动物。但需要注意的是，地球上的物理、化学、气象和地质条件，以及植物生命的存在，早在动物出现之前就已经存在，并且这些条件在动物进化过程中是相对不变的。
+
+地球上有各种营养物质和获取食物的方式；各种避难所或藏身之处，如洞穴、裂缝和山洞；各种建造避难所、巢穴、土丘和小屋的材料；环境还提供了各种运动方式，如游泳、爬行、行走、攀爬和飞行。这些资源被动物们充分利用，生态位也因此被占据。然而，环境中可能还存在许多未被利用的资源，即尚未被占据的生态位。
+
+在建筑学中，生态位指的是适合放置雕像的位置，一个物体能够恰好适应的地方。在生态学中，生态位则是指适合某种动物的环境特点，动物能够在其中找到适合自己的生存方式。
+
+一个关于环境可供性（affordance）的重要事实是，它们在某种意义上是客观、真实和物理的，而不像价值和意义那样被认为是主观的、现象的和精神的。实际上，可供性既不是单纯的客观属性，也不是单纯的主观属性；或者可以说，它是两者兼具的。可供性打破了主观和客观的对立，帮助我们理解这种对立的不足。它既是环境的事实，也是行为的事实。既有物理属性，也有心理属性，但又不完全是其中任何一种。可供性同时指向环境和观察者。
+
+某个物种的生态位不应与一些动物心理学家所称的物种的现象环境混淆。后者可能被错误地理解为物种所生活的「私人世界」、「主观世界」或「意识世界」。尽管观察者的行为确实依赖于他们对环境的感知，但这并不意味着他们的行为依赖于所谓的私人、主观或意识环境。生物体依赖环境生存，但环境的存在并不依赖于生物体。
+
+### 8.2 Man's Alteration of the Natural Environment
+
+In the last few thousand years, as everybody now realizes, the very face of the earth has been modified by man. The layout of surfaces has been changed, by cutting, clearing, leveling, paving, and building. Natural deserts and moun- tains, swamps and rivers, forests and plains still exist, but they are being encroached upon and reshaped by man-made layouts. Moreover, the substances of the environment have been partly converted from the natural materials of the earth into various kinds of artificial materials such as bronze, iron, concrete, and bread. Even the medium of the environment-the air for us and the water for fish-is becoming slowly altered despite the restorative cycles that yielded a steady state for millions of years prior to man.
 
 Why has man changed the shapes and substances of his environment? To change what it affords him. He has made more available what benefits him and less pressing what injures him. In making life easier for himself, of course, he has made life harder for most of the other animals. Over the millennia, he has made it easier for himself to get food, easier to keep warm, easier to see at night, easier to get about, and easier to train his offspring.
 
@@ -44,15 +66,15 @@ This is not a new environment-an artificial environment distinct from the natura
 
 The fundamentals of the environment--the substances, the medium, and the surfaces-are the same for all animals. No matter how powerful men become they are not going to alter the fact of earth, air, and water-the litho- sphere, the atmosphere, and the hydrosphere, together with the interfaces that separate them. For terrestrial animals like us, the earth and the sky are a basic structure on which all lesser structures depend. We cannot change it. We all fit into the substructures of the environment in our various ways, for we were all, in fact, formed by them. We were created by the world we live in.
 
-Some Affordances of the Terrestrial Environment
+### 8.3 Some Affordances of the Terrestrial Environment
 
 Let us consider the affordances of the medium, of substances, of surfaces and their layout, of objects, of animals and persons, and finally a case of special interest for ecological optics, the affording of concealmeant by the occluding edges of the environment (Chapter 5).
 
-The Medium
+### 8.4 The Medium
 
 Air affords breathing, more exactly, respiration. It also affords unimpeded loco- motion relative to the ground, which affords support. When illuminated and fog-free, it affords visual perception. It also affords the perception of vibratory events by means of sound fields and the perception of volatile sources by means of odor fields. The airspaces between obstacles and objects are the paths and the places where behavior occurs.
 
-The optical information to specify air when it is clear and transparent is not obvious. The problem came up in Chapter 4, and the experimental evidence about the seeing of "nothing" will be described in the next chapter. The Theory of Affordances 123
+The optical information to specify air when it is clear and transparent is not obvious. The problem came up in Chapter 4, and the experimental evidence about the seeing of "nothing" will be described in the next chapter.
 
 The Substances
 
@@ -66,9 +88,7 @@ The Surfaces and their Layouts
 
 I have already said that a horizontal, flat, extended, rigid surface affords support. It permits equilibrium and the maintaining of a posture with respect to gravity, this being a force perpendicular to the surface. The animal does not fall or slide as it would on a steep hillside. Equilibrium and posture are prerequisite to other behaviors, such as locomotion and manipulation. There will be more about this in Chapter 12, and more evidence about the perception of the ground in Chapter 9. The ground is quite literally the basis of the behavior of land animals. And it is also the basis of their visual perception, their so- called space perception. Geometry began with the study of the earth as abstracted by Euclid, not with the study of the axes of empty space as abstracted by Descartes. The affording of support and the geometry of a horizontal plane are therefore not in different realms of discourse; they are not as separate as we have supposed.
 
-The flat earth, of course, lies beneath the attached and detached objects on it. The earth has"furniture," or as I have said, it is cluttered. The solid, level, flat surface extends behind the clutter and, in fact, extends all the way out to the horizon. This is not, of course, the earth of Copernicus; it is the earth at the scale of the human animal, and on that scale it is flat, not round. Wherever one goes, the earth is separated from the sky by a horizon that, although it may be hidden by the clutter, is always there. There will be evidence to show that 124 The Ecological Approach to Visual Perception
-
-the horizon can always be seen, in the sense that it can be visualized, and that it can always be felt, in the sense that any surface one touches is experienced in relation to the horizontal plane.
+The flat earth, of course, lies beneath the attached and detached objects on it. The earth has"furniture," or as I have said, it is cluttered. The solid, level, flat surface extends behind the clutter and, in fact, extends all the way out to the horizon. This is not, of course, the earth of Copernicus; it is the earth at the scale of the human animal, and on that scale it is flat, not round. Wherever one goes, the earth is separated from the sky by a horizon that, although it may be hidden by the clutter, is always there. There will be evidence to show that the horizon can always be seen, in the sense that it can be visualized, and that it can always be felt, in the sense that any surface one touches is experienced in relation to the horizontal plane.
 
 Of course, a horizontal, flat, extended surface that is nonrigid, a stream or lake, does not afford support for standing, or for walking and running. There is no footing, as we say. It may afford floating or swimming, but you have to be equipped for that, by nature or by learning.
 
@@ -82,9 +102,7 @@ The Objects
 
 The affordances of what we loosely call objects are extremely various. It will be recalled that my use of the terms is restricted and that I distinguish between attached objects and detached objects. We are not dealing with Newtonian objects in space, all of which are detached, but with the furniture of the earth, some items of which are attached to it and cannot be moved without breakage.
 
-Detached objects must be comparable in size to the animal under consider- ation if they are to afford behavior. But those that are comparable afford an The Theory of Affordances 125
-
-astonishing variety of behaviors, especially to animals with hands. Objects can be manufactured and manipulated. Some are portable in that they afford lifting and carrying, while others are not. Some are graspable and other not. To be graspable, an object must have opposite surfaces separated by a distance less than the span of the hand. A five-inch cube can be grasped, but a ten-inch cube cannot (Gibson, 1966b, p. 119). A large object needs a "handle" to afford grasping. Note that the size of an object that constitutes a graspable size is specified in the optic array. If this is true, it is not true that a tactual sensation of size has to become associated with the visual sensation of size in order for the affordance to be perceived.
+Detached objects must be comparable in size to the animal under consider- ation if they are to afford behavior. But those that are comparable afford an astonishing variety of behaviors, especially to animals with hands. Objects can be manufactured and manipulated. Some are portable in that they afford lifting and carrying, while others are not. Some are graspable and other not. To be graspable, an object must have opposite surfaces separated by a distance less than the span of the hand. A five-inch cube can be grasped, but a ten-inch cube cannot (Gibson, 1966b, p. 119). A large object needs a "handle" to afford grasping. Note that the size of an object that constitutes a graspable size is specified in the optic array. If this is true, it is not true that a tactual sensation of size has to become associated with the visual sensation of size in order for the affordance to be perceived.
 
 Sheets, sticks, fibers, containers, clothing, and tools are detached objects that afford manipulation (Chapter 3). Additional examples are given below.
 
@@ -98,49 +116,19 @@ Sheets, sticks, fibers, containers, clothing, and tools are detached objects tha
 
 5. A hand-held tool of enormous importance is one that, when applied to a surface, leaves traces and thus affords trace-making. The tool may be a stylus, brush, crayon, pen, or pencil, but if it marks the surface it can be used to depict and to write, to represent scenes and to specify words.
 
-We have thousands of names for such objects, and we classify them in many ways: pliers and wrenches are tools; pots and pans are utensils; swords and pistols are weapons. They can all be said to have properties or qualities: color, texture, composition, size, shape and features of shape, mass, elasticity, rigidity, and mobility. Orthodox psychology asserts that we perceive these objects insofar as we discriminate their properties or qualities. Psychologists carry out elegant experiments in the laboratory to find out how and how well these qualities are discrimin- ated. The psychologists assume that objects are composed of their qualities. But 126 The Ecological Approach to Visual Perception
-
-I now suggest that what we perceive when we look at objects are their afford- ances, not their qualities. We can discriminate the dimensions of difference if required to do so in an experiment, but what the object affords us is what we normally pay attention to. The special combination of qualities into which an object can be analyzed is ordinarily not noticed.
+We have thousands of names for such objects, and we classify them in many ways: pliers and wrenches are tools; pots and pans are utensils; swords and pistols are weapons. They can all be said to have properties or qualities: color, texture, composition, size, shape and features of shape, mass, elasticity, rigidity, and mobility. Orthodox psychology asserts that we perceive these objects insofar as we discriminate their properties or qualities. Psychologists carry out elegant experiments in the laboratory to find out how and how well these qualities are discrimin- ated. The psychologists assume that objects are composed of their qualities. But I now suggest that what we perceive when we look at objects are their afford- ances, not their qualities. We can discriminate the dimensions of difference if required to do so in an experiment, but what the object affords us is what we normally pay attention to. The special combination of qualities into which an object can be analyzed is ordinarily not noticed.
 
 If this is true for the adult, what about the young child? There is much evid- ence to show that the infant does not begin by first discriminating the qualities of objects and then learning the combinations of qualities that specify them. Phenomenal objects are not built up of qualities; it is the other way around. The affordance of an object is what the infant begins by noticing. The meaning is observed before the substance and surface, the color and form, are seen as such. An affordance is an invariant combination of variables, and one might guess that it is easier to perceive such an invariant unit than it is to perceive all the variables separately. It is never necessary to distinguish all the features of an object and, in fact, it would be impossible to do so. Perception is economical. "Those features of a thing are noticed which distinguish it from other things that it is not-but not all the features that distinguish it from everything that it is not"(Gibson, 1966b, p. 286).
 
-TO PERCEIVE AN AFFORDANCE IS NOT TO CLASSIFY
+TO PERCEIVE AN AFFORDANCE IS NOT TO CLASSIFY AN OBJECT
 
-AN OBJECT
+The fact that a stone is a missile does not imply that it cannot be other things as well. It can be a paperweight, a bookend, a hammer, or a pendulum bob. It can be piled on another rock to make a cairn or a stone wall. These affordances are all consistent with one another. The differences between them are not clear-cut, and the arbitrary names by which they are called do not count for perception. If you know what can be done with a graspable detached object, what it can be used for, you can call it whatever you please.
 
-The fact that a stone is a missile does not imply that it cannot be other things
-
-as well. It can be a paperweight, a bookend, a hammer, or a pendulum bob.
-
-It can be piled on another rock to make a cairn or a stone wall. These afford-
-
-ances are all consistent with one another. The differences between them are
-
-not clear-cut, and the arbitrary names by which they are called do not count
-
-for perception. If you know what can be done with a graspable detached
-
-object, what it can be used for, you can call it whatever you please.
-
-The theory of affordances rescues us from the philosophical muddle of
-
-assuming fixed classes of objects, each defined by its common features and
-
-then given a name. As Ludwig Wittgenstein knew, you cannot specify the
-
-necessary and sufficient features of the class of things to which a name is
-
-given. They have only a "family resemblance." But this does not mean you
-
-cannot learn how to use things and perceive their uses. You do not have to
-
-classify and label things in order to perceive what they afford.
+The theory of affordances rescues us from the philosophical muddle of assuming fixed classes of objects, each defined by its common features and then given a name. As Ludwig Wittgenstein knew, you cannot specify the necessary and sufficient features of the class of things to which a name is given. They have only a "family resemblance." But this does not mean you cannot learn how to use things and perceive their uses. You do not have to classify and label things in order to perceive what they afford.
 
 Other Persons and Animals
 
-The richest and most elaborate affordances of the environment are provided by other animals and, for us, other people. These are, of course, detached objects The Theory of Affordances 127
-
-with topologically closed surfaces, but they change the shape of their surfaces while yet retaining the same fundamental shape. They move from place to place, changing the postures of their bodies, ingesting and emitting certain substances, and doing all this spontaneously, initiating their own movements, which is to say that their movements are animate. These bodies are subject to the laws of mechanics and yet not subject to the laws of mechanics, for they are not governed by these laws. They are so different from ordinary objects that infants learn almost immediately to distinguish them from plants and nonliving things. When touched they touch back, when struck they strike back; in short, they interact with the observer and with one another. Behavior affords behavior, and the whole subject matter of psychology and of the social sciences can be thought of as an elaboration of this basic fact. Sexual behavior, nurturing behavior, fighting behavior, cooperative behavior, economic behavior, political beha- vior-all depend on the perceiving of what another person or other persons afford, or sometimes on the misperceiving of it.
+The richest and most elaborate affordances of the environment are provided by other animals and, for us, other people. These are, of course, detached objects with topologically closed surfaces, but they change the shape of their surfaces while yet retaining the same fundamental shape. They move from place to place, changing the postures of their bodies, ingesting and emitting certain substances, and doing all this spontaneously, initiating their own movements, which is to say that their movements are animate. These bodies are subject to the laws of mechanics and yet not subject to the laws of mechanics, for they are not governed by these laws. They are so different from ordinary objects that infants learn almost immediately to distinguish them from plants and nonliving things. When touched they touch back, when struck they strike back; in short, they interact with the observer and with one another. Behavior affords behavior, and the whole subject matter of psychology and of the social sciences can be thought of as an elaboration of this basic fact. Sexual behavior, nurturing behavior, fighting behavior, cooperative behavior, economic behavior, political behavior-all depend on the perceiving of what another person or other persons afford, or sometimes on the misperceiving of it.
 
 What the male affords the female is reciprocal to what the female affords the male; what the infant affords the mother is reciprocal to what the mother affords the infant; what the prey affords the predator goes along with what the predator affords the prey; what the buyer affords the seller cannot be separated from what the seller affords the buyer, and so on. The perceiving of these mutual affordances is enormously complex, but it is nonetheless lawful, and it is based on the pickup of the information in touch, sound, odor, taste, and ambient light. It is just as much based on stimulus information as is the simpler perception of the support that is offered by the ground under one's feet. For other animals and other persons can only give off information about themselves insofar as they are tangible, audible, odorous, tastable, or visible.
 
@@ -148,7 +136,7 @@ The other person, the generalized other, the alter as opposed to the ego, is an 
 
 Places and Hiding Places
 
-The habitat of a given animal contains places. A place is not an object with definite boundaries but a region (Chapter 3). The different places of a habitat may have different affordances. Some are places where food is usually found and others where it is not. There are places of danger, such as the brink of a cliff and the regions where predators lurk. There are places of refuge from predators. Among these is the place where mate and young are, the home, which is usually a partial enclosure. Animals are skilled at what the psychologist calls place-learning. They can find their way to significant places. 128 The Ecological Approach to Visual Perception
+The habitat of a given animal contains places. A place is not an object with definite boundaries but a region (Chapter 3). The different places of a habitat may have different affordances. Some are places where food is usually found and others where it is not. There are places of danger, such as the brink of a cliff and the regions where predators lurk. There are places of refuge from predators. Among these is the place where mate and young are, the home, which is usually a partial enclosure. Animals are skilled at what the psychologist calls place-learning. They can find their way to significant places.
 
 An important kind of place, made intelligible by the ecological approach to visual perception, is a place that affords concealment, a hiding place. Note that it involves social perception and raises questions of epistemology. The concealing of oneself from other observers and the hiding of a detached object from other observers have different kinds of motivation. As every child discovers, a good hiding place for one's body is not necessarily a good hiding place for a treasure. A detached object can be concealed both from other observers and from the observer himself. The observer's body can be concealed from other observers but not from himself, as the last chapter emphasized. Animals as well as children hide themselves and also hide objects such as food.
 
@@ -156,13 +144,11 @@ One of the laws of the ambient optic array (Chapter 5)is that at any fixed point
 
 All of these facts and many more depend on the principle of occluding edges at a point of observation, the law of reversible occlusion, and the facts of opaque and nonopaque substances. What we call privacy in the design of housing, for example, is the providing of opaque enclosures. A high degree of concealment is afforded by an enclosure, and complete concealment is afforded by a complete enclosure. But note that there are peepholes and screens that permit seeing without being seen. A transparent sheet of glass in a window transmits both illumination and information, whereas a translucent sheet transmits illumination but not information. There will be more of this in Chapter 11.
 
-Note also that a glass wall affords seeing through but not walking through, whereas a cloth curtain affords going through but not seeing through. Architects and designers know such facts, but they lack a theory of affordances to encom- pass them in a system.
+Note also that a glass wall affords seeing through but not walking through, whereas a cloth curtain affords going through but not seeing through. Architects and designers know such facts, but they lack a theory of affordances to encom-pass them in a system.
 
 Summary: Positive and Negative Affordances
 
-The foregoing examples of the affordances of the environment are enough to show how general and powerful the concept is. Substances have biochemical offerings and afford manufacture. Surfaces afford posture, locomotion, colli- sion, manipulation, and in general behavior. Special forms of layout afford shelter and concealment. Fires afford warming and burning. Detached objects- tools, utensils, weapons-afford special types of behavior to primates and The Theory of Affordances 129
-
-humans. The other animal and the other person provide mutual and reciprocal affordances at extremely high levels of behavioral complexity. At the highest level, when vocalization becomes speech and manufactured displays become images, pictures, and writing, the affordances of human behavior are stag- gering. No more of that will be considered at this stage except to point out that speech, pictures, and writing still have to be perceived.
+The foregoing examples of the affordances of the environment are enough to show how general and powerful the concept is. Substances have biochemical offerings and afford manufacture. Surfaces afford posture, locomotion, collision, manipulation, and in general behavior. Special forms of layout afford shelter and concealment. Fires afford warming and burning. Detached objects- tools, utensils, weapons-afford special types of behavior to primates and humans. The other animal and the other person provide mutual and reciprocal affordances at extremely high levels of behavioral complexity. At the highest level, when vocalization becomes speech and manufactured displays become images, pictures, and writing, the affordances of human behavior are stag- gering. No more of that will be considered at this stage except to point out that speech, pictures, and writing still have to be perceived.
 
 At all these levels, we can now observe that some offerings of the environ- ment are beneficial and some are injurious. These are slippery terms that should only be used with great care, but if their meanings are pinned down to biolo- gical and behavioral facts the danger of confusion can be minimized. First, consider substances that afford ingestion. Some afford nutrition for a given animal, some afford poisoning, and some are neutral. As I pointed out before, these facts are quite distinct from the affording of pleasure and displeasure in eating, for the experiences do not necessarily correlate with the biological effects. Second, consider the brink of a cliff. On the one side it affords walking along, locomotion, whereas on the other it affords falling off, injury. Third, consider a detached object with a sharp edge, a knife. It affords cutting if manipulated in one manner, but it affords being cut if manipulated in another manner. Similarly, but at a different level of complexity, a middle-sized metallic object affords grasping, but if charged with current it affords electric shock. And fourth, consider the other person. The animate object can give caresses or blows, contact comfort or contact injury, reward or punishment, and it is not always easy to perceive which will be provided. Note that all these benefits and injuries, these safeties and dangers, these positive and negative affordances are properties of things taken with reference to an observer but not properties of the experiences of the observer. They are not subjective values; they are not feelings of pleasure or pain added to neutral perceptions.
 
@@ -170,7 +156,7 @@ There has been endless debate among philosophers and psychologists as to whether
 
 The Origin of the Concept of Affordances: A Recent History
 
-The gestalt psychologists recognized that the meaning or the value of a thing seems to be perceived just as immediately as its color. The value is clear on the face of it, as we say, and thus it has a physiognomic quality in the way that the emotions of a man appear on his face. To quote from the Principles of Gestalt Psychology (Koffka, 1935), "Each thing says what it is a fruit says 'Eat me'; water says 'Drink me'; thunder says 'Fear me'; and woman says 'Love me (p. 7). These values are vivid and essential features of the experience itself. 130 The Ecological Approach to Visual Perception
+The gestalt psychologists recognized that the meaning or the value of a thing seems to be perceived just as immediately as its color. The value is clear on the face of it, as we say, and thus it has a physiognomic quality in the way that the emotions of a man appear on his face. To quote from the Principles of Gestalt Psychology (Koffka, 1935), "Each thing says what it is a fruit says 'Eat me'; water says 'Drink me'; thunder says 'Fear me'; and woman says 'Love me (p. 7). These values are vivid and essential features of the experience itself.
 
 Koffka did not believe that a meaning of this sort could be explained as a pale context of memory images or an unconscious set of response tendencies. The postbox "invites"the mailing of a letter, the handle "wants to be grasped,"and things "tell us what to do with them"(p. 353). Hence, they have what Koffka called "demand character."
 
@@ -178,7 +164,7 @@ Kurt Lewin coined the term Aufforderungscharakter, which has been translated as 
 
 The concept of affordance is derived from these concepts of valence, invita- tion, and demand but with a crucial difference. The affordance of something does not change as the need of the observer changes. The observer may or may not perceive or attend to the affordance, according to his needs, but the afford- ance, being invariant, is always there to be perceived. An affordance is not bestowed upon an object by a need of an observer and his act of perceiving it. The object offers what it does because it is what it is. To be sure, we define what it is in terms of ecological physics instead of physical physics, and it therefore possesses meaning and value to begin with. But this is meaning and value of a new sort.
 
-For Koffka it was the phenomenal postbox that invited letter-mailing, not the physical postbox. But this duality is pernicious. I prefer to say that the real postbox (the only one)affords letter-mailing to a letter-writing human in a community with a postal system. This fact is perceived when the postbox is identified as such, and it is apprehended whether the postbox is in sight or out of sight. To feel a special attraction to it when one has a letter to mail is not surprising, but the main fact is that it is perceived as part of the environment— as an item of the neighborhood in which we live. Everyone above the age of six knows what it is for and where the nearest one is. The perception of its afford- ance should therefore not be confused with the temporary special attraction it may have. The Theory of Affordances 131
+For Koffka it was the phenomenal postbox that invited letter-mailing, not the physical postbox. But this duality is pernicious. I prefer to say that the real postbox (the only one)affords letter-mailing to a letter-writing human in a community with a postal system. This fact is perceived when the postbox is identified as such, and it is apprehended whether the postbox is in sight or out of sight. To feel a special attraction to it when one has a letter to mail is not surprising, but the main fact is that it is perceived as part of the environment as an item of the neighborhood in which we live. Everyone above the age of six knows what it is for and where the nearest one is. The perception of its afford- ance should therefore not be confused with the temporary special attraction it may have.
 
 FIGURE 8.1 The changing perspective structure of a postbox during approach by an observer.
 
@@ -190,19 +176,15 @@ The accepted theories of perception, to which the gestalt theorists were objecti
 
 The Optical Information for Perceiving Affordances
 
-The theory of affordances is a radical departure from existing theories of value and meaning. It begins with a new definition of what value and meaning are. The perceiving of an affordance is not a process of perceiving a value-free phys- 132 The Ecological Approach to Visual Perception
+The theory of affordances is a radical departure from existing theories of value and meaning. It begins with a new definition of what value and meaning are. The perceiving of an affordance is not a process of perceiving a value-free physical object to which meaning is somehow added in a way that no one has been able to agree upon; it is a process of perceiving a value-rich ecological object. Any substance, any surface, any layout has some affordance for benefit or injury to someone. Physics may be value-free, but ecology is not.
 
-ical object to which meaning is somehow added in a way that no one has been able to agree upon; it is a process of perceiving a value-rich ecological object. Any substance, any surface, any layout has some affordance for benefit or injury to someone. Physics may be value-free, but ecology is not.
-
-The central question for the theory of affordances is not whether they exist and are real but whether information is available in ambient light for perceiving them. The skeptic may now be convinced that there is information in light for some properties of a surface but not for such a property as being good to eat. The taste of a thing, he will say, is not specified in light; you can see its form and color and texture but not its palatability; you have to taste it for that. The skeptic understands the stimulus variables that specify the dimensions of visual sensation; he knows from psychophysics that brightness corresponds to intensity and color to wavelength of light. He may concede the invariants of structured stimulation that specify surfaces and how they are laid out and what they are made of. But he may boggle at invariant combinations of invariants that specify the affordances of the environment for an observer. The skeptic familiar with the experimental control of stimulus variables has enough trouble under- standing the invariant variables I have been proposing without being asked to accept invariants of invariants.
+The central question for the theory of affordances is not whether they exist and are real but whether information is available in ambient light for perceiving them. The skeptic may now be convinced that there is information in light for some properties of a surface but not for such a property as being good to eat. The taste of a thing, he will say, is not specified in light; you can see its form and color and texture but not its palatability; you have to taste it for that. The skeptic understands the stimulus variables that specify the dimensions of visual sensation; he knows from psychophysics that brightness corresponds to intensity and color to wavelength of light. He may concede the invariants of structured stimulation that specify surfaces and how they are laid out and what they are made of. But he may boggle at invariant combinations of invariants that specify the affordances of the environment for an observer. The skeptic familiar with the experimental control of stimulus variables has enough trouble understanding the invariant variables I have been proposing without being asked to accept invariants of invariants.
 
 Nevertheless, a unique combination of invariants, a compound invariant, is just another invariant. It is a unit, and the components do not have to be combined or associated. Only if percepts were combinations of sensations would they have to be associated. Even in the classical terminology, it could be argued that when a number of stimuli are completely covariant, when they always go together, they constitute a single "stimulus." If the visual system is capable of extracting invariants from a changing optic array, there is no reason why it should not extract invariants that seem to us highly complex.
 
 The trouble with the assumption that high-order optical invariants specify high-order affordances is that experimenters, accustomed to working in the laboratory with low-order stimulus variables, cannot think of a way to measure them. How can they hope to isolate and control an invariant of optical struc- ture so as to apply it to an observer if they cannot quantify it? The answer comes in two parts, I think. First, they should not hope to apply an invariant to an observer, only to make it available, for it is not a stimulus. And, second, they do not have to quantify an invariant, to apply numbers to it, but only to give it an exact mathematical description so that other experimenters can make it available to their observers. The virtue of the psychophysical experiment is simply that it is disciplined, not that it relates the psychical to the physical by a metric formula.
 
-An affordance, as I said, points two ways, to the environment and to the observer. So does the information to specify an affordance. But this does not in the least imply separate realms of consciousness and matter, a psychophysical dualism. It says only that the information to specify the utilities of the environ- The Theory of Affordances 133
-
-ment is accompanied by information to specify the observer himself, his body, legs, hands, and mouth. This is only to reemphasize that exteroception is accom- panied by proprioception-that to perceive the world is to coperceive oneself. This is wholly inconsistent with dualism in any form, either mind-matter dualism or mind-body dualism. The awareness of the world and of one's complementary relations to the world are not separable.
+An affordance, as I said, points two ways, to the environment and to the observer. So does the information to specify an affordance. But this does not in the least imply separate realms of consciousness and matter, a psychophysical dualism. It says only that the information to specify the utilities of the environment is accompanied by information to specify the observer himself, his body, legs, hands, and mouth. This is only to reemphasize that exteroception is accom- panied by proprioception-that to perceive the world is to coperceive oneself. This is wholly inconsistent with dualism in any form, either mind-matter dualism or mind-body dualism. The awareness of the world and of one's complementary relations to the world are not separable.
 
 The child begins, no doubt, by perceiving the affordances of things for her, for her own personal behavior. She walks and sits and grasps relative to her own legs and body and hands. But she must learn to perceive the affordances of things for other observers as well as for herself. An affordance is often valid for all the animals of a species, as when it is part of a niche. I have described the invariants that enable a child to perceive the same solid shape at different points of observation and that likewise enable two or more children to perceive the same shape at different points of observation. These are the invariants that enable two children to perceive the common affordance of the solid shape despite the different perspectives, the affordance of a toy, for example. Only when each child perceives the values of things for others as well as for herself does she begin to be socialized.
 
@@ -212,9 +194,7 @@ If there is information in the ambient light for the affordances of things, can 
 
 The brink of a cliff affords falling off; it is in fact dangerous and it looks dangerous to us. It seems to look dangerous to many other terrestrial animals besides ourselves, including infant animals. Experimental studies have been made of this fact. If a sturdy sheet of plate glass is extended out over the edge it no longer affords falling and in fact is not dangerous, but it may still look dangerous. The optical information to specify depth-downward-at-an-edge is still present in the ambient light; for this reason the device was called a visual cliffby E. J. Gibson and R. D. Walk (1960). Haptic information was available to specify an adequate surface of support, but this was contradictory to the optical information. When human infants at the crawling stage of locomotion were tested with this apparatus, many of them would pat the glass with their hands but would not venture out on the surface. The babies misperceived the afford- ance of a transparent surface for support, and this result is not surprising.
 
-Similarly, an adult can misperceive the affordance of a sheet of glass by mistaking a closed glass door for an open doorway and attempting to walk through it. He then crashes into the barrier and is injured. The affordance of collision was not specified by the outflow of optical texture in the array, or it was insufficiently specified. He mistook glass for air. The occluding edges of 134 The Ecological Approach to Visual Perception
-
-the doorway were specified and the empty visual solid angle opened up symmetrically in the normal manner as he approached, so his behavior was properly controlled, but the imminence of collision was not noticed. A little dirt on the surface, or highlights, would have saved him.
+Similarly, an adult can misperceive the affordance of a sheet of glass by mistaking a closed glass door for an open doorway and attempting to walk through it. He then crashes into the barrier and is injured. The affordance of collision was not specified by the outflow of optical texture in the array, or it was insufficiently specified. He mistook glass for air. The occluding edges of the doorway were specified and the empty visual solid angle opened up symmetrically in the normal manner as he approached, so his behavior was properly controlled, but the imminence of collision was not noticed. A little dirt on the surface, or highlights, would have saved him.
 
 These two cases are instructive. In the first a surface of support was mistaken for air because the optic array specified air. In the second case a barrier was mistaken for air for the same reason. Air downward affords falling and is dangerous. Air forward affords passage and is safe. The mistaken perceptions led to inappropriate actions.
 
@@ -222,13 +202,7 @@ Errors in the perception of the surface of support are serious for a terrestrial
 
 THINGS THAT LOOK LIKE WHAT THEY ARE
 
-If the affordances of a thing are perceived correctly, we say that it looks like
-
-what it is. But we must, of course, learn to see what things really are-for
-
-example, that the innocent-looking leaf is really a nettle or that the helpful-
-
-sounding politician is really a demagogue. And this can be very difficult.
+If the affordances of a thing are perceived correctly, we say that it looks like what it is. But we must, of course, learn to see what things really are - for example, that the innocent-looking leaf is really a nettle or that the helpful-sounding politician is really a demagogue. And this can be very difficult.
 
 A wildcat may be hard to distinguish from a cat, and a thief may look like an honest person. When Koffka asserted that "each thing says what it is," he failed to mention that it may lie. More exactly, a thing may not look like what it is.
 
@@ -236,14 +210,10 @@ Nevertheless, however true all this may be, the basic affordances of the environ
 
 Summary
 
-The medium, substances, surfaces, objects, places, and other animals have affordances for a given animal. They offer benefit or injury, life or death. This is why they need to be perceived. The Theory of Affordances 135
+The medium, substances, surfaces, objects, places, and other animals have affordances for a given animal. They offer benefit or injury, life or death. This is why they need to be perceived.
 
 The possibilities of the environment and the way of life of the animal go together inseparably. The environment constrains what the animal can do, and the concept of a niche in ecology reflects this fact. Within limits, the human animal can alter the affordances of the environment but is still the creature of his or her situation.
 
 There is information in stimulation for the physical properties of things, and presumably there is information for the environmental properties. The doctrine that says we must distinguish among the variables of things before we can learn their meanings is questionable. Affordances are properties taken with reference to the observer. They are neither physical nor phenomenal.
 
 The hypothesis of information in ambient light to specify affordances is the culmination of ecological optics. The notion of invariants that are related at one extreme to the motives and needs of an observer and at the other extreme to the substances and surfaces of a world provides a new approach to psychology.
-
-This page intentionally left blank PART Il
-
-Visual Perception This page intentionally left blank 

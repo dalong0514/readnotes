@@ -4,11 +4,7 @@ James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.
 
 ## 0401
 
-THE RELATIONSHIP BETWEEN
-
-STIMULATION AND STIMULUS
-
-INFORMATION
+The Relationship Between Stimulation and Stimulus Information
 
 Having described the environment, I shall now describe the information avail- able to observers for perceiving the environment. Only then will we be prepared to consider how they perceive, what the activity of perception consists of, and how they can control behavior in the environment.
 

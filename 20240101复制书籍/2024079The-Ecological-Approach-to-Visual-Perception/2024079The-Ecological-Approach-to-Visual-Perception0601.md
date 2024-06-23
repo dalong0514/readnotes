@@ -1,12 +1,6 @@
 James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => Preface
 
-
-
-## 0601
-
-EVENTS AND THE INFORMATION
-
-FOR PERCEIVING EVENTS
+## 0601. Events and the Information for Perceiving Events
 
 So far, little has been said about change in the environment. The point of observation could change and the source of illumination could change, but the streams did not flow, the pebbles did not roll, the leaves did not fall, and the animals did not scurry about. The environment has been described as shaped and textured and colored, as well as illuminated by a moving sun, but as if frozen. Let us now bring the environment to life. We need to consider a world in which events can happen.
 

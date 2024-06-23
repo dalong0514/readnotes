@@ -1,8 +1,4 @@
-## 09
-
-EXPERIMENTAL EVIDENCE
-
-FOR DIRECT PERCEPTION
+## 09. Experimental Evidence for Direct Perception
 
 Persisting Layout
 
@@ -346,15 +342,8 @@ A series of experiments on the perception of the slant of a surface relative to 
 
 Experiments based on the argument from equivalent configurations do not prove the need to have presuppositions in order to perceive the environment, since they leave out of account the fact that an observer normally moves about. 
 
-## 10
+## 10. Experiments on the Perception of Motion in the World and Movement of the Self
 
-EXPERIMENTS ON THE
-
-PERCEPTION OF MOTION IN
-
-THE WORLD AND MOVEMENT
-
-OF THE SELF
 
 Evidence for direct visual perception of the persisting layout of the environ- ment was presented in the last chapter. Persistence, however, is only the comple- ment of change. Is there evidence to suggest that the perception of changing layout is also direct?
 
@@ -690,13 +679,7 @@ Experiments on visual kinesthesis are even harder to set up in the laboratory th
 
 Moreover, the awareness of swinging, tilting, and turning of the observer's body can be induced if an enclosure, a pseudoenvironment, is rotated around the observer on the appropriate axis. 
 
-## 11
-
-THE DISCOVERY OF THE
-
-OCCLUDING EDGE AND ITS
-
-IMPLICATIONS FOR PERCEPTION
+## 11. The Discovery of the Occluding Edge and Its Implications for Perception
 
 The facts of occlusion have been described in Chapter 5. They are part of ecological optics. But they were not recognized as facts until observations and experiments made them compelling. The experiments described in the last two chapters about surfaces, layout, change, and kinesthesis were radical enough, but they culminated in the most radical of all, in what I can only call the discovery of the occluding edge. This discovery is radical for the following reason. If it is true that there are places where opaque surfaces are seen one behind another, ifit is true that one can perceive a hidden surface, a paradox arises. For we are not now allowed to say that a hidden surface is perceived; we can only say that it is remembered. To be perceived, a thing must be "present to the senses"; it must be stimulating receptors. If it is not, it can only be experienced by means of an image; it can be recalled, imagined, conceived, or perhaps known, but not perceived. Such is the accepted doctrine, the theory of sensation-based percep- tion. If an occluded surface is perceived, the doctrine is upset.
 
@@ -856,11 +839,7 @@ The demonstration that reversible occlusion is a fact of visual perception has f
 
 The doctrine that all awareness is memory except that of the present moment of time must be abandoned. So must the theory of depth perception. The importance of the fixed point of view in vision is reduced. But a new theory of orientation, of way-finding, and of place-learning in the environment becomes possible. And the puzzles of public knowledge, of egocentricity, and of privacy begin to be intelligible. 
 
-## 12
-
-LOOKING WITH THE
-
-HEAD AND EYES
+## 12. Looking with the Head and Eyes
 
 We modern, civilized, indoors adults are so accustomed to looking at a page or a picture, or through a window, that we often lose the feeling of being surrounded by the environment, our sense of the ambient array of light. Even when outdoors under the sky, one is apt to be driving an automobile and looking only through the windshield, or traveling in a vehicle where the window to the outside world is constricted to a small angle. We do not look around.
 
@@ -1166,11 +1145,7 @@ adjustments of the lens, the pupil, and the photoreceptors are more intelligible
 
 The flow of optical stimulation is not a sequence of stimuli or a series of discrete snapshots. If it were, the sequence would have to be converted into a scene. The flow is sampled by the visual system. And the persistence of the environment together with the coexistence of its parts and the concurrence of its events are all perceived together. 
 
-## 13
-
-LOCOMOTION AND
-
-MANIPULATION
+## 13. Locomotion and Manipulation
 
 The theory of affordances implies that to see things is to see how to get about among them and what to do or not do with them. If this is true, visual percep- tion serves behavior, and behavior is controlled by perception. The observer who does not move but only stands and looks is not behaving at the moment, it is true, but he cannot help seeing the affordances for behavior in whatever he looks at.
 
@@ -1524,11 +1499,9 @@ When locomotion is thus visually controlled, it is regular without being a chain
 
 Manipulation, like active locomotion, is visually controlled. It is thus dependent on an awareness of both the hands as such and the affordances for handling. But its regularities are not so easy to formulate. 
 
-## 14
+## 14. The Theory of Information Pickup and Its Consequences
 
-THE THEORY OF INFORMATION
 
-PICKUP AND ITS CONSEQUENCES
 
 In this book the traditional theories of perception have been abandoned. The perennial doctrine that two-dimensional images are restored to three- dimensional reality by a process called depth perception will not do. Neither will the doctrine that the images are transformed by the cues for distance and slant so as to yield constancy of size and shape in the perception of objects. The deep-seated notion of the retinal image as a still picture has been abandoned.
 
@@ -1946,11 +1919,9 @@ These tentative proposals are offered as a substitute for the outworn theory of 
 
 Depiction This page intentionally left blank 
 
-## 15
+## 15. Pictures and Visual Awareness
 
-PICTURES AND VISUAL
 
-AWARENESS
 
 Having rejected the picture theory of natural perception, we can make a start on picture perception. To see the environment is to extract information from the ambient array of light. What is it, then, to see a picture of something? The information in ambient light consists not of forms and colors but of invariants. Is it implied that the information in a picture does not consist of forms and colors but consists of invariants likewise? That sounds very odd, for we suppose that a picture is entirely composed of forms and colors.
 
@@ -2348,11 +2319,9 @@ embellishing, or beautifying of a surface considered as such. The problems of
 
 aesthetics exist in their own right. 
 
-## 16
+## 16. Motion Pictures and Visual Awareness
 
-MOTION PICTURES AND VISUAL
 
-AWARENESS
 
 I suggested in the last chapter that a picture is a surface so treated as to make available an arrested optic array, of limited scope, with information about other things than the surface itself. What, then, is a motion picture? There is a treated surface, but the treatment has to consist of throwing shadows on the surface by projection instead of depositing traces or pigments on it. An optic array of limited scope is delivered, and it contains information about other things than just the surface itself. The main difference is that the array is not arrested. Its structure undergoes change, disturbance, or transformation. It is not frozen in time. And that is what we need to understand about it.
 
@@ -2479,42 +2448,6 @@ The information in the display can specify the turning of one's head, the act of
 The art of film-editing should be guided by knowledge of how events and the progress of events are naturally perceived. The composing of a film is not analogous to the composing of a painting. The sequential nesting of subordinate events into superordinate events is crucial. The transitions should be psycholo- gically meaningful, and the sequential order of happenings should be intelli- gible. But the picture theory of vision and the stimulus sequence theory of Motion Pictures and Visual Awareness 289
 
 perception are very poor guides to moviemaking. The theory of ecological perception, of perception while moving around and looking around the envir- onment, is better. The various kinds of filmic transition-zoom, dolly, pan, cut, fade, wipe, dissolve, and split-screen shot-could usefully be evaluated in the light of ecological optics instead of the snapshot optics that is currently accepted. 
-
-## CONCLUSION
-
-In the first pages of this book, I promised to give an account of natural vision, not just snapshot vision but vision that is ambient and ambulatory. Ambient vision is what you get from looking around at the scenery. Ambulatory vision is what you get from walking through the countryside.
-
-The standard approach to vision begins with the eye fixed and exposed to a momentary pattern of stimuli. It then goes on to consider vision with the head fixed and the eye allowed to explore the pattern by scanning it, that is, by looking at parts in succession. Each fixation is a glimpse of the pattern compar- able to a momentary exposure and is thus supposed to be analogous to a photo- graphic snapshot taken by a camera with a shutter. Each successive snapshot is assumed to be transmitted to the brain. The result of all this is aperture vision, a sequence of snapshots.
-
-The standard approach never gets around to ambient vision with head turning, and it does not even consider ambulatory vision. The. process of perception is supposed to be localized in the head, not in the muscles, and it begins after the sensory input reaches the visual projection area of the cerebral cortex. The mind is in the brain.
-
-The ecological approach to visual perception works from the opposite end. It begins with the flowing array of the observer who walks from one vista to another, moves around an object of interest, and can approach it for scrutiny, thus extracting the invariants that underlie the changing perspective structure and seeing the connections between hidden and unhidden surfaces. This approach next considers the fact of ambient awareness and explains it by the invariance of the sliding samples of the 360° array. Only then is the awareness of a single scene considered, the surfaces seen with the head fixed and the array frozen. The classical puzzles that arise with this kind of vision are resolved by Conclusion 291
-
-recognizing that the invariants are weaker and the ambiguities stronger when the point of observation is motionless. Finally, the kind of visual awareness obtained with the eye fixed and the retina either briefly exposed or made to stay fixed is considered for what it is, a peculiar result of trying to make the eye work as if it were a camera at the end of a nerve cable. The visual system continues to operate at this photographic level, but the constraints imposed on it are so severe that very little information can be picked up. The level is that of cellular physiology, the photochemistry of retinal cells, the anatomy of the nerves and tracts, and the firing of nerve impulses.
-
-The artificially produced glimpse is an abnormal kind of vision, not the simplest kind on which normal vision is based. It is a poor sort of awarenesss. But it has seemed to be fundamental for hitherto persuasive reasons: it results from an image; it comes from a stimulus; it is a sensory input; it is what the nerve transmits. But if this is so, how could the series of glimpses be integrated? How could the sequence, as I put it, be converted into a scene?
-
-If perception of the environment is truly based on glimpses, it has to be a process of construction. If the data are insufficient, the observer must go beyond the data. How? Some of the greatest minds in history have undertaken to answer this question without success.
-
-I suggested in Chapter 14 that explanations of perception based on sensory inputs fail because they all come down to this: In order to perceive the world, one must already have ideas about it. Knowledge of the world is explained by assuming that knowledge of the world exists. Whether the ideas are learned or innate makes no difference; the fallacy lies in the circular reasoning.
-
-But if, on other hand, perception of the environment is not based on a sequence of snapshots but on invariant-extraction from a flux, one does not need to have ideas about the environment in order to perceive it. Another puzzle is resolved at the same time, the awareness of oneself in the environ- ment. The young child does not need to have ideas of space in order to see the surfaces around him; he need pay no attention to the cues for depth if he can see the layout: he need not compensate for the small retinal image of a distant surface if he never notices the image but only extracts the invariant.
-
-Such is the ecological approach to perception. It promises to simplify psycho- logy by making old puzzles disappear. Especially do all the genuinely mischief- making puzzles connected with the concept of an image become irrelevant. How can one see an upright world with an inverted retinal image? Why doesn't the object change when its retinal image is transposed over the retina? Where is the little man who looks at the image? If the two eyes yield a double image of a single object under some conditions, why not under all?
-
-The very notion of an image as a flattened-out object, a sort of pancake of a solid body, is shown to be misleading. It begins to appear that most of what has been written about pictures and images over the centuries is misleading, or hopelessly vague. We should forget it all and start fresh. The information for the 292 The Ecological Approach to Visual Perception
-
-perception of an object is not its image. The information in light to specify something does not have to resemble it, or copy it, or be a simulacrum or even an exact projection. Nothing is copied in the light to the eye of an observer, not the shape of a thing, not the surface of it, not its substance, not its color, and certainly not its motion. But all these things are specified in the light.
-
-What is the future of this approach? It needs to be tested experimentally, it needs to be clarified further, and its implications need to be followed up. It already has adherents, and their work is beginning to appear. Robert Shaw has been thinking along the same lines for some time, and he is developing the theory of invariants (Shaw and McIntyre, 1974) and the implications for epistemology (Shaw and Bransford, 1977). William Mace has been expounding and elaborating the approach (Mace, 1974，1977). Michael Turvey has been considering how to unify visual perception and action (Turvey, 1977). David Lee has been experimenting with visual kinesthesis (Lishman and Lee, 1973; Lee, 1974), and so has Rik Warren (1976). Above all, Eleanor Gibson has published a treatise on the development of perception from an ecological point of view (1969) and is carrying out experiments with infants on their discrim- ination of optical transformations (1978). Even the leading exponent of cognitive psychology, Ulric Neisser, has been sufficiently impressed with the advantages of this approach to describe it sympathetically in his new book (Neisser, 1976).
-
-Nevertheless, as I pointed out in the Introduction, experimental studies that display optical information are not so easy to perform as the old-fashioned experiments that expose a stimulus to a fixed eye. The experimenter cannot simply apply a stimulus that he varies systematically, the "independent variable" of the scientific experiment. Instead, he must make available an optical invariant that he expects will specify something about the world on grounds of ecolo- gical optics. This takes ingenuity. Only a few experimenters have learned to do it as yet. But it can be done.
-
-The experimenter should not hope, and does not need, to display all the information in an ambient optic array, let alone all the information in a trans- forming ambient optic array. He is not trying to simulate reality. He could not create the illusion of looking around and walking through the countryside in any case, for he would have to create the countryside. He should not want to deceive the observer. The observer who begins to be fooled should be allowed to make the standard tests for reality, such as getting up and looking behind the screen of the display. The information for a certain dimension of perception or proprioception can be displayed without interference from the accompanying information to specify the display. That is the lesson of research on pictures and motion pictures. What is required is only that the essential invariant be isolated and set forth.
-
-The experimental psychologist should realize that he cannot truly control the perception of an observer, for the reason that it is not caused by stimuli. Only Conclusion 293
-
-snapshot vision is triggered so that it can be touched off by imposing a stimulus on the receptor, and even then one has to have the agreement of the subject to look into the tachistoscope. Perception cannot be studied by the so-called psychophysical experiment if that refers to physical stimuli and corresponding mental sensations. The theory of psychophysical parallelism that assumes that the dimensions of consciousness are in correspondence with the dimensions of physics and that the equations of such correspondence can be established is an expression of Cartesian dualism. Perceivers are not aware of the dimensions of physics. They are aware of the dimensions of the information in the flowing array of stimulation that are relevant to their lives. 
 
 ## APPENDIX 1
 

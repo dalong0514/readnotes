@@ -4,7 +4,7 @@ James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.
 
 ## 0301
 
-THE MEANINGEUL ENVIRONMENT
+The Meaningful Environment
 
 The world of physical reality does not consist of meaningful things. The world of ecological reality, as I have been trying to describe it, does. If what we perceived were the entities of physics and mathematics, meanings would have to be imposed on them. But if what we perceive are the entities of environ- mental science, their meanings can be discovered.
 

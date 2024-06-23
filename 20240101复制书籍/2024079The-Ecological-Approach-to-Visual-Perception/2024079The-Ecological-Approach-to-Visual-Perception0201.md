@@ -4,9 +4,7 @@ James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.
 
 ## 0201
 
-MEDIUM, SUBSTANCES,
-
-SURFACES
+Medium, Substances, Surfaces
 
 According to classical physics, the universe consists of bodies in space. We are
 

@@ -1,11 +1,6 @@
 James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => Preface
 
-
-
-
-## 0501
-
-THE AMBIENT OPTIC ARRAY
+## 0501. The Ambient Optic Array
 
 The central concept of ecological optics is the ambient optic array at a point of observation. To be an array means to have an arrangement, and to be ambient at a point means to surround a position in the environment that could be occupied by an observer. The position may or may not be occupied; for the present, let us treat it as if it were not.
 

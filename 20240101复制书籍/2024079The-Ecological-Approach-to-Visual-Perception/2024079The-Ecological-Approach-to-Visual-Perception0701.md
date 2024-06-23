@@ -1,12 +1,6 @@
 James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => Preface
 
-
-
-## 07
-
-THE OPTICAL INFORMATION
-
-FOR SELF-PERCEPTION
+## 07. The Optical Information for Self-Perception
 
 It has frequently been assumed in previous chapters that the point of observation for an ambient optic array is not occupied. The point has been thought of as a position at which observation could be made, a position that could be occupied but need not be. Such a position could just as well be occupied by another observer and, since all positions can be occupied by any observer, the invariants of the array under locomotion can be shared by all observers. It was important to establish this principle that the point of observation is public, not private, but now we must consider the other side of the coin. When a point of observation is occupied, there is also optical information to specify the observer himself, and this information cannot be shared by other observers. For the body of the animal who is observing temporarily conceals some portion of the environment in a way that is unique to that animal. I call this information propriospecific as distinguished from exterospecific, meaning that it specifies the self as distinguished from the environment.
 

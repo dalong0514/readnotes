@@ -4,7 +4,7 @@ James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.
 
 PART I The Environment to be Perceived
 
-THE ANIMAL AND THE ENVIRONMENT
+The Animal and the Environment
 
 In this book, environment will refer to the surroundings of those organisms that perceive and behave, that is to say, animals. The environment of plants, organ- isms that lack sense organs and muscles, is not relevant in the study of perception and behavior. We shall treat the vegetation of the world as animals do, as if it were lumped together with the inorganic minerals of the world, with the phys- ical, chemical, and geological environment. Plants in general are not animate; they do not move about, they do not behave, they lack a nervous system, and they do not have sensations. In these respects they are like the objects of physics, chemistry, and geology.
 

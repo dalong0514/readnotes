@@ -463,3 +463,61 @@ Turvey, M.T. Carello, C. (2011). Obtaining information by dynamic (effortful) to
 Ullman, S. (1980). Against direct perception. Behavioral and brain sciences, 3, 373-381.
 
 Warren, W. H., Jr. (1984). Perceiving affordances: Visual guidance of stair climbing. Journal of experimental psychology: Human perception and performance, 10, 683-703.
+
+## Conclusion
+
+In the first pages of this book, I promised to give an account of natural vision, not just snapshot vision but vision that is ambient and ambulatory. Ambient vision is what you get from looking around at the scenery. Ambulatory vision is what you get from walking through the countryside.
+
+The standard approach to vision begins with the eye fixed and exposed to a momentary pattern of stimuli. It then goes on to consider vision with the head fixed and the eye allowed to explore the pattern by scanning it, that is, by looking at parts in succession. Each fixation is a glimpse of the pattern comparable to a momentary exposure and is thus supposed to be analogous to a photographic snapshot taken by a camera with a shutter. Each successive snapshot is assumed to be transmitted to the brain. The result of all this is aperture vision, a sequence of snapshots.
+
+The standard approach never gets around to ambient vision with head turning, and it does not even consider ambulatory vision. The. process of perception is supposed to be localized in the head, not in the muscles, and it begins after the sensory input reaches the visual projection area of the cerebral cortex. The mind is in the brain.
+
+The ecological approach to visual perception works from the opposite end. It begins with the flowing array of the observer who walks from one vista to another, moves around an object of interest, and can approach it for scrutiny, thus extracting the invariants that underlie the changing perspective structure and seeing the connections between hidden and unhidden surfaces. This approach next considers the fact of ambient awareness and explains it by the invariance of the sliding samples of the 360° array. Only then is the awareness of a single scene considered, the surfaces seen with the head fixed and the array frozen. The classical puzzles that arise with this kind of vision are resolved by recognizing that the invariants are weaker and the ambiguities stronger when the point of observation is motionless. Finally, the kind of visual awareness obtained with the eye fixed and the retina either briefly exposed or made to stay fixed is considered for what it is, a peculiar result of trying to make the eye work as if it were a camera at the end of a nerve cable. The visual system continues to operate at this photographic level, but the constraints imposed on it are so severe that very little information can be picked up. The level is that of cellular physiology, the photochemistry of retinal cells, the anatomy of the nerves and tracts, and the firing of nerve impulses.
+
+The artificially produced glimpse is an abnormal kind of vision, not the simplest kind on which normal vision is based. It is a poor sort of awarenesss. But it has seemed to be fundamental for hitherto persuasive reasons: it results from an image; it comes from a stimulus; it is a sensory input; it is what the nerve transmits. But if this is so, how could the series of glimpses be integrated? How could the sequence, as I put it, be converted into a scene?
+
+If perception of the environment is truly based on glimpses, it has to be a process of construction. If the data are insufficient, the observer must go beyond the data. How? Some of the greatest minds in history have undertaken to answer this question without success.
+
+I suggested in Chapter 14 that explanations of perception based on sensory inputs fail because they all come down to this: In order to perceive the world, one must already have ideas about it. Knowledge of the world is explained by assuming that knowledge of the world exists. Whether the ideas are learned or innate makes no difference; the fallacy lies in the circular reasoning.
+
+But if, on other hand, perception of the environment is not based on a sequence of snapshots but on invariant-extraction from a flux, one does not need to have ideas about the environment in order to perceive it. Another puzzle is resolved at the same time, the awareness of oneself in the environ- ment. The young child does not need to have ideas of space in order to see the surfaces around him; he need pay no attention to the cues for depth if he can see the layout: he need not compensate for the small retinal image of a distant surface if he never notices the image but only extracts the invariant.
+
+Such is the ecological approach to perception. It promises to simplify psycho- logy by making old puzzles disappear. Especially do all the genuinely mischief- making puzzles connected with the concept of an image become irrelevant. How can one see an upright world with an inverted retinal image? Why doesn't the object change when its retinal image is transposed over the retina? Where is the little man who looks at the image? If the two eyes yield a double image of a single object under some conditions, why not under all?
+
+The very notion of an image as a flattened-out object, a sort of pancake of a solid body, is shown to be misleading. It begins to appear that most of what has been written about pictures and images over the centuries is misleading, or hopelessly vague. We should forget it all and start fresh. The information for the perception of an object is not its image. The information in light to specify something does not have to resemble it, or copy it, or be a simulacrum or even an exact projection. Nothing is copied in the light to the eye of an observer, not the shape of a thing, not the surface of it, not its substance, not its color, and certainly not its motion. But all these things are specified in the light.
+
+What is the future of this approach? It needs to be tested experimentally, it needs to be clarified further, and its implications need to be followed up. It already has adherents, and their work is beginning to appear. Robert Shaw has been thinking along the same lines for some time, and he is developing the theory of invariants (Shaw and McIntyre, 1974) and the implications for epistemology (Shaw and Bransford, 1977). William Mace has been expounding and elaborating the approach (Mace, 1974，1977). Michael Turvey has been considering how to unify visual perception and action (Turvey, 1977). David Lee has been experimenting with visual kinesthesis (Lishman and Lee, 1973; Lee, 1974), and so has Rik Warren (1976). Above all, Eleanor Gibson has published a treatise on the development of perception from an ecological point of view (1969) and is carrying out experiments with infants on their discrim- ination of optical transformations (1978). Even the leading exponent of cognitive psychology, Ulric Neisser, has been sufficiently impressed with the advantages of this approach to describe it sympathetically in his new book (Neisser, 1976).
+
+Nevertheless, as I pointed out in the Introduction, experimental studies that display optical information are not so easy to perform as the old-fashioned experiments that expose a stimulus to a fixed eye. The experimenter cannot simply apply a stimulus that he varies systematically, the "independent variable" of the scientific experiment. Instead, he must make available an optical invariant that he expects will specify something about the world on grounds of ecological optics. This takes ingenuity. Only a few experimenters have learned to do it as yet. But it can be done.
+
+The experimenter should not hope, and does not need, to display all the information in an ambient optic array, let alone all the information in a trans- forming ambient optic array. He is not trying to simulate reality. He could not create the illusion of looking around and walking through the countryside in any case, for he would have to create the countryside. He should not want to deceive the observer. The observer who begins to be fooled should be allowed to make the standard tests for reality, such as getting up and looking behind the screen of the display. The information for a certain dimension of perception or proprioception can be displayed without interference from the accompanying information to specify the display. That is the lesson of research on pictures and motion pictures. What is required is only that the essential invariant be isolated and set forth.
+
+The experimental psychologist should realize that he cannot truly control the perception of an observer, for the reason that it is not caused by stimuli. Only snapshot vision is triggered so that it can be touched off by imposing a stimulus on the receptor, and even then one has to have the agreement of the subject to look into the tachistoscope. Perception cannot be studied by the so-called psychophysical experiment if that refers to physical stimuli and corresponding mental sensations. The theory of psychophysical parallelism that assumes that the dimensions of consciousness are in correspondence with the dimensions of physics and that the equations of such correspondence can be established is an expression of Cartesian dualism. Perceivers are not aware of the dimensions of physics. They are aware of the dimensions of the information in the flowing array of stimulation that are relevant to their lives.
+
+在这本书的前几页，我承诺要讲述自然视觉，不仅仅是快照式的视觉，还包括环境视觉和步行视觉。环境视觉是指你环顾四周时所看到的风景。步行视觉是指你在乡间漫步时所体验到的视觉。
+
+标准的视觉研究方法是从眼睛固定并暴露于瞬间的刺激开始。接下来，它会考虑在头部固定的情况下，眼睛通过扫描来探索图案，也就是依次查看图案的各个部分。每次固定都是对图案的一瞥，类似于相机快门拍摄的瞬间曝光，因此类似于快照。假设每个连续的快照都被传送到大脑。所有这些形成了孔视力，即一系列快照。
+
+标准方法从未涉及到随着头部转动的环境视觉，甚至不考虑步行视觉。感知过程被认为是局限在头部，而不是在肌肉中，并且在感官输入到达大脑皮层的视觉投射区之后才开始。心智在大脑中。
+
+生态视觉感知的方法是从反方向开始的。它从观察者的流动视野开始，观察者从一个视角走到另一个视角，围绕感兴趣的物体移动，并靠近物体进行仔细观察，从而提取出在变化的视角结构下的恒定因素，并看到隐藏和未隐藏表面之间的联系。接下来，这种方法考虑到环境感知，并通过解释 360° 视野中滑动样本的恒定性来说明这一点。只有在这种情况下，才会考虑单一场景的感知，即在头部固定和视野冻结的情况下看到的表面。通过认识到当观察点静止时，恒定性较弱、模糊性较强，可以解决这种视觉方式下出现的经典难题。最后，考虑到固定眼睛和短暂暴露或保持固定的视网膜获得的视觉感知，这实际上是试图让眼睛像一个连接在神经末端的相机那样工作的奇特结果。视觉系统继续在这种「摄影」模式下运作，但由于受到极大限制，能获取的信息非常少。这一级别涉及细胞生理学、视网膜细胞的光化学、神经和神经通路的解剖学以及神经冲动的传递。
+
+这种人为产生的短暂视野是一种异常的视觉方式，而不是正常视觉所依赖的最基本形式。这是一种较差的感知。但是，由于一些长期以来被认为有说服力的原因，它似乎是基本的：它来源于图像；它是由刺激引起的；它是一种感觉输入；它是神经传递的内容。但是，如果是这样，如何将一系列的短暂视野整合起来呢？如何将这些片段转化为一个完整的场景？
+
+如果对环境的感知确实是基于片段的，那么这个过程必然是构建性的。如果数据不足，观察者必须超越这些数据。如何超越？历史上一些最伟大的头脑都曾试图回答这个问题，但都未能成功。
+
+我在第 14 章中提到，基于感觉输入的感知解释之所以失败，是因为它们都归结为一个问题：要感知世界，一个人必须已经对世界有了某种看法。对世界的知识被解释为已经存在的知识。无论这些想法是通过学习得来的还是天生的，这种循环推理都是谬误。
+
+但如果对环境的感知不是基于一系列的快照，而是从持续变化中提取不变性，那么一个人不需要对环境有任何预设的看法也能感知它。同时，另一个问题也得到了回答：个体对自己在环境中的意识。小孩子不需要有空间的概念就能看到周围的表面；如果他能够看到整体布局，就不需要关注深度线索；如果他不关注视网膜上的图像，而只是提取不变性，就不需要为远处物体的小视网膜图像进行补偿。
+
+这就是生态感知方法。它有望通过消除旧谜题来简化心理学。特别是那些与图像概念相关的难题变得不再重要。如何用倒置的视网膜图像看到正立的世界？为什么物体的视网膜图像在视网膜上移位时，物体不会改变？谁在看这些图像？为什么在某些条件下两只眼睛看到的单个物体会产生双重图像，而不是在所有条件下？
+
+认为图像是一个平面化的物体，就像一个固体的煎饼，这种概念实际上是误导性的。几百年来，关于图像和照片的许多论述都是不准确的，甚至是模糊不清的。我们应该抛开这些旧观念，重新出发。感知物体所需的信息并不是它的图像。光中的信息用来指示某物，不需要与它相似，不需要复制它，也不需要成为它的模拟或精确投影。观察者的眼睛并没有在光中复制任何东西，无论是物体的形状、表面、物质、颜色，还是运动，但所有这些信息都在光中得到了体现。
+
+这种新方法的未来如何？它需要通过实验来验证，需要进一步澄清其理论，并且需要研究其影响。目前已经有一些支持者在进行相关工作。Robert Shaw 一直在研究不变理论（Shaw and McIntyre, 1974）及其对认识论的影响（Shaw and Bransford, 1977)。William Mace 也在详细阐述这种方法（Mace, 1974，1977)。Michael Turvey 正在研究如何统一视觉感知和行动（Turvey, 1977)。David Lee 和 Rik Warren 分别在进行视觉动觉方面的实验（Lishman and Lee, 1973; Lee, 1974; Warren, 1976)。最重要的是，Eleanor Gibson 发表了一篇关于从生态角度研究感知发展的论著（1969)，并且正在进行婴儿对光学变形辨别的实验（1978)。甚至认知心理学的主要代表 Ulric Neisser 也在他的新书中提到并支持这种方法（Neisser, 1976)。
+
+尽管如此，如我在介绍中提到的，显示光学信息的实验并不像传统的固定视角实验那样容易进行。实验者不能简单地应用系统变化的刺激作为「独立变量」。相反，他需要提供一种光学不变量，希望这种不变量能根据生态光学解释世界。这需要一定的创造力。目前，只有少数实验者能做到这一点，但这是可行的。
+
+实验者不需要，也不应期望展示环境光学阵列中的所有信息，更不用说变换后的环境光学阵列中的所有信息了。他并不是在模拟现实。即使他想，也无法创造出环顾四周和穿越乡村的幻觉，因为这需要实际创造出乡村。他不应该试图欺骗观察者。观察者若感到被愚弄，应允许他们进行现实测试，例如起身查看显示屏幕后面。某些感知或本体感觉维度的信息可以在不干扰其他信息的情况下显示。这是图片和电影研究的经验教训。关键是要将核心的不变量隔离并展示出来。
+
+实验心理学家应该明白，他无法真正控制观察者的感知，因为感知并不是由刺激引起的。只有快照视觉是通过在感受器上施加刺激来触发的，而且这还需要受试者同意使用速示器。如果所谓的心理物理实验指的是物理刺激和相应的心理感觉，那么这种实验无法研究感知。假设意识的维度与物理维度相对应，并且这种对应关系可以通过方程来描述的心理物理平行理论，其实是笛卡尔二元论的表达。感知者并未意识到物理的维度。他们意识到的是与自己生活相关的刺激流中的信息维度。
