@@ -66,15 +66,35 @@ This is not a new environment-an artificial environment distinct from the natura
 
 The fundamentals of the environment--the substances, the medium, and the surfaces-are the same for all animals. No matter how powerful men become they are not going to alter the fact of earth, air, and water-the litho- sphere, the atmosphere, and the hydrosphere, together with the interfaces that separate them. For terrestrial animals like us, the earth and the sky are a basic structure on which all lesser structures depend. We cannot change it. We all fit into the substructures of the environment in our various ways, for we were all, in fact, formed by them. We were created by the world we live in.
 
+人类对自然环境的改变
+
+在过去的几千年里，地球的面貌在不断地被人类改变。通过切割、清理、平整、铺设和建筑，人类改变了地球的地表布局。尽管自然的沙漠、山脉、沼泽、河流、森林和平原依然存在，但它们正逐渐被人工布局侵蚀和改造。此外，环境中的物质也部分从天然材料转变为人造材料，如青铜、铁、混凝土和面包。甚至环境的介质 —— 对我们来说是空气，对鱼来说是水 —— 也在慢慢改变，尽管在人类出现之前的几百万年里，恢复循环曾经使环境保持稳定。
+
+为什么人类要改变环境的形状和物质？为了改变环境对他的供给。他让对自己有利的资源变得更容易获取，减少了对自己有害的因素。当然，这使得其他大多数动物的生活变得更加艰难。几千年来，人类让自己更容易获得食物、更容易保暖、更容易在夜间看见、更容易行动、更容易教育后代。
+
+这并不是一个全新的环境 —— 一个与自然环境截然不同的人工环境 —— 而是同一个被人类改造过的旧环境。将自然和人工环境分开是错误的，因为人工制品必须由天然物质制作。同样，将文化环境和自然环境分开也是错误的，因为精神产品和物质产品并无本质区别。无论多么多样化，这个世界只有一个，所有动物都生活在其中，尽管我们人类已经为适应自己而改变了它。我们这样做既浪费又轻率，如果不改变我们的方式，后果将是致命的。
+
+环境的基本要素 —— 物质、介质和表面 —— 对所有动物来说都是相同的。无论人类多么强大，他们都无法改变地球、大气和水 —— 也就是岩石圈、大气圈和水圈，以及将它们分隔开的界面。对于我们这样的陆地动物来说，地球和天空是所有其他结构赖以存在的基础。我们无法改变这一点。我们都以不同的方式适应环境的各种子结构，因为我们实际上都是由它们塑造的。我们是由我们生活的世界创造的。
+
 ### 8.3 Some Affordances of the Terrestrial Environment
 
 Let us consider the affordances of the medium, of substances, of surfaces and their layout, of objects, of animals and persons, and finally a case of special interest for ecological optics, the affording of concealmeant by the occluding edges of the environment (Chapter 5).
 
-### 8.4 The Medium
+陆地环境的一些可供性
+
+让我们考虑一下介质、物质、表面及其布局、物体、动物和人，以及一个对生态光学特别感兴趣的案例，即环境的遮蔽边缘提供的隐藏能力（第五章）。
+
+The Medium
 
 Air affords breathing, more exactly, respiration. It also affords unimpeded loco- motion relative to the ground, which affords support. When illuminated and fog-free, it affords visual perception. It also affords the perception of vibratory events by means of sound fields and the perception of volatile sources by means of odor fields. The airspaces between obstacles and objects are the paths and the places where behavior occurs.
 
 The optical information to specify air when it is clear and transparent is not obvious. The problem came up in Chapter 4, and the experimental evidence about the seeing of "nothing" will be described in the next chapter.
+
+介质
+
+空气提供呼吸，更确切地说，是呼吸作用。它还提供了相对于地面的自由运动，地面则提供了支撑。当空气被照亮且无雾时，它提供了视觉感知。空气还通过声场传递振动事件，通过气味场传递挥发性物质的感知。障碍物和物体之间的空气空间是行为发生的路径和场所。
+
+在空气清晰和透明时，识别空气的光学信息并不明显。这个问题在第四章中提出，关于「看不见的东西」的实验证据将在下一章中描述。
 
 The Substances
 
@@ -83,6 +103,14 @@ Water is more substantial than air and always has a surface with air. It does no
 Solid substances, more substantial than water, have characteristic surfaces (Chapter 2). Depending on the animal species, some afford nutrition and some do not. A few are toxic. Fruits and berries, for example, have more food value when they are ripe, and this is specified by the color of the surface. But the food values of substances are often misperceived.
 
 Solids also afford various kinds of manufacture, depending on the kind of solid state. Some, such as flint, can be chipped; others, such as clay, can be molded; still others recover their original shape after deformation; and some resist deformation strongly. Note that manufacture, as the term implies, was originally a form of manual behavior like manipulation. Things were fabric- ated by hand. To identify the substance in such cases is to perceive what can be done with it, what it is good for, its utility; and the hands are involved.
+
+物质
+
+水比空气更具实质性，并且总是有一个与空气接触的表面。虽然它不能供我们呼吸，但它能供我们饮用。作为流体，它可以从容器中倒出；作为溶剂，它可以用来洗涤和沐浴。然而，其表面无法支撑体型较大、组织密度高的动物。水的光学特性主要由其表面特征决定，尤其是由于波纹引起的独特波动（第 5 章）。
+
+比水更具实质性的固体物质有其特征性表面（第 2 章）。对于不同的动物物种，有些固体物质能提供营养，而有些则不能，甚至有些是有毒的。例如，水果和浆果在成熟时的食物价值更高，这可以通过表面的颜色来判断。然而，人们常常误解物质的实际食物价值。
+
+固体物质还可以根据其种类提供不同的制造方式。有些，如燧石，可以被切割；有些，如粘土，可以被塑造；还有一些在变形后可以恢复原状；而有些则非常抗变形。需要注意的是，「制造」一词最初指的是手工操作。识别物质在这种情况下意味着理解它可以做什么，有什么用处，这其中手的作用是不可忽视的。
 
 The Surfaces and their Layouts
 
@@ -96,7 +124,21 @@ A vertical, flat, extended, and rigid surface such as a wall or a cliff face is 
 
 Civilized people have altered the steep slopes of their habitat by building stairways so as to afford ascent and descent. What we call the steps afford stepping, up or down, relative to the size of the person's legs. We are still capable of getting around in an arboreal layout of surfaces, tree branches, and we have ladders that afford this kind of locomotion, but most of us leave that to our children.
 
-A cliff face, a wall, a chasm, and a stream are barriers; they do not afford pedestrian locomotion unless there is a door, a gate, or a bridge. A tree or a rock is an obstacle. Ordinarily, there are paths between obstacles, and these openings are visible. The progress of locomotion is guided by the perception of barriers and obstacles, that is, by the act of steering into the openings and away from the surfaces that afford injury. I have tried to describe the optical information for the control of locomotion (Gibson, 1958), and it will be further elaborated in Chapter 13. The imminence of collision with a surface during loco- motion is specified in a particularly simple way, by an explosive rate of magni- fication of the optical texture. This has been called looming (e.g., Schiff, 1965). It should not be confused, however, with the magnification of an opening between obstacles, the opening up of a vista such as occurs in the approach to a doorway.
+A cliff face, a wall, a chasm, and a stream are barriers; they do not afford pedestrian locomotion unless there is a door, a gate, or a bridge. A tree or a rock is an obstacle. Ordinarily, there are paths between obstacles, and these openings are visible. The progress of locomotion is guided by the perception of barriers and obstacles, that is, by the act of steering into the openings and away from the surfaces that afford injury. I have tried to describe the optical information for the control of locomotion (Gibson, 1958), and it will be further elaborated in Chapter 13. The imminence of collision with a surface during loco- motion is specified in a particularly simple way, by an explosive rate of magnification of the optical texture. This has been called looming (e.g., Schiff, 1965). It should not be confused, however, with the magnification of an opening between obstacles, the opening up of a vista such as occurs in the approach to a doorway.
+
+表面及其布局
+
+我曾提到，水平、平坦、扩展且坚固的表面可以提供支撑。它使得物体在重力作用下能够保持平衡和姿态，因为重力是垂直于表面的力。动物不会像在陡峭的山坡上那样摔倒或滑动。平衡和姿态是其他行为（如移动和操作）的前提条件。第 12 章会详细讨论这个问题，第 9 章则会提供更多关于地面感知的证据。地面确实是陆地动物行为的基础，也是它们视觉感知或所谓空间感知的基础。几何学起源于欧几里得对地球的抽象研究，而不是笛卡尔对空旷空间轴线的抽象。因此，支撑的提供和水平面的几何学并不是不同的讨论领域；它们并不像我们想象的那样分离。
+
+当然，平坦的地面在其上的附着和分离的物体之下。地面上有各种「家具」，也可以说是杂乱无章的。这些坚固、平坦的表面延伸到杂物的背后，并一直延伸到地平线。当然，这不是哥白尼所描述的地球，而是以人类尺度来看，它是平的而不是圆的。无论走到哪里，地面总是被地平线与天空分隔开来，尽管地平线可能被杂物遮挡，但它始终存在。有证据表明，地平线总是可以被看到的，不仅可以在视觉上想象到它，还可以通过触觉感知到，因为任何你触摸的表面都与水平面有关系。
+
+当然，像溪流或湖泊这样水平、平坦但非刚性的表面，并不能支撑站立、行走或奔跑。它们没有立足点，如我们所说。但它们可以提供漂浮或游泳的机会，不过这需要你天生具备或通过学习获得这种能力。
+
+垂直的、平坦的、延伸的刚性表面，比如墙壁或悬崖，则会阻碍行走。介于垂直与水平之间的斜坡，如果平缓，可以行走；如果陡峭，只能攀爬，而且此时表面必须有手脚可以抓住的「握点」。同样，向下的陡坡会导致摔倒，悬崖边缘是一个危险的掉落点，看着就让人害怕。如果我们能够感知到某种地形布局，就能感知到它提供的行动可能性。
+
+为了方便上坡和下坡，文明社会的人们通过建造楼梯来改造陡坡。台阶的高度和人的腿长相适应，提供了上下行走的可能性。我们仍然能够在树枝等表面上移动，并且有梯子辅助这种移动方式，但大多数人把这种活动留给了孩子们。
+
+悬崖、墙壁、深渊和溪流是行人无法通过的障碍，除非有门、栅栏或桥梁。树木或岩石则是行进中的障碍物。通常情况下，障碍物之间都有可见的路径。人们通过感知这些障碍和障碍物，选择合适的开口来前进，避免碰到可能导致受伤的表面。我曾尝试描述控制行进的光学信息（Gibson, 1958)，并将在第 13 章详细说明。当行进中即将碰到某个表面时，这种紧迫感可以通过光学纹理的迅速放大来感知，这被称为「逼近」（例如，Schiff, 1965）。但这与障碍物之间开口的放大不同，比如接近门口时视野开阔的感觉。
 
 The Objects
 
@@ -120,11 +162,41 @@ We have thousands of names for such objects, and we classify them in many ways: 
 
 If this is true for the adult, what about the young child? There is much evid- ence to show that the infant does not begin by first discriminating the qualities of objects and then learning the combinations of qualities that specify them. Phenomenal objects are not built up of qualities; it is the other way around. The affordance of an object is what the infant begins by noticing. The meaning is observed before the substance and surface, the color and form, are seen as such. An affordance is an invariant combination of variables, and one might guess that it is easier to perceive such an invariant unit than it is to perceive all the variables separately. It is never necessary to distinguish all the features of an object and, in fact, it would be impossible to do so. Perception is economical. "Those features of a thing are noticed which distinguish it from other things that it is not-but not all the features that distinguish it from everything that it is not"(Gibson, 1966b, p. 286).
 
+物体
+
+所谓物体的利用性质非常多样。我使用这些术语时有严格的限定，并区分了附着物体和分离物体。这里我们讨论的不是牛顿物理中的独立物体，而是地球上的家具，其中一些是固定在地面上的，不能随意移动。
+
+如果要让分离的物体能够被动物使用，其大小必须与动物的大小相当。但这些相当大小的物体，特别是对于有手的动物来说，可以带来各种各样的行为。物体可以被制造和操控。有些物体是便携的，可以被提起和携带，而有些则不是。有些物体可以被抓握，而有些则不能。要能够被抓握，物体必须有两个相对的表面，且它们之间的距离小于手的跨度。例如，一个五英寸的立方体可以被抓握，而一个十英寸的立方体则不行（Gibson, 1966b, p. 119)。较大的物体需要一个「把手」才能被抓握。注意，一个物体是否具备可抓握的尺寸是在视觉阵列中确定的。如果这是真的，那么触觉的大小感受不必与视觉的大小感受联系起来，就能感知到这种行为机会。
+
+薄片、棍子、纤维、容器、衣物和工具是提供操作机会的分离物体（第 3 章）。以下是更多的例子。
+
+1、一个中等大小和重量的细长物体可以被挥动。如果用来击打，它是一个棍棒或锤子。如果被笼子里的黑猩猩用来拉进超出其范围的香蕉，它是一种耙子。在任何情况下，它都是手臂的延伸。一根坚硬的杆子也可以用作杠杆。一个尖的细长物体可以用来刺穿 —— 如果大，它是矛，如果小则是针或锥子。
+
+2、一个具有尖锐二面角和边缘的坚硬物体可以用来切割和刮擦；它是一把刀。它可以被设计成既能击打又能切割，然后它就是一把斧头。
+
+3、一个中等大小和重量的可抓握坚硬物体可以被投掷。它可以是一个导弹或只是一个玩具，比如一个球。通过手以外的辅助工具发射导弹 —— 如弹弓、弓、投石机、枪等等 —— 是人类成为一种危险物种的行为之一。
+
+4、细长的弹性物体，例如纤维、线、皮带或绳子，可以用来打结、捆绑、捆扎、编织和编织。这些行为通过操作来实现制造目的。
+
+5、一种非常重要的手持工具是能够在表面留下痕迹的工具，例如触笔、刷子、蜡笔、钢笔或铅笔。这些工具可以用来描绘和书写，表示场景和文字。
+
+我们有成千上万的名称来命名这些物体，并且以多种方式对它们进行分类：钳子和扳手是工具；锅和锅是器皿；剑和手枪是武器。这些物体都有自身的属性或特点：颜色、纹理、成分、尺寸、形状及其特征、质量、弹性、刚性和移动性。传统心理学认为，我们之所以感知到这些物体，是因为我们能够区分它们的属性或特点。心理学家在实验室中进行精细的实验，以探明这些属性如何以及多大程度上被区分。心理学家认为，物体是由这些属性组成的。但我现在建议，当我们观察物体时，感知到的是它们的功能，而不是它们的属性。在实验中我们可以区分这些差异的维度，但在日常生活中，我们通常关注的是物体的功能，而不是它们的具体属性组合。
+
+如果这是成年人感知世界的方式，那么幼儿是怎样的呢？大量证据表明，婴儿不是先区分物体的各种属性，然后再学习这些属性的组合。相反，婴儿首先注意到的是物体的可供性（affordance)。在看到物体的物质、表面、颜色和形状之前，婴儿已经理解了它的意义。可供性是一种不变的变量组合，人们可以猜测，感知这种不变的单元比分别感知所有变量要容易得多。实际上，区分一个物体的所有特征既没有必要，也是不可能的。感知是经济的，正如 Gibson 所说：「我们注意到的特征是将一个物体与其他不同事物区分开的特征，但不包括所有可能的区别特征」(Gibson, 1966b, p. 286)。
+
+
+
 TO PERCEIVE AN AFFORDANCE IS NOT TO CLASSIFY AN OBJECT
 
 The fact that a stone is a missile does not imply that it cannot be other things as well. It can be a paperweight, a bookend, a hammer, or a pendulum bob. It can be piled on another rock to make a cairn or a stone wall. These affordances are all consistent with one another. The differences between them are not clear-cut, and the arbitrary names by which they are called do not count for perception. If you know what can be done with a graspable detached object, what it can be used for, you can call it whatever you please.
 
 The theory of affordances rescues us from the philosophical muddle of assuming fixed classes of objects, each defined by its common features and then given a name. As Ludwig Wittgenstein knew, you cannot specify the necessary and sufficient features of the class of things to which a name is given. They have only a "family resemblance." But this does not mean you cannot learn how to use things and perceive their uses. You do not have to classify and label things in order to perceive what they afford.
+
+感知一个物体的可供性并不等同于对它进行分类
+
+一个石头可以作为投掷物，但这并不意味着它不能有其他用途。它可以用作镇纸、书挡、锤子，甚至是钟摆。它还能堆在另一块石头上形成石堆或石墙。这些不同的用途都是一致的，它们之间的界限并不明显，而且这些名称对于感知来说并不重要。如果你知道某个可抓取的物体可以用来做什么，你可以随意称呼它。
+
+物的可供性理论（theory of affordances）解救了我们，使我们摆脱了假设固定的物体类别的哲学困境，这些类别通常是通过其共同特征来定义并给予名称的。正如 Ludwig Wittgenstein 所言，你无法指定给予某个名称的物品类别的必要和充分特征。它们只有一种「家族相似性」(family resemblance)。但这并不意味着你不能学会如何使用物品并感知它们的用途。你不需要对物品进行分类和标记才能感知它们的可供性。
 
 Other Persons and Animals
 
@@ -208,7 +280,7 @@ A wildcat may be hard to distinguish from a cat, and a thief may look like an ho
 
 Nevertheless, however true all this may be, the basic affordances of the environment are perceivable and are usually perceivable directly, without an excessive amount of learning. The basic properties of the environment that make an affordance are specified in the structure of ambient light, and hence the affordance itself is specified in ambient light. Moreover, an invariant vari- able that is commensurate with the body of the observer himself is more easily picked up than one not commensurate with his body.
 
-Summary
+### Summary
 
 The medium, substances, surfaces, objects, places, and other animals have affordances for a given animal. They offer benefit or injury, life or death. This is why they need to be perceived.
 
@@ -217,3 +289,13 @@ The possibilities of the environment and the way of life of the animal go togeth
 There is information in stimulation for the physical properties of things, and presumably there is information for the environmental properties. The doctrine that says we must distinguish among the variables of things before we can learn their meanings is questionable. Affordances are properties taken with reference to the observer. They are neither physical nor phenomenal.
 
 The hypothesis of information in ambient light to specify affordances is the culmination of ecological optics. The notion of invariants that are related at one extreme to the motives and needs of an observer and at the other extreme to the substances and surfaces of a world provides a new approach to psychology.
+
+总结
+
+媒介、物质、表面、物体、地点以及其他动物对于某种动物来说具有「可供性」(Affordances)。这些可供性可能带来好处或伤害，决定生死存亡。因此，动物需要感知这些可供性。
+
+环境与动物的生活方式密不可分。环境限制了动物的行为，这也是生态学中「生态位」概念的体现。虽然在一定程度上，人类可以改变环境的可供性，但人类仍然受制于其所处的环境。
+
+事物的物理属性中包含信息，环境属性中也同样蕴含信息。认为我们必须先区分事物的变量才能理解其意义的观点是值得怀疑的。可供性是基于观察者的属性，既不是纯粹的物理属性，也不是单纯的现象。
+
+在环境光中的信息可以用来确定可供性，这一假说是生态光学的核心思想。从与观察者的动机和需求相关，到与世界的物质和表面相关的「不变性」概念，为心理学提供了一种全新的研究方法。
