@@ -1,4 +1,4 @@
-James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => Preface
+James J. Gibson.(1979.2014).2024079The-Ecological-Approach-to-Visual-Perception.Psychology Press => 0601 Events and the Information for Perceiving Events
 
 ## 0601. Events and the Information for Perceiving Events
 
@@ -8,7 +8,7 @@ Ecological events, as distinguished from microphysical and astronomical events, 
 
 It will also be remembered that substances differ in chemical inertness, or the degree to which they resist reactions with agents like oxygen in the medium. The more inert a substance is, the more its surface and its composition will tend to persist. Substances also differ in their readiness to evaporate or sublimate, and this too affects the persistence of their surfaces.
 
-The distinction between objects that are attached to the ground and those that are not should also be remembered in connection with ecological events. The detached object can be moved without breaking the continuity of its surface with another surface, but the attached object cannot. Note that an object can be resting on a surface of support, in contact with it, without being attached to it. These distinctions will be used in discussing motions as ecological events. 86 The Ecological Approach to Visual Perception
+The distinction between objects that are attached to the ground and those that are not should also be remembered in connection with ecological events. The detached object can be moved without breaking the continuity of its surface with another surface, but the attached object cannot. Note that an object can be resting on a surface of support, in contact with it, without being attached to it. These distinctions will be used in discussing motions as ecological events.
 
 The laws of motion for bodies in space as formulated by Isaac Newton apply only to idealized detached objects. The falling apple that, according to legend, hit Newton on the head and led him to conceive the law of universal gravity was only an incident in a sequence of ecological events: as the seasons changed, the apple had to grow and ripen before it could fall, collide, and finally decay.
 
@@ -22,45 +22,35 @@ The events we are concerned with are "external," so a displacement of the point 
 
 The events we are concerned with are mainly terrestrial, so the motion of the sun across the sky will be put aside, together with the peculiar motions of shadows that depend on it. We are now interested in events that occur quite independently of where the observer is and where the sun is.
 
-What kinds of events can be said to occur, after these exclusions? Tentatively, it would seem that they can be divided into three main varieties: change in the layout of surfaces, change in the color and texture of surfaces, and change in the existence of surfaces. Change of layout is caused by forces; change of color and texture is caused by change in the composition of the substance; and change in the existence of a surface is caused by a change in the state of the substance. Consider them one by one. Events and the Information for Perceiving Events 87 Change of Layout due to Complex Forces
+What kinds of events can be said to occur, after these exclusions? Tentatively, it would seem that they can be divided into three main varieties: change in the layout of surfaces, change in the color and texture of surfaces, and change in the existence of surfaces. Change of layout is caused by forces; change of color and texture is caused by change in the composition of the substance; and change in the existence of a surface is caused by a change in the state of the substance. Consider them one by one.
+
+Change of Layout due to Complex Forces
 
 A change of layout due to complex forces refers to any alteration of the shape of the surfaces of the environment, including the repositioning of detached objects by displacement. Among all the entities that make up the furniture of the earth, some are mobile and some are not. What we are most inclined to call motions are translations and rotations of detached objects-the falling weight, the spin- ning top, the rolling ball, and the hurled missile. We learn about these from studying mechanics. But there are many other changes in the layout of surfaces that are even more significant: the flexible deformations of the surface of another animal, the rippling and pouring of water, the elastic and plastic changes of rubber and clay, and the breaking or rupturing of a surface. We are somewhat less inclined to call these changes motions, but they are nonetheless mechanical events caused by forces. They do not have the elegant simplicity of the motions of celestial bodies under the influence of the force of gravity, but they are lawful and they have a kind of higher-order simplicity at their proper level of analysis.
 
 CHANGES OF LAYOUT
 
 Rigid Translations and Rotations of an Object
-
 Displacements (falling body, flying arrow)
-
 Turns (opening door)
-
 Combinations (rolling ball)
 
 Collisions of an Object
-
 With rebound and without
 
 Nonrigid Deformations of an Object
-
 Inanimate (drops of fluid, lumps of clay)
-
 Animate(change of posture of animal)
 
 Surface Deformations
-
 Waves
-
 Flow
-
 Elastic or plastic changes
 
 Surface Disruptions
-
 Rupturing, cracking
-
 Disintegration
-
-Explosion 88 The Ecological Approach to Visual Perception
+Explosion
 
 The above tabulation, although incomplete, is suggestive. It has to do with what might be called ecological mechanics, which is rather different from either celestial mechanics on the one hand or particle mechanics on the other, including thermodynamics. Carpenters and builders are familiar with this branch of physics, although it is not taught in school. The displacements and turns of detached objects can be classed as changes of layout because they are rearrangements of the furniture of the earth, not pure translations and rotations along and around the three axes of Cartesian coordinate space. The earth is the background of these motions. The terrestrial substratum is an absolute frame of reference for them, since it is itself never displaced or turned. The world does not move, not at this level of analysis. On this account the contemporaries of Copernicus were quite justifiably shocked when he tried to convince them that the world did move.
 
@@ -70,19 +60,9 @@ The subvarieties of events in the above table may, of course, occur in combinati
 
 THE SUBSTRATUM
 
-The earth considered as a substratum is not only that with respect to which
+The earth considered as a substratum is not only that with respect to which anything moves, it is also that with respect to which anything is right side up, or tilted, or inverted. That is to say, it extends from horizon to horizon; it is horizontal. Gravity is absolute, not relative, at the ecological level.
 
-anything moves, it is also that with respect to which anything is right side up,
-
-or tilted, or inverted. That is to say, it extends from horizon to horizon; it is
-
-horizontal. Gravity is absolute, not relative, at the ecological level.
-
-The puzzling psychological problems of the uprightness of a picture
-
-relative to its frame, of a pattern relative to a page, and of an image relative
-
-to a retina are not primary problems but derivative. Events and the Information for Perceiving Events 89
+The puzzling psychological problems of the uprightness of a picture relative to its frame, of a pattern relative to a page, and of an image relative to a retina are not primary problems but derivative.
 
 Note that displacements and turns and deformations, even wave motions and the flow of a stream, may occur without breaking the continuity of any surface. Rupture occurs when the continuity fails, and this is a highly signi- ficant ecological event. For the cracked ground, as in an earthquake, cannot be walked upon, and a torn roof does not afford shelter. The broken pot no longer holds water, and the broken skin of the animal constitutes an injury. The maximum of disruption can be thought of as disintegration. The surface "falls to pieces," as we say, which means a complete failure of continuity. In that case, the event passes from a change in layout to a change in existence; the surface ceases to exist because the substance has changed its"state."
 
@@ -90,47 +70,33 @@ Finally, let us note another very interesting fact about these events: some are 
 
 Change of Color and Texture due to Change in Composition
 
-Theoretically, a surface can change color without changing shape and change shape without changing color. These are often supposed to be independent "qualities"of an object, and much has been made of the supposed difference between the "secondary" qualities of an object and its "primary"qualities. Actually, color and shape are oversimplified qualities, for texture merges with color and yet is a kind of shape at the level of small-scale layout. We shall here speak of color and texture in combination, since they are specific to the compos- ition of the substance. When the substance is altered by a chemical reaction, the surface is altered. It changes in achromatic color and in chromatic color, and it also usually changes texture, inasmuch as the fine structure goes from, say, crystalline to amorphous. Animals need to perceive the affordances of substances, their chemical values or utilities, in advance of making contact with their surfaces, as I have pointed out before (Gibson, 1966b, Ch. 8) and will 90 The Ecological Approach to Visual Perception
-
-return to again in this book. A change in affordance is thus signified by the natural chemical changes of greening, ripening, flowering, and fading. They are important ecological events, as are the physiological reactions of animals that bring about alterations of plumage or fur or skin.
+Theoretically, a surface can change color without changing shape and change shape without changing color. These are often supposed to be independent "qualities"of an object, and much has been made of the supposed difference between the "secondary" qualities of an object and its "primary"qualities. Actually, color and shape are oversimplified qualities, for texture merges with color and yet is a kind of shape at the level of small-scale layout. We shall here speak of color and texture in combination, since they are specific to the compos- ition of the substance. When the substance is altered by a chemical reaction, the surface is altered. It changes in achromatic color and in chromatic color, and it also usually changes texture, inasmuch as the fine structure goes from, say, crystalline to amorphous. Animals need to perceive the affordances of substances, their chemical values or utilities, in advance of making contact with their surfaces, as I have pointed out before (Gibson, 1966b, Ch. 8) and will return to again in this book. A change in affordance is thus signified by the natural chemical changes of greening, ripening, flowering, and fading. They are important ecological events, as are the physiological reactions of animals that bring about alterations of plumage or fur or skin.
 
 CHANGES OF COLOR AND TEXTURE
 
 Plant Surfaces
-
 Greening (increase in chlorophyll)
-
 Fading (decrease in chlorophyll)
-
 Ripening (increase in sugar)
-
 Flowering (presence of nectar)
 
 Animal Surfaces
-
 Coloration of skin (sexual receptivity, as in the baboon)
-
 Change of plumage (maturity)
-
 Change of fur (onset of winter)
 
 Terrestrial Surfaces
-
 Weathering of rock (oxidation)
-
 Blackening of wood(fire)
-
 Reddening of iron (rusting)
 
 The tabulation above presents a few examples of significant surface changes that do not involve gross changes of layout or shape. Commonly, of course, these changes are correlated. Leaves wither and fall as well as turn color when winter approaches. The several varieties of environmental events combine to yield a multiple guarantee of information. A fire with flames, considered as an ecological event instead of an abstract chemical event, consists of complex motions and deformations, fluctuating luminous surfaces, reddening and black- ening of the opaque surfaces, billowing smoke, and finally a disappearance of the solid surfaces. A fire is even specified to the skin, the ears, and the nose as well as to the eyes.
 
 Chemical events at the ecological level involve colored and textured surfaces, whereas chemical events at the molecular and atomic level do not. Molecules and atoms are not colored, and this is an old puzzle for color percep- tion. There is no information in an optic array about radiating atoms, but there is good information about the composition of the substance relative to other substances.
 
-Chemical reactions considered as molecular conversions in test tubes are very often reversible, and this fact can be expressed in chemical equations with Events and the Information for Perceiving Events 91 double arrows pointing in both directions. But let us note that chemical changes at the ecologicallevel are not reversible in time. Ripening, rusting, and burning do not go backward. There are balanced cycles of ecological change, to be sure, as, for example, the carbon dioxide cycle, but they are progressive in time, I think, not reversible.
+Chemical reactions considered as molecular conversions in test tubes are very often reversible, and this fact can be expressed in chemical equations with double arrows pointing in both directions. But let us note that chemical changes at the ecologicallevel are not reversible in time. Ripening, rusting, and burning do not go backward. There are balanced cycles of ecological change, to be sure, as, for example, the carbon dioxide cycle, but they are progressive in time, I think, not reversible.
 
-Waxing and Waning of a Surface due to Change in the
-
-State of Matter
+Waxing and Waning of a Surface due to Change in the State of Matter
 
 A surface is the interface between a substance and the medium. Substances, however complex, can be classed as solid, viscous, viscoelastic, liquid, and particulate. A gas is not a substance although it is, of course, matter. When a substance goes into the gaseous state it becomes merely a compnent of the medium, and its surface ceases to exist. It has not been dematerialized, but it has been desubstantialized. It no longer reflects light, and it is therefore not specified in any ambient array at any point of observation. It has not merely gone out of sight; it has gone out of existence (Chapter 5). Some of the ways in which surfaces are nullified or destroyed or demolished are listed in the left-hand column of the table below.
 
@@ -139,60 +105,28 @@ Surfaces also, of course, come into existence from the gaseous state, or change 
 CHANGES OF SURFACE EXISTENCE
 
 Liquid to gas (evaporating, boiling)
-
 Gas to liquid (condensation, rain)
-
 Solid to gas (sublimation)
-
 Gas to solid?
-
 Cloud to gas(dissipation)
-
 Gas to cloud (formation)
-
 Solid to liquid (melting)
-
 Liquid to solid (freezing)
-
 Solid into solution (dissolving)
-
-Solution into solid (crystallization,
-
-precipitation)
+Solution into solid (crystallization, precipitation)
 
 Disintegration
-
 Aggregation
-
 Biological decay
-
 Biological growth
-
 Destruction
-
 Construction
 
-When ice or snow melts, a surface is so radically altered that it can be consid- ered to be destroyed, and when a puddle of water evaporates, the surface is certainly destroyed. When the reflecting surface of a cloud dissipates, it is anni- hilated although it was semitransparent and barely substantial to begin with, being nothing but a mass of droplets. When a surface disintegrates or an organism dies, the substances are scattered and the surface ceases. Ecological 92 The Ecological Approach to Visual Perception
-
-surface destruction is fairly obvious, but ecological surface creation is not, except for the slow growth of animals and plants.
+When ice or snow melts, a surface is so radically altered that it can be consid- ered to be destroyed, and when a puddle of water evaporates, the surface is certainly destroyed. When the reflecting surface of a cloud dissipates, it is anni- hilated although it was semitransparent and barely substantial to begin with, being nothing but a mass of droplets. When a surface disintegrates or an organism dies, the substances are scattered and the surface ceases. Ecological surface destruction is fairly obvious, but ecological surface creation is not, except for the slow growth of animals and plants.
 
 SURFACE THEORY AND ATOMIC THEORY
 
-The fact that surfaces go out of and come into existence is little recognized
-
-in physics, as noted in Chapter 1. The atomic theory is emphasized instead.
-
-Beginning with Parmenides and Democritus, the theory asserts that nothing
-
-is ever created or destroyed; only the atoms, themselves unchanging, are
-
-rearranged. Aristotle disagreed. He insisted that there was an actual genesis
-
-of things in the world and a passing away of them. At the ecological level
-
-Aristotle was quite right. And it is at this level, the level of surfaces, that we
-
-perceive the world. At the level of atoms we do not (Randall, 1960).
+The fact that surfaces go out of and come into existence is little recognized in physics, as noted in Chapter 1. The atomic theory is emphasized instead. Beginning with Parmenides and Democritus, the theory asserts that nothing is ever created or destroyed; only the atoms, themselves unchanging, are rearranged. Aristotle disagreed. He insisted that there was an actual genesis of things in the world and a passing away of them. At the ecological level Aristotle was quite right. And it is at this level, the level of surfaces, that we perceive the world. At the level of atoms we do not (Randall, 1960).
 
 In the above table I have tried to show the best possible case for the opposi- tion of these processes, but it seems clear that they are not reversible in time. Evaporation and condensation are opposite at a certain level, but a water surface is not created as the reverse of the process by which it is destroyed. In none of these event pairs, I think, is the one simply a going backward of the other,such that if a film of one event were reversed, it would represent the other, as I noted above (Gibson and Kaushall, 1973).
 
@@ -202,7 +136,7 @@ The foregoing classification is a kind of preliminary survey only. Ecological ev
 
 Events as Primary Realities
 
-In the first place, the flow of ecological events is distinct from the abstract passage of time assumed in physics. The stream of events is heterogeneous and differentiated into parts, whereas the passage of time is supposed to be homo- geneous and linear. Isaac Newton asserted that "absolute, true, and mathemat- ical time, of itself and from its own nature, flows equably without relation to Events and the Information for Perceiving Events 93 anything external."But this is a convenient myth. It assumes that events occur "in"time and that time is empty unless"filled." This habitual way of thinking puts the cart before the horse. We should begin thinking of events as the primary realities and of time as an abstraction from them-a concept derived mainly from regular repeating events, such as the ticking of clocks. Events are perceived, but time is not (Gibson, 1975).
+In the first place, the flow of ecological events is distinct from the abstract passage of time assumed in physics. The stream of events is heterogeneous and differentiated into parts, whereas the passage of time is supposed to be homo- geneous and linear. Isaac Newton asserted that "absolute, true, and mathemat- ical time, of itself and from its own nature, flows equably without relation to anything external."But this is a convenient myth. It assumes that events occur "in"time and that time is empty unless"filled." This habitual way of thinking puts the cart before the horse. We should begin thinking of events as the primary realities and of time as an abstraction from them-a concept derived mainly from regular repeating events, such as the ticking of clocks. Events are perceived, but time is not (Gibson, 1975).
 
 It is the same with space as with time. Objects do not fill space, for there was no such thing as empty space to begin with. The persisting surfaces of the environment are what provide the framework of reality. The world was never a void. As for the medium, the region in which motion and locomotion can occur, where light can reverberate and surfaces can be illuminated, this might be called room but it is not space. Surfaces and their layout are perceived, but space is not, as I have long been arguing (Gibson, 1950).
 
@@ -216,9 +150,7 @@ There is always some degree of recurrence and some degree of nonrecurrence in th
 
 Reversible and Nonreversible events
 
-Some ecological events are reversible sequences, whereas others are nonreversible. Change of position can go backward, but change of state cannot. More exactly, the sequential order of the short events that make up a long event, beginning to 94 The Ecological Approach to Visual Perception
-
-end, cannot be turned around, end to beginning, without violating certain laws of ecological physics. Breaking is not reciprocal to mending, and when it is made to seem so the event is magical. This fact is in contrast to events governed by the formal laws of physics where, except for thermodynamics, events could as well go backward as forward. The variable of time in these equations "has no arrow." This suggests then that the so-called irreversibility of time is actually the irrevers- ibility of some, but not all, ecological events. It is simply not true that the only way of specifying the direction of time is by increase of entropy.
+Some ecological events are reversible sequences, whereas others are nonreversible. Change of position can go backward, but change of state cannot. More exactly, the sequential order of the short events that make up a long event, beginning to end, cannot be turned around, end to beginning, without violating certain laws of ecological physics. Breaking is not reciprocal to mending, and when it is made to seem so the event is magical. This fact is in contrast to events governed by the formal laws of physics where, except for thermodynamics, events could as well go backward as forward. The variable of time in these equations "has no arrow." This suggests then that the so-called irreversibility of time is actually the irrevers- ibility of some, but not all, ecological events. It is simply not true that the only way of specifying the direction of time is by increase of entropy.
 
 The Nesting of Events
 
@@ -230,23 +162,21 @@ Finally, it should be emphasized that some natural events demand or invite appro
 
 The Optical Information for Perceiving Events
 
-We can now ask what happens in the ambient optic array when there is an event in the environment. What specifies the event? In general terms, the Events and the Information for Perceiving Events 95 answer must be that there is a disturbance in the invariant structure of the array. Presumably there are different kinds of disturbances for different kinds of events.
+We can now ask what happens in the ambient optic array when there is an event in the environment. What specifies the event? In general terms, the answer must be that there is a disturbance in the invariant structure of the array. Presumably there are different kinds of disturbances for different kinds of events.
 
 Once again, let us remind ourselves that events in the world should not be confused with the information in light corresponding to them. Just as there are no material objects in an array but only the invariants to specify objects, so there are no material events in an array but only the information to specify events. No object in the world is literally replicated in ambient light by a copy or simulacrum. And as for what happens in the world, it could not possibly be replicated or copied in the light. We ought to realize this, but nevertheless there has been a strong temptation to assume that the motions of bodies in the world are copied by motions of elements in the light, or at least that motions in two dimensions are copied, although not motions in depth. But I shall try to show that this assumption is quite mistaken since the two kinds of "motion,"physical and optical, have nothing in common and probably should not even have the same term applied to them. The beginning and the end of the disturbance in the light correspond to the beginning and the end of the event in the world, but that is about as far as the correspondence goes.
 
 Mechanical Events
 
-With respect to mechanical events, consider first the case of a rigid translation where the distance of the object from the point of observation remains constant. As the object is displaced relative to the environment, you might think that the corresponding visual solid angle would simply be displaced relative to the sphere of ambient light. The visual form would not change; the "figure"would simply move over the "ground."But this is wrong, however plausible it sounds. The visual solid angle for the object is only one of an array of solid angles. The array is filled; it is mathematically dense. A given patch cannot move in the way that a body can move in space, for it has no space to move in. What happens is nothing simpler than a disturbance of structure. At one border of the visual solid angle, progressive deletion occurs, while at the opposite border progressive accretion occurs. The former corresponds to the leading edge of the object and the latter to the trailing edge. Or, if the background of the translating object is not textured, as happens with an object moving in a large, empty gap such as the sky, then the interspaces between the edges of the object and the nearest edges constitute patches that are decremented and incremented. This decre- menting and incrementing is similar to the deletion and accretion of textural units. What I am saying is that even a motion in the sky is a change in the sky- form, that even a displacement within the frame of a window is a change of structure and not simply a motion.
+With respect to mechanical events, consider first the case of a rigid translation where the distance of the object from the point of observation remains constant. As the object is displaced relative to the environment, you might think that the corresponding visual solid angle would simply be displaced relative to the sphere of ambient light. The visual form would not change; the "figure"would simply move over the "ground."But this is wrong, however plausible it sounds. The visual solid angle for the object is only one of an array of solid angles. The array is filled; it is mathematically dense. A given patch cannot move in the way that a body can move in space, for it has no space to move in. What happens is nothing simpler than a disturbance of structure. At one border of the visual solid angle, progressive deletion occurs, while at the opposite border progressive accretion occurs. The former corresponds to the leading edge of the object and the latter to the trailing edge. Or, if the background of the translating object is not textured, as happens with an object moving in a large, empty gap such as the sky, then the interspaces between the edges of the object and the nearest edges constitute patches that are decremented and incremented. This decre-menting and incrementing is similar to the deletion and accretion of textural units. What I am saying is that even a motion in the sky is a change in the sky- form, that even a displacement within the frame of a window is a change of structure and not simply a motion.
 
-The above case of rigid translation is special; the object neither approaches nor recedes from the point of observation, and no change occurs within the 96 The Ecological Approach to Visual Perception
-
-contour corresponding to the object. Normally there is magnification or mini- fication of the contour. Magnification is accompanied by progressive deletion of the optical structure outside the contour and minification by its opposite, progressive accretion. This says that an object hides more and more of the environment as it comes closer to the point of observation, and less and less as it goes farther away. Magnification of a form in the array means the approach of something, and minification means the recession of something. When a visual solid angle of the ambient array approaches a hemisphere, the ultimate limit that a solid angle can reach, an angle 180° in width, an event of great signific- ance is specified, that is, an object in contact with the point of observation. This is a general law of natural perspective. The actual pickup of this information by an animal having eyes is a psychological problem of great interest. The behavior of animals when an impending contact or collision is specified by this "looming" of the form has been studied by W. Schiff (1965). What happens when the observer approaches an object or an aperture is different and will be described in Chapter 12.
+The above case of rigid translation is special; the object neither approaches nor recedes from the point of observation, and no change occurs within the contour corresponding to the object. Normally there is magnification or mini- fication of the contour. Magnification is accompanied by progressive deletion of the optical structure outside the contour and minification by its opposite, progressive accretion. This says that an object hides more and more of the environment as it comes closer to the point of observation, and less and less as it goes farther away. Magnification of a form in the array means the approach of something, and minification means the recession of something. When a visual solid angle of the ambient array approaches a hemisphere, the ultimate limit that a solid angle can reach, an angle 180° in width, an event of great signific- ance is specified, that is, an object in contact with the point of observation. This is a general law of natural perspective. The actual pickup of this information by an animal having eyes is a psychological problem of great interest. The behavior of animals when an impending contact or collision is specified by this "looming" of the form has been studied by W. Schiff (1965). What happens when the observer approaches an object or an aperture is different and will be described in Chapter 12.
 
 These optical disturbances are clearly not copies of the corresponding motions of objects, as everyone would agree. But what about the case of the pure rotation of an object on its axis, a Newtonian spin? There need be little or no progressive incrementing and decrementing of the background in this case. If the object is a sphere, disk, or wheel that rotates on an axis that is on the line of sight to the point of observation, you might say that the rotation of the circular form in the array is a copy of the rotation of the circular object in the world, point for point. But this would be a misconception, even for this special case. What happens optically is a sort of shearing or slippage of the texture at the contour as the object rotates in front of its background, although nothing is taken from or added to the array. This is a disturbance in the continuity of the array. Another way of putting it is to say that the align- ments of textural units, the radii of the circle, for instance, are shifted at the contour. Apart from this special case, all other rotations of objects, and all noncircular objects, will cause progressive loss and gain of optical texture by foreshortening to the limit at one border and inverse foreshortening from the limit at the other border; that is to say, faces of the object will go out of and come into sight. In short, objects in general cannot rotate without causing a change of occlusion.
 
-What happens in the array when a surface in the world is deformed? It is plausible in that case to suppose that the deformation of the optical texture is a copy of the deformation of the substantial texture, since the optical units are projections of the substantial units, by natural perspective, and are in one-to-one correspondence with them. It would seem that the uneven flow of the surface of water in a river-the bubbles and flecks of the surface-has a corresponding flow of the optical texture in the array. But this does not hold for the ripples or waves over the surface, because the ripples do not move in the Events and the Information for Perceiving Events 97 same way the textured surface does. The fluctuation of light and shade does not correspond to the surface. And, of course, if the crests of the waves are high they will begin to hide the troughs, and the occluding edges will spoil the projective correspondence.
+What happens in the array when a surface in the world is deformed? It is plausible in that case to suppose that the deformation of the optical texture is a copy of the deformation of the substantial texture, since the optical units are projections of the substantial units, by natural perspective, and are in one-to-one correspondence with them. It would seem that the uneven flow of the surface of water in a river-the bubbles and flecks of the surface-has a corresponding flow of the optical texture in the array. But this does not hold for the ripples or waves over the surface, because the ripples do not move in the same way the textured surface does. The fluctuation of light and shade does not correspond to the surface. And, of course, if the crests of the waves are high they will begin to hide the troughs, and the occluding edges will spoil the projective correspondence.
 
-What happens in the array when a surface is ruptured or broken? The math- ematical continuity of the surface texture fails, and so does the mathematical continuity of the optical texture. As the crack in the surface becomes a gap, occluding edges appear where there were none previously. As the gap widens, a new surface is revealed. A different optical texture fills the gap and is added to the array. This emergence of new structure in the gap is perhaps the crucial information. A precise decription is needed, but this may prove to be difficult. Mathematicians do not seem to have been successful with the problem of discontinuity.
+What happens in the array when a surface is ruptured or broken? The math-ematical continuity of the surface texture fails, and so does the mathematical continuity of the optical texture. As the crack in the surface becomes a gap, occluding edges appear where there were none previously. As the gap widens, a new surface is revealed. A different optical texture fills the gap and is added to the array. This emergence of new structure in the gap is perhaps the crucial information. A precise decription is needed, but this may prove to be difficult. Mathematicians do not seem to have been successful with the problem of discontinuity.
 
 With respect to mechanical events of all sorts, then, it is a serious mistake to assume that "an optical motion is a projection in two dimensions of a physical motion in three dimensions"(Gibson, 1957，p. 289)，as I myself once wrote in a paper on what I called "optical motions and transformations." The notion of point-to-point correspondence in projective geometry, simple and powerful as it is, does not apply to the optics of events any more than it applies to the optics of opaque surfaces. For it leaves occlusion out of account. The fallacy lies deep in our conception of empty space, especially the so-called third dimension of space. Whatever the perception of space may be, if there is any such thing, it is not simply the perception of the dimension of depth.
 
@@ -256,9 +186,7 @@ What happens in the optic array when the composition of a surface in the multico
 
 The reflectances of surfaces tend to persist insofar as the substances are chemically inert, as I pointed out, and this persistence is a source of invariant structure in the ambient optical array. But they do not persist when the substances are not inert, and the surfaces of organisms especially are chemically active. Plants and animals change their color and texture with the seasons of the year.
 
-But, unhappily, we do not know what happens in the optic array when one of the surfaces of the environment changes color. There is a "disturbance,"no doubt, of the underlying invariant structure, but that is vague. The difficulty is that we do not know what invariant in an array specifies a persistent surface color 98 The Ecological Approach to Visual Perception
-
-in the world, let alone a changing surface color. We do not know what specifies composition. We do not know how black and white are specified separately from shaded and lighted. I suggested that the moving source of illumination was basic to the problem, but I have not developed the theory.
+But, unhappily, we do not know what happens in the optic array when one of the surfaces of the environment changes color. There is a "disturbance,"no doubt, of the underlying invariant structure, but that is vague. The difficulty is that we do not know what invariant in an array specifies a persistent surface color in the world, let alone a changing surface color. We do not know what specifies composition. We do not know how black and white are specified separately from shaded and lighted. I suggested that the moving source of illumination was basic to the problem, but I have not developed the theory.
 
 It is easier to say what happens in the optic array when one of the surfaces of the environment changes texture. The pigment texture of a flat, conglomerate surface is projected in the array, and the quality, density, and regularity of the pigment texture are specified in the optical texture despite all kinds of perspective transformations. These "forms"of texture are also invariant under changing direction of illumination and changing amount of illumination. Perhaps the composition of the substance is given in this way and, since that is what counts for animals, the pure abstract reflectance of the surface is of lesser importance than we are apt to suppose.
 
@@ -266,24 +194,17 @@ Destruction and Creation of Surfaces
 
 Finally, we ask what information is in an optic array for the coming into and going out of existence of surfaces caused by changes in the state of matter. The reader will recall that whenever ambient light is structured in one part and unstructured in an adjacent part a surface is specified in the former and a void in the latter. Thus, the textured region below the horizon specifies the solid earth, and the homogeneous region above it specifies the empty sky. Similarly, the heterogeneous areas in the sky specify surfaces, even if only clouds, and the homogeneous areas between clouds specify the absence of a surface. The leafy canopy in a forest provides an overhead texture; the holes in the canopy are textureless, and it is into these holes that the birds fly. So long as any visual solid angle in the array remains unstructured it specifies a hole; it can be magnified to the hemispherical limit, and the bird will not collide with any surface but will fly through the hole.
 
-In the upper hemisphere of the ambient array, cloud surfaces dissipate, and we say they vanish. The optical texture is supplanted by the absence of texture. Cloud surfaces also form in the sky, and we say that they have material- ized. The absence of texture is supplanted by texture. In the lower hemisphere of the array, the optical transitions are more complex, for there is always a background texture. With evaporation of a liquid surface, or the sublimation of a solid surface, or the dissolving of it, the optical texture is supplanted by that of whatever lay behind it. As one structure is nullified, another takes its place. Sometimes the substance of the object becomes transparent during the transition, which means that one surface is specified behind another. This information is displayed in what the motion picture technician calls a dissolve, whereby one layout goes out of sight as another comes into sight in precisely the same place. There is a "fade-out" and a "fade-in."both of which occur at the same time. Events and the Information for Perceiving Events 99
+In the upper hemisphere of the ambient array, cloud surfaces dissipate, and we say they vanish. The optical texture is supplanted by the absence of texture. Cloud surfaces also form in the sky, and we say that they have material- ized. The absence of texture is supplanted by texture. In the lower hemisphere of the array, the optical transitions are more complex, for there is always a background texture. With evaporation of a liquid surface, or the sublimation of a solid surface, or the dissolving of it, the optical texture is supplanted by that of whatever lay behind it. As one structure is nullified, another takes its place. Sometimes the substance of the object becomes transparent during the transition, which means that one surface is specified behind another. This information is displayed in what the motion picture technician calls a dissolve, whereby one layout goes out of sight as another comes into sight in precisely the same place. There is a "fade-out" and a "fade-in."both of which occur at the same time.
 
 THE THEORY OF SPIRITS
 
 These our actors
-
 Are melted into air, into thin air:
-
 And, like the baseless fabric of this vision,
-
 The cloud-capped towers, the gorgeous palaces,
-
 The solemn temples, the great globe itself
-
 Yea, all which it inherit, shall dissolve
-
 And, like this insubstantial pageant faded,
-
 Leave not a rack behind.
 
 Shakespeare, The Tempest
@@ -296,23 +217,15 @@ The Kinds of Disturbance of Optical Structuce
 
 I said that the most general term for what happens in the optic array when something happens in the world is a disturbance of its structure. There is no existing terminology for describing optical changes (or physical changes, for that matter), so one has to grope for the best terms. I have spoken of optical trans- formations and of permutations. I talked about fluctuations in connection with changing light and shade. I have referred to optical transitions. I argued that one should not speak of motions in the array. The best general term seems to be disturbances. Consider the kinds that have been described:
 
-1. Progressive deletion and accretion of units on one side of a contour
+1. Progressive deletion and accretion of units on one side of a contour (displacement of an object against a background)
 
-(displacement of an object against a background) 100 The Ecological Approach to Visual Perception
-
-2. Progressive decrementing and incrementing of gaps (displacement of an
-
-object against the sky)
+2. Progressive decrementing and incrementing of gaps (displacement of an object against the sky)
 
 3. Shearing or slippage of optical texture at a contour (rotation of a disk)
 
-4. Perspective transformation by foreshortening and its opposite (turning of
+4. Perspective transformation by foreshortening and its opposite (turning of the face of an object)
 
-the face of an object)
-
-5. Magnification to the limit and minification (approach and recession of an
-
-object)
+5. Magnification to the limit and minification (approach and recession of an object)
 
 6. Deformation (fluid, viscous, and elastic events)
 
@@ -328,29 +241,17 @@ What a strange list of phenomena! They are not easy to describe or to under- sta
 
 Can these disturbances of structure be treated mathematically? They surely cannot all be treated with the same mathematical method, for some of them do not conform to the assumptions of the theory of sets. Some of the above changes do not preserve a one-to-one mapping of units over time, inasmuch as the array gains or loses units in time. Accretion or deletion of texture during occlusion is one such case. Foreshortening or compression of texture preserves one-to-one mapping only until it reaches its limit, after which texture is lost. The emer- gence of new texture with rupturing of a surface, the nullification of texture with dissipation of a surface, and the substitution of new texture for old are still other cases of the failure of one-to-one mapping, or projective correspondence. In all of these cases it is not the fact that each unit of the ambient array at one time goes into a corresponding unit of the array at a later time. The case of an optic array that undergoes "fashing" or scintillation of its units is another example, and so is what I called fluctuation in connection with changing light and shade.
 
-On the other hand, some of these optical disturbances do seem to preserve one-to-one correspondence of units over time, namely, the perspective trans- formations, the deformations or topological transformations, and even the shearing or slippage of optical texture at a contour. In the case of a partial permutation of a spot-texture, or a radical permutation such as the random displacements called Brownian movement, there is still a persistence of units Events and the Information for Perceiving Events 101 without gain or loss. The invariants under transformation, the ratios and proportions and relations among units, are richest for the disturbances at the beginning of the above list and poorest for the permutations at the end, but invariants are discoverable throughout. A disturbance of connectedness or adja- cent order is more serious than a mere disturbance of form. A complete scram- bling of the adjacent order of units is still more serious. But a mathematical theory of invariants may be possible for all these disturbances of structure with persistence. What is lacking is a theory of the invariants that are preserved under disturbances with nonpersistence of units.
+On the other hand, some of these optical disturbances do seem to preserve one-to-one correspondence of units over time, namely, the perspective trans- formations, the deformations or topological transformations, and even the shearing or slippage of optical texture at a contour. In the case of a partial permutation of a spot-texture, or a radical permutation such as the random displacements called Brownian movement, there is still a persistence of units without gain or loss. The invariants under transformation, the ratios and proportions and relations among units, are richest for the disturbances at the beginning of the above list and poorest for the permutations at the end, but invariants are discoverable throughout. A disturbance of connectedness or adja- cent order is more serious than a mere disturbance of form. A complete scram- bling of the adjacent order of units is still more serious. But a mathematical theory of invariants may be possible for all these disturbances of structure with persistence. What is lacking is a theory of the invariants that are preserved under disturbances with nonpersistence of units.
 
 THE OPTICAL MAGNIFICATION OF NESTED FORMS
 
-If a surface is composed of units nested within larger units, its optic array is
-
-composed of solid angles nested within larger solid angles. As a point of
-
-observation approaches a surface, all angles are magnified toward the limit
-
-of a whole angle (180°), even those whose units were too small to see at a
-
-distance. The closer a surface, the more its subordinate units become visible.
-
-Does this progress have an end?
+If a surface is composed of units nested within larger units, its optic array is composed of solid angles nested within larger solid angles. As a point of observation approaches a surface, all angles are magnified toward the limit of a whole angle (180°), even those whose units were too small to see at a distance. The closer a surface, the more its subordinate units become visible. Does this progress have an end?
 
 These disturbances in the optic array are not similar to the events in the environment that they specify. The superficial likenesses are misleading. Even if the optical disturbances could be reduced to the motions of spots, they would not be like the motions of bodies or particles in space. Optical spots have no mass and no inertia, they cannot collide, and in fact, because they are usually not spots at all but forms nested within one another, they cannot even move. This is why I suggested that a so-called optical motion had so little in common with a physical motion that it should not even be called a motion.
 
 In what way, if any, does an optical disturbance correspond to the event in the environment that it specifies? It corresponds in sequential order. The begin- ning and the end of the disturbance in the array are concurrent with the begin- ning and the end of the event in the environment, and there is no latency or delay. If events are simultaneous, the disturbances are simultaneous. If an event consists of subordinate events, then the disturbance will consist of subordinate disturbances, as when a ball rolls downstairs in a sequence of bounces. If an event is gradual, the disturbance is gradual (a balloon being blow up), and if an event is abrupt, the disturbance is abrupt (the balloon bursting). If an event is unitary (a ball rolling behind a screen and then out again), the disturbance is unitary-deletion and then accretion at the occluding edges. Or so, at least, I suggested.
 
-If a series of repeated events occurs in the environment, a series of repeated disturbances occurs in the ambient optic array. When the events are mechanical, 102 The Ecological Approach to Visual Perception
-
-these optical disturbances are usually accompanied by sounds, as in the colliding of objects and the rupturing or cracking of surfaces. The chains of optical and acoustical disturbances run in parallel. And the sequential order of this inform- ation flow cannot be tampered with. Unlike the adjacent order of a series of objects, the sequential order of a series of events cannot be rearranged. Some of the individual events that compose the grand sequence of a day can go backward, displacements for example, but the sequential order of their occurrence is immutable. This is why "time"is said to have an "arrow,"I believe, and this is why "time travel" is a myth.
+If a series of repeated events occurs in the environment, a series of repeated disturbances occurs in the ambient optic array. When the events are mechanical, these optical disturbances are usually accompanied by sounds, as in the colliding of objects and the rupturing or cracking of surfaces. The chains of optical and acoustical disturbances run in parallel. And the sequential order of this inform- ation flow cannot be tampered with. Unlike the adjacent order of a series of objects, the sequential order of a series of events cannot be rearranged. Some of the individual events that compose the grand sequence of a day can go backward, displacements for example, but the sequential order of their occurrence is immutable. This is why "time"is said to have an "arrow,"I believe, and this is why "time travel" is a myth.
 
 The Causation of Events
 
@@ -364,8 +265,8 @@ Summary
 
 A preliminary classification of ecological events was attempted. Only if we have decided what to take as an event can we describe the change in the optic array that results from it. And only after that can we begin to do experiments on the perception of an event. The assumption that a motion in the world brings about a motion in the optic array is quite wrong, although it is often taken for granted.
 
-Three varieties of events were distinguished: changes of surface layout, changes of surface color or texture, and changes in the existence of a surface. Examples of the first variety are translations and rotations of an object, colli- sions, deformations, and disruptions. Examples of the second are the often nameless but significant alterations of the surfaces of plants and animals. Events and the Information for Perceiving Events 103 Examples of the third are the transitions of evaporation, dissipation, melting, dissolving, and decay. Although some of these events are reversible, many are not.
+Three varieties of events were distinguished: changes of surface layout, changes of surface color or texture, and changes in the existence of a surface. Examples of the first variety are translations and rotations of an object, colli- sions, deformations, and disruptions. Examples of the second are the often nameless but significant alterations of the surfaces of plants and animals. Examples of the third are the transitions of evaporation, dissipation, melting, dissolving, and decay. Although some of these events are reversible, many are not.
 
 Ecological events, it was concluded, are nested within longer events, are sometimes recurrent and sometimes novel, are meaningful, and do not flow evenly in the manner of Newton's "absolute mathematical time."
 
-The optical information for distinguishing the various events can only be various disturbances of the local structure of the optic array. A very tentative description was given of certain types of optical disturbance: deletion- accretion, shearing, transformation, magnification-minification, deformation, nullification, and substitution. These disturbances have only begun to be studied, and the mathematical analysis of them has scarcely been attempted. Nevertheless, strange to say, they are what we are visually most sensitive to, all of us, animals, babies, men, women, and moviegoers.
+The optical information for distinguishing the various events can only be various disturbances of the local structure of the optic array. A very tentative description was given of certain types of optical disturbance: deletion-accretion, shearing, transformation, magnification-minification, deformation, nullification, and substitution. These disturbances have only begun to be studied, and the mathematical analysis of them has scarcely been attempted. Nevertheless, strange to say, they are what we are visually most sensitive to, all of us, animals, babies, men, women, and moviegoers.

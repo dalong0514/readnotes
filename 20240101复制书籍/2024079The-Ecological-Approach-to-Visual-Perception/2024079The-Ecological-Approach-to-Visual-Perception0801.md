@@ -184,8 +184,6 @@ If this is true for the adult, what about the young child? There is much evid- e
 
 如果这是成年人感知世界的方式，那么幼儿是怎样的呢？大量证据表明，婴儿不是先区分物体的各种属性，然后再学习这些属性的组合。相反，婴儿首先注意到的是物体的可供性（affordance)。在看到物体的物质、表面、颜色和形状之前，婴儿已经理解了它的意义。可供性是一种不变的变量组合，人们可以猜测，感知这种不变的单元比分别感知所有变量要容易得多。实际上，区分一个物体的所有特征既没有必要，也是不可能的。感知是经济的，正如 Gibson 所说：「我们注意到的特征是将一个物体与其他不同事物区分开的特征，但不包括所有可能的区别特征」(Gibson, 1966b, p. 286)。
 
-
-
 TO PERCEIVE AN AFFORDANCE IS NOT TO CLASSIFY AN OBJECT
 
 The fact that a stone is a missile does not imply that it cannot be other things as well. It can be a paperweight, a bookend, a hammer, or a pendulum bob. It can be piled on another rock to make a cairn or a stone wall. These affordances are all consistent with one another. The differences between them are not clear-cut, and the arbitrary names by which they are called do not count for perception. If you know what can be done with a graspable detached object, what it can be used for, you can call it whatever you please.
@@ -206,6 +204,14 @@ What the male affords the female is reciprocal to what the female affords the ma
 
 The other person, the generalized other, the alter as opposed to the ego, is an ecological object with a skin, even if clothed. It is an object, although it is not merely an object, and we do right to speak of he or she instead of it. But the other person has a surface that reflects light, and the information to specify what he or she is, invites, promises, threatens, or does can be found in the light.
 
+其他人和动物
+
+环境中最丰富和复杂的互动是由其他动物和我们人类提供的。尽管这些生物有着封闭的表面，但它们可以改变表面形状，同时保持基本形态。它们会移动位置，改变身体姿势，摄取和排放物质，并自发地进行这些活动，这意味着它们的运动是有生命的。这些生物虽然遵循力学定律，但又不完全受其约束，因为它们的行为并不完全由这些定律支配。它们与普通的物体截然不同，婴儿几乎立即能够将它们与植物和非生物区分开来。当你触摸它们时，它们会有所反应；当你打击它们时，它们会反击。总之，它们能够与观察者和彼此互动。行为引发行为，心理学和社会科学的研究内容可以看作是对这一基本事实的详细探讨。性行为、养育行为、攻击行为、合作行为、经济行为和政治行为都依赖于对他人行为的感知，或者有时是对其的误解。
+
+雄性与雌性之间，婴儿与母亲之间，猎物与捕食者之间，买方与卖方之间的相互关系都是互惠的。这些互惠关系虽然复杂，但遵循一定的规律，并且基于触觉、声音、气味、味道和环境光中的信息获取。这与我们感知脚下地面的支撑一样，都是基于刺激信息。因为动物和人只有在它们是可以触摸、听见、闻到、尝到或看到的情况下，才能提供关于它们自己的信息。
+
+他人，与自我相对的他人，是一个有皮肤的生态对象，即使穿着衣服。虽然他人不仅仅是一个对象，因此我们用「他」或「她」来称呼，而不是「它」。他人的表面反射光线，通过光线我们可以获得关于他或她的身份、邀请、承诺、威胁或行为的信息。
+
 Places and Hiding Places
 
 The habitat of a given animal contains places. A place is not an object with definite boundaries but a region (Chapter 3). The different places of a habitat may have different affordances. Some are places where food is usually found and others where it is not. There are places of danger, such as the brink of a cliff and the regions where predators lurk. There are places of refuge from predators. Among these is the place where mate and young are, the home, which is usually a partial enclosure. Animals are skilled at what the psychologist calls place-learning. They can find their way to significant places.
@@ -218,6 +224,18 @@ All of these facts and many more depend on the principle of occluding edges at a
 
 Note also that a glass wall affords seeing through but not walking through, whereas a cloth curtain affords going through but not seeing through. Architects and designers know such facts, but they lack a theory of affordances to encom-pass them in a system.
 
+地点与藏身处
+
+动物的栖息地包括许多地点。地点不是有明确边界的物体，而是一个区域（第 3 章）。不同地点可能提供不同的功能。有些地方通常有食物，有些地方则没有。有些地方存在危险，比如悬崖边缘和捕食者潜伏的区域。也有些地方是避难所，可以躲避捕食者，其中包括伴侣和幼崽所在的家，通常是部分封闭的。动物在「地点学习」方面非常熟练，它们可以找到通往重要地点的路。
+
+一种重要的地方，通过生态视觉感知方法可以理解的是一个提供隐蔽的地方，一个藏身之处。需要注意的是，这涉及到社会感知并提出了认识论的问题。将自己隐藏起来和将一个独立的物体隐藏起来有不同的动机。每个孩子都会发现，一个适合藏身的地方并不一定适合藏宝物。一个独立的物体可以对其他观察者和自己隐藏，而观察者的身体只能对其他观察者隐藏，不能对自己隐藏，正如上一章所强调的。动物和孩子一样，既会隐藏自己也会隐藏物体如食物。
+
+根据环境光学数组的定律（第 5 章)，在任何固定的观察点，一些部分是显露的，而其他部分则是隐藏的。这个定律的逆命题是，观察者自己作为环境的一部分，在一些固定的观察点上是显露的，而在其余的点上是隐藏的。观察者不仅可以感知到其他观察者是否能看到自己，还能感知到自己是否能看到其他观察者。显然，玩躲猫猫的婴儿和玩捉迷藏的孩子们正在练习这种理解。隐藏就是将自己的身体放在其他观察者看不到的地方。「好」的藏身之处是在几乎所有观察点上都是隐藏的地方。
+
+所有这些事实以及更多的内容都依赖于观察点上的遮挡边缘原理、可逆遮挡法则以及不透明和透明物质的特性。例如，我们在住宅设计中提到的隐私，其实就是通过设置不透明的围挡来实现的。围挡可以提供高度的隐蔽，而完全封闭的围挡则可以完全遮挡视线。但要注意，有些窥视孔和屏幕可以让人看到外面，而自己不被看到。窗户上的透明玻璃既传递光线也传递信息，而半透明玻璃只传递光线却不传递信息。这些内容将在第 11 章中进一步讨论。
+
+还要注意，玻璃墙可以让人看到外面，但不能穿过；而布帘可以穿过，却看不到外面。建筑师和设计师了解这些事实，但他们缺乏一个系统的可供性理论来涵盖这些内容。
+
 Summary: Positive and Negative Affordances
 
 The foregoing examples of the affordances of the environment are enough to show how general and powerful the concept is. Substances have biochemical offerings and afford manufacture. Surfaces afford posture, locomotion, collision, manipulation, and in general behavior. Special forms of layout afford shelter and concealment. Fires afford warming and burning. Detached objects- tools, utensils, weapons-afford special types of behavior to primates and humans. The other animal and the other person provide mutual and reciprocal affordances at extremely high levels of behavioral complexity. At the highest level, when vocalization becomes speech and manufactured displays become images, pictures, and writing, the affordances of human behavior are stag- gering. No more of that will be considered at this stage except to point out that speech, pictures, and writing still have to be perceived.
@@ -226,7 +244,15 @@ At all these levels, we can now observe that some offerings of the environ- ment
 
 There has been endless debate among philosophers and psychologists as to whether values are physical or phenomenal, in the world of matter or only in the world of mind. For affordances as distinguished from values, the debate does not apply. Affordances are neither in the one world or the other inasmuch as the theory of two worlds is rejected. There is only one environment, although it contains many observers with limitless opportunities for them to live in it.
 
-The Origin of the Concept of Affordances: A Recent History
+总结：可供性的正面和负面
+
+上述环境可供性的例子已经足够显示这个概念的普遍性和强大性。物质具有生化特性，可用于制造。表面可以提供姿势、移动、碰撞、操作等行为。特定的布局形式可以提供庇护和隐藏。火可以提供取暖和燃烧。独立的物体 —— 如工具、器具和武器 —— 可以为灵长类动物和人类提供特定类型的行为。其他动物和人类能够在高度复杂的行为中提供相互和互惠的可供性。在最高层次上，当发声变成言语，制造的展示变成图像、图片和文字时，人类行为的可供性是非常惊人的。在这一阶段，我们不再深入探讨这些内容，只是要指出，言语、图片和文字仍然需要被感知。
+
+在不同层次上，我们可以看到环境中的一些事物对我们有益，而另一些则有害。这些术语比较模糊，需要谨慎使用，但如果将其意义限定在生物和行为事实中，可以减少混淆的风险。首先，考虑一下可以摄取的物质。有些物质对特定动物有营养，有些则有毒，还有一些是中性的。正如我之前提到的，这些事实和进食时的愉悦感无关，因为这些体验不一定和生物效应对应。其次，看看悬崖的边缘。一边可以行走，而另一边则可能跌落受伤。再来，考虑一个锋利的独立物体，比如一把刀。如果以某种方式使用，它可以切割；但如果以另一种方式使用，它可能割伤自己。同样地，一个中等大小的金属物体可以握住，但如果带电，它可能会电击你。最后，考虑另一个人。这个有生命的对象可能会给你爱抚或打击，接触时感到舒适或受伤，给予奖励或惩罚，而且我们不总是能预见到会发生什么。需要注意的是，所有这些益处和伤害、安全和危险、正面和负面的提供物都是基于观察者的物体特性，而不是观察者的体验特性。它们不是主观的价值，也不是附加在中性感知上的愉悦或痛苦。
+
+哲学家和心理学家一直在争论价值是物理存在还是精神存在，究竟在物质世界还是仅在心灵世界。但对于可供性（affordances）来说，这个争论并不适用。因为两世界理论被否定了，我们只有一个环境，尽管这个环境中有许多观察者，他们有无尽的机会在其中生活。
+
+### 8.4 The Origin of the Concept of Affordances: A Recent History
 
 The gestalt psychologists recognized that the meaning or the value of a thing seems to be perceived just as immediately as its color. The value is clear on the face of it, as we say, and thus it has a physiognomic quality in the way that the emotions of a man appear on his face. To quote from the Principles of Gestalt Psychology (Koffka, 1935), "Each thing says what it is a fruit says 'Eat me'; water says 'Drink me'; thunder says 'Fear me'; and woman says 'Love me (p. 7). These values are vivid and essential features of the experience itself.
 
@@ -246,7 +272,27 @@ The gestalt psychologists explained the directness and immediacy of the experien
 
 The accepted theories of perception, to which the gestalt theorists were objecting, implied that no experiences were direct except sensations and that sensations mediated all other kinds of experience. Bare sensations had to be clothed with meaning. The seeming directness of meaningful perception was therefore an embarrassment to the orthodox theories, and the Gestaltists did right to emphasize it. They began to undermine the sensation-based theories. But their own explanations of why it is that a fruit says "Eat me" and a woman says "Love me"are strained. The gestalt psychologists objected to the accepted theories of perception, but they never managed to go beyond them.
 
-The Optical Information for Perceiving Affordances
+可供性概念的起源：近期历史
+
+格式塔心理学家发现，事物的意义或价值似乎和它们的颜色一样，能被立即感知。这种价值显而易见，正如我们常说的那样，它具有人脸特征，就像人的情感会表现在脸上一样。引用《格式塔心理学原理》(Koffka, 1935）中的描述，「每样东西都在告诉你它是什么：水果说‘吃我'，水说‘喝我'，雷声说‘怕我'，女人说‘爱我'(p. 7)。」这些价值是体验中生动且基本的部分。
+
+Koffka 认为，这种意义无法简单地通过记忆图像的背景或无意识的反应解释。邮筒「邀请」你投递信件，手柄「希望」被抓住，事物都在「告诉」我们如何使用它们（p. 353)。因此，它们具有 Koffka 所称的「需求特性」。
+
+Kurt Lewin 创造了一个术语 Aufforderungscharakter，这个词在 1929 年被 J. F. Brown 翻译为「邀请特征」，在 1931 年被 D. K. Adams 翻译为「效价」（参见 Marrow，1969，第 56 页，了解这些翻译的历史）。后者被广泛采用。对于 Lewin 来说，效价有相应的向量，可以用箭头表示，推拉观察者靠近或远离对象。那么，如何解释这些效价，即对象邀请或要求行为的特征呢？没有人，包括格式塔理论家，能将它们看作是物理现象，实际上，它们确实不属于普通物理学的范畴。因此，根据二元论的假设，它们必须是现象性的。如果有两个对象，并且效价不属于物理对象，那么它必须属于现象对象 —— 即 Koffka 所称的「行为对象」，而不是「地理对象」。对象的效价是在体验中赋予它的，由观察者的需求决定。因此，Koffka 认为，只有当观察者需要寄信时，邮筒才具有需求特征。当他有信要寄时，他才会被邮筒吸引。某物的价值被认为会随着观察者需求的变化而变化。
+
+可供性（Affordance）这个概念源于效价、邀请和需求，但有一个关键区别。某物的可供性不会随着观察者需求的变化而改变。观察者可以根据自己的需求去感知或关注可供性，但可供性本身是恒定的，总是存在的。可供性不是由观察者的需求和感知行为赋予物体的。物体提供什么，是因为它本身的特性决定的。当然，我们用生态物理学（Ecological Physics）来定义它，而不是传统的物理学，因此它从一开始就具有新的意义和价值。
+
+对于 Koffka 来说，是现象中的邮筒邀请了寄信，而不是实际的邮筒。但这种区分是有害的。我更倾向于说，真实的邮筒（唯一的邮筒）在有邮政系统的社区中，为写信的人提供了寄信的机会。当邮筒被识别出来时，这一事实就被感知到了，无论邮筒是否在视线范围内。当有信需要寄时，对邮筒感到特别吸引力并不奇怪，但更重要的是，它被感知为我们生活社区的一部分。每个六岁以上的人都知道它的用途和最近的邮筒在哪里。因此，对邮筒可供性的感知不应与它可能具有的暂时特殊吸引力混淆。
+
+图 8.1 观察者接近时邮筒的视角结构变化。
+
+当一个人将与物体的距离减少到三分之一时，物体的视觉立体角增加三倍。实际上，这只是流出光学阵列中心附近的一个细节。（摘自 James Jerome Gibson 的《视觉世界的感知》，经重印出版社 Greenwood Press, Inc. 许可使用。）
+
+格式塔心理学家通过假设自我是经验中的一个对象，并且在现象对象和现象自我之间可能产生「紧张」来解释效价体验的直接性和即时性。Koffka 说，当对象与自我处于「动态关系」时，它具有需求特征。需要注意的是，这种「紧张」、「关系」或「向量」必须在「场」中产生，即现象体验的场中。虽然许多心理学家认为这个理论可以理解，但我不这么认为。其实有一种更简单的方式来解释为什么我们会直接感知到事物的价值。这是因为物体对观察者的潜在用途（affordances）在刺激信息中已经被明确。它们看起来是直接被感知到的，因为它们确实是直接被感知到的。
+
+格式塔心理学家反对的传统感知理论认为，除了感觉之外，没有任何体验是直接的，所有其他类型的体验都需要通过感觉来中介。纯粹的感觉必须被赋予意义。因此，有意义的感知的表面直接性对传统理论来说是一个难题，而格式塔心理学家强调这一点是正确的。他们开始动摇基于感觉的理论。但他们对为什么水果会「告诉」我们「吃我」和女人会「告诉」我们「爱我」的解释却牵强附会。格式塔心理学家反对传统感知理论，但他们从未能超越这些理论。
+
+### 8.5 The Optical Information for Perceiving Affordances
 
 The theory of affordances is a radical departure from existing theories of value and meaning. It begins with a new definition of what value and meaning are. The perceiving of an affordance is not a process of perceiving a value-free physical object to which meaning is somehow added in a way that no one has been able to agree upon; it is a process of perceiving a value-rich ecological object. Any substance, any surface, any layout has some affordance for benefit or injury to someone. Physics may be value-free, but ecology is not.
 
@@ -260,7 +306,21 @@ An affordance, as I said, points two ways, to the environment and to the observe
 
 The child begins, no doubt, by perceiving the affordances of things for her, for her own personal behavior. She walks and sits and grasps relative to her own legs and body and hands. But she must learn to perceive the affordances of things for other observers as well as for herself. An affordance is often valid for all the animals of a species, as when it is part of a niche. I have described the invariants that enable a child to perceive the same solid shape at different points of observation and that likewise enable two or more children to perceive the same shape at different points of observation. These are the invariants that enable two children to perceive the common affordance of the solid shape despite the different perspectives, the affordance of a toy, for example. Only when each child perceives the values of things for others as well as for herself does she begin to be socialized.
 
-Misinformation for Affordances
+感知可供性的光学信息
+
+可供性理论（theory of affordances）是对现有价值和意义理论的重大突破。它从重新定义价值和意义出发。感知可供性，不是通过感知一个没有价值的物理对象，再以某种方式添加意义；而是直接感知一个充满价值的生态对象。任何物质、表面或布局都对某个人具有某种有益或有害的可供性。物理学可能是中立的，但生态学不是。
+
+可供性理论的核心问题不是它们是否存在，而是环境光中是否有信息可以用来感知它们。怀疑论者可能承认光中有一些关于表面属性的信息，但不会认为光中包含诸如「可食性」这样的信息。他会说，味道不能通过光来感知；你可以看到物体的形状、颜色和质地，但不能知道它是否美味，必须品尝才能确定。怀疑论者理解那些指定视觉感知维度的刺激变量；他知道心理物理学中亮度对应于光的强度，颜色对应于光的波长。他可能会承认那些指定表面及其布局和构成的不变性。但是，当涉及到指定环境可供性的不变性组合时，他可能会犹豫不决。熟悉实验控制的怀疑论者已经很难理解我提出的不变变量了，更不用说接受这些不变性的组合了。
+
+尽管如此，所谓的复合不变量，其实也只是另一种不变量。它是一个整体，不需要将其组成部分特别组合或关联。只有当感知是多种感觉的组合时，才需要进行关联。即使按照经典的说法，当许多刺激完全协变并总是一起出现时，它们就可以被视为一个「刺激」。如果视觉系统能够从不断变化的光学环境中提取不变量，那么它也能提取那些看起来非常复杂的不变量。
+
+假设高级光学不变量可以指示高级可供性，这一假设的问题在于，习惯于在实验室中处理低级刺激变量的实验者，无法找到方法来测量这些高级不变量。如果他们无法量化这些不变量，又如何能够隔离和控制这些光学结构的不变量并将其应用于观察者呢？我认为可以从两个方面来回答。首先，他们不应该试图将不变量直接应用于观察者，而应该只是使其可用，因为不变量并不是刺激。其次，他们不必量化不变量，只需对其进行精确的数学描述，这样其他实验者就可以使其对观察者可用。心理物理实验的优点在于其严谨性，而不是通过度量公式将心理现象和物理现象联系起来。
+
+可供性（affordance）指的既是环境，也涵盖了观察者。用于描述可供性的信息同样如此。但这并不意味着存在意识和物质的分离，即心理物理二元论。这仅仅说明，用于描述环境实用性的信息同时也包含了观察者自身的信息，比如他的身体、腿、手和嘴。这强调了外部感知（exteroception）和内部感知（proprioception）是同步进行的 —— 感知世界的同时也在感知自己。这与任何形式的二元论完全不符，无论是心-物二元论还是心-身二元论。对世界的认知和对与世界关系的认知是不可分割的。
+
+孩子一开始肯定是通过感知物体对她自身行为的影响来认识事物的。她会根据自己的腿、身体和手来走路、坐下和抓握。但她还需要学习如何感知物体对其他观察者的影响，而不仅仅是对她自己的。一个可供性通常对一个物种的所有动物都有效，比如作为生态位的一部分。我描述了那些让孩子在不同观察点感知到相同固体形状的不变因素，这同样让两个或更多的孩子在不同观察点感知到相同的形状。这些不变因素帮助两个孩子在不同视角下感知到同一个玩具的可供性。只有当每个孩子不仅感知到事物对自己，还感知到对他人的价值时，她才开始社会化。
+
+### 8.6 Misinformation for Affordances
 
 If there is information in the ambient light for the affordances of things, can there also be misinformation? According to the thoery being developed, if information is picked up perception results; if misinformation is picked up misperception results.
 
@@ -272,13 +332,33 @@ These two cases are instructive. In the first a surface of support was mistaken 
 
 Errors in the perception of the surface of support are serious for a terrestrial animal. If quicksand is mistaken for sand, the perceiver is in deep trouble. If a covered pitfall is taken for solid ground, the animal is trapped. A danger is sometimes hidden-the shark under the calm water and the electric shock in the radio cabinet. In the natural environment, poison ivy is frequently mistaken for ivy. In the artificial environment, acid can be mistaken for water.
 
+可供性的信息误导
+
+如果环境光中包含物体可供性的信息，那么是否也会包含误导信息？根据正在发展的理论，如果获取到正确信息就会产生正确的感知；如果获取到误导信息就会产生错误的感知。
+
+悬崖边缘会让人掉下去，这不仅实际上很危险，而且看起来也很危险。不仅仅是我们，许多陆地动物，包括幼年动物，也会觉得悬崖边缘很危险。对此，科学家们进行了实验研究。如果在悬崖边缘放置一块坚固的玻璃板，虽然实际已经没有危险，但它看起来仍然会让人觉得很危险。周围的光线仍然提供了边缘向下的深度信息；因此，这个装置被 E. J. Gibson 和 R. D. Walk （1960）称为「视觉悬崖」。触觉信息可以让人感觉到有一个足够的支撑面，但这与视觉信息相矛盾。当科学家用这个装置测试处于爬行阶段的婴儿时，很多婴儿会用手拍打玻璃，但不会爬上去。婴儿误解了透明表面的支撑能力，这个结果并不奇怪。
+
+同样地，成年人也可能会误解玻璃的特性，把关着的玻璃门当成敞开的门，试图穿过去，结果撞到玻璃受伤。由于光学纹理的流动没有充分显示出碰撞的可能性，或者显示得不够明显，他把玻璃误认为空气。门口的遮挡边缘和空旷的视觉角度在他靠近时正常地对称展开，所以他的行为是正确的，但他没有注意到即将发生的碰撞。一点点污垢或者反光就能避免这种情况发生。
+
+这两个案例很有启发性。第一个案例中，由于光学阵列显示的是空气，一个支撑面被误认为是空气。第二个案例中，同样的原因导致一个障碍物被误认为是空气。向下的空气意味着跌落，具有危险性；向前的空气意味着通行，具有安全性。这些错误感知导致了错误的行为。
+
+对于陆地动物来说，错误感知支撑面是非常危险的。如果把流沙误认为是普通沙子，感知者会陷入困境。如果把覆盖的陷阱误认为是坚实的地面，动物会被困住。有些危险是隐藏的 —— 例如，平静水面下的鲨鱼和收音机柜中的电击。在自然环境中，毒常春藤常被误认为是普通常春藤；在人造环境中，酸可能被误认为是水。
+
 THINGS THAT LOOK LIKE WHAT THEY ARE
 
 If the affordances of a thing are perceived correctly, we say that it looks like what it is. But we must, of course, learn to see what things really are - for example, that the innocent-looking leaf is really a nettle or that the helpful-sounding politician is really a demagogue. And this can be very difficult.
 
+看起来像它们本身的事物
+
+如果正确感知到一个事物的可供性，我们说它看起来像它本身。但我们需要学会识别事物的真实面貌 —— 例如，看似无害的叶子可能是荨麻，表面上和善的政治家可能是个煽动者。这往往非常困难。
+
 A wildcat may be hard to distinguish from a cat, and a thief may look like an honest person. When Koffka asserted that "each thing says what it is," he failed to mention that it may lie. More exactly, a thing may not look like what it is.
 
-Nevertheless, however true all this may be, the basic affordances of the environment are perceivable and are usually perceivable directly, without an excessive amount of learning. The basic properties of the environment that make an affordance are specified in the structure of ambient light, and hence the affordance itself is specified in ambient light. Moreover, an invariant vari- able that is commensurate with the body of the observer himself is more easily picked up than one not commensurate with his body.
+Nevertheless, however true all this may be, the basic affordances of the environment are perceivable and are usually perceivable directly, without an excessive amount of learning. The basic properties of the environment that make an affordance are specified in the structure of ambient light, and hence the affordance itself is specified in ambient light. Moreover, an invariant variable that is commensurate with the body of the observer himself is more easily picked up than one not commensurate with his body.
+
+野猫和家猫很难区分，窃贼可能看起来像个诚实的人。Koffka 说「每件东西都在说它是什么」，但他忽略了这些东西可能会欺骗我们。更确切地说，有些事物看起来并不像它们实际是什么。
+
+尽管如此，环境的基本可供性通常是可以直接感知的，不需要太多学习。环境中决定可供性的基本性质在环境光的结构中得到体现，因此可供性本身由环境光来指示。此外，与观察者自身身体相称的不变量比那些不相称的更容易被感知。
 
 ### Summary
 
