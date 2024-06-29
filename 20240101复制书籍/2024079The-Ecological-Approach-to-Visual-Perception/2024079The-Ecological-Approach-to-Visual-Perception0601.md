@@ -16,6 +16,25 @@ The surface of a substance is where a mechanical action like collision is locate
 
 Just what are we to mean by an ecological event? Is it possible to define and classify events? It ought to be attempted. For only if we know what we mean by an event can we describe the change in the ambient optic array that specifies it, and only then can we begin to study the perceiving of it. A good many psychologists have tried to experiment with the perception of what they vaguely call motion. A few, including the writer, have begun to do experiments on the perception of what they call events, but none has yet made a systematic ecolo- gical approach to the problem. Most of the existing experiments have been based on the assumption that the perception of motion depends on the motion of a spot of light across the retina, a sensation of motion, and the experimenters are preoccupied with the deep contradictions to which this assumption gives rise (Gibson, 1968b).
 
+事件与感知事件的信息
+
+到目前为止，我们还没有深入讨论环境中的变化。虽然观察点和光源可能会改变，但溪流并未流动，鹅卵石没有滚动，树叶没有掉落，动物也没有四处奔跑。环境被描述为有形状、有纹理、有颜色，并被移动的太阳照亮，但这些都仿佛是静止的。现在，让我们赋予环境以生命力，考虑一个事件可以发生的世界。
+
+生态事件不同于微观物理和天文事件，它们发生在物质和将其与介质分隔开的表面之间。物质的刚性不同，因此它们表面抵抗变形的能力也不同。从云到坚硬岩石的表面之间，有液体、粘性物质、粘弹性物质和颗粒物质，这些物质的表面在抵抗变形方面介于两者之间。表面的重塑需要施加力，这个力的大小取决于物质的性质。
+
+此外，物质在化学惰性方面也有差异，即它们抵抗与氧等介质中的试剂反应的能力。物质越惰性，其表面和成分就越持久。物质在蒸发或升华的速度上也不同，这同样影响其表面的持久性。
+
+我们还需要注意连接和未连接地面的物体之间的区别。未连接的物体可以在不破坏其表面连续性的情况下移动，而连接的物体则不能。需要注意的是，物体可以静止在支撑表面上，与其接触但不连接。这些区别将在讨论运动作为生态事件时使用。
+
+牛顿的运动定律适用于理想化的独立物体。传说中，那个砸在牛顿头上的苹果启发了他提出万有引力定律，但这只是一个生态事件中的小插曲。随着季节变化，苹果从生长到成熟，最终掉落、碰撞并腐烂。
+
+物质的表面是机械作用（如碰撞）、化学反应、蒸发、溶解或扩散发生的地方。这些都是生态事件。
+
+那么，什么是生态事件？我们能否对事件进行定义和分类？这是值得尝试的。只有明确事件的概念，我们才能描述环境光学阵列的变化，并开始研究对其的感知。许多心理学家尝试研究他们模糊称为运动的感知。一些心理学家，包括本文作者，已经开始对事件的感知进行实验，但还没有系统的生态学研究。大多数现有实验假设运动的感知依赖于光点在视网膜上的运动，这种假设带来了许多矛盾（Gibson, 1968b）。
+
+
+
+
 A Classification of Terrestrial Events
 
 The events we are concerned with are "external," so a displacement of the point of observation will be excluded, because it refers to the locomotion of a potential observer, not to the motion of a surface. The change of occlusion that usually goes with a displacement of the point of observation is a very peculiar optical event, because it has both objective reference and subjective reference at the same time. That is, the revealing and concealing of a surface depend on both the location of the surface and the location of the point of observation.
