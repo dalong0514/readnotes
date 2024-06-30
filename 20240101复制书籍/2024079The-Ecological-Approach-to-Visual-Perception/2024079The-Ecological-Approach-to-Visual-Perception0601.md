@@ -32,10 +32,7 @@ Just what are we to mean by an ecological event? Is it possible to define and cl
 
 那么，什么是生态事件？我们能否对事件进行定义和分类？这是值得尝试的。只有明确事件的概念，我们才能描述环境光学阵列的变化，并开始研究对其的感知。许多心理学家尝试研究他们模糊称为运动的感知。一些心理学家，包括本文作者，已经开始对事件的感知进行实验，但还没有系统的生态学研究。大多数现有实验假设运动的感知依赖于光点在视网膜上的运动，这种假设带来了许多矛盾（Gibson, 1968b）。
 
-
-
-
-A Classification of Terrestrial Events
+### 6.1 A Classification of Terrestrial Events
 
 The events we are concerned with are "external," so a displacement of the point of observation will be excluded, because it refers to the locomotion of a potential observer, not to the motion of a surface. The change of occlusion that usually goes with a displacement of the point of observation is a very peculiar optical event, because it has both objective reference and subjective reference at the same time. That is, the revealing and concealing of a surface depend on both the location of the surface and the location of the point of observation.
 
@@ -43,9 +40,23 @@ The events we are concerned with are mainly terrestrial, so the motion of the su
 
 What kinds of events can be said to occur, after these exclusions? Tentatively, it would seem that they can be divided into three main varieties: change in the layout of surfaces, change in the color and texture of surfaces, and change in the existence of surfaces. Change of layout is caused by forces; change of color and texture is caused by change in the composition of the substance; and change in the existence of a surface is caused by a change in the state of the substance. Consider them one by one.
 
+地面事件的分类
+
+我们关注的是「外部」事件，因此不讨论观察点的位移，因为这涉及到潜在观察者的移动，而不是表面的运动。观察点位移通常带来的遮挡变化是一种很特殊的光学现象，因为它同时具有客观和主观的参考，也就是说，表面的显露和隐藏取决于表面和观察点的位置。
+
+我们主要关注的是地面上的事件，因此不考虑太阳在天空中的移动及其引起的阴影变化。我们感兴趣的是那些完全独立于观察者和太阳位置的事件。
+
+那么，排除这些因素后，哪些事件可以说是发生了的呢？初步来看，它们可以分为三大类：表面布局的变化、表面颜色和纹理的变化以及表面存在的变化。布局的变化是由力引起的；颜色和纹理的变化是由物质成分的变化引起的；表面存在的变化是由物质状态的变化引起的。我们将逐一分析这些变化。
+
 Change of Layout due to Complex Forces
 
 A change of layout due to complex forces refers to any alteration of the shape of the surfaces of the environment, including the repositioning of detached objects by displacement. Among all the entities that make up the furniture of the earth, some are mobile and some are not. What we are most inclined to call motions are translations and rotations of detached objects-the falling weight, the spin- ning top, the rolling ball, and the hurled missile. We learn about these from studying mechanics. But there are many other changes in the layout of surfaces that are even more significant: the flexible deformations of the surface of another animal, the rippling and pouring of water, the elastic and plastic changes of rubber and clay, and the breaking or rupturing of a surface. We are somewhat less inclined to call these changes motions, but they are nonetheless mechanical events caused by forces. They do not have the elegant simplicity of the motions of celestial bodies under the influence of the force of gravity, but they are lawful and they have a kind of higher-order simplicity at their proper level of analysis.
+
+由于复杂力引起的布局变化
+
+由于复杂的力作用而导致的布局变化，指的是环境表面形状的任何改变，包括通过移动重新定位脱离的物体。在地球上的各种事物中，有些是可以移动的，而有些则不能。我们通常所说的运动是脱离物体的平移和旋转，如下落的物体、旋转的陀螺、滚动的球和被投掷的导弹。我们通过学习力学来了解这些现象。然而，还有许多其他表面布局的变化同样重要：例如动物表面的柔性变形、水的波动和流动、橡胶和粘土的弹性和塑性变化，以及表面的破裂或断裂。尽管我们不常将这些变化称为运动，但它们依然是由力引起的机械现象。虽然这些变化没有天体在引力作用下运动的简洁优雅，但它们仍然遵循一定的规律，并且在适当的分析水平上具有某种更高层次的简洁性。
+
+---
 
 CHANGES OF LAYOUT
 
@@ -71,11 +82,43 @@ Rupturing, cracking
 Disintegration
 Explosion
 
+布局变化
+
+刚性物体的平移和旋转
+位移（下落的物体、飞行的箭）
+转动（开门）
+组合（滚动的球）
+
+物体的碰撞
+有反弹和无反弹
+
+非刚性物体的变形
+无生命的（液滴、粘土块）
+有生命的（动物的姿势变化）
+
+表面变形
+波浪
+流动
+弹性或塑性变化
+
+表面破坏
+破裂、开裂
+解体
+爆炸
+
+---
+
 The above tabulation, although incomplete, is suggestive. It has to do with what might be called ecological mechanics, which is rather different from either celestial mechanics on the one hand or particle mechanics on the other, including thermodynamics. Carpenters and builders are familiar with this branch of physics, although it is not taught in school. The displacements and turns of detached objects can be classed as changes of layout because they are rearrangements of the furniture of the earth, not pure translations and rotations along and around the three axes of Cartesian coordinate space. The earth is the background of these motions. The terrestrial substratum is an absolute frame of reference for them, since it is itself never displaced or turned. The world does not move, not at this level of analysis. On this account the contemporaries of Copernicus were quite justifiably shocked when he tried to convince them that the world did move.
 
 At this level of analysis, the deformations and disruptions of a surface are not reduced to the motions of elementary particles of matter, either. Stretching- relaxing, for example, is an event in its own right, not a set of events; it is not reduced to a set of interrelated displacements of the elements of a surface.
 
-The subvarieties of events in the above table may, of course, occur in combination; animal locomotion, for example, consists of displacements and turns relative to the ground, but it is accomplished by deformations of the animal-object, such as the flexing and extending of its parts. A collision may occur between two elastic objects or between an elastic object and the ground, so that one displacement is immediately followed by another and a train of events arises. Or, in the case of a machine with moving parts, a configuration of concurrent events is established. Man has invented a great number of mechan- ical moving parts, each with its characteristic motion-the wheel, roller, crank, and gear; the lever, rocker, pendulum, and hinge; the piston, slide, pinion, escapement, and screw. Thus, when a complex machine is running there is a sort of hierarchy of concurrent events. But note that a machine is assembled from such parts, each of which is a detached object in present terminology. A living organism, in contrast, is not assembled from parts, and its members, although they move, constitute a different sort of hierarchy.
+The subvarieties of events in the above table may, of course, occur in combination; animal locomotion, for example, consists of displacements and turns relative to the ground, but it is accomplished by deformations of the animal-object, such as the flexing and extending of its parts. A collision may occur between two elastic objects or between an elastic object and the ground, so that one displacement is immediately followed by another and a train of events arises. Or, in the case of a machine with moving parts, a configuration of concurrent events is established. Man has invented a great number of mechan-ical moving parts, each with its characteristic motion-the wheel, roller, crank, and gear; the lever, rocker, pendulum, and hinge; the piston, slide, pinion, escapement, and screw. Thus, when a complex machine is running there is a sort of hierarchy of concurrent events. But note that a machine is assembled from such parts, each of which is a detached object in present terminology. A living organism, in contrast, is not assembled from parts, and its members, although they move, constitute a different sort of hierarchy.
+
+上面的表格虽然不完整，但已经提供了一些启示。它涉及所谓的生态力学，这与天体力学或粒子力学（包括热力学）有很大不同。木匠和建筑工人对这门物理学分支很熟悉，尽管它不在学校教授。分离物体的位移和转动可以看作是布局的变化，因为它们是地球上物体的重新排列，而不是简单的沿着笛卡尔坐标空间的三个轴进行平移和旋转。地球是这些运动的背景，其地表是这些运动的绝对参考系，因为地球本身是固定不动的。在这个分析层面上，世界是静止的。因此，当哥白尼试图说服当时的人们地球在运动时，他们的震惊是可以理解的。
+
+在这个分析层面上，表面的变形和破坏也不是简化为物质基本粒子的运动。例如，伸展和松弛是一个独立的事件，而不是一系列事件的集合；它不能被简化为表面元素相互关联的位移。
+
+上表中列出的事件类型可以组合出现。例如，动物运动包括相对于地面的位移和转向，这是通过动物身体的变形来实现的，比如身体部分的弯曲和伸展。碰撞可能发生在两个弹性物体之间，或者在弹性物体与地面之间，因此一个位移紧接着另一个位移，形成一系列事件。在拥有运动部件的机器中，会有一系列同时发生的事件。人类发明了许多机械运动部件，每个都有其特定的运动方式，如轮子、滚筒、曲柄和齿轮；杠杆、摇杆、钟摆和铰链；活塞、滑块、小齿轮、擒纵机构和螺丝。因此，当一台复杂的机器运行时，会出现一层层的同时发生的事件。不过需要注意的是，机器是由这些独立部件组装而成的，每个部件在当前术语中都是独立的对象。而生物体则不同，它们并不是由独立部件组装而成的，尽管它们的部分会移动，但它们构成了另一种层级结构。
 
 THE SUBSTRATUM
 
@@ -83,13 +126,27 @@ The earth considered as a substratum is not only that with respect to which anyt
 
 The puzzling psychological problems of the uprightness of a picture relative to its frame, of a pattern relative to a page, and of an image relative to a retina are not primary problems but derivative.
 
+基底
+
+地球作为基底，不仅是所有物体移动的参考点，也是所有物体正立、倾斜或倒置的参考点。也就是说，地球从地平线延伸到地平线，是水平的。在生态层面上，重力是绝对的，而不是相对的。
+
+关于图片相对于框架的正立性、图案相对于页面的正立性以及图像相对于视网膜的正立性的心理学问题并不是主要问题，而是派生问题。
+
 Note that displacements and turns and deformations, even wave motions and the flow of a stream, may occur without breaking the continuity of any surface. Rupture occurs when the continuity fails, and this is a highly signi- ficant ecological event. For the cracked ground, as in an earthquake, cannot be walked upon, and a torn roof does not afford shelter. The broken pot no longer holds water, and the broken skin of the animal constitutes an injury. The maximum of disruption can be thought of as disintegration. The surface "falls to pieces," as we say, which means a complete failure of continuity. In that case, the event passes from a change in layout to a change in existence; the surface ceases to exist because the substance has changed its"state."
 
 Finally, let us note another very interesting fact about these events: some are reversible in time and some are not. Displacements and turns, together with locomotions, can go backward as well as forward. Locomotion, as I emphasized earlier, entails both going and coming, and this is why hidden surfaces become unhidden and unhidden surfaces become hidden. Similarly, lighted surfaces become shadowed and shadowed surfaces become lighted. Any rigid motion of a body in physical mechanics has an equivalent motion in the opposite direction. This reversibility holds for certain nonrigid deformations, although not all, but it does not hold for the disruption of a surface. More exactly, the change from integral to broken is not the reverse of the change from broken to integral; the process of going to pieces is not the opposite of the process of repairing. At the extreme case, when a surface disintegrates, it is not reciprocal to the aggregating and connecting of parts so as to yield a whole surface. The difference between the two processes can be observed by making a motion picture sequence of a surface being broken, or a fabric being torn, and then comparing the film run forward with the film run backward (Gibson and Kaushall, 1973).
 
+需要注意的是，位移、转动、变形，甚至波动和水流，都可以在不破坏表面连续性的情况下发生。而当连续性失效时，破裂就会发生，这是一种非常重要的生态事件。比如，地震中裂开的地面无法行走，破裂的屋顶无法提供庇护。破碎的罐子无法再装水，动物的皮肤破裂则会造成伤害。最大程度的破坏可以被称为解体。我们通常说的表面「分崩离析」，实际上是指完全的连续性失效。在这种情况下，事件从布局的变化转变为存在的变化；因为物质的状态发生了改变，表面也随之消失。
+
+最后，我们注意到这些事件中有一个非常有趣的现象：有些事件是可逆的，而有些则不是。位移、转动以及运动都可以前后进行。正如我之前强调的那样，运动包含了前进和后退，因此隐藏的表面可以变得显露，而显露的表面也可以变得隐藏。类似地，光照的表面会变成阴影，而阴影的表面会变得光照。在物理力学中，任何刚体的运动在相反方向上都有对应的等效运动。这种可逆性适用于某些非刚性变形，尽管不是所有的非刚性变形都适用，但它不适用于表面破裂。更具体地说，从完整到破裂的变化并不是从破裂到完整的逆过程；破裂的过程并不是修复的反向过程。在极端情况下，当一个表面解体时，这个过程并不能通过聚集和连接部分来恢复成一个完整的表面。通过制作一个表面破裂或织物撕裂的电影序列，然后比较正放和倒放的影片，可以观察到这两个过程的区别（Gibson 和 Kaushall, 1973）。
+
 Change of Color and Texture due to Change in Composition
 
 Theoretically, a surface can change color without changing shape and change shape without changing color. These are often supposed to be independent "qualities"of an object, and much has been made of the supposed difference between the "secondary" qualities of an object and its "primary"qualities. Actually, color and shape are oversimplified qualities, for texture merges with color and yet is a kind of shape at the level of small-scale layout. We shall here speak of color and texture in combination, since they are specific to the compos- ition of the substance. When the substance is altered by a chemical reaction, the surface is altered. It changes in achromatic color and in chromatic color, and it also usually changes texture, inasmuch as the fine structure goes from, say, crystalline to amorphous. Animals need to perceive the affordances of substances, their chemical values or utilities, in advance of making contact with their surfaces, as I have pointed out before (Gibson, 1966b, Ch. 8) and will return to again in this book. A change in affordance is thus signified by the natural chemical changes of greening, ripening, flowering, and fading. They are important ecological events, as are the physiological reactions of animals that bring about alterations of plumage or fur or skin.
+
+成分变化引起的颜色和纹理变化
+
+理论上，一个表面可以在不改变形状的情况下改变颜色，也可以在不改变颜色的情况下改变形状。人们通常认为这些是物体的独立「性质」，并且对「次要」性质和「主要」性质之间的差异进行了大量研究。实际上，颜色和形状的性质过于简化，因为纹理与颜色融合，而在小尺度上，纹理也是一种形状。本文将一起讨论颜色和纹理，因为它们是物质组成的特定属性。当物质通过化学反应发生变化时，表面也会随之改变。这种变化不仅会影响无色和有色，还会改变表面的纹理，因为细微结构可能会从晶态变为非晶态。动物需要在接触物质表面之前，提前感知物质的可供性（affordance），即它们的化学特性或用途，正如我之前提到的（Gibson, 1966b, 第 8 章)，并将在本书中再次讨论。因此，自然界中化学变化如变绿、成熟、开花和褪色，都会引起可供性的变化。这些都是重要的生态事件，就像动物的生理反应导致的羽毛、皮毛或皮肤的变化一样。
 
 CHANGES OF COLOR AND TEXTURE
 
@@ -109,6 +166,24 @@ Weathering of rock (oxidation)
 Blackening of wood(fire)
 Reddening of iron (rusting)
 
+颜色和纹理的变化
+
+植物表面
+- 变绿（叶绿素增加）
+- 褪色（叶绿素减少）
+- 成熟（糖分增加）
+- 开花（出现花蜜）
+
+动物表面
+- 皮肤着色（性接受度，如在狒狒中）
+- 羽毛变化（成熟）
+- 皮毛变化（冬季来临）
+
+陆地表面
+- 岩石风化（氧化）
+- 木材变黑（火灾）
+- 铁变红（生锈）
+
 The tabulation above presents a few examples of significant surface changes that do not involve gross changes of layout or shape. Commonly, of course, these changes are correlated. Leaves wither and fall as well as turn color when winter approaches. The several varieties of environmental events combine to yield a multiple guarantee of information. A fire with flames, considered as an ecological event instead of an abstract chemical event, consists of complex motions and deformations, fluctuating luminous surfaces, reddening and black- ening of the opaque surfaces, billowing smoke, and finally a disappearance of the solid surfaces. A fire is even specified to the skin, the ears, and the nose as well as to the eyes.
 
 Chemical events at the ecological level involve colored and textured surfaces, whereas chemical events at the molecular and atomic level do not. Molecules and atoms are not colored, and this is an old puzzle for color percep- tion. There is no information in an optic array about radiating atoms, but there is good information about the composition of the substance relative to other substances.
@@ -120,6 +195,20 @@ Waxing and Waning of a Surface due to Change in the State of Matter
 A surface is the interface between a substance and the medium. Substances, however complex, can be classed as solid, viscous, viscoelastic, liquid, and particulate. A gas is not a substance although it is, of course, matter. When a substance goes into the gaseous state it becomes merely a compnent of the medium, and its surface ceases to exist. It has not been dematerialized, but it has been desubstantialized. It no longer reflects light, and it is therefore not specified in any ambient array at any point of observation. It has not merely gone out of sight; it has gone out of existence (Chapter 5). Some of the ways in which surfaces are nullified or destroyed or demolished are listed in the left-hand column of the table below.
 
 Surfaces also, of course, come into existence from the gaseous state, or change from liquid to solid, and examples of these events are given in the right-hand column.
+
+上述表格展示了一些显著的表面变化示例，这些变化并不涉及布局或形状的显著改变。通常，这些变化是相关联的。例如，冬季来临时，树叶不仅会枯萎和掉落，还会变色。多种环境事件结合在一起，提供了丰富的信息保障。
+
+从生态学角度看，火灾是一种复杂的现象，包括火焰的运动和变形、发光表面的波动、不透明表面的变红和变黑、滚滚浓烟，最终固体表面的消失。火灾不仅能被视觉感知，还能通过皮肤、耳朵和鼻子感知。
+
+生态层面的化学事件涉及颜色和纹理的变化，而在分子和原子层面则没有颜色。这是色觉研究中的一个古老难题。光学阵列中没有关于辐射原子的任何信息，但可以提供物质成分的相关信息。
+
+试管中的化学反应通常是可逆的，这可以用双向箭头的化学方程式来表示。然而，生态层面的化学变化在时间上是不可逆的。例如，成熟、生锈和燃烧都不会逆向发生。虽然生态变化中存在平衡循环，例如二氧化碳循环，但这些变化在时间上是前进的，不是可逆的。
+
+物质状态变化引起的表面增减
+
+表面是物质与介质之间的界面。无论多么复杂的物质，都可以归类为固体、粘性、粘弹性、液体和颗粒状。气体虽然是物质的一种形态，但并不被认为是「物质」。当物质转变为气态时，它成为介质的一部分，其表面就不复存在。它并没有消失，只是失去了物质的特性，因此不再反射光，在任何观察点都不会被检测到。这不仅仅是消失，而是彻底不存在了（第 5 章）。下表左栏列出了一些表面消失或被破坏的方式。
+
+当然，表面也可以从气态形成，或从液态变为固态，右栏中列出了这些事件的示例。
 
 CHANGES OF SURFACE EXISTENCE
 
@@ -141,13 +230,41 @@ Biological growth
 Destruction
 Construction
 
+表面存在的变化
+
+液体转变为气体（蒸发、沸腾）
+气体转变为液体（冷凝、降雨）
+固体转变为气体（升华）
+气体转变为固体？
+云转变为气体（消散）
+气体转变为云（形成）
+固体转变为液体（熔化）
+液体转变为固体（冻结）
+固体溶解（溶解）
+溶液转变为固体（结晶、沉淀）
+
+分解
+聚集
+生物衰变
+生物生长
+破坏
+建设
+
 When ice or snow melts, a surface is so radically altered that it can be consid- ered to be destroyed, and when a puddle of water evaporates, the surface is certainly destroyed. When the reflecting surface of a cloud dissipates, it is anni- hilated although it was semitransparent and barely substantial to begin with, being nothing but a mass of droplets. When a surface disintegrates or an organism dies, the substances are scattered and the surface ceases. Ecological surface destruction is fairly obvious, but ecological surface creation is not, except for the slow growth of animals and plants.
+
+当冰或雪融化时，表面发生了如此彻底的变化，以至于可以认为它被破坏了；而当一滩水蒸发时，表面也肯定被破坏了。当云的反射表面消散时，它被完全消灭了，尽管它最初是半透明的，仅由一团液滴组成。当表面解体或有机物死亡时，物质被分散，表面消失。生态表面的破坏是显而易见的，但生态表面的创造却不容易被察觉，除了动物和植物的缓慢生长外。
 
 SURFACE THEORY AND ATOMIC THEORY
 
 The fact that surfaces go out of and come into existence is little recognized in physics, as noted in Chapter 1. The atomic theory is emphasized instead. Beginning with Parmenides and Democritus, the theory asserts that nothing is ever created or destroyed; only the atoms, themselves unchanging, are rearranged. Aristotle disagreed. He insisted that there was an actual genesis of things in the world and a passing away of them. At the ecological level Aristotle was quite right. And it is at this level, the level of surfaces, that we perceive the world. At the level of atoms we do not (Randall, 1960).
 
 In the above table I have tried to show the best possible case for the opposi- tion of these processes, but it seems clear that they are not reversible in time. Evaporation and condensation are opposite at a certain level, but a water surface is not created as the reverse of the process by which it is destroyed. In none of these event pairs, I think, is the one simply a going backward of the other,such that if a film of one event were reversed, it would represent the other, as I noted above (Gibson and Kaushall, 1973).
+
+表面理论和原子理论
+
+在第 1 章中提到，在物理学中，表面出现和消失这一事实很少被认识到。相反，原子理论被强调。自巴门尼德和德谟克利特开始，这一理论主张，任何事物都不会被创造或消灭；原子本身是不变的，只是重新排列。亚里士多德对此持不同意见。他认为，世界上的事物确实有生成和消逝。在生态层面上，亚里士多德是对的。我们感知世界的层面正是表面层面，而不是原子层面（Randall, 1960）。
+
+在上表中，我试图展示这些过程对立的最佳情况，但它们显然在时间上是不可逆的。在某种程度上，蒸发和凝结是相反的，但水面不是通过反向过程创造的。在这些事件对中，没有一个是简单的反向过程。如果将一个事件的影片倒放，它不会表现出另一个事件的过程（Gibson and Kaushall, 1973)。
 
 Summary: What Shall we Take as an Event?
 
