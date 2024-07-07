@@ -152,6 +152,8 @@ The subvarieties of events in the above table may, of course, occur in combinati
 
 理解这些概念不仅能帮助我们更好地认识周围的世界，还能启发我们在工程设计、生物学研究等领域的创新。生态力学为我们提供了一个新的视角，让我们能够从更宏观、更整体的角度来理解和描述自然界中的各种变化和运动。
 
+---
+
 THE SUBSTRATUM
 
 The earth considered as a substratum is not only that with respect to which anything moves, it is also that with respect to which anything is right side up, or tilted, or inverted. That is to say, it extends from horizon to horizon; it is horizontal. Gravity is absolute, not relative, at the ecological level.
@@ -163,6 +165,8 @@ The puzzling psychological problems of the uprightness of a picture relative to 
 在我们日常生活中，地球不仅仅是一个我们生活其上的星球，它还扮演着一个非常重要的角色 —— 它是我们判断一切事物位置和状态的基准。想象一下，当我们说一个物体在「移动」时，我们其实是在说它相对于地球在改变位置。同样，当我们说一个物体是「正的」、「倾斜的」或「倒置的」时，我们也是以地球为参照。从地平线到地平线，地球为我们提供了一个水平的参考面。在这个层面上，重力不是相对的，而是绝对的。
 
 这个概念可能看起来很简单，但它实际上解决了许多看似复杂的问题。比如，为什么我们能立即判断一幅挂歪了的画？为什么我们能轻易分辨出一个倒置的文字？这些问题的答案都源于我们以地球为基准的感知方式。
+
+---
 
 Note that displacements and turns and deformations, even wave motions and the flow of a stream, may occur without breaking the continuity of any surface. Rupture occurs when the continuity fails, and this is a highly signi- ficant ecological event. For the cracked ground, as in an earthquake, cannot be walked upon, and a torn roof does not afford shelter. The broken pot no longer holds water, and the broken skin of the animal constitutes an injury. The maximum of disruption can be thought of as disintegration. The surface "falls to pieces," as we say, which means a complete failure of continuity. In that case, the event passes from a change in layout to a change in existence; the surface ceases to exist because the substance has changed its"state."
 
@@ -183,6 +187,8 @@ Theoretically, a surface can change color without changing shape and change shap
 当物质发生化学反应时，其表面也会随之改变。它不仅会在明暗度（即亮度）和色调上发生变化，通常纹理也会改变，因为物质的微观结构可能会从晶体状变为非晶体状。动物需要在接触物质表面之前就能感知物质的可供性（affordances，指物质所能提供的行为机会)，也就是它们的化学价值或用途。我之前曾提到过这一点（Gibson，1966b，第 8 章)，在本书中我还会再次讨论这个话题。
 
 因此，可供性的变化往往通过一系列自然的化学变化过程来表现，比如植物的嫩芽变绿、果实成熟、花朵绽放和凋谢。这些都是极其重要的生态事件，就像动物因生理反应而引起的羽毛、毛发或皮肤的变化一样，都反映了生物与环境之间复杂的相互作用。
+
+---
 
 CHANGES OF COLOR AND TEXTURE
 
@@ -219,6 +225,8 @@ Reddening of iron (rusting)
 - 岩石风化（氧化）
 - 木材变黑（火灾）
 - 铁变红（生锈）
+
+---
 
 The tabulation above presents a few examples of significant surface changes that do not involve gross changes of layout or shape. Commonly, of course, these changes are correlated. Leaves wither and fall as well as turn color when winter approaches. The several varieties of environmental events combine to yield a multiple guarantee of information. A fire with flames, considered as an ecological event instead of an abstract chemical event, consists of complex motions and deformations, fluctuating luminous surfaces, reddening and black- ening of the opaque surfaces, billowing smoke, and finally a disappearance of the solid surfaces. A fire is even specified to the skin, the ears, and the nose as well as to the eyes.
 
@@ -412,24 +420,21 @@ The above case of rigid translation is special; the object neither approaches no
 
 These optical disturbances are clearly not copies of the corresponding motions of objects, as everyone would agree. But what about the case of the pure rotation of an object on its axis, a Newtonian spin? There need be little or no progressive incrementing and decrementing of the background in this case. If the object is a sphere, disk, or wheel that rotates on an axis that is on the line of sight to the point of observation, you might say that the rotation of the circular form in the array is a copy of the rotation of the circular object in the world, point for point. But this would be a misconception, even for this special case. What happens optically is a sort of shearing or slippage of the texture at the contour as the object rotates in front of its background, although nothing is taken from or added to the array. This is a disturbance in the continuity of the array. Another way of putting it is to say that the align- ments of textural units, the radii of the circle, for instance, are shifted at the contour. Apart from this special case, all other rotations of objects, and all noncircular objects, will cause progressive loss and gain of optical texture by foreshortening to the limit at one border and inverse foreshortening from the limit at the other border; that is to say, faces of the object will go out of and come into sight. In short, objects in general cannot rotate without causing a change of occlusion.
 
-当我们观察运动的物体时，我们看到的视觉变化并不总是物体实际运动的直接复制。这一点在大多数情况下是显而易见的。但是，让我们考虑一个特殊的情况：物体绕自身轴心旋转，也就是物理学中所说的 "自旋"。在这种情况下，我们看到的景象似乎没有太大变化，特别是当背景保持不变时。
+当我们观察运动的物体时，我们看到的视觉变化并不总是物体实际运动的直接复制。这一点在大多数情况下是显而易见的。但是，让我们考虑一个特殊的情况：物体绕自身轴心旋转，也就是物理学中所说的「自旋」。在这种情况下，我们看到的景象似乎没有太大变化，特别是当背景保持不变时。
 
 想象一个球体或圆盘，它的旋转轴正对着你的视线。你可能会认为，你所看到的圆形图像的旋转完全复制了实际物体的旋转，就像一一对应的关系。但事实上，即使在这种看似简单的情况下，我们的视觉体验也与实际发生的情况有所不同。
 
-从光学角度来看，当物体在背景前旋转时，我们观察到的是物体轮廓处纹理的一种 "剪切" 或 "滑移" 现象。虽然整体图像中没有增加或减少任何元素，但是纹理的连续性在轮廓处被打断了。举个例子，如果你仔细观察一个旋转的圆盘，你会发现圆盘边缘处的纹理线条（比如半径）似乎在发生位移。
+从光学角度来看，当物体在背景前旋转时，我们观察到的是物体轮廓处纹理的一种「剪切」或「滑移」现象。虽然整体图像中没有增加或减少任何元素，但是纹理的连续性在轮廓处被打断了。举个例子，如果你仔细观察一个旋转的圆盘，你会发现圆盘边缘处的纹理线条（比如半径）似乎在发生位移。
 
 对于更复杂的情况，比如非圆形物体的旋转，或者从其他角度观察的旋转，视觉效果会更加复杂。我们会看到物体的某些部分逐渐消失在视野中，而其他部分则逐渐出现。这种现象在光学上表现为纹理的逐渐损失和增加。简而言之，当物体旋转时，总会导致我们视野中遮挡关系的变化。
 
 What happens in the array when a surface in the world is deformed? It is plausible in that case to suppose that the deformation of the optical texture is a copy of the deformation of the substantial texture, since the optical units are projections of the substantial units, by natural perspective, and are in one-to-one correspondence with them. It would seem that the uneven flow of the surface of water in a river-the bubbles and flecks of the surface-has a corresponding flow of the optical texture in the array. But this does not hold for the ripples or waves over the surface, because the ripples do not move in the same way the textured surface does. The fluctuation of light and shade does not correspond to the surface. And, of course, if the crests of the waves are high they will begin to hide the troughs, and the occluding edges will spoil the projective correspondence.
-
-
 
 那么，当我们观察一个变形的表面时，情况又如何呢？比如说，一条流动的河流。乍一看，我们可能会认为水面上气泡和涟漪的运动直接对应于我们看到的视觉变化。毕竟，表面的每个点似乎都有一个对应的光学投影点。然而，实际情况要复杂得多。
 
 以水面的波纹为例。波纹的运动方式与水面实际的运动并不完全一致。我们看到的光影变化并不直接对应于水面的起伏。更不用说，如果波浪较高，波峰会遮挡波谷，进一步打破了这种表面与视觉之间的简单对应关系。
 
 这些例子说明，我们的视觉体验是一个复杂的过程，不能简单地视为现实世界的直接复制。理解这一点对于我们更好地解释我们所看到的世界，以及在科技领域（如计算机图形学和机器视觉）中模拟真实世界的视觉效果都具有重要意义。
-
 
 What happens in the array when a surface is ruptured or broken? The math-ematical continuity of the surface texture fails, and so does the mathematical continuity of the optical texture. As the crack in the surface becomes a gap, occluding edges appear where there were none previously. As the gap widens, a new surface is revealed. A different optical texture fills the gap and is added to the array. This emergence of new structure in the gap is perhaps the crucial information. A precise decription is needed, but this may prove to be difficult. Mathematicians do not seem to have been successful with the problem of discontinuity.
 
@@ -441,24 +446,21 @@ With respect to mechanical events of all sorts, then, it is a serious mistake to
 
 1. 最初，你会看到一条细线出现在表面上，这就是裂缝的开始。
 
-2. 随着裂缝变宽，你会注意到裂缝的边缘开始遮挡住裂缝内部，这些边缘我们称之为 "遮挡边缘"。
+2. 随着裂缝变宽，你会注意到裂缝的边缘开始遮挡住裂缝内部，这些边缘我们称之为「遮挡边缘」。
 
 3. 当裂缝继续扩大，你会发现裂缝内部露出了新的表面，这个新表面有着与原表面不同的纹理。
 
 这个过程中最关键的信息可能就是新结构（新表面）的出现。虽然我们日常生活中经常看到这种现象，但要精确地描述这个过程却并不容易。有趣的是，即使是数学家们也常常难以用数学语言准确描述这种不连续性。
 
-这个例子说明，我们看到的视觉变化并不仅仅是物理世界的简单投影。我曾经在一篇关于 "光学运动和变换" 的论文中写道："光学运动是三维物理运动在二维上的投影"（Gibson，1957，p. 289）。但现在我认识到，这种说法是有问题的。
+这个例子说明，我们看到的视觉变化并不仅仅是物理世界的简单投影。我曾经在一篇关于「光学运动和变换」的论文中写道：光学运动是三维物理运动在二维上的投影（Gibson，1957，p. 289）。但现在我认识到，这种说法是有问题的。
 
 在几何学中，我们常用点对点的对应关系来描述投影。这种方法虽然简单有效，但它无法完全描述我们实际看到的世界。因为在现实世界中，物体会相互遮挡，而这种遮挡关系在简单的投影模型中是无法体现的。
 
-这个问题揭示了我们对空间概念理解的局限性，特别是对所谓 "第三维度"（即深度）的理解。虽然我们常说自己生活在三维空间中，但我们对空间的感知远比简单地感知 "深度" 要复杂得多。
+这个问题揭示了我们对空间概念理解的局限性，特别是对所谓「第三维度」（即深度）的理解。虽然我们常说自己生活在三维空间中，但我们对空间的感知远比简单地感知「深度」要复杂得多。
 
 总的来说，这个讨论提醒我们，在研究视觉感知时，我们需要超越简单的几何模型，考虑更多复杂的因素，如表面的破裂、新表面的出现、以及物体间的遮挡关系等。只有这样，我们才能更好地理解和描述我们所看到的丰富多彩的视觉世界。
 
-
-
-
-Chemical Events
+### 6.9 Chemical Events
 
 What happens in the optic array when the composition of a surface in the multicolored layout of surfaces is altered? The green plant flowers, and the green fruit ripens; the rock weathers, and the wood blackens. The change in composition is almost always specified by a change in reflectance, both unse- lective and selective, both achromatic and chromatic. A substance is necessarily a colorant in the general sense of the term, if not a pigment.
 
@@ -468,11 +470,39 @@ But, unhappily, we do not know what happens in the optic array when one of the s
 
 It is easier to say what happens in the optic array when one of the surfaces of the environment changes texture. The pigment texture of a flat, conglomerate surface is projected in the array, and the quality, density, and regularity of the pigment texture are specified in the optical texture despite all kinds of perspective transformations. These "forms"of texture are also invariant under changing direction of illumination and changing amount of illumination. Perhaps the composition of the substance is given in this way and, since that is what counts for animals, the pure abstract reflectance of the surface is of lesser importance than we are apt to suppose.
 
+化学变化与视觉感知
+
+当我们周围五彩缤纷的世界中，某个物体表面的化学成分发生变化时，我们的视觉系统会捕捉到什么呢？想想看，绿色的植物开出鲜艳的花朵，青涩的果实逐渐变得成熟；坚硬的岩石经过风化变得斑驳，光滑的木材随着时间推移变得漆黑。这些变化几乎总是伴随着物体表面反射光线方式的改变，包括对各种波长光线的反射能力（选择性反射）以及整体亮度的变化（非选择性反射）。从这个角度来看，任何物质都可以被视为广义上的「着色剂」，即使它不是专门用来着色的颜料。
+
+正如我之前提到的，当物质在化学上保持稳定时，它们表面的反射特性往往也会保持不变。这种稳定性为我们的视觉系统提供了一个持续的、可靠的信息来源。然而，当物质发生化学反应时，情况就大不相同了。尤其是生物体的表面，它们在化学上非常活跃。植物和动物会随着季节的变化改变自己的颜色和纹理。
+
+遗憾的是，我们目前还不完全清楚当环境中的某个表面改变颜色时，我们的视觉系统究竟是如何处理这种变化的。我们知道这种变化会对视觉系统中原有的稳定信息造成某种「干扰」，但具体的机制还不明确。问题的关键在于，我们还不知道视觉系统中的哪些不变特征（invariant）能够帮助我们识别出物体表面颜色的持续性，更不用说识别颜色的变化了。我们也不清楚是什么让我们能够辨别出物体的材质组成，或者如何将物体本身的黑白与光影造成的明暗区分开来。我曾经提出，移动光源可能是解决这个问题的关键，但这个理论还需要进一步发展。
+
+相比之下，当环境中的某个表面改变纹理时，我们对视觉系统的反应就有更清晰的认识。平坦但材质复杂的表面上的颜色纹理会投射到我们的视网膜上，形成一种光学纹理。尽管由于视角的变化，这种投射会产生各种透视效果，但纹理的质量、密度和规律性仍然能够被我们的视觉系统准确捕捉。更有趣的是，即使光照的方向和强度发生变化，这些纹理的「形态特征」也能保持不变。这可能意味着，物质的成分主要是通过这种纹理信息传达给我们的。考虑到对动物（包括人类）来说，识别物质的成分比单纯感知表面的反射率更为重要，那么我们可能需要重新评估纯粹的抽象反射率在视觉感知中的重要性。
+
 Destruction and Creation of Surfaces
 
 Finally, we ask what information is in an optic array for the coming into and going out of existence of surfaces caused by changes in the state of matter. The reader will recall that whenever ambient light is structured in one part and unstructured in an adjacent part a surface is specified in the former and a void in the latter. Thus, the textured region below the horizon specifies the solid earth, and the homogeneous region above it specifies the empty sky. Similarly, the heterogeneous areas in the sky specify surfaces, even if only clouds, and the homogeneous areas between clouds specify the absence of a surface. The leafy canopy in a forest provides an overhead texture; the holes in the canopy are textureless, and it is into these holes that the birds fly. So long as any visual solid angle in the array remains unstructured it specifies a hole; it can be magnified to the hemispherical limit, and the bird will not collide with any surface but will fly through the hole.
 
 In the upper hemisphere of the ambient array, cloud surfaces dissipate, and we say they vanish. The optical texture is supplanted by the absence of texture. Cloud surfaces also form in the sky, and we say that they have material- ized. The absence of texture is supplanted by texture. In the lower hemisphere of the array, the optical transitions are more complex, for there is always a background texture. With evaporation of a liquid surface, or the sublimation of a solid surface, or the dissolving of it, the optical texture is supplanted by that of whatever lay behind it. As one structure is nullified, another takes its place. Sometimes the substance of the object becomes transparent during the transition, which means that one surface is specified behind another. This information is displayed in what the motion picture technician calls a dissolve, whereby one layout goes out of sight as another comes into sight in precisely the same place. There is a "fade-out" and a "fade-in."both of which occur at the same time.
+
+表面的消失与形成
+
+最后，让我们来探讨一个有趣的问题：当物质状态发生变化，导致表面产生或消失时，我们的视觉系统是如何捕捉到这些信息的？
+
+首先，让我们回顾一个基本原理：在我们的视野中，当一个区域有明显的纹理或结构，而相邻区域却是均匀的、没有明显特征时，我们的大脑会将前者解读为一个实体表面，后者则被视为空间或空隙。这就是为什么我们能轻易区分出地面和天空 —— 地平线以下的部分通常有丰富的纹理，代表了坚实的地球表面；而上方的均匀区域则被理解为广阔的天空。
+
+同样的原理也适用于天空中的云彩。云朵所在的区域因为有明显的结构被我们视为表面，而云与云之间的清澈天空则被视为没有表面的空间。在森林中，树叶形成的树冠为我们提供了一个上方的纹理，而树冠中的空隙则是没有纹理的「洞」—— 正是通过这些「洞」，鸟儿们自由飞翔。事实上，只要视野中的任何一个角落保持没有明显结构，我们的大脑就会将其解读为一个「洞」或可以通过的空间。这就是为什么鸟儿能够在树林中灵活穿梭而不会撞到树枝。
+
+现在，让我们看看当表面发生变化时会发生什么。在天空中（也就是我们视野的上半部分），我们经常可以看到云彩的消散。这个过程中，原本有结构的区域逐渐变得均匀，我们称之为云彩「消失」了。相反的过程也会发生，当水汽凝结时，原本清澈的天空中会出现云彩，我们说云彩「形成」了。
+
+在地面上（也就是我们视野的下半部分），情况会更加复杂，因为通常总有一个背景纹理。想象一下当水洼蒸发、冰块升华或者物体溶解时的场景 —— 原本的表面纹理会逐渐被其背后物体的纹理所替代。这就像是一个表面「消失」，而另一个表面「出现」。
+
+有时，这个过程会更加有趣。例如，当一些物质在转变过程中变得透明时，我们会看到一个表面逐渐显现在另一个表面之后。这种视觉效果在电影制作中被称为「溶解」—— 一个场景逐渐消失，而另一个场景在同一位置逐渐显现。就像是一个画面在「淡出」的同时，另一个画面正在「淡入」。
+
+通过理解这些视觉原理，我们可以更好地欣赏自然界中那些微妙而迷人的变化过程，从云彩的形成到冰块的融化，每一个瞬间都蕴含着丰富的视觉信息。
+
+---
 
 THE THEORY OF SPIRITS
 
@@ -487,11 +517,30 @@ Leave not a rack behind.
 
 Shakespeare, The Tempest
 
+灵魂之说
+
+我们的这些演员啊
+已化作轻盈的空气，消散无踪：
+恰如这虚幻景象的脆弱根基，
+那云端高耸的塔楼，金碧辉煌的宫殿，
+庄严肃穆的神殿，乃至这浩瀚的地球，
+诚然，一切存在的事物，终将消融
+如同这场虚无缥缈的幻梦褪去，
+不留半点痕迹。
+
+—— 莎士比亚，《暴风雨》
+
+---
+
 The optical transitions that specify dissipation, evaporation, sublima- tion, dissolution, disintegration, and decay seem to be complex variants of the substitution of one texture for another. No systematic study of them has ever been made. But children notice them, are fascinated, and look closely at the regions of the optic array where such substitutions occur. Presumably they learn to distinguish among these substitutions and to perceive what they mean.
 
 The difference between the loss of optical texture from an array by progressive substitution and the loss of optical texture from an array by progressive deletion on one side of a contour has been illustrated in preliminary fashion by a motion picture film (Gibson, 1968a). The loss by substitution should specify a surface that goes out of existence. The loss by deletion should specify a surface that goes out of sight at an occluding edge, as described in the last section. These radically different happenings are, in fact, seen, or so people say when they watch the film.
 
-The Kinds of Disturbance of Optical Structuce
+那些描述物体消散、蒸发、升华、溶解、分解和腐烂的视觉变化，似乎都是一种复杂的纹理替换过程。虽然还没有人对这些现象进行系统的研究，但孩子们却能敏锐地注意到它们。他们会被这些变化深深吸引，仔细观察视野中发生这些替换的区域。我们可以推测，正是通过这种观察，孩子们逐渐学会了区分这些不同的变化，并理解它们所代表的含义。
+
+在一部实验性动画片中（Gibson, 1968a），研究者展示了两种不同的视觉纹理消失方式之间的差异。第一种是通过逐步替换导致的纹理消失，第二种是通过物体边缘的逐步遮挡导致的纹理消失。前者应该让观察者感觉到物体表面正在消失，而后者则会让人觉得物体表面只是被遮挡住了，正如上一节所描述的那样。实际上，当人们观看这部动画片时，他们确实能够看出这两种根本不同的现象，至少他们是这么说的。
+
+### 6.10 The Kinds of Disturbance of Optical Structuce
 
 I said that the most general term for what happens in the optic array when something happens in the world is a disturbance of its structure. There is no existing terminology for describing optical changes (or physical changes, for that matter), so one has to grope for the best terms. I have spoken of optical trans- formations and of permutations. I talked about fluctuations in connection with changing light and shade. I have referred to optical transitions. I argued that one should not speak of motions in the array. The best general term seems to be disturbances. Consider the kinds that have been described:
 
@@ -515,29 +564,83 @@ I said that the most general term for what happens in the optic array when somet
 
 10. Change of "color structure"(chemical events)
 
+视觉结构变化的类型
+
+当世界上发生某事时，我们眼中的视觉场景会发生变化。我把这种变化最广义地称为「视觉结构的扰动」。由于目前还没有专门描述视觉变化（或物理变化）的术语，我们只能尝试寻找最合适的词语来描述它们。我曾使用过「视觉变换」、「置换」等词，在讨论光影变化时用过「波动」，还提到过「视觉转变」。我认为不应该说视觉场景中有「运动」，最恰当的通用术语似乎是「扰动」。让我们来看看已经被描述过的几种扰动类型：
+
+1. 物体边缘一侧视觉元素的逐渐消失和出现（物体在背景前移动）
+
+2. 间隙的逐渐缩小和扩大（物体在天空背景下移动）
+
+3. 物体边缘处视觉纹理的错位或滑动（如圆盘旋转）
+
+4. 透视变换导致的缩短或延长（物体表面旋转）
+
+5. 极度放大和缩小（物体的靠近和远离）
+
+6. 形状变化（流体、粘性物质和弹性物体的变化）
+
+7. 新结构的出现（物体破裂）
+
+8. 纹理的消失（物体在天空中消散）
+
+9. 新纹理替代旧纹理（物体在地面上消散）
+
+10. 「颜色结构」的变化（化学反应）
+
 What a strange list of phenomena! They are not easy to describe or to under- stand. Yet these optical happenings or something like them occur all the time in the array of light to the eye. Even if no one sees them as such, they carry the information about events in the environment. In the changing array from a motion picture screen, an array that is saturated with meaning, these must be the "motions"of the motion picture that convey the meaning. They are surely lawful, and they deserve to be studied in their own right, from a fresh point of view, and without the accumulated prejudices that the theory of light stimuli has fostered.
 
 Can these disturbances of structure be treated mathematically? They surely cannot all be treated with the same mathematical method, for some of them do not conform to the assumptions of the theory of sets. Some of the above changes do not preserve a one-to-one mapping of units over time, inasmuch as the array gains or loses units in time. Accretion or deletion of texture during occlusion is one such case. Foreshortening or compression of texture preserves one-to-one mapping only until it reaches its limit, after which texture is lost. The emer- gence of new texture with rupturing of a surface, the nullification of texture with dissipation of a surface, and the substitution of new texture for old are still other cases of the failure of one-to-one mapping, or projective correspondence. In all of these cases it is not the fact that each unit of the ambient array at one time goes into a corresponding unit of the array at a later time. The case of an optic array that undergoes "fashing" or scintillation of its units is another example, and so is what I called fluctuation in connection with changing light and shade.
 
-On the other hand, some of these optical disturbances do seem to preserve one-to-one correspondence of units over time, namely, the perspective trans- formations, the deformations or topological transformations, and even the shearing or slippage of optical texture at a contour. In the case of a partial permutation of a spot-texture, or a radical permutation such as the random displacements called Brownian movement, there is still a persistence of units without gain or loss. The invariants under transformation, the ratios and proportions and relations among units, are richest for the disturbances at the beginning of the above list and poorest for the permutations at the end, but invariants are discoverable throughout. A disturbance of connectedness or adja- cent order is more serious than a mere disturbance of form. A complete scram- bling of the adjacent order of units is still more serious. But a mathematical theory of invariants may be possible for all these disturbances of structure with persistence. What is lacking is a theory of the invariants that are preserved under disturbances with nonpersistence of units.
+On the other hand, some of these optical disturbances do seem to preserve one-to-one correspondence of units over time, namely, the perspective trans- formations, the deformations or topological transformations, and even the shearing or slippage of optical texture at a contour. In the case of a partial permutation of a spot-texture, or a radical permutation such as the random displacements called Brownian movement, there is still a persistence of units without gain or loss. The invariants under transformation, the ratios and proportions and relations among units, are richest for the disturbances at the beginning of the above list and poorest for the permutations at the end, but invariants are discoverable throughout. A disturbance of connectedness or adjacent order is more serious than a mere disturbance of form. A complete scram- bling of the adjacent order of units is still more serious. But a mathematical theory of invariants may be possible for all these disturbances of structure with persistence. What is lacking is a theory of the invariants that are preserved under disturbances with nonpersistence of units.
+
+这真是一个令人惊讶的现象列表！这些现象不太容易描述或理解。然而，类似的视觉变化却一直在我们的视野中发生。即使没有人刻意去注意，这些变化也在不断地传递着周围环境变化的信息。在一部内容丰富的电影中，正是这些视觉「运动」传达了影片的含义。这些视觉变化必然遵循某些规律，值得我们从一个全新的角度进行深入研究，而不应该被传统光刺激理论的成见所束缚。
+
+那么，我们能用数学方法来描述这些视觉结构的变化吗？显然，我们不能用同一种数学方法来处理所有这些变化，因为有些变化不符合集合论的基本假设。比如，在某些变化中，视觉元素的数量会随时间增加或减少，这就不符合一一对应的原则。当一个物体被遮挡时，我们视野中的纹理会逐渐消失或出现，这就是一个例子。再比如，当一个物体的表面朝向我们转动时，我们看到的纹理会变得越来越密集，但这种变化只能维持到一定程度，之后纹理就会开始消失。物体表面破裂时新纹理的出现、物体消散时纹理的消失，以及新纹理替代旧纹理，都是无法用一一对应关系来描述的情况。在这些情况下，我们在某一时刻看到的视觉元素，并不能简单地对应到下一时刻的某个元素。闪烁的光点、光影的变化等现象也属于这种情况。
+
+然而，有些视觉变化确实能保持视觉元素的一一对应关系。比如透视变换（物体远近造成的视觉变化）、形状变形、甚至是物体边缘处纹理的滑动等。即使在一些看似随机的变化中，如布朗运动（微小粒子在液体或气体中的不规则运动），尽管元素的位置在变化，但元素的数量却保持不变。在这些变化过程中，我们可以发现一些不变的特征。这些不变特征在上述列表开头的变化中最为丰富，而在列表末尾的随机变化中最少，但在所有变化中都能找到一些不变的东西。一般来说，物体间连接关系或相对位置的改变，比单纯的形状变化更加显著。如果视觉元素的相对位置完全被打乱，那就更加难以辨认了。对于那些视觉元素数量保持不变的变化，我们可能可以建立一个数学理论来描述其中的不变特征。但对于那些视觉元素数量会发生变化的情况，我们目前还缺乏一个合适的理论来描述其中的不变特征。
+
+---
 
 THE OPTICAL MAGNIFICATION OF NESTED FORMS
 
 If a surface is composed of units nested within larger units, its optic array is composed of solid angles nested within larger solid angles. As a point of observation approaches a surface, all angles are magnified toward the limit of a whole angle (180°), even those whose units were too small to see at a distance. The closer a surface, the more its subordinate units become visible. Does this progress have an end?
 
+嵌套形状在视觉中的放大效应
+
+想象一下，一个表面由大小不同的图案组成，小图案嵌套在大图案之中。当我们观察这个表面时，我们的视野就像是由一系列大小不同的扇形区域组成，小扇形嵌套在大扇形之中。当我们靠近这个表面时，所有这些扇形区域都会变大，甚至那些原本太小看不见的部分也会逐渐显现出来。我们离表面越近，就能看到越多的细节。那么，这种细节的展现是否有个尽头呢？
+
+---
+
 These disturbances in the optic array are not similar to the events in the environment that they specify. The superficial likenesses are misleading. Even if the optical disturbances could be reduced to the motions of spots, they would not be like the motions of bodies or particles in space. Optical spots have no mass and no inertia, they cannot collide, and in fact, because they are usually not spots at all but forms nested within one another, they cannot even move. This is why I suggested that a so-called optical motion had so little in common with a physical motion that it should not even be called a motion.
 
 In what way, if any, does an optical disturbance correspond to the event in the environment that it specifies? It corresponds in sequential order. The begin- ning and the end of the disturbance in the array are concurrent with the begin- ning and the end of the event in the environment, and there is no latency or delay. If events are simultaneous, the disturbances are simultaneous. If an event consists of subordinate events, then the disturbance will consist of subordinate disturbances, as when a ball rolls downstairs in a sequence of bounces. If an event is gradual, the disturbance is gradual (a balloon being blow up), and if an event is abrupt, the disturbance is abrupt (the balloon bursting). If an event is unitary (a ball rolling behind a screen and then out again), the disturbance is unitary-deletion and then accretion at the occluding edges. Or so, at least, I suggested.
 
-If a series of repeated events occurs in the environment, a series of repeated disturbances occurs in the ambient optic array. When the events are mechanical, these optical disturbances are usually accompanied by sounds, as in the colliding of objects and the rupturing or cracking of surfaces. The chains of optical and acoustical disturbances run in parallel. And the sequential order of this inform- ation flow cannot be tampered with. Unlike the adjacent order of a series of objects, the sequential order of a series of events cannot be rearranged. Some of the individual events that compose the grand sequence of a day can go backward, displacements for example, but the sequential order of their occurrence is immutable. This is why "time"is said to have an "arrow,"I believe, and this is why "time travel" is a myth.
+If a series of repeated events occurs in the environment, a series of repeated disturbances occurs in the ambient optic array. When the events are mechanical, these optical disturbances are usually accompanied by sounds, as in the colliding of objects and the rupturing or cracking of surfaces. The chains of optical and acoustical disturbances run in parallel. And the sequential order of this inform- ation flow cannot be tampered with. Unlike the adjacent order of a series of objects, the sequential order of a series of events cannot be rearranged. Some of the individual events that compose the grand sequence of a day can go backward, displacements for example, but the sequential order of their occurrence is immutable. This is why "time" is said to have an "arrow," I believe, and this is why "time travel" is a myth.
 
-The Causation of Events
+需要注意的是，我们视野中的这些变化并不等同于现实世界中物体的实际变化。虽然表面上看起来很相似，但这种相似可能会误导我们。即使我们可以把视觉变化简化为点的移动，这种移动也和现实世界中物体或粒子的运动完全不同。视觉中的「点」没有质量，也没有惯性，它们不能相互碰撞。事实上，它们通常不是真正的点，而是互相嵌套的形状，所以严格来说它们甚至不能「移动」。这就是为什么我认为，所谓的视觉运动与物理运动几乎没有共同之处，甚至不应该被称为「运动」。
+
+那么，视觉变化与现实世界的事件有什么联系呢？主要是在时间顺序上。视觉变化的开始和结束，与现实事件的开始和结束是同步的，没有延迟。如果现实中有多个事件同时发生，我们的视觉中也会出现同时的变化。如果一个事件由多个子事件组成，那么视觉变化也会相应地由多个子变化组成。比如，当一个球沿着楼梯滚下时，我们会看到一系列的弹跳。如果一个事件是渐进的（比如气球慢慢被吹起），视觉变化也是渐进的；如果事件是突然的（比如气球突然爆炸），视觉变化也是突然的。当一个物体在我们视线中消失又出现时（比如球滚到屏风后又滚出来），我们看到的是一个统一的视觉变化过程 —— 物体的图像先消失，然后又出现。
+
+如果环境中发生一系列重复的事件，我们的视觉中也会出现一系列重复的变化。当这些事件涉及物体的机械运动时，视觉变化通常会伴随着声音，比如物体碰撞或表面破裂的声音。视觉和听觉的变化是同步发生的。而且，这种信息流的顺序是不能改变的。与物体的空间排列可以重新安排不同，事件发生的时间顺序是不能重新排列的。虽然一天中的某些个别事件可以倒退（比如物体的位置可以回到原处），但这些事件发生的先后顺序是不可改变的。我认为，这就是为什么人们说时间有一个「方向」，也是为什么「时间旅行」（改变过去或未来）只能存在于科幻故事中的原因。
+
+### 6.11 The Causation of Events
 
 A special kind of mechanical event involving two detached objects and two successive displacements is a collision, in which the first displacement causes the second. It is a superordinate event with two subordinate events. The"bumping" of one elastic object by another is perhaps the most obvious example of a causal sequence that we have.
 
 For an inanimate object, collision may cause breaking, bending, chipping, deformation, and so on, as well as displacement. For the animate object, it may cause injury and all sorts of complex reactions. Philosophers and psychologists since Hume have been debating the question of whether or not such causation could be perceived. Hume asserted that although the motions of the two objects could be sensed, one after the other, it was quite impossible to see the one motion causing the other. Only succession can be perceived, not causation, he believed.
 
-A. Michotte (1963)has attempted to refute Hume. In Chapter 10 we shall consider his evidence. Can one truly perceive a dynamic event as such? Is there information to specify it? Recent experiments at Uppsala suggest there is (Runeson, 1977).
+A. Michotte (1963) has attempted to refute Hume. In Chapter 10 we shall consider his evidence. Can one truly perceive a dynamic event as such? Is there information to specify it? Recent experiments at Uppsala suggest there is (Runeson, 1977).
+
+事件的因果关系
+
+在机械物理的运动。我们可以把碰撞看作是一个大事件，由两个小事件组成。比如，当一个弹性球撞击另一个球时，这可能是我们能观察到的最直观的因果关系例子。
+
+碰撞对不同的物体会产生不同的影响。对于没有生命的物体，比如石头或玻璃，碰撞可能导致它们破碎、弯曲、产生缺口、变形，或者改变位置。而对于有生命的物体，比如动物或人，碰撞可能导致伤害，以及引发各种复杂的反应。自 18 世纪以来，哲学家和心理学家一直在讨论我们是否能真正「看到」这种因果关系。著名哲学家休谟认为，虽然我们能看到两个物体先后运动，但我们实际上无法看到一个物体的运动「导致」另一个物体的运动。他认为，我们只能观察到事件的先后顺序，而不能直接观察到因果关系。
+
+然而，20 世纪的心理学家 Michotte 试图反驳休谟的观点。他进行了一系列实验，试图证明人们确实能够直接感知因果关系。我们将在第 10 章详细讨论他的研究。这引发了一个更广泛的问题：我们是否真的能够直接感知动态事件的本质？是否存在某种信息能够让我们直接识别因果关系？最近在瑞典乌普萨拉大学进行的实验似乎支持了这种可能性（Runeson，1977）。
+
+这个问题之所以重要，是因为它涉及到我们如何理解世界，以及我们的感知系统是如何工作的。如果我们能够直接感知因果关系，那么这将对我们理解人类认知过程有重要影响。
 
 ### Summary
 
