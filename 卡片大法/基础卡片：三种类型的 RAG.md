@@ -1,0 +1,3 @@
+
+
+基础卡片：三种类型的 RAG2024-05-13解释：参考：selfstudy => 003Paper => 2023077Retrieval-Augmented-Generation-for-Large-Language-Models-A-Survey原文：The research paradigm of RAG is constantly evolving. This chapter primarily introduces the evolution of the RAG research paradigm. We categorize it into three types: Naive RAG, Advanced RAG, and Modular RAG. Although the early RAG was cost-effective and performed better than the native LLM, it still faced many shortcomings. The emergence of Advanced RAG and Modular RAG were aimed at addressing specific deficiencies in the Naive RAG.RAG 研究范式在不断演变。本章重点介绍 RAG 研究范式的发展历程。我们将其分为三种类型：初级 RAG、高级 RAG 和模块化 RAG。虽然早期的 RAG 在成本效益上表现良好，并且性能优于传统的大语言模型 (LLM)，但它仍面临着诸多挑战。高级 RAG 和模块化 RAG 的设计是为了解决原始 RAG (Naive RAG) 的特定不足。

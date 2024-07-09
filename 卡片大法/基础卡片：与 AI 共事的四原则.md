@@ -1,0 +1,3 @@
+
+
+基础卡片：与 AI 共事的四原则2024-06-05解释：参考：Ethan Mollick.(2024).2024029Co-Intelligence_Living-and-Working-with-AI.Penguin Publishing Group => 0301 Four Rules for Co-Intelligence原文：Principle 1: Always invite AI to the table.Principle 2: Be the human in the loop.Principle 3: Treat AI like a person (but tell it what kind of person it is).Principle 4: Assume this is the worst AI you will ever use.原则 1：始终邀请 AI 加入讨论。原则 2：保持人类在决策环节中的参与。原则 3：像对待人一样对待 AI（但要告诉它是什么样的人）。原则 4：假设这是你用过的最差的 AI。
