@@ -162,7 +162,7 @@ result = arr_3d + arr_2d
 
 #### 2.1 术语卡 —— 结构化数据
 
-When I say「data,」what am I referring to exactly? The primary focus is on structured data, a deliberately vague term that encompasses many different common forms of data, such as: 
+When I say "data", what am I referring to exactly? The primary focus is on structured data, a deliberately vague term that encompasses many different common forms of data, such as: 
 
 1 Tabular or spreadsheet-like data in which each column may be a different type (string, numeric, date, or otherwise). This includes most kinds of data commonly stored in relational databases or tab- or comma-delimited text files.
 
@@ -174,9 +174,19 @@ When I say「data,」what am I referring to exactly? The primary focus is on str
 
 This is by no means a complete list. Even though it may not always be obvious, a large percentage of datasets can be transformed into a structured form that is more suitable for analysis and modeling. If not, it may be possible to extract features from a dataset into a structured form. As an example, a collection of news articles could be processed into a word frequency table, which could then be used to perform sentiment analysis. Most users of spreadsheet programs like Microsoft Excel, perhaps the most widely used data analysis tool in the world, will not be strangers to these kinds of data.
 
-当书中出现「数据」时，究竟指的是什么呢？主要指的是结构化数据（structured data），这个故意含糊其辞的术语代指了所有通用格式的数据，例如：表格型数据，其中各列可能是不同的类型（字符串、数值、日期等）。比如保存在关系型数据库中或以制表符 / 逗号为分隔符的文本文件中的那些数据；多维数组（矩阵）；通过关键列（对于 SQL 用户而言，就是主键和外键）相互联系的多个表；间隔平均或不平均的时间序列。
+当我提到「数据」时，我指的是什么呢？主要是指结构化数据，这是一个故意定义得比较宽泛的术语，涵盖了多种常见的数据形式，例如：
 
-这绝不是一个完整的列表。大部分数据集都能被转化为更加适合分析和建模的结构化形式，虽然有时这并不是很明显。如果不行的话，也可以将数据集的特征提取为某种结构化形式。例如，一组新闻文章可以被处理为一张词频表，而这张词频表就可以用于情感分析。
+1、表格式数据或类似电子表格的数据，其中每一列可能包含不同类型的信息（如文本、数字、日期等）。这包括了大多数常见的数据类型，通常存储在关系数据库或以制表符、逗号分隔的文本文件中。
+
+2、多维数组（也称为矩阵）。
+
+3、多个通过关键列（对 SQL 用户来说就是主键或外键）相互关联的数据表。
+
+4、时间序列数据，可以是等间隔或不等间隔的。
+
+这个列表并非详尽无遗。实际上，尽管乍看之下可能并不明显，但大部分数据集都可以转换成更适合分析和建模的结构化形式。即便无法直接转换，我们也可能从原始数据集中提取特征，形成结构化的数据。举个例子，我们可以将一组新闻文章处理成词频表（统计每个词出现的次数），然后利用这个结构化的词频数据来进行情感分析。
+
+对于使用 Microsoft Excel 等电子表格程序的用户来说（Excel 可能是世界上使用最广泛的数据分析工具），这些类型的数据应该并不陌生。
 
 ### 0301. 人名卡
 
