@@ -1,7 +1,5 @@
 ## 0501. Organizing a HAZOP Study
 
-你是一名化学工程师和工业安全专家，且精通英文。请将下面内容翻译为中文，要求：1）严谨。2）英文字符和中文字符之间用空格隔开。3）字符“更换为「，字符”更换为」。
-
 {The preparation work for a batch or sequential operation is usually more demanding than for a continuous process. In addition to the same range of background material, descriptions are also required of the detailed method of operation, the draft operating procedure, and the outline of the control sequence for a computer-controlled process. This time-dependent information is used in the division of the operation into stages for study, as illustrated in the example in Appendix 4. If a reaction is studied, the team needs information on the reaction process including heat and gas flows, exotherm onset temperatures, and the physical and chemical properties of the mixtures as well as the individual components. Again, the ability to define a design intention for each stage is an essential requirement.
 
 One major difference between continuous and batch operations is that a physical item may need to be considered several times in a batch HAZOP study as the status, conditions, and design intention change. Thus, a reaction vessel may be considered during the addition of each component of the reaction mixture, during the reaction stage itself, and then during cooling and discharge. Another example is the common pipeline operation of pigging, where a typical sequence involving the loading of a scraper pig into a pig launcher at the start of the operation might be:
