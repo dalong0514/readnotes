@@ -1072,8 +1072,6 @@ HAZOP 分析基于一个假设，即施工和运行过程都严格遵循设计�
 
 HAZOP 的根本局限在于，它分析的是系统图纸（如管道仪表流程图 P&ID），而这些图纸只能反映系统的部分特征 [15]。
 
-
-
 1.3.1 Poorly executed HAZOP
 
 1.3.1.1 HAZOP as a design review
@@ -1098,20 +1096,23 @@ Kletz 发现了一个普遍存在的问题：设计师往往过分依赖 HAZOP�
 
 专栏 1.30
 
-当有人提出设计变更建议时，设计工程师们可能会说："现在别打扰我。我们之后会进行 HAZOP（危险与可操作性分析）。到时候再讨论吧。"
+当有人提出设计变更建议时，设计工程师们可能会说：「现在别打扰我。我们之后会进行 HAZOP（危险与可操作性分析）。到时候再讨论吧。」
 
 然而，有专家指出，这并非 HAZOP 的本意。这种做法可能会影响评估的质量，因为它将重点错误地转移到了设计活动上，从而可能导致忽视了潜在的危险和操作问题 [2]。
 
-文本框 1.31：正确的 HAZOP 应用方法上述做法是不正确的。HAZOP 应该是对一个基本完善的设计进行最后的检查，目的是确保没有遗漏任何未预见的影响。它不应该取代设计开发过程中的日常咨询和讨论。HAZOP 会议不适合重新设计工厂，原因有二：首先，参与的人员过多；其次，这会分散会议的主要目的，即对现有设计进行系统的安全性和可操作性评估。
+文本框 1.31：
 
-
-
+正确的 HAZOP 应用方法上述做法是不正确的。HAZOP 应该是对一个基本完善的设计进行最后的检查，目的是确保没有遗漏任何未预见的影响。它不应该取代设计开发过程中的日常咨询和讨论。HAZOP 会议不适合重新设计工厂，原因有二：首先，参与的人员过多；其次，这会分散会议的主要目的，即对现有设计进行系统的安全性和可操作性评估。
 
 1.3.1.2 HAZOP completed too late
 
 A fairly common problem is that HAZOP is done too late in a project. This means that people are reluctant to get involved because they know that if they do identify any problems with the design they will be very difficult and expensive to rectify. This arises when the project is not well managed or the value of HAZOP is not recognised. The study happens because it is a key deliverable that has to be done but gets left to the last minute.
 
 The problem with a late HAZOP is that recommendations for improvements will be mainly restricted to add-on safety protection systems rather than implementing inherently safer solutions. The result is that the hazards remain but the plant complexity is potentially increased due to all the devices being added [19].
+
+
+
+
 
 1.3.1.3 Short cutting the process
 
