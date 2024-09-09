@@ -593,7 +593,7 @@ Begin by trying the simplest thing that could possibly work. Surprisingly often,
 
 Don't try to cram too much new stuff into any one version. There are names for doing this with the first version (taking too long to ship) and the second (the second system effect), but these are both merely instances of a more general principle.
 
-在软件开发中，不要试图在任何一个版本中加入过多的新功能。这种做法在不同阶段都有特定的称呼：对于第一个版本，我们称之为「过度延迟发布"；对于第二个版本，我们称之为「第二系统效应」（Second System Effect）。然而，这两种情况实际上都只是一个更普遍原则的具体体现。这个原则提醒我们，无论在哪个开发阶段，都应该保持功能增加的适度性和可控性。
+在软件开发中，不要试图在任何一个版本中加入过多的新功能。这种做法在不同阶段都有特定的称呼：对于第一个版本，我们称之为「过度延迟发布」；对于第二个版本，我们称之为「第二系统效应」（Second System Effect）。然而，这两种情况实际上都只是一个更普遍原则的具体体现。这个原则提醒我们，无论在哪个开发阶段，都应该保持功能增加的适度性和可控性。
 
 An early version of a new project will sometimes be dismissed as a toy. It's a good sign when people do this. That means it has everything a new idea needs except scale, and that tends to follow. [22]
 
@@ -605,7 +605,7 @@ The alternative to starting with something small and evolving it is to plan in a
 
 Planning per se isn't good. It's sometimes necessary, but it's a necessary evil — a response to unforgiving conditions. It's something you have to do because you're working with inflexible media, or because you need to coordinate the efforts of a lot of people. If you keep projects small and use flexible media, you don't have to plan as much, and your designs can evolve instead.
 
-规划本身并不是什么好事。有时它是必要的，但更像是一种无奈之举 — 是我们面对严苛环境时不得不采取的应对方式。之所以需要规划，要么是因为我们使用的工具缺乏灵活性，要么是因为我们需要协调众多人员的工作。如果能够保持项目规模较小，并使用灵活的工具和方法，我们就不需要过多的规划，设计方案就可以随着项目的进展自然演变，而不是一成不变。
+规划本身并不是什么好事。有时它是必要的，但更像是一种无奈之举 —— 是我们面对严苛环境时不得不采取的应对方式。之所以需要规划，要么是因为我们使用的工具缺乏灵活性，要么是因为我们需要协调众多人员的工作。如果能够保持项目规模较小，并使用灵活的工具和方法，我们就不需要过多的规划，设计方案就可以随着项目的进展自然演变，而不是一成不变。
 
 Take as much risk as you can afford. In an efficient market, risk is proportionate to reward, so don't look for certainty, but for a bet with high expected value. If you're not failing occasionally, you're probably being too conservative.
 
@@ -637,7 +637,7 @@ The old also have the advantage of knowing which advantages they have. The young
 
 That "slightly" is an important qualification. Spend time lavishly when you're young, but don't simply waste it. There's a big difference between doing something you worry might be a waste of time and doing something you know for sure will be. The former is at least a bet, and possibly a better one than you think. [23]
 
-"稍微」这个词在这里是一个重要的限定。年轻时要充分利用你的时间，但不要随意挥霍。做一件你担心可能会浪费时间的事和做一件你确定会浪费时间的事，这两者之间有很大的区别。前者至少是一次尝试，可能比你想象的更有价值。[23]
+「稍微」这个词在这里是一个重要的限定。年轻时要充分利用你的时间，但不要随意挥霍。做一件你担心可能会浪费时间的事和做一件你确定会浪费时间的事，这两者之间有很大的区别。前者至少是一次尝试，可能比你想象的更有价值。[23]
 
 The most subtle advantage of youth, or more precisely of inexperience, is that you're seeing everything with fresh eyes. When your brain embraces an idea for the first time, sometimes the two don't fit together perfectly. Usually the problem is with your brain, but occasionally it's with the idea. A piece of it sticks out awkwardly and jabs you when you think about it. People who are used to the idea have learned to ignore it, but you have the opportunity not to. [24]
 
@@ -687,7 +687,7 @@ And don't take rejection by committees to heart. The qualities that impress admi
 
 People new to a field will often copy existing work. There's nothing inherently bad about that. There's no better way to learn how something works than by trying to reproduce it. Nor does copying necessarily make your work unoriginal. Originality is the presence of new ideas, not the absence of old ones.
 
-刚步入一个新领域的人往往会模仿已有的工作。这其实并不是什么坏事。要了解某件事物的运作原理，没有比亲自动手复现更好的学习方法了。而且，模仿并不必然意味着你的工作就缺乏原创性。原创性体现在新想法的 presence，而不是旧想法的缺失。
+刚步入一个新领域的人往往会模仿已有的工作。这其实并不是什么坏事。要了解某件事物的运作原理，没有比亲自动手复现更好的学习方法了。而且，模仿并不必然意味着你的工作就缺乏原创性。原创性体现在新想法的存在，而不是旧想法的缺失。
 
 There's a good way to copy and a bad way. If you're going to copy something, do it openly instead of furtively, or worse still, unconsciously. This is what's meant by the famously misattributed phrase "Great artists steal." The really dangerous kind of copying, the kind that gives copying a bad name, is the kind that's done without realizing it, because you're nothing more than a train running on tracks laid down by someone else. But at the other extreme, copying can be a sign of superiority rather than subordination. [25]
 
@@ -795,7 +795,7 @@ Doing great work is a depth-first search whose root node is the desire to. So "I
 
 "Never give up" is also not quite right. Obviously there are times when it's the right choice to eject. A more precise version would be: Never let setbacks panic you into backtracking more than you need to. Corollary: Never abandon the root node.
 
-"永不放弃」这句话其实并不总是对的。显然，在某些情况下，明智地选择退出反而是正确的决定。一个更准确的表述应该是：永远不要让挫折让你惊慌失措，以至于过度后退。换句话说，即使遇到困难，也要尽可能地坚持你的核心目标。
+「永不放弃」这句话其实并不总是对的。显然，在某些情况下，明智地选择退出反而是正确的决定。一个更准确的表述应该是：永远不要让挫折让你惊慌失措，以至于过度后退。换句话说，即使遇到困难，也要尽可能地坚持你的核心目标。
 
 延伸思考：在解决问题的过程中，永远不要完全放弃最初的出发点（就像在搜索树中不要放弃根节点）。这意味着即使需要改变策略，也要记住你最初的目标和动机。
 
@@ -881,11 +881,11 @@ Many more people could try to do great work than do. What holds them back is a c
 
 So I'm going to pull a sneaky trick on you. Do you want to do great work, or not? Now you have to decide consciously. Sorry about that. I wouldn't have done it to a general audience. But we already know you're interested.
 
-未找到意译内容
-
 Don't worry about being presumptuous. You don't have to tell anyone. And if it's too hard and you fail, so what? Lots of people have worse problems than that. In fact you'll be lucky if it's the worst problem you have.
 
-别担心会给人留下狂妄自大的印象。你也不必向任何人提起这件事。即使它太难而你没能做到，又能怎样呢？世界上有很多人正面临着比这更棘手的问题。说实话，如果这就是你最大的烦恼，那你其实已经很幸运了。
+那么，我要和你玩个小把戏。你想不想做出一番大事业？现在你必须认真地做出选择了。抱歉啊，我通常不会对普通读者这么做的。不过我们都知道你对这个话题很感兴趣。
+
+别担心自己会不会有点不自量力。你也不必告诉别人。就算这个目标太难达成、你最后失败了，那又如何呢？很多人面临的问题比这严重多了。说实话，如果这是你最棘手的问题，那你已经很幸运了。
 
 Yes, you'll have to work hard. But again, lots of people have to work hard. And if you're working on something you find very interesting, which you necessarily will if you're on the right path, the work will probably feel less burdensome than a lot of your peers'.
 
