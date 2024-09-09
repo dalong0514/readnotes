@@ -163,7 +163,7 @@ The trouble with planning is that it only works for achievements you can describ
 
 I think for most people who want to do great work, the right strategy is not to plan too much. At each stage do whatever seems most interesting and gives you the best options for the future. I call this approach "staying upwind." This is how most people who've done great work seem to have done it.
 
-我认为，对于大多数希望取得卓越成就的人来说，正确的策略并非事无巨细地规划。相反，在每个阶段，最好去做那些你认为最有趣、同时能为未来提供最佳选择的事情。我把这种方法称为「顺风而行"—— 就像在逆风航行时保持在上风位置一样，始终为自己创造有利条件。有趣的是，大多数成就斐然的人似乎都是这样走向成功的。
+我认为，对于大多数希望取得卓越成就的人来说，正确的策略并非事无巨细地规划。相反，在每个阶段，最好去做那些你认为最有趣、同时能为未来提供最佳选择的事情。我把这种方法称为「顺风而行」—— 就像在逆风航行时保持在上风位置一样，始终为自己创造有利条件。有趣的是，大多数成就斐然的人似乎都是这样走向成功的。
 
 Even when you've found something exciting to work on, working on it is not always straightforward. There will be times when some new idea makes you leap out of bed in the morning and get straight to work. But there will also be plenty of times when things aren't like that.
 
@@ -187,7 +187,7 @@ It will probably be harder to start working than to keep working. You'll often h
 
 It's usually a mistake to lie to yourself if you want to do great work, but this is one of the rare cases where it isn't. When I'm reluctant to start work in the morning, I often trick myself by saying "I'll just read over what I've got so far." Five minutes later I've found something that seems mistaken or incomplete, and I'm off.
 
-如果你想要做出卓越的工作，通常自欺欺人并不可取，但这是为数不多的例外之一。每当我早晨不太想开始工作时，我常常会用一个小技巧来激励自己，那就是对自己说："我就随便看看之前写的内容吧。」有趣的是，通常不出五分钟，我就会发现一些看起来有误或不够完善的地方，紧接着就会不知不觉地投入到工作中去了。
+如果你想要做出卓越的工作，通常自欺欺人并不可取，但这是为数不多的例外之一。每当我早晨不太想开始工作时，我常常会用一个小技巧来激励自己，那就是对自己说：「我就随便看看之前写的内容吧。」有趣的是，通常不出五分钟，我就会发现一些看起来有误或不够完善的地方，紧接着就会不知不觉地投入到工作中去了。
 
 Similar techniques work for starting new projects. It's ok to lie to yourself about how much work a project will entail, for example. Lots of great things began with someone saying "How hard could it be?"
 
@@ -207,7 +207,7 @@ Another permissible lie is to exaggerate the importance of what you're working o
 
 Since there are two senses of starting work — per day and per project — there are also two forms of procrastination. Per-project procrastination is far the more dangerous. You put off starting that ambitious project from year to year because the time isn't quite right. When you're procrastinating in units of years, you can get a lot not done. [8]
 
-开始工作有两种含义 — 每天开始工作和开始一个项目 — 相应地，拖延也有两种形式。其中，项目层面的拖延（per-project procrastination）危害要大得多。你可能会因为觉得时机不成熟，而年复一年地推迟启动那个雄心勃勃的项目。当拖延的单位变成「年」的时候，你会发现自己有惊人的「不作为」能力。[8]
+开始工作有两种含义 —— 每天开始工作和开始一个项目 —— 相应地，拖延也有两种形式。其中，项目层面的拖延（per-project procrastination）危害要大得多。你可能会因为觉得时机不成熟，而年复一年地推迟启动那个雄心勃勃的项目。当拖延的单位变成「年」的时候，你会发现自己有惊人的「不作为」能力。[8]
 
 One reason per-project procrastination is so dangerous is that it usually camouflages itself as work. You're not just sitting around doing nothing; you're working industriously on something else. So per-project procrastination doesn't set off the alarms that per-day procrastination does. You're too busy to notice it.
 
@@ -269,7 +269,7 @@ Consciously cultivate your taste in the work done in your field. Until you know 
 
 And that is what you're aiming for, because if you don't try to be the best, you won't even be good. This observation has been made by so many people in so many different fields that it might be worth thinking about why it's true. It could be because ambition is a phenomenon where almost all the error is in one direction — where almost all the shells that miss the target miss by falling short. Or it could be because ambition to be the best is a qualitatively different thing from ambition to be good. Or maybe being good is simply too vague a standard. Probably all three are true. [11]
 
-这就是你应该追求的目标，因为如果你不努力成为最优秀的，你可能连「好」的标准都达不到。这个观点已经被众多领域的诸多人士反复强调，以至于我们有必要思考一下为什么它如此真实。可能的原因有以下几点：首先，野心这个现象中，几乎所有的误差都是向同一个方向 —— 大多数未能达到目标的「弹着点」都是因为力度不够而落在了目标之前。其次，追求成为最好和追求变好可能在本质上就是两回事。最后，"好」这个标准本身可能太过模糊。很可能，这三个原因都是成立的。[11]
+这就是你应该追求的目标，因为如果你不努力成为最优秀的，你可能连「好」的标准都达不到。这个观点已经被众多领域的诸多人士反复强调，以至于我们有必要思考一下为什么它如此真实。可能的原因有以下几点：首先，野心这个现象中，几乎所有的误差都是向同一个方向 —— 大多数未能达到目标的「弹着点」都是因为力度不够而落在了目标之前。其次，追求成为最好和追求变好可能在本质上就是两回事。最后，「好」这个标准本身可能太过模糊。很可能，这三个原因都是成立的。[11]
 
 Fortunately there's a kind of economy of scale here. Though it might seem like you'd be taking on a heavy burden by trying to be the best, in practice you often end up net ahead. It's exciting, and also strangely liberating. It simplifies things. In some ways it's easier to try to be the best than to try merely to be good.
 
@@ -297,13 +297,13 @@ The temptation to be someone else is greatest for the young. They often feel lik
 
 "Avoid affectation" is a useful rule so far as it goes, but how would you express this idea positively? How would you say what to be, instead of what not to be? The best answer is earnest. If you're earnest you avoid not just affectation but a whole set of similar vices.
 
-"避免做作」这条规则固然有其用处，但我们如何能更积极地表达这一理念呢？与其说什么不该做，不如说我们应该怎么做。对此，最佳的回答是：保持真诚。当你真诚待人处事时，你不仅能避免做作，还能远离一系列类似的不良行为。
+「避免做作」这条规则固然有其用处，但我们如何能更积极地表达这一理念呢？与其说什么不该做，不如说我们应该怎么做。对此，最佳的回答是：保持真诚。当你真诚待人处事时，你不仅能避免做作，还能远离一系列类似的不良行为。
 
 The core of being earnest is being intellectually honest. We're taught as children to be honest as an unselfish virtue — as a kind of sacrifice. But in fact it's a source of power too. To see new ideas, you need an exceptionally sharp eye for the truth. You're trying to see more truth than others have seen so far. And how can you have a sharp eye for the truth if you're intellectually dishonest?
 
 诚实的核心在于保持思想上的真诚。从小，我们就被教导要诚实，仿佛这是一种无私的美德，甚至是一种自我牺牲。然而，事实上，诚实也是一种力量的源泉。要发现新的想法，你需要对事实真相有着异常敏锐的洞察力。你的目标是要看到比他人更多、更深入的真相。那么，如果你在思想上不够诚实，又怎能培养出这种对真相的敏锐洞察力呢？
 
-诚实不仅仅是一种美德，更是一种获取智慧和创新的工具。它能帮助我们突破固有的思维局限，看到 others 尚未发现的真相。因此，保持思想上的诚实，不仅对个人品格有益，还能为我们开启通往新思想和创新的大门。
+诚实不仅仅是一种美德，更是一种获取智慧和创新的工具。它能帮助我们突破固有的思维局限，看到其他尚未发现的真相。因此，保持思想上的诚实，不仅对个人品格有益，还能为我们开启通往新思想和创新的大门。
 
 One way to avoid intellectual dishonesty is to maintain a slight positive pressure in the opposite direction. Be aggressively willing to admit that you're mistaken. Once you've admitted you were mistaken about something, you're free. Till then you have to carry it. [13]
 
@@ -313,7 +313,7 @@ Another more subtle component of earnestness is informality. Informality is much
 
 认真态度的另一个更微妙的组成部分是非正式性（informality）。非正式性的重要性远远超出了其名称所暗示的消极含义。它并不仅仅是某些东西的缺失。相反，非正式性意味着将注意力集中在真正重要的事物上，而不是拘泥于无关紧要的细节。
 
-这种态度强调实质 over 形式，鼓励人们直接关注核心问题，而不是被繁文缛节所束缚。在日常交流和工作中，适当的非正式性可以促进更有效的沟通和更高的效率。
+这种态度强调实质胜过形式，鼓励人们直接关注核心问题，而不是被繁文缛节所束缚。在日常交流和工作中，适当的非正式性可以促进更有效的沟通和更高的效率。
 
 What formality and affectation have in common is that as well as doing the work, you're trying to seem a certain way as you're doing it. But any energy that goes into how you seem comes out of being good. That's one reason nerds have an advantage in doing great work: they expend little effort on seeming anything. In fact that's basically the definition of a nerd.
 
@@ -321,7 +321,7 @@ What formality and affectation have in common is that as well as doing the work,
 
 Nerds have a kind of innocent boldness that's exactly what you need in doing great work. It's not learned; it's preserved from childhood. So hold onto it. Be the one who puts things out there rather than the one who sits back and offers sophisticated-sounding criticisms of them. "It's easy to criticize" is true in the most literal sense, and the route to great work is never easy.
 
-那些被称为「极客」或「技术狂热者」的人们往往保持着一种单纯而大胆的特质，这恰恰是在追求卓越成就时所不可或缺的。这种特质并非后天习得，而是从童年时期就保留下来的珍贵品质。因此，请务必珍惜并保持这种特质。要做那个勇于将想法付诸实践的人，而不是躲在后面对他人的成果发表看似高深实则无益的批评的人。"批评很容易」这句话从最字面的意义上来说确实如此，但我们要记住，通往伟大成就的道路从来都不是轻松的。
+那些被称为「极客」或「技术狂热者」的人们往往保持着一种单纯而大胆的特质，这恰恰是在追求卓越成就时所不可或缺的。这种特质并非后天习得，而是从童年时期就保留下来的珍贵品质。因此，请务必珍惜并保持这种特质。要做那个勇于将想法付诸实践的人，而不是躲在后面对他人的成果发表看似高深实则无益的批评的人。「批评很容易」这句话从最字面的意义上来说确实如此，但我们要记住，通往伟大成就的道路从来都不是轻松的。
 
 There may be some jobs where it's an advantage to be cynical and pessimistic, but if you want to do great work it's an advantage to be optimistic, even though that means you'll risk looking like a fool sometimes. There's an old tradition of doing the opposite. The Old Testament says it's better to keep quiet lest you look like a fool. But that's advice for seeming smart. If you actually want to discover new things, it's better to take the risk of telling people your ideas.
 
@@ -391,7 +391,7 @@ True by itself is not enough, of course. Great ideas have to be true and new. An
 
 In English we give this ability names like originality, creativity, and imagination. And it seems reasonable to give it a separate name, because it does seem to some extent a separate skill. It's possible to have a great deal of ability in other respects — to have a great deal of what's often called technical ability — and yet not have much of this.
 
-在英语中，我们常用原创性、创造力和想象力等词来描述这种能力。为它专门取一个名字似乎很有道理，因为它确实在某种程度上是一项独立的技能。有趣的是，一个人可能在其他方面表现出色 —— 比如拥有人们常说的「技术能力"—— 但在这种创造性能力上却可能相对欠缺。
+在英语中，我们常用原创性、创造力和想象力等词来描述这种能力。为它专门取一个名字似乎很有道理，因为它确实在某种程度上是一项独立的技能。有趣的是，一个人可能在其他方面表现出色 —— 比如拥有人们常说的「技术能力」—— 但在这种创造性能力上却可能相对欠缺。
 
 这种现象告诉我们，人的能力是多方面的，而且各个方面之间并不总是齐头并进。技术能力固然重要，但创造力同样不可或缺。在我们评估一个人的才能时，需要全面考虑这些不同的方面，而不应该只关注其中某一个方面。
 
@@ -419,7 +419,7 @@ Changing your context can help. If you visit a new place, you'll often find you 
 
 It also helps to travel in topic space. You'll have more new ideas if you explore lots of different topics, partly because it gives the angle grinder more surface area to work on, and partly because analogies are an especially fruitful source of new ideas.
 
-拓宽你的知识领域也很有帮助。如果你探索多个不同的主题，你会产生更多新的想法。这主要有两个原因：首先，它为你的思维提供了更广阔的「加工空间"；其次，不同领域之间的类比往往是新想法的重要源泉。
+拓宽你的知识领域也很有帮助。如果你探索多个不同的主题，你会产生更多新的想法。这主要有两个原因：首先，它为你的思维提供了更广阔的「加工空间」；其次，不同领域之间的类比往往是新想法的重要源泉。
 
 Don't divide your attention evenly between many topics though, or you'll spread yourself too thin. You want to distribute it according to something more like a power law. [17] Be professionally curious about a few topics and idly curious about many more.
 
@@ -451,7 +451,7 @@ One way to discover broken models is to be stricter than other people. Broken mo
 
 To find new ideas you have to seize on signs of breakage instead of looking away. That's what Einstein did. He was able to see the wild implications of Maxwell's equations not so much because he was looking for new ideas as because he was stricter.
 
-要发现新的想法，你需要关注那些不寻常的现象，而不是选择忽视它们。这正是爱因斯坦的做法。他之所以能够洞察麦克斯韦方程所蕴含的令人惊叹的 implications，与其说是因为他在刻意寻找新想法，不如说是因为他对科学研究抱持着更加严谨的态度。
+要发现新的想法，你需要关注那些不寻常的现象，而不是选择忽视它们。这正是爱因斯坦的做法。他之所以能够洞察麦克斯韦方程所蕴含的令人惊叹的暗示，与其说是因为他在刻意寻找新想法，不如说是因为他对科学研究抱持着更加严谨的态度。
 
 The other thing you need is a willingness to break rules. Paradoxical as it sounds, if you want to fix your model of the world, it helps to be the sort of person who's comfortable breaking rules. From the point of view of the old model, which everyone including you initially shares, the new model usually breaks at least implicit rules.
 
@@ -467,7 +467,7 @@ Indeed, if you think about it, a good new idea has to seem bad to most people, o
 
 There are two ways to be comfortable breaking rules: to enjoy breaking them, and to be indifferent to them. I call these two cases being aggressively and passively independent-minded.
 
-人们能够从容地打破规则，通常有两种心态：一种是乐于打破规则，另一种是对规则无动于衷。我将这两种情况分别称为「主动型独立思考（aggressively independent-minded)」和「被动型独立思考（passively independent-minded)」。
+人们能够从容地打破规则，通常有两种心态：一种是乐于打破规则，另一种是对规则无动于衷。我将这两种情况分别称为「主动型独立思考」（aggressively independent-minded）和「被动型独立思考」（passively independent-minded）。
 
 The aggressively independent-minded are the naughty ones. Rules don't merely fail to stop them; breaking rules gives them additional energy. For this sort of person, delight at the sheer audacity of a project sometimes supplies enough activation energy to get it started.
 
@@ -499,7 +499,7 @@ You could also discover overlooked ideas by working in the other direction: by s
 
 Religions are collections of cherished but mistaken principles. So anything that can be described either literally or metaphorically as a religion will have valuable unexplored ideas in its shadow. Copernicus and Darwin both made discoveries of this type. [18]
 
-宗教是一系列备受推崇但可能存在谬误的信条的集合。因此，任何可以从字面意义或比喻意义上被视为「宗教」的事物，在其被忽视的角落里往往蕴藏着有价值 yet 尚未被发掘的思想。哥白尼和达尔文的重大发现就属于这种类型，他们挑战了当时普遍接受的信念，揭示了被长期忽视的真相。[18]
+宗教是一系列备受推崇但可能存在谬误的信条的集合。因此，任何可以从字面意义或比喻意义上被视为「宗教」的事物，在其被忽视的角落里往往蕴藏着有价值尚未被发掘的思想。哥白尼和达尔文的重大发现就属于这种类型，他们挑战了当时普遍接受的信念，揭示了被长期忽视的真相。[18]
 
 What are people in your field religious about, in the sense of being too attached to some principle that might not be as self-evident as they think? What becomes possible if you discard it?
 
@@ -523,7 +523,7 @@ Working on an unfashionable problem can be very pleasing. There's no hype or hur
 
 But the most common type of overlooked problem is not explicitly unfashionable in the sense of being out of fashion. It just doesn't seem to matter as much as it actually does. How do you find these? By being self-indulgent — by letting your curiosity have its way, and tuning out, at least temporarily, the little voice in your head that says you should only be working on "important" problems.
 
-但是，最常被忽视的问题类型并非是那些明显过时的问题。相反，这些问题往往是那些乍看之下不那么重要，但实际上却很关键的问题。那么，如何发现这些问题呢？答案是：顺从你的内心 —— 让你的好奇心自由驰骋，暂时不要理会心中那个总是提醒你「应该专注于 ' 重要 ' 问题」的声音。
+但是，最常被忽视的问题类型并非是那些明显过时的问题。相反，这些问题往往是那些乍看之下不那么重要，但实际上却很关键的问题。那么，如何发现这些问题呢？答案是：顺从你的内心 —— 让你的好奇心自由驰骋，暂时不要理会心中那个总是提醒你「应该专注于'重要'问题」的声音。
 
 You do need to work on important problems, but almost everyone is too conservative about what counts as one. And if there's an important but overlooked problem in your neighborhood, it's probably already on your subconscious radar screen. So try asking yourself: if you were going to take a break from "serious" work to work on something just because it would be really interesting, what would you do? The answer is probably more important than it seems.
 
@@ -541,7 +541,7 @@ Few grasp this. One of the biggest misconceptions about new ideas is about the r
 
 Part of the reason we underrate questions is the way they're used in schools. In schools they tend to exist only briefly before being answered, like unstable particles. But a really good question can be much more than that. A really good question is a partial discovery. How do new species arise? Is the force that makes objects fall to earth the same as the one that keeps planets in their orbits? By even asking such questions you were already in excitingly novel territory.
 
-我们之所以会低估问题的价值，部分原因在于学校里对问题的处理方式。在学校中，问题往往如同不稳定的粒子一般，刚一出现就迅速被回答，转瞬即逝。然而，一个真正优秀的问题远不止于此。它可以成为发现的起点。比如，"新物种是如何产生的？」或者「使物体落向地球的力是否与维持行星运行轨道的力相同？」仅仅是提出这样的问题，你就已经踏入了令人振奋的未知领域。
+我们之所以会低估问题的价值，部分原因在于学校里对问题的处理方式。在学校中，问题往往如同不稳定的粒子一般，刚一出现就迅速被回答，转瞬即逝。然而，一个真正优秀的问题远不止于此。它可以成为发现的起点。比如，「新物种是如何产生的？」或者「使物体落向地球的力是否与维持行星运行轨道的力相同？」仅仅是提出这样的问题，你就已经踏入了令人振奋的未知领域。
 
 Unanswered questions can be uncomfortable things to carry around with you. But the more you're carrying, the greater the chance of noticing a solution — or perhaps even more excitingly, noticing that two unanswered questions are the same.
 
@@ -573,7 +573,7 @@ It's better to be promiscuously curious — to pull a little bit on a lot of thr
 
 Being prolific is underrated. The more different things you try, the greater the chance of discovering something new. Understand, though, that trying lots of things will mean trying lots of things that don't work. You can't have a lot of good ideas without also having a lot of bad ones. [21]
 
-人们往往低估了多样化尝试的价值。事实上，你尝试的不同领域越多，就越有可能有新的发现。然而，需要明白的是，大量尝试 inevitably 意味着你会遇到许多失败的尝试。正如俗话所说，十匹马九匹兔，要想获得众多优秀的想法，就必须经历大量不尽如人意的想法。[21]
+人们往往低估了多样化尝试的价值。事实上，你尝试的不同领域越多，就越有可能有新的发现。然而，需要明白的是，大量尝试不可避免意味着你会遇到许多失败的尝试。正如俗话所说，十匹马九匹兔，要想获得众多优秀的想法，就必须经历大量不尽如人意的想法。[21]
 
 Though it sounds more responsible to begin by studying everything that's been done before, you'll learn faster and have more fun by trying stuff. And you'll understand previous work better when you do look at it. So err on the side of starting. Which is easier when starting means starting small; those two ideas fit together like two puzzle pieces.
 
