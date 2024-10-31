@@ -1,4 +1,4 @@
-## Founder Mode
+## 20240901Founder Mode
 
 [Founder Mode](https://www.paulgraham.com/foundermode.html)
 
