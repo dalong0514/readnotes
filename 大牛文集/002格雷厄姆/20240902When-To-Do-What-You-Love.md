@@ -1,6 +1,6 @@
 ## 20240902When-To-Do-What-You-Love
 
-When To Do What You Love
+[When To Do What You Love](https://www.paulgraham.com/when.html)
 
 September 2024
 

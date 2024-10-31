@@ -1,5 +1,7 @@
 ## 20240701The-Right-Kind-of-Stubborn
 
+[The Right Kind of Stubborn](https://www.paulgraham.com/persistence.html)
+
 July 2024
 
 恰到好处的执着
