@@ -62,11 +62,11 @@ But, wait a minute – you will say, how can that be when money, unlike energy i
 
 Now we can state the rules of betting in the casino in a way that we recover analogues of the laws of thermodynamics. First of all, the odds given by the house are such that:
 
-1‘You cannot win the game'. This means that if the probability for something is one third, your return will at most be three times your investment. So, if you invest $10 you will get at most $30 back, but with an overwhelming probability – two-thirds (67%) – you will lose. On average as you continue the game, you will not win anything. This is the exact analogue of the First Law of thermodynamics – you cannot get something for nothing.
+1 ‘You cannot win the game'. This means that if the probability for something is one third, your return will at most be three times your investment. So, if you invest $10 you will get at most $30 back, but with an overwhelming probability – two-thirds (67%) – you will lose. On average as you continue the game, you will not win anything. This is the exact analogue of the First Law of thermodynamics – you cannot get something for nothing.
 
 The Second Law of betting is even more depressing, since casinos are designed in such a way that
 
-2‘You cannot even break even'. This means that you will never get the fair odds, plus in a real casino you will have to pay to enter, you will have to pay to play, you will – most likely – be buying some drinks and tipping the casino personnel as you go along. All this contributes to the fact that while money is overall conserved it has the tendency to move from your pocket into the casino safe and not the other way round. This is the analogue of entropy increase in thermodynamics, where heat always flows from a hot to a cold body and never the other way round. So, in casino betting, the player is ‘hot', while the casino is ‘cool', and this determines the direction of the flow of money.
+2 ‘You cannot even break even'. This means that you will never get the fair odds, plus in a real casino you will have to pay to enter, you will have to pay to play, you will – most likely – be buying some drinks and tipping the casino personnel as you go along. All this contributes to the fact that while money is overall conserved it has the tendency to move from your pocket into the casino safe and not the other way round. This is the analogue of entropy increase in thermodynamics, where heat always flows from a hot to a cold body and never the other way round. So, in casino betting, the player is ‘hot', while the casino is ‘cool', and this determines the direction of the flow of money.
 
 Now, there is also a Third Law of thermodynamics, which, of course, also has its analogue in betting. It says that:
 
@@ -108,7 +108,9 @@ Through analysis of betting and financial speculation and then synthesis of its 
 
 原来他叫 Edward Thorp，而且他还是 MIT 的一位数学教授。后来他将自己的经历和赌场制胜策略写成了一本书《战胜庄家》，这本书随后成为了畅销书，销量突破了 70 万册。那么，他究竟用了什么策略呢？（说起来，真让人好奇，究竟是谁愿意借给一个大学教授 25 万美元去赌场呢？）
 
-Edward Thorp 同样也热衷于冒险。不过他深知，只要按照特定方式行事，就能将风险控制在可控范围内，并在长期获得可观收益。那么究竟多大的风险才是最合适的呢？这个问题的答案 - 你可能难以置信 - 其实也遵循着 Shannon 的信息理论，当然前提是你要以获胜为目标。
+2『这个故事在其他地方看过好几次，反正是跟香农有关的，可能在香农传里。已下载原文书籍「2024119Beat-the-Dealer」。（2024-11-05）』
+
+Edward Thorp 同样也热衷于冒险。不过他深知，只要按照特定方式行事，就能将风险控制在可控范围内，并在长期获得可观收益。那么究竟多大的风险才是最合适的呢？这个问题的答案 —— 你可能难以置信 —— 其实也遵循着 Shannon 的信息理论，当然前提是你要以获胜为目标。
 
 Edward Thorp 深入研究过 Shannon 以及其在贝尔实验室（Bell Labs）同事 J. L. Kelly 的研究成果。Kelly 的论文比 Shannon 的晚了约 10 年才发表，这是首次将 Shannon 的理念应用于投资决策领域的开创性工作，也是首个对 Shannon 信息论的扩展性研究。值得注意的是，在这整整 10 年时间里，竟然没有出现其他对信息论的扩展性研究。这并非因为学术界需要很长时间才接受 Shannon 的理论，恰恰相反，他的论文一问世就引起轰动。真正的原因在于，Shannon 的研究成果实在太过完整，论证又极其严密，以至于其他研究者都无法在其基础上做出更多贡献！那么，Kelly 又是如何在 Shannon 的理论基础上开辟新天地的呢？
 
@@ -116,11 +118,11 @@ Edward Thorp 深入研究过 Shannon 以及其在贝尔实验室（Bell Labs）�
 
 当然，你并不一定要在赌场下注，你也可以选择将资金投资于企业。对于一家公司而言，如果它规模越小、知名度越低，在现有市场条件和商业策略下成功的可能性越小，那么一旦它真的成功了，相同投资额度所能带来的回报就越高。这种现象与我们之前讨论的信息理论非常相似：某个事件发生的概率越小，其信息增益（information gain）就越大，而在投资领域，信息量越大，潜在收益也就越高。因此，Shannon 的信息原理不仅适用于信息领域，在商业世界中同样发挥着作用。而且，与赌场相比，投资公司的成功率实际上更加公平（当然，这是建立在有效市场假设的基础上）。
 
-我们每个人都渴望成功，没有人希望成为输家。那么，信息论是否能为我们指明方向，帮助我们提高成功的概率呢？虽然这个问题的答案听起来让人难以置信，但确实是肯定的。在金融投机领域，追求利润最大化与通信领域追求信道容量最大化，本质上是同一个问题。我们知道，Shannon 在第三章已经解决了后者。因此，我们只需要把这个解决方案应用到其他领域即可。根据 Shannon 的理论，当消息长度符合「逆概率对数」规则时，通信信道可以达到最大容量。如果我们把成功投资所获得的收益看作是「消息长度」，就可以得到 City of London 和华尔街交易员所说的「对数最优投资组合（log optimal portfolio)」。
+我们每个人都渴望成功，没有人希望成为输家。那么，信息论是否能为我们指明方向，帮助我们提高成功的概率呢？虽然这个问题的答案听起来让人难以置信，但确实是肯定的。在金融投机领域，追求利润最大化与通信领域追求信道容量最大化，本质上是同一个问题。我们知道，Shannon 在第三章已经解决了后者。因此，我们只需要把这个解决方案应用到其他领域即可。根据 Shannon 的理论，当消息长度符合「逆概率对数」规则时，通信信道可以达到最大容量。如果我们把成功投资所获得的收益看作是「消息长度」，就可以得到 City of London 和华尔街交易员所说的「对数最优投资组合」（log optimal portfolio）。
 
 这就是对数最优投资组合（log optimal portfolio）在实践中的运作方式。其基本原理是要尽可能地分散投资，也就是不要把所有资金都押注在同一个项目上。这样做的原因在于我们希望能够进行长期投资（并且希望能持续获得收益）。如果你将所有资金都集中在一处，而不幸在一开始就遭遇损失（这完全可能只是运气不好），那么你就没有资金继续进行后续投资了。这种情况与信息通信类似，某些投资可能需要投入大量资金，而有些则只需要很小的投入。那么，我们究竟应该如何确定每次的投资规模呢？
 
-让我们假设你是一位喜欢稳健投资、着眼长远的投资者 - 就像一位精于理财的行家。你打算投资 20 年，虽然不追求每年都有特别高的回报率，但希望资金能在长期内稳步增长（这样就能像养老基金一样，让你安享晚年）。下面我们就来看看根据信息论的指导，应该如何进行投资（虽然在现实中，你很可能会找一位财务顾问来帮你完成所有的分析、计算和投资决策，但我想给你展示一下他们是如何进行这些计算的。别忘了，这些顾问是要收取一定比例的管理费的 - 如果你能自己操作，从长远来看可能会获得更好的收益）。
+让我们假设你是一位喜欢稳健投资、着眼长远的投资者 —— 就像一位精于理财的行家。你打算投资 20 年，虽然不追求每年都有特别高的回报率，但希望资金能在长期内稳步增长（这样就能像养老基金一样，让你安享晚年）。下面我们就来看看根据信息论的指导，应该如何进行投资（虽然在现实中，你很可能会找一位财务顾问来帮你完成所有的分析、计算和投资决策，但我想给你展示一下他们是如何进行这些计算的。别忘了，这些顾问是要收取一定比例的管理费的 —— 如果你能自己操作，从长远来看可能会获得更好的收益）。
 
 让我们来看看目前伦敦金融时报股票交易所指数（FTSE）排名前 10 的公司。这些公司很可能在相当长一段时间内都能保持在前 100 名，并且短期内不会面临倒闭风险。假设你有 1000 美元的一次性投资资金，想要分散投资到这 10 家公司。首先，你需要评估投资这些公司能获得正收益的概率（也就是投资能赚钱的可能性）。要估算这些概率并不容易，因为没有人会直接告诉你答案。你需要研究这些公司的历史业绩表现、当前市场状况以及他们的经营策略。你对公司公开信息了解得越全面，就越能准确地估算出这些概率，从而制定出更优的投资策略。
 
@@ -160,23 +162,21 @@ Edward Thorp 深入研究过 Shannon 以及其在贝尔实验室（Bell Labs）�
 
 现在，我们可以通过赌场的博弈规则来建立与热力学定律相对应的类比关系。首先，让我们来看看赌场制定的赔率规则：
 
-"你永远无法在这场游戏中获胜」。这句话的含义是：如果某个事件发生的概率是三分之一，那么你的回报最多只能是投入的三倍。举个例子，如果你投入 10 美元，最多只能获得 30 美元的回报，而且有高达三分之二（约 67%）的概率会亏损。从长期平均来看，随着游戏的进行，你不会获得任何收益。这正好类似于热力学第一定律 - 能量既不会凭空产生，也不会凭空消失。
+「你永远无法在这场游戏中获胜」。这句话的含义是：如果某个事件发生的概率是三分之一，那么你的回报最多只能是投入的三倍。举个例子，如果你投入 10 美元，最多只能获得 30 美元的回报，而且有高达三分之二（约 67%）的概率会亏损。从长期平均来看，随着游戏的进行，你不会获得任何收益。这正好类似于热力学第一定律 —— 能量既不会凭空产生，也不会凭空消失。
 
-赌博的第二定律则更加悲观，因为赌场在设计上...
-
-2"你永远无法实现收支平衡」。这意味着你永远不可能获得真正公平的赌博机会，更何况在现实的赌场中，你还要支付入场费、游戏费用，还可能会买一些饮品，给赌场员工小费。所有这些因素都印证了一个事实：尽管金钱在理论上是守恒的，但它总是倾向于从赌客的口袋流向赌场的金库，而不会反其道而行。这种现象与热力学中的熵增现象非常相似 —— 就像热量永远都是从高温物体流向低温物体，永远不会自发地反向流动一样。因此，在赌场中，我们可以把赌客比作「高温体」，把赌场比作「低温体」，这就决定了金钱流动的必然方向。
+赌博的第二定律则更加悲观，因为赌场在设计上...「你永远无法实现收支平衡」。这意味着你永远不可能获得真正公平的赌博机会，更何况在现实的赌场中，你还要支付入场费、游戏费用，还可能会买一些饮品，给赌场员工小费。所有这些因素都印证了一个事实：尽管金钱在理论上是守恒的，但它总是倾向于从赌客的口袋流向赌场的金库，而不会反其道而行。这种现象与热力学中的熵增现象非常相似 —— 就像热量永远都是从高温物体流向低温物体，永远不会自发地反向流动一样。因此，在赌场中，我们可以把赌客比作「高温体」，把赌场比作「低温体」，这就决定了金钱流动的必然方向。
 
 热力学中还有一个第三定律，有趣的是，它在赌博领域也有相应的对应规律。这个规律是：
 
-3"你永远无法退出游戏」。
+「你永远无法退出游戏」。
 
-让我们留给读者自己去思考这句话的深意。不过有一点是显而易见的：赌徒往往会一直赌下去，直到最后一刻。赌博的规律与热力学定律惊人地相似（就像热力学第三定律告诉我们无法达到绝对零度一样，在赌场里，你永远不可能做到比其他人，尤其是比赌场更「冷静"）。
+让我们留给读者自己去思考这句话的深意。不过有一点是显而易见的：赌徒往往会一直赌下去，直到最后一刻。赌博的规律与热力学定律惊人地相似（就像热力学第三定律告诉我们无法达到绝对零度一样，在赌场里，你永远不可能做到比其他人，尤其是比赌场更「冷静」）。
 
 前面的所有讨论都可以归结为一个令人着迷的发现：Shannon 提出的最大信道容量公式、Boltzmann 的物理熵公式，以及 Kelly 的利润最大化公式，本质上都是同一个数学公式的不同表现形式。
 
 更加令人惊叹的是，博彩竟然可以成为理解生命进化过程的绝佳例子。我们可以把生物的随机突变看作是不同的赌博策略，每种策略都有其独特的成功概率。生物学家 Frederic Warburton 在他的一篇论文中，就详细分析了这种独特的联系。
 
-Warburton 巧妙地把进化过程比作一场博弈：生物个体就像赌徒，而环境则扮演着赌场庄家的角色。从进化的角度来看，"赢钱」就意味着生命能在各种环境中成功繁衍后代，而「输掉赌注」则意味着生命的终结。这场独特的博弈是这样进行的：生物个体不断产生自己的复制品，但由于随机突变的存在，这些复制品总会与原版略有不同。这些突变可能来自环境因素（比如宇宙射线的影响），也可能是基因复制过程中出现的错误。突变使得新产生的个体具有了与父代略微不同的特征，这些特征随后要接受自然环境的检验。至于能产生多少个体，很大程度上取决于物种采取的「押注策略」。每个新生个体都需要获取营养和照料，而由于资源总是有限的，物种必须权衡如何在这些限制下决定繁殖数量。这些新个体要么通过自然选择的考验并继续繁衍（相当于获得收益），要么失败淘汰（相当于赌注损失）。经济学中有个类似的概念叫做收益递增原理。显而易见，那些能够存活下来的个体会越来越「盈利」，因为它们的生存策略与环境越来越匹配。这样，生命在这场持续不断的博弈中不断提升自己的「获胜概率」，完美诠释了进化的本质。
+Warburton 巧妙地把进化过程比作一场博弈：生物个体就像赌徒，而环境则扮演着赌场庄家的角色。从进化的角度来看，「赢钱」就意味着生命能在各种环境中成功繁衍后代，而「输掉赌注」则意味着生命的终结。这场独特的博弈是这样进行的：生物个体不断产生自己的复制品，但由于随机突变的存在，这些复制品总会与原版略有不同。这些突变可能来自环境因素（比如宇宙射线的影响），也可能是基因复制过程中出现的错误。突变使得新产生的个体具有了与父代略微不同的特征，这些特征随后要接受自然环境的检验。至于能产生多少个体，很大程度上取决于物种采取的「押注策略」。每个新生个体都需要获取营养和照料，而由于资源总是有限的，物种必须权衡如何在这些限制下决定繁殖数量。这些新个体要么通过自然选择的考验并继续繁衍（相当于获得收益），要么失败淘汰（相当于赌注损失）。经济学中有个类似的概念叫做收益递增原理。显而易见，那些能够存活下来的个体会越来越「盈利」，因为它们的生存策略与环境越来越匹配。这样，生命在这场持续不断的博弈中不断提升自己的「获胜概率」，完美诠释了进化的本质。
 
 然而，这里存在一个问题：生命系统越是繁荣，其周围环境就越趋向混乱（因为环境的熵（entropy）会相应增加）。随着环境熵的增加，生命的繁衍就变得越来越困难。这种情况就像在赌场赌博一样：当你赢得越多（环境类比），赌场就会通过各种方式影响你的长期收益，比如降低赔率、抽取佣金，甚至直接停业。考虑到玩游戏本身就要付费，这正好印证了赌博的第二原则：你永远都不可能实现收支平衡。
 
@@ -188,7 +188,7 @@ Warburton 巧妙地把进化过程比作一场博弈：生物个体就像赌徒�
 
 因此，总熵产生（total entropy production）对生命而言确实具有重要意义，但这似乎只是整个问题的一个方面。不过，还存在其他更引人深思的可能性。比如，我们可能需要拓展对生命的定义，这样也许能在其他领域发现生命的新形式。不过，由于要完整定义生命的所有特征本身就十分困难（比如我们至今仍在争论病毒是否算作生命），从这个角度来看，熵的产生倒是成为了一个相当可靠的独立判断指标。
 
-生命的另一个重要特征是它会变得越来越复杂。根据我们之前的讨论，让我们来看看能否更准确地衡量这种趋势。我们可以用一个特别的方法来定义复杂性：它是最大混乱状态（也就是最大熵）与实际环境中的熵值之间的差异。这个定义最初是由热力学家 Peter Landsberg 提出的。在自然选择中，那些能够在所处环境中维持较低熵值的生物（用本章的说法就是那些最善于「赌博」的生物）更容易存活下来，而做不到这一点的生物则会逐渐消亡。因此，生物通过突变最终会降低它们的局部熵值，而根据我们的定义，熵值的降低就意味着复杂性的提升。不过需要注意的是，这并不意味着所有生命形式都会随着时间变得更复杂 - 显然不是这样的。许多生物，比如某些细菌，以它们现有的形式就已经很成功了，并且已经存在了很长时间。我们要解释的是，为什么会随着时间的推移出现更复杂的生命形式，以及某些生物为什么会变得更加复杂。
+生命的另一个重要特征是它会变得越来越复杂。根据我们之前的讨论，让我们来看看能否更准确地衡量这种趋势。我们可以用一个特别的方法来定义复杂性：它是最大混乱状态（也就是最大熵）与实际环境中的熵值之间的差异。这个定义最初是由热力学家 Peter Landsberg 提出的。在自然选择中，那些能够在所处环境中维持较低熵值的生物（用本章的说法就是那些最善于「赌博」的生物）更容易存活下来，而做不到这一点的生物则会逐渐消亡。因此，生物通过突变最终会降低它们的局部熵值，而根据我们的定义，熵值的降低就意味着复杂性的提升。不过需要注意的是，这并不意味着所有生命形式都会随着时间变得更复杂 —— 显然不是这样的。许多生物，比如某些细菌，以它们现有的形式就已经很成功了，并且已经存在了很长时间。我们要解释的是，为什么会随着时间的推移出现更复杂的生命形式，以及某些生物为什么会变得更加复杂。
 
 现在科学家们认为，生命随时间逐渐变得复杂是进化的直接结果，这个过程主要通过随机突变和自然选择来实现。著名的牛津大学生物学家 Richard Dawkins 在他的多部科普著作中强有力地证明，进化论是目前唯一能够解释我们周围所观察到的生命复杂性的理论。我们之前提到生命可能会使熵的总体产生达到最大值，这可能也意味着生命在推动复杂度不断提升。因此，生物复杂性的增长规律与成功赌徒获取利润的方式有着异曲同工之妙。
 

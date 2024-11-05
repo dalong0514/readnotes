@@ -122,13 +122,13 @@ So in each case unless we knew exactly how the alphabet was shifted or knew the 
 
 In fact, of the tens of thousands of cryptographic protocols known to us, the only unbreakable one, as proven by Shannon, is the ‘one-time pad'. The one-time pad is a cryptographic algorithm that cannot be broken simply through extending our computational power ad infinitum. It has a much stronger basis and, if done correctly, no amount of computing power currently or in the future is going to help. In theory it is very simple and only requires four rules to be obeyed to obtain perfect security:
 
-1The two parties that wish to communicate securely must already share a secret key. This key is used to convert your message into an ‘encoded' form and then de-convert it back to the original form. It can only be known to both parties in communication (but cannot be known to anyone else). Once the secret key is established then the two parties can choose to communicate securely using that key at any time in the future.
+1 The two parties that wish to communicate securely must already share a secret key. This key is used to convert your message into an ‘encoded' form and then de-convert it back to the original form. It can only be known to both parties in communication (but cannot be known to anyone else). Once the secret key is established then the two parties can choose to communicate securely using that key at any time in the future.
 
-2The key you use to encode your message must be completely random. If there is a way of predicting if the next digit is zero or one, the code can no longer be used as this leaves the protocol open to a structured attack.
+2 The key you use to encode your message must be completely random. If there is a way of predicting if the next digit is zero or one, the code can no longer be used as this leaves the protocol open to a structured attack.
 
-3The key must be as long as the message itself, i.e. the number of bits that make up the key is the same as the number of bits that make up the message. If it is shorter then the protocol will be left susceptible to attack.
+3 The key must be as long as the message itself, i.e. the number of bits that make up the key is the same as the number of bits that make up the message. If it is shorter then the protocol will be left susceptible to attack.
 
-4The key must be used only once (again, repetitions leave the code open to attack).
+4 The key must be used only once (again, repetitions leave the code open to attack).
 
 This is all very well, and if we could do all of these we would have perfectly secure communication and many of the cryptographers around the world would be out of a job. But in reality the art and development of cryptography is alive and well because the one-time pad is so darned difficult to use. Running through the requirements, requirement 3 and 4 seem simple enough, requirement 2 raises some eyebrows – I mean what is a completely random key?, and requirement 1 just seems plain ridiculous. What's the point of two parties already needing to share a secret key in order to communicate a secret message? Surely whatever method was used to securely share the secret key can also be used to share the secret message. This just turns out to be a bit of a ‘Catch 22' – you need the secret key to communicate secretly, but you also need to communicate secretly to establish the secret key in the first place! The problem of perfectly secure communication (assuming we can satisfy requirement 2) then reduces to the problem of being able to share a secret key in the first place. This problem is known as the key distribution problem and is one of the main challenges in cryptography, to which standard computer science and engineering have no final answer.
 
@@ -141,6 +141,10 @@ This approach was discovered in the early 1980s by an American, Charles Bennett,
 This is all well and good, but now where does this leave us? The key question is whether and how, with the introduction of quantum theory, the concept of information is affected. Now, instead of having a definite outcome as we saw in the earlier chapters, quantum mechanics tells us that we can have several possible outcomes. In the previous chapter, when we talked about social ordering, information was seen as a binding force between different social units. Similarly, information here is also a binding force between different aspects of a quantum system.
 
 One would think we were fairly safe in assuming that mutual information cannot ever exceed 100% (i.e. it cannot be better than perfect). If all children who go to good schools perform magnificently in life, we would say that there is 100% mutual information between good schools and successful life (whatever your definition of a successful life might be). You surely cannot share more than 100% of information. However, odd as it may sound, quantum systems can actually share more mutual information than 100%. Any theory of information needs to be able to handle this in order to fully describe reality; otherwise there will be parts of reality inaccessible to our understanding.
+
+
+
+
 
 To explain how information can exceed 100%, imagine a simple two-state quantum system, such as the ‘spin' of an electron. Using the metaphor of spinning tops, we can consider that electrons are like small spinning tops, each ‘spinning' in its own way, depending on the external circumstances. An electron, just like the spinning top, can be considered to spin clockwise or counterclockwise in any given direction: horizontally, vertically, at 45 degrees, and so on. Astonishingly, if we measure the electron spin at two different times, then the mutual information between these measurements can actually exceed any value that we could had previously thought possible. In classical physics, spins at different times can be correlated in the horizontal or vertical direction, so that, if the first measurement of spin yields ‘horizontal clockwise', so does the second measurement, in which case, the mutual information between them is 100%. Real electrons, on the other hand, behave quantum mechanically and their spin measurements could be correlated in the vertical direction at the same time as the horizontal direction (and all other directions!). This is because electrons can spin simultaneously in the clockwise and counterclockwise directions, something that no spinning top can do. In this case we can say that they may share up to 200% information. This super-correlation is known as quantum entanglement, or ‘spooky action at a distance' as Einstein referred to it.
 
@@ -165,8 +169,6 @@ From the point of view of information we can summarize two of the most important
 Both of the above features could be either positive or negative characteristics, depending on the application. Regarding the notion that qubits can exist in a variety of different states at the same time, a positive is that the qubit has a far more intricate structure than a classical bit. This gives more power and flexibility to quantum information processing than was possible with our classical theory of information. Conversely, in some cases, as in cryptography, if the receiver doesn't have precise details then he is unable to decipher the message without damaging the state. Likewise with the measurement. On the positive side, we have explained that in quantum cryptography, it allows us to detect eavesdroppers; however, on the negative side, it reduces a qubit to a bit, and therefore reduces our information processing ability.
 
 The pros and cons of quantum information are best seen in the next chapter as we discuss quantum computing.
-
-
 
 量子闹腾：聚光灯下的科学秀！
 
@@ -310,6 +312,61 @@ The pros and cons of quantum information are best seen in the next chapter as we
 
 爱因斯坦曾称这种现象为「遥远的诡异作用」，因为它挑战了我们对物理世界的传统理解。这个看似不可能的 200% 信息，实际上揭示了量子世界的奇妙本质：信息和关联可以超出我们想象的边界。
 
+---
+
+为了解释信息如何能够超过 100%，让我们想象一个简单的双态量子系统，比如电子的「自旋」（spin）。我们可以用陀螺来打个比方：电子就像小陀螺，会根据周围环境以不同方式「旋转」。就像陀螺可以在任何方向上顺时针或逆时针旋转一样，电子也可以在水平方向、垂直方向、45 度角等任何方向上「自旋」。
+
+令人惊讶的是，当我们在不同时间点测量电子自旋时，这些测量之间的互信息（mutual information）可以超出我们之前认为可能的任何数值。在经典物理学中，不同时间的自旋只能在水平或垂直方向上相关联。例如，如果第一次测量显示「水平顺时针」，那么第二次测量也会显示相同结果，这种情况下它们之间的互信息是 100%。
+
+然而，真实的电子遵循量子力学规律，它们的自旋测量可以同时在多个方向上相关联 —— 不仅是水平方向，还包括垂直方向和所有其他方向！这是因为电子能够同时进行顺时针和逆时针自旋，这是普通陀螺绝对做不到的。在这种情况下，我们可以说它们之间共享的信息可以达到 200%。这种超级相关性被称为量子纠缠（quantum entanglement），爱因斯坦称之为「超距作用」（spooky action at a distance）。
+
+有一种理解物体之间互信息的特别有效方式，它解释了「整体至少与其任何部分一样大」这句常识性的说法。假设你有两个朋友 Steve 和 Bryan，他们每个人都需要决定下一步怎么做。Steve 可以选择继续现在的工作，或者辞职找新工作。Bryan 也面临同样的选择。
+
+如果他们对未来完全没有把握，我们就可以说每个人的选择包含一个比特（bit）的信息，因为他们各自都有两种可能性。显然，Steve 和 Bryan 两人未来的可能性信息量至少等于他们每个人单独的信息量。
+
+我们可以这样理解：假设我们得知 Steve 已经离职了。这样关于他的不确定性就消除了。但是我们仍然不知道 Bryan 会怎么选择。此时的不确定性仍然是一个比特，只不过全都集中在 Bryan 的选择上。这个情况和我们之前提到的「如果你喝酒，我就喝酒」的例子本质上是一样的。
+
+有趣的是，虽然这两个例子中的因果关系（causality）不同，但它们却产生了相同的互信息。更重要的是，互信息其实完全不依赖因果关系。即使两方之间没有任何因果联系，它们之间也完全可能存在 100% 的相关性（correlation）。
+
+现在我们可以用熵（entropy）来解释这个现象，熵是我们前面提到的用来衡量系统不确定性（uncertainty）程度的指标。从经典物理学的角度来看，整个系统的熵必须至少与其任何组成部分的熵一样大。
+
+为了便于理解，我们可以把熵比作面积。美国的总面积必定至少与其任何一个州的面积一样大。即使某些州之间有重叠的区域，这个原则也永远成立。用这个比喻来说明：如果你要在整个美国范围内寻找一个人，你面临的不确定性必定至少要比你知道这个人在 California 时的不确定性大。毕竟，除了 California，美国其他地方还有很多可能的藏身处，所以在 California 范围内搜索时的不确定性不可能超过在整个美国范围内搜索的不确定性。
+
+然而，在量子力学中，上述这个看似理所当然的原则却不再成立。在这个问题的量子版本中，如果你把搜索范围限定在 California，反而可能比在整个美国范围内搜索更难找到目标。用我们刚才的比喻来说，在量子世界中，California 的「面积」竟然可能比整个美国的总「面积」还要大！
+
+那么，我们有什么证据能证明量子系统真的会这样表现呢？我猜你现在可能会问：这真的可能吗？这确实看起来很违反直觉。不过，我们可以通过实验来验证这一点，比如用两个自旋电子做实验。
+
+我们可以用特定方式制造这两个电子，使它们的整体状态完全确定，但当我们单独观察任何一个电子时，却会发现它处于一种完全不确定的状态。换句话说，只有将两个电子一起考虑，才能完整描述它们的状态。这种现象在经典物理中是不可能出现的 —— 在经典物理中，如果一个系统处于不确定状态，添加另一个系统绝不可能减少这种不确定性。
+
+这种奇特的现象最终可以追溯到一个事实：在量子物理中，这两个电子之间存在着超强的关联性，有些人将其比作「同卵双胞胎」的关系。也就是说，它们之间存在某种「超出常规」的额外互信息。
+
+那么，如果这就是现实世界的真实运作方式，我们还能用信息理论来描述它吗？答案是肯定的，但显然香农熵（Shannon entropy）已经不够用了。香农信息理论的局限在于：它总是认为整体所包含的信息量至少应该等于其任何部分所包含的信息量。但正如我们所讨论的，这个原则在量子系统中并不成立。因此，我们需要一个比香农提出的更加广义的信息处理方法。
+
+这个理论的关键改变在于将经典的比特概念升级为量子比特或量子位（qubit）。与只能处于 0 或 1 状态的经典比特不同，量子比特是一种量子系统，它可以同时以不同比例存在于这两种状态的任意组合中。除此之外，香农理论的其他所有要素都保持不变。在量化信息时，我们只需要用量子比特的熵来替代经典比特的熵即可。
+
+这一突破最早是由 John Wheeler 的另一位学生 Ben Schumacher 实现的，"qubit」这个术语也是由他创造的。这种从比特到量子比特的转变，虽然看起来很简单，但实际上具有深远的影响。还记得我们前面提到的「整体可能小于部分」的例子吗？在量子信息理论中，两个相关联的量子系统的总量子熵确实可能小于它们每个系统单独的熵。
+
+量子信息理论可以看作是香农信息理论的扩展版本，因为在特定情况下，它可以简化为传统的香农信息理论。除了我们从香农那里学到的内容之外，量子信息还告诉我们：在信息处理领域还存在着大量未被开发的潜力。目前，量子信息理论已经在多个领域得到应用，包括：设计新一代超快速计算机、开发高度安全的加密系统，以及 —— 你可能难以置信 —— 实现物体的量子隔空传送（teleport）。
+
+读者可能会担心：升级到量子信息理论是否会让本书第一部分的结论都变得无效？事实恰恰相反。虽然我们完全可以用量子信息理论来研究 DNA，但因为它是一个宏观现象（macroscopic phenomenon），用经典信息理论就足以完整描述 DNA 最重要的功能。这个道理同样适用于本书第一部分讨论的所有信息处理系统。
+
+理论上，所有这些系统都可以用量子信息理论重新推导，但因为它们都是宏观系统（macroscopic systems），所以用经典信息理论的近似已经足够准确。这并不是说量子物理学不适用于宏观物体 —— 恰恰相反，它适用于宇宙中的所有物质。只不过在宏观层面上，量子物理的预测结果与经典物理的差异并不明显。因此，当我们认为没有必要时，自然不会去处理量子物理带来的额外复杂性。
+
+从信息的角度来看，量子理论有两个最重要的特征：
+
+1. 量子比特可以同时以多种不同状态共存
+
+2. 当我们对量子比特进行测量时，它会被转化为经典状态，即得到一个确定的结果
+
+这两个特征在不同应用场景中可能会表现出优势或劣势。就第一个特征而言，量子比特拥有比经典比特更复杂的结构，这是一个优势，因为它让量子信息处理比经典信息理论拥有更强大的能力和更高的灵活性。但在某些情况下，比如在量子密码学（quantum cryptography）中，如果接收者没有完整的信息，就无法在不破坏量子状态的情况下解读消息，这就成了一个劣势。
+
+测量特征也是如此。从优势来说，在量子密码学中，它能帮助我们检测窃听者（eavesdropper)；但从劣势来说，测量会将量子比特还原为经典比特，从而降低了信息处理能力。
+
+在下一章关于量子计算的讨论中，我们将更详细地探讨量子信息的这些优势和局限。
+
+
+
+
 
 
 ### Key points
@@ -323,3 +380,17 @@ Understanding that quantum physics is all about information helps us to develop 
 Quantum cryptography is one of the areas where quantum physics has demonstrated a new order of information processing, where we can now communicate more securely than we ever thought possible.
 
 Quantum cryptography is not just a theoretical construct; it has been successfully implemented over vast distances.
+
+关键要点：
+
+量子物理学（Quantum physics）起源于一百年前，主要研究微观物体的行为规律。
+
+量子物理有两个令人震惊的特征，这使它与我们之前认识的所有科学理论都截然不同：
+
+第一个特征是物体可以同时处于多个不同的状态。比如，一个原子可以「同时」存在于两个不同的位置 —— 这就好比一个人可以同时出现在办公室和家里一样不可思议。
+
+第二个特征是量子系统具有内在随机性（intrinsic randomness）。即便我们掌握了关于某个量子系统的所有信息，在大多数情况下仍然无法准确预测它接下来会做什么。
+
+认识到量子物理本质上是关于信息的科学，这种理解帮助我们开发出了许多实际应用，从而实现了全新的通信方式。其中，量子密码学（quantum cryptography）就是一个突出的例子。它展示了量子物理带来的革命性信息处理方式，让我们能够实现前所未有的安全通信。
+
+而量子密码学并非停留在理论构想（theoretical construct）阶段，它已经在远距离通信中得到了成功应用。
