@@ -156,7 +156,7 @@ The first arrow of knowledge clearly acts like a Maxwell's demon. It constantly 
 
 Within us, within all objects in the Universe, lie these two opposing tendencies. So, is this a constant struggle between new information and hence disorder being created in the Universe, and our efforts to order this into a small set of rules? If so, is this a losing battle? How can we ever compete with the Universe?
 
-未找到意译内容
+从无到有的彻底毁灭
 
 这本书的核心观点是，现实世界中诸多看似不同的层面，都可以归结为某种形式的信息处理。信息理论最初源于香农（Shannon）对通信领域的一个朴实问题：如何最大化两个用户之间的信息传输能力。他的关键洞见在于，只需为每个事件赋予概率，就能定义一个衡量信息内容的度量标准。
 
