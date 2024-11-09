@@ -1,6 +1,8 @@
-Leopold Aschenbrenner.(2024).2024109Situational-Awareness-The-Decade-Ahead.Dwarkesh podcast => I. From GPT-4 to AGI: Counting the OOMs
+Leopold Aschenbrenner.(2024).2024109Situational-Awareness-The-Decade-Ahead.Dwarkesh podcast => IV. The Project
 
-IV. The Project
+## IV. The Project
+
+[IV. The Project - SITUATIONAL AWARENESS](https://situational-awareness.ai/the-project/)
 
 As the race to AGI intensifies, the national security state will get involved. The USG will wake from its slumber, and by 27/28 we'll get some form of government AGI project. No startup can handle superintelligence. Somewhere in a SCIF, the endgame will be on.
 
@@ -44,7 +46,47 @@ Startups are great for many things—but a startup on its own is simply not equi
 
 In any case, my main claim is not normative, but descriptive. In a few years, The Project will be on.
 
-The path to The Project
+国家项目
+
+随着通用人工智能（AGI）竞赛的白热化，国家安全部门将不得不介入。美国政府将从沉睡中觉醒，到 2027/2028 年，我们将看到某种形式的政府 AGI 项目诞生。没有任何初创公司能够掌控超级智能（Superintelligence）。在某个绝密设施中，人类命运的终局将徐徐展开。
+
+本文讨论：
+
+通往这一国家项目的道路
+
+为什么这一国家项目是唯一可行的方案
+
+超级智能将成为美国最重要的国防项目
+
+为超级智能构建合理的指挥体系
+
+超级智能在民用领域的应用
+
+安保工作
+
+安全保障
+
+稳定国际形势
+
+这一国家项目必将到来，但其利弊尚难预料
+
+最终命运
+
+令人惊叹的是，几个坐在实验室工作台前、仅仅在讨论某种原子特殊性质的科学家，却引发了如此巨大的连锁反应 —— 数百座发电站、数千枚炸弹、数万名聚集在国家机构中的工作人员。我们必须带着好奇心去探究这其中的奥秘。
+
+—— Spencer R. Weart
+
+当下有许多关于「AI 治理」的提案，包括对前沿 AI 系统进行许可管理、制定安全标准、为学术界提供价值数亿美元的公共计算资源等。这些提案看似用心良苦 —— 但在我看来，它们都犯了一个根本性的认知错误。
+
+让一家随机的旧金山初创公司来开发超级智能，这种想法简直是疯狂的。这就好比让 Uber 随意发挥来研制原子弹一样荒谬。
+
+这让我们想起历史上的许多时刻 —— 新冠疫情、第二次世界大战 —— 美国似乎总是一开始毫无作为，但随后却能以惊人的速度和规模迅速转向。在未来几年内，当 AI 技术再经历几次类似 2023 年那样的重大突破，相关讨论也随之深入后，一个关键时刻就会到来：我们将清晰地认识到，我们即将实现通用人工智能，紧接着就是超级智能的出现。尽管具体实施方式可能有所不同，但最终的走向已经确定：美国政府将接管局面；各大领先的 AI 实验室将「不得不」合并；国会将投入数万亿美元用于芯片研发和能源保障；一个由民主国家组成的联盟将应运而生。
+
+诚然，初创公司在很多领域都有出色表现 —— 但说到管理美国最重要的国防项目，单靠一家初创公司是远远不够的。我们需要政府的参与才能应对即将面临的全方位情报安全威胁；否则，私人开发的 AI 项目可能会让超级智能直接落入中共手中。我们需要政府来建立一个可靠的指挥系统；毕竟，如此重大的决策权不能交给某个公司 CEO（或某个非营利组织的董事会）。我们需要政府来应对超级智能带来的重大安全挑战，管理智能快速发展过程中的种种不确定性。我们需要政府部署超级智能来防范各种极端威胁，帮助我们度过必将到来的国际动荡期。我们需要政府来团结民主国家联盟，在与专制政权的竞争中取得胜利，同时为全球其他国家制定并实施技术管控机制。我本不愿如此 —— 但政府的参与确实不可或缺。（是的，这与具体是哪届政府无关。）
+
+总之，我的核心观点与其说是在规劝什么「应该」发生，不如说是在陈述什么「必将」发生。在几年之内，这个国家级项目必将启动。
+
+### The path to The Project
 
 A turn-of-events seared into my memory is late February to mid-March of 2020. In those last weeks of February and early days of March, I was in utter despair: it seemed clear that we were on the covid-exponential: a plague was about to sweep the country, the collapse of our hospitals was imminent—and yet almost nobody took it seriously. The Mayor of New York was still dismissing Covid-fears as racism and encouraging people to go to Broadway shows. All I could do was buy masks and short the market.
 
@@ -66,7 +108,29 @@ There are many ways this could be operationalized in practice. To be clear, this
 
 But by late 26/27/28 it will be underway. The core AGI research team (a few hundred researchers) will move to a secure location; the trillion-dollar cluster will be built in record-speed; The Project will be on.
 
-Why The Project is the only way
+通向未来的征程
+
+2020 年 2 月底至 3 月中旬的那段经历，永远铭刻在我的记忆中。二月末三月初的那些日子里，我陷入了深深的绝望：显然我们正处于新冠病毒的爆发期，一场瘟疫即将席卷全国，医疗系统随时可能崩溃 —— 然而几乎没有人当回事。纽约市长那时还在说担心新冠是种族歧视，继续鼓励人们去看百老汇演出。我能做的，就只有买口罩和做空股市。
+
+然而仅仅几周之后，整个国家就开始封锁，国会批准了数万亿美元的拨款（超过国民生产总值的 10%）。虽然我们很难提前预见指数增长的恐怖，但当威胁真正逼近，到了关乎生死存亡的时刻，社会就会爆发出非凡的力量。尽管响应来得晚了些，措施也比较粗暴 —— 但总算有所行动，而且规模惊人。
+
+未来几年，AI 的发展轨迹可能会与之相似。我们现在正处于关键阶段。2023 年已经发生了翻天覆地的变化。通用人工智能（AGI）从一个你都不好意思提起的边缘话题，一跃成为美国参议院重要听证会和世界领导人峰会的核心议题。考虑到现在仍属早期阶段，美国政府表现出的参与度令我印象深刻。再经历几个「2023 年」这样的转折点，社会对 AI 的接受度和讨论范围将会彻底突破现有界限。
+
+随着 AI 计算能力的指数级提升，技术突破会接踵而至。到 2025/2026 年左右，我预计会出现下一个真正令人震惊的突破；AI 将为科技巨头带来超过 1000 亿美元的年收入，在解决原始问题的智慧上超越博士生。就像当初新冠导致的股市崩盘让许多人开始重视疫情一样，到时候我们将会看到市值 10 万亿美元的公司出现，AI 热潮将席卷全球。如果这还不够震撼，到 2027/28 年，我们将会拥有在价值超过 1000 亿美元的超级计算集群上训练的模型；完全成熟的 AI 智能体将可以取代远程工作者，开始大规模自动化软件开发和其他脑力工作。每一年的发展速度都会让人目不暇接。
+
+尽管现在很多人还看不到通用人工智能的可能性，但最终共识终将形成。就像物理学家希拉德（Szilard）比其他人更早预见到原子弹的可能性一样。最初，他的警告并未得到重视；人们认为制造原子弹的可能性很小（或者至少认为，谨慎明智的做法是淡化这种可能性）。希拉德极力呼吁对相关研究保密，却遭到嘲笑和漠视。但随着越来越多的实验数据涌现，许多最初持怀疑态度的科学家开始意识到制造原子弹确实可行。当大多数科学家相信他们即将造出原子弹时，政府也随之认识到这关乎重大国家安全 —— 于是曼哈顿计划正式启动。
+
+随着 AI 能力的突破从理论预测变成现实，顶尖科学家、企业高管和政府官员中间也会逐渐达成共识：我们正站在历史的转折点，即将迎来通用人工智能的诞生、智能的爆发性增长，以及超人类智能的出现。在这个过程中，我们可能会看到第一个真正令人恐惧的 AI 演示：也许是常被讨论的「协助新手制造生物武器」，或者自主入侵关键系统，抑或是其他完全意想不到的情况。到那时，一个事实将变得明确：不管是否愿意接受，这项技术都将成为决定性的军事力量。即使我们有幸避免陷入重大战争，中国共产党也很可能已经注意到这点，并启动了规模宏大的 AGI 项目。也许最终不可避免地会发现中共渗透美国顶尖 AI 实验室的事实，这将引发轩然大波。
+
+到 2026/2027 年左右，华盛顿的氛围将变得凝重。人们会真切地意识到这场变革的冲击；恐惧感将开始蔓延。从五角大楼的走廊到国会的闭门会议，一个显而易见的问题将萦绕在每个人心头：我们是否需要启动一个针对通用人工智能的曼哈顿计划？事态的发展将是循序渐进，而后骤然加速：这场革命势不可挡，局势将急剧变化，这将成为自原子弹发明以来美国国家安全面临的最严峻挑战。无论采取何种形式，国家安全部门都将全面参与其中。这个计划将成为必然的选择，也是唯一可行的应对方案。
+
+当然，这只是一个粗略的概述 —— 很多细节都取决于共识如何形成、关键的警示信号何时出现等因素。华盛顿的决策效率低下是众所周知的。就像应对新冠疫情，甚至是曼哈顿计划一样，政府的反应总是异常迟缓且缺乏灵活性。在爱因斯坦 1939 年致总统的信（由希拉德起草）之后，政府成立了一个铀研究咨询委员会。但官员们能力不足，初期几乎毫无进展。举例来说，著名物理学家费米（Fermi）仅获得了 6000 美元（相当于今天的 13.5 万美元）的研究经费，而且即便是这笔微薄的资金，也是经过数月等待才最终到位。希拉德认为，由于当局的短视和拖沓，整个项目至少被推迟了一年。1941 年 3 月，英国政府最终得出结论，认为原子弹的研制势在必行。然而，美国委员会起初对这份英国报告置之不理达数月之久 —— 直到 1941 年 12 月，才正式启动了全面的原子弹研制计划。
+
+这个现代版的「超级计划」在实践中可以采取多种形式。需要明确的是，这并非必须是传统意义上的国有化，不一定要让 AI 实验室的研究人员直接隶属于军方（当然这也是可能的！）。相反，我预计会采取一种更为巧妙的组织方式。与国防部的关系可能会类似于其与波音或洛克希德·马丁公司的合作模式。也许通过国防合同或类似机制，主要的云计算供应商、AI 实验室和政府将组建一个联合项目，实质上使其成为国家安全体系的重要组成部分。就像 2023 年各大 AI 实验室「主动」向白宫作出承诺一样，西方实验室可能也会或多或少「自愿」加入这个国家项目。考虑到所需的数万亿美元投资规模，以及权力制衡的需要，国会必然会参与其中。至于这些具体细节如何安排，那是未来需要解决的问题。
+
+但到 2026-2028 年底，这个宏大的计划将正式启动。核心 AGI 研究团队（数百名顶尖研究人员）将迁入特定的安全区域；造价万亿美元的超级计算集群将以前所未有的速度建成；一个足以改变人类历史进程的计划就此展开。
+
+### Why The Project is the only way
 
 I am under no illusions about the government. Governments face all sorts of limitations and poor incentives. I am a big believer in the American private sector, and would almost never advocate for heavy government involvement in technology or industry.
 
@@ -142,7 +206,83 @@ Perhaps, most of all, it will take American leadership to develop—and if neces
 
 At least in this initial period, we will be faced with the most extraordinary national security exigency. Perhaps, nobody is up for this task. But of the options we have, The Project is the only sane one.
 
-The Project is inevitable; whether it's good is not
+为何国家主导是必由之路
+
+我对政府的局限性有清醒的认识。政府面临着各种制约因素和不当激励。我一直都是美国私营部门的坚定支持者，几乎从不赞同政府深度介入技术或产业发展。
+
+我过去也是用这种思维方式来看待通用人工智能的 —— 直到我加入了一家 AI 实验室。AI 实验室确实在某些方面表现出色：他们成功地将 AI 从实验室项目转变为商业现实，这种转变只有创业公司才能做到。但本质上，AI 实验室终究还是创业公司。我们不能天真地期待创业公司有能力掌控超级智能（Superintelligence）。
+
+虽然没有完美的解决方案 —— 但我们别无选择。当一项技术对国家安全变得如此重要时，美国政府的全面接管将势在必行。
+
+超级智能：美国的关键国防战略
+
+我在之前的文章中已经探讨过超级智能的强大潜力。在短短几年内，超级智能将彻底改变全球军事力量的格局。到 2030 年代初，美国现有的整个军事体系（不管是否愿意承认，这确实是全球和平与安全的基石）都可能被淘汰。这已经不仅仅是装备升级的问题，而是一次彻底的革命性更迭。
+
+简而言之，通用人工智能的发展将更类似于核武器而非互联网。诚然，它具有双重属性 —— 就像核技术既可用于发电，也可用于武器。民用领域终将有其发展空间。但在通用人工智能发展的关键阶段，无论我们愿意与否，国家安全都将成为首要考虑因素。
+
+我们需要在短短几年内彻底重构美国的军事力量，以应对快速的技术变革 —— 否则就会面临被积极发展这项技术的对手彻底超越的风险。最紧迫的任务或许是将超级智能应用于防御系统，以应对一系列前所未有的新威胁：具备超越人类能力的黑客对手、能够突破核威慑进行先发制人打击的新型隐形无人机集群、可能被武器化的合成生物学技术扩散、动荡的国际（和国内）地缘政治局势，以及可能失去控制的超级智能项目。
+
+无论在形式上是否归属私营企业，通用人工智能项目都必须也必然会成为国防体系的重要组成部分，需要与国家安全机构保持最紧密的协作。
+
+建立超级智能的科学管理体系
+
+超级智能带来的力量 —— 以及随之而来的挑战 —— 将完全不同于我们已经见识过的任何科技公司的产品。有一点似乎很明确：这种力量不应该由某个商业公司的首席执行官单独掌控。事实上，在由私人实验室开发超级智能的情况下，个别公司的 CEO 很可能获得足以颠覆美国政府的实际能力。试想一下，如果埃隆·马斯克拥有核武器系统的最终决策权会是什么情况。（或者如果某个非营利组织的董事会可以决定接管核武器系统的控制权。）
+
+这个道理也许很浅显：作为一个社会，我们已经确立了由民主政府控制军事力量的原则；而超级智能至少在初期将成为最强大的军事武器。真正激进的想法不是这个国家主导的项目，而是寄希望于让私营公司的 AI 领袖掌握军事力量，并期待他们成为开明的统治者。
+
+事实上，在私营 AI 实验室的运营模式下，情况可能会比由企业 CEO 掌握核按钮更加危险 —— 这些实验室的安全隐患主要在于完全缺乏内部监管机制。这意味着，那些未经任何安全审查的 AI 实验室员工可能会在无人察觉的情况下采取危险行动。
+
+我们需要建立一个科学的管理体系 —— 包括所有必要的流程和安全保障，这些都是安全掌控堪比大规模杀伤性武器的超级智能所必需的 —— 而这些只有通过政府才能实现。从本质上来说，这是一个关于制度传承的论点：那些用于约束政府权力的体系，包括各种制度、宪法、法律、司法机构、权力制衡机制，以及对民主自由秩序的共同维护（比如军队将领拒绝执行违法命令），这些都在数百年的历史中经受住了考验。相比之下，AI 实验室特有的管理架构在首次面临挑战时就已经失效。美国军方如果想要的话，现在就有能力消灭几乎所有美国平民，或者实施政变 —— 但我们控制政府使用核武器的方式并不是靠设立多个拥有自己核武库的私营公司。历史已经证明，只有这一套指挥系统和制度框架能够胜任这项重任。
+
+当然，你可能是一个坚定的自由主义者（libertarian），从原则上反对这种做法（那就让埃隆·马斯克和山姆·奥特曼各自指挥自己的核武器吧！）。但一旦超级智能被确定为关乎国家安全的核心议题，我相信华盛顿的决策者们必然会采取这种立场。
+
+超级智能的民间应用
+
+当然，这并不意味着超级智能的民用领域将被政府完全掌控。
+
+核裂变技术最初确实是作为政府项目被开发的 —— 核武器的控制权永久保留在政府手中 —— 但民用核能产业在私营领域蓬勃发展（在 20 世纪 60 年代和 70 年代，直到环保运动导致其发展受阻）。
+
+波音公司与军方合作，先后研制了 B-29（二战期间最昂贵的国防研发项目，投入甚至超过曼哈顿计划）、B-47 和 B-52 等远程轰炸机。随后，他们将这些技术应用于研发波音 707 客机，开创了民用航空的喷气发动机时代。如今的波音公司，虽然只能向政府提供隐形战斗机，但在民用客机领域拥有完全的研发和销售自主权。
+
+这种模式同样适用于雷达、卫星、火箭、基因技术，甚至二战时期的工业生产设施等诸多领域。它们都经历了从军事到民用的成功转化。
+
+在发展初期，超级智能的研发将不得不优先考虑国家安全需求，以帮助人类社会度过一个极度动荡的时期。军事用途的超级智能技术将继续由政府掌控，相关安全规范也将得到严格执行。但当最初的危险阶段过去，全球局势逐渐稳定后，参与国家项目的企业（以及其他公司）自然会开始探索民用领域的应用。
+
+即使在实施这个国家主导项目的情况下，一个由私营企业主导、多元共生、市场驱动的超级智能民用应用领域终将蓬勃发展。
+
+关于安全问题
+
+我在本系列的上一篇文章中已经详细探讨过这个问题。如果继续沿着目前的发展路径，我们可能要放弃在通用人工智能领域的所有努力，因为中国可能会迅速窃取所有的算法创新和模型核心数据（这实际上就等同于获得了超级智能的完整副本）。按照目前的发展态势，我们甚至无法确保能够建立起最基本的安全防护体系。在由私营创业公司主导开发通用人工智能的情况下，超级智能技术可能会扩散到数十个具有潜在威胁的国家。这种情况显然无法接受。
+
+如果我们要认真对待这个问题，就必须建立严格的管控机制。目前大多数私营企业都没有充分重视这一点。但即便如此，当我们最终不得不面对中国全方位的间谍活动时（比如窃取 AI 模型核心数据可能成为中国国家安全部的首要任务），仅凭私营企业可能无法建立足够完善的安全体系。到那时，只有与美国情报部门展开深度合作，才能真正确保通用人工智能的安全。这意味着需要对 AI 实验室和核心研究团队实施严格的管理措施，包括严格的安全审查、全天候监控、在特殊安全设施中工作，以及限制人员流动；同时还需要依托只有政府才能提供的基础设施，特别是确保 AI 数据中心的物理安全。
+
+从某种程度上说，仅安全因素就足以证明政府主导的必要性 —— 如果我们无法确保这些技术的绝对安全，自由世界的优势和 AI 安全都将面临严重威胁。（事实上，我认为这很可能成为最终促使行动的关键因素：一旦中国渗透美国顶级 AI 实验室的事实被揭露，每一位参议员、国会议员和国家安全高官都将不得不严肃应对这一局势。）
+
+技术安全与管控
+
+简而言之：我们面临着诸多潜在风险 —— 从如何可靠地控制和信任即将管理我们经济和军事系统的数以亿计的超级智能体（这涉及超级智能系统的对齐问题），到如何防范新型大规模杀伤性技术被滥用的风险。
+
+一些 AI 实验室声称他们高度重视安全问题：他们承认自己正在开发的技术一旦失控可能会引发灾难性后果，并承诺会在关键时刻采取必要的防范措施。但是，我们能否完全信任这些承诺，将美国全体公民的生命安全押在上面？更重要的是，迄今为止，这些实验室还没有展现出与其所开发技术相匹配的能力、可信度和严谨态度。
+
+归根结底，这些都是创业公司，不可避免地受到商业利益的驱使。在竞争压力下，它们可能会不顾一切地推进智能技术的快速发展，而且必然会有一些机构为了速度而牺牲安全。特别值得注意的是，我们可能需要适当放缓发展速度，给自己留出时间来解决安全挑战，但这需要西方各大实验室之间的密切配合。（况且，私人实验室的 AI 核心技术可能已经遭到窃取，这使得他们的安全措施形同虚设；我们的安全反而要依赖于中国和朝鲜的自我约束。）
+
+有人提出监管可能是解决方案。这在 AI 发展相对缓慢的情况下或许可行，但我担心单纯的监管根本无法应对超级智能爆发式发展带来的挑战。我们需要的不是花费数年时间进行评估，然后通过繁琐的行政程序来制定一些安全标准。这更像是一场需要立即应对的战争。
+
+我们将面临一个局势急剧变化的关键时期，形势每周都在剧烈变化。在这个过程中，我们不得不根据不完整的信息作出生死攸关的决策。解决方案 —— 甚至问题本身 —— 都无法提前预知，而是需要在混沌的局势中凭借实战经验来判断。我们将面临极其艰难的抉择，例如："我们的一些 AI 系统对齐性测试结果不够明确，很多现象我们已经难以理解。虽然表面看起来可能没有问题，但有迹象表明下一代超级智能系统可能存在风险。我们是否应该暂缓三个月的训练计划，以确保更高的安全性？但与此同时，最新情报显示中国已经获取了我们的核心技术数据，并在加速推进他们自己的超级智能开发，在这种情况下我们该如何应对？"
+
+我并不确信政府主导的项目在应对这些挑战时就一定会做得很好 —— 但相比之下，让初创公司来开发超级智能这个选项，实际上比大多数人意识到的更像是在碰运气。我们需要一个能够以足够严谨的态度来权衡这些艰难决策的管理体系。
+
+维护全球稳定
+
+超级智能的爆发性发展及其直接影响将给人类带来史上最动荡的时期之一。我们这个时代的人还没有经历过如此严峻的挑战。在这个初始阶段，我们的首要任务不是开发新颖的商业产品，而是要竭尽全力确保人类安全地度过这个关键时期。
+
+我们需要通过政府主导的项目在与专制国家的竞争中取得优势 —— 这将给我们足够的领先地位和必要的时间来应对潜在的危机。如果我们无法防止超级智能核心技术被立即窃取，那其他努力都将是徒劳。我们需要整合西方世界的力量：集中最优秀的科学家，调动所有可用的图形处理器（GPU）资源，确保投资数万亿美元建设的超级计算集群落户美国。同时，我们还需要保护这些关键计算设施免受对手的破坏或直接攻击。
+
+更为关键的是，美国需要发挥领导作用，建立并在必要时执行一个超级智能技术管控机制。我们必须防止俄罗斯、朝鲜、伊朗和恐怖组织利用自己的超级智能系统开发足以威胁全球的技术和武器。我们需要运用超级智能来强化关键基础设施、军事设施和政府系统的安全防护，以抵御新一代的网络攻击。我们需要借助超级智能来维持生物科技等领域的攻防平衡。我们需要开发相关工具来安全地管控超级智能系统，并能够及时关停其他机构因疏忽而导致失控的超级智能项目。未来的 AI 系统和机器人将以超出人类 10-100 倍的速度运转，一切变化都会极其迅速。我们需要为应对各种极端情况做好准备 —— 包括应对那些由于将一个世纪的技术进步压缩到短短几年内而产生的重大威胁。
+
+在这个关键阶段，我们正面临着前所未有的国家安全挑战。诚然，这个任务的难度可能超出任何人的能力范围。但在所有可行的选择中，建立这个国家主导的项目是我们唯一明智的选择。
+
+### The Project is inevitable; whether it's good is not
 
 Ultimately, my main claim here is descriptive: whether we like it or not, superintelligence won't look like an SF startup, and in some way will be primarily in the domain of national security. I've brought up The Project a lot to my San Francisco friends in the past year. Perhaps what's surprised me most is how surprised most people are about the idea. They simply haven't considered the possibility. But once they consider it, most agree that it seems obvious. If we are at all right about what we think we are building, of course, by the end this will be (in some form) a government project. If a lab developed literal superintelligence tomorrow, of course the Feds would step in.
 
@@ -156,7 +296,7 @@ The latter might look like Atoms for Peace, the IAEA, and the NPT. We should off
 
 Perhaps the most important free variable is simply whether the inevitable government project will be competent. How will it be organized? How can we get this done? How will the checks and balances work, and what does a sane chain of command look like? Scarcely any attention has gone into figuring this out. Almost all other AI lab and AI governance politicking is a sideshow. This is the ballgame.
 
-The endgame
+### The endgame
 
 And so by 27/28, the endgame will be on. By 28/29 the intelligence explosion will be underway; by 2030, we will have summoned superintelligence, in all its power and might.
 
@@ -170,11 +310,13 @@ Except, well—the stakes will be all too real.
 
 See you in the desert, friends.
 
+Reunion of atomic scientists on the fourth anniversary of the first controlled nuclear fission reaction at UChicago.
+
 Next post in the series:
 
 V. Parting Thoughts
 
-Reunion of atomic scientists on the fourth anniversary of the first controlled nuclear fission reaction at UChicago.
+### Reference
 
 Note that while private companies help develop components for nuclear weapons, they are never allowed to possess a completed and assembled nuclear weapon. In comparison, the mainline version of the "AGI government project" I am putting forward here is unprecedentedly privatized, for the WMD reference class.↩
 
@@ -190,7 +332,6 @@ Or perhaps you say, just open-source everything. The issue with simply open sour
 
 In any case, people overrate the importance of open-source as we get closer to AGI. Given cluster costs escalating to hundreds of billions, and key algorithmic secrets now being proprietary rather than published as they were a couple years ago, it'll be 2-3 or so leading players, rather than some happy community of decentralized coders building AGI.
 
-I do think a different variant of open source will continue to play an important role: models that lag a couple years behind being open sourced, helping the benefits of the technology diffuse broadly.↩
+I do think a different variant of open source will continue to play an important role: models that lag a couple years behind being open sourced, helping the benefits of the technology diffuse broadly.
 
 To my Progress Studies brethren: you should think about this, this will be the culmination of your intellectual project! You spend all this time studying American government research institutions, their decline over the last half-century, and what it would take to make them effective again. Tell me: how will we make The Project effective?
-
