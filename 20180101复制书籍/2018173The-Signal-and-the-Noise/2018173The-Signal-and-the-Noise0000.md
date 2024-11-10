@@ -1,6 +1,6 @@
-Nate Silver.(2012).2018173The-Signal-and-the-Noise.Penguin Group => 0101
+Nate Silver.(2012).2018173The-Signal-and-the-Noise.Penguin Group => Conclusion
 
-## INTRODUCTION
+## Introduction
 
 This is a book about information, technology, and scientific progress. This is a book about competition, free markets, and the evolution of ideas. This is a book about the things that make us smarter than any computer, and a book about human error. This is a book about how we learn, one step at a time, to come to knowledge of the objective world, and why we sometimes take a step back.
 
@@ -80,10 +80,6 @@ The explosion of information produced by the printing press had done us a world 
 
 宗教改革引发的宗教分裂很快使欧洲陷入长期的战争。从 1524 年到 1648 年，欧洲经历了一系列持续不断的宗教战争，包括德国农民战争、施马尔卡尔登战争、八十年战争、三十年战争、法国宗教战争、爱尔兰联合战争、苏格兰内战和英国内战 —— 其中许多战争甚至是同时进行的。这一时期还包括始于 1480 年的西班牙宗教裁判所，以及 1508 年至 1516 年的神圣联盟战争，尽管这些事件与新教传播的关系相对较少。仅三十年战争就造成了德国三分之一人口的死亡，使得 17 世纪成为历史上最为血腥的世纪之一，可能仅次于 20 世纪初期。
 
-
-
-
-
 在这个动荡的时代，印刷技术却悄然推动了科学与文学的蓬勃发展。伽利略冒着风险分享着被审查的思想，莎士比亚则用戏剧描绘人性的深刻洞见。
 
 莎士比亚的戏剧常常将命运编织成悲剧的主线，令人扼腕叹息。作品的悲剧性正源于角色们理想与现实的巨大张力：他们渴望掌控自身命运，却被无形的力量推向悲惨结局。在那个时代，人类已经开始意识到命运可以被质疑，但尚未掌握改变命运的能力。挑战命运的人往往付出生命的代价。
@@ -95,10 +91,6 @@ The explosion of information produced by the printing press had done us a world 
 然而，《凯撒大帝之死》不仅延续了关于预测的古老观念 —— 将其与宿命论、命理占卜紧密联系 —— 更重要的是，它引入了一个更加现代且富有革命性的思想：人类可以主动解读这些迹象，并从中获得战略性优势。正如卡西乌斯激励布鲁特斯时所说：「人在某些时刻，终将成为自身命运的主人。」
 
 在那个时代，「人定胜天」的理念正在逐渐获得认可。有趣的是，「预测」和「预报」这两个词如今几乎可以互换使用，但在莎士比亚的年代，它们承载着截然不同的含义。「预测」更多指巫师和占卜师的神秘预言，而「预报」则更接近卡西乌斯所代表的、基于理性和主观能动性的前瞻性判断。
-
-
-
-
 
 「预测」一词源自英语中的日耳曼语言，20 而「预言」则源于拉丁语。21 预测更多体现了新教徒对现实世界的关注，而非罗马天主教帝国那种对来世的迷恋。做出预测通常意味着在不确定的条件下进行理性规划。这种做法体现了审慎、智慧和勤奋，与我们今天理解的「远见卓识」颇为相似。22
 
@@ -132,11 +124,11 @@ As we came to more realistic views of what that new technology could accomplish 
 
 当信息增长速度超过我们理解和处理的能力时，我们就可能陷入信息的迷茫与困境。过去四十年的人类历史告诉我们，将海量信息转化为有价值的知识是一个漫长的过程，如果不谨慎应对，我们很可能在这个过程中遇到挫折。
 
-"信息时代」这个概念并非突然出现。它在 1970 年代后期逐渐流行起来。稍早一些的相关概念是「计算机时代」[28]，大约始于 1970 年。那是计算机开始逐步进入实验室和学术领域，尽管尚未成为普通家庭的日常设备。与过去相比，这一次信息技术的发展周期大大缩短，从技术萌芽到对社会产生实质性影响，仅仅用了十五到二十年。
+「信息时代」这个概念并非突然出现。它在 1970 年代后期逐渐流行起来。稍早一些的相关概念是「计算机时代」[28]，大约始于 1970 年。那是计算机开始逐步进入实验室和学术领域，尽管尚未成为普通家庭的日常设备。与过去相比，这一次信息技术的发展周期大大缩短，从技术萌芽到对社会产生实质性影响，仅仅用了十五到二十年。
 
-1970 年代是「用大量理论解释极少数据」的巅峰时期，正如经济学家 Paul Krugman 所描述的。当时，我们开始使用计算机模拟世界，但逐渐意识到这些模型是多么粗糙、充满假设，计算机的精确计算并不等同于准确的预测。从经济学到流行病学，这是一个充满大胆预测 yet 常常失败的年代。比如 1971 年，有人声称十年内就能预测地震 [29]，但四十年过去了，我们仍然无法实现这一目标。
+1970 年代是「用大量理论解释极少数据」的巅峰时期，正如经济学家 Paul Krugman 所描述的。当时，我们开始使用计算机模拟世界，但逐渐意识到这些模型是多么粗糙、充满假设，计算机的精确计算并不等同于准确的预测。从经济学到流行病学，这是一个充满大胆预测也常常失败的年代。比如 1971 年，有人声称十年内就能预测地震 [29]，但四十年过去了，我们仍然无法实现这一目标。
 
-矛盾的是，1970 和 1980 年代的计算机热潮反而导致了经济和科学生产力的短暂下降，经济学家将此称为「生产力悖论」。正如经济学家 Robert Solow 在 1987 年著名的论断："计算机时代无处不在，却未见于生产力统计」[30]。在这期间，美国经历了从 1969 年到 1982 年的四次经济衰退 [31]。尽管晚 1980 年代对美国经济相对有利，但对世界其他地区的国家却并不理想。
+矛盾的是，1970 和 1980 年代的计算机热潮反而导致了经济和科学生产力的短暂下降，经济学家将此称为「生产力悖论」。正如经济学家 Robert Solow 在 1987 年著名的论断：「计算机时代无处不在，却未见于生产力统计」[30]。在这期间，美国经历了从 1969 年到 1982 年的四次经济衰退 [31]。尽管晚 1980 年代对美国经济相对有利，但对世界其他地区的国家却并不理想。
 
 科学进步比经济进步更难量化。32 衡量科学发展的一个重要指标是专利的数量，尤其是与研发投资相关联。如果产生一项新发明的成本降低了，这意味着我们正在有效地转化信息，将其升华为有价值的知识。反之，如果成本不断攀升，则可能意味着我们正在徒劳地在复杂信息中寻找有意义的线索，实际上是在浪费资源。
 
@@ -182,7 +174,47 @@ There are entire disciplines in which predictions have been failing, often at gr
 
 Big Data will produce progress—eventually. How quickly it does, and whether we regress in the meantime, will depend on us.
 
-Why the Future Shocks Us
+大数据（Big Data)」的承诺与陷阱
+
+大数据已成为当下最热门的技术术语。IBM 的数据显示，我们每天生成 2.5 百万亿（quintillion）字节的数据，而且令人惊讶的是，这些数据中超过 90% 是在过去短短两年内产生的。
+
+这种信息的指数级增长，有时被视为技术发展的万能钥匙，犹如上世纪 70 年代人们对计算机的狂热。著名科技杂志《连线（Wired)》主编 Chris Anderson 在 2008 年甚至断言，海量数据的积累本身将使传统的理论研究和科学方法变得多余。
+
+这是一本极力拥护科学和技术的著作，看起来充满乐观色彩。然而，作者认为这种观点存在严重的误区。数据本身是无声的，是我们赋予其意义。正如凯撒曾经那样，我们可能会以一种自我服务的方式阐释数据，使其脱离客观现实。
+
+基于数据的预测或许会成功，也可能以失败告终。当我们否认自身在这一过程中的主动角色时，失败的可能性就会急剧增加。在对数据提出更高要求之前，我们首先需要对自己的认知和态度提出更高的要求。
+
+也许你听到我的背景会感到诧异。作为一个以数据和统计分析著称、善于做精准预测的专业人士，我有着有趣的职业经历。2003 年，在一份令人乏味的咨询工作中，我开发了 PECOTA 预测系统，专门用于预测大联盟棒球运动员的表现。这个系统的独特之处在于采用概率预测模型，为每个球员给出了多种可能的结果范围，最终证明比同类系统更为准确。
+
+2008 年，我创立了 FiveThirtyEight 网站，致力于选举结果预测。这个网站的预测令人印象深刻：在五十个州中，成功预测了四十九个州的总统大选结果，并准确预测了所有三十五个美国参议院选举的获胜者。
+
+这些成功引起了出版界的广泛关注。当时，像《Moneyball》和《Freakonomics》这样揭示数据分析如何改变传统领域的书籍非常流行。受此启发，我决定写一本探索数据驱动预测在棒球、金融和国家安全等多个领域应用的著作。
+
+在四年的调查旅程中，我与来自十多个领域的百余位专家深入交流，阅读了数百篇学术论文和专著，并游历了从拉斯维加斯到哥本哈根的诸多地方。通过这个过程，我逐渐意识到：在大数据时代，预测的效果并不理想。我感到幸运的是，尽管犯了诸多错误，但仍取得了成功，而且我善于选择和把控研究方向。
+
+以棒球为例，这是一个极具代表性的特例。它不仅是一个丰富而富有启示的例外，更是本书探讨的重点 —— 为什么在《金钱球》（一部关于棒球统计分析的著名作品）问世十年后，数据分析师和传统球探能够实现前所未有的默契与合作。
+
+这本书还列举了一些令人鼓舞的进步案例。天气预报就是其中之一，它融合了人类专业判断和计算机技术。尽管气象学家常常被诟病，但他们已经取得了显著成就，能够比 25 年前准确三倍地预测飓风登陆位置。在此同时，我还遇到了一些在赌博领域战胜对手的职业玩家，以及像 IBM Deep Blue 团队这样成功挑战世界象棋冠军的计算机专家。
+
+然而，这些预测领域的进步必须与同期的诸多失败案例相对照。
+
+如果说有一种精神最能定义美国人，那就是我们坚信能够掌控自身命运的信念。这种信念源自古罗马政治家卡西厄斯（主动掌控命运）的哲学思想。我们的国家诞生于工业革命的黎明，由一群宗教改革者开创，他们深知思想的自由流通不仅能传播宗教理念，还能推动科学和商业的发展。作为一个国家，我们的优点和缺点 —— 如创新精神和勤奋态度，以及傲慢与急躁 —— 都植根于这种对个人选择的坚定信念。
+
+新千年对美国人来说是一个令人沮丧的开端。9 月 11 日恐怖袭击悄然来袭，令人措手不及。这并非因为缺乏信息，恰恰相反，就像六十年前珍珠港事件一样，所有预警信号都已经存在。然而，我们未能将这些零散的信息拼接成完整的图景。由于缺乏对恐怖分子行为模式的正确理解，我们对眼前的数据视而不见，最终导致这场袭击成为一个我们完全无法预料的「未知领域」。
+
+与此同时，最近的全球金融危机也暴露了我们在预测方面的严重缺陷。我们天真地相信各种经济模型，却没有意识到这些模型对基础假设有多么脆弱，最终酿成大祸。更为常态的是，我发现我们连经济衰退这样的重大趋势都难以提前几个月预测，尽管已经付出了极大的努力。尽管在通货膨胀控制方面取得了进展，但经济政策制定者们依然像瞎子一样摸索前进，缺乏清晰的前瞻性视野。
+
+政治科学家在 2000 年总统选举前发布的预测模型预测阿尔·戈尔将以 11 个百分点的压倒性优势获胜。38 然而，乔治·W·布什最终赢得了大选。这种预测失误并非个案，在政治预测领域中类似的失败屡见不鲜。宾夕法尼亚大学的菲利普·E·特洛克进行的长期研究发现，即便政治科学家断言某个政治结果绝对不可能发生，这种结果仍然会在约 15% 的情况下意外出现。（尽管如此，这些政治科学家的预测准确性可能还是要比电视评论员稍好一些。）
+
+与 1970 年代类似，近期再次掀起了一波预测地震的热潮，这些尝试大多采用高度数学化和数据驱动的技术。然而，这些预测往往描绘了从未发生的地震场景，却未能帮助我们为真实发生的地震做好准备。福岛核反应堆原本被设计为能够承受 8.6 级地震，这在很大程度上源于部分地震学家认为更大级别的地震根本不可能发生。而现实却是，2011 年 3 月，日本遭遇了可怕的 9.1 级大地震。
+
+在某些学科中，预测往往会失败，并给社会带来巨大的代价。生物医学研究就是一个典型的例子。2005 年，John P. Ioannidis（一位在雅典成长的医学研究者）发表了一篇具有里程碑意义的论文，题为「为什么大多数已发表的研究发现是错误的」[39]。
+
+这篇论文深入研究了同行评审期刊中的研究结果，特别关注那些在实验室中看似成功验证的医学假说。令人惊讶的是，论文得出结论：这些看似可靠的科学发现，在实际应用中很可能会失效。拜耳实验室后来的研究证实了 Ioannidis 的担忧。当他们尝试重现这些实验时，惊讶地发现约三分之二的「成功」研究结果在实际操作中无法复制 [40]。
+
+大数据终将推动进步，但进步的速度和方向，取决于我们如何应对和引导。
+
+### Why the Future Shocks Us
 
 Biologically, we are not very different from our ancestors. But some stone-age strengths have become information-age weaknesses.
 
@@ -210,7 +242,35 @@ Complex systems like the World Wide Web have this property. They may not fail as
 
 Regulation is one approach to solving these problems. But I am suspicious that it is an excuse to avoid looking within ourselves for answers. We need to stop, and admit it: we have a prediction problem. We love to predict things—and we aren't very good at it.
 
-The Prediction Solution
+为什么未来会如此令人震惊
+
+从生物学角度看，人类与数千年前的祖先并没有本质区别。然而，我们在漫长进化中形成的一些生存本能和思维模式，在快速变化的信息时代可能会成为阻碍。曾经帮助我们生存的思维方式，如今可能会限制我们适应日新月异的技术世界。
+
+人类并没有很多天然防御手段。我们不够快速，也不够强壮。没有锋利的爪子、尖锐的牙齿，也没有天生的身体护甲。我们不能喷毒、变色或飞行。与其他动物不同，人类凭借的是智慧生存。我们的大脑敏捷，能够快速识别模式，并迅速对机遇和威胁做出反应。
+
+「人类寻找模式的能力比其他动物更强，」麻省理工学院神经科学家 Tomaso Poggio 告诉我。「在复杂环境中识别物体，本质上是一种概括能力。比如，一个新生婴儿就能识别面孔的基本特征，这是进化而来的本能，而非后天学习。」
+
+然而，Poggio 指出，这种进化本能有时会产生副作用 —— 人们会在毫无规律的地方看到虚幻的模式。「人们总是喜欢在随机噪声中寻找意义，」他说。
+
+人类大脑相当非凡；它可以存储约三太字节（TB）的信息。41 然而，这仅仅是 IBM 所称的目前世界每天产生的信息量的百万分之一。因此，我们必须非常谨慎地选择要记忆的信息。
+
+阿尔文·托夫勒在 1970 年出版的《未来震撼》一书中，预见了「信息过载」的一些潜在影响。他认为，人们会倾向于用符合自身偏见的方式来理解和简化复杂的世界，尽管这个世界正变得越来越多元和复杂。42
+
+我们的生物本能并不总是能很好地适应信息丰富的现代社会。除非我们主动识别和克服自身的认知偏见，否则获取更多信息可能并不会带来显著的认知收益，甚至会出现收益递减的情况。
+
+印刷机的出现带来了信息泛滥，这反而加剧了宗教分歧。借助更多的信息和「证据」，不同的宗教观点可以被更有力地论证，但这同时也降低了人们对异议的包容度。如今，我们似乎正在经历着类似的社会现象。政治极化从 Toffler 撰写《未来震撼》的年代开始在美国迅速蔓延，随着互联网的兴起，这一趋势正以更快的速度加剧。
+
+这种党派偏见（partisan beliefs）打破了「信息越多越接近真相」的朴素假设。《自然》杂志的一项研究发现，政治立场强硬的人，即便对全球变暖的了解越深入，他们之间的分歧反而越大。
+
+在每天产生 2.5 quintillion（百亿亿，即 10^18）字节的海量信息中，真正有价值的信息其实非常有限。大多数信息不过是「噪音」（noise），而这些噪音的增长速度远远超过了有效「信号」（signal）。尽管有无数假设等待验证，海量数据等待挖掘，但客观真相的总量却几乎保持不变。
+
+印刷机彻底改变了我们犯错的方式。手工抄写时常见的笔误变得越来越少。然而，当错误确实发生时，它们往往会被成倍地复制 —— 就像著名的「罪恶圣经」事件（一个因印刷错误导致圣经文本出现严重失误的历史案例）。
+
+复杂系统，如万维网，都有这种独特的特征。它们可能不会像简单系统那样频繁出错，但一旦出错，后果往往是毁灭性的。资本主义和互联网这两个在传播信息方面极其高效的系统，同时也为好想法和坏想法的传播创造了土壤。值得警惕的是，这些负面想法可能会产生极其不成比例的影响。以金融危机为例，当时的金融体系杠杆率已经高到惊人的程度，信用评级机构模型中的一个轻微不当假设，就足以引发全球金融系统的大规模崩溃。
+
+监管或许是解决这类问题的一种途径。但我怀疑，这更可能是我们回避自我反思的借口。我们需要诚实地面对现实：我们有一个根本的预测问题。我们热衷于预测未来，但现实是，我们的预测能力相当有限。
+
+### The Prediction Solution
 
 If prediction is the central problem of this book, it is also its solution.
 
@@ -242,94 +302,9 @@ Each chapter is oriented around a particular subject and describes it in some de
 
 The subjects I have chosen are usually those in which there is some publicly shared information. There are fewer examples of forecasters making predictions based on private information (for instance, how a company uses its customer records to forecast demand for a new product). My preference is for topics where you can check out the results for yourself rather than having to take my word for it.
 
-A Short Road Map to the Book
+预测：问题与解决方案
 
-The book weaves between examples from the natural sciences, the social sciences, and from sports and games. It builds from relatively straightforward cases, where the successes and failures of prediction are more easily demarcated, into others that require slightly more finesse.
-
-Chapters 1 through 3 consider the failures of prediction surrounding the recent financial crisis, the successes in baseball, and the realm of political prediction—where some approaches have worked well and others haven't. They should get you thinking about some of the most fundamental questions that underlie the prediction problem. How can we apply our judgment to the data—without succumbing to our biases? When does market competition make forecasts better—and how can it make them worse? How do we reconcile the need to use the past as a guide with our recognition that the future may be different?
-
-Chapters 4 through 7 focus on dynamic systems: the behavior of the earth's atmosphere, which brings about the weather; the movement of its tectonic plates, which can cause earthquakes; the complex human interactions that account for the behavior of the American economy; and the spread of infectious diseases. These systems are being studied by some of our best scientists. But dynamic systems make forecasting more difficult, and predictions in these fields have not always gone very well.
-
-Chapters 8 through 10 turn toward solutions—first by introducing you to a sports bettor who applies Bayes's theorem more expertly than many economists or scientists do, and then by considering two other games, chess and poker. Sports and games, because they follow well-defined rules, represent good laboratories for testing our predictive skills. They help us to a better understanding of randomness and uncertainty and provide insight about how we might forge information into knowledge.
-
-Bayes's theorem, however, can also be applied to more existential types of problems. Chapters 11 through 13 consider three of these cases: global warming, terrorism, and bubbles in financial markets. These are hard problems for forecasters and for society. But if we are up to the challenge, we can make our country, our economy, and our planet a little safer.
-
-The world has come a long way since the days of the printing press. Information is no longer a scarce commodity; we have more of it than we know what to do with. But relatively little of it is useful. We perceive it selectively, subjectively, and without much self-regard for the distortions that this causes. We think we want information when we really want knowledge.
-
-The signal is the truth. The noise is what distracts us from the truth. This is a book about the signal and the noise.
-
-
-
-## 01
-
-
-"大数据（Big Data)」的承诺与陷阱
-
-"大数据」已成为当下最热门的技术术语。IBM 的数据显示，我们每天生成 2.5 百万亿（quintillion）字节的数据，而且令人惊讶的是，这些数据中超过 90% 是在过去短短两年内产生的。
-
-这种信息的指数级增长，有时被视为技术发展的万能钥匙，犹如上世纪 70 年代人们对计算机的狂热。著名科技杂志《连线（Wired)》主编 Chris Anderson 在 2008 年甚至断言，海量数据的积累本身将使传统的理论研究和科学方法变得多余。
-
-这是一本极力拥护科学和技术的著作，看起来充满乐观色彩。然而，作者认为这种观点存在严重的误区。数据本身是无声的，是我们赋予其意义。正如凯撒曾经那样，我们可能会以一种自我服务的方式阐释数据，使其脱离客观现实。
-
-基于数据的预测或许会成功，也可能以失败告终。当我们否认自身在这一过程中的主动角色时，失败的可能性就会急剧增加。在对数据提出更高要求之前，我们首先需要对自己的认知和态度提出更高的要求。
-
-也许你听到我的背景会感到诧异。作为一个以数据和统计分析著称、善于做精准预测的专业人士，我有着有趣的职业经历。2003 年，在一份令人乏味的咨询工作中，我开发了 PECOTA 预测系统，专门用于预测大联盟棒球运动员的表现。这个系统的独特之处在于采用概率预测模型，为每个球员给出了多种可能的结果范围，最终证明比同类系统更为准确。
-
-2008 年，我创立了 FiveThirtyEight 网站，致力于选举结果预测。这个网站的预测令人印象深刻：在五十个州中，成功预测了四十九个州的总统大选结果，并准确预测了所有三十五个美国参议院选举的获胜者。
-
-这些成功引起了出版界的广泛关注。当时，像《Moneyball》和《Freakonomics》这样揭示数据分析如何改变传统领域的书籍非常流行。受此启发，我决定写一本探索数据驱动预测在棒球、金融和国家安全等多个领域应用的著作。
-
-在四年的调查旅程中，我与来自十多个领域的百余位专家深入交流，阅读了数百篇学术论文和专著，并游历了从拉斯维加斯到哥本哈根的诸多地方。通过这个过程，我逐渐意识到：在大数据时代，预测的效果并不理想。我感到幸运的是，尽管犯了诸多错误，但仍取得了成功，而且我善于选择和把控研究方向。
-
-以棒球为例，这是一个极具代表性的特例。它不仅是一个丰富而富有启示的例外，更是本书探讨的重点 —— 为什么在《金钱球》（一部关于棒球统计分析的著名作品）问世十年后，数据分析师和传统球探能够实现前所未有的默契与合作。
-
-这本书还列举了一些令人鼓舞的进步案例。天气预报就是其中之一，它融合了人类专业判断和计算机技术。尽管气象学家常常被诟病，但他们已经取得了显著成就，能够比 25 年前准确三倍地预测飓风登陆位置。在此同时，我还遇到了一些在赌博领域战胜对手的职业玩家，以及像 IBM Deep Blue 团队这样成功挑战世界象棋冠军的计算机专家。
-
-然而，这些预测领域的进步必须与同期的诸多失败案例相对照。
-
-如果说有一种精神最能定义美国人，那就是我们坚信能够掌控自身命运的信念。这种信念源自古罗马政治家卡西厄斯（"主动掌控命运"）的哲学思想。我们的国家诞生于工业革命的黎明，由一群宗教改革者开创，他们深知思想的自由流通不仅能传播宗教理念，还能推动科学和商业的发展。作为一个国家，我们的优点和缺点 —— 如创新精神和勤奋态度，以及傲慢与急躁 —— 都植根于这种对个人选择的坚定信念。
-
-新千年对美国人来说是一个令人沮丧的开端。9 月 11 日恐怖袭击悄然来袭，令人措手不及。这并非因为缺乏信息，恰恰相反，就像六十年前珍珠港事件一样，所有预警信号都已经存在。然而，我们未能将这些零散的信息拼接成完整的图景。由于缺乏对恐怖分子行为模式的正确理解，我们对眼前的数据视而不见，最终导致这场袭击成为一个我们完全无法预料的「未知领域」。
-
-与此同时，最近的全球金融危机也暴露了我们在预测方面的严重缺陷。我们天真地相信各种经济模型，却没有意识到这些模型对基础假设有多么脆弱，最终酿成大祸。更为常态的是，我发现我们连经济衰退这样的重大趋势都难以提前几个月预测，尽管已经付出了极大的努力。尽管在通货膨胀控制方面取得了进展，但经济政策制定者们依然像瞎子一样摸索前进，缺乏清晰的前瞻性视野。
-
-政治科学家在 2000 年总统选举前发布的预测模型预测阿尔·戈尔将以 11 个百分点的压倒性优势获胜。38 然而，乔治·W·布什最终赢得了大选。这种预测失误并非个案，在政治预测领域中类似的失败屡见不鲜。宾夕法尼亚大学的菲利普·E·特洛克进行的长期研究发现，即便政治科学家断言某个政治结果绝对不可能发生，这种结果仍然会在约 15% 的情况下意外出现。（尽管如此，这些政治科学家的预测准确性可能还是要比电视评论员稍好一些。）
-
-与 1970 年代类似，近期再次掀起了一波预测地震的热潮，这些尝试大多采用高度数学化和数据驱动的技术。然而，这些预测往往描绘了从未发生的地震场景，却未能帮助我们为真实发生的地震做好准备。福岛核反应堆原本被设计为能够承受 8.6 级地震，这在很大程度上源于部分地震学家认为更大级别的地震根本不可能发生。而现实却是，2011 年 3 月，日本遭遇了可怕的 9.1 级大地震。
-
-在某些学科中，预测往往会失败，并给社会带来巨大的代价。生物医学研究就是一个典型的例子。2005 年，John P. Ioannidis（一位在雅典成长的医学研究者）发表了一篇具有里程碑意义的论文，题为「为什么大多数已发表的研究发现是错误的"[39]。
-
-这篇论文深入研究了同行评审期刊中的研究结果，特别关注那些在实验室中看似成功验证的医学假说。令人惊讶的是，论文得出结论：这些看似可靠的科学发现，在实际应用中很可能会失效。拜耳实验室后来的研究证实了 Ioannidis 的担忧。当他们尝试重现这些实验时，惊讶地发现约三分之二的「成功」研究结果在实际操作中无法复制 [40]。
-
-大数据终将推动进步，但进步的速度和方向，取决于我们如何应对和引导。
-
-为什么未来会如此令人震惊从生物学角度看，人类与数千年前的祖先并没有本质区别。然而，我们在漫长进化中形成的一些生存本能和思维模式，在快速变化的信息时代可能会成为阻碍。曾经帮助我们生存的思维方式，如今可能会限制我们适应日新月异的技术世界。
-
-人类并没有很多天然防御手段。我们不够快速，也不够强壮。没有锋利的爪子、尖锐的牙齿，也没有天生的身体护甲。我们不能喷毒、变色或飞行。与其他动物不同，人类凭借的是智慧生存。我们的大脑敏捷，能够快速识别模式，并迅速对机遇和威胁做出反应。
-
-"人类寻找模式的能力比其他动物更强，」麻省理工学院神经科学家 Tomaso Poggio 告诉我。"在复杂环境中识别物体，本质上是一种概括能力。比如，一个新生婴儿就能识别面孔的基本特征，这是进化而来的本能，而非后天学习。"
-
-然而，Poggio 指出，这种进化本能有时会产生副作用 —— 人们会在毫无规律的地方看到虚幻的模式。"人们总是喜欢在随机噪声中寻找意义，」他说。
-
-人类大脑相当非凡；它可以存储约三太字节（TB）的信息。41 然而，这仅仅是 IBM 所称的目前世界每天产生的信息量的百万分之一。因此，我们必须非常谨慎地选择要记忆的信息。
-
-阿尔文·托夫勒在 1970 年出版的《未来震撼》一书中，预见了「信息过载」的一些潜在影响。他认为，人们会倾向于用符合自身偏见的方式来理解和简化复杂的世界，尽管这个世界正变得越来越多元和复杂。42
-
-我们的生物本能并不总是能很好地适应信息丰富的现代社会。除非我们主动识别和克服自身的认知偏见，否则获取更多信息可能并不会带来显著的认知收益，甚至会出现收益递减的情况。
-
-印刷机的出现带来了信息泛滥，这反而加剧了宗教分歧。借助更多的信息和「证据」，不同的宗教观点可以被更有力地论证，但这同时也降低了人们对异议的包容度。如今，我们似乎正在经历着类似的社会现象。政治极化从 Toffler 撰写《未来震撼》的年代开始在美国迅速蔓延，随着互联网的兴起，这一趋势正以更快的速度加剧。
-
-这种党派偏见（partisan beliefs）打破了「信息越多越接近真相」的朴素假设。《自然》杂志的一项研究发现，政治立场强硬的人，即便对全球变暖的了解越深入，他们之间的分歧反而越大。
-
-在每天产生 2.5 quintillion（百亿亿，即 10^18）字节的海量信息中，真正有价值的信息其实非常有限。大多数信息不过是「噪音（noise)」，而这些噪音的增长速度远远超过了有效「信号（signal)」。尽管有无数假设等待验证，海量数据等待挖掘，但客观真相的总量却几乎保持不变。
-
-印刷机彻底改变了我们犯错的方式。手工抄写时常见的笔误变得越来越少。然而，当错误确实发生时，它们往往会被成倍地复制 — 就像著名的「罪恶圣经」事件（一个因印刷错误导致圣经文本出现严重失误的历史案例）。
-
-复杂系统，如万维网，都有这种独特的特征。它们可能不会像简单系统那样频繁出错，但一旦出错，后果往往是毁灭性的。资本主义和互联网这两个在传播信息方面极其高效的系统，同时也为好想法和坏想法的传播创造了土壤。值得警惕的是，这些负面想法可能会产生极其不成比例的影响。以金融危机为例，当时的金融体系杠杆率已经高到惊人的程度，信用评级机构模型中的一个轻微不当假设，就足以引发全球金融系统的大规模崩溃。
-
-监管或许是解决这类问题的一种途径。但我怀疑，这更可能是我们回避自我反思的借口。我们需要诚实地面对现实：我们有一个根本的预测问题。我们热衷于预测未来，但现实是，我们的预测能力相当有限。
-
-预测：问题与解决方案如果说预测是这本书要探讨的核心问题，那么它本身也将指向解决之道。
+如果说预测是这本书要探讨的核心问题，那么它本身也将指向解决之道。
 
 预测早已融入我们生活的方方面面。想想看，当你选择上班路线、考虑是否继续一段约会，或是精心计划未来的存款，其实都是在对未来做出预测 —— 你的每一个选择都在悄悄影响最终的结果。
 
@@ -359,11 +334,29 @@ The signal is the truth. The noise is what distracts us from the truth. This is 
 
 我选择的主题通常都是公开可获取信息的领域。相比之下，预测者基于私密信息（比如公司利用客户记录预测新产品需求）做出预测的例子就少得多。我更喜欢那些读者可以自行验证结果的主题，而不是盲目相信作者的观点。
 
-本书的阅读指南本书穿梭于自然科学、社会科学、体育和游戏等多个领域的案例之间。从相对简单直接的案例入手，在这些案例中预测的成败更容易辨别，逐步过渡到需要更 sophisticated 方法的复杂案例。
+### A Short Road Map to the Book
+
+The book weaves between examples from the natural sciences, the social sciences, and from sports and games. It builds from relatively straightforward cases, where the successes and failures of prediction are more easily demarcated, into others that require slightly more finesse.
+
+Chapters 1 through 3 consider the failures of prediction surrounding the recent financial crisis, the successes in baseball, and the realm of political prediction—where some approaches have worked well and others haven't. They should get you thinking about some of the most fundamental questions that underlie the prediction problem. How can we apply our judgment to the data—without succumbing to our biases? When does market competition make forecasts better—and how can it make them worse? How do we reconcile the need to use the past as a guide with our recognition that the future may be different?
+
+Chapters 4 through 7 focus on dynamic systems: the behavior of the earth's atmosphere, which brings about the weather; the movement of its tectonic plates, which can cause earthquakes; the complex human interactions that account for the behavior of the American economy; and the spread of infectious diseases. These systems are being studied by some of our best scientists. But dynamic systems make forecasting more difficult, and predictions in these fields have not always gone very well.
+
+Chapters 8 through 10 turn toward solutions—first by introducing you to a sports bettor who applies Bayes's theorem more expertly than many economists or scientists do, and then by considering two other games, chess and poker. Sports and games, because they follow well-defined rules, represent good laboratories for testing our predictive skills. They help us to a better understanding of randomness and uncertainty and provide insight about how we might forge information into knowledge.
+
+Bayes's theorem, however, can also be applied to more existential types of problems. Chapters 11 through 13 consider three of these cases: global warming, terrorism, and bubbles in financial markets. These are hard problems for forecasters and for society. But if we are up to the challenge, we can make our country, our economy, and our planet a little safer.
+
+The world has come a long way since the days of the printing press. Information is no longer a scarce commodity; we have more of it than we know what to do with. But relatively little of it is useful. We perceive it selectively, subjectively, and without much self-regard for the distortions that this causes. We think we want information when we really want knowledge.
+
+The signal is the truth. The noise is what distracts us from the truth. This is a book about the signal and the noise.
+
+本书的阅读指南
+
+本书穿梭于自然科学、社会科学、体育和游戏等多个领域的案例之间。从相对简单直接的案例入手，在这些案例中预测的成败更容易辨别，逐步过渡到需要更复杂方法的复杂案例。
 
 第 1 至 3 章深入探讨了近期金融危机预测中的失败案例、棒球领域的成功实践，以及政治预测领域的不同方法 —— 有些方法卓有成效，而有些则未能奏效。这些章节将引导读者思考预测问题的根本性挑战：我们如何在不被个人偏见干扰的情况下，合理运用数据和判断？市场竞争在何种条件下能提升预测准确性，又可能在哪些情况下降低预测质量？我们如何在尊重历史经验的同时，又充分认识到未来可能呈现的变化？
 
-第 4 至 7 章聚焦于复杂的动态系统（dynamic systems)—— 这些系统具有高度不确定性和非线性特征。包括地球大气层运行机制（影响天气变化）、地质板块运动（可能导致地震）、驱动美国经济运行的复杂人类互动，以及传染性疾病的传播模式。尽管这些系统正由顶尖科学家进行深入研究，但动态系统的固有复杂性使得预测变得尤为困难，在这些领域的预测往往并不尽如人意。
+第 4 至 7 章聚焦于复杂的动态系统（dynamic systems）—— 这些系统具有高度不确定性和非线性特征。包括地球大气层运行机制（影响天气变化）、地质板块运动（可能导致地震）、驱动美国经济运行的复杂人类互动，以及传染性疾病的传播模式。尽管这些系统正由顶尖科学家进行深入研究，但动态系统的固有复杂性使得预测变得尤为困难，在这些领域的预测往往并不尽如人意。
 
 第 8 章至第 10 章聚焦解决方案 —— 首先介绍一位运用贝叶斯定理异常精准的体育博彩专家，其专业水平远超多数经济学家和科学家，随后探讨国际象棋和扑克这两类游戏。由于运动和游戏遵循明确的规则，它们堪称测试预测能力的绝佳实验场。这些案例帮助我们深入理解随机性和不确定性，并为我们如何将信息转化为知识提供独特的洞察。
 
@@ -373,12 +366,7 @@ The signal is the truth. The noise is what distracts us from the truth. This is 
 
 信号代表真相，而噪音则是蒙蔽真相的迷障。这本书，就是要帮助我们辨别信号与噪音。
 
-
-
-
-
-
-## CONCLUSION
+## Conclusion
 
 A Major League shortstop has some plays he can always make, some plays he can never make, and some he'll have to dive for. The diving plays are the most spectacular and will catch our attention. But they can lead to a myopic view of the shortstop's abilities.
 
@@ -402,7 +390,31 @@ The volume of information is increasing exponentially. But relatively little of 
 
 This book is less about what we know than about the difference between what we know and what we think we know. It recommends a strategy so that we might close that gap. The strategy requires one giant leap and then some small steps forward. The leap is into the Bayesian way of thinking about prediction and probability.
 
-Think Probabilistically
+在棒球运动中，短击手（守备位置最接近二垒和三垒之间的内野手）面对不同难度的接球时，会有三种情况：有些球他总能接住，有些球永远无法接到，还有一些需要通过高难度的横身跳跃来接球。这些惊险的跳跃接球最为吸引观众的眼球，但也可能导致人们对短击手实际防守能力的片面理解。
+
+在「数据棒球」（一种基于统计分析评估球员价值的方法）时代，传奇短击手德里克·杰特成为热议对象。电视解说和专业球探注意到杰特频繁做出惊人的跳跃接球，因此认为他是一位出色的防守球员。然而，专业统计分析师仔细研究后发现了这种看法中的关键问题 [1]。尽管杰特是位优秀的运动员，但他对来球的反应常常较慢，不得不通过跳跃来弥补初始位置的不利。实际数据表明，杰特其实是一位防守能力相当一般的短击手，尽管他曾获得过五次金手套奖（棒球最佳防守奖）。
+
+对于那些杰特不得不拼命跳跃才能接到的球，像奥齐·史密斯这样真正顶级的防守短击手可能会轻而易举地接住，甚至因为动作看起来如此自然而没有获得太多关注。
+
+图 C-1：短击手跳跃接球范围
+
+无论我们已经掌握了多么广泛的能力，总会有一些任务恰好触及我们能力的极限。如果我们总是以最难完成的任务来衡量自己，就可能忽视那些我们轻松应对的日常事务。
+
+历史上最令人惊叹的预测之一，要数英国天文学家爱德蒙·哈雷在 1705 年对一颗大彗星的预测。他预言这颗彗星将在 1758 年重返地球，尽管当时许多人持怀疑态度，但这颗彗星最终准确无误地按照预测出现。[2] 在古代，彗星被视为来自诸神的不可预测的神谕，[3] 而如今，它们已经被视为异常精确和可预测的天体现象。
+
+天文学家预测，哈雷彗星下次将于 2061 年 7 月 28 日最接近地球。到那时，现在困扰我们预测能力的自然界谜题，很可能已经被我们的知识所揭开。
+
+自然法则变化极其缓慢。只要人类知识的宝库如同古腾堡印刷术问世以来那样不断扩大，我们就能逐步更好地解读自然的信号，尽管永远无法穷尽其全部奥秘。
+
+尽管科学和技术在这本书中堪称主角，但在大数据时代，我们仍需警惕对其能力的盲目崇拜。
+
+我们不能轻易地认为人类社会正变得越来越可预测。事实恰恰相反。揭示自然规律的科学，反而正在让社会运转变得更加错综复杂。技术正彻底改变我们彼此交往的方式。正如发明万维网的 Tim Berners-Lee 所说，因为互联网，「信息传播的整个背景、方程和动态都在发生根本性的变化」。
+
+信息量正以指数级速度膨胀。然而，真正有价值的信息却少之又少 —— 信噪比（即有效信号与无用噪声的比例）正在持续下降。我们迫切需要找到更好的方法来甄别有用信息。
+
+这本书的重点不在于我们已经了解的知识，而是关注我们所知道的和我们以为知道的之间的巨大差距。它提供了一种策略，帮助我们缩小这道鸿沟。这个策略需要一次勇敢的跨越，随后是一系列谨慎的步伐。这次跨越，就是进入贝叶斯概率思维的崭新世界。
+
+### Think Probabilistically
 
 Bayes's theorem begins and ends with a probabilistic expression of the likelihood of a real-world event. It does not require you to believe that the world is intrinsically uncertain. It was invented in the days when the regularity of Newton's laws formed the dominant paradigm in science. It does require you to accept, however, that your subjective perceptions of the world are approximations of the truth.
 
@@ -444,7 +456,49 @@ The problem comes when we mistake the approximation for the reality. Ideologues 
 
 We have big brains, but we live in an incomprehensibly large universe. The virtue in thinking probabilistically is that you will force yourself to stop and smell the data—slow down, and consider the imperfections in your thinking. Over time, you should find that this makes your decision making better.
 
-Know Where You're Coming From
+概率思考
+
+贝叶斯定理（Bayes's theorem）从始至终都是通过概率的方式来表达现实世界事件发生的可能性。它并不要求你相信世界本质上是不确定的，事实上，它诞生于牛顿定律主导科学研究的年代。然而，贝叶斯定理确实需要你接受一个观点：我们对世界的主观认知，本质上是对真相的近似和推测。
+
+对于许多人来说，这种基于概率的思考方式最初可能会让人感到不适。除非从小就接触纸牌或概率游戏，大多数人并不习惯用这种方式思考问题。传统的数学教育更倾向于教授几何和微积分等抽象学科，而很少关注概率与统计。更令人遗憾的是，在现实生活中，人们常常将表达不确定性误解为示弱，这实际上阻碍了我们更理性地看待世界。
+
+当你第一次尝试进行概率估计时，结果可能会相当不准确。但这里有两个令人欣慰的好消息。首先，这些初步估计只是起点：通过贝叶斯定理（Bayes's theorem），你可以随着新信息的出现不断修正和完善你的判断。其次，有证据表明这种能力是可以通过学习来提升的。例如，军队有时会专门训练士兵掌握这些思维技巧，并取得了相当不错的效果。同样，医生在进行医疗诊断时也常常运用类似的概率推理方法。
+
+相比那些夸夸其谈的电视评论员，我们或许更应该向医生和士兵学习。
+
+···
+
+人类的大脑天生就擅长用「快速概括」的方式处理海量信息。这不仅仅是一种思维特征，更是大脑应对复杂世界的生存策略。我们每时每刻接收的信息远远超出大脑能够逐一细致分析的范围，所以大脑会本能地提取关键特征、寻找共同模式，以便快速理解和应对周围的环境。
+
+在极度压力下，生活的常规模式会被瞬间打破。对于 9·11 恐怖袭击等重大灾难的幸存者的研究发现，他们能清晰记住事发时的细微细节，但同时又感到与周围环境极度隔绝。9 在这种情况下，我们最初的直觉和判断往往相当不准确，常常未能意识到威胁的严重程度。那些曾在战场等极端环境中做出决策的人，更可能表现出英雄主义，成功引导他人走向安全。10
+
+我们的大脑在日常生活中同样倾向于简化和概括信息。随着经验的积累，这些简化和概括会逐渐成为有用的认知工具，构成我们的实用知识。11 但它们并不完美，我们常常没有意识到自己认知中存在的粗糙近似。
+
+以下是关于有效市场假说（Efficient Market Hypothesis）的一组陈述，探讨个人投资者是否能够战胜股市。每个陈述都是一个逐步精细化的近似，试图更准确地解释复杂的市场现象。
+
+1 没有投资者能击败股市。
+
+2 在投资领域，长期战胜股市市场几乎是不可能的。
+
+3 即使考虑到个人风险承受能力，普通投资者很难持续超越整体市场表现。
+
+4 当我们将交易成本纳入考虑范围时，战胜股市变得更加困难。
+
+5 只有拥有内部信息的投资者，才可能在长期中获得超额收益。
+
+6 绝大多数投资者难以在考虑风险和交易成本后持续跑赢大盘，除非他们掌握特殊信息渠道。
+
+7 分析投资者长期战胜股市的比例是极其困难的，因为市场数据波动很大。但研究表明，由于交易本身不会产生净额外收益，反而会增加交易成本，大部分投资者最终都难以战胜市场。对于普通投资者来说，通过购买指数基金（追踪大盘整体走势的投资工具）分散风险，是更明智的投资策略。
+
+第一个粗略的近似估计 —— 断言没有投资者能战胜股市 —— 看似极其有力。但当我们推进到最后一个充满不确定性表达的版本时，所得结论已经无法用简单的口号概括。尽管如此，这反而是对客观世界更为全面的描述。
+
+偶尔使用近似估计并非坏事。假如你遇到一个对股市一无所知的陌生人，用简单直白的方式告诉他战胜股市非常困难，这已经比完全不了解要有意义得多。
+
+问题出在将近似估计等同于现实的时候。在 Phil Tetlock 研究中，那些喜欢用单一视角看待问题的「刺猬型思考者」（hedgehogs，指倾向于用单一、简单的理论解释复杂事物的人）就常常犯这种错误。他们认为越简单的陈述越能体现普遍真理，越能印证某种宏大理论。然而，Tetlock 发现这些刺猬型思考者在做预测时恰恰相当糟糕。他们往往忽视了那些使生活真实且预测更精准的复杂细节。
+
+我们拥有大脑，但生活在一个难以理解的浩瀚宇宙中。以概率思维思考的妙处在于，它能帮助我们暂停思考，仔细审视数据，放慢脚步，审视自身思维中的盲点和不足。长此以往，你会发现这种思考方式能显著提升决策质量。
+
+### Know Where You're Coming From
 
 Bayes's theorem requires us to state—explicitly—how likely we believe an event is to occur before we begin to weigh the evidence. It calls this estimate a prior belief.
 
@@ -454,7 +508,17 @@ Of course, markets are not available in every case. It will often be necessary t
 
 What isn't acceptable under Bayes's theorem is to pretend that you don't have any prior beliefs. You should work to reduce your biases, but to say you have none is a sign that you have many. To state your beliefs up front—to say "Here's where I'm coming from"12—is a way to operate in good faith and to recognize that you perceive reality through a subjective filter.
 
-Try, and Err
+了解你的认知起点
+
+贝叶斯定理（Bayes's theorem）要求我们在开始权衡证据之前，明确阐明对某个事件发生概率的最初判断。这种最初的估计被称为「先验信念」。
+
+那么，先验信念从何而来？理想情况下，我们希望它建立在个人过去经验的基础上，更好的是建立在整个社会的集体经验之上。市场在这一过程中可以发挥重要作用。市场虽然并非完美，但在绝大多数情况下，集体判断往往比个人判断更为准确。对于没有深入研究某个问题的人来说，市场可以提供一个很好的初始参考点，帮助我们权衡新的证据。
+
+在现实世界中，并非所有决策都能通过市场机制来优化。这时，我们常常需要选择其他默认方案。即便是朴素的常识，也可以作为贝叶斯推理（Bayesian inference）的先验知识，帮助我们谨慎看待统计模型的输出结果。(这些模型本质上是近似的，即便看似精确，其实往往相当粗糙。）只有将信息置于特定语境中，它才能转化为真正的知识。缺乏语境，我们就难以区分有效信号和无意义噪声，搜寻真相的过程很可能会被误报所迷惑。
+
+在贝叶斯思维中，最不可取的是装作自己没有任何预设立场。我们应该努力减少个人偏见，但声称自己完全没有偏见，恰恰说明偏见已经根深蒂固。坦诚地阐明自己的立场 —— 解释「我的出发点是什么」—— 不仅是诚实的表现，也是承认每个人对现实的认知都带有主观色彩。
+
+### Try, and Err
 
 This is perhaps the easiest Bayesian principle to apply: make a lot of forecasts. You may not want to stake your company or your livelihood on them, especially at first.* But it's the only way to get better.
 
@@ -466,7 +530,19 @@ But we can have the opposite bias when we become too personally or professionall
 
 The more often you are willing to test your ideas, the sooner you can begin to avoid these problems and learn from your mistakes. Staring at the ocean and waiting for a flash of insight is how ideas are generated in the movies. In the real world, they rarely come when you are standing in place.13 Nor do the "big" ideas necessarily start out that way. It's more often with small, incremental, and sometimes even accidental steps that we make progress.
 
-Our Perceptions of Predictability
+勇于尝试，宽容错误
+
+这或许是最容易落实的贝叶斯原则：大胆做出预测。尤其在初期，你可能不愿意拿公司前途或个人生计冒险。但唯有不断尝试，才能逐步提高洞察力和判断能力。
+
+贝叶斯定理教导我们：每当获得新信息时，就应该及时更新我们的预测。这一理念的实践可以简单理解为不断试错。像谷歌这样真正精通大数据的公司，并不会过多地沉迷于理论模型。他们每年都会进行数千次实验，直接在真实用户中检验自己的想法。
+
+贝叶斯定理鼓励我们以严谨的态度看待新信息。如果我们的观点真的有价值，就应该勇于建立可证伪的假设，并通过预测来验证它们。然而，我们常常低估了数据中的噪音，容易对最新的数据点赋予过高的权重。比如，政治记者在报道民调结果时常常忽视误差范围，金融记者也往往未能充分传达经济统计数据固有的不确定性。在新闻报道中，往往是那些异常值更容易吸引眼球。
+
+当我们对某个问题投入过深时，往往会陷入思维的误区，即使事实已经证明我们的观点有误，也会固执己见。以特洛克描述的「刺猬型专家」为例，他们可能会因为过于自负，在数据与自身世界观相悖时仍死守己见。那些喜欢将复杂问题简单化、追求「口号式」理解的人，往往需要经历一个痛苦的认知过程，才能承认自己对现实的理解过于单一。
+
+越是频繁地质疑和检验自己的想法，就越能及早避免这些认知陷阱，并从中学习。与电影中凭空等待灵感不同，现实世界中的创新很少在原地孕育。真正的突破性想法往往并非一蹴而就，而是通过微小的、渐进的，有时甚至是意外的尝试逐步发展而来。
+
+### Our Perceptions of Predictability
 
 Prediction is difficult for us for the same reason that it is so important: it is where objective and subjective reality intersect. Distinguishing the signal from the noise requires both scientific knowledge and self-knowledge: the serenity to accept the things we cannot predict, the courage to predict the things we can, and the wisdom to know the difference.14
 
@@ -479,6 +555,20 @@ These perceptions about predictability are more affected by the fashions of the 
 These shifting attitudes have reverberated far beyond academic journals. If you drew the same chart based on the use of the words "predictable" and "unpredictable" in English-language fiction, it would look almost exactly the same as in figure C-2.19 An unpredicted disaster, even if it has no direct effect on us, shakes our confidence that we are in control of our fate.
 
 But our bias is to think we are better at prediction than we really are. The first twelve years of the new millennium have been rough, with one unpredicted disaster after another. May we arise from the ashes of these beaten but not bowed, a little more modest about our forecasting abilities, and a little less likely to repeat our mistakes.
+
+我们对可预测性的感知
+
+预测之所以对我们来说如此困难，正是因为它极其重要：它是客观现实与主观认知交汇的关键点。要在纷繁复杂的信息中（即「噪音」）提取有价值的信息（即「信号」），需要兼具科学的专业洞察力和对自身的深刻认知。这意味着既要有接受无法预测事件的平静心态，又要有预测可掌控事件的勇气，更要有辨别两者区别的智慧。14
+
+人类对世界的可预测性的看法随着时代变迁而不断演变。学术界对「可预测」和「不可预测」这两个词的使用频率，某种程度上反映了这种认知变化。15 在 20 世纪初，这两个词的使用频率几乎相当。但大萧条和第二次世界大战的剧烈动荡，让「不可预测」迅速成为主流表达。随着世界从这些创伤中逐渐恢复，「可预测」重新获得关注，并在 1970 年代达到使用高峰。而近年来，面对全球化、技术革命等复杂挑战，「不可预测」再次开始上升。
+
+图 C-2：1900–2012 年间可预测性的认知变迁
+
+关于可预测性的这些看法，更多地受到科学研究的流行趋势和我们短暂记忆的影响 —— 最近是否真的发生了什么令人不安的事？—— 而非我们预测能力的实际变化。有趣的是，我们对预测能力的自我评估可能与实际水平呈负相关。1950 年代，尽管世界仍被战争阴霾笼罩，被视为极不确定的时期，但其经济发展和科学创新的活力却超过了 1970 年代 —— 那个我们自诩能够预测一切，实际上却能力有限的年代。
+
+这种不断变化的认知态度，已经远远超出了学术界的讨论范围。如果我们追踪英语文学作品中「可预测」和「不可预测」这些词汇的使用频率，绘制出的图表几乎与图 C-2 如出一辙 19。即便是一个出乎意料的灾难，即使它并未直接影响我们，也足以撼动我们对掌控命运的自信心。
+
+我们总是忍不住高估自己的预测能力。新千年的前十二年困难重重，接连不断地发生了一连串意料之外的灾难。但愿我们能从这些磨难中吸取教训，变得更加谦卑，对自身预测能力保持清醒，同时减少重蹈覆辙的可能性。
 
 ## ACKNOWLEDGMENTS
 
@@ -514,6 +604,6 @@ This book is fairly scrupulous about citing the origin of its ideas, but some pe
 
 I hope to return all these favors someday. I will start by buying the first beer for anybody on this list, and the first three for anybody who should have been, but isn't.
 
-—Nate Silver
+— Nate Silver
 
 Brooklyn, NY

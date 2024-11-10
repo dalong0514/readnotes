@@ -1,10 +1,6 @@
-Nate Silver.(2012).2018173The-Signal-and-the-Noise.Penguin Group => 0101
+Nate Silver.(2012).2018173The-Signal-and-the-Noise.Penguin Group => 1001The Poker Bubble
 
-
-
-
-
-## 1001THE POKER BUBBLE
+## 1001The Poker Bubble
 
 The year 2003 was the start of the "poker boom," a sort of bubble economy in which the number of new and inexperienced players was growing exponentially and even a modicum of poker skill could be parlayed into large profits. The phenomenon had two immediate and related causes. One was the 2003 World Series of Poker in Las Vegas, which was won by a twenty-seven-year-old amateur, a Nashville accountant with the auspicious name of Chris Moneymaker. Moneymaker was the literal embodiment of the poker everyman: a slightly pudgy office drone who, through a never-ending series of daring bluffs and lucky draws, had turned the $39 he'd paid to enter an online qualifying tournament into a $2.5 million purse.
 

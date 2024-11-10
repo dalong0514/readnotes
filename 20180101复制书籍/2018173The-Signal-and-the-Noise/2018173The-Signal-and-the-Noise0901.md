@@ -1,10 +1,6 @@
-Nate Silver.(2012).2018173The-Signal-and-the-Noise.Penguin Group => 0101
+Nate Silver.(2012).2018173The-Signal-and-the-Noise.Penguin Group =>  0901Rage Against the Machines
 
-
-
-
-
-## 0901RAGE AGAINST THE MACHINES
+## 0901Rage Against the Machines
 
 The twenty-seven-year-old Edgar Allan Poe, like many others before him, was fascinated by the Mechanical Turk, a contraption that had once beaten Napoleon Bonaparte and Benjamin Franklin at chess. The machine, constructed in Hungary in 1770 before Poe or the United States of America were born, had come to tour Baltimore and Richmond in the 1830s after having wowed audiences around Europe for decades. Poe deduced that it was an elaborate hoax, its cogs and gears concealing a chess master who sat in its cupboards and manipulated its levers to move the pieces about the board and nod its turban-covered head every time that it put its opponent into check.
 
