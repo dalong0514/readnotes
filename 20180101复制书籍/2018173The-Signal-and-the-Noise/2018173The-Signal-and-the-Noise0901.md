@@ -270,6 +270,36 @@ FIGURE 9-3C: HOLISTIC EVALUATION OF POSITION
 
 But the game had not been without a final twist. It was barely noticed by commentators at the time, but it may have altered chess history.
 
+策略与战术
+
+计算机象棋机器，在某种程度上，可以兼得两全其美。它们使用启发式方法修剪搜索树，将更多的处理能力集中在更有希望的分支上，而不是对每个分支进行相同深度的计算。但是，由于它们在计算上非常快速，所以不必过多妥协，可以对所有可能性进行稍微的评估，并对看起来最重要的可能性进行更详细的分析。
+
+然而，计算机象棋程序并不总是能把握游戏的整体战略。它们擅长计算实现近期目标的战术，但在判断这些目标在游戏宏观方案中的重要性方面能力较弱。
+
+卡斯帕罗夫巧妙地利用了深蓝计算机下棋的一些固有缺陷。他设法引诱深蓝追求那些看似合理，实则并不能真正改善整体战略位置的走法。与人类棋手不同，计算机象棋程序往往更倾向于处理那些可以数字化、清晰量化的短期目标，而难以像人类那样全面地评估棋局的整体态势。
+
+计算机在博弈中的一个典型弱点就是对「权衡交换」的机械理解。比如，当一个高水平棋手提出用更好的棋子换取一个较弱的棋子时，计算机往往会毫不犹豫地接受。这种看似理性的策略，在面对像卡斯帕罗夫这样的顶级棋手时，实际上可能是一个致命的陷阱。
+
+在与深蓝的第一场比赛中，卡斯帕罗夫就精心设计了这样一个陷阱。他牺牲了一个价值更高的车，换取对方的一个主教。对于缺乏战略思维的深蓝来说，这看起来是一笔「划算」的交易。然而，卡斯帕罗夫早已洞察到，表面上的战术损失将带来更大的战略优势。图 9-3a 展示的正是这个关键时刻，生动地揭示了计算机在复杂对弈中思考的局限性。
+
+卡帕罗夫和深蓝各自有其简化棋局的独特方法。计算机擅长将复杂问题分解为可量化的元素。对深蓝而言，棋盘可能呈现出图 9-3b 的模样，每个棋子都被赋予精确的分值。通过数值累加，深蓝在棋局评估中比卡帕罗夫多出了相当于一个兵的优势，这种优势在大多数情况下足以决定胜负或迫使对手和棋。28
+
+FIGURE 9-3B：位置的数值评估
+
+人类与计算机不同，更擅长聚焦关键要素，洞察战略全局，有时整体的价值甚至会超越各部分之和。对卡斯帕罗夫而言，这个棋局（如图 9-3c 所示）是极其有利的。他的优势在于三个士兵正逼近 Deep Blue 的国王，而对方的国王几乎没有任何防护。
+
+这个国王面临两难选择：要么避开移动 —— 这样卡斯帕罗夫就可以将士兵推进到对方底排并升变，要么面临被将杀的风险。同时，卡斯帕罗夫的王后和主教虽然暂时位于棋盘左下角，但可以沿对角线相对自由地移动，进一步加剧了对方国王所承受的压力。
+
+卡斯帕罗夫可能尚未精确设计将杀对手的具体路径，但他清楚地知道，在如此巨大的战略压力下，胜利的天平已经倾向于他这一方。事实证明，他的判断是正确的：Deep Blue 最终在十三步后选择投降，承认了失败。
+
+图 9-3c：位置的整体评估
+
+「这是典型的计算机思维局限性，」卡斯帕罗夫后来评论道。「我确信计算机对当前棋局感到很满意，但它无法准确判断如此复杂的局势深层后果。」[29]
+
+「人类智慧战胜机器计算」，纽约时报的头条如此振奋人心，[30] 第二天更是连续刊登了四篇相关报道。
+
+然而，这场比赛并非没有最后的戏剧性转折。尽管当时评论员几乎未注意到，但这一刻可能改变了国际象棋的历史。
+
 ### The Beginning of the End
 
 In the final stage of a chess game, the endgame, the number of pieces on the board are fewer, and winning combinations are sometimes more explicitly calculable. Still, this phase of the game necessitates a lot of precision, since closing out a narrowly winning position often requires dozens of moves to be executed properly without any mistakes. To take an extreme case, the position illustrated in figure 9-4 has been shown to be a winning one for white no matter what black does, but it requires white to execute literally 262 consecutive moves correctly.*
@@ -301,6 +331,42 @@ Deep Blue had actually worked it all out, down to the very end and simply chosen
 To see twenty moves ahead in a game as complex as chess was once thought to be impossible for both human beings and computers. Kasparov's proudest moment, he once claimed, had come in a match in the Netherlands in 1999, when he had visualized a winning position some fifteen moves in advance.34 Deep Blue was thought to be limited to a range of six to eight moves ahead in most cases. Kasparov and Friedel were not exactly sure what was going on, but what had seemed to casual observers like a random and inexplicable blunder instead seemed to them to reveal great wisdom.
 
 Kasparov would never defeat Deep Blue again.
+
+终局的开端
+
+在国际象棋比赛的最后阶段，即残局（棋盘上只剩少数棋子的阶段），由于棋子数量减少，获胜组合有时可以更精确地计算。尽管如此，这个阶段仍然需要极高的精确度，因为要成功兑现微小的优势，往往需要在数十步棋中不犯任何错误。以一个极端情况为例，图 9-4 所示的位置已被证明白方无论面对黑方何种应对都能获胜，但这要求白方必须准确无误地执行连续 262 步棋。
+
+图 9-4：白方获胜…… 需要 262 步精准操作
+
+人类玩家几乎不可能破解图 9-4 中的棋局。但在处理需要十到二十五步才能完成的残局时，人类玩家却积累了丰富的经验。
+
+对于计算机而言，残局是一把双刃剑。由于战术选择已所剩无几，如果计算机无法彻底演算出最终结果，很容易陷入细节而忽视全局。不过，正如国际象棋程序有开局数据库一样，它们同样拥有残局场景的数据库。目前，所有六子以下的棋局都已被完全计算。关于七子棋局的研究也已近乎完成 —— 有些解法复杂到需要多达 517 步 —— 计算机已精确地记录了每种棋局的输赢和和棋可能性。
+
+在这个游戏进程中，出现了一个类似黑洞的临界点：计算机已经完全掌握了局面，能够精确判断每一步棋的输赢可能性。原本抽象的战略目标，现在已经转变为具体的行动策略：例如，将某个兵推进到特定位置就能赢得比赛，或者引诱对手移动某个棋子从而达成和棋。
+
+深蓝在与卡斯帕罗夫的第一局比赛中依然抱有希望。尽管系统分析显示它处于不利位置，但即便是顶级棋手也会平均每 75 步犯一次严重错误。卡斯帕罗夫只要有一步走错，就可能被深蓝捕捉到并扭转局面。虽然形势看似岌岌可危，但仍存在翻盘的可能。
+
+在这场 chess 对决中，深蓝（Deep Blue）的举动让卡斯帕罗夫感到极其困惑。在第 44 回合，它做了一个出人意料的决定：将车移动到了白方底线，而不是采取常规的将对方王置于威胁状态的走法。这一步棋看似毫无意义，就像在危机四伏的时刻，突然选择放弃抵抗。
+
+更令人惊讶的是，这步棋不仅让卡斯帕罗夫有机会将兵推进到对方阵营，还可能升变为皇后 —— 这在国际象棋中是极具战略意义的。紧接着，深蓝在下一回合竟然选择了投降，这一系列举动更是让人匪夷所思。
+
+对于计算机而言，这种看似荒谬的战术失误是极其罕见的。卡斯帕罗夫已经习惯了深蓝在复杂局面中因计算深度不足而犯下战略性错误，比如不恰当地交换主教和车。但这一次，错误发生在一个相对简单的局面中，这正是计算机通常不会犯的类型的错误。
+
+图 9-5：深蓝令人困惑的走法
+
+「计算机怎么会这样主动认输？」卡斯帕罗夫当晚在广场酒店里对德国国际象棋记者、他的朋友兼计算机专家弗雷德里克·弗里德尔说道。32 对于深蓝的异常举动，有几种看似合理的解释，但没有一种能让卡斯帕罗夫感到满意。
+
+也许深蓝是在「自取灭亡」：它知道注定会失败，干脆不再展示更多下棋策略。又或者，正如卡斯帕罗夫怀疑的，这是一场精心设计的心理战？程序员们可能在故意示弱，想要通过输掉第一局来迷惑这个自负的对手。
+
+面对这种诡异的情况，卡斯帕罗夫本能地开始细致地分析数据。在弗里德尔和著名国际象棋分析软件 Fritz 的协助下，他发现看似标准的走法 —— 黑方将王车移至第六列并对白方国王形成将军 —— 实际上对深蓝极为不利：这一步最终将导致自己被将死，尽管要完成这一过程还需要二十多个回合。
+
+但这一发现令人不寒而栗。他推理道，计算机只有在找到了一个更耗时的将死路径时，才会选择原本需要卡斯帕罗夫花费二十步完成的走法。正如弗里德尔回忆的：
+
+深蓝已经将每一种可能性推演到了极致，并冷静地选择了最不致命的败局。「它可能已经预见了 20 步乃至更多步的致命走法，」加里说，庆幸自己站在这些令人敬畏的计算背后。33
+
+曾经，在如此复杂的国际象棋中提前预见 20 步被认为是人类和计算机都无法做到的。卡斯帕罗夫曾引以为豪地说，他最自豪的时刻是在 1999 年荷兰的一场比赛中，他提前十五步预见了获胜的态势。34 深蓝当时被认为大多数情况下只能预见 6 到 8 步。卡斯帕罗夫和弗里德尔对发生的事情并不完全了然，但对普通观察者来说看似随机的失误，在他们眼中却透露出深邃的智慧。
+
+卡斯帕罗夫从此再未战胜深蓝。
 
 ### Edgar Allan Kasparov
 
@@ -338,6 +404,40 @@ But these subtleties were soon lost to the popular imagination. Machine had triu
 
 Except it wasn't true. Kasparov had been the victim of a large amount of human frailty—and a tiny software bug.
 
+在第二场对决中，深蓝展现出极其凌厉的进攻态势，始终不给卡斯帕罗夫留下任何喘息的机会。比赛进行到第 35 步左右，双方棋势颇为胶着：双方各有一位皇后、一个主教、两个车和 7 个兵。深蓝执白，稍微占据了一些优势，不仅拥有下一步行动的机会，其皇后还能自由腾挪。
+
+图 9-6：深蓝在第 36 步的战略选择面对当前棋局，深蓝思考了两种可能的走法。第一种是将皇后移至更具进攻性的位置，这是一个更为精细的战术选择。另一种是与对手交换兵种，打开棋盘左侧，从而形成一个更开阔、更灵活的局面。这一步看似平常，实则暗藏战略玄机。
+
+在这场比赛中，国际象棋大师们一致预测 Deep Blue 会选择推进皇后的走法。35 这是一个看似更明显的选择，也更符合计算机的风格：计算机通常倾向于复杂、需要大量计算的局面。然而，在异常长的「思考」之后，Deep Blue 却选择了意想不到的兵换。36
+
+卡斯帕罗夫最初露出了些许宽慰的表情，因为兵换并未对他造成直接威胁。但随着局势的深入评估，他变得越来越不安，不时咬着指关节，双手捂面 —— 一位观众甚至觉得他看到卡斯帕罗夫在哭泣。37 为什么 Deep Blue 没有选择用皇后继续施压？这个走法并非毫无道理 —— 事实上，这看起来很像他的老对手阿纳托利·卡尔波夫在特定条件下可能会采取的策略。但对于计算机来说，每一步都必须有明确的战术依据，而卡斯帕罗夫就是无法理解其中的逻辑。除非他的直觉是对的 ——Deep Blue 可能已经能够预见二十步甚至更多步之后的局面。
+
+卡斯帕罗夫和 Deep Blue 又继续了约八个回合的对弈。对于观战的记者和专家来说，卡斯帕罗夫从一开始就采取防守策略，获胜的希望已经渺茫。尽管如此，他仍可能将比赛扳回平局。出乎意料的是，卡斯帕罗夫在第四十五步后选择了投降。他心想，对于一台能够预测二十步棋局的计算机来说，绝不可能出现计算失误。他清楚地知道 Deep Blue 将获得胜利，因此何必在还剩四场比赛的情况下白白消耗自己的精力？
+
+观众席上爆发出热烈的掌声：38 这是一场精彩的比赛，远胜于第一场。尽管深蓝的致命一击对观众来说不像对卡斯帕罗夫那样看似势不可挡，但这无非是因为观众未能像他那样深入地分析棋局。不过，他们对深蓝的钦佩更多：这台计算机下棋竟如此「人性化」。「真是漂亮的下棋风格！」女子世界冠军苏珊·波尔佳对纽约时报如此赞叹。39「这台计算机的下棋风格犹如冠军，宛如卡尔波夫。」曾协助深蓝团队的特级大师乔尔·本杰明也表示赞同：「这哪里像是电脑下棋，这分明是最纯粹的国际象棋较量！」
+
+卡斯帕罗夫当晚匆匆离开平等中心，未与媒体交谈，但其他特级大师的评论已深深刺痛了他的内心。他开始怀疑：深蓝是否真的只是一台机器？也许，就像两个世纪前那个著名的「机械图灵机」一样，暗中可能另有隐情。说不定，曾与他战平的本杰明不仅仅是在指导深蓝，更可能在背后暗中操控着这场比赛的胜负。
+
+以他们那些对模式近乎执着的大脑，国际象棋冠军以略显偏执的性格而闻名。在第二天的新闻发布会上，卡斯帕罗夫指责 IBM 作弊。"马拉多纳称之为上帝之手，」他谈及这台计算机的下棋时说 [40]。这是对阿根廷著名足球运动员迭戈·马拉多纳在 1986 年世界杯对阵英格兰的那场臭名昭著的比赛中进球的委婉暗示。后来的回放显示，球并非用头顶，而是非法地用左手送入球门。马拉多纳曾说这个进球是「一部分是马拉多纳的头脑，另一部分是上帝之手」。同样地，卡斯帕罗夫似乎认为 Deep Blue 的电路得到了超越性智能的补充。
+
+卡斯帕罗夫关于 Deep Blue 行为的两个理论，当然是相互矛盾的 —— 就像历史上著名的「机械土耳其人"(一个看似能下棋的自动机器人，实际上由隐藏的人类操控）一样。这台机器下得太好了，不可能是一台普通计算机 —— 或者这台机器拥有如此庞大的智能，以至于没有人类能够完全理解它。
+
+然而，认输第二局最终被证明是个严重的失误：Deep Blue 事实上并未锁定胜局，这一点由弗里德尔和卡斯帕罗夫最信任的助手尤里·多霍伊安在第二天的午餐中略显尴尬地向他透露。他们通宵使用 Fritz 象棋软件复盘后发现，只需再走七步，就能迫使 Deep Blue 陷入永久被将军的境地，为卡斯帕罗夫赢得平局。「就这样？」卡斯帕罗夫茫然地望着第五大道上川流不息的车辆，喃喃自语，「我对计算机令人惊叹的战略深度如此敬畏，以至于根本没想到还有翻盘的可能。」41
+
+尽管比赛目前战成 1-1 平局，卡斯帕罗夫的自信已经被深深地击垮。作为一名从未在任何竞技性国际象棋比赛中尝过败绩的棋王，他此刻处于前所未有的险境。更令人难堪的是，他犯下了国际象棋最大的禁忌：放弃了本可以争取平局的残局。这一前所未有的错误令报道比赛的记者和国际象棋大师们也为之震惊，他们无法回忆起上一次有冠军犯下如此严重的失误。
+
+卡斯帕罗夫意识到，他无法依靠曾帮助他夺得世界冠军的强势棋风战胜深蓝。为此，他决定采取更为谨慎和出其不意的策略，就像一个精心探测程序弱点的黑客。在第三场比赛中，他选择了一个足以打乱深蓝预设数据库的开局，但这一招异常却未能为他带来优势，最终不得不接受平局。
+
+在第四和第五场比赛中，卡斯帕罗夫的表现有所改善，在局面上曾多次占据上风。然而，深蓝强大的残局数据库为其提供了极大的优势，使卡斯帕罗夫最终无法取得决定性突破，两场比赛再次以平局收场。此时，这场人机对决的比分已经是双方各胜一局，三场平局，悬念全部集中在最后一局。
+
+在最后一场比赛的当天，卡斯帕罗夫出现在 Equitable Center，看起来疲惫和沮丧；弗里德尔后来回忆说，他从未见过卡斯帕罗夫如此阴沉的心情。执黑方，卡斯帕罗夫选择了所谓的卡罗 - 卡恩防御（Caro-Kann Defense）。卡罗 - 卡恩被认为相当薄弱 —— 黑方历史上用这种防御的胜率仅为 44.7% —— 尽管对于像卡尔波夫这样精通此防御的选手来说，并非完全无可救药。但卡斯帕罗夫不熟悉卡罗 - 卡恩；他在锦标赛中极少使用这种防御。仅仅几步之后，他就显得紧张，花很长时间做出被认为相当常规的决定。在第七步时，他犯了一个严重的错误，过早地提出了一个马的牺牲。卡斯帕罗夫几乎立即意识到了自己的错误，瘫坐在椅子上，并毫不掩饰自己的不悦。仅仅十二步之后 —— 比赛开始还不到一小时 —— 他就投降了，愤怒地离开了棋桌。
+
+深蓝获得了胜利，但赢得的却不够振奋人心，反而显得有些不痛不痒。卡斯帕罗夫是否仅仅因为疲惫不堪，不得不选择了一个不太熟悉的开局？还是正如大师 Patrick Wolff 推测的那样，他是故意输掉这场比赛 [42]，意在削弱深蓝的成就？他选择的卡罗 - 卡恩防御 —— 恰恰是他曾经频繁战胜的对手卡尔波夫的标志性开局，这其中是否藏着什么玄机？
+
+然而，这些微妙的细节很快就被公众的想象力所淹没。在大众眼中，这仿佛是机器战胜人类的决定性时刻！就像科幻电影中 HAL 9000 接管太空船，又如歌曲「Love Will Tear Us Apart」中精确的十三秒，当合成器压倒吉他音节，摇滚乐黯然失色 [43]。
+
+事实上，情况并非如此。卡斯帕罗夫不过是人性脆弱和一个微小软件漏洞的受害者。
+
 ### How to Make a Chess Master Blink
 
 Deep Blue was born at IBM's Thomas J. Watson Center—a beautiful, crescent-shaped, retro-modern building overlooking the Westchester County foothills. In its lobby are replicas of early computers, like the ones designed by Charles Babbage. While the building shows a few signs of rust—too much wood paneling and too many interior offices—many great scientists have called it home, including the mathematician Benoit Mandelbrot, and Nobel Prize winners in economics and physics.
@@ -357,6 +457,28 @@ Deep Blue was designed with the goal of beating Kasparov and Kasparov specifical
 "Positions that are good for computers are complex positions with lots of pieces on the board so there's lots of legal moves available," Campbell told me. "We want the positions where tactics are more important than strategy. So you can do some minor things to encourage that."
 
 In this sense, Deep Blue was more "human" than any chess computer before or since. Although game theory does not come into play in chess to the same degree it does in games of incomplete information like poker, the opening sequences are one potential exception. Making a slightly inferior move to throw your opponent off-balance can undermine months of his preparation time—or months of yours if he knows the right response to it. But most computers try to play "perfect" chess rather than varying their game to match up well against their opponent. Deep Blue instead did what most human players do and leaned into positions where Campbell thought it might have a comparative advantage.
+
+如何让国际象棋大师露出破绽
+
+Deep Blue 诞生于 IBM 的托马斯·J·沃森中心 —— 一座俯瞰韦斯特彻斯特县山麓的美丽、新月形的复古现代建筑。在其大厅里陈列着早期计算机的复制品，与查尔斯·巴贝奇设计的那些如出一辙。尽管建筑略显陈旧 —— 木制墙板过多，内部办公室布局略显拥挤 —— 但许多杰出的科学家曾在此工作，其中包括数学家贝努瓦·曼德尔博特，以及经济学和物理学领域的诺贝尔奖得主。
+
+2010 年春天，我拜访了沃森中心，见到了穆雷·坎贝尔。这位温和儒雅、依然保持年轻气质的加拿大人，是该项目的核心工程师之一，从项目还叫 Deep Thought、在卡内基梅隆大学时就开始参与。(如今，坎贝尔掌管着 IBM 的统计建模部门。）在坎贝尔的办公室里，悬挂着一幅大海报，卡斯帕罗夫目光专注地盯着棋盘，海报标题赫然写着：
+
+如何让计算机眨眼？
+
+卡斯帕罗夫 vs Deep Blue
+
+1997 年 5 月 3 日–11 日最终，眨眼的是卡斯帕罗夫，尽管其原因与坎贝尔团队原本的预期略有不同。
+
+深蓝系统的设计目标直指一个对手：卡斯帕罗夫。研发团队不仅仅是开发一款国际象棋程序，更是在精心设计针对卡斯帕罗夫的对策。他们试图预测卡斯帕罗夫最可能采用的开局序列，并为之准备强有力的反制策略。聪明的卡斯帕罗夫岂会轻易中计？他果然选择了一些在比赛中罕见的开局招法，成功避开了对手的陷阱。
+
+由于在 1996 年对阵卡斯帕罗夫时表现不尽如人意，加上在训练赛中暴露出诸多不足，深蓝团队立即行动起来。他们将系统的处理能力翻了一番，并对系统的决策算法（启发式算法）进行了细致的优化和改进。
+
+坎贝尔深知，要与卡斯帕罗夫的战略思维匹敌，深蓝需要在搜索博弈树时更加深入且精准。为此，他们还做了一个巧妙的设计：微调系统，使其在面对复杂局面时略有倾向。
+
+「对计算机来说，最理想的棋局是那种棋盘上棋子众多、可选走法繁多的复杂位置，」坎贝尔向我解释道，「我们更希望看到战术发挥作用的局面，而不是依赖长远战略。所以，我们会通过一些细微的调整来鼓励这种局面的出现。」
+
+从某种程度上说，深蓝比其前身和后继者都更接近人类棋手的下棋风格。虽然博弈理论在国际象棋中不像在扑克等信息不完全的游戏中那样重要，但开局阶段是个特殊情况。有时故意下出稍微不完美的一步，可以打乱对手的节奏，瓦解对方数月的准备 —— 反之亦然，如果对手懂得应对的话。大多数计算机追求「完美」下棋，而不会根据对手调整策略。但深蓝不同，它像人类棋手一样，会选择那些具有战略优势的走法。
 
 ### Feature or Bug?
 
@@ -394,6 +516,42 @@ In fact, the bug was anything but unfortunate for Deep Blue: it was likely what 
 
 For as much as we rely on twenty-first-century technology, we still have Edgar Allan Poe's blind spots about the role that these machines play in our lives. The computer had made Kasparov blink, but only because of a design flaw.
 
+另一面：特性还是缺陷？
+
+尽管如此，卡斯帕罗夫在 1997 年的实力如此强大，以至于最终深蓝能获胜，只是编程的问题。
+
+从理论上讲，让计算机下国际象棋是相当直接的：如果允许国际象棋程序的搜索算法无限制地运行，那么所有棋局都可以通过穷举法解决。"解决国际象棋有一种众所周知的算法，」坎贝尔告诉我，"如果给程序足够的时间，我半天就能写出能破解这个游戏的程序。」然而在现实中，"这需要整个宇宙的生命周期，」他无奈地叹息。
+
+实际上，教会一台国际象棋电脑战胜世界冠军，往往是一个枯燥的反复试验过程。比如：在残局中多分配计算时间，在中局中减少时间，是否会整体提升性能？在开局阶段，有没有更精确的方法来权衡骑士和主教的战术价值？即便知道分支中可能存在极小概率的将杀或陷阱，程序应该以怎样的速度剪除那些看似毫无希望的搜索路径？
+
+通过细致调整参数并观察其变化影响，Campbell 让 Deep Blue 经历了多轮测试。但有时它仍会出现令人困惑的走法，呈现出奇怪且出人意料的下棋策略。每当此时，Campbell 都会面临程序员经典的疑问：这个新的下棋策略是程序进化的灵光乍现，意味着它的技能正在不断提升？还是仅仅是一个技术缺陷？
+
+在更广泛的预测领域，我的核心建议是：当你的模型产生意外或难以解释的结果时，要谨慎地倾向于将其视为「bug」。将随机噪声误解为有意义的信号太过容易了。事实上，bug 可能会瞬间摧毁即使是最优秀的预测者的所有努力。
+
+Bob Voulgaris，这位我在第 8 章介绍过的百万富翁体育博彩专家，有一年决定尝试棒球赛事的下注。他开发的模拟预测系统一直建议对费城费城人队采取「总分低于」的下注策略，但这些下注收效甚微。最终查明，问题源于 10,000 行代码中的一个微小的输入错误：他的助手在输入费城人队主场球场 —— 公民银行公园（一个有利于进攻和本垒打的紧凑型球场）的信息时，错误地将球队缩写从 P-H-I 误写成了 P-H-l。这看似微不足道的一行代码，却足以让整个预测系统失效，使 Voulgaris 的资金被无效的预测消耗。这个令人沮丧的错误直接导致他彻底放弃了棒球下注程序。
+
+对于 Campbell 来说，面临的挑战在于，Deep Blue 早已在国际象棋领域超越了其创造者。机器可能会走出人类程序员意想不到的棋步，而程序员往往难以判断这究竟是创新性策略，还是系统性错误。
+
+卡姆贝尔回忆道："在深蓝系统早期调试时，每当它下出一个不同寻常的棋步，我就会说：'哦，这里似乎有问题。'我们会立即深入代码，仔细排查并最终找出问题所在。但随着时间推移，这种情况越来越少。当它不断做出这些非常规走法时，我们查看后惊讶地发现，它已经洞察到了人类难以察觉的深层策略。"
+
+国际象棋史上最令人惊叹的走法，或许要数 1956 年 Bobby Fischer 在「世纪之战」中的经典对局（图 9-7）。年仅 13 岁的 Fischer 在与大师 Donald Byrne 的比赛中，接连做出两步令人瞠目结舌的棋招。他先是不动声色地牺牲了一个马，看似毫无意义；随后又故意将自己的皇后暴露在外，转而推进象的攻势。这看似疯狂的走法事实上极其精妙 ——Fischer 精准把控的战略优势，在几个回合后就完全显现出来。
+
+然而，无论是当时还是现在，很少有棋手敢于打破常规，做出如此大胆的牺牲。因为在棋类比赛中，"除非能换取对等价值或直接获得胜利，否则不要轻易放弃重要棋子」这类经验法则深深根植于每一个棋手的思维模式。这些经验准则之所以如此牢固，正是因为它们在绝大多数情况下都能为棋手提供保护。
+
+当我将这些棋局位置输入到我的普通笔记本电脑，并用国际象棋软件 Fritz 分析时，程序仅仅在几秒钟内就识别出了 Fischer 的精妙走法。更有趣的是，对于 Fischer 之外的任何走法，程序都认为是极其糟糕的错误。通过穷尽搜索所有可能的走法，程序找出了那些需要突破常规下棋策略的特殊局面。
+
+我们不应该说计算机「有创造力」，因为它找到这些走法主要是依靠强大的计算能力。但它还有另一个独特优势：不受传统棋艺思维的束缚，能够在特定情境中选择最佳走法。对人类棋手来说，这需要超越常规思维的勇气和洞察力。人们对费舍尔的技艺赞叹不已，正是因为他年轻，能够充分发挥想象力的广度。我们思维中的局限性往往源于自身，并可能随着年龄增长而日益明显。计算机同样存在盲区，但它们通过穷尽所有可能的走法，可以绕过人类思维的局限。
+
+不过，Deep Blue 并非完美无缺。在采访即将结束时，坎贝尔略带调侃地提到了 1997 年与卡斯帕罗夫对弈第一局中的一个小插曲。
+
+"游戏中出现了一个错误，这可能导致卡斯帕罗夫误解了深蓝的真正能力，」坎贝尔告诉我。"卡斯帕罗夫并未意识到这个异常举动是程序的技术故障。"
+
+这个技术故障发生在与卡斯帕罗夫对弈的第一场比赛的第四十四步；当程序无法正常选择走法时，系统启动了应急机制，随机选择了一个下棋策略。这个 bug 本身并不重要，发生在比赛已经接近尾声且明显处于劣势的阶段；坎贝尔和团队在次日已经修复了这个问题。"我们在 1997 年早些时候的一场测试赛中曾遇到过类似情况，原以为已经解决，」他告诉我。"没想到还是有一个细节被我们忽略了。"
+
+事实上，对于深蓝来说，这个技术缺陷（bug）绝不是不幸的：恰恰相反，它很可能是击败卡斯帕罗夫的关键。在广为流传的卡斯帕罗夫与深蓝对战的故事中，问题源于第二场比赛 —— 在那里，他犯了几乎闻所未闻的错误，放弃了本可能打平的棋局。究竟是什么驱使卡斯帕罗夫犯下这个失误？原因是他在第一场比赛中对深蓝第四十四步的莫名其妙举动产生了严重的心理压力 —— 计算机以看似毫无意义的方式移动了自己的城堡。卡斯帕罗夫推断，这种违反常理的走法一定是超凡智能的征兆。他从未想过，这仅仅是一个系统设计缺陷。
+
+尽管我们依赖二十一世纪的先进技术，我们仍然保留着像埃德加·艾伦·坡那样对这些机器在生活中角色的局限性认知。计算机通过一个技术缺陷成功扰乱了卡斯帕罗夫的心理。
+
 ### What Computers Do Well
 
 Computers are very, very fast at making calculations. Moreover, they can be counted on to calculate faithfully—without getting tired or emotional or changing their mode of analysis in midstream.
@@ -403,6 +561,16 @@ But this does not mean that computers produce perfect forecasts, or even necessa
 Computers are most useful to forecasters, therefore, in fields like weather forecasting and chess where the system abides by relatively simple and well-understood laws, but where the equations that govern the system must be solved many times over in order to produce a good forecast. They seem to have helped very little in fields like economic or earthquake forecasting where our understanding of root causes is blurrier and the data is noisier. In each of those fields, there were high hopes for computer-driven forecasting in the 1970s and 1980s when computers became more accessible to everyday academics and scientists, but little progress has been made since then.
 
 Many fields lie somewhere in between these two poles. The data is often good but not great, and we have some understanding of the systems and processes that generate the numbers, but not a perfect one. In cases like these, it may be possible to improve predictions through the process that Deep Blue's programmers used: trial and error. This is at the core of business strategy for the company we most commonly associate with Big Data today.
+
+计算机的制胜武器
+
+计算机在执行计算任务时速度快得惊人。更重要的是，它们可以始终如一地进行精确计算 —— 不会感到疲倦、不会受情绪影响，也不会在分析过程中改变计算策略。
+
+但这并不意味着计算机能够产生完美的预测，甚至不一定是合理的预测。"垃圾入，垃圾出"(GIGO）这一缩写精准概括了这一问题。如果向计算机输入错误数据，或设计不合理的分析指令，计算机就无法创造奇迹。同时，在需要创造性思维和想象力的任务中，如战略制定或构建世界运行机制理论，计算机的表现往往十分有限。
+
+因此，对于预测者而言，计算机最为有用的领域是天气预报和规则明确的复杂系统（如博弈类）。这些系统遵循相对简单且已充分理解的规律，尽管需要反复求解系统方程才能生成准确预测。相比之下，在经济预测和地震预测等领域，计算机的贡献微乎其微，主要原因在于我们对系统根本原因的理解仍较为模糊，且数据噪音较大。在 20 世纪 70 和 80 年代，随着计算机开始广泛进入学术和科研领域，人们对计算机辅助预测寄予厚望，然而此后进展缓慢，成果甚微。
+
+许多研究领域处于数据和理解的灰色地带。数据质量介于优秀与一般之间，我们对数据产生的系统和过程有部分认知，但还远未达到完全理解的程度。在这种情况下，可以借鉴国际象棋超级计算机 Deep Blue（深蓝）的程序员所使用的方法 —— 反复试错来改进预测。这恰恰是当今大数据（Big Data）领域最具代表性公司的核心商业策略。
 
 ### When Trial and Error Works
 
@@ -430,196 +598,6 @@ In most cases, we cannot test our ideas as quickly as Google, which gets feedbac
 
 Nevertheless, a commitment to testing ourselves—actually seeing how well our predictions work in the real world rather than in the comfort of a statistical model—is probably the best way to accelerate the learning process.
 
-### Overcoming Our Technological Blind Spot
-
-In many ways, we are our greatest technological constraint. The slow and steady march of human evolution has fallen out of step with technological progress: evolution occurs on millennial time scales, whereas processing power doubles roughly every other year.
-
-Our ancestors who lived in caves would have found it advantageous to have very strong, perhaps almost hyperactive pattern-recognition skills—to be able to identify in a split-second whether that rustling in the leaves over yonder was caused by the wind or by an encroaching grizzly bear. Nowadays, in a fast-paced world awash in numbers and statistics, those same tendencies can get us into trouble: when presented with a series of random numbers, we see patterns where there aren't any. (Advertisers and politicians, possessed of modern guile, often prey on the primordial parts of our brain.)
-
-Chess, however, makes for a happy ending. Kasparov and Deep Blue's programmers saw each other as antagonists, but they each taught us something about the complementary roles that computer processing speed and human ingenuity can play in prediction.
-
-In fact, the best game of chess in the world right now might be played neither by man nor machine.47 In 2005, the Web site ChessBase.com, hosted a "freestyle" chess tournament: players were free to supplement their own insight with any computer program or programs that they liked, and to solicit advice over the Internet. Although several grandmasters entered the tournament, it was won neither by the strongest human players nor by those using the most highly regarded software, but by a pair of twentysomething amateurs from New Hampshire, Steven Cramton and Zackary "ZakS" Stephen, who surveyed a combination of three computer programs to determine their moves.48 Cramton and Stephen won because they were neither awed nor intimidated by technology. They knew the strengths and weakness of each program and acted less as players than as coaches.
-
-Be wary, however, when you come across phrases like "the computer thinks the Yankees will win the World Series." If these are used as shorthand for a more precise phrase ("the output of the computer program is that the Yankees will win the World Series"), they may be totally benign. With all the information in the world today, it's certainly helpful to have machines that can make calculations much faster than we can.
-
-But if you get the sense that the forecaster means this more literally—that he thinks of the computer as a sentient being, or the model as having a mind of its own—it may be a sign that there isn't much thinking going on at all. Whatever biases and blind spots the forecaster has are sure to be replicated in his computer program.
-
-We have to view technology as what it always has been—a tool for the betterment of the human condition. We should neither worship at the altar of technology nor be frightened by it. Nobody has yet designed, and perhaps no one ever will, a computer that thinks like a human being.49 But computers are themselves a reflection of human progress and human ingenuity: it is not really "artificial" intelligence if a human designed the artifice.
-
-## 01
-
-策略与战术
-
-计算机象棋机器，在某种程度上，可以兼得两全其美。它们使用启发式方法修剪搜索树，将更多的处理能力集中在更有希望的分支上，而不是对每个分支进行相同深度的计算。但是，由于它们在计算上非常快速，所以不必过多妥协，可以对所有可能性进行稍微的评估，并对看起来最重要的可能性进行更详细的分析。
-
-然而，计算机象棋程序并不总是能把握游戏的整体战略。它们擅长计算实现近期目标的战术，但在判断这些目标在游戏宏观方案中的重要性方面能力较弱。
-
-卡斯帕罗夫巧妙地利用了深蓝计算机下棋的一些固有缺陷。他设法引诱深蓝追求那些看似合理，实则并不能真正改善整体战略位置的走法。与人类棋手不同，计算机象棋程序往往更倾向于处理那些可以数字化、清晰量化的短期目标，而难以像人类那样全面地评估棋局的整体态势。
-
-计算机在博弈中的一个典型弱点就是对「权衡交换」的机械理解。比如，当一个高水平棋手提出用更好的棋子换取一个较弱的棋子时，计算机往往会毫不犹豫地接受。这种看似理性的策略，在面对像卡斯帕罗夫这样的顶级棋手时，实际上可能是一个致命的陷阱。
-
-在与深蓝的第一场比赛中，卡斯帕罗夫就精心设计了这样一个陷阱。他牺牲了一个价值更高的车，换取对方的一个主教。对于缺乏战略思维的深蓝来说，这看起来是一笔「划算」的交易。然而，卡斯帕罗夫早已洞察到，表面上的战术损失将带来更大的战略优势。图 9-3a 展示的正是这个关键时刻，生动地揭示了计算机在复杂对弈中思考的局限性。
-
-卡帕罗夫和深蓝各自有其简化棋局的独特方法。计算机擅长将复杂问题分解为可量化的元素。对深蓝而言，棋盘可能呈现出图 9-3b 的模样，每个棋子都被赋予精确的分值。通过数值累加，深蓝在棋局评估中比卡帕罗夫多出了相当于一个兵的优势，这种优势在大多数情况下足以决定胜负或迫使对手和棋。28
-
-FIGURE 9-3B：位置的数值评估
-
-人类与计算机不同，更擅长聚焦关键要素，洞察战略全局，有时整体的价值甚至会超越各部分之和。对卡斯帕罗夫而言，这个棋局（如图 9-3c 所示）是极其有利的。他的优势在于三个士兵正逼近 Deep Blue 的国王，而对方的国王几乎没有任何防护。
-
-这个国王面临两难选择：要么避开移动 —— 这样卡斯帕罗夫就可以将士兵推进到对方底排并升变，要么面临被将杀的风险。同时，卡斯帕罗夫的王后和主教虽然暂时位于棋盘左下角，但可以沿对角线相对自由地移动，进一步加剧了对方国王所承受的压力。
-
-卡斯帕罗夫可能尚未精确设计将杀对手的具体路径，但他清楚地知道，在如此巨大的战略压力下，胜利的天平已经倾向于他这一方。事实证明，他的判断是正确的：Deep Blue 最终在十三步后选择投降，承认了失败。
-
-图 9-3c：位置的整体评估
-
-「这是典型的计算机思维局限性，」卡斯帕罗夫后来评论道。"我确信计算机对当前棋局感到很满意，但它无法准确判断如此复杂的局势深层后果。"[29]
-
-「人类智慧战胜机器计算」，纽约时报的头条如此振奋人心，[30] 第二天更是连续刊登了四篇相关报道。
-
-然而，这场比赛并非没有最后的戏剧性转折。尽管当时评论员几乎未注意到，但这一刻可能改变了国际象棋的历史。
-
-
-
-
-
-
-
-终局的开端
-
-在国际象棋比赛的最后阶段，即残局（棋盘上只剩少数棋子的阶段），由于棋子数量减少，获胜组合有时可以更精确地计算。尽管如此，这个阶段仍然需要极高的精确度，因为要成功兑现微小的优势，往往需要在数十步棋中不犯任何错误。以一个极端情况为例，图 9-4 所示的位置已被证明白方无论面对黑方何种应对都能获胜，但这要求白方必须准确无误地执行连续 262 步棋。*
-
-图 9-4：白方获胜…… 需要 262 步精准操作
-
-人类玩家几乎不可能破解图 9-4 中的棋局。但在处理需要十到二十五步才能完成的残局时，人类玩家却积累了丰富的经验。
-
-对于计算机而言，残局是一把双刃剑。由于战术选择已所剩无几，如果计算机无法彻底演算出最终结果，很容易陷入细节而忽视全局。不过，正如国际象棋程序有开局数据库一样，它们同样拥有残局场景的数据库。目前，所有六子以下的棋局都已被完全计算。关于七子棋局的研究也已近乎完成 —— 有些解法复杂到需要多达 517 步 —— 计算机已精确地记录了每种棋局的输赢和和棋可能性。
-
-在这个游戏进程中，出现了一个类似黑洞的临界点：计算机已经完全掌握了局面，能够精确判断每一步棋的输赢可能性。原本抽象的战略目标，现在已经转变为具体的行动策略：例如，将某个兵推进到特定位置就能赢得比赛，或者引诱对手移动某个棋子从而达成和棋。
-
-深蓝在与卡斯帕罗夫的第一局比赛中依然抱有希望。尽管系统分析显示它处于不利位置，但即便是顶级棋手也会平均每 75 步犯一次严重错误。卡斯帕罗夫只要有一步走错，就可能被深蓝捕捉到并扭转局面。虽然形势看似岌岌可危，但仍存在翻盘的可能。
-
-在这场 chess 对决中，深蓝（Deep Blue）的举动让卡斯帕罗夫感到极其困惑。在第 44 回合，它做了一个出人意料的决定：将车移动到了白方底线，而不是采取常规的将对方王置于威胁状态的走法。这一步棋看似毫无意义，就像在危机四伏的时刻，突然选择放弃抵抗。
-
-更令人惊讶的是，这步棋不仅让卡斯帕罗夫有机会将兵推进到对方阵营，还可能升变为皇后 —— 这在国际象棋中是极具战略意义的。紧接着，深蓝在下一回合竟然选择了投降，这一系列举动更是让人匪夷所思。
-
-对于计算机而言，这种看似荒谬的战术失误是极其罕见的。卡斯帕罗夫已经习惯了深蓝在复杂局面中因计算深度不足而犯下战略性错误，比如不恰当地交换主教和车。但这一次，错误发生在一个相对简单的局面中，这正是计算机通常不会犯的类型的错误。
-
-图 9-5：深蓝令人困惑的走法
-
-"计算机怎么会这样主动认输？」卡斯帕罗夫当晚在广场酒店里对德国国际象棋记者、他的朋友兼计算机专家弗雷德里克·弗里德尔说道。32 对于深蓝的异常举动，有几种看似合理的解释，但没有一种能让卡斯帕罗夫感到满意。
-
-也许深蓝是在「自取灭亡"：它知道注定会失败，干脆不再展示更多下棋策略。又或者，正如卡斯帕罗夫怀疑的，这是一场精心设计的心理战？程序员们可能在故意示弱，想要通过输掉第一局来迷惑这个自负的对手。
-
-面对这种诡异的情况，卡斯帕罗夫本能地开始细致地分析数据。在弗里德尔和著名国际象棋分析软件 Fritz 的协助下，他发现看似标准的走法 —— 黑方将王车移至第六列并对白方国王形成将军 —— 实际上对深蓝极为不利：这一步最终将导致自己被将死，尽管要完成这一过程还需要二十多个回合。
-
-但这一发现令人不寒而栗。他推理道，计算机只有在找到了一个更耗时的将死路径时，才会选择原本需要卡斯帕罗夫花费二十步完成的走法。正如弗里德尔回忆的：
-
-深蓝已经将每一种可能性推演到了极致，并冷静地选择了最不致命的败局。"它可能已经预见了 20 步乃至更多步的致命走法，」加里说，庆幸自己站在这些令人敬畏的计算背后。33
-
-曾经，在如此复杂的国际象棋中提前预见 20 步被认为是人类和计算机都无法做到的。卡斯帕罗夫曾引以为豪地说，他最自豪的时刻是在 1999 年荷兰的一场比赛中，他提前十五步预见了获胜的态势。34 深蓝当时被认为大多数情况下只能预见 6 到 8 步。卡斯帕罗夫和弗里德尔对发生的事情并不完全了然，但对普通观察者来说看似随机的失误，在他们眼中却透露出深邃的智慧。
-
-卡斯帕罗夫从此再未战胜深蓝。
-
-在第二场对决中，深蓝展现出极其凌厉的进攻态势，始终不给卡斯帕罗夫留下任何喘息的机会。比赛进行到第 35 步左右，双方棋势颇为胶着：双方各有一位皇后、一个主教、两个车和 7 个兵。深蓝执白，稍微占据了一些优势，不仅拥有下一步行动的机会，其皇后还能自由腾挪。
-
-图 9-6：深蓝在第 36 步的战略选择面对当前棋局，深蓝思考了两种可能的走法。第一种是将皇后移至更具进攻性的位置，这是一个更为精细的战术选择。另一种是与对手交换兵种，打开棋盘左侧，从而形成一个更开阔、更灵活的局面。这一步看似平常，实则暗藏战略玄机。
-
-在这场比赛中，国际象棋大师们一致预测 Deep Blue 会选择推进皇后的走法。35 这是一个看似更明显的选择，也更符合计算机的风格：计算机通常倾向于复杂、需要大量计算的局面。然而，在异常长的「思考」之后，Deep Blue 却选择了意想不到的兵换。36
-
-卡斯帕罗夫最初露出了些许宽慰的表情，因为兵换并未对他造成直接威胁。但随着局势的深入评估，他变得越来越不安，不时咬着指关节，双手捂面 —— 一位观众甚至觉得他看到卡斯帕罗夫在哭泣。37 为什么 Deep Blue 没有选择用皇后继续施压？这个走法并非毫无道理 —— 事实上，这看起来很像他的老对手阿纳托利·卡尔波夫在特定条件下可能会采取的策略。但对于计算机来说，每一步都必须有明确的战术依据，而卡斯帕罗夫就是无法理解其中的逻辑。除非他的直觉是对的 ——Deep Blue 可能已经能够预见二十步甚至更多步之后的局面。
-
-卡斯帕罗夫和 Deep Blue 又继续了约八个回合的对弈。对于观战的记者和专家来说，卡斯帕罗夫从一开始就采取防守策略，获胜的希望已经渺茫。尽管如此，他仍可能将比赛扳回平局。出乎意料的是，卡斯帕罗夫在第四十五步后选择了投降。他心想，对于一台能够预测二十步棋局的计算机来说，绝不可能出现计算失误。他清楚地知道 Deep Blue 将获得胜利，因此何必在还剩四场比赛的情况下白白消耗自己的精力？
-
-观众席上爆发出热烈的掌声：38 这是一场精彩的比赛，远胜于第一场。尽管深蓝的致命一击对观众来说不像对卡斯帕罗夫那样看似势不可挡，但这无非是因为观众未能像他那样深入地分析棋局。不过，他们对深蓝的钦佩更多：这台计算机下棋竟如此「人性化」。"真是漂亮的下棋风格！」女子世界冠军苏珊·波尔佳对纽约时报如此赞叹。39"这台计算机的下棋风格犹如冠军，宛如卡尔波夫。」曾协助深蓝团队的特级大师乔尔·本杰明也表示赞同："这哪里像是电脑下棋，这分明是最纯粹的国际象棋较量！"
-
-卡斯帕罗夫当晚匆匆离开平等中心，未与媒体交谈，但其他特级大师的评论已深深刺痛了他的内心。他开始怀疑：深蓝是否真的只是一台机器？也许，就像两个世纪前那个著名的「机械图灵机」一样，暗中可能另有隐情。说不定，曾与他战平的本杰明不仅仅是在指导深蓝，更可能在背后暗中操控着这场比赛的胜负。
-
-以他们那些对模式近乎执着的大脑，国际象棋冠军以略显偏执的性格而闻名。在第二天的新闻发布会上，卡斯帕罗夫指责 IBM 作弊。"马拉多纳称之为上帝之手，」他谈及这台计算机的下棋时说 [40]。这是对阿根廷著名足球运动员迭戈·马拉多纳在 1986 年世界杯对阵英格兰的那场臭名昭著的比赛中进球的委婉暗示。后来的回放显示，球并非用头顶，而是非法地用左手送入球门。马拉多纳曾说这个进球是「一部分是马拉多纳的头脑，另一部分是上帝之手」。同样地，卡斯帕罗夫似乎认为 Deep Blue 的电路得到了超越性智能的补充。
-
-卡斯帕罗夫关于 Deep Blue 行为的两个理论，当然是相互矛盾的 —— 就像历史上著名的「机械土耳其人"(一个看似能下棋的自动机器人，实际上由隐藏的人类操控）一样。这台机器下得太好了，不可能是一台普通计算机 —— 或者这台机器拥有如此庞大的智能，以至于没有人类能够完全理解它。
-
-然而，认输第二局最终被证明是个严重的失误：Deep Blue 事实上并未锁定胜局，这一点由弗里德尔和卡斯帕罗夫最信任的助手尤里·多霍伊安在第二天的午餐中略显尴尬地向他透露。他们通宵使用 Fritz 象棋软件复盘后发现，只需再走七步，就能迫使 Deep Blue 陷入永久被将军的境地，为卡斯帕罗夫赢得平局。*"就这样？」卡斯帕罗夫茫然地望着第五大道上川流不息的车辆，喃喃自语，"我对计算机令人惊叹的战略深度如此敬畏，以至于根本没想到还有翻盘的可能。"41
-
-尽管比赛目前战成 1-1 平局，卡斯帕罗夫的自信已经被深深地击垮。作为一名从未在任何竞技性国际象棋比赛中尝过败绩的棋王，他此刻处于前所未有的险境。更令人难堪的是，他犯下了国际象棋最大的禁忌：放弃了本可以争取平局的残局。这一前所未有的错误令报道比赛的记者和国际象棋大师们也为之震惊，他们无法回忆起上一次有冠军犯下如此严重的失误。
-
-卡斯帕罗夫意识到，他无法依靠曾帮助他夺得世界冠军的强势棋风战胜深蓝。为此，他决定采取更为谨慎和出其不意的策略，就像一个精心探测程序弱点的黑客。在第三场比赛中，他选择了一个足以打乱深蓝预设数据库的开局，但这一招异常却未能为他带来优势，最终不得不接受平局。
-
-在第四和第五场比赛中，卡斯帕罗夫的表现有所改善，在局面上曾多次占据上风。然而，深蓝强大的残局数据库为其提供了极大的优势，使卡斯帕罗夫最终无法取得决定性突破，两场比赛再次以平局收场。此时，这场人机对决的比分已经是双方各胜一局，三场平局，悬念全部集中在最后一局。
-
-在最后一场比赛的当天，卡斯帕罗夫出现在 Equitable Center，看起来疲惫和沮丧；弗里德尔后来回忆说，他从未见过卡斯帕罗夫如此阴沉的心情。执黑方，卡斯帕罗夫选择了所谓的卡罗 - 卡恩防御（Caro-Kann Defense）。卡罗 - 卡恩被认为相当薄弱 —— 黑方历史上用这种防御的胜率仅为 44.7%—— 尽管对于像卡尔波夫这样精通此防御的选手来说，并非完全无可救药。但卡斯帕罗夫不熟悉卡罗 - 卡恩；他在锦标赛中极少使用这种防御。仅仅几步之后，他就显得紧张，花很长时间做出被认为相当常规的决定。在第七步时，他犯了一个严重的错误，过早地提出了一个马的牺牲。卡斯帕罗夫几乎立即意识到了自己的错误，瘫坐在椅子上，并毫不掩饰自己的不悦。仅仅十二步之后 —— 比赛开始还不到一小时 —— 他就投降了，愤怒地离开了棋桌。
-
-深蓝获得了胜利，但赢得的却不够振奋人心，反而显得有些不痛不痒。卡斯帕罗夫是否仅仅因为疲惫不堪，不得不选择了一个不太熟悉的开局？还是正如大师 Patrick Wolff 推测的那样，他是故意输掉这场比赛 [42]，意在削弱深蓝的成就？他选择的卡罗 - 卡恩防御 —— 恰恰是他曾经频繁战胜的对手卡尔波夫的标志性开局，这其中是否藏着什么玄机？
-
-然而，这些微妙的细节很快就被公众的想象力所淹没。在大众眼中，这仿佛是机器战胜人类的决定性时刻！就像科幻电影中 HAL 9000 接管太空船，又如歌曲「Love Will Tear Us Apart」中精确的十三秒，当合成器压倒吉他音节，摇滚乐黯然失色 [43]。
-
-事实上，情况并非如此。卡斯帕罗夫不过是人性脆弱和一个微小软件漏洞的受害者。
-
-如何让国际象棋大师露出破绽
-
-Deep Blue 诞生于 IBM 的托马斯·J·沃森中心 —— 一座俯瞰韦斯特彻斯特县山麓的美丽、新月形的复古现代建筑。在其大厅里陈列着早期计算机的复制品，与查尔斯·巴贝奇设计的那些如出一辙。尽管建筑略显陈旧 —— 木制墙板过多，内部办公室布局略显拥挤 —— 但许多杰出的科学家曾在此工作，其中包括数学家贝努瓦·曼德尔博特，以及经济学和物理学领域的诺贝尔奖得主。
-
-2010 年春天，我拜访了沃森中心，见到了穆雷·坎贝尔。这位温和儒雅、依然保持年轻气质的加拿大人，是该项目的核心工程师之一，从项目还叫 Deep Thought、在卡内基梅隆大学时就开始参与。(如今，坎贝尔掌管着 IBM 的统计建模部门。）在坎贝尔的办公室里，悬挂着一幅大海报，卡斯帕罗夫目光专注地盯着棋盘，海报标题赫然写着：
-
-如何让计算机眨眼？
-
-卡斯帕罗夫 vs Deep Blue
-
-1997 年 5 月 3 日–11 日最终，眨眼的是卡斯帕罗夫，尽管其原因与坎贝尔团队原本的预期略有不同。
-
-深蓝系统的设计目标直指一个对手：卡斯帕罗夫。研发团队不仅仅是开发一款国际象棋程序，更是在精心设计针对卡斯帕罗夫的对策。他们试图预测卡斯帕罗夫最可能采用的开局序列，并为之准备强有力的反制策略。聪明的卡斯帕罗夫岂会轻易中计？他果然选择了一些在比赛中罕见的开局招法，成功避开了对手的陷阱。
-
-由于在 1996 年对阵卡斯帕罗夫时表现不尽如人意，加上在训练赛中暴露出诸多不足，深蓝团队立即行动起来。他们将系统的处理能力翻了一番，并对系统的决策算法（启发式算法）进行了细致的优化和改进。
-
-坎贝尔深知，要与卡斯帕罗夫的战略思维匹敌，深蓝需要在搜索博弈树时更加深入且精准。为此，他们还做了一个巧妙的设计：微调系统，使其在面对复杂局面时略有倾向。
-
-"对计算机来说，最理想的棋局是那种棋盘上棋子众多、可选走法繁多的复杂位置，」坎贝尔向我解释道，"我们更希望看到战术发挥作用的局面，而不是依赖长远战略。所以，我们会通过一些细微的调整来鼓励这种局面的出现。"
-
-从某种程度上说，深蓝比其前身和后继者都更接近人类棋手的下棋风格。虽然博弈理论在国际象棋中不像在扑克等信息不完全的游戏中那样重要，但开局阶段是个特殊情况。有时故意下出稍微不完美的一步，可以打乱对手的节奏，瓦解对方数月的准备 —— 反之亦然，如果对手懂得应对的话。大多数计算机追求「完美」下棋，而不会根据对手调整策略。但深蓝不同，它像人类棋手一样，会选择那些具有战略优势的走法。
-
-另一面：特性还是缺陷？
-
-尽管如此，卡斯帕罗夫在 1997 年的实力如此强大，以至于最终深蓝能获胜，只是编程的问题。
-
-从理论上讲，让计算机下国际象棋是相当直接的：如果允许国际象棋程序的搜索算法无限制地运行，那么所有棋局都可以通过穷举法解决。"解决国际象棋有一种众所周知的算法，」坎贝尔告诉我，"如果给程序足够的时间，我半天就能写出能破解这个游戏的程序。」然而在现实中，"这需要整个宇宙的生命周期，」他无奈地叹息。
-
-实际上，教会一台国际象棋电脑战胜世界冠军，往往是一个枯燥的反复试验过程。比如：在残局中多分配计算时间，在中局中减少时间，是否会整体提升性能？在开局阶段，有没有更精确的方法来权衡骑士和主教的战术价值？即便知道分支中可能存在极小概率的将杀或陷阱，程序应该以怎样的速度剪除那些看似毫无希望的搜索路径？
-
-通过细致调整参数并观察其变化影响，Campbell 让 Deep Blue 经历了多轮测试。但有时它仍会出现令人困惑的走法，呈现出奇怪且出人意料的下棋策略。每当此时，Campbell 都会面临程序员经典的疑问：这个新的下棋策略是程序进化的灵光乍现，意味着它的技能正在不断提升？还是仅仅是一个技术缺陷？
-
-在更广泛的预测领域，我的核心建议是：当你的模型产生意外或难以解释的结果时，要谨慎地倾向于将其视为「bug」。将随机噪声误解为有意义的信号太过容易了。事实上，bug 可能会瞬间摧毁即使是最优秀的预测者的所有努力。
-
-Bob Voulgaris，这位我在第 8 章介绍过的百万富翁体育博彩专家，有一年决定尝试棒球赛事的下注。他开发的模拟预测系统一直建议对费城费城人队采取「总分低于」的下注策略，但这些下注收效甚微。最终查明，问题源于 10,000 行代码中的一个微小的输入错误：他的助手在输入费城人队主场球场 —— 公民银行公园（一个有利于进攻和本垒打的紧凑型球场）的信息时，错误地将球队缩写从 P-H-I 误写成了 P-H-l。这看似微不足道的一行代码，却足以让整个预测系统失效，使 Voulgaris 的资金被无效的预测消耗。这个令人沮丧的错误直接导致他彻底放弃了棒球下注程序。
-
-对于 Campbell 来说，面临的挑战在于，Deep Blue 早已在国际象棋领域超越了其创造者。机器可能会走出人类程序员意想不到的棋步，而程序员往往难以判断这究竟是创新性策略，还是系统性错误。
-
-卡姆贝尔回忆道："在深蓝系统早期调试时，每当它下出一个不同寻常的棋步，我就会说：' 哦，这里似乎有问题。' 我们会立即深入代码，仔细排查并最终找出问题所在。但随着时间推移，这种情况越来越少。当它不断做出这些非常规走法时，我们查看后惊讶地发现，它已经洞察到了人类难以察觉的深层策略。"
-
-国际象棋史上最令人惊叹的走法，或许要数 1956 年 Bobby Fischer 在「世纪之战」中的经典对局（图 9-7）。年仅 13 岁的 Fischer 在与大师 Donald Byrne 的比赛中，接连做出两步令人瞠目结舌的棋招。他先是不动声色地牺牲了一个马，看似毫无意义；随后又故意将自己的皇后暴露在外，转而推进象的攻势。这看似疯狂的走法事实上极其精妙 ——Fischer 精准把控的战略优势，在几个回合后就完全显现出来。
-
-然而，无论是当时还是现在，很少有棋手敢于打破常规，做出如此大胆的牺牲。因为在棋类比赛中，"除非能换取对等价值或直接获得胜利，否则不要轻易放弃重要棋子」这类经验法则深深根植于每一个棋手的思维模式。这些经验准则之所以如此牢固，正是因为它们在绝大多数情况下都能为棋手提供保护。
-
-当我将这些棋局位置输入到我的普通笔记本电脑，并用国际象棋软件 Fritz 分析时，程序仅仅在几秒钟内就识别出了 Fischer 的精妙走法。更有趣的是，对于 Fischer 之外的任何走法，程序都认为是极其糟糕的错误。通过穷尽搜索所有可能的走法，程序找出了那些需要突破常规下棋策略的特殊局面。
-
-我们不应该说计算机「有创造力」，因为它找到这些走法主要是依靠强大的计算能力。但它还有另一个独特优势：不受传统棋艺思维的束缚，能够在特定情境中选择最佳走法。对人类棋手来说，这需要超越常规思维的勇气和洞察力。人们对费舍尔的技艺赞叹不已，正是因为他年轻，能够充分发挥想象力的广度。我们思维中的局限性往往源于自身，并可能随着年龄增长而日益明显。计算机同样存在盲区，但它们通过穷尽所有可能的走法，可以绕过人类思维的局限。
-
-不过，Deep Blue 并非完美无缺。在采访即将结束时，坎贝尔略带调侃地提到了 1997 年与卡斯帕罗夫对弈第一局中的一个小插曲。
-
-"游戏中出现了一个错误，这可能导致卡斯帕罗夫误解了深蓝的真正能力，」坎贝尔告诉我。"卡斯帕罗夫并未意识到这个异常举动是程序的技术故障。"
-
-这个技术故障发生在与卡斯帕罗夫对弈的第一场比赛的第四十四步；当程序无法正常选择走法时，系统启动了应急机制，随机选择了一个下棋策略。这个 bug 本身并不重要，发生在比赛已经接近尾声且明显处于劣势的阶段；坎贝尔和团队在次日已经修复了这个问题。"我们在 1997 年早些时候的一场测试赛中曾遇到过类似情况，原以为已经解决，」他告诉我。"没想到还是有一个细节被我们忽略了。"
-
-事实上，对于深蓝来说，这个技术缺陷（bug）绝不是不幸的：恰恰相反，它很可能是击败卡斯帕罗夫的关键。在广为流传的卡斯帕罗夫与深蓝对战的故事中，问题源于第二场比赛 —— 在那里，他犯了几乎闻所未闻的错误，放弃了本可能打平的棋局。究竟是什么驱使卡斯帕罗夫犯下这个失误？原因是他在第一场比赛中对深蓝第四十四步的莫名其妙举动产生了严重的心理压力 —— 计算机以看似毫无意义的方式移动了自己的城堡。卡斯帕罗夫推断，这种违反常理的走法一定是超凡智能的征兆。他从未想过，这仅仅是一个系统设计缺陷。
-
-尽管我们依赖二十一世纪的先进技术，我们仍然保留着像埃德加·艾伦·坡那样对这些机器在生活中角色的局限性认知。计算机通过一个技术缺陷成功扰乱了卡斯帕罗夫的心理。
-
-计算机的制胜武器计算机在执行计算任务时速度快得惊人。更重要的是，它们可以始终如一地进行精确计算 —— 不会感到疲倦、不会受情绪影响，也不会在分析过程中改变计算策略。
-
-但这并不意味着计算机能够产生完美的预测，甚至不一定是合理的预测。"垃圾入，垃圾出"(GIGO）这一缩写精准概括了这一问题。如果向计算机输入错误数据，或设计不合理的分析指令，计算机就无法创造奇迹。同时，在需要创造性思维和想象力的任务中，如战略制定或构建世界运行机制理论，计算机的表现往往十分有限。
-
-因此，对于预测者而言，计算机最为有用的领域是天气预报和规则明确的复杂系统（如博弈类）。这些系统遵循相对简单且已充分理解的规律，尽管需要反复求解系统方程才能生成准确预测。相比之下，在经济预测和地震预测等领域，计算机的贡献微乎其微，主要原因在于我们对系统根本原因的理解仍较为模糊，且数据噪音较大。在 20 世纪 70 和 80 年代，随着计算机开始广泛进入学术和科研领域，人们对计算机辅助预测寄予厚望，然而此后进展缓慢，成果甚微。
-
-许多研究领域处于数据和理解的灰色地带。数据质量介于优秀与一般之间，我们对数据产生的系统和过程有部分认知，但还远未达到完全理解的程度。在这种情况下，可以借鉴国际象棋超级计算机 Deep Blue（深蓝）的程序员所使用的方法 —— 反复试错来改进预测。这恰恰是当今大数据（Big Data）领域最具代表性公司的核心商业策略。
-
 走进位于加利福尼亚州山景城的 Google 总部，你会发现这里的氛围充满了创意与趣味。鲜艳的色彩、开放式的排球场，以及各种奇特的双轮交通工具，模糊了严肃与轻松的界限。Google 的员工，即便是工程师和经济学家，也常常显得异常活泼和富有创造性。
 
 "这些实验是持续不断的，」谷歌首席经济学家 Hal Varian 在我们会面时说道。"你应该把它看作一个有生命的有机体。我曾经说过，当它真正 ' 活' 起来时，我们应该感到担忧，就像科幻电影《终结者》中的人工智能系统天网（Skynet）*。不过，我们已经与当时的加州州长 Arnold Schwarzenegger 达成了合作协议。"
@@ -646,7 +624,25 @@ Bob Voulgaris，这位我在第 8 章介绍过的百万富翁体育博彩专家�
 
 尽管如此，亲自验证我们的预测 —— 实际观察它们在现实世界中的效果，而不是停留在统计模型的舒适空间里 —— 可能是加速学习过程最有效的方法。
 
-突破我们的技术认知局限从某种程度上说，我们自身就是技术发展的最大障碍。人类缓慢的进化步伐已经跟不上技术的飞速发展：生物进化需要成千上万年，而计算机处理能力却每两年就会翻一番。
+### Overcoming Our Technological Blind Spot
+
+In many ways, we are our greatest technological constraint. The slow and steady march of human evolution has fallen out of step with technological progress: evolution occurs on millennial time scales, whereas processing power doubles roughly every other year.
+
+Our ancestors who lived in caves would have found it advantageous to have very strong, perhaps almost hyperactive pattern-recognition skills—to be able to identify in a split-second whether that rustling in the leaves over yonder was caused by the wind or by an encroaching grizzly bear. Nowadays, in a fast-paced world awash in numbers and statistics, those same tendencies can get us into trouble: when presented with a series of random numbers, we see patterns where there aren't any. (Advertisers and politicians, possessed of modern guile, often prey on the primordial parts of our brain.)
+
+Chess, however, makes for a happy ending. Kasparov and Deep Blue's programmers saw each other as antagonists, but they each taught us something about the complementary roles that computer processing speed and human ingenuity can play in prediction.
+
+In fact, the best game of chess in the world right now might be played neither by man nor machine.47 In 2005, the Web site ChessBase.com, hosted a "freestyle" chess tournament: players were free to supplement their own insight with any computer program or programs that they liked, and to solicit advice over the Internet. Although several grandmasters entered the tournament, it was won neither by the strongest human players nor by those using the most highly regarded software, but by a pair of twentysomething amateurs from New Hampshire, Steven Cramton and Zackary "ZakS" Stephen, who surveyed a combination of three computer programs to determine their moves.48 Cramton and Stephen won because they were neither awed nor intimidated by technology. They knew the strengths and weakness of each program and acted less as players than as coaches.
+
+Be wary, however, when you come across phrases like "the computer thinks the Yankees will win the World Series." If these are used as shorthand for a more precise phrase ("the output of the computer program is that the Yankees will win the World Series"), they may be totally benign. With all the information in the world today, it's certainly helpful to have machines that can make calculations much faster than we can.
+
+But if you get the sense that the forecaster means this more literally—that he thinks of the computer as a sentient being, or the model as having a mind of its own—it may be a sign that there isn't much thinking going on at all. Whatever biases and blind spots the forecaster has are sure to be replicated in his computer program.
+
+We have to view technology as what it always has been—a tool for the betterment of the human condition. We should neither worship at the altar of technology nor be frightened by it. Nobody has yet designed, and perhaps no one ever will, a computer that thinks like a human being.49 But computers are themselves a reflection of human progress and human ingenuity: it is not really "artificial" intelligence if a human designed the artifice.
+
+突破我们的技术认知局限
+
+从某种程度上说，我们自身就是技术发展的最大障碍。人类缓慢的进化步伐已经跟不上技术的飞速发展：生物进化需要成千上万年，而计算机处理能力却每两年就会翻一番。
 
 我们穴居时代的祖先，天生具备敏锐的模式识别能力 —— 能在刹那间判断树丛中沙沙作响是微风拂动还是凶猛的灰熊临近，这对生存至关重要。然而在如今这个数据充斥、信息爆炸的快节奏世界里，这种与生俱来的本能反而可能误导我们：面对一串随机数字，我们往往会幻想出根本不存在的模式。(善于操纵的广告商和政客们，正是巧妙地利用了我们大脑中这些原始而敏感的神经回路。)
 
@@ -661,4 +657,3 @@ Cramton 和 Stephen 的成功，源于他们既不盲目崇拜技术，也不惧
 但如果预测者似乎真的相信计算机具有某种意识，或者认为模型有自己的思维，这可能恰恰表明没有真正的思考在发生。预测者的偏见和局限性很可能会原封不动地映射到他的计算机程序中。
 
 我们应该把技术视为一直以来的本来面目 —— 推动人类进步的工具。我们既不应盲目崇拜技术，也不必对其心存畏惧。至今没有人成功设计出（或许永远无法设计）一台像人类一样思考的计算机。然而，计算机本身就是人类智慧和创新能力的缩影：如果是由人类精心设计，那么它就不仅仅是一个简单的「人工」智能。
-
