@@ -1,0 +1,1 @@
+Stephen Jay Gould.(2002).2021038The-Structure-of-Evolutionary-Theory.Belknap Press of Harvard University Press => 0101Defining and Revising the Structure of Evolutionary Theory
