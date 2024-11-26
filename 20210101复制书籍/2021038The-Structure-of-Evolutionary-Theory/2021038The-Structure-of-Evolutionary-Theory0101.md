@@ -195,10 +195,6 @@ The three principles that elevated natural selection from the guts of a working 
 
 自然选择理论从一个简单的运行机制发展成为解释生命演化历史的革命性理论，这一过程中起决定性作用的三个原则，可以用能动性（agency）、有效性（efficacy）和作用范围（scope）这三个基本范畴来概括。我之所以按照这个特定顺序来讨论这些原则，是因为这正是达尔文理论发展的内在逻辑（我将在第二章详细说明)：首先提出最具革新性的观点，随后才论证这一理论的强大作用力及其广泛的适用范围。
 
-
-
-
-
 Agency. The abstract mechanism requires a locus of action in a hierar­chical world, and Darwin insisted that the apparently intentional "benevo­lence" of nature (as embodied in the good design of organisms and the har­mony of ecosystems) flowed entirely as side-consequences of this single causal locus, the most "reductionistic" account available to the biology of Darwin's time. Darwin insisted upon a virtually exceptionless, single-level theory, with organisms acting as the locus of selection, and all "higher" order emerging, by the analog of Adam Smith's invisible hand, from the (unconscious) "strug­gles" of organisms for their own personal advantages as expressed in dif­ferential reproductive success. One can hardly imagine a more radical refor­mulation of a domain that had unhesitatingly been viewed as the primary manifestation for action of higher power in nature — and Darwin's brave and single-minded insistence on the exclusivity of the organismic level, although rarely appreciated by his contemporaries, ranks as the most radical and most distinctive feature of his theory.
 
 能动性。在这个分层的自然界中，抽象机制需要一个具体的作用主体。达尔文坚持认为，自然界表面上看起来的「仁慈」（体现在生物体的精妙设计和生态系统的和谐运作中），其实完全是这个单一因果作用点的附带结果。这是达尔文时代生物学能给出的最「还原主义」的解释。
@@ -213,18 +209,13 @@ Scope. Even the most favorably minded of contemporaries often admit­ted that Da
 
 在研究范围上，即使是达尔文那个时代最支持他的科学家们也往往承认，达尔文的理论确实能够解释「基本物种类型」内的微小变化（这些变化确实是对环境改变的局部性「积极」适应）—— 比如说，将狼驯化成狗，或者把野生蒿草（teosinte）培育成我们今天食用的玉米。但这些评论者无法理解，这种确实存在的微进化（microevolution）过程如何能够延伸扩展，最终产生如此丰富的物种分类多样性，以及在漫长地质时期中生物形态逐渐复杂化的表面「进步」现象。对此，达尔文坚持认为他的理论具有完整的解释力，他主张仅靠微进化机制，在浩瀚的地质时间尺度上运作，就完全足以解释生命历史的整个演化过程，包括解剖结构的复杂化和物种分类的多样化 —— 无需引入任何其他的因果解释原理。
 
-
-
-
-
-
 Because primates are visual animals, complex arguments are best portrayed or epitomized in pictorial form. The search for an optimal icon to play such a role is therefore no trivial matter (although scholars rarely grant this issue the serious attention so richly merited) — especially since the dangers of confu­sion, misplaced metaphor, and replacement of rigor with misleading "intu­ition" stand so high. I knew from the beginning of this work that I needed a suitable image for conveying the central logic of Darwinian theory. As one of my humanistic conceits, I hoped to find a historically important scientific im­age, drawn for a different reason, that might fortuitously capture the argu­ment in pictorial form. But I had no expectation of success, and assumed that I would need to commission an expressly designed figure drawn to a long list of specifications.
 
 作为依赖视觉的生物，灵长类在理解复杂论述时最适合通过图像形式来展示和概括。因此，寻找一个理想的示意图来实现这个目的绝非小事（尽管学者们很少给予这个问题应有的重视）—— 这一点尤为重要，因为我们随时可能陷入混乱、使用不恰当的比喻，或是用貌似直观但具有误导性的「直觉」取代严谨的推理。在开始这项研究时，我就意识到需要找到一个合适的图像来阐述达尔文理论的核心逻辑。出于我的学术构想，我希望能找到一幅具有历史意义的科学图像，虽然它最初是为其他目的而创作的，但或许能巧妙地以图像方式展现我的论点。然而，我并不指望一定能成功，并做好了需要专门委托创作一幅符合详细规范的图像的准备。
 
 The specific form of the image — its central metaphorical content, if you will — plays an important role in channeling or misdirecting our thoughts, and therefore also requires careful consideration. In the text of this book, I speak most often of a "tripod" since central Darwinian logic embodies three major propositions that I have always visualized as supports — perhaps be­cause I have never been utterly confident about this entire project, and I needed some pictorial encouragement to keep me going for twenty years. (And I much prefer tripods, which can hold up elegant objects, to buttresses, which may fly as they preserve great Gothic buildings, but which more often shore up crumbling edifices. Moreover, the image of a tripod suits my major claim particularly well — for I have argued, just above, that we should define the "essence" of a theory by an absolutely minimal set of truly necessary propositions. No structure, either of human building or of abstract form, captures this principle better than a tripod, based on its absolute minimum of three points for fully stable support in the dimensional world of our physical experience.)
 
-图像的具体形式 —— 也就是其核心的隐喻含义 —— 在引导或误导我们思维的过程中起着重要作用，因此需要我们认真思考。在本书中，我经常使用「三脚架」这个意象，因为达尔文主义的核心逻辑包含三个主要命题，我一直将它们想象成支柱 —— 这可能是因为我始终对这整个研究项目没有完全的把握，需要这样的形象化类比来激励自己坚持二十年。(我更偏爱三脚架而非扶壁，虽然扶壁在支撑宏伟的哥特式建筑时可以呈现出优美的飞扶状，但它们更多时候是用来支撑摇摇欲坠的建筑。而且，三脚架这个意象特别契合我的核心论点 —— 我在上文中已经论证过，我们应该用最精简的必要命题集合来定义理论的「本质」。在我们生活的三维物理世界中，没有任何结构，无论是实体建筑还是抽象概念，能比三脚架更好地诠释这一原则，因为它恰恰需要最少的三个支点就能获得完全的稳定支撑。)
+图像的具体形式 —— 也就是其核心的隐喻含义 —— 在引导或误导我们思维的过程中起着重要作用，因此需要我们认真思考。在本书中，我经常使用「三脚架」这个意象，因为达尔文主义的核心逻辑包含三个主要命题，我一直将它们想象成支柱 —— 这可能是因为我始终对这整个研究项目没有完全的把握，需要这样的形象化类比来激励自己坚持二十年。（我更偏爱三脚架而非扶壁，虽然扶壁在支撑宏伟的哥特式建筑时可以呈现出优美的飞扶状，但它们更多时候是用来支撑摇摇欲坠的建筑。而且，三脚架这个意象特别契合我的核心论点 —— 我在上文中已经论证过，我们应该用最精简的必要命题集合来定义理论的「本质」。在我们生活的三维物理世界中，没有任何结构，无论是实体建筑还是抽象概念，能比三脚架更好地诠释这一原则，因为它恰恰需要最少的三个支点就能获得完全的稳定支撑。）
 
 But organic images have always appealed more strongly, and I preferred a biological icon. If the minimal logic can be represented by a tripod pointing downward, then the same topology can be inverted into a structure growing upward. Darwin's own favorite image of the tree of life immediately sug­gested itself, and I long assumed that I would eventually settle on a botanical icon. But I also remembered Darwin's first choice for an organic metaphor or picture of branching to capture his developing views about descent with modification and the causes of life's diversity — the "coral of life" of his "B Note­book" on transmutation, kept during the 1830's as he became an evolutionist and struggled towards the theory of natural selection (see Barrett et al., 1987).
 
@@ -236,35 +227,27 @@ As I began to write this summary chapter, I therefore aimlessly searched through
 
 The following figure comes from the 1747 Latin version of one of the semi­nal works in the history of paleontology — the 1670 Italian treatise of the Sicilian savant and painter Agostino Scilla, ha vana speculazione disingan-nata dal senso ("Vain speculation undeceived by the senses" — Scilla's de­fense, at the outset of "the scientific revolution" of Newton's generation, for empirical methods in the study of nature, and specifically, in this treatise, for a scientific paleontology and the need to recognize fossils as remains of an­cient organisms, not as independent products of the mineral kingdom). This work, famous not only for an incisive text, but also for its beautiful plates (see Fig. 1-3), engraved by an author known primarily as an artist of substan­tial eminence, includes this figure, labeled Coralium articulatum quod copio-sissimum in rupibus et collibus Messanae reperitur ("Articulated coral, found in great abundance in the cliffs and hills of Messina").
 
-这幅图来自一部古生物学史上具有里程碑意义的著作的 1747 年拉丁文版本。该著作最初是由西西里著名学者和画家 Agostino Scilla 于 1670 年用意大利语撰写的论文，标题为《ha vana speculazione disingan-nata dal senso》（意为「感官对空想的驳斥"）。这部作品诞生于牛顿时代科学革命的早期，Scilla 通过这部著作强调了在自然研究中采用实证方法的重要性。特别是在这篇论文中，他为科学古生物学进行辩护，指出化石是古代生物的遗迹，而不是像当时某些人认为的那样仅仅是矿物的天然产物。
+这幅图来自一部古生物学史上具有里程碑意义的著作的 1747 年拉丁文版本。该著作最初是由西西里著名学者和画家 Agostino Scilla 于 1670 年用意大利语撰写的论文，标题为《ha vana speculazione disingan-nata dal senso》（意为「感官对空想的驳斥」）。这部作品诞生于牛顿时代科学革命的早期，Scilla 通过这部著作强调了在自然研究中采用实证方法的重要性。特别是在这篇论文中，他为科学古生物学进行辩护，指出化石是古代生物的遗迹，而不是像当时某些人认为的那样仅仅是矿物的天然产物。
 
-这部作品不仅以其深刻的论述内容著称，更因其精美的插图（见图 1-3）而闻名。这些插图出自 Scilla 之手，他在当时更为人所知的身份是一位享有盛誉的艺术家。图中所示的这幅插图标注为 Coralium articulatum quod copiosissimum in rupibus et collibus Messanae reperitur（意为「在意大利墨西拿的悬崖和山丘中大量发现的节状珊瑚"）。
+这部作品不仅以其深刻的论述内容著称，更因其精美的插图（见图 1-3）而闻名。这些插图出自 Scilla 之手，他在当时更为人所知的身份是一位享有盛誉的艺术家。图中所示的这幅插图标注为 Coralium articulatum quod copiosissimum in rupibus et collibus Messanae reperitur（意为「在意大利墨西拿的悬崖和山丘中大量发现的节状珊瑚」）。
 
-This model, and its organic features, work uncommonly well as a meta­phor for the Goldilockean position of definition by a barest minimum of truly fundamental postulates. For Scilla's coral, with its branching structure (see Fig. 1-4) — particularly as expressed in the lessening consequences of excising branches at ever higher levels nearer the top (the analogs of disconfirming theoretical features of ever more specialized and less fundamental import) — so beautifully captures the nature and operation of the intellectual structure that I defended above for specifying the essences of theories. The uncanny ap­propriateness of Scilla's coral lies in the fortuity that this particular specimen (accurately drawn from nature by Scilla, I assume, and not altered to as­sert any general point) just happens to include exactly the same number of branches (three) as my Darwinian essential structure. (They terminate at the same upper level, so I could even turn the specimen over into a tolerably unwobbly tripod!) Moreover, since this particular genus of corals grows in discrete segments, the joining points correspond ideally with my metaphor of chopping planes for excising parts of structures at various levels of impor­tance in an intellectual entity. But, most incredibly, the segmental junctions of
+This model, and its organic features, work uncommonly well as a meta­phor for the Goldilockean position of definition by a barest minimum of truly fundamental postulates. For Scilla's coral, with its branching structure (see Fig. 1-4) — particularly as expressed in the lessening consequences of excising branches at ever higher levels nearer the top (the analogs of disconfirming theoretical features of ever more specialized and less fundamental import) — so beautifully captures the nature and operation of the intellectual structure that I defended above for specifying the essences of theories. The uncanny ap­propriateness of Scilla's coral lies in the fortuity that this particular specimen (accurately drawn from nature by Scilla, I assume, and not altered to as­sert any general point) just happens to include exactly the same number of branches (three) as my Darwinian essential structure. (They terminate at the same upper level, so I could even turn the specimen over into a tolerably unwobbly tripod!) Moreover, since this particular genus of corals grows in discrete segments, the joining points correspond ideally with my metaphor of chopping planes for excising parts of structures at various levels of impor­tance in an intellectual entity. But, most incredibly, the segmental junctions of this particular specimen just happen to occupy the exact places that I needed a priori to make my central point about lower choppings that destroy theo­ries, middle choppings that change theories in a Falconerian way (major al­terations in structure upon a preserved foundation), and upper choppings that change theories in the lesser manner of Darwin's Milanese metaphor (smaller excisions that leave the framework intact as well).
 
 这个模型及其有机特征，作为一个通过最少的基本假设来定义的「恰到好处」位置的比喻，效果出奇地好。看看 Scilla 的珊瑚及其分支结构（见图 1-4），尤其是当我们观察到在靠近顶端处切除分支时所产生的影响会越来越小，这正好类比于那些越来越专业化且基础重要性越来越低的理论特征被否定时的情况。这种结构完美地展现了我前面所论证的关于理论本质的知识框架的特点和运作方式。
 
-这株 Scilla 珊瑚之所以如此恰当地符合我的比喻，是源于一个偶然的巧合：这个特定的标本（我认为是 Scilla 根据自然实物精确绘制，而非为证明某个观点而修改的）恰好具有与我的达尔文主义基本结构相同的分支数量（三个）。这些分支在同样的高度终止，我甚至可以把标本倒置，变成一个相当稳定的三脚架！更有趣的是，由于这种特定属的珊瑚是以分节段的方式生长的，其节点的连接处完美地对应了我的比喻 —— 即在理论体系的不同重要层次上进行结构切分的切面。但最令人惊叹的是，这些节段的连接处...
+这株 Scilla 珊瑚之所以如此恰当地符合我的比喻，是源于一个偶然的巧合：这个特定的标本（我认为是 Scilla 根据自然实物精确绘制，而非为证明某个观点而修改的）恰好具有与我的达尔文主义基本结构相同的分支数量（三个）。这些分支在同样的高度终止，我甚至可以把标本倒置，变成一个相当稳定的三脚架！更有趣的是，由于这种特定属的珊瑚是以分节段的方式生长的，其节点的连接处完美地对应了我的比喻 —— 即在理论体系的不同重要层次上进行结构切分的切面。但最令人惊叹的是，这些节段的连接处恰好完美地展示了我想要阐述的核心观点：在理论演变中存在三种不同层次的「切割」。底层的切割会完全摧毁原有理论；中层的切割会以 Falconer 的方式改变理论，即在保持基础不变的前提下对结构做出重大调整；而顶层的切割则如同 Darwin 在米兰提出的比喻那样，仅仅进行小幅修改，既保持了框架的完整性，又实现了理论的改变。
 
 1-3. The famous frontispiece from Scilla's treatise of 1670 defending the organic nature of fossils. The solid young man, representing the truth of sensory experi­ence, shows a fossil sea urchin in his right hand to a wraithlike figure represent­ing the former style of speculative thinking. With his left hand, the solid figure points to other fossils found in Sicily. The text proclaims: "Vain speculation un­deceived by the senses."
 
 1-3. 在 Scilla 1670 年论证化石源于生物的著作中，有一幅著名的封面插图。画中，一位健硕的青年象征着感官经验带来的真理，他右手向一个虚幻的身影展示着一枚海胆化石，这个虚幻身影代表着旧时纯粹靠思辨的学术传统。这位青年的左手则指向在西西里岛发现的其他化石。插图上写着这样一句话："空谈理论终为感官所破。"
 
-this particular specimen just happen to occupy the exact places that I needed a priori to make my central point about lower choppings that destroy theo­ries, middle choppings that change theories in a Falconerian way (major al­terations in structure upon a preserved foundation), and upper choppings that change theories in the lesser manner of Darwin's Milanese metaphor (smaller excisions that leave the framework intact as well).
-
-这个特例恰好完美地展示了我想要阐述的核心观点：在理论演变中存在三种不同层次的「切割」。底层的切割会完全摧毁原有理论；中层的切割会以 Falconer 的方式改变理论，即在保持基础不变的前提下对结构做出重大调整；而顶层的切割则如同 Darwin 在米兰提出的比喻那样，仅仅进行小幅修改，既保持了框架的完整性，又实现了理论的改变。
-
-The central trunk (the theory of natural selection) cannot be severed, or the creature (the theory) dies. (The roots, if you will, represent sources of evi­dence; any one may be excised, if recognized as incorrect by later study, so long as enough remain to anchor the structure). This central trunk then di­vides into a limited number of major branches. These basic struts — the three
-
-这个理论的主干（自然选择理论）就像生命体一样不能被切断，否则整个理论就会瓦解。(这个比喻中的根系就像是各种证据来源；如果后续研究证明某个证据有误，在保证整体结构稳定的前提下，可以将其移除）。从这个主干又延伸出数量有限的几个主要分支。这些基本支撑 —— 这三个
-
 1-4. Agostino Scilla was also a celebrated painter as well as a scien­tist. The plates of his 1670 trea­tise are therefore particularly well done. This figure, representing a fossil coral that Scilla found near Messina, fortuitously (and without any alteration whatsoever), pre­sents a detailed picture of the basic logic of Darwinian theory as recog­nized in this book. See text for details.
 
 1-4. Agostino Scilla 不仅是一位著名画家，同时也是一位科学家。正因如此，他在 1670 年发表的论文中的插图都画得极为精美。在墨西拿附近，他发现了一块化石珊瑚，并将其绘制成图。有趣的是，这幅完全没有经过任何修改的图画，恰好完整展示了达尔文理论中本书所强调的基本逻辑。具体解释请参见正文。
 
-branches of the Darwinian essence in this particular picture — are also so es­sential that any severing of a complete branch either kills, or so seriously compromises, the entire theory that a new name and basic structure becomes essential.
+The central trunk (the theory of natural selection) cannot be severed, or the creature (the theory) dies. (The roots, if you will, represent sources of evi­dence; any one may be excised, if recognized as incorrect by later study, so long as enough remain to anchor the structure). This central trunk then di­vides into a limited number of major branches. These basic struts — the three branches of the Darwinian essence in this particular picture — are also so es­sential that any severing of a complete branch either kills, or so seriously compromises, the entire theory that a new name and basic structure becomes essential.
 
-在这个特定场景下，达尔文理论核心的各个分支都至关重要 — 如果完全切断其中任何一个分支，要么会导致整个理论的崩溃，要么会严重削弱理论的完整性，以至于我们需要为其重新命名并构建新的基本框架。
+这个理论的主干（自然选择理论）就像生命体一样不能被切断，否则整个理论就会瓦解。(这个比喻中的根系就像是各种证据来源；如果后续研究证明某个证据有误，在保证整体结构稳定的前提下，可以将其移除）。从这个主干又延伸出数量有限的几个主要分支。在这个特定场景下，这三个达尔文理论核分支都至关重要 —— 如果完全切断其中任何一个分支，要么会导致整个理论的崩溃，要么会严重削弱理论的完整性，以至于我们需要为其重新命名并构建新的基本框架。
 
 We now reach the interesting point where excisions and regraftings pre­serve the essential nature of an intellectual structure, but with two quite dif­ferent levels of change and revision, as characterized by Falconer's and Dar­win's competing metaphors for the Duomo of Milan. I would argue that a severing low on any one of the three major branches corresponds with a revi­sion profound enough to validate the more interesting Falconerian version of major revision upon a conserved foundation. (The Falconerian model is, in this sense, a Goldilockean solution itself, between the "too much" of full de­struction and the "too little" of minor cosmetic revision.) On the other hand, the severing of a subbranch of one of the three branches symbolizes a less portentous change, closer to Darwinian models for the Milanese Duomo — an alteration of important visual elements, but without change in the basic framework.
 
@@ -274,11 +257,17 @@ My fascination with the current state of evolutionary theory, at least as I read
 
 从我对当前逻辑和实证研究发展的理解来看，现代进化论的发展状态令我着迷，因为它完美契合了 Falconerian 模型的特点。这个领域既保持着充分的延续性，使其历史发展显得格外有意义且始终引人入胜，又存在着足够的深层差异和令人着迷的学术特点。这些特点能够激发那些对新思想充满热情的人的兴趣。这种新颖性虽然会挑战我们既有的认知，但并不会导致整个领域需要完全重建而陷入混乱（虽然重建本身并非坏事，但这并非本例的实际情况）。
 
+
+
+
+
+
+
 To summarize my views on the utility of such a model for the essence of Darwinian logic, I will designate three levels of potential cuts or excisions to this organic (and logical) coral of the structure of evolutionary theory, as originally formulated by Darwin in the Origin of Species, and as revised in a Falconerian way in recent decades. The most inclusive and most fundamental K-cuts (killing cuts) sever at least one of the three central principles of Dar­winian logic and thereby destroy the theory tout court. The second level of R-cuts (revision cuts) removes enough of the original form on one of the three central branches to ensure that the new (and stronger or more arborescent) branch, in regrowing from the cut, will build a theory with an intact Darwin­ian foundation, but with a general form sufficiently expanded, revised or re­constructed to present an interestingly different structure of general explana­tion — the Falconerian model for the Duomo of Milan. Finally, the third level of S-cuts (subsidiary cuts) affects only a subbranch of one of the three major branches, and therefore reformulates the general theory in interesting ways, while leaving the basic structure of explanation intact — the Darwinian model for the Duomo of Milan.
 
 为了阐述我对这个模型在达尔文进化理论核心逻辑中的作用的看法，我将从三个层次来分析进化论理论这一结构性体系。这个理论最初由达尔文在《物种起源》中提出，并在近几十年中经过了受 Falconer 思想影响的重要修订。
 
-第一个层次是最根本的「K - 切分」（killing cuts），它会切断达尔文理论三大核心原则中的至少一个，从而从根本上动摇整个理论基础。第二个层次是「R - 切分」（revision cuts），它会从三个主要理论分支中的一个上剪除相当一部分原有内容。这样做的目的是让新生长出的分支（可能更强大或更具分支性）能够在保持达尔文理论基础的同时，通过扩展、修订或重构，形成一个显著不同的理论解释框架 —— 这就像 Falconer 对米兰大教堂的重新诠释。最后一个层次是「S - 切分」（subsidiary cuts），它只涉及三大主要分支之一的某个子分支，这种修改虽然会以新颖的方式重塑理论，但会完整保留基本的解释框架 —— 这更类似于达尔文对米兰大教堂的原始构想。
+第一个层次是最根本的「K-切分」（killing cuts），它会切断达尔文理论三大核心原则中的至少一个，从而从根本上动摇整个理论基础。第二个层次是「R-切分」（revision cuts），它会从三个主要理论分支中的一个上剪除相当一部分原有内容。这样做的目的是让新生长出的分支（可能更强大或更具分支性）能够在保持达尔文理论基础的同时，通过扩展、修订或重构，形成一个显著不同的理论解释框架 —— 这就像 Falconer 对米兰大教堂的重新诠释。最后一个层次是「S-切分」（subsidiary cuts），它只涉及三大主要分支之一的某个子分支，这种修改虽然会以新颖的方式重塑理论，但会完整保留基本的解释框架 —— 这更类似于达尔文对米兰大教堂的原始构想。
 
 I wrote this book because I believe that all three pillars, branches, or tri­pod legs, representing the three fundamental principles of Darwinian central logic, have been subjected to fascinating R-cuts that have given us at least the firm outlines — for the revised structure of evolutionary explanation remains a work vigorously in progress, as only befits the nature of its subject, after all! — of a far richer and fascinatingly different theory with a retained Dar­winian core rooted in the principles of natural selection. In short, we live in the midst of a Falconerian remodeling of our growing and multiform, yet co­herently grounded, intellectual mansion.
 
@@ -286,7 +275,7 @@ I wrote this book because I believe that all three pillars, branches, or tri­po
 
 I will not, in this chapter, detail the nature of the K-cuts that failed (thus preserving the central logic of Darwinism), the R-cuts that have succeeded in changing the structure of evolutionary theory in such interesting ways, and the S-cuts that have refurbished major rooms in particular wings of the edi­fice — for these specifications set the subject matter of all following chapters. But to provide a better opening sense of this book's argument — and to clarify the nature of the three central claims of Darwinian logic — I shall at least dis­tinguish, for each branch, the K-cuts that never prevailed (and therefore did not fell the structure) from the R-cuts that have affected each branch, and have therefore provoked our current process of building an enriched struc­ture for evolutionary theory.
 
-在本章中，我不会详细讨论以下几种理论切入点：那些失败的 K 类切入点（K-cuts）(这些失败反而印证了达尔文主义的核心逻辑），那些成功改变了进化论理论结构的 R 类切入点（R-cuts），以及那些更新了理论体系特定领域的 S 类切入点（S-cuts）— 因为这些具体内容将在后续章节中详细展开。不过，为了让读者更好地理解本书的论点，同时阐明达尔文主义逻辑的三个核心主张，我会至少区分说明每个分支中两种情况：一种是那些未能成功（因此未能动摇理论根基）的 K 类切入点，另一种是那些确实影响了各个分支的 R 类切入点，正是后者推动了我们目前正在进行的工作 — 为进化论构建一个更加丰富的理论框架。
+在本章中，我不会详细讨论以下几种理论切入点：那些失败的 K 类切入点（K-cuts）（这些失败反而印证了达尔文主义的核心逻辑），那些成功改变了进化论理论结构的 R 类切入点（R-cuts），以及那些更新了理论体系特定领域的 S 类切入点（S-cuts）—— 因为这些具体内容将在后续章节中详细展开。不过，为了让读者更好地理解本书的论点，同时阐明达尔文主义逻辑的三个核心主张，我会至少区分说明每个分支中两种情况：一种是那些未能成功（因此未能动摇理论根基）的 K 类切入点，另一种是那些确实影响了各个分支的 R 类切入点，正是后者推动了我们目前正在进行的工作 —— 为进化论构建一个更加丰富的理论框架。
 
 Returning to Scilla's coral (Fig. 1-4), consider the central branch as the first leg of the tripod (agency, or the claim for organismal selection as the causal locus of the basic mechanism), the left branch as the second leg (efficacy, or the claim that selection acts as the primary creative force in building evo­lutionary novelties), and the right branch as the third leg (scope, or the claim that these microevolutionary modes and processes can, by extrapola­tion through the vastness of geological time, explain the full panoply of life's changes in form and diversity).
 
@@ -294,7 +283,7 @@ Returning to Scilla's coral (Fig. 1-4), consider the central branch as the first
 
 The cut labeled K1 on Figure 1-4 would have severed the entire coral by disproving natural selection as an evolutionary force at all. The cut labeled K2 would have fully severed the second branch, leaving natural selection as a legitimate cause, but denying it any creative role, and thereby dethroning Darwinism as a major principle in explaining life's history. (We shall see, in Chapters 3–6, that such a denial of creativity underlay the most common anti-Darwinian argument in the first generations of debate.) The cut labeled К3 would have fully severed the third branch, allowing that natural selection might craft some minor changes legitimately called "creative" in a local sense, but denying that Darwin's mechanism could then be extended to explain the panoply of macroevolutionary processes, or the actual pageant of life's his­tory. The success of any one of these K-cuts would have destroyed Darwinian theory, plain and simple. None of them succeeded, and the foundation of Darwinian central logic remains intact and strong.
 
-图 1-4 中标记为 K1 的切口试图通过完全否定自然选择作为进化动力的作用来切断整个理论体系。标记为 K2 的切口则试图切断第二个分支，虽然承认自然选择是一种合理的机制，但否认它具有任何创造性作用，这样就会让达尔文主义在解释生命历史方面失去其核心地位。(我们将在第 3-6 章看到，在早期几代的演化论争中，这种对创造性的否定正是反达尔文主义最常见的论据。）标记为 K3 的切口则试图切断第三个分支，它承认自然选择可能会在局部范围内造成一些可以称之为「创造性」的微小改变，但否认达尔文的机制能够解释宏观演化的丰富现象，或者说无法解释生命历史的盛大演进画卷。这些 K 切口中任何一个如果得逞，都会彻底摧毁达尔文理论。然而它们都未能成功，达尔文理论的核心基础至今依然完整而稳固。
+图 1-4 中标记为 K1 的切口试图通过完全否定自然选择作为进化动力的作用来切断整个理论体系。标记为 K2 的切口则试图切断第二个分支，虽然承认自然选择是一种合理的机制，但否认它具有任何创造性作用，这样就会让达尔文主义在解释生命历史方面失去其核心地位。（我们将在第 3-6 章看到，在早期几代的演化论争中，这种对创造性的否定正是反达尔文主义最常见的论据。）标记为 K3 的切口则试图切断第三个分支，它承认自然选择可能会在局部范围内造成一些可以称之为「创造性」的微小改变，但否认达尔文的机制能够解释宏观演化的丰富现象，或者说无法解释生命历史的盛大演进画卷。这些 K 切口中任何一个如果得逞，都会彻底摧毁达尔文理论。然而它们都未能成功，达尔文理论的核心基础至今依然完整而稳固。
 
 In striking, and most positive, contrast, I believe that higher R-cuts — leav­ing the base of each major branch intact, but requiring a substantial regrowth and regrafting of an enlarged structure upon the retained foundation — have been successfully wielded against all three branches of Darwinian logic, as the structure of evolutionary theory developed in the last third of the 20th cen­tury (following too rigid a calcification of the original structure, a good ad­umbration of the coral metaphor!, in the hardening of the Modern Synthesis that culminated in the Darwinian centennial celebrations of 1959). On the first branch of agency, the cut labeled R1 (see Fig. 1-4) expanded Darwin's unilevel theory of organismal selection into a hierarchical model of selection acting simultaneously on several legitimate levels of Darwinian individuality (genes, cell-lineages, organisms, demes, species, and clades). I shall show in Chapters 3, 8, and 9 how the logic of this pronounced expansion builds a the­ory fascinatingly different from, and not just a smooth extension of, Darwin's single level mechanism of agency — my reason for portraying the hierarchical model as a deeply interesting R-cut rather than a more superficial S-cut.
 
@@ -312,9 +301,9 @@ On the final branch of scope, the cut labeled R3 accepts the Darwinian contentio
 
 For now, I will say little about the even higher and more superficial S-cuts of subbranches, but I will at least indicate how I construe this category by stating a hypothetical example for each branch: an S1 cut, for example, might accept the selective basis of evolutionary change in a purely mechanical sense, but then deny full force to Darwin's deliciously radical philosophical claim that all apparent "higher level" harmony arises consequentially, through the invisible hand of lower levels acting for personal reproductive success. One might, in principle, propose such a revision by arguing that a higher force, operating by an overarching principle of order, "employs" natural selection as its mechanical agent. (I speak only hypothetically here, for no such defend­able scientific hypothesis now exists, although the concept certainly remains intelligible. Explicitly theological versions don't count as science, whatever their kind or form of potential validity.) An S2 cut might be assayed by a developmental saltationist who accepted the selectionist basis of adaptive change but felt that, at a sufficient relative frequency to be counted as impor­tant, the initial steps of such changes may be larger than the pure continuationism of Darwinian selection can admit. And an S3 cut might accept the full validity of microevolutionary extrapolationism, but deny the subsidiary de­fense of progress that Darwin grafted onto this apparatus (see Chapter 6) with ecological arguments about plenitude and the priority of biotic over abiotic competition.
 
-目前，我不会过多讨论各个分支更高层次和更表层的 S - 切割，但我至少会通过为每个分支提供一个假设性的例子来说明我如何理解这个类别：
+目前，我不会过多讨论各个分支更高层次和更表层的 S-切割，但我至少会通过为每个分支提供一个假设性的例子来说明我如何理解这个类别：
 
-例如，S1 切割可能会从纯机械的角度接受进化变化的选择性基础，但随后会否定达尔文那个具有革命性的哲学观点的核心力量 —— 即所有表面上的「更高层次」和谐都是由追求个体繁殖成功的低层次力量（类似经济学中的「无形之手"）所产生的结果。原则上，有人可能会提出这样的修正：认为存在一种更高层次的力量，它通过某种统领性的秩序原则在运作，并「利用」自然选择作为其执行工具。(这里我只是作假设性的说明，因为目前并不存在这样可以被科学证实的假说，尽管这个概念本身是可以理解的。至于那些带有宗教神学色彩的解释，无论其具有何种形式或潜在的合理性，都不能被视为科学。)
+例如，S1 切割可能会从纯机械的角度接受进化变化的选择性基础，但随后会否定达尔文那个具有革命性的哲学观点的核心力量 —— 即所有表面上的「更高层次」和谐都是由追求个体繁殖成功的低层次力量（类似经济学中的「无形之手」）所产生的结果。原则上，有人可能会提出这样的修正：认为存在一种更高层次的力量，它通过某种统领性的秩序原则在运作，并「利用」自然选择作为其执行工具。（这里我只是作假设性的说明，因为目前并不存在这样可以被科学证实的假说，尽管这个概念本身是可以理解的。至于那些带有宗教神学色彩的解释，无论其具有何种形式或潜在的合理性，都不能被视为科学。）
 
 S2 切割可能来自一位支持跳跃式进化的学者，他虽然接受适应性变化的选择论基础，但认为在相当重要的频率下，这些变化的初始步骤可能比达尔文渐进式选择理论所能接受的幅度要大得多。
 
@@ -328,7 +317,11 @@ As a paleontologist and part-time historian of science by profession, my reading
 
 But I recognize only too well that every strength comes paired with weaknesses. In my case, a paleontological focus leads me into relative ignorance for an equally important locus of reform in the structure of Darwinism — in­creasing knowledge of the nature of genomes and the mechanics of develop­ment. (I try to cover the outlines of important theoretical critiques from this "opposite" realm of the smallest, but the relative weightings in my text reflect my own varying competencies far more than the merits of the cases. For ex­ample, although I do discuss, and perhaps even adequately outline, the im­portance of Kimura and King's neutralist theory in questioning previous as­sumptions of adaptationist hegemony, I surely do not give an appropriate volume of attention to this enormously important subject.)
 
-但是我也深知，任何优势都会伴随着相应的不足。就我个人而言，专注于古生物学研究的同时，也让我对达尔文主义理论体系改革中另一个同样重要的领域知之甚少 —— 那就是我们对基因组本质和发育机制的日益深入的认识。(我试图概述来自这个与古生物学相对的微观领域中重要的理论批评。但是在我的著作中，各个主题所占的比重与其实际重要性并不相称，更多地反映了我个人专业知识的局限性。举例来说，虽然我确实探讨了 Kimura 和 King 的中性理论，并可能较好地概述了它在挑战传统适应主义主导地位方面的重要性，但我显然没有对这个极其重要的课题给予足够的关注。)
+但是我也深知，任何优势都会伴随着相应的不足。就我个人而言，专注于古生物学研究的同时，也让我对达尔文主义理论体系改革中另一个同样重要的领域知之甚少 —— 那就是我们对基因组本质和发育机制的日益深入的认识。（我试图概述来自这个与古生物学相对的微观领域中重要的理论批评。但是在我的著作中，各个主题所占的比重与其实际重要性并不相称，更多地反映了我个人专业知识的局限性。举例来说，虽然我确实探讨了 Kimura 和 King 的中性理论，并可能较好地概述了它在挑战传统适应主义主导地位方面的重要性，但我显然没有对这个极其重要的课题给予足够的关注。）
+
+
+
+
 
 Nonetheless, I hope that I have managed to present an adequate account of the coordinating themes that grant such interest and coherence to modern reformulations of the structure of evolutionary theory. Such thematic consis­tency in revision becomes possible largely because Darwin himself, in his characteristically brilliant way, tied the diverse threads of his initiating argu­ment into an overall view with a similarly tight structure — thus granting clear definition to his own commitments, and also permitting their revision in the form of an equally coherent "package." I would argue, moreover, and with­out wishing to become extravagantly hagiographical (for I wrote this book, after all, primarily to discuss a critique and revision of strict Darwinism), that our modern sense of limitations in the canonical version arises from decisions that Darwin made for tough and correct reasons in the context of his initiat­ing times — reasons that made his account the first operational theory of evolution in modern science. In particular, as Chapter 2 will discuss in detail, Darwin converted evolution from untestable speculation to doable science by breaking through the old paradox (as embedded most prominently in Lamarck's system) of contrasting a palpable force of small-scale change that could do little in extension, with a basically nonoperational (and orthogonal) mechanism of large-scale change putatively responsible for all the interesting patterns of life's history, but imperceptible and untestable from the uniformitarian study of modern organisms.
 
@@ -352,57 +345,56 @@ Ariel's telling verse in Shakespeare's The Tempest proclaims in dense metaphor:
 
 Full fathom five thy father lies;
 
-莎士比亚《暴风雨》中，精灵 Ariel 用这样富有隐喻的诗句唱道：
-
-深海五寻埋父身；
-
 Of his bones are coral made;
 
 Those are pearls that were his eyes:
-
-他的骨骼化作珊瑚；
-
-昔日眼眸今作明珠：
 
 Nothing of him that doth fade
 
 But doth suffer a sea-change
 
-他的形骸虽已消散却化作海洋永恒的篇章
-
 Into something rich and strange.
+
+莎士比亚《暴风雨》中，精灵 Ariel 用这样富有隐喻的诗句唱道：
+
+深海五寻埋父身；
+
+他的骨骼化作珊瑚；
+
+昔日眼眸今作明珠：
+
+他的形骸虽已消散却化作海洋永恒的篇章
 
 变成了富有而奇特的事物。
 
 With the exception of one possible (and originally unintended) modern reading of these images, this famous and haunting verse provides a beautiful description of both the priceless worth and intriguing modern transformation of Darwin's original theory. (For the exception, several connotations of deep burial in the sea — full fathom five — might be viewed negatively, as in "deep sixing" or going to Davy Jones's locker. But, for natural historians who read this book, and coming from an invertebrate paleontologist as author, the seafloor could not represent a more positive resting place or point of origin — and I intend to evoke only these upbeat images in citing Ariel's lines.) Other­wise, Darwin's original structure has only yielded greater treasure in cascad­ing implications and developments through the subsequent history of evolu­tionary thought — the conversion of the bones of an original outline into precious coral and pearls of current substance. Nothing of Darwin's central logic has faded or fully capsized, but his theory has been transformed, along his original lines, into something far different, far richer, and far more ade­quate to guide our understanding of nature.
 
-这句出自莎士比亚《暴风雨》中 Ariel 的著名诗句令人难忘，它完美地描述了达尔文原始理论的无价价值及其在现代的精彩蜕变，当然除了这些意象可能存在的一种（原本并非刻意为之的）现代解读。（说到这个例外，"五英寻深」（约 9 米深）的深海埋藏可能会让人联想到一些消极的含义，比如「永远沉没」或「葬身大海」。不过，对于阅读这本书的自然历史学家来说，特别是对我这个无脊椎动物古生物学家而言，海底恰恰代表着最理想的安息之地和生命的发源地 —— 在引用 Ariel 的诗句时，我只想传达这些充满希望的意象。）此外，随着进化思想的历史发展，达尔文的原始理论框架不断衍生出更多珍贵的启示 —— 就像将原始的骨架转化为今天这些珍贵的珊瑚和明珠。达尔文的核心逻辑不仅没有丝毫褪色或被推翻，反而沿着他最初设定的方向，发展成了一个截然不同、更加丰富，也更能帮助我们理解自然界的理论体系。
+这句出自莎士比亚《暴风雨》中 Ariel 的著名诗句令人难忘，它完美地描述了达尔文原始理论的无价价值及其在现代的精彩蜕变，当然除了这些意象可能存在的一种（原本并非刻意为之的）现代解读。（说到这个例外，「五英寻深」（约 9 米深）的深海埋藏可能会让人联想到一些消极的含义，比如「永远沉没」或「葬身大海」。不过，对于阅读这本书的自然历史学家来说，特别是对我这个无脊椎动物古生物学家而言，海底恰恰代表着最理想的安息之地和生命的发源地 —— 在引用 Ariel 的诗句时，我只想传达这些充满希望的意象。）此外，随着进化思想的历史发展，达尔文的原始理论框架不断衍生出更多珍贵的启示 —— 就像将原始的骨架转化为今天这些珍贵的珊瑚和明珠。达尔文的核心逻辑不仅没有丝毫褪色或被推翻，反而沿着他最初设定的方向，发展成了一个截然不同、更加丰富，也更能帮助我们理解自然界的理论体系。
 
 The last three lines of Shakespeare's verse also appear on the tombstone of the great poet Percy Bysshe Shelley (also the author of the preface to his wife's novella, Frankenstein, which cites Erasmus Darwin in its first line of text). I believe that these words would suit, and honor, Charles Darwin just as well and just as rightly.
 
 莎士比亚诗歌的最后三行也刻在伟大诗人 Percy Bysshe Shelley 的墓碑上（他也是《Frankenstein》序言的作者，而这本由他妻子所著的小说，在开篇第一行就引用了 Erasmus Darwin）。我认为这些文字用来纪念 Charles Darwin 同样恰如其分，意义非凡。
 
-
-
-
-## 00
-
-
-Apologia Pro Vita Sua
-
-A TIME TO KEEP
+### Apologia Pro Vita Sua
 
 为我生命辩护（Apologia Pro Vita Sua)
+
+A TIME TO KEEP
 
 留存的时光
 
 The Preacher spoke ever so truly in writing his famous words (Ecclesiastes 3:1-7): "For every thing there is a season, and a time to every purpose ... A time to break down, and a time to build up ... A time to rend, and a time to sew: a time to keep silence, and a time to speak." Evolutionary theory now stands in the happier second state of these genuine dichotomies (in part be­cause the first state had been mined to the limited extent of its utility): we live in a time for building up, for sewing together, and for speaking out.
 
-《圣经》中的传道者曾写下这样一段充满智慧的话（传道书 3:1-7)："凡事都有它的季节，天下万物都有它的时辰... 有拆毁的时候，也有建造的时候... 有撕裂的时候，也有缝补的时候，有保持沉默的时候，也有开口说话的时候。」如今，进化理论已经迈入了这些对立阶段中更为积极的第二阶段（这部分是因为第一阶段的价值已经被充分发掘)：我们正处在一个适合建设、融合与勇于发声的时代。
+《圣经》中的传道者曾写下这样一段充满智慧的话（传道书 3:1-7）：「凡事都有它的季节，天下万物都有它的时辰... 有拆毁的时候，也有建造的时候... 有撕裂的时候，也有缝补的时候，有保持沉默的时候，也有开口说话的时候。」如今，进化理论已经迈入了这些对立阶段中更为积极的第二阶段（这部分是因为第一阶段的价值已经被充分发掘)：我们正处在一个适合建设、融合与勇于发声的时代。
 
 Not all times are such good times, and not all scientists win the good for­tune to live within these times of motion. For theories grow as organisms do, with periods of Sturm und Drang, long latencies of youth or ossifications of age, and some happy times of optimally productive motion in between (an­other Goldilockean phenomenon). I recently studied the life and career of E. Ray Lankester (Gould, 1999a), clearly the most talented evolutionary morphologist of the generation just after Darwin. He did "good" work and had a "good" career (see Chapter 10, pages 1069–1076 for his best theoretical efforts), but he never transcended the ordinary. Perhaps the limitation lay largely within his own abilities. However, I rather suspect that he did possess both the temperamental gumption and the requisite intellectual might — but that the tools of major empirical advance just didn't emerge in his generation, for he remained stuck in a relatively unproductive middle, as Darwin had seized the first-fruits from traditional data of natural history, and the second plucking required a resolution of genetic mechanisms.
 
 并非所有时代都是这样的黄金时期，也并非所有科学家都有幸生活在这些充满变革的时代。因为理论的发展就像生物的成长一样，会经历动荡变革期、漫长的青春期潜伏或老年期的僵化，而在这些阶段之间，偶尔会出现一些恰到好处的高产期（这是另一个「适中原则」现象，就像金发姑娘童话中寻找最合适的事物一样）。我最近研究了 E. Ray Lankester 的生平和职业生涯（Gould，1999a），他无疑是达尔文之后那一代最有才华的进化形态学家（evolutionary morphologist）。他做出了「不错」的研究，也有着「不错」的职业生涯（详见第 10 章，第 1069-1076 页中关于他最出色的理论贡献），但他始终未能超越平凡。这种局限或许主要源于他个人能力的限制。然而，我倒是怀疑他其实具备了必要的个人魄力和智力水平 — 只是在他那个时代，推动重大实证研究的工具尚未出现。他被困在了一个相对缺乏突破的时期：达尔文已经采摘了传统自然历史研究的第一批果实，而要进行第二轮突破，则需要首先理解遗传机制。
+
+
+
+
+
 
 I felt a similar kind of frustration in 1977, after writing my first technical book, Ontogeny and Phylogeny (see Chapter 10, pages 1061–1063). I had spent the best years of a young career on a subject that I knew to be rele­vant (at a time when most of the profession had forgotten). But then defeat snatched my prize from the jaws of victory. I am proud of the book, and I do believe that it helped to focus interest on a subject that became doable soon thereafter. But I ran up against a wall right at the end — for the genetics of de­velopment clearly held the key to any rapprochement of embryology and evo­lution, and we knew effectively nothing about eukaryotic regulation. Indeed, as we could then only characterize structural genes by electrophoretic tech­niques, our major "arguments" for regulatory effects (if they even merited such a positive designation) invoked such negative evidence as the virtual identity in structural genes between chimps and humans, coupled with a fair visceral sense of extensive phenotypic disparity in anatomy and behavior — with the differences then attributed to regulatory genes that we could not, at the time, either study or even identify.
 
@@ -514,10 +506,7 @@ To end this admittedly vague section with the punch of paradox (and even with a 
 
 为了通过悖论的方式，再加上一些引人注目的语句来结束这个相对模糊的部分，我想简单地指出一个让人感到有趣的讽刺：层级选择理论是本书的核心概念，其定义上的层级是指包容性逐级上升的结构。然而，这个理论的一个重要结果却是破坏了另一种更常见的层级概念：即达尔文将生物选择视为所有尺度上进化变化的最终来源所体现的相对价值和重要性。因此，一个同等有效的因果层级的结构性和描述性层级削弱了一个更为传统的层级，这个传统层级基于达尔文对生物选择微观进化机制的强调。因此，自然秩序的这种结构主义观点丰富了进化理论的结构，使得我们能够在严格的达尔文主义和当前的理解之间，利用足够的理论空间，构建一个不仅仅是达尔文式的，而是法尔科纳式的解释结构的重建和扩展。
 
-## 01
-
-
-A PERSONAL ODYSSEY
+### A PERSONAL ODYSSEY
 
 For reasons beyond mere self-indulgence or egotism, I believe that defenders of such general theories about large realms of nature owe their readers some explanation for the personal bases and ontogeny of their choices — for at this level of abstraction, no theory can claim derivation by simple logical or em­pirical necessity from observed results, and all commitments, however well defended among alternative possibilities, will also be influenced by authorial preferences of a more contingent nature that must then be narrated in order to be understood. Moreover, and in this particular case, the structure of this book includes a set of vigorously idiosyncratic features that, if not acknowl­edged and justified, might obscure the far more important raison d'etre for its composition: the presentation of a tight brief for substantial reformulation in the structure of evolutionary theory, with all threads of revision conceptually united into an argument of different thrust and form, but still sufficiently con­tinuous with its original Darwinian base to remain within the same intellec­tual lineage and logic.
 
