@@ -895,12 +895,6 @@ Whatever my dubiety about the role and efficacy of abstracts (too often, as we w
 
 11 我借鉴了 Kellogg 在 1907 年为纪念达尔文诞辰一百周年和《物种起源》发表一百五十周年而发表的达尔文理论评估方法，以区分那些否定选择创造性这一基本假设的替代观点，以及那些从根本上有助于扩展、说明或重新表述自然选择理论的辅助观点。我指出，达尔文主义可以通过三个核心观点来概括：能动性、有效性和适用范围。历史上的争论一直围绕这些主题展开，批评主要集中在具有颠覆性的替代方案或富有建设性的补充观点上。我主张，作为本书的主要论点，现代争论在达尔文逻辑的这三个核心领域中形成了重要且一致的补充性批评，而这些争论可能会促成一个在保留达尔文核心基础上的全新进化理论。
 
-
-
-
-
-
-
 **Chapter 3: Seeds of hierarchy**
 
 第 3 章：层级的种子
@@ -908,6 +902,12 @@ Whatever my dubiety about the role and efficacy of abstracts (too often, as we w
 1 Nearly all scientific revolutions originate as replacements and refuta­tions of previous explanatory schemes, not as pure additions to a former state of acknowledged ignorance. Lamarck's evolutionary theory, known to anglophonic readers as a first full account through the fair but critical descriptions of Lyell (in Volume 2, 1832, of the Principles of Geology), and from Chambers's promotion in the Vestiges of 1844, provided a context for Darwin's ref­utation. Darwin's single-level theory, based on the full efficacy of locally adaptive changes at the smallest scale, countered the only available alter­native of Lamarckism by relocating the major phenomenon that generated change and required explanation (local adaptation for Darwin, general prog­ress for Lamarck), and (far more radically) by reversing the conventional Paleyan explanation for the good design of organisms and the harmony of ecosystems (direct divine construction at the highest level vs. sequelae of nat­ural selection working at the lowest level of organismal advantage).
 
 1 几乎所有的科学革命都是通过取代和反驳之前的解释方案而产生的，而不是简单地在已知的无知中添加新内容。Lamarck 的进化论，被英语读者通过 Lyell 在《地质学原理》第二卷（1832 年）中的公正但批判性的描述，以及 Chambers 在 1844 年《Vestiges》中的宣传所了解，为 Darwin 的反驳奠定了基础。Darwin 提出的单层理论，依赖于最小尺度上局部适应性变化的有效性，挑战了当时唯一的替代选择 ——Lamarck 主义。Darwin 通过重新定义变化的主要来源（他主张局部适应，而 Lamarck 则认为是普遍进步）来进行反驳，并更为激进地颠覆了传统的 Paley 式解释，后者认为生物的精妙设计和生态系统的和谐是由最高层次的神圣创造直接导致的，而 Darwin 则认为这是自然选择在生物体优势的最低层次上作用的结果。
+
+
+
+
+
+
 
 2 Lamarck, a dedicated materialist with a two-factor theory of evolution as a contrast between linear progress up life's ladder and tangential deflec­tions of diversity through local adaptation, has been widely misunderstood (and reviled), both in Darwin's time and today, as a vitalist and pure expo­nent of "soft" or Lamarckian inheritance (which he accepted as the "folk wisdom" of his day, and invoked primarily to explain the secondary process of lateral adaptation).
 
