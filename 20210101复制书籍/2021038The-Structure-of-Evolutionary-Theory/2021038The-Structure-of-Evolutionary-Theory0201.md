@@ -314,14 +314,6 @@ The key argument of the section on taxonomy makes the same point in a different 
 
 本节关于分类学的关键论点以另一种方式表达：如果动物没有经历过变化的历史，并且是根据现今的需求和功能被创造的，那么为什么会有相似的解剖结构，却包括了生活方式截然不同的生物呢？达尔文在讨论分类学的开篇中写道：「如果一个群体完全适合陆地生活，另一个群体适合水中生存；一个群体以肉食为生，另一个群体以植物为食，那么群体的存在就很容易理解；但自然界的情况大不相同，因为即使是同一亚群的成员，往往也有不同的习性」（第 411 页）。
 
-
-
-
-
-
-
-
-
 These arguments strike us as most familiar when based on organic form, but fewer evolutionists recognize that method four also under girds Darwin's two chapters on biogeography (11 and 12). Darwin uses dissonance between organism and dwelling place as the coordinating theme of these chapters: the geographic distributions of organisms do not primarily suit their current cli­mates and topographies, but seem to record more closely a history of oppor­tunities for movement. Again, Darwin presents the basic argument in his first paragraph (p. 346): "In considering the distribution of organic beings over the face of the globe, the first great fact which strikes us is, that neither the similarity nor the dissimilarity of the inhabitants of various regions can be ac­counted for by their climatal and other physical conditions."
 
 当这些论点基于有机形式时，我们最为熟悉，但很少有进化论者意识到，方法四也在支撑达尔文关于生物地理学的第 11 章和第 12 章。达尔文在这些章节中以生物与其栖息地的不匹配作为核心主题：生物的地理分布并不一定适应它们当前的气候和地形，而更像是记录了它们迁移机会的历史。同样，达尔文在他的第一段（第 346 页）中提出了基本论点：「在考虑有机生物在全球的分布时，首先显而易见的重大事实是，各地区生物的相似性或差异性，不能仅仅用它们所处的气候和其他物理条件来解释。」
@@ -360,9 +352,11 @@ I may have burdened readers with too much detail about Darwin's argu­ments for 
 
 ### 2.3 Darwin as a Philosophical Revolutionary
 
+达尔文作为哲学上的革新者
+
 #### The Causes of Nature's Harmony
 
-达尔文作为哲学上的革新者自然和谐背后的原因
+自然和谐背后的原因
 
 Darwin and William Paley
 
@@ -444,7 +438,7 @@ Now suppose, as a problem in abstract perversity, that one made a pledge to subv
 
 With even more perversity, one might judge Paley's observation as un­doubtedly correct. Nature features exquisite adaptation at overwhelming relative frequency. But the unkindest cut of all then holds that this order, the very basis of Paley's inference about the nature of God, arises not directly from omnipotent benevolence, but only as a side-consequence of a causal principle of entirely opposite import — namely, as the incidental effect of or­ganisms struggling for their own benefit, expressed as reproductive success. Could any argument be more subversive? One accepts the conventional ob­servation, but then offers an explanation that not only inverts orthodoxy, but seems to mock the standard interpretation in a manner that could almost be called cruel. This more radical version lies at the core of Darwin's argu­ment for natural selection. (Darwin actually employed both versions of the radical argument against Paley, but for different aspects of his full case. He in­voked oddities and imperfections as his major evidence for the factuality of evolution (see pp. 111–116). But he used the more radical version — exqui­site adaptation exists in abundance, but its cause inverts Paley's world — to construct his mechanism for evolutionary change, the theory of natural selection.)
 
-即便是以一种反常的视角来看，Paley 关于自然适应性的观察似乎无可争议。自然界以极高的频率展现出精妙的适应能力。然而，最具挑战性的观点在于，这种秩序 ——Paley 用来推测上帝本质的基础 —— 并不是直接源自全能的仁慈，而是生物为了自身利益、通过繁殖成功而斗争的附带结果。还有比这更具颠覆性的看法吗？我们接受了传统的观察，但随后提出了一种解释，这种解释不仅颠覆了传统观念，而且似乎嘲弄了标准解释，以至于显得近乎残酷。这种更为激进的观点正是达尔文自然选择论证的核心。(实际上，达尔文在反驳 Paley 时使用了两个激进论点的版本，但针对的是他整体论证中的不同方面。他将奇异性和不完美作为进化事实的主要证据（参见第 111-116 页）。但是，他用更激进的版本 —— 尽管精妙的适应性大量存在，但其原因却颠覆了 Paley 的世界观 —— 来构建他的进化变化机制，也就是自然选择理论。)
+即便是以一种反常的视角来看，Paley 关于自然适应性的观察似乎无可争议。自然界以极高的频率展现出精妙的适应能力。然而，最具挑战性的观点在于，这种秩序 —— Paley 用来推测上帝本质的基础 —— 并不是直接源自全能的仁慈，而是生物为了自身利益、通过繁殖成功而斗争的附带结果。还有比这更具颠覆性的看法吗？我们接受了传统的观察，但随后提出了一种解释，这种解释不仅颠覆了传统观念，而且似乎嘲弄了标准解释，以至于显得近乎残酷。这种更为激进的观点正是达尔文自然选择论证的核心。（实际上，达尔文在反驳 Paley 时使用了两个激进论点的版本，但针对的是他整体论证中的不同方面。他将奇异性和不完美作为进化事实的主要证据（参见第 111-116 页）。但是，他用更激进的版本 —— 尽管精妙的适应性大量存在，但其原因却颠覆了 Paley 的世界观 —— 来构建他的进化变化机制，也就是自然选择理论。）
 
 We all understand, of course, that the force of Darwin's radicalism extends well beyond the inversion of an explanatory order; he also undercut a pri­mary source of human comfort and solace. This book cannot address such a vital issue at any depth, but I must record the point — for this wrenching be­came so salient in subsequent human history. If the natural footprints of Paley's God — the source of our confidence in his character, his goodness and, incidentally, the only hint from nature that we should accept other revealed doctrines, in particular the idea of bodily resurrection (1803, pp. 580-581) — must be reconceived as epiphenomena of a struggle for personal success, then what becomes of nature's beauty, instruction and solace? What a bitter cup Darwin offers us, compared with Paley's sweet promise (1803, pp. 578-579): "The hinges in the wings of an earwig, and the joints of its antennae, are as highly wrought, as if the Creator had had nothing else to finish. We see no signs of diminution of care by multiplication of objects, or of distraction of thought by variety. We have no reason to fear, therefore, our being forgotten, or overlooked, or neglected."
 
@@ -456,9 +450,11 @@ But then, the man who served as the primary focus of Paley's venera­tion had al
 
 Darwin and Adam Smith
 
+达尔文和亚当·斯密
+
 Many scientists fail to recognize that all mental activity must occur in social contexts, and that a variety of cultural influences must therefore impact all scientific work. Those who do note the necessary link usually view cultural embeddedness as an invariably negative component of inquiry — a set of bi­ases that can only distort scientific conclusions, and that should be identified for combat. But cultural influences can also facilitate scientific change, for in­cidental reasons to be sure, but with crucially positive results nonetheless — the exaptive principle that evolutionists, above all, should grasp and honor! The origin of Darwin's concept of natural selection provides my favorite ex­ample of cultural context as a promoter.
 
-达尔文和亚当·斯密许多科学家没有意识到，所有心理活动都需要在社会背景下进行，因此各种文化影响必然会对所有科学工作产生影响。那些注意到这一必要联系的人，通常会将文化嵌入视为探究过程中的负面因素 —— 一系列可能扭曲科学结论的偏见，需要识别并加以对抗。然而，文化影响也可以在偶然的情况下促进科学变革，并产生至关重要的积极成果 —— 这就是借用性原则，进化论者尤其应该理解并尊重！达尔文自然选择概念的起源是我最喜欢的文化背景促进科学进步的例子。
+许多科学家没有意识到，所有心理活动都需要在社会背景下进行，因此各种文化影响必然会对所有科学工作产生影响。那些注意到这一必要联系的人，通常会将文化嵌入视为探究过程中的负面因素 —— 一系列可能扭曲科学结论的偏见，需要识别并加以对抗。然而，文化影响也可以在偶然的情况下促进科学变革，并产生至关重要的积极成果 —— 这就是借用性原则，进化论者尤其应该理解并尊重！达尔文自然选择概念的起源是我最喜欢的文化背景促进科学进步的例子。
 
 The link of Darwin to Malthus has been recognized and accorded proper importance from the start, if only because Darwin himself had explicitly noted and honored this impetus. But if Darwin required Malthus to grasp the central role of continuous and severe struggle for existence, then he needed the related school of Scottish economists — the laissez-faire theorists, centered on Adam Smith and the Wealth of Nations (first published in the auspicious revolutionary year of 1776) — to formulate the even more fundamental prin­ciple of natural selection itself. But the impact of Adam Smith's economics did not strike Darwin with the force of eureka; the concepts crept upon him in the conventional fashion of most influences upon our lives. How many of us can specify a definite parental admonition, or a particular taunt of our peers, as central to the construction of our deepest convictions?
 
