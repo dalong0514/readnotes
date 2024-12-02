@@ -42,7 +42,7 @@ To impress readers with the power of natural selection, Darwin continually stres
 
 Certainly no clear line of demarcation has as yet been drawn between species and sub-species . . .; or, again, between sub-species and well-marked varieties, or between lesser varieties and individual differences. These differences blend into each other in an insensible series; and a se­ries impresses the mind with the idea of an actual passage. Hence I look at individual differences, though of small interest to the systematist, as of high importance for us, as being the first step towards such slight varie­ties as are barely thought worth recording in works on natural history (1859, p. 51).
 
-目前，物种与亚种之间并没有明确的界限。同样，亚种与明显的变种，或者较小的变种与个体差异之间的界限也未被清晰界定。这些差异在一个渐变的序列中相互交融，给人一种实际渐变的印象。因此，我认为个体差异虽然对系统学家来说可能兴趣不大，但对我们来说却非常重要，因为这是迈向那些在自然历史书籍中几乎不被记录的轻微变种的第一步 （1859，p. 51）。
+目前，物种与亚种之间并没有明确的界限。同样，亚种与明显的变种，或者较小的变种与个体差异之间的界限也未被清晰界定。这些差异在一个渐变的序列中相互交融，给人一种实际渐变的印象。因此，我认为个体差异虽然对系统学家来说可能兴趣不大，但对我们来说却非常重要，因为这是迈向那些在自然历史书籍中几乎不被记录的轻微变种的第一步（1859，p. 51）。
 
 I need hardly stress Darwin's impact as one of the half dozen or so most revolutionary thinkers in western history. I want, instead, to emphasize a more curious aspect of his status — his continuing relevance, indeed his benev­olent hovering over almost all our current proceedings. We may revere New­ton and Lavoisier as men of equal impact, but do modern physicists and chemists actively engage the ideas of these founders, as they pursue their daily work? Darwin, on the other hand, continues to bestride our world like a colossus — so much so that I can only begin this book on the structure of evo­lutionary theory by laying out Darwin's detailed vision as a modern starting point, a current orthodoxy only lightly modified by more than a century of work. I do, in this book, advocate some major restructuring, in the light of new concepts and findings, and with the approbation of more and more col­leagues as our understanding of evolution broadens. But Darwin remains our context — and my proposed restructuring represents an extension, not a re­placement, of his vision. The hierarchical theory of selection builds a world different from Darwin's in many important respects, but we do so by ex­tending his mechanism of selection to a larger realm than he acknowledged — that is, to levels both below and above his focus on the struggle among or­ganisms.
 
@@ -56,11 +56,9 @@ Caesar voiced his suspicions of Cassius, fearing men who think too much (may all
 
 凯撒曾表达过对卡西乌斯的怀疑，担心那些过于深思熟虑的人（希望所有的暴君都能对此保持警惕）。然而，他不情愿地给予的赞美之词却恰好可以用来总结达尔文取得非凡成功的原因：「他读书广泛；他是一位出色的观察者，并且能够洞察人类的行为。」
 
-Darwin as a Historical Methodologist
+### 2.2 Darwin as a Historical Methodologist
 
-ONE LONG ARGUMENT
-
-未找到意译内容
+#### One Long Argument
 
 An old quip, highlighting the intractability of philosophical dualism, pro­claims: "what's matter? never mind; what's mind? doesn't matter." Predarwinian evolutionary systems embodied the same kind of Catch-22, this time in painful and practical terms, destined to ensnare any budding naturalist who hoped to study organisms by direct confrontation with testable hypothe­ses. Lamarck's system, for example, contrasted an intrinsic force of progress with a diversionary, and clearly secondary, force of adaptation to changing local environments. The secondary process worked in the immediate here and now, and might be engaged empirically by studies of adaptation and heredity. But the more important primary force, the source of natural order and the ul­timate cause of human mentality, lurked in the background of time's immen­sity, and at the inaccessible interior of the very nature of matter. This charac­terization creates an intolerable dilemma for anyone who holds (as Darwin did) that science must be defined as testable doing, not just noble thinking. Recalling my opening quip, Lamarck's system virtually mocked the empirical approach to science, and forestalled any growing confidence in evolution: what is important cannot be seen; what can be seen is not important.
 
@@ -82,11 +80,13 @@ Inferences about history, so crucial to any evolutionary work, had been plagued 
 
 对历史的推断是进化研究中的关键环节，但由于缺乏信心，科学家们一直难以对过去进行真正的科学探究。达尔文意识到，只有当历史推断的方法能够像伽利略观察木星的卫星那样被信任时，进化论才能获得尊重。因此，他开始制定历史推断的规则。我认为《物种起源》就是对这些规则的一次全面说明。历史推断不仅帮助确立了进化的事实基础，也为自然选择作为进化机制提供了支持。《物种起源》中所谓的「一场长期论证」展示了历史推断的综合策略和模式（更多内容见 Gould，1986）。理解达尔文在这方面的具体努力有助于我们领会他的激进哲学，并识别出其理论中被认为是「达尔文主义」核心的特征。
 
-THE PROBLEM OF HISTORY
+#### The Problem of History
+
+历史的魅力
 
 Reading Darwin has been a persisting and central joy in my intellectual life. Lyell and Huxley may have been greater prose stylists, with more consistency in the ring and power of their words. Yet I give the nod to Darwin, and not only for the greater depth and power of his ideas. Darwin often wrote quite ordinary prose, page after page. But then, frequently enough to rivet the at­tention of any careful reader, his passion bursts through, and he makes a point with such insight and force (almost always by metaphor) that under­standing breaks like sunrise. Every evolutionist can cite a list of favorite Dar­winian passages, written on well-worn index cards for lectures (or, now, eter­nally embedded in PowerPoint files), posted on the office door or prominently displayed above the typewriter (now the computer terminal), or simply (and lovingly) committed to memory.
 
-历史的魅力阅读达尔文一直是我智识生活中持久而核心的乐趣。Lyell 和 Huxley 在散文方面或许更具风格，他们的文字一贯有力且富有韵味。然而，我对达尔文情有独钟，不仅因为他思想的深刻与强大。达尔文常常写得非常普通，一页接着一页。然而，他的激情时不时地迸发，吸引着细心读者的目光，用令人豁然开朗的隐喻表达他的观点。每位研究进化论的人都能列举出自己钟爱的达尔文段落，这些段落被珍藏在讲座用的旧索引卡片上（或现在的 PowerPoint 文件中），贴在办公室门上，或是醒目地展示在电脑上方，甚至只是用心记住，满怀热爱。
+阅读达尔文一直是我智识生活中持久而核心的乐趣。Lyell 和 Huxley 在散文方面或许更具风格，他们的文字一贯有力且富有韵味。然而，我对达尔文情有独钟，不仅因为他思想的深刻与强大。达尔文常常写得非常普通，一页接着一页。然而，他的激情时不时地迸发，吸引着细心读者的目光，用令人豁然开朗的隐喻表达他的观点。每位研究进化论的人都能列举出自己钟爱的达尔文段落，这些段落被珍藏在讲座用的旧索引卡片上（或现在的 PowerPoint 文件中），贴在办公室门上，或是醒目地展示在电脑上方，甚至只是用心记住，满怀热爱。
 
 Several of my favorite passages celebrate the broadened understanding of nature that derives from recognizing organisms as products of history, rather than objects created in their present state. Darwin writes (1859, 485–486):*
 
@@ -114,17 +114,22 @@ Whatever the cause may be of each slight difference in the offspring from their 
 
 Having established a domain of testability by exclusion, Darwin laid out his methodology for history — never explicitly to be sure, but with such accu­mulating force by example that the entire book becomes "one long argu­ment" for the tractability of his new science. Those of us who practice the sci­ences of reconstructing specific events and unravelling temporal sequences have always fought a battle for appropriate status and respect, no less so to­day than in Darwin's time (see Gould, 1986), against those who would view such work as a "lesser" activity, or not part of science at all. History presents two special problems: (1) frequent absence of evidence, given imperfections of preservation; and (2) uniqueness of sequences, unrepeatable in their con­tingent complexity, and thereby distancing the data of history from such stan­dard concepts as prediction, and experimentation.
 
-Darwin 在通过排除法建立了一个可测试的领域后，阐述了他的历史研究方法 —— 虽然从未明确说明，但通过不断累积的实例，整本书成为了他新科学可操作性的「长篇论证」。我们这些从事重建特定事件和解开时间序列的科学家们，一直在为获得应有的地位和尊重而奋斗，今天也不例外，这种情况和 Darwin 时代并无二致（参见 Gould，1986）。我们常常面临一些人的质疑，他们认为这项工作是「次等」的活动，甚至不属于科学范畴。历史研究面临两个特殊问题：（1）由于保存条件的不完善，证据常常缺失；（2）序列具有独特性，其伴随的复杂性无法重复，这使得历史数据与预测和实验等标准科学概念相去甚远。
+Darwin 在通过排除法建立了一个可测试的领域后，阐述了他的历史研究方法 —— 虽然从未明确说明，但通过不断累积的实例，整本书成为了他新科学可操作性的「长篇论证」。我们这些从事重建特定事件和解开时间序列的科学家们，一直在为获得应有的地位和尊重而奋斗，今天也不例外，这种情况和 Darwin 时代并无二致（参见 Gould，1986）。我们常常面临一些人的质疑，他们认为这项工作是「次等」的活动，甚至不属于科学范畴。历史研究面临两个特殊问题：1）由于保存条件的不完善，证据常常缺失；2）序列具有独特性，其伴随的复杂性无法重复，这使得历史数据与预测和实验等标准科学概念相去甚远。
 
 We may epitomize the dilemma in the following way: many people define science as the study of causal processes. Past processes are, in principle, unobservable. We must therefore work by inference from results preserved in the historical record. We must study modern results produced by processes that can be directly observed and even manipulated by experiment — and we must then infer the causes of past results by their "sufficient similarity" (Steno's principle — see Gould, 1981c) with present results. This procedure re­quires, as Mill (1881) and other philosophers recognized long ago, a method­ological assumption of temporal invariance for laws of nature. Historical study manifests its special character by placing primary emphasis upon com­parison and degrees of similarity, rather than the canonical methods of sim­plification, manipulation, controlled experiment, and prediction.
 
 我们可以这样看待这个问题：很多人认为科学是研究因果过程。然而，过去的过程本质上是无法直接观察的。因此，我们需要根据历史记录中保存的结果进行推断。我们要研究那些通过能直接观察或实验操控的过程所产生的现代结果 —— 然后，我们通过这些结果与现今结果「足够相似」（Steno 的原则 —— 参见 Gould，1981c）来推断过去结果的原因。正如 Mill（1881）和其他哲学家早已指出的，这一过程需要方法论上假设自然规律在时间上的不变性。历史研究的独特性在于，它主要强调比较和相似度，而不是依赖简化、操控、控制实验和预测的传统方法。
 
+
+
+
+
+
 Darwin had done some paleontological work, particularly in his treatises on barnacles (1851-1858), and his important discoveries of South American fossil vertebrates (formally named and described by Owen, at Darwin's invi­tation). But Darwin was not primarily a paleontologist, and he did not intend to base his argument for evolution on the evidence of fossils — especially since he viewed the stratigraphic record, with its vast preponderance of gaps over evidence, as more a hindrance than an aid to his theory (see chapters 9 and 10 of the Origin). Thus, of the two major sources for historical reconstruction — direct but imperfect information from fossils, and indirect but copious data from modern organisms — Darwin preferred the second as his wellspring of documentation. The Origin therefore focuses upon the establishment of a methodology for making inferences about history from features of modern organisms — and then using these multifarious inferences to prove both the fact of evolution and the probability of natural selection as a primary mecha­nism of change.
 
 达尔文曾从事一些古生物学研究，尤其是在他关于藤壶的论文（1851-1858）中，以及他发现南美化石脊椎动物的重要工作（由欧文在达尔文的邀请下正式命名和描述）。然而，达尔文并非主要从事古生物学，他也不打算把进化论的论据建立在化石证据上，因为他认为地层记录中存在的众多空白更多是对他的理论的障碍，而非支持（参见《物种起源》第 9 和第 10 章）。因此，在重建历史的两大信息源中 —— 直接但不完美的化石信息和间接但丰富的现代生物数据 —— 达尔文更倾向于利用现代生物的数据。因此，《物种起源》重点在于建立一种方法，通过现代生物的特征推断历史，并利用这些多种推断来证明进化的事实和自然选择作为主要变化机制的可能性。
 
-A FOURFOLD CONTINUUM OF METHODS FOR THE INFERENCE OF HISTORY
+#### A Fourfold Continuum of Methods for the Inference of History
 
 Darwin, as a subtle and brilliant thinker, must be read on several levels. Con­sider just three, at decreasing domains of overt display, but increasing realms of generality: On the surface — a lovely, and not a pejorative, location for any student of nature — each book treats a particular puzzle: different forms of flowers on the same plant (1877), modes of formation for coral atolls (1842), formation of soil by worms (1881), styles of movement in climbing plants (1880a), the fertilization of orchids by insects (1862). At an intermediary level, as Ghiselin (1969) showed in his innovative study of the entire Darwin­ian corpus, each book forms part of a comprehensive argument for evolution itself. But I believe that we must also recognize a third, even deeper and more comprehensive layer of coordinating generality — Darwin's struggle to con­struct and apply a workable method for historical inference: a series of proce­dures offering sufficient confidence to place the sciences of history on a par with the finest experimental work in physics and chemistry. I have come to re­gard each of Darwin's books as, all at the same time, a treatment of a particu­lar puzzle (level one), an argument for an evolutionary worldview (level two), and a treatise on historical methodology (level three). But the methodological focus of level three has usually been overlooked because Darwin chose to work by practice rather than proclamation.
 
