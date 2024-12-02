@@ -1,4 +1,4 @@
-Stephen Jay Gould.(2002).2021038The-Structure-of-Evolutionary-Theory.Belknap Press of Harvard University Press => Introduction: (Not) Like a Rock
+Stephen Jay Gould.(2002).2021038The-Structure-of-Evolutionary-Theory.Belknap Press of Harvard University Press => 0201The Essence of Darwinism and the Basis of Modern Orthodoxy: An Exegesis of the Origin of Species
 
 ## 0201The Essence of Darwinism and the Basis of Modern Orthodoxy: An Exegesis of the Origin of Species
 
@@ -194,10 +194,6 @@ Darwin offered a twofold response to these arguments, both using this sec­ond h
 
 达尔文针对这些论点作出了两方面的回应，都是通过第二种历史排序方法。他首先提出理论论据，指出在所谓不可能的情况下，中间阶段是可以设想的，甚至是可能的。他认为，早期阶段虽然规模较小，无法以最终的方式运作，但可以在最初承担不同的功能，随后被应用于另一种生活方式。（例如，初期的翅膀最初用于热量调节，随着进化到足够大的尺寸而提供了「偶然」的空气动力学优势，最终成为飞行器官 —— 有关这种情景的实验验证，请参阅 Kingsolver 和 Koehl，1985 年，以及一般讨论请参阅 Gould，1991b）。这种功能转变的概念被称为「预适应」原则，尽管这一名称可能造成误解，但它已成为进化理论中的一个重要原则（见第 11 章）。达尔文在写作中使用了一种其文章中少见的强调语气：「在考虑器官的过渡时，牢记从一个功能到另一个功能转换的可能性是极其重要的」（第 191 页）。
 
-
-
-
-
 As a response to charges of inviability for intermediary stages, Darwin invoked the important principle of redundancy as a norm for organic structures and functions. Most important functions can be performed by more than one organ; and most organs work in more than one way. By coupling these two aspects of redundancy, transitions in single organs can easily be conceived. An organ doesn't mysteriously invent a new function, but usually intensifies and specializes a previously minor use, while shedding an old primary opera­tion. This previously major function can then be lost because other organs continue to do the same necessary job.
 
 为了回应关于中间阶段不可行的指控，达尔文提出了冗余这一重要原则，并认为这是有机结构和功能的常态。大多数重要功能可以由多个器官来执行，而大多数器官可以通过多种方式来工作。结合冗余的这两个方面，我们可以很容易地设想单个器官的过渡过程。器官不会突然产生一种新功能，而是通常会强化和专门化之前不太重要的用途，同时放弃旧的主要功能。这个之前的主要功能因此可以消失，因为其他器官仍在继续执行同样必要的任务。
@@ -236,9 +232,9 @@ Every scholar could cite a favorite case of Darwinian consilience. For my part, 
 
 (1) The general paucity of endemic species on islands, contrasted with comparable areas of continents; why should God put fewer species on islands?
 
-(2) The frequent displacement of endemic island biotas by continental spe­cies introduced by human transport. If God created species for islands, why should species designed for continents so often prove superior in competi­tion: "He who admits the doctrine of the creation of each separate species, will have to admit, that a sufficient number of the best adapted plants and an­imals have not been created on oceanic islands; for man has unintentionally stocked them from various sources far more fully and perfectly than has na­ture" (p. 390).
-
 (1）岛屿上的特有物种数量普遍较少，与大陆上相似区域相比，这种现象为何会如此？为什么上帝在岛屿上放置的物种较少？
+
+(2) The frequent displacement of endemic island biotas by continental spe­cies introduced by human transport. If God created species for islands, why should species designed for continents so often prove superior in competi­tion: "He who admits the doctrine of the creation of each separate species, will have to admit, that a sufficient number of the best adapted plants and an­imals have not been created on oceanic islands; for man has unintentionally stocked them from various sources far more fully and perfectly than has na­ture" (p. 390).
 
 (2）岛屿上特有的生物群落经常被人类运输引入的大陆物种所取代。如果上帝是为岛屿创造了物种，为什么那些适合大陆的物种在竞争中常常表现得更优越：「支持每个物种都是单独创造这一观点的人，不得不承认，在海洋岛屿上并没有创造出足够数量的最适应的植物和动物；因为人类无意中从各种来源比自然更充分和完美地补充了这些岛屿的生物群落」(p. 390）。
 
@@ -318,6 +314,14 @@ The key argument of the section on taxonomy makes the same point in a different 
 
 本节关于分类学的关键论点以另一种方式表达：如果动物没有经历过变化的历史，并且是根据现今的需求和功能被创造的，那么为什么会有相似的解剖结构，却包括了生活方式截然不同的生物呢？达尔文在讨论分类学的开篇中写道：「如果一个群体完全适合陆地生活，另一个群体适合水中生存；一个群体以肉食为生，另一个群体以植物为食，那么群体的存在就很容易理解；但自然界的情况大不相同，因为即使是同一亚群的成员，往往也有不同的习性」（第 411 页）。
 
+
+
+
+
+
+
+
+
 These arguments strike us as most familiar when based on organic form, but fewer evolutionists recognize that method four also under girds Darwin's two chapters on biogeography (11 and 12). Darwin uses dissonance between organism and dwelling place as the coordinating theme of these chapters: the geographic distributions of organisms do not primarily suit their current cli­mates and topographies, but seem to record more closely a history of oppor­tunities for movement. Again, Darwin presents the basic argument in his first paragraph (p. 346): "In considering the distribution of organic beings over the face of the globe, the first great fact which strikes us is, that neither the similarity nor the dissimilarity of the inhabitants of various regions can be ac­counted for by their climatal and other physical conditions."
 
 当这些论点基于有机形式时，我们最为熟悉，但很少有进化论者意识到，方法四也在支撑达尔文关于生物地理学的第 11 章和第 12 章。达尔文在这些章节中以生物与其栖息地的不匹配作为核心主题：生物的地理分布并不一定适应它们当前的气候和地形，而更像是记录了它们迁移机会的历史。同样，达尔文在他的第一段（第 346 页）中提出了基本论点：「在考虑有机生物在全球的分布时，首先显而易见的重大事实是，各地区生物的相似性或差异性，不能仅仅用它们所处的气候和其他物理条件来解释。」
@@ -354,9 +358,9 @@ I may have burdened readers with too much detail about Darwin's argu­ments for 
 
 我可能在解释达尔文推断历史的论点时给读者提供了过多细节，但这种详细的方法论中自有其理。我的总体观点是，《物种起源》应被视作一本涵盖科学在其最佳和最具革命性时期的两个对立但互补的极点的书 —— 首先，作为一本方法论专著，通过实例证明进化是可以被测试和有效研究的；其次，作为对生命和自然的新观念的知识宣言。作为方法论专著，《物种起源》关注具体而微小的事物 —— 主张通过将均变论推断至地质尺度来解释所有进化。因此，我们可以避免依赖那些无法直接研究的「更高」力量，因为它们只在无法测试的久远年代中起作用，或是发生得极为罕见，以至于我们在人类短暂的历史中几乎没有可能直接观察到。困扰已久的拉马克悖论 —— 重要的事情无法被研究，而可以研究的事情却不重要 —— 因此消失了。达尔文的体系首次使进化成为一个可操作的科学。这些方法论特征对达尔文的理论概述起到了强化作用（如我们将在下一节中看到），因此对所谓达尔文主义的本质，即达尔文自然观的必要条件，作出了不可或缺的贡献。这本书认为我们可以定义这样一套基本承诺，但这些承诺在当今时代已不再充分。
 
-Darwin as a Philosophical Revolutionary
+### 2.3 Darwin as a Philosophical Revolutionary
 
-THE CAUSES OF NATURE'S HARMONY
+#### The Causes of Nature's Harmony
 
 达尔文作为哲学上的革新者自然和谐背后的原因
 
@@ -414,19 +418,19 @@ I had never read Natural Theology straight through before pursuing my research f
 
 在为本书进行研究之前，我从未完整读过《自然神学》。在阅读过程中，我惊讶于帕利和达尔文论证结构之间的相似性（当然，达尔文的解释是反其道而行之的）。达尔文对卢伯克说他几乎能背诵帕利的作品，这绝不是夸张。达尔文的论证风格、例子的选择，甚至是节奏和用词，常常（也许无意识地）反映出他对帕利的记忆。请看几个重要联系的例子：
 
-1. Paley, like Darwin, relies upon comparison and extrapolation from arti­ficial to natural. Darwin moves from artificial to natural selection, Paley from human to animal machines. Both rely on the central argument that a common mechanism works much more powerfully in nature. Paley's words recall Dar­win's argument that natural selection, working on all parts for so much time, must trump artificial selection, which only affects the few features we choose to emphasize in the short duration of human history. "For every indication of contrivance, every manifestation of design, which existed in the watch, exists in the works of nature; with the difference, on the side of nature, of be­ing greater and more, and that in a degree which exceeds all computation" (1803, p. 19).
+1 Paley, like Darwin, relies upon comparison and extrapolation from arti­ficial to natural. Darwin moves from artificial to natural selection, Paley from human to animal machines. Both rely on the central argument that a common mechanism works much more powerfully in nature. Paley's words recall Dar­win's argument that natural selection, working on all parts for so much time, must trump artificial selection, which only affects the few features we choose to emphasize in the short duration of human history. "For every indication of contrivance, every manifestation of design, which existed in the watch, exists in the works of nature; with the difference, on the side of nature, of be­ing greater and more, and that in a degree which exceeds all computation" (1803, p. 19).
 
-1. Paley 和 Darwin 一样，通过比较和推断从人工现象转向自然现象。Darwin 从人工选择过渡到自然选择，而 Paley 则从人类制造的机器类比到动物的生物机器。他们都认为，自然界中存在的共同机制比人工机制更强大。Paley 的观点让人联想到 Darwin 的论述：自然选择因为作用时间长，影响范围广，必然会超越人工选择，因为人工选择只在短暂的人类历史中对我们选择强调的少数特征产生影响。「在钟表中看到的每一个设计的迹象和表现也能在自然界中找到；自然界的规模和复杂性更大，其程度超出了所有计算」（1803，第 19 页）。
+1 Paley 和 Darwin 一样，通过比较和推断从人工现象转向自然现象。Darwin 从人工选择过渡到自然选择，而 Paley 则从人类制造的机器类比到动物的生物机器。他们都认为，自然界中存在的共同机制比人工机制更强大。Paley 的观点让人联想到 Darwin 的论述：自然选择因为作用时间长，影响范围广，必然会超越人工选择，因为人工选择只在短暂的人类历史中对我们选择强调的少数特征产生影响。「在钟表中看到的每一个设计的迹象和表现也能在自然界中找到；自然界的规模和复杂性更大，其程度超出了所有计算」（1803，第 19 页）。
 
-2. Both men invoke the same examples. Paley compares the eye and telescope; Darwin lauds the eye as the finest example of complex natural design, and then presents an evolutionary explanation. Paley cites the swimbladder as an independent device created for life in water; Darwin illustrates homology with the tetrapod lung and proposes an evolutionary passage.
+2 Both men invoke the same examples. Paley compares the eye and telescope; Darwin lauds the eye as the finest example of complex natural design, and then presents an evolutionary explanation. Paley cites the swimbladder as an independent device created for life in water; Darwin illustrates homology with the tetrapod lung and proposes an evolutionary passage.
 
 两人都使用了相同的例子。Paley 比较了眼睛和望远镜；Darwin 称赞眼睛是复杂自然设计的最佳例子，并提出了进化的解释。Paley 认为鱼鳔是为了适应水中生活而独立创造出来的装置；而 Darwin 则通过四足动物的肺来展示生物结构的相似性，并提出了一个进化过程。
 
-3. Darwin often uses Paley's logic, sometimes against his predecessor. Paley, for example, dismisses arguments about "tendencies to order" or "principles of design" as empty verbiage, explaining nothing; a true cause must be identi­fied, namely God himself. Darwin makes the same point, but cites evolution as the true cause, while branding statements about creation ex nihilo as empty verbiage. Paley writes (p. 76): "A principle of order is the word: but what is meant by a principle of order, as different from an intelligent Creator, has not been explained either by definition or example: and, without such ex­planation, it should seem to be a mere substitution of words for reasons, names for causes."
+3 Darwin often uses Paley's logic, sometimes against his predecessor. Paley, for example, dismisses arguments about "tendencies to order" or "principles of design" as empty verbiage, explaining nothing; a true cause must be identi­fied, namely God himself. Darwin makes the same point, but cites evolution as the true cause, while branding statements about creation ex nihilo as empty verbiage. Paley writes (p. 76): "A principle of order is the word: but what is meant by a principle of order, as different from an intelligent Creator, has not been explained either by definition or example: and, without such ex­planation, it should seem to be a mere substitution of words for reasons, names for causes."
 
 达尔文经常运用佩利的逻辑，有时候甚至用来反驳佩利自己。例如，佩利认为「秩序的倾向」或「设计的原则」这样的说法只是空洞的语言，无法真正解释事物；他强调必须找到一个真正的原因，即上帝。达尔文也认可需要一个真正的原因，但他认为这个原因是进化，而非佩利所说的无中生有的创造，并且认为后者也是空洞无物的表述。佩利曾在第 76 页写道：「秩序的原则只是一个词汇，但什么是秩序的原则，与智慧的创造者不同，既没有通过定义也没有通过例子进行解释；在缺乏这种解释的情况下，它似乎只是用词汇代替了理由，用名称代替了原因。」
 
-4. Paley discusses many themes of later and central importance to Darwin. He criticizes the major evolutionary conjectures of his day, including Buff on "interior molds," and the idea of use and disuse. (Since I doubt that he had read Lamarck's earliest evolutionary work by 1802, Paley probably derived this aspect of Lamarck's theory from its status as folk wisdom in general cul­ture.) Paley also states the following crisp epitome of the very argument from Malthus that so struck Darwin. (I am not claiming that this passage provided a covert source for Darwin's central insight. Darwin, after all, had also read Malthus.) "The order of generation proceeds by something like a geometrical progression. The increase of provision, under circumstances even the most advantageous, can only assume the form on an arithmetic series. Whence it follows, that the population will always overtake the provision, will pass be­yond the line of plenty, and will continue to increase till checked by the dif­ficulty of procuring subsistence" (p. 540).
+4 Paley discusses many themes of later and central importance to Darwin. He criticizes the major evolutionary conjectures of his day, including Buff on "interior molds," and the idea of use and disuse. (Since I doubt that he had read Lamarck's earliest evolutionary work by 1802, Paley probably derived this aspect of Lamarck's theory from its status as folk wisdom in general cul­ture.) Paley also states the following crisp epitome of the very argument from Malthus that so struck Darwin. (I am not claiming that this passage provided a covert source for Darwin's central insight. Darwin, after all, had also read Malthus.) "The order of generation proceeds by something like a geometrical progression. The increase of provision, under circumstances even the most advantageous, can only assume the form on an arithmetic series. Whence it follows, that the population will always overtake the provision, will pass be­yond the line of plenty, and will continue to increase till checked by the dif­ficulty of procuring subsistence" (p. 540).
 
 Paley 讨论了许多对于达尔文来说具有重要意义的主题。他批评了他那个时代的主要进化猜想，包括 Buff 提出的关于「内部模具」的理论，以及使用与废弃的理论。（由于我怀疑他在 1802 年之前读过 Lamarck 的早期进化作品，Paley 可能是通过其在一般文化中作为民间智慧的地位得出了 Lamarck 理论的这一方面。）Paley 还提出了 Malthus 的一个简洁的论点概要，这一论点对达尔文产生了深远的影响。（我并不是说这段文字暗中成为了达尔文核心见解的来源。毕竟，达尔文也读过 Malthus。）「生殖的秩序以类似几何级数的方式进行。在即使是最有利的情况下，供给的增加也只能呈现算术级数的形式。因此，人口将始终超过供给，超越充足的界限，并将继续增加，直到因获取生计的困难而受到限制。」（第 540 页）
 
@@ -504,9 +508,7 @@ These two principles — the operation of selection on struggling organisms as a
 
 这两个原则 —— 选择作用于挣扎中的生物作为主动智能体，以及选择在适应性变化中的创造性 —— 足以验证在观察和微观进化中的理论。然而，达尔文的目标远不止于此（如前述关于他方法论的讨论中所示，见第 97-116 页）：他希望通过推断，将自然选择视为所有尺度和层次上进化变化的主要来源，从门类的起源到地质时间中物种多样性的变化。因此，达尔文的三大核心假设之一 —— 外推假设 —— 认为自然选择通过在生物层面逐步作用，可以在漫长的地质时间中，通过积累小的变化，构建出巨大的进化改变。通过这个外推假设，达尔文将他导师、地质学家查尔斯·莱尔的均变论思想应用到生物学中。
 
-THE FIRST THEME: THE ORGANISM AS THE AGENT
-
-OF SELECTION
+#### The First Theme: The Organism as the Agent of Selection
 
 第一个主题：作为选择主体的生物体
 
@@ -642,15 +644,15 @@ This passage has often been quoted, but without its surrounding context of contr
 
 这段文字常被引用，但缺乏其相反选项和限制性条件的背景，因而被误解为达尔文在需要时转向更高层次选择的一个简单例子。然而，这样的解释严重曲解了达尔文的动机和逻辑。他确实进行了这种转变，但这只是他在一系列缓和措施中的一个因素。我认为这些缓和措施和限制（在下文讨论的三个不同论点中体现）比选择层次的转变本身更为有趣，因为达尔文极不愿意在个体层次之外讨论选择，这一点在他的整体理论中表现得十分明显。
 
-1. The Descent, as a whole, rests upon the strongest mode of argument for organismal selection. Darwin did not write a separate book on human evo­lution; his ideas (mostly speculative) on this subject occupy the first, and shorter, part of a two volume treatise entitled, in full: The Descent of Man, and Selection in Relation to Sex. In other words, Darwin wrote the Descent as an introduction to his general exposition of sexual selection. We might re­gard the two parts as oddly juxtaposed until we realize that many of Darwin's major arguments about human evolution — in the establishment of secondary sexual characters, and in differentiation among races, for example — invoke sexual selection by intraspecific competition, rather than ordinary natural se­lection as adaptation to external environments. As Ruse (1980) notes, Dar­win viewed sexual selection as the strongest general argument against group selection, for its theme of relentless struggle in mating among members of a population guarantees that individualism must reign, largely by precluding the formation of alliances that higher-level selection could exploit. (Modern notions of sexual selection do envision the formation of such alliances, so the argument may strike us as incorrect today — but Darwin conceived sexual selection as a hyperindividual mode.)
+1 The Descent, as a whole, rests upon the strongest mode of argument for organismal selection. Darwin did not write a separate book on human evo­lution; his ideas (mostly speculative) on this subject occupy the first, and shorter, part of a two volume treatise entitled, in full: The Descent of Man, and Selection in Relation to Sex. In other words, Darwin wrote the Descent as an introduction to his general exposition of sexual selection. We might re­gard the two parts as oddly juxtaposed until we realize that many of Darwin's major arguments about human evolution — in the establishment of secondary sexual characters, and in differentiation among races, for example — invoke sexual selection by intraspecific competition, rather than ordinary natural se­lection as adaptation to external environments. As Ruse (1980) notes, Dar­win viewed sexual selection as the strongest general argument against group selection, for its theme of relentless struggle in mating among members of a population guarantees that individualism must reign, largely by precluding the formation of alliances that higher-level selection could exploit. (Modern notions of sexual selection do envision the formation of such alliances, so the argument may strike us as incorrect today — but Darwin conceived sexual selection as a hyperindividual mode.)
 
 《人类的由来》这本书整体上是对生物选择的最强有力的论证。达尔文没有专门为人类进化写一本书，而是将他在这一主题上的想法（大多是推测性的）放在了一部两卷本著作的第一部分，这部分较短，书名为：《人类的由来及性别选择》。换句话说，达尔文写这本书是为了引入他对性选择的广泛讨论。我们可能会觉得这两部分的安排有些奇怪，直到了解到达尔文关于人类进化的许多关键论点，例如次级性征的形成和种族间的差异，主要是通过种内竞争中的性选择，而不是通过适应外部环境的普通自然选择来实现的。正如 Ruse（1980）指出的那样，达尔文认为性选择是对抗群体选择的最有力论据，因为它强调种群中个体在交配时的无情竞争，确保了个人主义的主导地位，因为这种竞争排除了可以被更高层次选择利用的联盟的形成。（现代的性选择理论确实考虑了这种联盟的形成，因此我们今天可能认为达尔文的观点不完全正确，但在达尔文看来，性选择是一种高度个人化的模式。）
 
-2. Darwin does not present his argument for tribal selection as a happy solution to the problem of morality, but only as one potential factor among oth­ers. He also devises an argument based on organismal selection — in the form that would be called "reciprocal altruism" today: "As the reasoning powers and foresight of the members became improved, each man would soon learn from experience that if he aided his fellow-men, he would commonly receive aid in return. From this low motive he might acquire the habit of aiding his fellows" (1871, p. 163).
+2 Darwin does not present his argument for tribal selection as a happy solution to the problem of morality, but only as one potential factor among oth­ers. He also devises an argument based on organismal selection — in the form that would be called "reciprocal altruism" today: "As the reasoning powers and foresight of the members became improved, each man would soon learn from experience that if he aided his fellow-men, he would commonly receive aid in return. From this low motive he might acquire the habit of aiding his fellows" (1871, p. 163).
 
 达尔文并未将他的部落选择理论视作解决道德问题的终极方案，而只是作为可能影响因素之一。此外，他还提出了一种基于生物个体选择的观点 —— 这一观点在现代被称为「互惠利他主义」：「随着人们的推理和预见能力不断提升，每个人会逐渐从经验中认识到，如果他帮助他人，他通常会得到回报。虽然起初可能是出于这样的动机，但他可能因此养成乐于助人的习惯」（1871 年，第 163 页）。
 
-3. Darwin presents tribal selection as a peculiarity based on the uniqueness of human consciousness, and thus as a strictly circumscribed exception to the generality of organismal selection throughout living nature. As conscious be­ings, we become especially sensitive to the "praise and blame" of our fellows. If altruistic behavior gains a status as virtuous, then we might be persuaded — against our deeper biological drive for seeking personal advantage — to en­gage in such behaviors in order to foster praise or avoid calumny. In other words, a form of "cultural evolution," rooted in our unique level of con­sciousness, could overcome the behaviors driven by organismal selection, and could establish a preference for altruistic acts that might then serve as a basis for tribal selection. But such an argument cannot enjoy wide application in nature, as all other species lack this special mental mechanism for spreading abstract ideas against the thrust of natural selection:
+3 Darwin presents tribal selection as a peculiarity based on the uniqueness of human consciousness, and thus as a strictly circumscribed exception to the generality of organismal selection throughout living nature. As conscious be­ings, we become especially sensitive to the "praise and blame" of our fellows. If altruistic behavior gains a status as virtuous, then we might be persuaded — against our deeper biological drive for seeking personal advantage — to en­gage in such behaviors in order to foster praise or avoid calumny. In other words, a form of "cultural evolution," rooted in our unique level of con­sciousness, could overcome the behaviors driven by organismal selection, and could establish a preference for altruistic acts that might then serve as a basis for tribal selection. But such an argument cannot enjoy wide application in nature, as all other species lack this special mental mechanism for spreading abstract ideas against the thrust of natural selection:
 
 达尔文将部落选择视为一种基于人类意识独特性的严格例外，因为我们是有意识的生物，我们对同伴的「赞美和批评」特别敏感。如果利他行为被视为美德，我们可能会被说服，违背我们追求个人利益的本能，以参与这些行为来获得赞扬或避免批评。换句话说，基于我们独特意识的「文化进化」可以超越生物体选择驱动的行为，并建立对可能作为部落选择基础的利他行为的偏好。但这种观点不能在自然界中广泛适用，因为其他物种都缺乏这种特殊的心理机制来传播抽象思想，从而对抗自然选择的影响：
 
@@ -694,9 +696,7 @@ Second, this struggle does lead to general improvement, if only as an epiphenome
 
 其次，这种斗争确实会带来整体的改善，即便只是作为一种次要现象，无论付出什么代价：「因为自然选择只为每个生命体的利益而运作，所有的身体和精神特质都将趋向于完美」（第 489 页）。达尔文从未动摇过他的核心逻辑；即便是他所有观点中「最温和」的这一条，也明确指出选择只能作用于生物体 ——「为了每个生命体的利益」。为什么不呢？生物体之间斗争的逻辑蕴含着激烈的美丽和经验上的合理性 —— 不论心理上要付出怎样的代价。而且，既然「其他名字的玫瑰闻起来同样香甜」，那么美丽，即便作为一种次要现象，也同样令人愉悦，也是心灵的慰藉。
 
-THE SECOND THEME: NATURAL SELECTION AS A
-
-CREATIVE FORCE
+#### The Second Theme: Natural Selection as a Creative Force
 
 第二个主题：自然选择作为一种创造性力量
 
@@ -1004,10 +1004,11 @@ I have called this section "the adaptationist program," rather than, simply, "ad
 
 • Adaptation is the central phenomenon of evolution, and the key to any understanding of mechanisms.
 
+适应是进化中的核心现象，是理解各种机制的关键。
+
 • Natural selection crafts adaptation.
 
-- 适应是进化中的核心现象，是理解各种机制的关键。
-- 自然选择在适应的形成中发挥了重要作用。
+自然选择在适应的形成中发挥了重要作用。
 
 • Natural selection maintains an overwhelmingly predominant relative frequency as a cause of adaptation. Variation only provides raw material, and cannot do the work unaided.
 
@@ -1045,11 +1046,7 @@ We are children of Darwin, and an English school of adaptation and functionalism
 
 达尔文的思想深深影响了我们，我们继承了一个比进化论更古老的英国适应和功能主义学派。达尔文关于自然选择创造力的核心观点，以及由此衍生的渐进主义、适应论和变异均匀性的概念，构成了支持这种对自然和变化的强大观念的主要基础。对于许多人来说，这些观点已经深深植根于我们的思维中，成为我们无意识的一部分，以至于很少有人会质疑它们。然而，已经有一致的替代观点被提出，并且成为对严格达尔文主义的三大现代尖锐批评之一。我相信，这些批评结合在一起，将使进化理论重新发展成为一个以达尔文主义为核心的更丰富的结构。但是，只有当我们理解了正统观点作为一个有力且具有说服力的理论基础时，我们才能真正理解这些替代观点。重要的批评往往是针对伟大的正统思想而展开的。
 
-THE THIRD THEME: THE UNIFORMITARIAN NEED TO
-
-EXTRAPOLATE; ENVIRONMENT AS ENABLER OF CHANGE
-
-未找到意译内容
+#### The Third Theme: The Uniformitarian Need to Extrapolate; Environment as Enabler of Change
 
 The first two themes — causal focus on organisms as agents of selection and creativity of selection in crafting adaptation — establish the biological core of Darwinian theory. That is, they perform the biological "work" needed to as­sure the third and last essential component of a Darwinian worldview: the uniformitarian argument for full application in extrapolation to all scales and times in the history of life. Mere operation in the microevolutionary here and now cannot suffice. Natural selection must also assert a vigorous claim for preeminence throughout the 3.5 billion years of phylogeny, lest the theory be reduced to an ornamental device, imposing only a fillip of immediate adap­tive detail upon a grand pageant generated by other causes and forces.
 
@@ -1107,7 +1104,7 @@ We cannot overestimate the depth of Darwin's debt to his intellectual hero, Char
 
 我们无法低估达尔文对他心目中的智者查尔斯·莱尔的深刻影响。莱尔的均变论不仅为生物学中的进化变化提供了理论框架。在其原本的地质学领域，均变论也描绘了一个世界，在这个世界中，环境变化缓慢而连续，为自然选择提供了动力，但变化不会过于迅速，以至于自然选择失去作用，被环境本身的变化所主导。在自然选择的过程中，环境提出条件，而生物体则进行适应和调整；这种内外因素的微妙平衡必须保持。然而，如果环境变化过于剧烈，外部因素不仅提出条件，还可能在没有太多反抗的情况下决定生物体和物种的命运。达尔文主义在这种单方面的环境中难以有效运作。
 
-Judgments of Importance
+### 2.4 Judgments of Importance
 
 In the difficult genre of comprehensive historical reviews, a few special books stand out as so fair in their judgments and so lucid in their characterizations that they set the conceptual boundaries of disciplines for generations. In mor­phology, E. S. Russell's Form and Function (1916) occupies this role for the brilliance and justice of its characterizations, even though Russell, as an avowed Lamarckian, made no secret about his own preferences (and made the wrong choice by modern standards). In evolutionary biology, similar plaudits may be granted to Vernon L. Kellogg's Darwinism Today (1907). Kellogg, a great educator and entomologist from Stanford, had collaborated with David Starr Jordan on the best textbooks of his generation. He also played an ironic role in the history of evolution by serving a term (while America maintained her early neutrality) as chief agent for Belgian relief, posted to the German General Staff in Berlin during World War I. There, he listened in horror to German leaders perverting Darwinism as a justification for war and conquest — and he exposed these distortions in his fascinating volume, Headquarters Nights (1917). William Jennings Bryan read this book and, understanding the abuse but blaming the victims of misinterpretation rather than the perpetrators, launched his campaign to ban the teaching of evolution as a result (see Gould, 1991b).
 
