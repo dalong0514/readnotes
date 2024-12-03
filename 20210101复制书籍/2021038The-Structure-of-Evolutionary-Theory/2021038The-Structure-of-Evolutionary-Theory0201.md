@@ -718,7 +718,7 @@ Non-Darwinian evolutionists did not deny the reality, or the operationality, of 
 
 For example, Charles Lyell — whom Darwin convinced about the factuality of evolution but who never (much to Darwin's sadness and frustration) accepted the mechanism of natural selection — admitted that he had be­come stymied on the issue of creativity. He could understand, he wrote in his fifth journal on the "species question" in March 1860, how natural se­lection might act like two members of the "Hindoo Triad" — like Vishnu the preserver and Siva the destroyer, but he simply could not grasp how such a force could also work like Brahma, the creator (in Wilson, 1970, p. 369).
 
-例如，Charles Lyell—— 达尔文曾说服他接受进化的真实性，但他从未（令达尔文感到悲伤和沮丧的是）接受自然选择的机制 —— 承认自己在创造力的问题上陷入了困境。他在 1860 年 3 月关于「物种问题」的第五本日记中写道，他能够理解自然选择如何像「印度三神」中的两个成员那样运作：像维持者毗湿奴和毁灭者湿婆。然而，他就是无法理解这一力量如何能同时像创造者梵天那样运作（在 Wilson，1970，p. 369）。
+例如，Charles Lyell —— 达尔文曾说服他接受进化的真实性，但他从未（令达尔文感到悲伤和沮丧的是）接受自然选择的机制 —— 承认自己在创造力的问题上陷入了困境。他在 1860 年 3 月关于「物种问题」的第五本日记中写道，他能够理解自然选择如何像「印度三神」中的两个成员那样运作：像维持者毗湿奴和毁灭者湿婆。然而，他就是无法理解这一力量如何能同时像创造者梵天那样运作（在 Wilson，1970，p. 369）。
 
 E. D. Cope, chief American critic and exponent of neo-Lamarckism, chose a sardonic title to highlight Darwin's supposedly fatal weakness in claiming a creative role for natural selection. He called his book The Origin of the Fittest (1887) — a parody on Darwin's "survival of the fittest," and a motto for what natural selection could not accomplish. Cope wrote: "The doctrines of 'selec­tion' and 'survival' plainly do not reach the kernel of evolution, which is, as I have long since pointed out, the question of 'the origin of the fittest.' This omission of this problem from the discussion of evolution is to leave Hamlet out of the play to which he has given the name. The law by which structures originate is one thing; those by which they are restricted, directed, or de­stroyed, is another thing" (1887, p. 226).
 
@@ -730,11 +730,11 @@ We can understand the trouble that Darwin's contemporaries experienced in compre
 
 In resolving this paradox, Darwin recognized his logical need, within the basic structure of his argument, to explicate the three main requirements and implications of an argument for selection's creativity: (1) the nature of varia­tion; (2) the rate and continuity of change; (3) the meaning of adaptation. This interrelated set of assertions promotes natural selection from mere exis­tence as a genuine, but secondary and negative, mechanism to domination as the primary cause of evolutionary change and pattern. This set of defenses for selection's creativity therefore ranks as the second of three essential postu­lates, or "minimal commitments" of Darwinian logic.
 
-在面对这一悖论时，Darwin 认识到，为了阐明选择的创造性，他需要在论证的基本结构中解释三个主要要素：(1）变异的性质；(2）变化的速度和连续性；(3）适应的意义。这些相互关联的主张将自然选择从一个只是存在的、次要且消极的机制提升为进化变化和模式的主要推动力。因此，这些关于选择创造性的辩护被视为 Darwin 逻辑中三个基本假设或「最低要求」中的第二个。
+在面对这一悖论时，Darwin 认识到，为了阐明选择的创造性，他需要在论证的基本结构中解释三个主要要素：1）变异的性质；2）变化的速度和连续性；3）适应的意义。这些相互关联的主张将自然选择从一个只是存在的、次要且消极的机制提升为进化变化和模式的主要推动力。因此，这些关于选择创造性的辩护被视为 Darwin 逻辑中三个基本假设或「最低要求」中的第二个。
 
 As the epitome of his own solution, Darwin admitted that his favored mechanism "made" nothing, but held that natural selection must be deemed "creative" (in any acceptable vernacular sense of the term) if its focal action of differential preservation and death could be construed as the primary cause for imparting direction to the process of evolutionary change. Darwin reasoned that natural selection can only play such a role if evolution obeys two crucial conditions: (1) if nothing about the provision of raw materials — that is, the sources of variation — imparts direction to evolutionary change; and (2) if change occurs by a long and insensible series of intermediary steps, each superintended by natural selection — so that "creativity" or "direction" can arise by the summation of increments.
 
-作为他自己解决方案的象征，Darwin 承认他所偏爱的机制并没有创造出任何东西，但如果自然选择的核心作用，即差异化的生存和死亡，可以被视为导致进化变化过程具有方向性的主要原因，那么自然选择在任何通俗的意义上都应被视为「创造性」的。Darwin 认为，自然选择必须满足两个关键条件才能发挥这样的作用：（1）变异的来源，即原材料的供应，不对进化变化赋予任何方向；（2）变化通过一系列漫长且无法察觉的中间步骤发生，每一步都由自然选择监督，这样「创造性」或「方向」可以通过增量的累积而产生。
+作为他自己解决方案的象征，Darwin 承认他所偏爱的机制并没有创造出任何东西，但如果自然选择的核心作用，即差异化的生存和死亡，可以被视为导致进化变化过程具有方向性的主要原因，那么自然选择在任何通俗的意义上都应被视为「创造性」的。Darwin 认为，自然选择必须满足两个关键条件才能发挥这样的作用：1）变异的来源，即原材料的供应，不对进化变化赋予任何方向；2）变化通过一系列漫长且无法察觉的中间步骤发生，每一步都由自然选择监督，这样「创造性」或「方向」可以通过增量的累积而产生。
 
 Under these provisos, variation becomes raw material only — an isotropic sphere of potential about the modal form of a species. Natural selection, by superintending the differential preservation of a biassed region from this sphere in each generation, and by summing up (over countless repetitions) the tiny changes thus produced in each episode, can manufacture substantial, directional change. What else but natural selection could be called "creative," or direction-giving, in such a process? As long as variation only supplies raw material; as long as change accretes in an insensibly gradual manner; and as long as the reproductive advantages of certain individuals provide the statisti­cal source of change; then natural selection must be construed as the direc­tional cause of evolutionary modification.
 
@@ -746,9 +746,11 @@ These conditions are stringent; and they cannot be construed as vague, unconstra
 
 The requirements for variation
 
+变异的要求
+
 In order to act as raw material only, variation must walk a tightrope between two unacceptable alternatives. First and foremost, variation must exist in suf­ficient amounts, for natural selection can make nothing, and must rely upon the bounty thus provided; but variation must not be too florid or showy ei­ther, lest it become the creative agent of change all by itself. Variation, in short, must be copious, small in extent, and undirected. A full taxonomy of non-Darwinian evolutionary theories may be elaborated by their denials of one or more of these central assumptions.
 
-变异的要求为了仅仅作为原材料存在，变异必须在两个不可接受的极端之间保持平衡。首先，变异必须具有足够的数量，因为自然选择无法创造任何东西，必须依赖于其提供的丰富性；但变异也不能过于显著，否则它可能会成为变化的唯一创造性因素。总之，变异必须是丰富的、程度较小的和无方向的。非达尔文的进化理论通过否定这些中心假设之一或多个来进行分类。
+为了仅仅作为原材料存在，变异必须在两个不可接受的极端之间保持平衡。首先，变异必须具有足够的数量，因为自然选择无法创造任何东西，必须依赖于其提供的丰富性；但变异也不能过于显著，否则它可能会成为变化的唯一创造性因素。总之，变异必须是丰富的、程度较小的和无方向的。非达尔文的进化理论通过否定这些中心假设之一或多个来进行分类。
 
 COPIOUS. Since natural selection makes nothing and can only work with raw material presented to its stringent review, variation must be generated in copious and dependable amounts (especially given the hecatomb of selec­tive deaths accompanying the establishment of each favorable feature). Dar­win's scenario for selective modification always includes the postulate, usu­ally stated explicitly, that all structures vary, and can therefore evolve. He argues, for example, that if a short beak were favored on a full-grown pigeon "for the bird's own advantage" (p. 87), then selection would also work within the egg for sufficient beak strength to break the shell despite diminu­tion in overall size of the beak — unless evolution followed an alternate route of selection for thinner shells, "the thickness of the shell being known to vary like any other structure" (p. 87).
 
@@ -824,9 +826,11 @@ We may summarize Darwin's third requirement for variation under the ru­bric of 
 
 Gradualism
 
+渐进主义
+
 Darwinism, like most comprehensive and complex concepts, defies easy definition. Darwinism cannot be analogized to an object, like the Parthenon, with a clear criterion of membership for each potential slab (whether now resident in the British Museum or in Athens). Moreover, the various proposi­tions of Darwinism cannot be regarded as either independent or of equal force. Darwinism cannot be construed as a deductive system, with some de­fining axioms and a set of logical entailments tied together like a classical proof in plane geometry. But neither can Darwinism be viewed as a set of sep­arate stones, all of similar size, and each ejectable from a bag without great disturbance to the others.
 
-渐进主义达尔文主义，就像许多复杂而全面的概念一样，难以用简单的语言定义。它不像帕台农神庙那样，可以通过明确的标准来判断每个部分是否属于它（不论这些石板现在是在大英博物馆还是在雅典）。此外，达尔文主义中各个命题既不是相互独立的，也不具有同等的重要性。我们不能将达尔文主义看作是一个像几何学证明那样，以公理和逻辑推导紧密联系的系统。但同样，它也不是一堆独立的石块，可以随意移除而不影响整体。
+达尔文主义，就像许多复杂而全面的概念一样，难以用简单的语言定义。它不像帕台农神庙那样，可以通过明确的标准来判断每个部分是否属于它（不论这些石板现在是在大英博物馆还是在雅典）。此外，达尔文主义中各个命题既不是相互独立的，也不具有同等的重要性。我们不能将达尔文主义看作是一个像几何学证明那样，以公理和逻辑推导紧密联系的系统。但同样，它也不是一堆独立的石块，可以随意移除而不影响整体。
 
 As discussed at length in Chapter 1 (pp. 12–24), I view the conceptual structure of Darwinism much like the metaphor that Darwin himself first used (see Barrett et al., 1987) for depicting evolution (in the "B Notebook" on transmutation kept during the 1830's) — the "coral of life" (later super­seded, in Chapter 4 of the Origin, and in other writings, by the tree of life). The central trunk (the theory of natural selection) cannot be severed, or the creature dies (see Fig. 1-4, p. 18). The first-order branches are also so funda­mental that any severing of a complete branch converts the theory into some­thing essentially different that must be newly named. (I have suggested that the theory of natural selection includes three major branches, discussed in sections B-D of this subchapter.) Each major branch then divides into smaller sub-branches. (In the present section C, I argue that the second major branch, the claim for "creativity of natural selection," divides into three important sub-branches of "requirements for variation," "gradualism," and "the adaptationist program.")
 
@@ -966,9 +970,11 @@ I am well aware that this doctrine of natural selection ... is open to the same 
 
 The adaptationist program
 
+适应主义方案
+
 Darwin's three constraints on the nature of variation form a single conceptual thrust: variation only serves as a prerequisite, a source of raw material in­capable of imparting direction or generating evolutionary change by itself. Gradualism, in the second meaning of insensible intermediacy, then guaran­tees that the positive force of modification proceeds step by tiny step. There­fore, the explanation of evolution must reside in specifying the causes of change under two conditions that logically entail a primary focus on adapta­tion as a canonical result: we know the general nature of change (gradual­ism), and we have eliminated an internal source from variation itself (the ar­gument for isotropy). Change must therefore arise by interaction between external conditions (both biotic and abiotic) and the equipotential raw mate­rial of variation. Such gradual adjustment of one to the other must yield ad­aptation as a primary outcome.
 
-适应主义方案达尔文的三个变异限制构成了一个统一的概念：变异仅仅是进化的前提条件，自身无法赋予方向或引发进化变化。渐变论的第二个含义强调进化通过细微的中介步骤逐步进行。因此，进化的解释必须在适应成为主要结果的条件下找到变化的原因：我们了解变化的一般性质（渐变论），并且已经排除了变异本身的内部来源（各向同性论证）。因此，变化由外部条件（生物和非生物）与变异材料的相互作用产生。这种逐渐的相互适应最终导致适应的产生。
+达尔文的三个变异限制构成了一个统一的概念：变异仅仅是进化的前提条件，自身无法赋予方向或引发进化变化。渐变论的第二个含义强调进化通过细微的中介步骤逐步进行。因此，进化的解释必须在适应成为主要结果的条件下找到变化的原因：我们了解变化的一般性质（渐变论），并且已经排除了变异本身的内部来源（各向同性论证）。因此，变化由外部条件（生物和非生物）与变异材料的相互作用产生。这种逐渐的相互适应最终导致适应的产生。
 
 Adaptational results flow logically from the mechanisms defining all other subbranches on the limb of Darwinism designated here as the "creativity of natural selection." But Darwin constructed this limb in reverse order in the psychological development of his theory. For he had long viewed an explana­tion of adaptation as the chief requirement of evolutionary theory. He sought the causes of evolution within his patrimony — the English tradition in natural theology — and he attempted to subvert this patrimony from within by ac­cepting its chief empirical postulate of good design and then providing an in­verted theoretical explanation (see p. 125).
 
